@@ -1,0 +1,9 @@
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "printWidth": 200,
+  "bracketSameLine": true,
+  "semi": false,
+  "singleAttributePerLine": true,
+  "plugins": ["prettier-plugin-css-order", "prettier-plugin-tailwindcss"]
+}
