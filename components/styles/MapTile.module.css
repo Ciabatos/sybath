@@ -1,0 +1,8 @@
+.Hex {
+  position: relative;
+  border: 0.05vmin solid rgb(223, 61, 61);
+  background-color: black;
+  aspect-ratio: 1;
+  width: 100px;
+  height: 100px;
+}

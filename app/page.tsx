@@ -4,7 +4,7 @@ import SignIn from "@/components/SignIn"
 import SignUp from "@/components/SignUp"
 import { auth } from "@/auth"
 
-export default async function Home() {
+export default async function HomePage() {
   const session = await auth()
   console.log(session, "Server session")
   return (
