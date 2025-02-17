@@ -1,7 +1,7 @@
 import styles from "./page.module.css"
-import Map from "@/components/Map"
-import MapTiles from "@/components/MapTiles"
+
 import { auth } from "@/auth"
+import MapTilesServer from "@/components/MapTilesServer"
 
 export default async function MapPage() {
   const session = await auth()
@@ -9,9 +9,7 @@ export default async function MapPage() {
 
   return (
     <div className={styles.main}>
-      <Map>
-        <MapTiles />
-      </Map>
+      <MapTilesServer />
     </div>
   )
 }

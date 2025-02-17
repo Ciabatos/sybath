@@ -1,7 +1,7 @@
 "use server"
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 
-interface TMapTerrainTypes {
+export type TMapTerrainTypes = {
   id: number
   name: string
   terrain_move_cost: number

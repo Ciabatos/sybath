@@ -1,7 +1,7 @@
 "use server"
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 
-interface TMapTiles {
+export type TMapTiles = {
   id: number
   map_id: number
   x: number

@@ -1,12 +1,10 @@
 "use client"
 import style from "./styles/Map.module.css"
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch"
+import type { TjoinedMapTilesObj } from "./MapTilesServer"
+import MapTilesClient from "@/components/MapTilesClient"
 
-interface TServerComponentChildrenProps {
-  children: React.ReactNode
-}
-
-export default function Map({ children }: TServerComponentChildrenProps) {
+export default function MapWrapper({ joinedMapTiles }: { joinedMapTiles: Record<string, TjoinedMapTilesObj> }) {
   return (
     <>
       <div
@@ -20,7 +18,7 @@ export default function Map({ children }: TServerComponentChildrenProps) {
             <div
               id="Tiles"
               className={style.Tiles}>
-              {children}
+              <MapTilesClient joinedMapTiles={joinedMapTiles}></MapTilesClient>
             </div>
           </TransformComponent>
         </TransformWrapper>

@@ -1,12 +1,12 @@
 "use server"
 
-import MapTile from "./MapTile"
 import { getMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
 import { getMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
 
 import { arrayToObjectKeyId } from "@/functions/util/converters"
+import MapWrapper from "@/components/MapWrapper"
 
-export interface TjoinedMapTilesObj {
+export type TjoinedMapTilesObj = {
   id: number
   x: number
   y: number
@@ -15,7 +15,7 @@ export interface TjoinedMapTilesObj {
   terrain_move_cost?: number
 }
 
-export default async function MapTiles() {
+export default async function MapTilesServer() {
   const mapTerrainTypes = await getMapTerrainTypes()
   const mapTerrainTypesObj = arrayToObjectKeyId(mapTerrainTypes)
 
@@ -36,14 +36,5 @@ export default async function MapTiles() {
     }),
   )
 
-  return (
-    <>
-      {Object.entries(joinedMapTilesObj).map(([key, tile]) => (
-        <MapTile
-          key={key}
-          tile={tile}
-        />
-      ))}
-    </>
-  )
+  return <MapWrapper joinedMapTiles={joinedMapTilesObj} />
 }
