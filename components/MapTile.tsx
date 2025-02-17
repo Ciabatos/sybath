@@ -1,9 +1,9 @@
 "use client"
 
 import style from "./styles/MapTile.module.css"
-import type { TjoinedMapTilesObj } from "./MapTilesServer"
+import type { TjoinedMapTiles } from "./MapTilesServer"
 
-export default function MapTile({ tile }: { tile: TjoinedMapTilesObj }) {
+export default function MapTile({ tile }: { tile: TjoinedMapTiles }) {
   return (
     <div
       className={style.Hex}

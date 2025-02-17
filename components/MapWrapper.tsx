@@ -1,10 +1,11 @@
 "use client"
 import style from "./styles/Map.module.css"
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch"
-import type { TjoinedMapTilesObj } from "./MapTilesServer"
 import MapTilesClient from "@/components/MapTilesClient"
+import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
+import type { TjoinedMapTiles } from "./MapTilesServer"
 
-export default function MapWrapper({ joinedMapTiles }: { joinedMapTiles: Record<string, TjoinedMapTilesObj> }) {
+export default function MapWrapper({ joinedMapTiles, mapTerrainTypesById }: { joinedMapTiles: Record<string, TjoinedMapTiles>; mapTerrainTypesById: Record<string, TMapTerrainTypes> }) {
   return (
     <>
       <div
@@ -18,7 +19,9 @@ export default function MapWrapper({ joinedMapTiles }: { joinedMapTiles: Record<
             <div
               id="Tiles"
               className={style.Tiles}>
-              <MapTilesClient joinedMapTiles={joinedMapTiles}></MapTilesClient>
+              <MapTilesClient
+                joinedMapTiles={joinedMapTiles}
+                mapTerrainTypesById={mapTerrainTypesById}></MapTilesClient>
             </div>
           </TransformComponent>
         </TransformWrapper>
