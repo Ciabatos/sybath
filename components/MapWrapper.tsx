@@ -3,9 +3,9 @@ import style from "./styles/Map.module.css"
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch"
 import MapTilesClient from "@/components/MapTilesClient"
 import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
-import type { TjoinedMapTiles } from "./MapTilesServer"
+import type { TjoinedMapTile } from "@/functions/map/mapTilesServerData"
 
-export default function MapWrapper({ joinedMapTiles, mapTerrainTypesById }: { joinedMapTiles: Record<string, TjoinedMapTiles>; mapTerrainTypesById: Record<string, TMapTerrainTypes> }) {
+export default function MapWrapper({ joinedMapTiles, terrainTypesById }: { joinedMapTiles: Record<string, TjoinedMapTile>; terrainTypesById: Record<string, TMapTerrainTypes> }) {
   return (
     <>
       <div
@@ -21,7 +21,7 @@ export default function MapWrapper({ joinedMapTiles, mapTerrainTypesById }: { jo
               className={style.Tiles}>
               <MapTilesClient
                 joinedMapTiles={joinedMapTiles}
-                mapTerrainTypesById={mapTerrainTypesById}></MapTilesClient>
+                terrainTypesById={terrainTypesById}></MapTilesClient>
             </div>
           </TransformComponent>
         </TransformWrapper>

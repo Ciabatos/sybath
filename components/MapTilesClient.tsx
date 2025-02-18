@@ -2,10 +2,10 @@
 import { useSession } from "next-auth/react"
 import useSWR from "swr"
 import MapTile from "./MapTile"
-import type { TjoinedMapTiles } from "./MapTilesServer"
+import type { TjoinedMapTile } from "@/functions/map/mapTilesServerData"
 import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
 
-export default function MapTilesClient({ joinedMapTiles, mapTerrainTypesById }: { joinedMapTiles: Record<string, TjoinedMapTiles>; mapTerrainTypesById: Record<string, TMapTerrainTypes> }) {
+export default function MapTilesClient({ joinedMapTiles, terrainTypesById }: { joinedMapTiles: Record<string, TjoinedMapTile>; terrainTypesById: Record<string, TMapTerrainTypes> }) {
   const session = useSession()
   const { data, error, isLoading } = useSWR("/api/users")
 
