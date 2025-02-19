@@ -15,7 +15,7 @@ export type TjoinedMapTile = {
 
 async function mapTilesServerData() {
   const [mapTerrainTypes, tilesData] = await Promise.all([getMapTerrainTypes(), getMapTiles()])
-  console.log("da")
+
   const terrainTypesById = arrayToObjectKeyId(mapTerrainTypes) as Record<number, TMapTerrainTypes>
 
   const joinedMapTiles = Object.fromEntries(

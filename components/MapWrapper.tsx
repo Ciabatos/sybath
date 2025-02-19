@@ -3,9 +3,14 @@ import style from "./styles/Map.module.css"
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch"
 import MapTilesClient from "@/components/MapTilesClient"
 import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
-import type { TjoinedMapTile } from "@/functions/map/mapTilesServerData"
+import type { TjoinedMapTile } from "@/functions/services/map/mapTilesServerData"
 
-export default function MapWrapper({ joinedMapTiles, terrainTypesById }: { joinedMapTiles: Record<string, TjoinedMapTile>; terrainTypesById: Record<string, TMapTerrainTypes> }) {
+interface Props {
+  joinedMapTiles: Record<string, TjoinedMapTile>
+  terrainTypesById: Record<string, TMapTerrainTypes>
+}
+
+export default function MapWrapper({ joinedMapTiles, terrainTypesById }: Props) {
   return (
     <>
       <div

@@ -1,8 +1,8 @@
 import styles from "./page.module.css"
-import TestClient from "@/components/TestClient"
 import SignIn from "@/components/SignIn"
 import SignUp from "@/components/SignUp"
 import { auth } from "@/auth"
+import Link from "next/link"
 
 export default async function HomePage() {
   const session = await auth()
@@ -11,7 +11,7 @@ export default async function HomePage() {
     <div className={styles.main}>
       <SignIn />
       <SignUp />
-      <TestClient />
+      <Link href="/map">Map</Link>
     </div>
   )
 }
