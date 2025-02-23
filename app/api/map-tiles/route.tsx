@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextResponse, NextRequest } from "next/server"
-import { getUsers } from "@/db/postgresMainDatabase/schemas/auth/tables/users"
+import { getMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
 
 type TypeParams = {
   null: string
@@ -13,7 +13,7 @@ export async function GET(request: NextRequest, { params }: { params: TypeParams
   // const login = searchQueryParams.get("login")
 
   try {
-    const result = await getUsers()
+    const result = await getMapTiles()
 
     return NextResponse.json(result)
   } catch (error) {
