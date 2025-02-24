@@ -1,3 +1,4 @@
+'use server'
 import type { Metadata } from "next"
 import "./globals.css"
 import { SWRProvider } from "@/providers/swr-provider"
