@@ -1,5 +1,5 @@
 'use server'
-//import { DataProvider } from "next-auth/react"
+import { MapDataProvider } from "@/providers/MapDataProvider"
 
 
 
@@ -9,10 +9,10 @@ export default function MapLayout({
   children: React.ReactNode
 }>) {
   return (
-      //<DataProvider>
+      <MapDataProvider>
         <html lang="en">
           <body>{children}</body>
         </html>
-      //</DataProvider>
+      </MapDataProvider>
   )
 }
