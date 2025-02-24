@@ -2,7 +2,7 @@
 import { useSession } from "next-auth/react"
 import useSWR from "swr"
 import MapTile from "./MapTile"
-import useFetchMapTiles from "@/functions/hooks/useFetchMapTiles"
+//import useFetchMapTiles from "@/functions/hooks/useFetchMapTiles"
 import type { TjoinedMapTile } from "@/functions/services/map/mapTilesServerData"
 import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
 import { useAtomValue } from "jotai"
@@ -17,7 +17,7 @@ export default function MapTilesClient({ joinedMapTiles, terrainTypesById }: Pro
   // const session = useSession()
   // const { data, error, isLoading } = useSWR("/api/users")
 
-  useFetchMapTiles()
+  //useFetchMapTiles()
   const mapTiles = useAtomValue(mapTilesAtom)
   console.log(mapTiles, "mapTiles")
 
