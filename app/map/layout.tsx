@@ -1,7 +1,4 @@
-'use server'
 import { MapDataProvider } from "@/providers/MapDataProvider"
-
-
 
 export default function MapLayout({
   children,
@@ -9,10 +6,10 @@ export default function MapLayout({
   children: React.ReactNode
 }>) {
   return (
-      <MapDataProvider>
-        <html lang="en">
-          <body>{children}</body>
-        </html>
-      </MapDataProvider>
+    <MapDataProvider>
+      <html lang="en">
+        <body>{children}</body>
+      </html>
+    </MapDataProvider>
   )
 }
