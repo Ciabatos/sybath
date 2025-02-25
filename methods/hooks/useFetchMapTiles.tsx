@@ -8,10 +8,6 @@ export default function useFetchMapTiles() {
   const { data, error, isLoading } = useSWR("/api/map-tiles", { refreshInterval: 3000 })
 
   useEffect(() => {
-    setData({
-      data: data || null,
-      isLoading,
-      error: error || null,
-    })
+    setData(data)
   }, [data, error, isLoading, setData])
 }

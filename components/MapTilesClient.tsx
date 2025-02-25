@@ -1,12 +1,13 @@
 "use client"
 import { useSession } from "next-auth/react"
-import useSWR from "swr"
-import MapTile from "./MapTile"
 
-import type { TjoinedMapTile } from "@/functions/services/map/mapTilesServerData"
+import MapTile from "./MapTile"
+import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesClient"
 import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
 import { useAtomValue } from "jotai"
 import { mapTilesAtom } from "@/store/atoms"
+import { joinMapTilesClient } from "@/methods/functions/joinMapTilesClient"
+import { useEffect, useState } from "react"
 
 interface Props {
   joinedMapTiles: Record<string, TjoinedMapTile>
@@ -15,24 +16,20 @@ interface Props {
 
 export default function MapTilesClient({ joinedMapTiles, terrainTypesById }: Props) {
   // const session = useSession()
-  // const { data, error, isLoading } = useSWR("/api/users")
 
+  const [updatedTiles, setUpdatedTiles] = useState(joinedMapTiles)
   const mapTiles = useAtomValue(mapTilesAtom)
-  console.log(mapTiles, "mapTiles")
 
-  // if (!session.data?.user?.email) {
-  //   return <div>Sing In !</div>
-  // }
-  // if (isLoading) {
-  //   return <div>Loading...</div>
-  // }
-  // if (error) {
-  //   return <div>Error: {error.message}</div>
-  // }
+  useEffect(() => {
+    if (mapTiles) {
+      const updatedTiles = joinMapTilesClient(joinedMapTiles, mapTiles, terrainTypesById)
+      setUpdatedTiles(updatedTiles)
+    }
+  }, [joinedMapTiles, mapTiles, terrainTypesById])
 
   return (
     <>
-      {Object.entries(joinedMapTiles).map(([key, tile]) => (
+      {Object.entries(updatedTiles).map(([key, tile]) => (
         <MapTile
           key={key}
           tile={tile}

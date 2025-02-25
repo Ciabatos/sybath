@@ -1,4 +1,4 @@
-import { singUpAction } from "@/functions/actions/singUpAction"
+import { singUpAction } from "@/methods/actions/singUpAction"
 
 export default function SignUp() {
   return (

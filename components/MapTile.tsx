@@ -1,7 +1,7 @@
 "use client"
 
 import style from "./styles/MapTile.module.css"
-import type { TjoinedMapTile } from "@/functions/services/map/mapTilesServerData"
+import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesClient"
 
 interface Props {
   tile: TjoinedMapTile
