@@ -1,3 +1,4 @@
+import produce from 'immer'
 import type { TMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
 import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
 
@@ -11,18 +12,16 @@ export type TjoinedMapTile = {
 }
 
 export function joinMapTilesClient(oldTiles: Record<string, TjoinedMapTile>, newTiles: TMapTiles[], terrainTypes: Record<number, TMapTerrainTypes>): Record<string, TjoinedMapTile> {
-  newTiles.forEach((newTile) => {
-    const key = `${newTile.x},${newTile.y}`
-    const existingTile = oldTiles[key]
-
-    if (existingTile) {
-      existingTile.terrain_type_id = newTile.terrain_type_id
-
-      const terrain = terrainTypes[newTile.terrain_type_id]
-      existingTile.terrain_name = terrain?.name
-      existingTile.terrain_move_cost = terrain?.terrain_move_cost
-    }
+return produce(oldTiles, draft => {
+    newTiles.forEach((newTile) => {
+      const key = `${newTile.x},${newTile.y}`
+      if (draft[key]) {
+        // This looks like mutation but Immer handles immutability behind the scenes
+        draft[key].terrain_type_id = newTile.terrain_type_id
+        const terrain = terrainTypes[newTile.terrain_type_id]
+        draft[key].terrain_name = terrain?.name
+        draft[key].terrain_move_cost = terrain?.terrain_move_cost
+      }
+    })
   })
-
-  return oldTiles // this is the updatedTiles
 }
