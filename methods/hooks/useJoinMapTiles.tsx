@@ -10,15 +10,15 @@ export function useJoinMapTiles(
   joinedMapTiles: Record<string, TjoinedMapTile>,
   terrainTypesById: Record<number, TMapTerrainTypes>
 ) {
-  const [updatedTiles, setUpdatedTiles] = useState(joinedMapTiles)
-  const mapTiles = useAtomValue(mapTilesAtom)
+  const [tiles, setTiles] = useState(joinedMapTiles)
+  const newMapTiles = useAtomValue(mapTilesAtom)
   
   useEffect(() => {
-    if (mapTiles) {
-      const updatedTiles = joinMapTilesClient(joinedMapTiles, mapTiles, terrainTypesById)
-      setUpdatedTiles(updatedTiles)
+    if (newMapTiles) {
+      const updatedTiles = joinMapTilesClient(tiles, newMapTiles, terrainTypesById)
+      setTiles(updatedTiles)
     }
-  }, [joinedMapTiles, mapTiles, terrainTypesById])
+  }, [joinedMapTiles, newMapTiles, terrainTypesById])
 
-  return updatedTiles
+  return tiles
 }
