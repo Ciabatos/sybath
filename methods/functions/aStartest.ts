@@ -1,5 +1,5 @@
 
-xport function Astar(grid, startNode, finishNode, ActionPoints) {
+export function Astar(grid, startNode, finishNode, ActionPoints) {
   const visitedNodesInOrder = []
   startNode.distance = 0
   startNode.MovmentCost = 0
