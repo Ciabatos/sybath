@@ -68,3 +68,52 @@ function getAllNodesAsObject(grid) {
   })
   return nodes
 }
+
+
+
+
+
+
+
+
+
+
+const tiles = {
+  "0,0": { x: 0, y: 0, value: "tile1" },
+  "0,1": { x: 0, y: 1, value: "tile2" },
+  "1,0": { x: 1, y: 0, value: "tile3" },
+  "1,1": { x: 1, y: 1, value: "tile4" },
+  // Add more tiles here...
+};
+
+const findNeighbors = (x, y, tiles) => {
+  const neighbors = [];
+  
+  // Define the 8 possible neighbors (including diagonals)
+  const directions = [
+    [-1, -1], [0, -1], [1, -1],
+    [-1,  0],          [1,  0],
+    [-1,  1], [0,  1], [1,  1]
+  ];
+  
+  for (const [dx, dy] of directions) {
+    const neighborKey = `${x + dx},${y + dy}`; // Generate the key for the neighbor
+    if (tiles[neighborKey]) {
+      neighbors.push(tiles[neighborKey]);
+    }
+  }
+
+  return neighbors;
+};
+
+console.log(findNeighbors(0, 0, tiles));
+
+
+
+
+
+
+
+
+
+
