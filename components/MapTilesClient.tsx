@@ -17,15 +17,7 @@ interface Props {
 export default function MapTilesClient({ joinedMapTiles, terrainTypesById }: Props) {
   // const session = useSession()
 
-  const [updatedTiles, setUpdatedTiles] = useState(joinedMapTiles)
-  const mapTiles = useAtomValue(mapTilesAtom)
-
-  useEffect(() => {
-    if (mapTiles) {
-      const updatedTiles = joinMapTilesClient(joinedMapTiles, mapTiles, terrainTypesById)
-      setUpdatedTiles(updatedTiles)
-    }
-  }, [joinedMapTiles, mapTiles, terrainTypesById])
+const updatedTiles = useJoinMapTiles(joinedMapTiles, terrainTypesById)
 
   return (
     <>
