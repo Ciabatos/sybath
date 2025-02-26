@@ -6,7 +6,7 @@ import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesClient"
 import type { TMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
 import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
 
-export function useUpdatedTiles(
+export function useJoinMapTiles(
   joinedMapTiles: Record<string, TjoinedMapTile>,
   terrainTypesById: Record<number, TMapTerrainTypes>
 ) {
