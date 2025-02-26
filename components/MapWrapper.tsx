@@ -3,7 +3,7 @@ import style from "./styles/Map.module.css"
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch"
 import MapTilesClient from "@/components/MapTilesClient"
 import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
-import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesClient"
+import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
 
 interface Props {
   joinedMapTiles: Record<string, TjoinedMapTile>

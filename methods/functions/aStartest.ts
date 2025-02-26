@@ -1,4 +1,3 @@
-
 export function Astar(grid, startNode, finishNode, ActionPoints) {
   const visitedNodesInOrder = []
   startNode.distance = 0
@@ -60,60 +59,11 @@ export function Astar(grid, startNode, finishNode, ActionPoints) {
 // Funkcja do pobierania wszystkich węzłów jako obiekt
 function getAllNodesAsObject(grid) {
   const nodes = {}
-  grid.forEach(row => {
-    row.forEach(node => {
+  grid.forEach((row) => {
+    row.forEach((node) => {
       const key = `${node.x},${node.y}`
       nodes[key] = node
     })
   })
   return nodes
 }
-
-
-
-
-
-
-
-
-
-
-const tiles = {
-  "0,0": { x: 0, y: 0, value: "tile1" },
-  "0,1": { x: 0, y: 1, value: "tile2" },
-  "1,0": { x: 1, y: 0, value: "tile3" },
-  "1,1": { x: 1, y: 1, value: "tile4" },
-  // Add more tiles here...
-};
-
-const findNeighbors = (x, y, tiles) => {
-  const neighbors = [];
-  
-  // Define the 8 possible neighbors (including diagonals)
-  const directions = [
-    [-1, -1], [0, -1], [1, -1],
-    [-1,  0],          [1,  0],
-    [-1,  1], [0,  1], [1,  1]
-  ];
-  
-  for (const [dx, dy] of directions) {
-    const neighborKey = `${x + dx},${y + dy}`; // Generate the key for the neighbor
-    if (tiles[neighborKey]) {
-      neighbors.push(tiles[neighborKey]);
-    }
-  }
-
-  return neighbors;
-};
-
-console.log(findNeighbors(0, 0, tiles));
-
-
-
-
-
-
-
-
-
-

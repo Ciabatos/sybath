@@ -2,12 +2,9 @@
 import { useSession } from "next-auth/react"
 
 import MapTile from "./MapTile"
-import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesClient"
+import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
 import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
-import { useAtomValue } from "jotai"
-import { mapTilesAtom } from "@/store/atoms"
-import { joinMapTilesClient } from "@/methods/functions/joinMapTilesClient"
-import { useEffect, useState } from "react"
+import { useJoinMapTiles } from "@/methods/hooks/useJoinMapTiles"
 
 interface Props {
   joinedMapTiles: Record<string, TjoinedMapTile>
@@ -17,7 +14,7 @@ interface Props {
 export default function MapTilesClient({ joinedMapTiles, terrainTypesById }: Props) {
   // const session = useSession()
 
-const updatedTiles = useJoinMapTiles(joinedMapTiles, terrainTypesById)
+  const updatedTiles = useJoinMapTiles(joinedMapTiles, terrainTypesById)
 
   return (
     <>
