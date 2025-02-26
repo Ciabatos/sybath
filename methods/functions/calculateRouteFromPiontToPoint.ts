@@ -2,7 +2,7 @@
 
 
 
-export function calculateRouteFromPiontToPoint( startX, startY, endX, endY, mapTiles ) {
+export function calculateRouteFromPiontToPoint( startX, startY, endX, endY, mapTiles, objectProperties ) {
 
 
 
