@@ -13,9 +13,10 @@ export function useJoinMapTiles(
   const [tiles, setTiles] = useState(joinedMapTiles)
   const newMapTiles = useAtomValue(mapTilesAtom)
   
+  
   useEffect(() => {
     if (newMapTiles) {
-      const updatedTiles = joinMapTilesClient(tiles, newMapTiles, terrainTypesById)
+      const updatedTiles = joinMapTilesClient( tiles, newMapTiles, terrainTypesById)
       setTiles(updatedTiles)
     }
   }, [joinedMapTiles, newMapTiles, terrainTypesById])
