@@ -34,7 +34,7 @@ export function Astar(grid, startNode, finishNode, ActionPoints) {
 
       // Update neighbor's distance and previous node
       if (neighbor === finishNode) {
-        neighbor.distance = closestNode.distance - 1;
+        neighbor.distance = 0;
       } else {
         neighbor.distance = closestNode.distance + 1;
       }
