@@ -16,6 +16,7 @@ export default function MapTilesClient({ joinedMapTiles, terrainTypesById }: Pro
 
   const updatedTiles = useJoinMapTiles(joinedMapTiles, terrainTypesById)
 
+  console.log(terrainTypesById, "terrainTypesById")
   return (
     <>
       {Object.entries(updatedTiles).map(([key, tile]) => (
