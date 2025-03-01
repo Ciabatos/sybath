@@ -5,6 +5,7 @@ export type TMapTerrainTypes = {
   id: number
   name: string
   terrain_move_cost: number
+  image_url: string
 }
 
 export const getMapTerrainTypes = async () => {

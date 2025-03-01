@@ -8,6 +8,7 @@ export type TjoinedMapTile = {
   terrain_type_id: number
   terrain_name?: string
   terrain_move_cost?: number
+  image_url?: string
 }
 
 export function joinMapTilesServer(tiles: TMapTiles[], terrainTypes: TMapTerrainTypes[]): Record<string, TjoinedMapTile> {
@@ -21,6 +22,7 @@ export function joinMapTilesServer(tiles: TMapTiles[], terrainTypes: TMapTerrain
           ...tile,
           terrain_name: terrain?.name,
           terrain_move_cost: terrain?.terrain_move_cost,
+          image_url: terrain?.image_url,
         },
       ]
     }),

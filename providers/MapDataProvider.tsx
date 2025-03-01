@@ -1,8 +1,8 @@
-"use client"
-import useFetchMapTiles from "@/methods/hooks/useFetchMapTiles"
+// "use client"
+// import useFetchMapTiles from "@/methods/hooks/useFetchMapTiles"
 
-export const MapDataProvider = ({ children }: { children: React.ReactNode }) => {
-  useFetchMapTiles()
+// export const MapDataProvider = ({ children }: { children: React.ReactNode }) => {
+//   useFetchMapTiles()
 
-  return <>{children}</>
-}
+//   return <>{children}</>
+// }

@@ -14,6 +14,7 @@ export function joinMapTilesClient(oldTiles: Record<string, TjoinedMapTile>, new
         const terrain = terrainTypes[newTile.terrain_type_id]
         draft[key].terrain_name = terrain?.name
         draft[key].terrain_move_cost = terrain?.terrain_move_cost
+        draft[key].image_url = terrain?.image_url
       }
     })
   })

@@ -2,6 +2,7 @@
 
 import { useAStar } from "@/methods/hooks/useAStar"
 import style from "./styles/MapTile.module.css"
+import { useCreateBackgroundImage } from "@/methods/hooks/useCreateBackgroundImage"
 import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
 
 interface Props {
@@ -18,6 +19,9 @@ export default function MapTile({ tile }: Props) {
         gridColumnStart: tile.x,
         gridRowStart: tile.y,
         backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundImage: useCreateBackgroundImage(tile.image_url),
       }}
       onClick={runAStar}>
       <div>

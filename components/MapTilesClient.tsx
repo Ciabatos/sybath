@@ -20,7 +20,7 @@ export default function MapTilesClient({ joinedMapTiles, terrainTypesById }: Pro
   useFetchMapTiles()
 
   const updatedTiles = useAtomValue(joinedMapTilesAtom)
-
+  console.log(updatedTiles, "updatedTiles")
   return (
     <>
       {Object.entries(updatedTiles).map(([key, tile]) => (
