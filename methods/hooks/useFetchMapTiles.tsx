@@ -4,11 +4,11 @@ import { useEffect } from "react"
 import { useSetAtom } from "jotai"
 import { mapTilesAtom } from "@/store/atoms"
 
-export default function useFetchMapTiles() {
-  const setData = useSetAtom(mapTilesAtom)
+export function useFetchMapTiles() {
+  const setMapTiles = useSetAtom(mapTilesAtom)
   const { data, error, isLoading } = useSWR("/api/map-tiles", { refreshInterval: 3000 })
 
   useEffect(() => {
-    setData(data)
-  }, [data, error, isLoading, setData])
+    setMapTiles(data)
+  }, [data, error, isLoading, setMapTiles])
 }
