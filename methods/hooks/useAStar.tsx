@@ -42,7 +42,6 @@ export function useAStar(startX: number, startY: number, endX: number, endY: num
       }
     })
 
-    console.log(filteredMapTiles, "filteredTiles")
     return filteredMapTiles
   }
 

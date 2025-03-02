@@ -15,16 +15,18 @@ export default function MapTile({ tile }: Props) {
 
   return (
     <div
-      className={style.Hex}
+      className={style.BackgroundImage}
       style={{
         gridColumnStart: tile.x,
         gridRowStart: tile.y,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundImage: useCreatePlayerImage(tile.player_image_url) + ", " + useCreateBackgroundImage(tile.image_url),
+        backgroundImage: useCreateBackgroundImage(tile.image_url),
       }}
       onClick={runAStar}>
+      <div
+        className={style.PlayerImage}
+        style={{
+          backgroundImage: useCreatePlayerImage(tile.player_image_url),
+        }}></div>
       <div>
         {tile.x}, {tile.y}
       </div>
