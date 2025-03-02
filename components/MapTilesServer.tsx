@@ -1,13 +1,15 @@
 "use server"
 import MapWrapper from "@/components/MapWrapper"
-import { getTerrainTypesById, getJoinedMapTiles } from "@/methods/services/map/mapTilesServerData"
+import { mapTilesServerData } from "@/methods/services/map/mapTilesServerData"
 
 export default async function MapTilesServer() {
-  const [terrainTypesById, joinedMapTiles] = await Promise.all([getTerrainTypesById(), getJoinedMapTiles()])
+  const { joinedMapTiles, terrainTypesById, playerPositionById } = await mapTilesServerData()
+
   return (
     <MapWrapper
       joinedMapTiles={joinedMapTiles}
       terrainTypesById={terrainTypesById}
+      playerPositionById={playerPositionById}
     />
   )
 }

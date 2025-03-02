@@ -4,13 +4,15 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch"
 import MapTilesClient from "@/components/MapTilesClient"
 import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
 import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
+import { TMapsFieldsPlayerPosition } from "@/db/postgresMainDatabase/schemas/map/views/mapsFieldsPlayerPosition"
 
 interface Props {
   joinedMapTiles: Record<string, TjoinedMapTile>
   terrainTypesById: Record<string, TMapTerrainTypes>
+  playerPositionById?: Record<string, TMapsFieldsPlayerPosition>
 }
 
-export default function MapWrapper({ joinedMapTiles, terrainTypesById }: Props) {
+export default function MapWrapper({ joinedMapTiles, terrainTypesById, playerPositionById }: Props) {
   return (
     <>
       <div
@@ -26,7 +28,8 @@ export default function MapWrapper({ joinedMapTiles, terrainTypesById }: Props) 
               className={style.Tiles}>
               <MapTilesClient
                 joinedMapTiles={joinedMapTiles}
-                terrainTypesById={terrainTypesById}></MapTilesClient>
+                terrainTypesById={terrainTypesById}
+                playerPositionById={playerPositionById}></MapTilesClient>
             </div>
           </TransformComponent>
         </TransformWrapper>
