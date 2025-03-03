@@ -33,3 +33,6 @@ export const isTileHighlightedAtom = (x: number, y: number) =>
     const highlightedTile = get(highlightedTileAtom);
     return highlightedTile?.x === x && highlightedTile?.y === y;
   });
+
+  // Check if the current tile is highlighted
+  const isHighlighted = useAtomValue(isTileHighlightedAtom(tile.x, tile.y));
