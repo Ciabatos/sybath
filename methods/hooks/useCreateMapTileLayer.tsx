@@ -24,3 +24,12 @@ export const useClearHighlightedTile = () => {
     setHighlightedTile(null);
   };
 };
+
+
+
+
+export const isTileHighlightedAtom = (x: number, y: number) =>
+  atom((get) => {
+    const highlightedTile = get(highlightedTileAtom);
+    return highlightedTile?.x === x && highlightedTile?.y === y;
+  });
