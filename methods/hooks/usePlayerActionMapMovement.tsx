@@ -1,5 +1,11 @@
 import { useState } from "react";
 
+//zmiana statusu po kliknieciu button Movment
+//startowa pozycja 1 klikniecie
+//koncowa pozycja 2 klikniecie
+//policz astar
+//pokoloruj path
+
 export const usePlayerActionMapMovement = (runAStar: (startX: number, startY: number, endX: number, endY: number, flag: number) => void) => {
   const [startPoint, setStartPoint] = useState<{ x: number; y: number } | null>(null);
   const [highlightedTile, setHighlightedTile] = useState<{ x: number; y: number } | null>(null);
