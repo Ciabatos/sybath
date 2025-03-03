@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useAtomValue } from "jotai"
+import { clickedTileAtom } from "@/store/atoms"
+import { useAStar } from "@/methods/hooks/useAStar"
+import { useState } from "react"
 
 //zmiana statusu po kliknieciu button Movment
 //startowa pozycja 1 klikniecie
@@ -6,25 +9,20 @@ import { useState } from "react";
 //policz astar
 //pokoloruj path
 
-export const usePlayerActionMapMovement = (runAStar: (startX: number, startY: number, endX: number, endY: number, flag: number) => void) => {
-  const [startPoint, setStartPoint] = useState<{ x: number; y: number } | null>(null);
-  const [highlightedTile, setHighlightedTile] = useState<{ x: number; y: number } | null>(null);
+export function usePlayerActionMapTilesMovement() {
+  const { runAStar } = useAStar()
+  const [startingPoint, setStartingPoint] = useState<{ x: number; y: number } | null>({ x: 1, y: 1 })
+  const endingPoint = useAtomValue(clickedTileAtom)
 
-  const handleClick = (x: number, y: number) => {
-    if (!startPoint) {
-      // First click: Set the starting point and highlight the tile
-      setStartPoint({ x, y });
-      setHighlightedTile({ x, y }); // Highlight the starting tile
-      console.log(`Starting point set to: (${x}, ${y})`);
-    } else {
-      // Second click: Set the ending point, run A*, and reset the highlight
-      console.log(`Ending point set to: (${x}, ${y})`);
-      runAStar(startPoint.x, startPoint.y, x, y, 0); // Run A* with the selected points
-      setStartPoint(null); // Reset for the next pair of clicks
-      setHighlightedTile(null); // Remove the highlight
-    }
-  };
+  // const [highlightedTile, setHighlightedTile] = useState<{ x: number; y: number } | null>(null)
+  // console.log(endingPoint)
 
-  // Return both the click handler and the highlighted tile coordinates
-  return { handleClick, highlightedTile };
-};
+  function playerActionMapTilesMovement() {
+    if (!startingPoint || !endingPoint) return
+    const movmentPath = runAStar(startingPoint!.x, startingPoint!.y, endingPoint!.x, endingPoint!.y, 0)
+    console.log(movmentPath, "movmentPath")
+    console.log(startingPoint, "startingPoint")
+    console.log(endingPoint, "endingPoint")
+  }
+  return { playerActionMapTilesMovement }
+}

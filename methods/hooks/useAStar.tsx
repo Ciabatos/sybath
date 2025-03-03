@@ -16,10 +16,14 @@ interface GridNode {
   visited: boolean // Whether the node has been visited in the search process
 }
 
-export function useAStar(startX: number, startY: number, endX: number, endY: number, objectProperties: unknown) {
+export function useAStar() {
   const mapTiles = useAtomValue(mapTilesAtom)
 
-  const runAStar = () => {
+  function runAStar(startX: number, startY: number, endX: number, endY: number, objectProperties: unknown) {
+    if (!startX || !startY || !endX || !endY) {
+      return []
+    }
+
     const gridSize = Math.sqrt(mapTiles.length) + 1
     const grid = Array.from({ length: gridSize }, () => Array(gridSize).fill(0))
 
@@ -45,5 +49,5 @@ export function useAStar(startX: number, startY: number, endX: number, endY: num
     return filteredMapTiles
   }
 
-  return runAStar
+  return { runAStar }
 }
