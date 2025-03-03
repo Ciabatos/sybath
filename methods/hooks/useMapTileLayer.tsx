@@ -1,4 +1,7 @@
 // atoms/highlightedTileAtom.ts
+//Kolorowanie tiles
+//Sprawdzanie koloru tiles
+//nullowanie koloru tiles
 import { atom, useAtom } from "jotai";
 
 export type HighlightedTile = {
