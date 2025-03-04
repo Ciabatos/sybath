@@ -10,6 +10,7 @@ export function useCreateBackgroundImage(imageUrl: string | undefined) {
   }
 
   const imageSrc = `/terrainTypePicture/${imageUrl}`
+
   const imageComponent = (
     <Image
       src={imageSrc}

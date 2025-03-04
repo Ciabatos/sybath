@@ -17,7 +17,7 @@ export default function MapWrapper({ joinedMapTiles, terrainTypesById, playerPos
     <>
       <div
         id="Map"
-        className={`${style.map} `}>
+        className={style.map}>
         <TransformWrapper
           minScale={0.4}
           limitToBounds={false}
