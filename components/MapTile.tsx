@@ -1,15 +1,15 @@
 "use client"
 
 import style from "@/components/styles/MapTile.module.css"
+import ModalMapTilesPlayerActionBar from "@/components/ModalMapTilesPlayerActionBar"
+import { createPortal } from "react-dom"
+import { useState } from "react"
 import { useCreateBackgroundImage } from "@/methods/hooks/useCreateBackgroundImage"
-import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
 import { useCreatePlayerImage } from "@/methods/hooks/useCreatePlayerImage"
 import { useClickMapTile } from "@/methods/hooks/useClickTile"
 import { usePlayerActionMapTilesMovement } from "@/methods/hooks/usePlayerActionMapTilesMovement"
 import { useClickedMapTileValidator } from "@/methods/hooks/useClickedMapTileValidator"
-import ModalMapTilesPlayerActionBar from "@/components/ModalMapTilesPlayerActionBar"
-import { createPortal } from "react-dom"
-import { useState } from "react"
+import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
 
 interface Props {
   tile: TjoinedMapTile
@@ -38,23 +38,26 @@ export default function MapTile({ tile }: Props) {
   }
 
   return (
-    <div
-      className={style.BackgroundImage}
-      onClick={() => handleClick(tile.x, tile.y)}
-      style={{
-        gridColumnStart: tile.x,
-        gridRowStart: tile.y,
-        backgroundImage: backgroundImage,
-      }}>
+    <>
       <div
-        className={style.PlayerImage}
+        className={style.BackgroundImage}
+        onClick={() => handleClick(tile.x, tile.y)}
         style={{
-          backgroundImage: playerImage,
-        }}></div>
-      <div>
-        {tile.x}, {tile.y}
+          gridColumnStart: tile.x,
+          gridRowStart: tile.y,
+          backgroundImage: backgroundImage,
+        }}>
+        <div
+          className={style.PlayerImage}
+          style={{
+            backgroundImage: playerImage,
+          }}></div>
+        <div>
+          {tile.x}, {tile.y}
+        </div>
       </div>
-      {isModalMapTilesPlayerActionBarOpen && createPortal(<ModalMapTilesPlayerActionBar />, document.body)}
-    </div>
+      {isModalMapTilesPlayerActionBarOpen &&
+        createPortal(<ModalMapTilesPlayerActionBar setIsModalMapTilesPlayerActionBarOpen={setIsModalMapTilesPlayerActionBarOpen}></ModalMapTilesPlayerActionBar>, document.body)}
+    </>
   )
 }
