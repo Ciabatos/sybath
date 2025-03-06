@@ -1,7 +1,7 @@
-import type { Metadata } from "next"
-import "./globals.css"
 import { SWRProvider } from "@/providers/swr-provider"
+import type { Metadata } from "next"
 import { SessionProvider } from "next-auth/react"
+import "./globals.css"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,12 +14,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <SessionProvider>
-      <SWRProvider>
-        <html lang="en">
-          <body>{children}</body>
-        </html>
-      </SWRProvider>
-    </SessionProvider>
+    <html lang="en">
+      <body>
+        <SessionProvider>
+          <SWRProvider>{children}</SWRProvider>
+        </SessionProvider>
+      </body>
+    </html>
   )
 }

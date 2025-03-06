@@ -1,7 +1,7 @@
-import { useAtomValue } from "jotai"
-import { clickedTileAtom } from "@/store/atoms"
 import { useAStar } from "@/methods/hooks/useAStar"
-import { useState } from "react"
+import type { TClickedTile } from "@/methods/hooks/useClickTile"
+import { clickedTileAtom } from "@/store/atoms"
+import { useAtomValue } from "jotai"
 
 //zmiana statusu po kliknieciu button Movment
 //startowa pozycja 1 klikniecie
@@ -11,13 +11,12 @@ import { useState } from "react"
 
 export function usePlayerActionMapTilesMovement() {
   const { runAStar } = useAStar()
-  const [startingPoint, setStartingPoint] = useState<{ x: number; y: number } | null>({ x: 1, y: 1 })
   const endingPoint = useAtomValue(clickedTileAtom)
 
   // const [highlightedTile, setHighlightedTile] = useState<{ x: number; y: number } | null>(null)
   // console.log(endingPoint)
 
-  function playerActionMapTilesMovement() {
+  function playerActionMapTilesMovement(startingPoint: TClickedTile) {
     if (!startingPoint || !endingPoint) return
     const movmentPath = runAStar(startingPoint!.x, startingPoint!.y, endingPoint!.x, endingPoint!.y, 0)
     console.log(movmentPath, "movmentPath")

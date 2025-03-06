@@ -1,14 +1,17 @@
 "use client"
 
-import MapTile from "./MapTile"
-import { useSession } from "next-auth/react"
-import { useAtomValue } from "jotai"
-import { joinedMapTilesAtom } from "@/store/atoms"
-import { useJoinMapTiles } from "@/methods/hooks/useJoinMapTiles"
-import { useFetchMapTiles } from "@/methods/hooks/useFetchMapTiles"
-import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
 import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
 import { TMapsFieldsPlayerPosition } from "@/db/postgresMainDatabase/schemas/map/views/mapsFieldsPlayerPosition"
+import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
+import { useFetchMapTiles } from "@/methods/hooks/useFetchMapTiles"
+import { useJoinMapTiles } from "@/methods/hooks/useJoinMapTiles"
+import { joinedMapTilesAtom, openModalBottomCenterBarAtom } from "@/store/atoms"
+import { useAtomValue } from "jotai"
+// import { useSession } from "next-auth/react"
+import MapTile from "@/components/MapTile"
+import ModalBottomCenterBar from "@/components/ModalBottomCenterBar"
+import { EModalStatus } from "@/types/enumeration/ModalBottomCenterBarEnum"
+import { createPortal } from "react-dom"
 
 interface Props {
   joinedMapTiles: Record<string, TjoinedMapTile>
@@ -17,13 +20,13 @@ interface Props {
 }
 
 export default function MapTilesClient({ joinedMapTiles, terrainTypesById, playerPositionById }: Props) {
-  const session = useSession()
-  console.log(session, "Client session")
+  // const session = useSession()
 
-  useJoinMapTiles(joinedMapTiles, terrainTypesById, playerPositionById)
   useFetchMapTiles()
+  useJoinMapTiles(joinedMapTiles, terrainTypesById, playerPositionById)
+  const updatedTiles = useAtomValue(joinedMapTilesAtom) // NIE ZMIENIAC KOLEJNOSCI BO WYWALI ERROR Z HYDRATION!
 
-  const updatedTiles = useAtomValue(joinedMapTilesAtom)
+  const openModalBottomCenterBar = useAtomValue(openModalBottomCenterBarAtom)
 
   return (
     <>
@@ -33,6 +36,7 @@ export default function MapTilesClient({ joinedMapTiles, terrainTypesById, playe
           tile={tile}
         />
       ))}
+      {openModalBottomCenterBar != EModalStatus.Inactive && createPortal(<ModalBottomCenterBar />, document.body)}
     </>
   )
 }

@@ -1,12 +1,12 @@
 "use client"
-import { useEffect } from "react"
-import { useAtom, useAtomValue } from "jotai"
-import { joinedMapTilesAtom, mapTilesAtom } from "@/store/atoms"
+import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
+import { TMapsFieldsPlayerPosition } from "@/db/postgresMainDatabase/schemas/map/views/mapsFieldsPlayerPosition"
 import { joinMapTilesClient } from "@/methods/functions/joinMapTilesClient"
 import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
-import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
+import { joinedMapTilesAtom, mapTilesAtom } from "@/store/atoms"
+import { useAtom, useAtomValue } from "jotai"
 import { useHydrateAtoms } from "jotai/utils"
-import { TMapsFieldsPlayerPosition } from "@/db/postgresMainDatabase/schemas/map/views/mapsFieldsPlayerPosition"
+import { useEffect } from "react"
 
 export function useJoinMapTiles(
   joinedMapTiles: Record<string, TjoinedMapTile>,

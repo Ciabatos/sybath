@@ -5,11 +5,5 @@ export default function MapLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return (
-    // <MapDataProvider>
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-    // </MapDataProvider>
-  )
+  return <div>{children}</div>
 }

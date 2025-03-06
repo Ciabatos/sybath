@@ -1,40 +1,27 @@
 "use client"
 
 import style from "@/components/styles/MapTile.module.css"
-import ModalMapTilesPlayerActionBar from "@/components/ModalMapTilesPlayerActionBar"
-import { createPortal } from "react-dom"
-import { useState } from "react"
+import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
+import { useClickMapTile } from "@/methods/hooks/useClickTile"
 import { useCreateBackgroundImage } from "@/methods/hooks/useCreateBackgroundImage"
 import { useCreatePlayerImage } from "@/methods/hooks/useCreatePlayerImage"
-import { useClickMapTile } from "@/methods/hooks/useClickTile"
-import { usePlayerActionMapTilesMovement } from "@/methods/hooks/usePlayerActionMapTilesMovement"
-import { useClickedMapTileValidator } from "@/methods/hooks/useClickedMapTileValidator"
-import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
+import { openModalBottomCenterBarAtom } from "@/store/atoms"
+import { EModalStatus } from "@/types/enumeration/ModalBottomCenterBarEnum"
+import { useSetAtom } from "jotai"
 
 interface Props {
   tile: TjoinedMapTile
 }
 
-export type TClickedTile = {
-  x: number
-  y: number
-}
-
 export default function MapTile({ tile }: Props) {
   const { setCoordinatesOnClick } = useClickMapTile()
-  const { playerActionMapTilesMovement } = usePlayerActionMapTilesMovement()
-  const { checkIfMapTileContainsPlayer } = useClickedMapTileValidator()
-  const [isModalMapTilesPlayerActionBarOpen, setIsModalMapTilesPlayerActionBarOpen] = useState(false)
-
+  const setIsModalMapTilesPlayerActionBarOpen = useSetAtom(openModalBottomCenterBarAtom)
   const backgroundImage = useCreateBackgroundImage(tile.image_url)
-
   const playerImage = useCreatePlayerImage(tile.player_image_url)
 
   const handleClick = (x: number, y: number) => {
     setCoordinatesOnClick(x, y)
-    // playerActionMapTilesMovement()
-    checkIfMapTileContainsPlayer(x, y)
-    setIsModalMapTilesPlayerActionBarOpen(true)
+    setIsModalMapTilesPlayerActionBarOpen(EModalStatus.PlayerActionBar)
   }
 
   return (
@@ -56,8 +43,6 @@ export default function MapTile({ tile }: Props) {
           {tile.x}, {tile.y}
         </div>
       </div>
-      {isModalMapTilesPlayerActionBarOpen &&
-        createPortal(<ModalMapTilesPlayerActionBar setIsModalMapTilesPlayerActionBarOpen={setIsModalMapTilesPlayerActionBarOpen}></ModalMapTilesPlayerActionBar>, document.body)}
     </>
   )
 }

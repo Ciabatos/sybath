@@ -1,5 +1,11 @@
-import { useSetAtom } from "jotai"
+"use client"
 import { clickedTileAtom } from "@/store/atoms"
+import { useSetAtom } from "jotai"
+
+export type TClickedTile = {
+  x: number
+  y: number
+}
 
 export function useClickMapTile() {
   const setClickedTile = useSetAtom(clickedTileAtom)
