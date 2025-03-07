@@ -1,3 +1,5 @@
+"use client"
+
 import { useAStar } from "@/methods/hooks/useAStar"
 import type { TClickedTile } from "@/methods/hooks/useClickTile"
 import { clickedTileAtom } from "@/store/atoms"
