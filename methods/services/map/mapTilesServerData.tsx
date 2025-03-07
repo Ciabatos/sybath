@@ -1,11 +1,11 @@
 "use server"
 
-import { getMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
-import { getMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
-import { arrayToObjectKeyId } from "@/methods/util/converters"
-import { joinMapTilesServer } from "@/methods/functions/joinMapTilesServer"
-import { getMapsFieldsPlayerPosition, TMapsFieldsPlayerPosition } from "@/db/postgresMainDatabase/schemas/map/views/mapsFieldsPlayerPosition"
 import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
+import { getMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
+import { getMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
+import { getMapsFieldsPlayerPosition, TMapsFieldsPlayerPosition } from "@/db/postgresMainDatabase/schemas/map/views/mapsFieldsPlayerPosition"
+import { arrayToObjectKeyId } from "@/methods/functions/converters"
+import { joinMapTilesServer } from "@/methods/functions/joinMapTilesServer"
 
 export async function mapTilesServerData() {
   const [mapTerrainTypes, tilesData, playerPosition] = await Promise.all([getMapTerrainTypes(), getMapTiles(), getMapsFieldsPlayerPosition()])
