@@ -1,8 +1,8 @@
 "use client"
 
 import { astar, Graph } from "@/methods/functions/astar"
+import { joinedMapTilesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import { mapTilesAtom } from "@/store/atoms"
 
 interface GridNode {
   x: number // The X coordinate of the node
@@ -16,29 +16,44 @@ interface GridNode {
   visited: boolean // Whether the node has been visited in the search process
 }
 
-export function useAStar() {
-  const mapTiles = useAtomValue(mapTilesAtom)
+export interface TMovmentPath {
+  tileCost: number
+  id?: number | undefined
+  map_id?: number | undefined
+  x?: number | undefined
+  y?: number | undefined
+  terrain_type_id?: number | undefined
+}
 
-  function runAStar(startX: number, startY: number, endX: number, endY: number, objectProperties: unknown) {
+export function useAStar() {
+  const mapTiles = useAtomValue(joinedMapTilesAtom)
+
+  function runAStar(startX: number, startY: number, endX: number, endY: number, objectProperties: unknown): TMovmentPath[] {
     if (!startX || !startY || !endX || !endY) {
       return []
     }
 
-    const gridSize = Math.sqrt(mapTiles.length) + 1
+    const mapTilesArray = Object.values(mapTiles)
+
+    const gridSize = Math.sqrt(mapTilesArray.length) + 1
     const grid = Array.from({ length: gridSize }, () => Array(gridSize).fill(0))
 
-    mapTiles.forEach((tile) => {
-      grid[tile.y][tile.x] = tile.terrain_type_id + (objectProperties as number) // koszt ruchu tiles
+    mapTilesArray.forEach((tile) => {
+      grid[tile.x][tile.y] = tile.terrain_move_cost ?? 0 + (objectProperties as number)
+      // koszt ruchu tiles
+      // 0 - wall
+      // im wieksze tym wiekszy koszt
     })
 
     const graphWithWeight = new Graph(grid, { diagonal: true })
 
     const startWithWeight = graphWithWeight.grid[startX][startY]
     const endWithWeight = graphWithWeight.grid[endX][endY]
+
     const resultWithWeight: GridNode[] = astar.search(graphWithWeight, startWithWeight, endWithWeight)
 
     const filteredMapTiles = resultWithWeight.map((node) => {
-      const tile = mapTiles.find((t) => t.x === node.x && t.y === node.y)
+      const tile = mapTilesArray.find((t) => t.x === node.x && t.y === node.y)
 
       return {
         ...tile,

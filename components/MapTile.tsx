@@ -1,5 +1,6 @@
 "use client"
 
+import MapTileLayerHandling from "@/components/MapTileLayerHandling"
 import style from "@/components/styles/MapTile.module.css"
 import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
 import { useCreateBackgroundImage } from "@/methods/hooks/useCreateBackgroundImage"
@@ -37,6 +38,7 @@ export default function MapTile({ tile }: Props) {
         <div>
           {tile.x}, {tile.y}
         </div>
+        <MapTileLayerHandling tile={tile} />
       </div>
     </>
   )
