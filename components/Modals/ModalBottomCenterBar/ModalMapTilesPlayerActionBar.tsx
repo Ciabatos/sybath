@@ -1,29 +1,26 @@
-import styles from "@/components/styles/ModalMapTilesPlayerActionBar.module.css"
-import { usePlayerActionMapTilesMovement } from "@/methods/hooks/usePlayerActionMapTilesMovement"
-import { clickedTileAtom, openModalBottomCenterBarAtom } from "@/store/atoms"
-import { EModalStatus } from "@/types/enumeration/ModalBottomCenterBarEnum"
+import styles from "@/components/styles/Modals/ModalBottomCenterBar/ModalMapTilesPlayerActionBar.module.css"
+import { clickedTileAtom, mapTilesActionStatusAtom } from "@/store/atoms"
+import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { useAtomValue, useSetAtom } from "jotai"
 
 export default function ModalMapTilesPlayerActionBar() {
   const clickedTile = useAtomValue(clickedTileAtom)
-  const setOpenModalBottomCenterBar = useSetAtom(openModalBottomCenterBarAtom)
-
-  const { playerActionMapTilesMovement } = usePlayerActionMapTilesMovement()
+  const setOpenModalBottomCenterBar = useSetAtom(mapTilesActionStatusAtom)
 
   const handleMove = () => {
-    playerActionMapTilesMovement(clickedTile)
+    setOpenModalBottomCenterBar(EMapTilesActionStatus.MovementAction)
   }
 
   const handleAttack = () => {
-    setOpenModalBottomCenterBar(EModalStatus.Inactive)
+    setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
   }
 
   const handleInteract = () => {
-    setOpenModalBottomCenterBar(EModalStatus.Inactive)
+    setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
   }
 
   const handleInspect = () => {
-    setOpenModalBottomCenterBar(EModalStatus.Inactive)
+    setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
   }
 
   return (

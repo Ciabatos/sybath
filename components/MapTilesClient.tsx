@@ -5,12 +5,12 @@ import { TMapsFieldsPlayerPosition } from "@/db/postgresMainDatabase/schemas/map
 import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
 import { useFetchMapTiles } from "@/methods/hooks/useFetchMapTiles"
 import { useJoinMapTiles } from "@/methods/hooks/useJoinMapTiles"
-import { joinedMapTilesAtom, openModalBottomCenterBarAtom } from "@/store/atoms"
+import { joinedMapTilesAtom, mapTilesActionStatusAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 // import { useSession } from "next-auth/react"
 import MapTile from "@/components/MapTile"
-import ModalBottomCenterBar from "@/components/ModalBottomCenterBar"
-import { EModalStatus } from "@/types/enumeration/ModalBottomCenterBarEnum"
+import ModalBottomCenterBarHandling from "@/components/Modals/ModalBottomCenterBar/ModalBottomCenterBarHandling"
+import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { createPortal } from "react-dom"
 
 interface Props {
@@ -26,7 +26,7 @@ export default function MapTilesClient({ joinedMapTiles, terrainTypesById, playe
   useJoinMapTiles(joinedMapTiles, terrainTypesById, playerPositionById)
   const updatedTiles = useAtomValue(joinedMapTilesAtom) // NIE ZMIENIAC KOLEJNOSCI BO WYWALI ERROR Z HYDRATION!
 
-  const openModalBottomCenterBar = useAtomValue(openModalBottomCenterBarAtom)
+  const mapTilesActionStatus = useAtomValue(mapTilesActionStatusAtom)
 
   return (
     <>
@@ -36,7 +36,7 @@ export default function MapTilesClient({ joinedMapTiles, terrainTypesById, playe
           tile={tile}
         />
       ))}
-      {openModalBottomCenterBar != EModalStatus.Inactive && createPortal(<ModalBottomCenterBar />, document.body)}
+      {mapTilesActionStatus != EMapTilesActionStatus.Inactive && createPortal(<ModalBottomCenterBarHandling />, document.body)}
     </>
   )
 }

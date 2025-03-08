@@ -16,6 +16,5 @@ export async function mapTilesServerData() {
 
   const joinedMapTiles = joinMapTilesServer(tilesData, playerPositionById, terrainTypesById)
 
-  console.log(playerPositionById, "playerPositionById")
   return { joinedMapTiles, terrainTypesById, playerPositionById }
 }

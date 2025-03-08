@@ -5,7 +5,6 @@
 //     map.set(key, value)
 //   })
 
-//   console.log(map, "dadas")
 //   return map
 // }
 
