@@ -24,7 +24,7 @@ export default function MapTile({ tile }: Props) {
     <>
       <div
         className={style.BackgroundImage}
-        onClick={() => handleClick(tile.x, tile.y)}
+        onDoubleClick={() => handleClick(tile.x, tile.y)}
         style={{
           gridColumnStart: tile.x,
           gridRowStart: tile.y,
