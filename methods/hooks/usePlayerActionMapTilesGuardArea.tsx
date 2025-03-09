@@ -1,12 +1,12 @@
 "use client"
 
 import type { TClickedTile } from "@/methods/hooks/useClickTile"
-import { useMapTilesAreaFromPoint } from "@/methods/hooks/useMapTilesAreaFromPoint"
+import { useMapTilesArea } from "@/methods/hooks/useMapTilesArea"
 import { mapTilesGuardAreaAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 
 export function usePlayerActionMapTilesGuardArea() {
-  const { areaFromPoint } = useMapTilesAreaFromPoint()
+  const { areaFromPoint } = useMapTilesArea()
   const setMapTilesGuardArea = useSetAtom(mapTilesGuardAreaAtom)
 
   function playerActionMapTilesGuardArea(startingPoint: TClickedTile) {

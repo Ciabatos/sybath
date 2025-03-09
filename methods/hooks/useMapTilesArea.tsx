@@ -16,7 +16,7 @@ export interface TGuardAreaPath {
   player_name?: string
 }
 
-export function useMapTilesAreaFromPoint() {
+export function useMapTilesArea() {
   const mapTiles = useAtomValue(joinedMapTilesAtom)
 
   function areaFromPoint(startX: number, startY: number, objectProperties: number): TGuardAreaPath[] {

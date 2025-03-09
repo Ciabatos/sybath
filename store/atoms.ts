@@ -4,7 +4,7 @@ import type { TMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/map
 import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
 import { TMovmentPath } from "@/methods/hooks/useAStar"
 import type { TClickedTile } from "@/methods/hooks/useClickTile"
-import { TGuardAreaPath } from "@/methods/hooks/useMapTilesAreaFromPoint"
+import { TGuardAreaPath } from "@/methods/hooks/useMapTilesArea"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { atom } from "jotai"
 
