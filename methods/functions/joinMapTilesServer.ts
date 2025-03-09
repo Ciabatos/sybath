@@ -1,5 +1,5 @@
-import type { TMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
 import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
+import type { TMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
 import type { TMapsFieldsPlayerPosition } from "@/db/postgresMainDatabase/schemas/map/views/mapsFieldsPlayerPosition"
 
 export type TjoinedMapTile = {
