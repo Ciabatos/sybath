@@ -1,0 +1,58 @@
+"use client"
+
+import styles from "@/components/styles/Modals/ModalBottomCenterBar/ModalMapTilesPlayerActionMovmenet.module.css"
+import { usePlayerActionMapTilesGuardArea } from "@/methods/hooks/usePlayerActionMapTilesGuardArea"
+import { usePlayerActionMapTilesMovement } from "@/methods/hooks/usePlayerActionMapTilesMovement"
+import { clickedTileAtom, mapTilesActionStatusAtom } from "@/store/atoms"
+import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
+import { useAtomValue, useSetAtom } from "jotai"
+import { useEffect, useState } from "react"
+
+export default function ModalMapTilesPlayerActionGuardArea() {
+  const clickedTile = useAtomValue(clickedTileAtom)
+  const [startingPoint] = useState(clickedTile)
+  const setOpenModalBottomCenterBar = useSetAtom(mapTilesActionStatusAtom)
+  const { playerActionMapTilesMovement } = usePlayerActionMapTilesMovement()
+  const { playerActionMapTilesGuardArea } = usePlayerActionMapTilesGuardArea()
+
+  useEffect(() => {
+    if (startingPoint && clickedTile) {
+      playerActionMapTilesMovement(startingPoint, clickedTile)
+      playerActionMapTilesGuardArea(clickedTile)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [clickedTile])
+
+  const handleGuardArea = () => {
+    setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
+  }
+
+  const handleMoveCancel = () => {
+    setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
+  }
+
+  return (
+    <div>
+      <div className={styles.modalHeader}>
+        <div className={styles.modalTitle}>
+          <p>Select Options for Guard Area</p>
+          <p>
+            Guard Area Radius from {clickedTile?.x}, {clickedTile?.y}
+          </p>
+        </div>
+        <div className={styles.actionGrid}>
+          <button
+            className={styles.actionButton}
+            onClick={handleGuardArea}>
+            Guard Area
+          </button>
+          <button
+            className={styles.actionButton}
+            onClick={handleMoveCancel}>
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}

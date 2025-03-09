@@ -1,6 +1,7 @@
 "use client"
 
 import ModalMapTilesPlayerActionBar from "@/components/Modals/ModalBottomCenterBar/ModalMapTilesPlayerActionBar"
+import ModalMapTilesPlayerActionGuardArea from "@/components/Modals/ModalBottomCenterBar/ModalMapTilesPlayerActionGuardArea"
 import ModalMapTilesPlayerActionMovment from "@/components/Modals/ModalBottomCenterBar/ModalMapTilesPlayerActionMovment"
 import styles from "@/components/styles/Modals/ModalBottomCenterBar/ModalBottomCenterBarHandling.module.css"
 import { mapTilesActionStatusAtom } from "@/store/atoms"
@@ -17,6 +18,7 @@ export default function ModalBottomCenterBarHandling() {
       <div className={styles.modalContainer}>
 		{mapTilesActionStatus === EMapTilesActionStatus.TileActionList && <ModalMapTilesPlayerActionBar />}
 		{mapTilesActionStatus === EMapTilesActionStatus.MovementAction && <ModalMapTilesPlayerActionMovment />}
+		{mapTilesActionStatus === EMapTilesActionStatus.GuardAreaAction && <ModalMapTilesPlayerActionGuardArea />}
     </div>
     </div>
 	</>

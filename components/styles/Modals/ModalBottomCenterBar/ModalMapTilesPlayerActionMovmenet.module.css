@@ -1,0 +1,49 @@
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #a0aa11;
+  padding: 16px;
+}
+
+.modalTitle {
+  margin: 0;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.closeButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  padding: 4px;
+}
+
+.closeButton:hover {
+  background-color: #b60808;
+}
+
+.actionGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.actionButton {
+  transition: background-color 0.2s;
+  cursor: pointer;
+  border: 1px solid #b62525;
+  border-radius: 6px;
+  background-color: rgb(221, 36, 36);
+  padding: 10px;
+  font-size: 14px;
+}
+
+.actionButton:hover {
+  background-color: #ce0707;
+}

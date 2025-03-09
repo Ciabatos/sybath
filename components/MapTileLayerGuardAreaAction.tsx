@@ -1,6 +1,6 @@
 "use client"
 
-export default function MapTileLayerMovementAction() {
+export default function MapTileLayerGuardAreaAction() {
   return (
     <>
       <svg
@@ -10,8 +10,8 @@ export default function MapTileLayerMovementAction() {
         <rect
           width="100%"
           height="100%"
-          fill="blue"
-          opacity={0.5}
+          fill="yellow"
+          opacity={0.3333}
         />
       </svg>
     </>

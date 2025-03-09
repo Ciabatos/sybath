@@ -15,6 +15,10 @@ export default function ModalMapTilesPlayerActionBar() {
     setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
   }
 
+  const handleGuardArea = () => {
+    setOpenModalBottomCenterBar(EMapTilesActionStatus.GuardAreaAction)
+  }
+
   const handleInteract = () => {
     setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
   }
@@ -52,7 +56,7 @@ export default function ModalMapTilesPlayerActionBar() {
           </button>
           <button
             className={styles.actionButton}
-            onClick={handleInteract}>
+            onClick={handleGuardArea}>
             Guar Area
           </button>
           <button
