@@ -16,9 +16,6 @@ export function usePlayerActionMapTilesGuardArea() {
     }
     const guardArea = areaFromPoint(startingPoint.x, startingPoint.y, 1)
 
-    console.log("Guard Area:", guardArea)
-    console.log("Starting Point:", startingPoint)
-
     setMapTilesGuardArea(guardArea)
   }
 

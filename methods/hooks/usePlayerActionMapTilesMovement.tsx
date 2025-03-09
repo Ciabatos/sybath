@@ -20,10 +20,6 @@ export function usePlayerActionMapTilesMovement() {
     }
     const movmentPath = runAStar(startingPoint.x, startingPoint.y, endingPoint.x, endingPoint.y, 0)
 
-    console.log("Movement Path:", movmentPath)
-    console.log("Starting Point:", startingPoint)
-    console.log("Ending Point:", endingPoint)
-
     setMapTilesMovmentPath(movmentPath)
   }
 
