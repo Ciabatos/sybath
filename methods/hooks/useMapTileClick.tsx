@@ -1,22 +1,18 @@
 "use client"
+import { clickedTileAtom } from "@/store/atoms"
+import { useSetAtom } from "jotai"
 
-import { useClickMapTile } from "@/methods/hooks/useClickTile"
-import { mapTilesActionStatusAtom } from "@/store/atoms"
-import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
-import { useAtom } from "jotai"
+export type TClickedTile = {
+  x: number
+  y: number
+}
 
 export function useMapTileClick() {
-  const { setCoordinatesOnClick } = useClickMapTile()
-  const [statusModalBottomCenterBar, setStatusModalBottomCenterBar] = useAtom(mapTilesActionStatusAtom)
+  const setClickedTile = useSetAtom(clickedTileAtom)
 
-  function handlieCLickOnMapTile(x: number, y: number) {
-    setCoordinatesOnClick(x, y)
-
-    //prettier-ignore
-    if (statusModalBottomCenterBar === EMapTilesActionStatus.Inactive
-     || statusModalBottomCenterBar === EMapTilesActionStatus.TileActionList) {
-      setStatusModalBottomCenterBar(EMapTilesActionStatus.TileActionList)
-    }
+  function setCoordinatesOnClick(x: number, y: number) {
+    setClickedTile({ x, y })
   }
-  return { handlieCLickOnMapTile }
+
+  return { setCoordinatesOnClick }
 }

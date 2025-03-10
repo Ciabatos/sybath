@@ -1,15 +1,15 @@
 "use client"
 
-import type { TClickedTile } from "@/methods/hooks/useClickTile"
+import type { TClickedTile } from "@/methods/hooks/useMapTileClick"
 import { useMapTilesArea } from "@/methods/hooks/useMapTilesArea"
 import { mapTilesGuardAreaAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 
-export function usePlayerActionMapTilesGuardArea() {
+export function useActionMapTilesGuardArea() {
   const { areaFromPoint } = useMapTilesArea()
   const setMapTilesGuardArea = useSetAtom(mapTilesGuardAreaAtom)
 
-  function playerActionMapTilesGuardArea(startingPoint: TClickedTile) {
+  function actionMapTilesGuardArea(startingPoint: TClickedTile) {
     if (!startingPoint) {
       console.warn("Starting point is missing.")
       return
@@ -19,5 +19,5 @@ export function usePlayerActionMapTilesGuardArea() {
     setMapTilesGuardArea(guardArea)
   }
 
-  return { playerActionMapTilesGuardArea }
+  return { actionMapTilesGuardArea }
 }

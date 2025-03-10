@@ -2,8 +2,8 @@
 
 import type { TMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
 import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
-import { TMovmentPath } from "@/methods/hooks/useAStar"
-import type { TClickedTile } from "@/methods/hooks/useClickTile"
+import type { TClickedTile } from "@/methods/hooks/useMapTileClick"
+import { TMovmentPath } from "@/methods/hooks/useMapTilesPath"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { atom } from "jotai"
 

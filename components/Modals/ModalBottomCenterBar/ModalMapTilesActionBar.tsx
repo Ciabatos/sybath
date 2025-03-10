@@ -3,7 +3,7 @@ import { clickedTileAtom, mapTilesActionStatusAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { useAtomValue, useSetAtom } from "jotai"
 
-export default function ModalMapTilesPlayerActionBar() {
+export default function ModalMapTilesActionBar() {
   const clickedTile = useAtomValue(clickedTileAtom)
   const setOpenModalBottomCenterBar = useSetAtom(mapTilesActionStatusAtom)
 

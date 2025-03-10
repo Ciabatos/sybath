@@ -25,7 +25,7 @@ export interface TMovmentPath {
   terrain_type_id?: number | undefined
 }
 
-export function useAStar() {
+export function useMapTilesPath() {
   const mapTiles = useAtomValue(joinedMapTilesAtom)
 
   function runAStar(startX: number, startY: number, endX: number, endY: number, objectProperties: unknown): TMovmentPath[] {

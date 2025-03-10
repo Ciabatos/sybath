@@ -5,7 +5,7 @@ import style from "@/components/styles/MapTile.module.css"
 import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
 import { useCreateBackgroundImage } from "@/methods/hooks/useCreateBackgroundImage"
 import { useCreatePlayerImage } from "@/methods/hooks/useCreatePlayerImage"
-import { useMapTileClick } from "@/methods/hooks/useMapTileClick"
+import { useMapTileClickHandling } from "@/methods/hooks/useMapTileClickHandling"
 
 interface Props {
   tile: TjoinedMapTile
@@ -14,7 +14,7 @@ interface Props {
 export default function MapTile({ tile }: Props) {
   const backgroundImage = useCreateBackgroundImage(tile.image_url)
   const playerImage = useCreatePlayerImage(tile.player_image_url)
-  const { handlieCLickOnMapTile } = useMapTileClick()
+  const { handlieCLickOnMapTile } = useMapTileClickHandling()
 
   const handleClick = (x: number, y: number) => {
     handlieCLickOnMapTile(x, y)

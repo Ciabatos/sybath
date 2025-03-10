@@ -1,19 +1,19 @@
 "use client"
 
 import styles from "@/components/styles/Modals/ModalBottomCenterBar/ModalMapTilesPlayerActionMovmenet.module.css"
-import { usePlayerActionMapTilesGuardArea } from "@/methods/hooks/usePlayerActionMapTilesGuardArea"
-import { usePlayerActionMapTilesMovement } from "@/methods/hooks/usePlayerActionMapTilesMovement"
+import { useActionMapTilesGuardArea } from "@/methods/hooks/useActionMapTilesGuardArea"
+import { useActionMapTilesMovement } from "@/methods/hooks/useActionMapTilesMovement"
 import { clickedTileAtom, mapTilesActionStatusAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useState } from "react"
 
-export default function ModalMapTilesPlayerActionGuardArea() {
+export default function ModalMapTilesActionGuardArea() {
   const clickedTile = useAtomValue(clickedTileAtom)
   const [startingPoint] = useState(clickedTile)
   const setOpenModalBottomCenterBar = useSetAtom(mapTilesActionStatusAtom)
-  const { playerActionMapTilesMovement } = usePlayerActionMapTilesMovement()
-  const { playerActionMapTilesGuardArea } = usePlayerActionMapTilesGuardArea()
+  const { playerActionMapTilesMovement } = useActionMapTilesMovement()
+  const { playerActionMapTilesGuardArea } = useActionMapTilesGuardArea()
 
   useEffect(() => {
     if (startingPoint && clickedTile) {

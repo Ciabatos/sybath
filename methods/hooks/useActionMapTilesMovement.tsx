@@ -1,15 +1,15 @@
 "use client"
 
-import { useAStar } from "@/methods/hooks/useAStar"
-import type { TClickedTile } from "@/methods/hooks/useClickTile"
+import type { TClickedTile } from "@/methods/hooks/useMapTileClick"
+import { useMapTilesPath } from "@/methods/hooks/useMapTilesPath"
 import { mapTilesMovmentPathAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 
-export function usePlayerActionMapTilesMovement() {
-  const { runAStar } = useAStar()
+export function useActionMapTilesMovement() {
+  const { runAStar } = useMapTilesPath()
   const setMapTilesMovmentPath = useSetAtom(mapTilesMovmentPathAtom)
 
-  function playerActionMapTilesMovement(startingPoint: TClickedTile, endingPoint: TClickedTile) {
+  function actionMapTilesMovement(startingPoint: TClickedTile, endingPoint: TClickedTile) {
     if (!startingPoint) {
       console.warn("Starting point is missing.")
       return
@@ -23,5 +23,5 @@ export function usePlayerActionMapTilesMovement() {
     setMapTilesMovmentPath(movmentPath)
   }
 
-  return { playerActionMapTilesMovement }
+  return { actionMapTilesMovement }
 }
