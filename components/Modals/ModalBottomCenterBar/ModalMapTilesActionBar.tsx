@@ -1,8 +1,8 @@
 import styles from "@/components/styles/Modals/ModalBottomCenterBar/ModalMapTilesActionBar.module.css"
 import { clickedTileAtom, mapTilesActionStatusAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
+import { Button } from "@heroui/button"
 import { useAtomValue, useSetAtom } from "jotai"
-
 export default function ModalMapTilesActionBar() {
   const clickedTile = useAtomValue(clickedTileAtom)
   const setOpenModalBottomCenterBar = useSetAtom(mapTilesActionStatusAtom)
@@ -39,36 +39,36 @@ export default function ModalMapTilesActionBar() {
         <div>Select an action to perform on this tile.</div>
 
         <div className={styles.actionGrid}>
-          <button
+          <Button
             className={styles.actionButton}
-            onClick={handleMove}>
+            onPress={handleMove}>
             Move
-          </button>
-          <button
+          </Button>
+          <Button
             className={styles.actionButton}
-            onClick={handleAttack}>
+            onPress={handleAttack}>
             Interact
-          </button>
-          <button
+          </Button>
+          <Button
             className={styles.actionButton}
-            onClick={handleInteract}>
+            onPress={handleInteract}>
             Attack
-          </button>
-          <button
+          </Button>
+          <Button
             className={styles.actionButton}
-            onClick={handleGuardArea}>
+            onPress={handleGuardArea}>
             Guar Area
-          </button>
-          <button
+          </Button>
+          <Button
             className={styles.actionButton}
-            onClick={handleInspect}>
+            onPress={handleInspect}>
             Build
-          </button>
-          <button
+          </Button>
+          <Button
             className={styles.actionButton}
-            onClick={handleInspect}>
+            onPress={handleInspect}>
             Inspect
-          </button>
+          </Button>
         </div>
       </div>
     </div>
