@@ -1,5 +1,5 @@
 "use client"
-import styles from "@/components/styles/Modals/ModalBottomCenterBar/ModalMapTilesPlayerActionMovment.module.css"
+import styles from "@/components/styles/Modals/ModalBottomCenterBar/ModalMapTilesActionMovment.module.css"
 import { useActionMapTilesMovement } from "@/methods/hooks/useActionMapTilesMovement"
 import { clickedTileAtom, mapTilesActionStatusAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"

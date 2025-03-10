@@ -1,4 +1,4 @@
-import styles from "@/components/styles/Modals/ModalBottomCenterBar/ModalMapTilesPlayerActionBar.module.css"
+import styles from "@/components/styles/Modals/ModalBottomCenterBar/ModalMapTilesActionBar.module.css"
 import { clickedTileAtom, mapTilesActionStatusAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { useAtomValue, useSetAtom } from "jotai"

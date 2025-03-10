@@ -1,6 +1,6 @@
 "use client"
 
-import styles from "@/components/styles/Modals/ModalBottomCenterBar/ModalMapTilesPlayerActionMovmenet.module.css"
+import styles from "@/components/styles/Modals/ModalBottomCenterBar/ModalMapTilesActionMovmenet.module.css"
 import { useActionMapTilesGuardArea } from "@/methods/hooks/useActionMapTilesGuardArea"
 import { useActionMapTilesMovement } from "@/methods/hooks/useActionMapTilesMovement"
 import { clickedTileAtom, mapTilesActionStatusAtom } from "@/store/atoms"
