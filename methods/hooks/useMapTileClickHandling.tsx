@@ -9,7 +9,7 @@ export function useMapTileClickHandling() {
   const { setCoordinatesOnClick } = useMapTileClick()
   const [statusModalBottomCenterBar, setStatusModalBottomCenterBar] = useAtom(mapTilesActionStatusAtom)
 
-  function handleCLickOnMapTile(x: number, y: number) {
+  function handleClickOnMapTile(x: number, y: number) {
     setCoordinatesOnClick(x, y)
 
     //prettier-ignore
@@ -18,5 +18,5 @@ export function useMapTileClickHandling() {
       setStatusModalBottomCenterBar(EMapTilesActionStatus.TileActionList)
     }
   }
-  return { handleCLickOnMapTile }
+  return { handleClickOnMapTile }
 }

@@ -10,11 +10,11 @@ export default function ModalMapTilesActionMovment() {
   const clickedTile = useAtomValue(clickedTileAtom)
   const [startingPoint] = useState(clickedTile)
   const setOpenModalBottomCenterBar = useSetAtom(mapTilesActionStatusAtom)
-  const { playerActionMapTilesMovement } = useActionMapTilesMovement()
+  const { actionMapTilesMovement } = useActionMapTilesMovement()
 
   useEffect(() => {
     if (startingPoint && clickedTile) {
-      playerActionMapTilesMovement(startingPoint, clickedTile)
+      actionMapTilesMovement(startingPoint, clickedTile)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clickedTile])

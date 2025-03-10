@@ -14,10 +14,10 @@ interface Props {
 export default function MapTile({ tile }: Props) {
   const backgroundImage = useCreateBackgroundImage(tile.image_url)
   const playerImage = useCreatePlayerImage(tile.player_image_url)
-  const { handlieCLickOnMapTile } = useMapTileClickHandling()
+  const { handleClickOnMapTile } = useMapTileClickHandling()
 
   const handleClick = (x: number, y: number) => {
-    handlieCLickOnMapTile(x, y)
+    handleClickOnMapTile(x, y)
   }
 
   return (
