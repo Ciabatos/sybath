@@ -7,11 +7,13 @@ import { useFetchMapTiles } from "@/methods/hooks/useFetchMapTiles"
 import { useJoinMapTiles } from "@/methods/hooks/useJoinMapTiles"
 import { joinedMapTilesAtom, mapTilesActionStatusAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
+import { createPortal } from "react-dom"
 // import { useSession } from "next-auth/react"
 import MapTile from "@/components/MapTile"
+import ModalLeftTopHandling from "@/components/ModalLeftTopHandling"
 import ModalBottomCenterBarHandling from "@/components/Modals/ModalBottomCenterBar/ModalBottomCenterBarHandling"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
-import { createPortal } from "react-dom"
+import { useEffect, useState } from "react"
 
 interface Props {
   joinedMapTiles: Record<string, TjoinedMapTile>
@@ -21,6 +23,11 @@ interface Props {
 
 export default function MapTilesClient({ joinedMapTiles, terrainTypesById, playerPositionById }: Props) {
   // const session = useSession()
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   useFetchMapTiles()
   useJoinMapTiles(joinedMapTiles, terrainTypesById, playerPositionById)
@@ -36,7 +43,8 @@ export default function MapTilesClient({ joinedMapTiles, terrainTypesById, playe
           tile={tile}
         />
       ))}
-      {mapTilesActionStatus != EMapTilesActionStatus.Inactive && createPortal(<ModalBottomCenterBarHandling />, document.body)}
+      {isMounted && mapTilesActionStatus != EMapTilesActionStatus.Inactive && createPortal(<ModalBottomCenterBarHandling />, document.body)}
+      {isMounted && createPortal(<ModalLeftTopHandling></ModalLeftTopHandling>, document.body)}
     </>
   )
 }
