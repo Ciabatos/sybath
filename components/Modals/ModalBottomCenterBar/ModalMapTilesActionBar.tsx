@@ -1,7 +1,7 @@
 import styles from "@/components/styles/Modals/ModalBottomCenterBar/ModalMapTilesActionBar.module.css"
+import { Button } from "@/components/ui/button"
 import { clickedTileAtom, mapTilesActionStatusAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
-import { Button } from "@heroui/button"
 import { useAtomValue, useSetAtom } from "jotai"
 export default function ModalMapTilesActionBar() {
   const clickedTile = useAtomValue(clickedTileAtom)
@@ -41,32 +41,32 @@ export default function ModalMapTilesActionBar() {
         <div className={styles.actionGrid}>
           <Button
             className={styles.actionButton}
-            onPress={handleMove}>
+            onClick={handleMove}>
             Move
           </Button>
           <Button
             className={styles.actionButton}
-            onPress={handleAttack}>
+            onClick={handleAttack}>
             Interact
           </Button>
           <Button
             className={styles.actionButton}
-            onPress={handleInteract}>
+            onClick={handleInteract}>
             Attack
           </Button>
           <Button
             className={styles.actionButton}
-            onPress={handleGuardArea}>
+            onClick={handleGuardArea}>
             Guar Area
           </Button>
           <Button
             className={styles.actionButton}
-            onPress={handleInspect}>
+            onClick={handleInspect}>
             Build
           </Button>
           <Button
             className={styles.actionButton}
-            onPress={handleInspect}>
+            onClick={handleInspect}>
             Inspect
           </Button>
         </div>

@@ -1,8 +1,8 @@
 "use client"
 
 import styles from "@/components/styles/ModalHero.module.css" // Import the CSS module
-import { Button } from "@heroui/button"
-import { cn } from "@heroui/theme"
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 import type React from "react"
 import { useState } from "react"
 
