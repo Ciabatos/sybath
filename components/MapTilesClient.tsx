@@ -1,19 +1,19 @@
 "use client"
 
+import MapTile from "@/components/MapTile"
+import ModalLeftTopHandling from "@/components/ModalLeftTopHandling"
+import ModalBottomCenterBarHandling from "@/components/Modals/ModalBottomCenterBar/ModalBottomCenterBarHandling"
 import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
 import { TMapsFieldsPlayerPosition } from "@/db/postgresMainDatabase/schemas/map/views/mapsFieldsPlayerPosition"
 import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
 import { useFetchMapTiles } from "@/methods/hooks/useFetchMapTiles"
 import { useJoinMapTiles } from "@/methods/hooks/useJoinMapTiles"
 import { joinedMapTilesAtom, mapTilesActionStatusAtom } from "@/store/atoms"
-import { useAtomValue } from "jotai"
-import { createPortal } from "react-dom"
-// import { useSession } from "next-auth/react"
-import MapTile from "@/components/MapTile"
-import ModalLeftTopHandling from "@/components/ModalLeftTopHandling"
-import ModalBottomCenterBarHandling from "@/components/Modals/ModalBottomCenterBar/ModalBottomCenterBarHandling"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
+import { useAtomValue } from "jotai"
+import { useSession } from "next-auth/react"
 import { useEffect, useState } from "react"
+import { createPortal } from "react-dom"
 
 interface Props {
   joinedMapTiles: Record<string, TjoinedMapTile>
@@ -22,7 +22,8 @@ interface Props {
 }
 
 export default function MapTilesClient({ joinedMapTiles, terrainTypesById, playerPositionById }: Props) {
-  // const session = useSession()
+  const session = useSession()
+  console.log(session, "Client session")
   const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
