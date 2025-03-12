@@ -1,7 +1,7 @@
-import Credentials from "next-auth/providers/credentials"
-import type { NextAuthConfig } from "next-auth"
 import { getUserById } from "@/db/postgresMainDatabase/schemas/auth/tables/users"
 import bcrypt from "bcrypt"
+import type { NextAuthConfig } from "next-auth"
+import Credentials from "next-auth/providers/credentials"
 
 export default {
   providers: [
@@ -30,6 +30,7 @@ export default {
           const returnedData = {
             email: user.email,
             name: user.name,
+            role: user.role,
           }
 
           return returnedData
@@ -40,4 +41,17 @@ export default {
       },
     }),
   ],
+  callbacks: {
+    jwt({ token, user }) {
+      if (user) {
+        // User is available during sign-in and this return token to session who take it and assign role
+        token.role = user.role
+      }
+      return token
+    },
+    session({ session, token }) {
+      session.user.role = token.role as string
+      return session
+    },
+  },
 } satisfies NextAuthConfig
