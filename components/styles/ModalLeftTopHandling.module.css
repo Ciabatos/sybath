@@ -1,0 +1,38 @@
+.container {
+  position: relative;
+}
+
+.button {
+  position: fixed;
+  top: 1.5rem; /* Adjust as needed */
+  left: 1.5rem; /* Adjust as needed */
+  z-index: 60;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translateX(0);
+  z-index: 50;
+  transition: transform 300ms ease-in-out;
+  border-right: 1px solid rgba(206, 57, 12, 0.3);
+  background: linear-gradient(to bottom right, #d35c0c, #c7c70f);
+  max-width: 28rem; /* Adjust as needed */
+  height: 75vh;
+  color: white;
+}
+
+.panelClosed {
+  transform: translateX(-100%);
+}
+
+.panelContent {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  height: 100%;
+}
