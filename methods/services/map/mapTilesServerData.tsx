@@ -12,7 +12,7 @@ export async function mapTilesServerData() {
 
   const terrainTypesById = arrayToObjectKeyId("id", mapTerrainTypes) as Record<number, TMapTerrainTypes>
 
-  const playerPositionById = arrayToObjectKeyId("map_field_id", playerPosition) as Record<number, TMapsFieldsPlayerPosition>
+  const playerPositionById = playerPosition ? (arrayToObjectKeyId("map_field_id", playerPosition) as Record<number, TMapsFieldsPlayerPosition>) : {}
 
   const joinedMapTiles = joinMapTilesServer(tilesData, playerPositionById, terrainTypesById)
 

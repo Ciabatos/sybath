@@ -15,12 +15,16 @@ export type TjoinedMapTile = {
   player_name?: string
 }
 
-export function joinMapTilesServer(tiles: TMapTiles[], playerPosition: Record<string, TMapsFieldsPlayerPosition>, terrainTypes: Record<string, TMapTerrainTypes>): Record<string, TjoinedMapTile> {
+export function joinMapTilesServer(
+  tiles: TMapTiles[],
+  playerPosition: Record<string, TMapsFieldsPlayerPosition> | null,
+  terrainTypes: Record<string, TMapTerrainTypes>,
+): Record<string, TjoinedMapTile> {
   return Object.fromEntries(
     tiles.map((tile) => {
       const key = `${tile.x},${tile.y}`
       const terrain = terrainTypes[tile.terrain_type_id]
-      const player = playerPosition[tile.id]
+      const player = playerPosition ? playerPosition[tile.id] : null
       return [
         key,
         {

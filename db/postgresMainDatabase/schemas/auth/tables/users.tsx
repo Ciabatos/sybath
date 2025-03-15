@@ -13,7 +13,7 @@ export const getUsers = async () => {
 
 export const getUserById = async (email: string) => {
   try {
-    const result = await query("SELECT name,email,password,'dupsko' as role FROM auth.users WHERE email = $1", [email])
+    const result = await query("SELECT name,email,password,id as userid FROM auth.users WHERE email = $1", [email])
     return result.rows[0]
   } catch (error) {
     console.error(`Error fetching user with ID ${email}:`, error)

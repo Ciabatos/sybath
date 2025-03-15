@@ -30,7 +30,7 @@ export default {
           const returnedData = {
             email: user.email,
             name: user.name,
-            role: user.role,
+            userId: user.userid,
           }
 
           return returnedData
@@ -45,12 +45,12 @@ export default {
     jwt({ token, user }) {
       if (user) {
         // User is available during sign-in and this return token to session who take it and assign role
-        token.role = user.role
+        token.userId = user.userId
       }
       return token
     },
     session({ session, token }) {
-      session.user.role = token.role as string
+      session.user.userId = token.userId as string
       return session
     },
   },
