@@ -7,6 +7,7 @@ export type TMapTiles = {
   x: number
   y: number
   terrain_type_id: number
+  landscape_type_id?: number
 }
 
 export const getMapTiles = async () => {
