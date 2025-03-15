@@ -1,6 +1,5 @@
 import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
 import type { TMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
-import type { TMapsFieldsPlayerPosition } from "@/db/postgresMainDatabase/schemas/map/views/mapsFieldsPlayerPosition"
 
 export type TjoinedMapTile = {
   id: number
@@ -15,16 +14,12 @@ export type TjoinedMapTile = {
   player_name?: string
 }
 
-export function joinMapTilesServer(
-  tiles: TMapTiles[],
-  playerPosition: Record<string, TMapsFieldsPlayerPosition> | null,
-  terrainTypes: Record<string, TMapTerrainTypes>,
-): Record<string, TjoinedMapTile> {
+export function joinMapTilesServer(tiles: TMapTiles[], terrainTypes: Record<string, TMapTerrainTypes>): Record<string, TjoinedMapTile> {
   return Object.fromEntries(
     tiles.map((tile) => {
       const key = `${tile.x},${tile.y}`
       const terrain = terrainTypes[tile.terrain_type_id]
-      const player = playerPosition ? playerPosition[tile.id] : null
+
       return [
         key,
         {
@@ -32,8 +27,6 @@ export function joinMapTilesServer(
           terrain_name: terrain?.name,
           terrain_move_cost: terrain?.terrain_move_cost,
           image_url: terrain?.image_url,
-          player_id: player?.player_name,
-          player_name: player?.player_image_url,
         },
       ]
     }),

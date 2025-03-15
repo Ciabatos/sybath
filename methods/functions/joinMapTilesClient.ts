@@ -9,7 +9,7 @@ export function joinMapTilesClient(
   oldTiles: Record<string, TjoinedMapTile>,
   newTiles: TMapTiles[],
   terrainTypes: Record<number, TMapTerrainTypes>,
-  playerPositionById: Record<string, TMapsFieldsPlayerPosition> | undefined,
+  mapTilesPlayerPostion: Record<string, TMapsFieldsPlayerPosition> | undefined,
 ): Record<string, TjoinedMapTile> {
   return produce(oldTiles, (draft) => {
     newTiles.forEach((newTile) => {
@@ -23,7 +23,7 @@ export function joinMapTilesClient(
         draft[key].terrain_move_cost = terrain?.terrain_move_cost
         draft[key].image_url = terrain?.image_url
 
-        const player = playerPositionById?.[newTile.id]
+        const player = mapTilesPlayerPostion?.[newTile.id]
         draft[key].player_name = player?.player_name
         draft[key].player_image_url = player?.player_image_url
       }

@@ -4,9 +4,9 @@ import MapTile from "@/components/MapTile"
 import ModalLeftTopHandling from "@/components/ModalLeftTopHandling"
 import ModalBottomCenterBarHandling from "@/components/Modals/ModalBottomCenterBar/ModalBottomCenterBarHandling"
 import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
-import { TMapsFieldsPlayerPosition } from "@/db/postgresMainDatabase/schemas/map/views/mapsFieldsPlayerPosition"
 import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
 import { useFetchMapTiles } from "@/methods/hooks/useFetchMapTiles"
+import { useFetchMapTilesPlayerPostion } from "@/methods/hooks/useFetchMapTilesPlayerPosition"
 import { useJoinMapTiles } from "@/methods/hooks/useJoinMapTiles"
 import { joinedMapTilesAtom, mapTilesActionStatusAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
@@ -18,10 +18,9 @@ import { createPortal } from "react-dom"
 interface Props {
   joinedMapTiles: Record<string, TjoinedMapTile>
   terrainTypesById: Record<string, TMapTerrainTypes>
-  playerPositionById?: Record<string, TMapsFieldsPlayerPosition>
 }
 
-export default function MapTilesClient({ joinedMapTiles, terrainTypesById, playerPositionById }: Props) {
+export default function MapTilesClient({ joinedMapTiles, terrainTypesById }: Props) {
   const session = useSession()
   console.log(session, "Client session")
   const [isMounted, setIsMounted] = useState(false)
@@ -31,7 +30,8 @@ export default function MapTilesClient({ joinedMapTiles, terrainTypesById, playe
   }, [])
 
   useFetchMapTiles()
-  useJoinMapTiles(joinedMapTiles, terrainTypesById, playerPositionById)
+  useFetchMapTilesPlayerPostion()
+  useJoinMapTiles(joinedMapTiles, terrainTypesById)
   const updatedTiles = useAtomValue(joinedMapTilesAtom) // NIE ZMIENIAC KOLEJNOSCI BO WYWALI ERROR Z HYDRATION!
 
   const mapTilesActionStatus = useAtomValue(mapTilesActionStatusAtom)
