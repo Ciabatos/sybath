@@ -1,8 +1,8 @@
 "use server"
 
-import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
-import { getMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
 import { getMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
+import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
+import { getMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
 
 import { arrayToObjectKeyId } from "@/methods/functions/converters"
 import { joinMapTilesServer } from "@/methods/functions/joinMapTilesServer"

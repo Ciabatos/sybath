@@ -1,5 +1,5 @@
 "use client"
-import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
+import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
 import { joinMapTilesClient } from "@/methods/functions/joinMapTilesClient"
 import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
 import { joinedMapTilesAtom, mapTilesAtom, mapTilesPlayerPostionAtom } from "@/store/atoms"

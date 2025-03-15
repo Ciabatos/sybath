@@ -1,7 +1,7 @@
 "use client"
-import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
 import type { TMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
-import { TMapsFieldsPlayerPosition } from "@/db/postgresMainDatabase/schemas/map/views/mapsFieldsPlayerPosition"
+import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
+import { TMapsFieldsPlayerPosition } from "@/db/postgresMainDatabase/schemas/map/views/mapTilesPlayerPosition"
 import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
 import { produce } from "immer"
 

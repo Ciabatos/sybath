@@ -1,5 +1,5 @@
 "use client"
-import { TMapsFieldsPlayerPosition } from "@/db/postgresMainDatabase/schemas/map/views/mapsFieldsPlayerPosition"
+import { TMapsFieldsPlayerPosition } from "@/db/postgresMainDatabase/schemas/map/views/mapTilesPlayerPosition"
 import { arrayToObjectKeyId } from "@/methods/functions/converters"
 import { mapTilesPlayerPostionAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"

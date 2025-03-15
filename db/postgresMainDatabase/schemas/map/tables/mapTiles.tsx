@@ -11,7 +11,7 @@ export type TMapTiles = {
 
 export const getMapTiles = async () => {
   try {
-    const result = await query("SELECT * FROM map.maps_fields")
+    const result = await query("SELECT * FROM map.map_tiles")
     return result.rows as TMapTiles[]
   } catch (error) {
     console.error("Error fetching getMapTiles:", error)

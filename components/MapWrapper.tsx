@@ -1,6 +1,6 @@
 "use client"
 import MapTilesClient from "@/components/MapTilesClient"
-import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
+import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
 import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
 import style from "./styles/Map.module.css"

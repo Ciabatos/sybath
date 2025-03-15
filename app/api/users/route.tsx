@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { NextResponse, NextRequest } from "next/server"
 import { getUsers } from "@/db/postgresMainDatabase/schemas/auth/tables/users"
+import { NextRequest, NextResponse } from "next/server"
 
 type TypeParams = {
   null: string

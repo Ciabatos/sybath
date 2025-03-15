@@ -17,7 +17,7 @@ export const getMapsFieldsPlayerPosition = async () => {
   }
 
   try {
-    const result = await query(`SELECT player_name, player_image_url, map_field_id FROM map.maps_fields_player_position WHERE userId = $1`, [userId])
+    const result = await query(`SELECT player_name, player_image_url, map_field_id FROM map.v_map_tiles_player_position WHERE userId = $1`, [userId])
 
     return result.rows as TMapsFieldsPlayerPosition[]
   } catch (error) {

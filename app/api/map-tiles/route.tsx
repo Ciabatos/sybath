@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { NextResponse, NextRequest } from "next/server"
 import { getMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
+import { NextRequest, NextResponse } from "next/server"
 
 type TypeParams = {
   null: string

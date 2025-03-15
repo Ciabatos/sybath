@@ -10,7 +10,7 @@ export type TMapTerrainTypes = {
 
 export const getMapTerrainTypes = async () => {
   try {
-    const result = await query("SELECT * FROM map.terrain_types_maps")
+    const result = await query("SELECT * FROM map.terrain_types")
     return result.rows as TMapTerrainTypes[]
   } catch (error) {
     console.error("Error fetching getMapTerrainTypes:", error)

@@ -1,9 +1,9 @@
 "use client"
 
 import MapTile from "@/components/MapTile"
-import ModalLeftTopHandling from "@/components/ModalLeftTopHandling"
 import ModalBottomCenterBarHandling from "@/components/Modals/ModalBottomCenterBar/ModalBottomCenterBarHandling"
-import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/mapTerrainTypes"
+import ModalLeftTopHandling from "@/components/Modals/ModalLeftTop/ModalLeftTopHandling"
+import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
 import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
 import { useFetchMapTiles } from "@/methods/hooks/useFetchMapTiles"
 import { useFetchMapTilesPlayerPostion } from "@/methods/hooks/useFetchMapTilesPlayerPosition"

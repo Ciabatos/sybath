@@ -1,5 +1,3 @@
-// import { MapDataProvider } from "@/providers/MapDataProvider"
-
 export default function MapLayout({
   children,
 }: Readonly<{
