@@ -52,7 +52,10 @@ export function useMapTilesPath() {
 
     const resultWithWeight: GridNode[] = astar.search(graphWithWeight, startWithWeight, endWithWeight)
 
-    const filteredMapTiles = resultWithWeight.map((node) => {
+    const startNode = { x: startX, y: startY, weight: 0 } as GridNode
+    const fullPath = [startNode, ...resultWithWeight]
+
+    const filteredMapTiles = fullPath.map((node) => {
       const tile = mapTilesArray.find((t) => t.x === node.x && t.y === node.y)
 
       return {
