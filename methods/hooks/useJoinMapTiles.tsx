@@ -1,24 +1,21 @@
 "use client"
 import { TMapLandscapeTypes } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
-import { joinMapTilesClient } from "@/methods/functions/joinMapTilesClient"
-import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
+import { joinMapTiles } from "@/methods/functions/joinMapTiles"
 import { joinedMapTilesAtom, mapTilesAtom, mapTilesPlayerPostionAtom } from "@/store/atoms"
 import { useAtom, useAtomValue } from "jotai"
-import { useHydrateAtoms } from "jotai/utils"
 import { useEffect } from "react"
 
-export function useJoinMapTiles(joinedMapTiles: Record<string, TjoinedMapTile>, terrainTypesById: Record<number, TMapTerrainTypes>, landscapeTypesById: Record<number, TMapLandscapeTypes>) {
-  useHydrateAtoms([[joinedMapTilesAtom, joinedMapTiles]])
-  const [atomJoinedMapTiles, setAtomJoinedMapTiles] = useAtom(joinedMapTilesAtom)
+export function useJoinMapTiles(terrainTypes: Record<number, TMapTerrainTypes>, landscapeTypes: Record<number, TMapLandscapeTypes>) {
+  const [joinedMapTiles, setJoinedMapTiles] = useAtom(joinedMapTilesAtom)
   const newMapTiles = useAtomValue(mapTilesAtom)
-  const mapTilesPlayerPostion = useAtomValue(mapTilesPlayerPostionAtom)
+  const mapTilesPlayerPosition = useAtomValue(mapTilesPlayerPostionAtom)
 
   useEffect(() => {
     if (newMapTiles) {
-      const updatedTiles = joinMapTilesClient(atomJoinedMapTiles, newMapTiles, terrainTypesById, landscapeTypesById, mapTilesPlayerPostion)
-      setAtomJoinedMapTiles(updatedTiles)
+      const updatedTiles = joinMapTiles(newMapTiles, { terrainTypes, landscapeTypes, mapTilesPlayerPosition, oldTiles: joinedMapTiles })
+      setJoinedMapTiles(updatedTiles)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [joinedMapTiles, newMapTiles, terrainTypesById, landscapeTypesById, mapTilesPlayerPostion])
+  }, [newMapTiles, mapTilesPlayerPosition])
 }

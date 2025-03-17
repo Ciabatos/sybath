@@ -2,7 +2,7 @@
 
 import type { TMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
 import { TMapsFieldsPlayerPosition } from "@/db/postgresMainDatabase/schemas/map/views/mapTilesPlayerPosition"
-import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
+import { TjoinedMapTile } from "@/methods/functions/joinMapTiles"
 import type { TClickedTile } from "@/methods/hooks/useMapTileClick"
 import { TMovmentPath } from "@/methods/hooks/useMapTilesPath"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"

@@ -2,7 +2,7 @@
 
 import MapTileLayerGuardAreaAction from "@/components/MapTileLayerGuardAreaAction"
 import MapTileLayerMovementAction from "@/components/MapTileLayerMovmentAction"
-import { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
+import { TjoinedMapTile } from "@/methods/functions/joinMapTiles"
 import { mapTilesActionStatusAtom, mapTilesGuardAreaAtom, mapTilesMovmentPathAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { useAtomValue } from "jotai"

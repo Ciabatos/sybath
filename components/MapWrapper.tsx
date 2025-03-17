@@ -2,17 +2,17 @@
 import MapTilesClient from "@/components/MapTilesClient"
 import { TMapLandscapeTypes } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
-import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
+import { TjoinedMapTile } from "@/methods/functions/joinMapTiles"
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
 import style from "./styles/Map.module.css"
 
 interface Props {
   joinedMapTiles: Record<string, TjoinedMapTile>
-  terrainTypesById: Record<string, TMapTerrainTypes>
-  landscapeTypesById: Record<string, TMapLandscapeTypes>
+  terrainTypes: Record<string, TMapTerrainTypes>
+  landscapeTypes: Record<string, TMapLandscapeTypes>
 }
 
-export default function MapWrapper({ joinedMapTiles, terrainTypesById, landscapeTypesById }: Props) {
+export default function MapWrapper({ joinedMapTiles, terrainTypes, landscapeTypes }: Props) {
   return (
     <>
       <div
@@ -28,8 +28,8 @@ export default function MapWrapper({ joinedMapTiles, terrainTypesById, landscape
               className={style.Tiles}>
               <MapTilesClient
                 joinedMapTiles={joinedMapTiles}
-                terrainTypesById={terrainTypesById}
-                landscapeTypesById={landscapeTypesById}></MapTilesClient>
+                terrainTypes={terrainTypes}
+                landscapeTypes={landscapeTypes}></MapTilesClient>
             </div>
           </TransformComponent>
         </TransformWrapper>

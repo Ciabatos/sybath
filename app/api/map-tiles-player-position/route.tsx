@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { getMapsFieldsPlayerPosition } from "@/db/postgresMainDatabase/schemas/map/views/mapTilesPlayerPosition"
+import { getMapsTilesPlayerPosition } from "@/db/postgresMainDatabase/schemas/map/views/mapTilesPlayerPosition"
 import { NextRequest, NextResponse } from "next/server"
 
 type TypeParams = {
@@ -13,7 +13,7 @@ export async function GET(request: NextRequest, { params }: { params: TypeParams
   // const login = searchQueryParams.get("login")
 
   try {
-    const result = await getMapsFieldsPlayerPosition()
+    const result = await getMapsTilesPlayerPosition()
 
     return NextResponse.json(result)
   } catch (error) {

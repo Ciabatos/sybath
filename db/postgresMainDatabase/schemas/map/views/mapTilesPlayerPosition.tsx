@@ -8,7 +8,7 @@ export type TMapsFieldsPlayerPosition = {
   map_field_id: number
 }
 
-export const getMapsFieldsPlayerPosition = async () => {
+export const getMapsTilesPlayerPosition = async () => {
   const session = await auth()
   const userId: number = Number(session?.user?.userId) ?? ""
 

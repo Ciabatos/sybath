@@ -3,7 +3,7 @@
 import MapTileLayerHandling from "@/components/MapTileLayerHandling"
 import style from "@/components/styles/MapTile.module.css"
 import { combineImages } from "@/methods/functions/combineImages"
-import type { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
+import { TjoinedMapTile } from "@/methods/functions/joinMapTiles"
 import { useCreateBackgroundImage } from "@/methods/hooks/useCreateBackgroundImage"
 import { useCreateLandscapeImage } from "@/methods/hooks/useCreateLandscapeImage"
 import { useCreatePlayerImage } from "@/methods/hooks/useCreatePlayerImage"

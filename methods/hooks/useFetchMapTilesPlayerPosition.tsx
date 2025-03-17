@@ -10,9 +10,8 @@ export function useFetchMapTilesPlayerPostion() {
   const setMapTilesPlayerPostion = useSetAtom(mapTilesPlayerPostionAtom)
   const { data, error, isLoading } = useSWR("/api/map-tiles-player-position", { refreshInterval: 3000 })
 
-  const mapTilesPlayerPostion = data ? (arrayToObjectKeyId("map_field_id", data) as Record<number, TMapsFieldsPlayerPosition>) : {}
-
   useEffect(() => {
+    const mapTilesPlayerPostion = data ? (arrayToObjectKeyId("map_field_id", data) as Record<number, TMapsFieldsPlayerPosition>) : {}
     setMapTilesPlayerPostion(mapTilesPlayerPostion)
   }, [data, error, isLoading])
 }

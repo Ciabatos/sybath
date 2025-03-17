@@ -1,6 +1,6 @@
 "use client"
 
-import { TjoinedMapTile } from "@/methods/functions/joinMapTilesServer"
+import { TjoinedMapTile } from "@/methods/functions/joinMapTiles"
 import { joinedMapTilesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 
