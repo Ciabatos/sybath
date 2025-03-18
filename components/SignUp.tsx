@@ -30,7 +30,7 @@ export default function SignUp() {
           Sign Up
         </button>
       </form>
-      {state !== null && state !== undefined ? <div>{state}</div> : null}
+      {state !== null ? <div>{state}</div> : null}
     </div>
   )
 }
