@@ -3,7 +3,7 @@ import { signUpAction } from "@/methods/actions/signUpAction"
 import { useActionState } from "react"
 
 export default function SignUp() {
-  const [state, formAction] = useActionState(signUpAction, null)
+  const [state, formAction] = useActionState(signUpAction, unknown)
   return (
     <div className="bg-red mx-auto max-w-md rounded-lg p-6 shadow-md">
       <h2 className="mb-4 text-2xl font-bold">Sign Up</h2>
