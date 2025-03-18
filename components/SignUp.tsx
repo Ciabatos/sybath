@@ -1,11 +1,14 @@
-import { singUpAction } from "@/methods/actions/singUpAction"
+"use client"
+import { signUpAction } from "@/methods/actions/signUpAction"
+import { useActionState } from "react"
 
 export default function SignUp() {
+  const [state, formAction] = useActionState(signUpAction, null)
   return (
     <div className="bg-red mx-auto max-w-md rounded-lg p-6 shadow-md">
       <h2 className="mb-4 text-2xl font-bold">Sign Up</h2>
       <form
-        action={singUpAction}
+        action={formAction}
         className="space-y-4">
         <input
           type="email"
@@ -27,6 +30,7 @@ export default function SignUp() {
           Sign Up
         </button>
       </form>
+      {state !== null && state !== undefined ? <div>{state}</div> : null}
     </div>
   )
 }
