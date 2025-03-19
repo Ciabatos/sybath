@@ -1,10 +1,11 @@
 "use server"
 import { auth } from "@/auth"
 import MapWrapper from "@/components/MapWrapper"
+import { getPlayerVisibleMapData, TPlayerVisibleMapData } from "@/db/postgresMainDatabase/schemas/map/functions/playerVisibleMapData"
 import { getMapLandscapeTypes, TMapLandscapeTypes } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import { getMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
 import { getMapTerrainTypes, TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
-import { getMapsTilesPlayerPosition, TMapsFieldsPlayerPosition } from "@/db/postgresMainDatabase/schemas/map/views/mapTilesPlayerPosition"
+import { getPlayerInventory } from "@/db/postgresMainDatabase/schemas/players/tables/playerInventories"
 import { arrayToObjectKeyId } from "@/methods/functions/converters"
 import { joinMapTiles } from "@/methods/functions/joinMapTiles"
 import { SWRProvider } from "@/providers/swr-provider"
@@ -12,20 +13,26 @@ import styles from "./page.module.css"
 
 export default async function MapPage() {
   const session = await auth()
-  const userId = session?.user?.userId
+  const playerId = session?.user?.playerId
 
-  const [mapTerrainTypes, mapTiles, mapLandscapeTypes, mapTilesPlayerPostion] = await Promise.all([getMapTerrainTypes(), getMapTiles(), getMapLandscapeTypes(), getMapsTilesPlayerPosition(userId)])
+  const [mapTerrainTypes, mapTiles, mapLandscapeTypes, mapPlayerVisibleMapData, playerInventory] = await Promise.all([
+    getMapTerrainTypes(),
+    getMapTiles(),
+    getMapLandscapeTypes(),
+    getPlayerVisibleMapData(playerId),
+    getPlayerInventory(playerId),
+  ])
 
   const terrainTypes = arrayToObjectKeyId("terrain_type_id", mapTerrainTypes) as Record<number, TMapTerrainTypes>
 
   const landscapeTypes = arrayToObjectKeyId("landscape_type_id", mapLandscapeTypes) as Record<number, TMapLandscapeTypes>
 
-  const mapTilesPlayerPosition = mapTilesPlayerPostion ? (arrayToObjectKeyId("map_field_id", mapTilesPlayerPostion) as Record<number, TMapsFieldsPlayerPosition>) : {}
+  const playerVisibleMapData = mapPlayerVisibleMapData ? (arrayToObjectKeyId("map_tile_id", mapPlayerVisibleMapData) as Record<number, TPlayerVisibleMapData>) : {}
 
   const joinedMapTiles = joinMapTiles(mapTiles, {
     terrainTypes,
     landscapeTypes,
-    mapTilesPlayerPosition,
+    playerVisibleMapData,
   })
 
   return (
@@ -34,7 +41,8 @@ export default async function MapPage() {
         value={{
           fallback: {
             "/api/map-tiles": mapTiles,
-            ...(userId && { [`/api/map-tiles-players-positions/${userId}`]: mapTilesPlayerPostion }),
+            ...(playerId && { [`/api/map-tiles-players-positions/${playerId}`]: mapPlayerVisibleMapData }),
+            ...(playerId && { [`/api/player-inventories/${playerId}`]: playerInventory }),
           },
         }}>
         <MapWrapper

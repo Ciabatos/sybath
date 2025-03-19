@@ -7,7 +7,7 @@ import { TMapLandscapeTypes } from "@/db/postgresMainDatabase/schemas/map/tables
 import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
 import { TjoinedMapTile } from "@/methods/functions/joinMapTiles"
 import { useFetchMapTiles } from "@/methods/hooks/useFetchMapTiles"
-import { useFetchMapTilesPlayerPostion } from "@/methods/hooks/useFetchMapTilesPlayerPosition"
+import { useFetchPlayerVisibleMapData } from "@/methods/hooks/useFetchPlayerVisibleMapData"
 import { useJoinMapTiles } from "@/methods/hooks/useJoinMapTiles"
 import { joinedMapTilesAtom, mapTilesActionStatusAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
@@ -39,7 +39,7 @@ export default function MapTilesClient({ joinedMapTiles, terrainTypes, landscape
   const updatedTiles = useAtomValue(joinedMapTilesAtom)
 
   useFetchMapTiles()
-  useFetchMapTilesPlayerPostion()
+  useFetchPlayerVisibleMapData()
   useJoinMapTiles(terrainTypes, landscapeTypes)
 
   return (

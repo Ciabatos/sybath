@@ -3,12 +3,17 @@ import styles from "@/components/styles/ModalLeftTopHandling.module.css" // Impo
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
+import { useFetchPlayerInventory } from "@/methods/hooks/useFetchPlayerInventory"
+import { playerInventoryAtom } from "@/store/atoms"
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
+import { useAtomValue } from "jotai"
 import { useState } from "react"
 
 export default function ModalLeftTopHandling() {
   const [isOpen, setIsOpen] = useState(false)
   const [isPartyVisible, setIsPartyVisible] = useState(false)
+  useFetchPlayerInventory()
+  const playerInventory = useAtomValue(playerInventoryAtom)
 
   return (
     <div className={styles.container}>
@@ -50,11 +55,12 @@ export default function ModalLeftTopHandling() {
               <Tabs
                 defaultValue="Stats"
                 className="flex w-[400px] flex-1 flex-col">
-                <TabsList className="grid w-full grid-cols-4">
+                <TabsList className="grid w-full grid-cols-5">
                   <TabsTrigger value="Stats">Stats</TabsTrigger>
                   <TabsTrigger value="Inventory">Inventory</TabsTrigger>
                   <TabsTrigger value="Skills">Skills</TabsTrigger>
                   <TabsTrigger value="Abilities">Abilities</TabsTrigger>
+                  <TabsTrigger value="Knowledge">Knowledge</TabsTrigger>
                 </TabsList>
                 <TabsContent
                   value="Stats"
@@ -64,7 +70,9 @@ export default function ModalLeftTopHandling() {
                 <TabsContent
                   value="Inventory"
                   className="flex-1 overflow-auto">
-                  Inventory
+                  Inventory {playerInventory?.inventory_size}
+                  {playerInventory?.player_id}
+                  {playerInventory?.player_inventory_id}
                 </TabsContent>
                 <TabsContent
                   value="Skills"
@@ -75,6 +83,11 @@ export default function ModalLeftTopHandling() {
                   value="Abilities"
                   className="flex-1 overflow-auto">
                   Abilities
+                </TabsContent>
+                <TabsContent
+                  value="Knowledge"
+                  className="flex-1 overflow-auto">
+                  Knowledge
                 </TabsContent>
               </Tabs>
             </div>

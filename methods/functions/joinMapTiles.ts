@@ -1,14 +1,13 @@
+import { TPlayerVisibleMapData } from "@/db/postgresMainDatabase/schemas/map/functions/playerVisibleMapData"
 import { TMapLandscapeTypes } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import type { TMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
 import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
-import { TMapsFieldsPlayerPosition } from "@/db/postgresMainDatabase/schemas/map/views/mapTilesPlayerPosition"
 import { produce } from "immer"
 
 export type TjoinedMapTile = {
   map_tile_id: number
   x: number
   y: number
-  map_field_id?: number
   terrain_type_id: number
   landscape_type_id?: number
   terrain_name?: string
@@ -23,18 +22,18 @@ export type TjoinedMapTile = {
 type JoinMapTilesOptions = {
   terrainTypes: Record<number, TMapTerrainTypes>
   landscapeTypes: Record<number, TMapLandscapeTypes>
-  mapTilesPlayerPosition?: Record<number, TMapsFieldsPlayerPosition>
+  playerVisibleMapData?: Record<number, TPlayerVisibleMapData>
   oldTiles?: Record<string, TjoinedMapTile> // For client-side updates
 }
 
 export function joinMapTiles(tiles: TMapTiles[], options: JoinMapTilesOptions): Record<string, TjoinedMapTile> {
-  const { terrainTypes, landscapeTypes, mapTilesPlayerPosition, oldTiles } = options
+  const { terrainTypes, landscapeTypes, playerVisibleMapData, oldTiles } = options
 
   // to jest funkcja pomocnicza dla bloku poniżej
   const createOrUpdateTile = (tile: TMapTiles): TjoinedMapTile => {
     const terrain = terrainTypes[tile.terrain_type_id]
     const landscape = tile.landscape_type_id != null ? landscapeTypes[tile.landscape_type_id] : undefined
-    const playerPosition = mapTilesPlayerPosition?.[tile.map_tile_id]
+    const playerPosition = playerVisibleMapData?.[tile.map_tile_id]
 
     return {
       ...tile,
