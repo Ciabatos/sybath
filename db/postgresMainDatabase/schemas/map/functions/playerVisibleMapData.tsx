@@ -10,7 +10,7 @@ export type TPlayerVisibleMapData = {
 
 export const getPlayersVisibleMapData = async () => {
   try {
-    const result = await query(`SELECT player_name, player_image_url, map_tile_id FROM map.v_map_tiles_player_position`)
+    const result = await query(`SELECT * FROM map.all_player_visible_map_data()`)
 
     return result.rows as TPlayerVisibleMapData[]
   } catch (error) {

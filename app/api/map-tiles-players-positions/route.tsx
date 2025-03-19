@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { getPlayerVisibleMapData } from "@/db/postgresMainDatabase/schemas/map/functions/playerVisibleMapData"
+import { getPlayersVisibleMapData } from "@/db/postgresMainDatabase/schemas/map/functions/playerVisibleMapData"
 import { NextRequest, NextResponse } from "next/server"
 
 type TypeParams = {
@@ -13,7 +13,7 @@ export async function GET(request: NextRequest, { params }: { params: TypeParams
   // const login = searchQueryParams.get("login")
 
   try {
-    const result = await getPlayerVisibleMapData()
+    const result = await getPlayersVisibleMapData()
 
     return NextResponse.json(result)
   } catch (error) {
