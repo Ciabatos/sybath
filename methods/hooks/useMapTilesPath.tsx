@@ -18,7 +18,7 @@ interface GridNode {
 
 export interface TMovmentPath {
   tileCost: number
-  id?: number | undefined
+  map_tile_id?: number | undefined
   map_id?: number | undefined
   x?: number | undefined
   y?: number | undefined

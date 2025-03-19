@@ -5,7 +5,7 @@ import { TMapsFieldsPlayerPosition } from "@/db/postgresMainDatabase/schemas/map
 import { produce } from "immer"
 
 export type TjoinedMapTile = {
-  id: number
+  map_tile_id: number
   x: number
   y: number
   map_field_id?: number
@@ -34,7 +34,7 @@ export function joinMapTiles(tiles: TMapTiles[], options: JoinMapTilesOptions): 
   const createOrUpdateTile = (tile: TMapTiles): TjoinedMapTile => {
     const terrain = terrainTypes[tile.terrain_type_id]
     const landscape = tile.landscape_type_id != null ? landscapeTypes[tile.landscape_type_id] : undefined
-    const playerPosition = mapTilesPlayerPosition?.[tile.id]
+    const playerPosition = mapTilesPlayerPosition?.[tile.map_tile_id]
 
     return {
       ...tile,

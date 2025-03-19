@@ -1,4 +1,2 @@
 + Zmiana kolumny ID w postgreSQL na Table_name_id
   const terrainTypes = arrayToObjectKeyId("id", mapTerrainTypes) as Record<number, TMapTerrainTypes>
-
-+signUpAction - useActionState -- nauka

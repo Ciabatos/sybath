@@ -2,7 +2,7 @@
 
 import { insertUser } from "@/db/postgresMainDatabase/schemas/auth/functions/insertUser"
 
-export async function signUpAction(prevState: any, formData: FormData) {
+export async function signUpAction(prevState: unknown, formData: FormData) {
   const email = formData.get("email") as string
   const password = formData.get("password") as string
 
