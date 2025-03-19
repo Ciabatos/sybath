@@ -92,14 +92,31 @@ export default function ModalLeftTopHandling() {
                 <Tabs
                   defaultValue="Party"
                   className="flex w-[400px] flex-1 flex-col">
-                  <TabsList className="grid w-full grid-cols-1">
-                    <TabsTrigger value="Party">Party Leader/Unit</TabsTrigger>
+                  <TabsList className="grid w-full grid-cols-2">
+                    <TabsTrigger value="Units">Units</TabsTrigger>
+                    <TabsTrigger value="Party Inventory">Party Inventory</TabsTrigger>
                   </TabsList>
+
                   <TabsContent
-                    value="Party"
+                    value="Units"
                     className="flex-1 overflow-auto">
-                    <p>Party Inventory</p>
-                    <Button>{"Formation >"}</Button>
+                    Party Leader
+                    <div className="text-large h-20 w-20">
+                      <Avatar>
+                        <AvatarImage
+                          src="https://github.com/shadcn.png"
+                          alt="@shadcn"
+                        />
+                        <AvatarFallback>CN</AvatarFallback>
+                      </Avatar>
+                      Units Grid
+                      <Button>{"Formation >"}</Button>
+                    </div>
+                  </TabsContent>
+                  <TabsContent
+                    value="Inventory"
+                    className="flex-1 overflow-auto">
+                    Inventory
                   </TabsContent>
                 </Tabs>
               </div>
