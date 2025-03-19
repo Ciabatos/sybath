@@ -12,9 +12,9 @@ import styles from "./page.module.css"
 
 export default async function MapPage() {
   const session = await auth()
-  console.log(session, "Server session")
+  const userId = session?.user?.userId
 
-  const [mapTerrainTypes, mapTiles, mapLandscapeTypes, mapTilesPlayerPostion] = await Promise.all([getMapTerrainTypes(), getMapTiles(), getMapLandscapeTypes(), getMapsTilesPlayerPosition()])
+  const [mapTerrainTypes, mapTiles, mapLandscapeTypes, mapTilesPlayerPostion] = await Promise.all([getMapTerrainTypes(), getMapTiles(), getMapLandscapeTypes(), getMapsTilesPlayerPosition(userId)])
 
   const terrainTypes = arrayToObjectKeyId("terrain_type_id", mapTerrainTypes) as Record<number, TMapTerrainTypes>
 
@@ -34,7 +34,7 @@ export default async function MapPage() {
         value={{
           fallback: {
             "/api/map-tiles": mapTiles,
-            "/api/map-tiles-player-position": mapTilesPlayerPostion,
+            ...(userId && { [`/api/map-tiles-players-positions/${userId}`]: mapTilesPlayerPostion }),
           },
         }}>
         <MapWrapper

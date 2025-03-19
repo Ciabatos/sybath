@@ -90,7 +90,7 @@ export default function ModalLeftTopHandling() {
             {isPartyVisible && (
               <div className="flex min-h-0 flex-1 flex-col">
                 <Tabs
-                  defaultValue="Party"
+                  defaultValue="Units"
                   className="flex w-[400px] flex-1 flex-col">
                   <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="Units">Units</TabsTrigger>

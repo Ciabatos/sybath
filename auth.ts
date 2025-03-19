@@ -12,11 +12,11 @@ declare module "next-auth" {
   interface Session {
     user: {
       /** The user's role. */
-      userId: string
+      userId: number
     } & DefaultSession["user"]
   }
   interface User {
-    userId: string
+    userId: number
   }
 }
 

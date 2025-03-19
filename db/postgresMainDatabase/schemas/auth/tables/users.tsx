@@ -11,7 +11,7 @@ export const getUsers = async () => {
   }
 }
 
-export const getUserById = async (email: string) => {
+export const getUser = async (email: string) => {
   try {
     const result = await query("SELECT name,email,password,id as user_id FROM auth.users WHERE email = $1", [email])
     return result.rows[0]

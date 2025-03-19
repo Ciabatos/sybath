@@ -3,15 +3,19 @@ import { TMapsFieldsPlayerPosition } from "@/db/postgresMainDatabase/schemas/map
 import { arrayToObjectKeyId } from "@/methods/functions/converters"
 import { mapTilesPlayerPostionAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
+import { useSession } from "next-auth/react"
 import { useEffect } from "react"
 import useSWR from "swr"
 
 export function useFetchMapTilesPlayerPostion() {
+  const session = useSession()
+  const userId = session?.data?.user.userId
+
   const setMapTilesPlayerPostion = useSetAtom(mapTilesPlayerPostionAtom)
-  const { data, error, isLoading } = useSWR("/api/map-tiles-player-position", { refreshInterval: 3000 })
+  const { data, error, isLoading } = useSWR(`/api/map-tiles-players-positions/${userId}`, { refreshInterval: 3000 })
 
   useEffect(() => {
-    const mapTilesPlayerPostion = data ? (arrayToObjectKeyId("map_field_id", data) as Record<number, TMapsFieldsPlayerPosition>) : {}
-    setMapTilesPlayerPostion(mapTilesPlayerPostion)
+    const mapTilesPlayersPostions = data ? (arrayToObjectKeyId("map_field_id", data) as Record<number, TMapsFieldsPlayerPosition>) : {}
+    setMapTilesPlayerPostion(mapTilesPlayersPostions)
   }, [data, error, isLoading])
 }

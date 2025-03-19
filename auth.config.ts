@@ -1,4 +1,4 @@
-import { getUserById } from "@/db/postgresMainDatabase/schemas/auth/tables/users"
+import { getUser } from "@/db/postgresMainDatabase/schemas/auth/tables/users"
 import bcrypt from "bcrypt"
 import type { NextAuthConfig } from "next-auth"
 import Credentials from "next-auth/providers/credentials"
@@ -21,7 +21,7 @@ export default {
           const email: unknown = credentials.email
           const password: unknown = credentials.password
           // const hashedPassword = await bcrypt.hash(password as string, 10)
-          const user = await getUserById(email as string)
+          const user = await getUser(email as string)
           const isPasswordValid = await bcrypt.compare(password as string, user.password)
 
           if (!isPasswordValid) {
@@ -30,7 +30,7 @@ export default {
           const returnedData = {
             email: user.email,
             name: user.name,
-            userId: user.userid,
+            userId: user.user_id,
           }
 
           return returnedData
@@ -50,7 +50,7 @@ export default {
       return token
     },
     session({ session, token }) {
-      session.user.userId = token.userId as string
+      session.user.userId = token.userId as number
       return session
     },
   },
