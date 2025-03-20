@@ -12,7 +12,7 @@ export function useFetchPlayerVisibleMapData() {
   const playerId = session?.data?.user.playerId
 
   const setPlayerVisibleMapData = useSetAtom(playerVisibleMapDataAtom)
-  const { data, error, isLoading } = useSWR(`/api/map-tiles-players-positions/${playerId}`, { refreshInterval: 3000 })
+  const { data, error, isLoading } = useSWR(`/api/map-tiles/player-visible-map-data/${playerId}`, { refreshInterval: 3000 })
 
   useEffect(() => {
     const playerVisibleMapData = data ? (arrayToObjectKeyId("map_tile_id", data) as Record<number, TPlayerVisibleMapData>) : {}

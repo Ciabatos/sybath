@@ -41,7 +41,7 @@ export default async function MapPage() {
         value={{
           fallback: {
             "/api/map-tiles": mapTiles,
-            ...(playerId && { [`/api/map-tiles-players-positions/${playerId}`]: mapPlayerVisibleMapData }),
+            ...(playerId && { [`/api/map-tiles/player-visible-map-data/${playerId}`]: mapPlayerVisibleMapData }),
             ...(playerId && { [`/api/player-inventories/${playerId}`]: playerInventory }),
           },
         }}>
