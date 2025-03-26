@@ -1,3 +1,4 @@
+import { Provider } from "jotai"
 import type { Metadata } from "next"
 import { SessionProvider } from "next-auth/react"
 import "./globals.css"
@@ -15,7 +16,9 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
-        <SessionProvider>{children}</SessionProvider>
+        <Provider>
+          <SessionProvider>{children}</SessionProvider>
+        </Provider>
       </body>
     </html>
   )
