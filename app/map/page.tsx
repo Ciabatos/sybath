@@ -1,10 +1,10 @@
 "use server"
 import { auth } from "@/auth"
 import MapWrapper from "@/components/MapWrapper"
-import { getPlayerVisibleMapData, TPlayerVisibleMapData } from "@/db/postgresMainDatabase/schemas/map/functions/playerVisibleMapData"
-import { getMapLandscapeTypes, TMapLandscapeTypes } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
+import { getPlayerVisibleMapData, TPlayerVisibleMapDataById } from "@/db/postgresMainDatabase/schemas/map/functions/playerVisibleMapData"
+import { getMapLandscapeTypes, TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import { getMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
-import { getMapTerrainTypes, TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
+import { getMapTerrainTypes, TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
 import { getPlayerInventory } from "@/db/postgresMainDatabase/schemas/players/tables/playerInventories"
 import { arrayToObjectKeyId } from "@/methods/functions/converters"
 import { joinMapTiles } from "@/methods/functions/joinMapTiles"
@@ -23,11 +23,11 @@ export default async function MapPage() {
     getPlayerInventory(playerId),
   ])
 
-  const terrainTypes = arrayToObjectKeyId("terrain_type_id", mapTerrainTypes) as Record<number, TMapTerrainTypes>
+  const terrainTypes = arrayToObjectKeyId("terrain_type_id", mapTerrainTypes) as TMapTerrainTypesById
 
-  const landscapeTypes = arrayToObjectKeyId("landscape_type_id", mapLandscapeTypes) as Record<number, TMapLandscapeTypes>
+  const landscapeTypes = arrayToObjectKeyId("landscape_type_id", mapLandscapeTypes) as TMapLandscapeTypesById
 
-  const playerVisibleMapData = mapPlayerVisibleMapData ? (arrayToObjectKeyId("map_tile_id", mapPlayerVisibleMapData) as Record<number, TPlayerVisibleMapData>) : {}
+  const playerVisibleMapData = mapPlayerVisibleMapData ? (arrayToObjectKeyId("map_tile_id", mapPlayerVisibleMapData) as TPlayerVisibleMapDataById) : {}
 
   const joinedMapTiles = joinMapTiles(mapTiles, {
     terrainTypes,

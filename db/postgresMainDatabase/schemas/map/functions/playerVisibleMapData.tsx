@@ -3,10 +3,13 @@
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 
 export type TPlayerVisibleMapData = {
+  map_tile_id: number
+  player_id: number
   player_name: string
   player_image_url: string
-  map_tile_id: number
 }
+
+export type TPlayerVisibleMapDataById = Record<number, TPlayerVisibleMapData>
 
 export const getPlayersVisibleMapData = async () => {
   try {

@@ -1,5 +1,5 @@
 "use client"
-import { TPlayerVisibleMapData } from "@/db/postgresMainDatabase/schemas/map/functions/playerVisibleMapData"
+import { TPlayerVisibleMapDataById } from "@/db/postgresMainDatabase/schemas/map/functions/playerVisibleMapData"
 import { arrayToObjectKeyId } from "@/methods/functions/converters"
 import { playerVisibleMapDataAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
@@ -15,7 +15,7 @@ export function useFetchPlayerVisibleMapData() {
   const { data, error, isLoading } = useSWR(`/api/map-tiles/player-visible-map-data/${playerId}`, { refreshInterval: 3000 })
 
   useEffect(() => {
-    const playerVisibleMapData = data ? (arrayToObjectKeyId("map_tile_id", data) as Record<number, TPlayerVisibleMapData>) : {}
+    const playerVisibleMapData = data ? (arrayToObjectKeyId("map_tile_id", data) as TPlayerVisibleMapDataById) : {}
     setPlayerVisibleMapData(playerVisibleMapData)
   }, [data, error, isLoading])
 }

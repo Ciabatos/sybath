@@ -1,13 +1,13 @@
 "use client"
 
-import { TjoinedMapTile } from "@/methods/functions/joinMapTiles"
+import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
 import { joinedMapTilesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 
 export function useMapTilesArea() {
   const mapTiles = useAtomValue(joinedMapTilesAtom)
 
-  function areaFromPoint(startX: number, startY: number, objectProperties: number): TjoinedMapTile[] {
+  function areaFromPoint(startX: number, startY: number, objectProperties: number): TJoinedMapTile[] {
     if (!startX || !startY) {
       return []
     }

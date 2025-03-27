@@ -3,9 +3,9 @@
 import MapTile from "@/components/MapTile"
 import ModalBottomCenterBarHandling from "@/components/Modals/ModalBottomCenterBar/ModalBottomCenterBarHandling"
 import ModalLeftTopHandling from "@/components/Modals/ModalLeftTop/ModalLeftTopHandling"
-import { TMapLandscapeTypes } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
-import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
-import { TjoinedMapTile } from "@/methods/functions/joinMapTiles"
+import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
+import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
+import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
 import { useFetchMapTiles } from "@/methods/hooks/useFetchMapTiles"
 import { useFetchPlayerVisibleMapData } from "@/methods/hooks/useFetchPlayerVisibleMapData"
 import { useJoinMapTiles } from "@/methods/hooks/useJoinMapTiles"
@@ -18,9 +18,9 @@ import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 
 interface Props {
-  joinedMapTiles: Record<string, TjoinedMapTile>
-  terrainTypes: Record<string, TMapTerrainTypes>
-  landscapeTypes: Record<string, TMapLandscapeTypes>
+  joinedMapTiles: Record<string, TJoinedMapTile>
+  terrainTypes: TMapTerrainTypesById
+  landscapeTypes: TMapLandscapeTypesById
 }
 
 export default function MapTilesClient({ joinedMapTiles, terrainTypes, landscapeTypes }: Props) {

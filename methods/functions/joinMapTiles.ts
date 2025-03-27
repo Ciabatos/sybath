@@ -1,10 +1,10 @@
-import { TPlayerVisibleMapData } from "@/db/postgresMainDatabase/schemas/map/functions/playerVisibleMapData"
-import { TMapLandscapeTypes } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
-import type { TMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
-import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
+import { TPlayerVisibleMapDataById } from "@/db/postgresMainDatabase/schemas/map/functions/playerVisibleMapData"
+import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
+import type { TMapTile } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
+import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
 import { produce } from "immer"
 
-export type TjoinedMapTile = {
+export type TJoinedMapTile = {
   map_tile_id: number
   x: number
   y: number
@@ -19,18 +19,22 @@ export type TjoinedMapTile = {
   player_name?: string
 }
 
+// export interface TJoinedMapTile extends TMapTile, Partial<TMapTerrainTypesById>, Partial<TMapLandscapeTypesById>, Partial<TPlayerInventories> {}
+
+export type TJoinedMapTileById = Record<string, TJoinedMapTile>
+
 type JoinMapTilesOptions = {
-  terrainTypes: Record<number, TMapTerrainTypes>
-  landscapeTypes: Record<number, TMapLandscapeTypes>
-  playerVisibleMapData?: Record<number, TPlayerVisibleMapData>
-  oldTiles?: Record<string, TjoinedMapTile> // For client-side updates
+  terrainTypes: TMapTerrainTypesById
+  landscapeTypes: TMapLandscapeTypesById
+  playerVisibleMapData?: TPlayerVisibleMapDataById
+  oldTiles?: Record<string, TJoinedMapTile> // For client-side updates
 }
 
-export function joinMapTiles(tiles: TMapTiles[], options: JoinMapTilesOptions): Record<string, TjoinedMapTile> {
+export function joinMapTiles(tiles: TMapTile[], options: JoinMapTilesOptions): Record<string, TJoinedMapTile> {
   const { terrainTypes, landscapeTypes, playerVisibleMapData, oldTiles } = options
 
   // to jest funkcja pomocnicza dla bloku poniżej
-  const createOrUpdateTile = (tile: TMapTiles): TjoinedMapTile => {
+  const createOrUpdateTile = (tile: TMapTile): TJoinedMapTile => {
     const terrain = terrainTypes[tile.terrain_type_id]
     const landscape = tile.landscape_type_id != null ? landscapeTypes[tile.landscape_type_id] : undefined
     const playerPosition = playerVisibleMapData?.[tile.map_tile_id]

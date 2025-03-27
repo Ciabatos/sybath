@@ -3,14 +3,14 @@
 import MapTileLayerHandling from "@/components/MapTileLayerHandling"
 import style from "@/components/styles/MapTile.module.css"
 import { combineImages } from "@/methods/functions/combineImages"
-import { TjoinedMapTile } from "@/methods/functions/joinMapTiles"
+import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
 import { useCreateBackgroundImage } from "@/methods/hooks/useCreateBackgroundImage"
 import { useCreateLandscapeImage } from "@/methods/hooks/useCreateLandscapeImage"
 import { useCreatePlayerImage } from "@/methods/hooks/useCreatePlayerImage"
 import { useMapTileClickHandling } from "@/methods/hooks/useMapTileClickHandling"
 
 interface Props {
-  tile: TjoinedMapTile
+  tile: TJoinedMapTile
 }
 
 export default function MapTile({ tile }: Props) {

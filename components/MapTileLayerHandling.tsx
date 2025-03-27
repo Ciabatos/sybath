@@ -2,13 +2,13 @@
 
 import MapTileLayerGuardAreaAction from "@/components/MapTileLayerGuardAreaAction"
 import MapTileLayerMovementAction from "@/components/MapTileLayerMovmentAction"
-import { TjoinedMapTile } from "@/methods/functions/joinMapTiles"
+import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
 import { mapTilesActionStatusAtom, mapTilesGuardAreaAtom, mapTilesMovmentPathAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { useAtomValue } from "jotai"
 
 interface Props {
-  tile: TjoinedMapTile
+  tile: TJoinedMapTile
 }
 
 export default function MapTileLayerHandling({ tile }: Props) {

@@ -1,12 +1,12 @@
 "use client"
-import { TMapLandscapeTypes } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
-import type { TMapTerrainTypes } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
+import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
+import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
 import { joinMapTiles } from "@/methods/functions/joinMapTiles"
 import { joinedMapTilesAtom, mapTilesAtom, playerVisibleMapDataAtom } from "@/store/atoms"
 import { useAtom, useAtomValue } from "jotai"
 import { useEffect } from "react"
 
-export function useJoinMapTiles(terrainTypes: Record<number, TMapTerrainTypes>, landscapeTypes: Record<number, TMapLandscapeTypes>) {
+export function useJoinMapTiles(terrainTypes: TMapTerrainTypesById, landscapeTypes: TMapLandscapeTypesById) {
   const [joinedMapTiles, setJoinedMapTiles] = useAtom(joinedMapTilesAtom)
   const newMapTiles = useAtomValue(mapTilesAtom)
   const playerVisibleMapData = useAtomValue(playerVisibleMapDataAtom)

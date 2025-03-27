@@ -8,6 +8,8 @@ export type TMapLandscapeTypes = {
   image_url: string
 }
 
+export type TMapLandscapeTypesById = Record<number, TMapLandscapeTypes>
+
 export const getMapLandscapeTypes = async () => {
   try {
     const result = await query("SELECT * FROM map.landscape_types")
