@@ -14,9 +14,9 @@ interface Props {
 }
 
 export default function MapTile({ tile }: Props) {
-  const backgroundImage = useCreateBackgroundImage(tile.terrain_image_url)
-  const landscapeImage = useCreateLandscapeImage(tile.landscape_image_url)
-  const playerImage = useCreatePlayerImage(tile.player_image_url)
+  const backgroundImage = useCreateBackgroundImage(tile.terrainTypes.image_url)
+  const landscapeImage = useCreateLandscapeImage(tile.landscapeTypes?.image_url)
+  const playerImage = useCreatePlayerImage(tile.playerVisibleMapData?.player_image_url)
   const combinedImages = combineImages(landscapeImage, backgroundImage)
   const { handleClickOnMapTile } = useMapTileClickHandling()
 
@@ -28,10 +28,10 @@ export default function MapTile({ tile }: Props) {
     <>
       <div
         className={style.BackgroundImage}
-        onDoubleClick={() => handleClick(tile.x, tile.y)}
+        onDoubleClick={() => handleClick(tile.mapTile.x, tile.mapTile.y)}
         style={{
-          gridColumnStart: tile.x,
-          gridRowStart: tile.y,
+          gridColumnStart: tile.mapTile.x,
+          gridRowStart: tile.mapTile.y,
           backgroundImage: combinedImages,
         }}>
         <div
@@ -40,7 +40,7 @@ export default function MapTile({ tile }: Props) {
             backgroundImage: playerImage,
           }}></div>
         <div>
-          {tile.x}, {tile.y}
+          {tile.mapTile.x}, {tile.mapTile.y}
         </div>
         <MapTileLayerHandling tile={tile} />
       </div>

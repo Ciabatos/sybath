@@ -13,7 +13,7 @@ export function useJoinMapTiles(terrainTypes: TMapTerrainTypesById, landscapeTyp
 
   useEffect(() => {
     if (newMapTiles) {
-      const updatedTiles = joinMapTiles(newMapTiles, { terrainTypes, landscapeTypes, playerVisibleMapData, oldTiles: joinedMapTiles })
+      const updatedTiles = joinMapTiles(newMapTiles, terrainTypes, landscapeTypes, playerVisibleMapData, { oldTilesToUpdate: joinedMapTiles })
       setJoinedMapTiles(updatedTiles)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

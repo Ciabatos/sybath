@@ -29,11 +29,7 @@ export default async function MapPage() {
 
   const playerVisibleMapData = mapPlayerVisibleMapData ? (arrayToObjectKeyId("map_tile_id", mapPlayerVisibleMapData) as TPlayerVisibleMapDataById) : {}
 
-  const joinedMapTiles = joinMapTiles(mapTiles, {
-    terrainTypes,
-    landscapeTypes,
-    playerVisibleMapData,
-  })
+  const joinedMapTiles = joinMapTiles(mapTiles, terrainTypes, landscapeTypes, playerVisibleMapData)
 
   return (
     <div className={styles.main}>

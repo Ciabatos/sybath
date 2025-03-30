@@ -1,6 +1,7 @@
 "use client"
 
 import { astar, Graph } from "@/methods/functions/astar"
+import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
 import { joinedMapTilesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 
@@ -16,13 +17,8 @@ interface GridNode {
   visited: boolean // Whether the node has been visited in the search process
 }
 
-export interface TMovmentPath {
-  tileCost: number
-  map_tile_id?: number | undefined
-  map_id?: number | undefined
-  x?: number | undefined
-  y?: number | undefined
-  terrain_type_id?: number | undefined
+export interface TMovmentPath extends TJoinedMapTile {
+  totalMovmentCost: number
 }
 
 export function useMapTilesPath() {
@@ -34,12 +30,13 @@ export function useMapTilesPath() {
     }
 
     const mapTilesArray = Object.values(mapTiles)
+    if (mapTilesArray.length === 0) return []
 
     const gridSize = Math.sqrt(mapTilesArray.length) + 1
     const grid = Array.from({ length: gridSize }, () => Array(gridSize).fill(0))
 
     mapTilesArray.forEach((tile) => {
-      grid[tile.x][tile.y] = tile.terrain_move_cost ?? 0 + (objectProperties as number)
+      grid[tile.mapTile.x][tile.mapTile.y] = tile.moveCost ?? 0 + (objectProperties as number)
       // koszt ruchu tiles
       // 0 - wall
       // im wieksze tym wiekszy koszt
@@ -56,14 +53,16 @@ export function useMapTilesPath() {
     const fullPath = [startNode, ...resultWithWeight]
 
     const filteredMapTiles = fullPath.map((node) => {
-      const tile = mapTilesArray.find((t) => t.x === node.x && t.y === node.y)
-
+      const tile = mapTilesArray.find((t) => t.mapTile.x === node.x && t.mapTile.y === node.y)
+      if (!tile) {
+        throw new Error(`Tile not found at coordinates (${node.x}, ${node.y})`)
+      }
       return {
         ...tile,
-        tileCost: node.weight,
+        totalMovmentCost: node.weight,
       }
     })
-
+    console.log(filteredMapTiles)
     return filteredMapTiles
   }
 
