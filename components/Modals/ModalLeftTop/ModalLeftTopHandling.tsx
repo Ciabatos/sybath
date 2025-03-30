@@ -72,7 +72,7 @@ export default function ModalLeftTopHandling() {
                   className="flex-1 overflow-auto">
                   Inventory {playerInventory?.inventory_size}
                   {playerInventory?.player_id}
-                  {playerInventory?.player_inventory_id}
+                  {playerInventory?.id}
                 </TabsContent>
                 <TabsContent
                   value="Skills"

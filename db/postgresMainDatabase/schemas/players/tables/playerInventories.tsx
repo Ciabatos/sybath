@@ -2,7 +2,7 @@
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 
 export type TPlayerInventories = {
-  player_inventory_id: number
+  id: number
   player_id: number
   inventory_size: number
 }

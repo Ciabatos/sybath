@@ -30,7 +30,7 @@ export default {
           const returnedData = {
             email: user.email,
             name: user.name,
-            playerId: user.player_id,
+            playerId: user.id,
           }
 
           return returnedData

@@ -2,7 +2,7 @@
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 
 export type TMapLandscapeTypes = {
-  landscape_type_id: number
+  id: number
   name: string
   landscape_move_cost: number
   image_url: string

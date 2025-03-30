@@ -8,7 +8,7 @@ export const getUsers = async () => {
       T1.name
       ,T1.email
       ,T1.password
-      ,T2.player_id
+      ,T2.id
        FROM auth.users T1 
        JOIN players.players  T2 ON T1.id = T2.user_id
        `,
@@ -27,7 +27,7 @@ export const getUser = async (email: string) => {
       T1.name
       ,T1.email
       ,T1.password
-      ,T2.player_id
+      ,T2.id
        FROM auth.users T1 
        JOIN players.players  T2 ON T1.id = T2.user_id
        WHERE email = $1`,

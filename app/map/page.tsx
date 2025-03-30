@@ -23,9 +23,9 @@ export default async function MapPage() {
     getPlayerInventory(playerId),
   ])
 
-  const terrainTypes = arrayToObjectKeyId("terrain_type_id", mapTerrainTypes) as TMapTerrainTypesById
+  const terrainTypes = arrayToObjectKeyId("id", mapTerrainTypes) as TMapTerrainTypesById
 
-  const landscapeTypes = arrayToObjectKeyId("landscape_type_id", mapLandscapeTypes) as TMapLandscapeTypesById
+  const landscapeTypes = arrayToObjectKeyId("id", mapLandscapeTypes) as TMapLandscapeTypesById
 
   const playerVisibleMapData = mapPlayerVisibleMapData ? (arrayToObjectKeyId("map_tile_id", mapPlayerVisibleMapData) as TPlayerVisibleMapDataById) : {}
 
