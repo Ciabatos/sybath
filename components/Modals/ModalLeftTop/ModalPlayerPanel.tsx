@@ -9,7 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
 import { useAtomValue } from "jotai"
 import { useState } from "react"
 
-export default function ModalLeftTopHandling() {
+export default function ModalPlayerPanel() {
   const [isOpen, setIsOpen] = useState(false)
   const [isPartyVisible, setIsPartyVisible] = useState(false)
   useFetchPlayerInventory()
