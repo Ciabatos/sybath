@@ -5,7 +5,7 @@ import { getPlayerVisibleMapData, TPlayerVisibleMapDataById } from "@/db/postgre
 import { getMapLandscapeTypes, TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import { getMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
 import { getMapTerrainTypes, TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
-import { getPlayerInventory } from "@/db/postgresMainDatabase/schemas/players/tables/playerInventories"
+import { getInventorySlots } from "@/db/postgresMainDatabase/schemas/players/tables/inventories"
 import { arrayToObjectKeyId } from "@/methods/functions/converters"
 import { joinMapTiles } from "@/methods/functions/joinMapTiles"
 import { SWRProvider } from "@/providers/swr-provider"
@@ -15,12 +15,12 @@ export default async function MapPage() {
   const session = await auth()
   const playerId = session?.user?.playerId
 
-  const [mapTerrainTypes, mapTiles, mapLandscapeTypes, mapPlayerVisibleMapData, playerInventory] = await Promise.all([
+  const [mapTerrainTypes, mapTiles, mapLandscapeTypes, mapPlayerVisibleMapData, inventorySlots] = await Promise.all([
     getMapTerrainTypes(),
     getMapTiles(),
     getMapLandscapeTypes(),
     getPlayerVisibleMapData(playerId),
-    getPlayerInventory(playerId),
+    getInventorySlots(playerId),
   ])
 
   const terrainTypes = arrayToObjectKeyId("id", mapTerrainTypes) as TMapTerrainTypesById
@@ -38,7 +38,7 @@ export default async function MapPage() {
           fallback: {
             "/api/map-tiles": mapTiles,
             ...(playerId && { [`/api/map-tiles/player-visible-map-data/${playerId}`]: mapPlayerVisibleMapData }),
-            ...(playerId && { [`/api/player-inventories/${playerId}`]: playerInventory }),
+            ...(playerId && { [`/api/inventory-slots/${playerId}`]: inventorySlots }),
           },
         }}>
         <MapWrapper

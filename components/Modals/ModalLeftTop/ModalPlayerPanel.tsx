@@ -1,19 +1,15 @@
 "use client"
+import PlayerInventory from "@/components/Modals/ModalLeftTop/PlayerInventory"
 import styles from "@/components/styles/ModalPlayerPanel.module.css" // Import the CSS module
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
-import { useFetchPlayerInventory } from "@/methods/hooks/useFetchPlayerInventory"
-import { playerInventoryAtom } from "@/store/atoms"
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
-import { useAtomValue } from "jotai"
 import { useState } from "react"
 
 export default function ModalPlayerPanel() {
   const [isOpen, setIsOpen] = useState(false)
   const [isPartyVisible, setIsPartyVisible] = useState(false)
-  useFetchPlayerInventory()
-  const playerInventory = useAtomValue(playerInventoryAtom)
 
   return (
     <div className={styles.container}>
@@ -70,9 +66,7 @@ export default function ModalPlayerPanel() {
                 <TabsContent
                   value="Inventory"
                   className="flex-1 overflow-auto">
-                  Inventory {playerInventory?.inventory_size}
-                  {playerInventory?.player_id}
-                  {playerInventory?.id}
+                  <PlayerInventory />
                 </TabsContent>
                 <TabsContent
                   value="Skills"
@@ -127,9 +121,9 @@ export default function ModalPlayerPanel() {
                     </div>
                   </TabsContent>
                   <TabsContent
-                    value="Inventory"
+                    value="Party Inventory"
                     className="flex-1 overflow-auto">
-                    Inventory
+                    <PlayerInventory />
                   </TabsContent>
                 </Tabs>
               </div>

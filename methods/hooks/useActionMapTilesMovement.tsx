@@ -19,7 +19,6 @@ export function useActionMapTilesMovement() {
       return
     }
     const movmentPath = runAStar(startingPoint.x, startingPoint.y, endingPoint.x, endingPoint.y, 0)
-    console.log(movmentPath, "movmentPath")
     setMapTilesMovmentPath(movmentPath)
   }
 

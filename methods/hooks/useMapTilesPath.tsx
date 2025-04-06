@@ -62,7 +62,7 @@ export function useMapTilesPath() {
         totalMovmentCost: node.weight,
       }
     })
-    console.log(filteredMapTiles)
+
     return filteredMapTiles
   }
 
