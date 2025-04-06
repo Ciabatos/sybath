@@ -1,4 +1,5 @@
 "use client"
+import PartyInventory from "@/components/Modals/ModalLeftTop/PartyInventory"
 import PlayerInventory from "@/components/Modals/ModalLeftTop/PlayerInventory"
 import styles from "@/components/styles/ModalPlayerPanel.module.css" // Import the CSS module
 import { Button } from "@/components/ui/button"
@@ -123,7 +124,7 @@ export default function ModalPlayerPanel() {
                   <TabsContent
                     value="Party Inventory"
                     className="flex-1 overflow-auto">
-                    <PlayerInventory />
+                    <PartyInventory />
                   </TabsContent>
                 </Tabs>
               </div>
