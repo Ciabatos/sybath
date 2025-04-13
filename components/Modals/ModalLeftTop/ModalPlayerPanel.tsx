@@ -72,17 +72,18 @@ export default function ModalPlayerPanel() {
                 <TabsContent
                   value="Skills"
                   className="flex-1 overflow-auto">
-                  Skills
+                  Skills slużą do pokazania jakie umiejętności posiada postać. Można je przekazywać innym postaciom ale nie są to aktywne abilities
                 </TabsContent>
                 <TabsContent
                   value="Abilities"
                   className="flex-1 overflow-auto">
-                  Abilities
+                  Abilities służą do używania, są to aktywne umiejętności, które można używać w walce lub produkcji i innych sytuacjach, ability powstaja jeżeli masz różne kombinacje skills, stats i
+                  knowledge.
                 </TabsContent>
                 <TabsContent
                   value="Knowledge"
                   className="flex-1 overflow-auto">
-                  Knowledge
+                  Knowledge jest to wiedza danego herosa najczęsciej o innych postaciach, lokalizacjach z Mapy Świata
                 </TabsContent>
               </Tabs>
             </div>
