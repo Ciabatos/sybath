@@ -1,6 +1,8 @@
 "use client"
 import PartyInventory from "@/components/Modals/ModalLeftTop/PartyInventory"
+import PlayerAbilities from "@/components/Modals/ModalLeftTop/PlayerAbilities"
 import PlayerInventory from "@/components/Modals/ModalLeftTop/PlayerInventory"
+import PlayerSkills from "@/components/Modals/ModalLeftTop/PlayerSkills"
 import styles from "@/components/styles/ModalPlayerPanel.module.css" // Import the CSS module
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -73,12 +75,14 @@ export default function ModalPlayerPanel() {
                   value="Skills"
                   className="flex-1 overflow-auto">
                   Skills slużą do pokazania jakie umiejętności posiada postać. Można je przekazywać innym postaciom ale nie są to aktywne abilities
+                  <PlayerSkills />
                 </TabsContent>
                 <TabsContent
                   value="Abilities"
                   className="flex-1 overflow-auto">
                   Abilities służą do używania, są to aktywne umiejętności, które można używać w walce lub produkcji i innych sytuacjach, ability powstaja jeżeli masz różne kombinacje skills, stats i
                   knowledge.
+                  <PlayerAbilities />
                 </TabsContent>
                 <TabsContent
                   value="Knowledge"

@@ -17,12 +17,12 @@ export const getPlayersVisibleMapData = async () => {
 
     return result.rows as TPlayerVisibleMapData[]
   } catch (error) {
-    console.error("Error fetching getMapsTilesPlayersPositions:", error)
-    throw new Error("Failed to fetch getMapsTilesPlayersPositions")
+    console.error("Error fetching getPlayersVisibleMapData:", error)
+    throw new Error("Failed to fetch getPlayersVisibleMapData")
   }
 }
 
-export const getPlayerVisibleMapData = async (playerId: number | undefined) => {
+export const getPlayerVisibleMapData = async (playerId: number) => {
   if (!playerId || isNaN(playerId)) {
     return null
   }
@@ -32,7 +32,7 @@ export const getPlayerVisibleMapData = async (playerId: number | undefined) => {
 
     return result.rows as TPlayerVisibleMapData[]
   } catch (error) {
-    console.error("Error fetching getMapsFieldsPlayerPosition:", error)
-    throw new Error("Failed to fetch getMapsFieldsPlayerPosition")
+    console.error("Error fetching getPlayerVisibleMapData:", error)
+    throw new Error("Failed to fetch getPlayerVisibleMapData")
   }
 }

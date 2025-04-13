@@ -9,7 +9,7 @@ export type TInventorySlots = {
   quantity: number | null
 }
 
-export const getInventorySlots = async (playerId: number | undefined) => {
+export const getInventorySlots = async (playerId: number) => {
   if (!playerId || isNaN(playerId)) {
     return null
   }
