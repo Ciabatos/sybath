@@ -10,7 +10,6 @@ import { useJoinMapTiles } from "@/methods/hooks/useJoinMapTiles"
 import { joinedMapTilesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { useHydrateAtoms } from "jotai/utils"
-import { useSession } from "next-auth/react"
 
 interface Props {
   joinedMapTiles: Record<string, TJoinedMapTile>
@@ -19,9 +18,6 @@ interface Props {
 }
 
 export default function MapTilesClient({ joinedMapTiles, terrainTypes, landscapeTypes }: Props) {
-  const session = useSession()
-  console.log(session, "Client session")
-
   useHydrateAtoms([[joinedMapTilesAtom, joinedMapTiles]])
 
   const updatedTiles = useAtomValue(joinedMapTilesAtom)
