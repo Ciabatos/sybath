@@ -4,4 +4,4 @@
 +secure api -- musze sprawdzac sessie on serverSide a nie clientSide i jego playerId (inventory-slots api)
 +zrobic aby sessia zawsze byla dostepna i nie musiec sie o nia troszczyc
 +przerobic api endpointy (zauwazylem ze ten od player da sie do jednego worka wjebac) - player/[playerId]/abilities  /skills /inventory etc
-+może narzędzie do tworzenia automatycznie api/route, useFetch na podstawie funkcji do bazy danych i typu ?
++może narzędzie do tworzenia automatycznie api/route, useFetch na podstawie funkcji do bazy danych i typu ? vscode snippet ?
