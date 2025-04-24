@@ -16,5 +16,34 @@
       "}"
     ],
     "description": "Basic API handler with no imports and customizable function call"
+  },
+
+  "Server DB Function Template": {
+    "prefix": "serverDBFunction",
+    "scope": "typescript",
+    "body": [
+      "\"use server\"",
+      "import { query } from \"@/db/postgresMainDatabase/postgresMainDatabase\";",
+      "",
+      "export type T${1:EntityName} = {",
+      "  // define shape later",
+      "};",
+      "",
+      "export const get${1:EntityName} = async (${2:paramName}: ${3:paramType}) => {",
+      "  if (!${2:paramName} || isNaN(${2:paramName})) {",
+      "    return null;",
+      "  }",
+      "",
+      "  try {",
+      "    const result = await query(`$4`, [${2:paramName}]);",
+      "    return result.rows as T${1:EntityName}[];",
+      "  } catch (error) {",
+      "    console.error(\"Error fetching get${1:EntityName}:\", error);",
+      "    throw new Error(\"Failed to fetch get${1:EntityName}\");",
+      "  }",
+      "};"
+    ],
+    "description": "Server-side database fetch function with customizable placeholders for type, function, variables, and query."
   }
+
 }
