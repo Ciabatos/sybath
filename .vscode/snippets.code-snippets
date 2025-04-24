@@ -1,6 +1,6 @@
 {
-  "Basic API Handler": {
-    "prefix": "APICustom",
+  "Basic API GET Handler": {
+    "prefix": "APIGET",
     "scope": "typescript",
     "body": [
       "export async function GET(request: NextRequest): Promise<NextResponse> {",
@@ -8,59 +8,59 @@
       "  // const login = searchQueryParams.get(\"login\");",
       "",
       "  try {",
-      "    const result = await ${1:yourFunctionName}();",
+      "    const result = await get${1:/pascalCase}();",
       "    return NextResponse.json(result);",
       "  } catch (error) {",
       "    return NextResponse.json({ success: false, error: error });",
       "  }",
       "}"
     ],
-    "description": "Basic API handler with no imports and customizable function call"
+    "description": "API GET ROUTE"
   },
 
-  "Server DB Function Template": {
+  "Server DB Function": {
     "prefix": "DBGet",
     "scope": "typescript",
     "body": [
       "\"use server\"",
       "import { query } from \"@/db/postgresMainDatabase/postgresMainDatabase\";",
       "",
-      "export type T${1:EntityName} = {",
+      "export type T${1:/pascalCase} = {",
       "  // define shape later",
       "};",
       "",
-      "export const get${1:EntityName} = async (${2:paramName}: ${3:paramType}) => {",
+      "export const get${1:/pascalCase} = async (${2:paramName}: ${3:paramType}) => {",
       "  if (!${2:paramName} || isNaN(${2:paramName})) {",
       "    return null;",
       "  }",
       "",
       "  try {",
       "    const result = await query(`$4`, [${2:paramName}]);",
-      "    return result.rows as T${1:EntityName}[];",
+      "    return result.rows as T${1:/pascalCase}[];",
       "  } catch (error) {",
-      "    console.error(\"Error fetching get${1:EntityName}:\", error);",
-      "    throw new Error(\"Failed to fetch get${1:EntityName}\");",
+      "    console.error(\"Error fetching get${1:/pascalCase}:", error);",
+      "    throw new Error(\"Failed to fetch get${1:/pascalCase}");",
       "  }",
       "};"
     ],
-    "description": "Server-side database fetch function with customizable placeholders for type, function, variables, and query."
+    "description": "Server-side database fetch function."
   },
 
- "Reusable Fetch Hook (Client, No Imports, with Atom Naming Convention)": {
-    "prefix": "useFetchHookClientUpdated",
+ "Reusable Fetch Hook": {
+    "prefix": "useFetchHook",
     "scope": "typescript",
     "body": [
       "\"use client\"",
       "",
-      "export function useFetch${1:EntityName}() {",
+      "export function useFetch${1:/pascalCase}() {",
       "  const session = useSession();",
       "  const playerId = session?.data?.user.playerId;",
       "",
-      "  const set${1/(.)(.*)/${1.toUpperCase()}${2}Atom/} = useSetAtom(${1/(.)(.*)/${1.toUpperCase()}${2}Atom/});",
-      "  const { data, error, isLoading } = useSWR(`/api/${1/(.)(.*)/${1.toLowerCase()}${2}/}${playerId}`);",
+      "  const set${1:/pascalCase}Atom = useSetAtom(${1:/lowercase}Atom);",
+      "  const { data, error, isLoading } = useSWR(`/api/${1:/lowercase}/${playerId}`);",
       "",
       "  useEffect(() => {",
-      "    set${1/(.)(.*)/${1.toUpperCase()}${2}Atom/}(data);",
+      "    set${1:/lowercase}Atom/}(data);",
       "  }, [data, error, isLoading]);",
       "}"
     ],
@@ -71,7 +71,7 @@
     "prefix": "createAtom",
     "scope": "typescript",
     "body": [
-      "export const ${1:EntityName}Atom = atom<T${1/(.)(.*)/${1.toUpperCase()}${2}/}>({});"
+      "export const ${1:/lowercase}Atom = atom<T${1:/pascalCase}>({});"
     ],
     "description": "Creates a new atom for the given entity name with the type TEntityName"
   }
