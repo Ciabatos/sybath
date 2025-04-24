@@ -44,6 +44,28 @@
       "};"
     ],
     "description": "Server-side database fetch function with customizable placeholders for type, function, variables, and query."
+  },
+
+  "Reusable Fetch Hook (Client, No Imports)": {
+    "prefix": "useFetchHook",
+    "scope": "typescript",
+    "body": [
+      "\"use client\"",
+      "",
+      "export function useFetch${1:EntityName}() {",
+      "  const session = useSession();",
+      "  const playerId = session?.data?.user.playerId;",
+      "",
+      "  const set${1:EntityName} = useSetAtom(${2:atomName});",
+      "  const { data, error, isLoading } = useSWR(`/api/${3:endpoint}/${playerId}`${4:, { refreshInterval: 3000 }});",
+      "",
+      "  useEffect(() => {",
+      "    ${5:// const transformed = data ? transformFn(\"key\", data) : {};}",
+      "    ${6:set${1:EntityName}(data);}",
+      "  }, [data, error, isLoading]);",
+      "}"
+    ],
+    "description": "Client-side SWR + Jotai fetch hook skeleton with no imports, ready for auto-import tooling."
   }
 
 }
