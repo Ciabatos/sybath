@@ -65,6 +65,15 @@
       "}"
     ],
     "description": "Client-side SWR + Jotai fetch hook with dynamic atom name and endpoint based on entity name."
+  },
+
+  "Create Atom for Entity (with T prefix)": {
+    "prefix": "createAtom",
+    "scope": "typescript",
+    "body": [
+      "export const ${1:EntityName}Atom = atom<T${1/(.)(.*)/${1.toUpperCase()}${2}/}>({});"
+    ],
+    "description": "Creates a new atom for the given entity name with the type TEntityName"
   }
 
 }
