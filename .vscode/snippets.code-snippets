@@ -19,7 +19,7 @@
   },
 
   "Server DB Function Template": {
-    "prefix": "serverDBFunction",
+    "prefix": "DBGet",
     "scope": "typescript",
     "body": [
       "\"use server\"",
