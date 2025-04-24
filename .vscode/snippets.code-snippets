@@ -38,15 +38,15 @@
       "    const result = await query(`$4`, [${2:paramName}]);",
       "    return result.rows as T${1:/pascalCase}[];",
       "  } catch (error) {",
-      "    console.error(\"Error fetching get${1:/pascalCase}:", error);",
-      "    throw new Error(\"Failed to fetch get${1:/pascalCase}");",
+      "    console.error(\"Error fetching get${1:/pascalCase}:\", error);",
+      "    throw new Error(\"Failed to fetch get${1:/pascalCase}\");",
       "  }",
       "};"
     ],
     "description": "Server-side database fetch function."
   },
 
- "Reusable Fetch Hook": {
+  "Reusable Fetch Hook": {
     "prefix": "useFetchHook",
     "scope": "typescript",
     "body": [
@@ -60,7 +60,7 @@
       "  const { data, error, isLoading } = useSWR(`/api/${1:/lowercase}/${playerId}`);",
       "",
       "  useEffect(() => {",
-      "    set${1:/lowercase}Atom/}(data);",
+      "    set${1:/lowercase}Atom(data);",   // Fixed misplaced closing bracket
       "  }, [data, error, isLoading]);",
       "}"
     ],
@@ -75,5 +75,4 @@
     ],
     "description": "Creates a new atom for the given entity name with the type TEntityName"
   }
-
 }
