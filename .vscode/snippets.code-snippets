@@ -46,8 +46,8 @@
     "description": "Server-side database fetch function with customizable placeholders for type, function, variables, and query."
   },
 
-  "Reusable Fetch Hook (Client, No Imports)": {
-    "prefix": "useFetchHook",
+ "Reusable Fetch Hook (Client, No Imports, with Atom Naming Convention)": {
+    "prefix": "useFetchHookClientUpdated",
     "scope": "typescript",
     "body": [
       "\"use client\"",
@@ -56,16 +56,15 @@
       "  const session = useSession();",
       "  const playerId = session?.data?.user.playerId;",
       "",
-      "  const set${1:EntityName} = useSetAtom(${2:atomName});",
-      "  const { data, error, isLoading } = useSWR(`/api/${3:endpoint}/${playerId}`${4:, { refreshInterval: 3000 }});",
+      "  const set${1/(.)(.*)/${1.toUpperCase()}${2}Atom/} = useSetAtom(${1/(.)(.*)/${1.toUpperCase()}${2}Atom/});",
+      "  const { data, error, isLoading } = useSWR(`/api/${1/(.)(.*)/${1.toLowerCase()}${2}/}${playerId}`);",
       "",
       "  useEffect(() => {",
-      "    ${5:// const transformed = data ? transformFn(\"key\", data) : {};}",
-      "    ${6:set${1:EntityName}(data);}",
+      "    set${1/(.)(.*)/${1.toUpperCase()}${2}Atom/}(data);",
       "  }, [data, error, isLoading]);",
       "}"
     ],
-    "description": "Client-side SWR + Jotai fetch hook skeleton with no imports, ready for auto-import tooling."
+    "description": "Client-side SWR + Jotai fetch hook with dynamic atom name and endpoint based on entity name."
   }
 
 }
