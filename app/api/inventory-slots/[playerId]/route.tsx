@@ -8,13 +8,14 @@ type TypeParams = {
 }
 
 export async function GET(request: NextRequest, { params }: { params: TypeParams }): Promise<NextResponse> {
-  const playerId = (await params).playerId
   const session = await auth()
-  const dad = session?.user?.playerId
+  const sessionPlayerId = session?.user?.playerId
 
-  if (!dad || isNaN(dad)) {
+  if (!sessionPlayerId || isNaN(sessionPlayerId)) {
     return NextResponse.json({ success: false })
   }
+
+  const playerId = (await params).playerId
   // const searchQueryParams = request.nextUrl.searchParams
   // const login = searchQueryParams.get("login")
 

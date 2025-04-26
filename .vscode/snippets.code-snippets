@@ -1,9 +1,15 @@
 {
-  "Basic API GET Handler": {
-    "prefix": "APIGET",
-    "scope": "typescript",
+  "apiGet": {
+    "prefix": "apiGet",
+    "scope": "typescript, typescriptreact",
     "body": [
       "export async function GET(request: NextRequest): Promise<NextResponse> {",
+      "  const session = await auth()",
+      "  const sessionPlayerId = session?.user?.playerId",
+      "",
+      "  if (!sessionPlayerId || isNaN(sessionPlayerId)) {",
+      "    return NextResponse.json({ success: false })",
+      "  }",
       "  // const searchQueryParams = request.nextUrl.searchParams;",
       "  // const login = searchQueryParams.get(\"login\");",
       "",
@@ -15,12 +21,12 @@
       "  }",
       "}"
     ],
-    "description": "API GET ROUTE"
+    "description": "apiGet"
   },
 
   "Server DB Function": {
     "prefix": "DBGet",
-    "scope": "typescript",
+    "scope": "typescript, typescriptreact",
     "body": [
       "\"use server\"",
       "import { query } from \"@/db/postgresMainDatabase/postgresMainDatabase\";",
@@ -48,7 +54,7 @@
 
   "Reusable Fetch Hook": {
     "prefix": "useFetchHook",
-    "scope": "typescript",
+    "scope": "typescript, typescriptreact",
     "body": [
       "\"use client\"",
       "",
@@ -69,7 +75,7 @@
 
   "Create Atom for Entity (with T prefix)": {
     "prefix": "createAtom",
-    "scope": "typescript",
+    "scope": "typescript, typescriptreact",
     "body": [
       "export const ${1:/lowercase}Atom = atom<T${1:/pascalCase}>({});"
     ],

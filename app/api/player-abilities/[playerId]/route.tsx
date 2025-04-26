@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { auth } from "@/auth"
 import { getPlayerAbilities } from "@/db/postgresMainDatabase/schemas/players/tables/playerAbilities"
 import { NextRequest, NextResponse } from "next/server"
 
@@ -7,6 +8,13 @@ type TypeParams = {
 }
 
 export async function GET(request: NextRequest, { params }: { params: TypeParams }): Promise<NextResponse> {
+  const session = await auth()
+  const sessionPlayerId = session?.user?.playerId
+
+  if (!sessionPlayerId || isNaN(sessionPlayerId)) {
+    return NextResponse.json({ success: false })
+  }
+
   const playerId = (await params).playerId
 
   // const searchQueryParams = request.nextUrl.searchParams
