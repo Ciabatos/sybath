@@ -24,7 +24,7 @@
     "description": "apiGet"
   },
 
-  "Server DB Function": {
+  "DBGet": {
     "prefix": "DBGet",
     "scope": "typescript, typescriptreact",
     "body": [
@@ -49,7 +49,7 @@
       "  }",
       "};"
     ],
-    "description": "Server-side database fetch function."
+    "description": "DBGet"
   },
 
   "Reusable Fetch Hook": {
@@ -73,12 +73,12 @@
     "description": "Client-side SWR + Jotai fetch hook with dynamic atom name and endpoint based on entity name."
   },
 
-  "Create Atom for Entity (with T prefix)": {
+  "createAtom": {
     "prefix": "createAtom",
     "scope": "typescript, typescriptreact",
     "body": [
       "export const ${1:/lowercase}Atom = atom<T${1:/pascalCase}>({});"
     ],
-    "description": "Creates a new atom for the given entity name with the type TEntityName"
+    "description": "createAtom"
   }
 }
