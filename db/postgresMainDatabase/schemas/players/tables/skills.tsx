@@ -8,7 +8,7 @@ export type TSkills = {
 
 export type TSkillsById = Record<number, TSkills>
 
-export const getSkills = async () => {
+export async function getSkills() {
   try {
     const result = await query("SELECT * FROM players.skills")
     return result.rows as TSkills[]

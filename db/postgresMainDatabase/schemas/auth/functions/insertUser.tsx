@@ -2,7 +2,7 @@
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 import bcrypt from "bcrypt"
 
-export const insertUser = async (email: string, password: string) => {
+export async function insertUser(email: string, password: string) {
   const hashedPassword = await bcrypt.hash(password as string, 10)
 
   try {

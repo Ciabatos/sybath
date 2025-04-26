@@ -5,7 +5,7 @@ export type TAddItemToInventory = Pick<TInventorySlots, "item_id" | "quantity"> 
   playerId: number
 }
 
-export const addItemToInventory = async ({ playerId, item_id, quantity }: TAddItemToInventory) => {
+export async function addItemToInventory({ playerId, item_id, quantity }: TAddItemToInventory) {
   try {
     const result = await query(
       `

@@ -11,7 +11,7 @@ export type TPlayerVisibleMapData = {
 
 export type TPlayerVisibleMapDataById = Record<number, TPlayerVisibleMapData>
 
-export const getPlayersVisibleMapData = async () => {
+export async function getPlayersVisibleMapData() {
   try {
     const result = await query(`SELECT * FROM map.all_player_visible_map_data()`)
 
@@ -22,7 +22,7 @@ export const getPlayersVisibleMapData = async () => {
   }
 }
 
-export const getPlayerVisibleMapData = async (playerId: number) => {
+export async function getPlayerVisibleMapData(playerId: number) {
   if (!playerId || isNaN(playerId)) {
     return null
   }

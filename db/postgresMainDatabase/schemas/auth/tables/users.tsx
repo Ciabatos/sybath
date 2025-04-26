@@ -1,7 +1,7 @@
 "use server"
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 
-export const getUsers = async () => {
+export async function getUsers() {
   try {
     const result = await query(
       `SELECT 
@@ -20,7 +20,7 @@ export const getUsers = async () => {
   }
 }
 
-export const getUser = async (email: string) => {
+export async function getUser(email: string) {
   try {
     const result = await query(
       `SELECT 

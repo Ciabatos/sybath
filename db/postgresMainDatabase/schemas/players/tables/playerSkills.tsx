@@ -8,7 +8,7 @@ export type TPlayerSkills = {
   value: number
 }
 
-export const getPlayerSkills = async (playerId: number) => {
+export async function getPlayerSkills(playerId: number) {
   if (!playerId || isNaN(playerId)) {
     return null
   }

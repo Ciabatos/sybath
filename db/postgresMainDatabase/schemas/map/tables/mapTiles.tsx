@@ -10,7 +10,7 @@ export type TMapTile = {
   landscape_type_id?: number
 }
 
-export const getMapTiles = async () => {
+export async function getMapTiles() {
   try {
     const result = await query("SELECT * FROM map.map_tiles")
     return result.rows as TMapTile[]

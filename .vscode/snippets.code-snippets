@@ -35,7 +35,7 @@
       "  // define shape later",
       "};",
       "",
-      "export const get${1:/pascalCase} = async (${2:paramName}: ${3:paramType}) => {",
+      "export async function get${1:/pascalCase}(${2:paramName}: ${3:paramType}) {",
       "  if (!${2:paramName} || isNaN(${2:paramName})) {",
       "    return null;",
       "  }",

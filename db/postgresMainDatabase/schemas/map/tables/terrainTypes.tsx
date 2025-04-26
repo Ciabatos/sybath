@@ -10,7 +10,7 @@ export type TMapTerrainTypes = {
 
 export type TMapTerrainTypesById = Record<number, TMapTerrainTypes>
 
-export const getMapTerrainTypes = async () => {
+export async function getMapTerrainTypes() {
   try {
     const result = await query("SELECT * FROM map.terrain_types")
     return result.rows as TMapTerrainTypes[]
