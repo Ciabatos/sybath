@@ -10,7 +10,7 @@ export function useFetchPlayerSkills() {
   const playerId = session?.data?.user.playerId
 
   const setPlayerSkills = useSetAtom(playerSkillsAtom)
-  const { data, error, isLoading } = useSWR(`/api/player-skills/${playerId}`)
+  const { data, error, isLoading } = useSWR(`/api/players/${playerId}/skills`)
 
   useEffect(() => {
     console.log("useFetchPlayerSkills", { data, error, isLoading })

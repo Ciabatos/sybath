@@ -52,9 +52,9 @@ export default async function MapPage() {
             "/api/skills": skills,
             "/api/abilities": abilities,
             ...(playerId && { [`/api/map-tiles/player-visible-map-data/${playerId}`]: mapPlayerVisibleMapData }),
-            ...(playerId && { [`/api/inventory-slots/${playerId}`]: inventorySlots }),
-            ...(playerId && { [`/api/player-skills/${playerId}`]: playerSkills }),
-            ...(playerId && { [`/api/player-abilities/${playerId}`]: playerAbilities }),
+            ...(playerId && { [`/api/players/${playerId}/inventory-slots`]: inventorySlots }),
+            ...(playerId && { [`/api/players/${playerId}/skills`]: playerSkills }),
+            ...(playerId && { [`/api/players/${playerId}/abilities`]: playerAbilities }),
           },
         }}>
         <MapWrapper

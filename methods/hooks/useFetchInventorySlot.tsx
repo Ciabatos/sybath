@@ -10,7 +10,7 @@ export function useFetchInventorySlots() {
   const playerId = session?.data?.user.playerId
 
   const setInventorySlots = useSetAtom(inventorySlotsAtom)
-  const { data, error, isLoading } = useSWR(`/api/inventory-slots/${playerId}`)
+  const { data, error, isLoading } = useSWR(`/api/players/${playerId}/inventory-slots`)
 
   useEffect(() => {
     console.log("useFetchInventorySlots", { data, error, isLoading })
