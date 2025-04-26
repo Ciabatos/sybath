@@ -1,4 +1,3 @@
 + Chce widziec tylko swojego herosa + flagi na filtrach kogo widziec
 	jak bedzie wiecej niz jedn heroes  w jednym tiles to popup po najechaniu na to pole
 	dodatkowo po kliknieciu na tiles da sie zobaczyc wszystko co tam jest
-+przerobic api endpointy (zauwazylem ze ten od player da sie do jednego worka wjebac) - player/[playerId]/abilities  /skills /inventory etc
