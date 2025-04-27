@@ -30,7 +30,7 @@ export default function PlayerSkills() {
             borderRadius: "4px",
             minHeight: "50px",
           }}>
-          {playerSkill.skill_id}
+          {playerSkill.name}
         </div>
       ))}
     </div>
