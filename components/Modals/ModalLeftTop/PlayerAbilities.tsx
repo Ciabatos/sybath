@@ -1,5 +1,7 @@
 "use client"
 
+import { Button } from "@/components/ui/button"
+import { useActionPlayerAbility } from "@/methods/hooks/useActionPlayerAbility"
 import { useFetchPlayerAbilities } from "@/methods/hooks/useFetchPlayerAbilities"
 import { playerAbilitiesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
@@ -7,7 +9,7 @@ import { useAtomValue } from "jotai"
 export default function PlayerAbilities() {
   useFetchPlayerAbilities()
   const playerAbilities = useAtomValue(playerAbilitiesAtom)
-
+  const { handleClickOnPlayerAbility } = useActionPlayerAbility()
   return (
     <div
       className="inventory-grid"
@@ -18,9 +20,12 @@ export default function PlayerAbilities() {
         width: "100%",
       }}>
       {playerAbilities.map((playerAbility) => (
-        <div
+        <Button
           key={playerAbility.id}
           className="inventory-slot"
+          onClick={() => {
+            handleClickOnPlayerAbility(playerAbility.ability_id)
+          }}
           style={{
             backgroundColor: "lightgray",
             display: "flex",
@@ -31,7 +36,7 @@ export default function PlayerAbilities() {
             minHeight: "50px",
           }}>
           {playerAbility.name}
-        </div>
+        </Button>
       ))}
     </div>
   )

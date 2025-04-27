@@ -58,15 +58,18 @@
     "body": [
       "\"use client\"",
       "",
-      "export function useFetch${1:/pascalCase}() {",
+      "export function useFetch${1:/pascalCase}(param1) {",
       "  const session = useSession();",
       "  const playerId = session?.data?.user.playerId;",
-      "",
       "  const set${1:/pascalCase}Atom = useSetAtom(${1:/lowercase}Atom);",
-      "  const { data, error, isLoading } = useSWR(`/api/${1:/lowercase}/${playerId}`);",
+      "  const shouldFetch = param1",
+      "",
+      "  const { data, error, isLoading } = useSWR(shouldFetch ? `/api/${1:/lowercase}/${playerId}/param1`): null;",
       "",
       "  useEffect(() => {",
+      "if (data) {",
       "    set${1:/lowercase}Atom(data);",   // Fixed misplaced closing bracket
+      "   }",
       "  }, [data, error, isLoading]);",
       "}"
     ],

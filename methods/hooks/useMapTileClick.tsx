@@ -2,7 +2,7 @@
 import { clickedTileAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 
-export type TClickedTile = {
+export type TTileCoordinates = {
   x: number
   y: number
 }

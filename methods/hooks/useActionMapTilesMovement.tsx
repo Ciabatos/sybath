@@ -1,6 +1,6 @@
 "use client"
 
-import type { TClickedTile } from "@/methods/hooks/useMapTileClick"
+import type { TTileCoordinates } from "@/methods/hooks/useMapTileClick"
 import { useMapTilesPath } from "@/methods/hooks/useMapTilesPath"
 import { mapTilesMovmentPathAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
@@ -9,7 +9,7 @@ export function useActionMapTilesMovement() {
   const { runAStar } = useMapTilesPath()
   const setMapTilesMovmentPath = useSetAtom(mapTilesMovmentPathAtom)
 
-  function actionMapTilesMovement(startingPoint: TClickedTile, endingPoint: TClickedTile) {
+  function actionMapTilesMovement(startingPoint: TTileCoordinates, endingPoint: TTileCoordinates) {
     if (!startingPoint) {
       console.warn("Starting point is missing.")
       return

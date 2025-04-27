@@ -5,4 +5,5 @@ export enum EMapTilesActionStatus {
   TileActionList = "TileActionList",
   MovementAction = "MovementAction",
   GuardAreaAction = "GuardAreaAction",
+  UseAbilityAction = "UseAbilityAction",
 }

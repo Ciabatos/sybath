@@ -1,3 +1,22 @@
 + Chce widziec tylko swojego herosa + flagi na filtrach kogo widziec
 	jak bedzie wiecej niz jedn heroes  w jednym tiles to popup po najechaniu na to pole
 	dodatkowo po kliknieciu na tiles da sie zobaczyc wszystko co tam jest
+	
++Trzeba przerobic do osbonego folderu wszystkie useFetch 
+ potem logikę utrzymać w hookach i przypisać do nich fetchowanie
+ tu przykład:
+ // filepath: methods/hooks/usePlayerAbilities.tsx
+import { useFetchPlayerAbilities } from "@/methods/hooks/useFetchPlayerAbilities"
+import { useAtomValue } from "jotai"
+import { playerAbilitiesAtom } from "@/store/atoms"
+
+export function usePlayerAbilities() {
+  useFetchPlayerAbilities()
+  const playerAbilities = useAtomValue(playerAbilitiesAtom)
+
+  const getAbilityById = (id: number) => {
+    return playerAbilities.find((ability) => ability.id === id)
+  }
+
+  return { playerAbilities, getAbilityById }
+}

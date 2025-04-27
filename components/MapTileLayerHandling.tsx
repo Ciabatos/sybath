@@ -26,6 +26,8 @@ export default function MapTileLayerHandling({ tile }: Props) {
   switch (mapTilesActionStatus) {
     case EMapTilesActionStatus.MovementAction:
       return isTileInMovementPath ? <MapTileLayerMovementAction /> : null
+    case EMapTilesActionStatus.UseAbilityAction:
+      return isTileInMovementPath ? <MapTileLayerMovementAction /> : null
     case EMapTilesActionStatus.GuardAreaAction:
       return (
         <>

@@ -23,7 +23,7 @@ export default function ModalMapTilesActionMovment() {
     setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
   }
 
-  const handleMoveCancel = () => {
+  const handleCancel = () => {
     setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
   }
 
@@ -44,7 +44,7 @@ export default function ModalMapTilesActionMovment() {
           </button>
           <button
             className={styles.actionButton}
-            onClick={handleMoveCancel}>
+            onClick={handleCancel}>
             Cancel
           </button>
         </div>

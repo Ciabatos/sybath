@@ -1,5 +1,6 @@
 "use client"
 
+import ModalMapTilesActionAbility from "@/components/Modals/ModalBottomCenterBar/ModalMapTilesActionAbility"
 import ModalMapTilesActionBar from "@/components/Modals/ModalBottomCenterBar/ModalMapTilesActionBar"
 import ModalMapTilesActionGuardArea from "@/components/Modals/ModalBottomCenterBar/ModalMapTilesActionGuardArea"
 import ModalMapTilesActionMovment from "@/components/Modals/ModalBottomCenterBar/ModalMapTilesActionMovment"
@@ -19,6 +20,7 @@ export default function ModalBottomCenterBarHandling() {
 		{mapTilesActionStatus === EMapTilesActionStatus.TileActionList && <ModalMapTilesActionBar />}
 		{mapTilesActionStatus === EMapTilesActionStatus.MovementAction && <ModalMapTilesActionMovment />}
 		{mapTilesActionStatus === EMapTilesActionStatus.GuardAreaAction && <ModalMapTilesActionGuardArea />}
+		{mapTilesActionStatus === EMapTilesActionStatus.UseAbilityAction && <ModalMapTilesActionAbility />}
     </div>
     </div>
 	</>
