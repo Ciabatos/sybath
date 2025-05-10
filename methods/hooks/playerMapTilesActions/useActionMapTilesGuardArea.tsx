@@ -1,7 +1,7 @@
 "use client"
 
-import type { TTileCoordinates } from "@/methods/hooks/useMapTileClick"
-import { useMapTilesArea } from "@/methods/hooks/useMapTilesArea"
+import { useMapTilesArea } from "@/methods/hooks/mapTiles/useMapTilesArea"
+import { TTileCoordinates } from "@/methods/hooks/mapTiles/useMapTilesManipulation"
 import { mapTilesGuardAreaAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 

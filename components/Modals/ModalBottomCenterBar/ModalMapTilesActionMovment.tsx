@@ -1,6 +1,6 @@
 "use client"
 import styles from "@/components/styles/Modals/ModalBottomCenterBar/ModalMapTilesActionMovment.module.css"
-import { useActionMapTilesMovement } from "@/methods/hooks/useActionMapTilesMovement"
+import { useActionMapTilesMovement } from "@/methods/hooks/playerMapTilesActions/useActionMapTilesMovement"
 import { clickedTileAtom, mapTilesActionStatusAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { useAtomValue, useSetAtom } from "jotai"

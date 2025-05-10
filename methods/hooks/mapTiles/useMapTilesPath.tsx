@@ -24,7 +24,7 @@ export interface TMovmentPath extends TJoinedMapTile {
 export function useMapTilesPath() {
   const mapTiles = useAtomValue(joinedMapTilesAtom)
 
-  function runAStar(startX: number, startY: number, endX: number, endY: number, objectProperties: unknown): TMovmentPath[] {
+  function pathFromPointToPoint(startX: number, startY: number, endX: number, endY: number, objectProperties: unknown): TMovmentPath[] {
     if (!startX || !startY || !endX || !endY) {
       return []
     }
@@ -66,5 +66,5 @@ export function useMapTilesPath() {
     return filteredMapTiles
   }
 
-  return { runAStar }
+  return { pathFromPointToPoint }
 }

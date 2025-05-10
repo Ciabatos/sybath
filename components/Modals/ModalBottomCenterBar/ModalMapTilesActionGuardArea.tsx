@@ -1,8 +1,8 @@
 "use client"
 
 import styles from "@/components/styles/Modals/ModalBottomCenterBar/ModalMapTilesActionGuardArea.module.css"
-import { useActionMapTilesGuardArea } from "@/methods/hooks/useActionMapTilesGuardArea"
-import { useActionMapTilesMovement } from "@/methods/hooks/useActionMapTilesMovement"
+import { useActionMapTilesGuardArea } from "@/methods/hooks/playerMapTilesActions/useActionMapTilesGuardArea"
+import { useActionMapTilesMovement } from "@/methods/hooks/playerMapTilesActions/useActionMapTilesMovement"
 import { clickedTileAtom, mapTilesActionStatusAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { useAtomValue, useSetAtom } from "jotai"

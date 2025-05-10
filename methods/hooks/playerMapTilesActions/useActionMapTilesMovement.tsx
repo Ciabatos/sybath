@@ -1,12 +1,12 @@
 "use client"
 
-import type { TTileCoordinates } from "@/methods/hooks/useMapTileClick"
-import { useMapTilesPath } from "@/methods/hooks/useMapTilesPath"
+import { TTileCoordinates } from "@/methods/hooks/mapTiles/useMapTilesManipulation"
+import { useMapTilesPath } from "@/methods/hooks/mapTiles/useMapTilesPath"
 import { mapTilesMovmentPathAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 
 export function useActionMapTilesMovement() {
-  const { runAStar } = useMapTilesPath()
+  const { pathFromPointToPoint } = useMapTilesPath()
   const setMapTilesMovmentPath = useSetAtom(mapTilesMovmentPathAtom)
 
   function actionMapTilesMovement(startingPoint: TTileCoordinates, endingPoint: TTileCoordinates) {
@@ -18,7 +18,7 @@ export function useActionMapTilesMovement() {
       console.warn("Ending point is missing.")
       return
     }
-    const movmentPath = runAStar(startingPoint.x, startingPoint.y, endingPoint.x, endingPoint.y, 0)
+    const movmentPath = pathFromPointToPoint(startingPoint.x, startingPoint.y, endingPoint.x, endingPoint.y, 0)
     setMapTilesMovmentPath(movmentPath)
   }
 

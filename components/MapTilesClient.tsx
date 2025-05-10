@@ -6,7 +6,7 @@ import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map
 import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
 import { useFetchMapTiles } from "@/methods/hooks/fetchers/useFetchMapTiles"
 import { useFetchPlayerVisibleMapData } from "@/methods/hooks/fetchers/useFetchPlayerVisibleMapData"
-import { useJoinMapTiles } from "@/methods/hooks/useJoinMapTiles"
+import { useJoinMapTiles } from "@/methods/hooks/mapTiles/useJoinMapTiles"
 import { joinedMapTilesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { useHydrateAtoms } from "jotai/utils"

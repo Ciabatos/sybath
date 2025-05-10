@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { usePlayerAbility } from "@/methods/hooks/usePlayerAbility"
+import { usePlayerAbility } from "@/methods/hooks/playerAbility/usePlayerAbility"
 
 export default function PlayerAbilities() {
   const { playerAbilities, handleClickOnPlayerAbility } = usePlayerAbility()

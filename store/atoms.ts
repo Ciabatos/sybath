@@ -9,8 +9,8 @@ import { TPlayerAbilities } from "@/db/postgresMainDatabase/schemas/players/tabl
 import { TPlayerSkills } from "@/db/postgresMainDatabase/schemas/players/tables/playerSkills"
 import { TSkills } from "@/db/postgresMainDatabase/schemas/players/tables/skills"
 import { TJoinedMapTile, TJoinedMapTileById } from "@/methods/functions/joinMapTiles"
+import { TMovmentPath } from "@/methods/hooks/mapTiles/useMapTilesPath"
 import type { TTileCoordinates } from "@/methods/hooks/useMapTileClick"
-import { TMovmentPath } from "@/methods/hooks/useMapTilesPath"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { atom } from "jotai"
 

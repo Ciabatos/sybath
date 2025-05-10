@@ -1,8 +1,8 @@
 "use client"
 
 import styles from "@/components/styles/Modals/ModalBottomCenterBar/ModalMapTilesActionGuardArea.module.css"
-import { useActionMapTilesMovement } from "@/methods/hooks/useActionMapTilesMovement"
-import { usePlayerAbility } from "@/methods/hooks/usePlayerAbility"
+import { usePlayerAbility } from "@/methods/hooks/playerAbility/usePlayerAbility"
+import { useActionMapTilesMovement } from "@/methods/hooks/playerMapTilesActions/useActionMapTilesMovement"
 import { clickedTileAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { useEffect, useState } from "react"

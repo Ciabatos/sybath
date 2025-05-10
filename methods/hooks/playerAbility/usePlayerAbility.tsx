@@ -3,7 +3,7 @@
 import { mapTilesAbilityAction } from "@/methods/actions/mapTilesAbilityAction"
 import { useFetchAbilityRequirements } from "@/methods/hooks/fetchers/useFetchAbilityRequirements"
 import { useFetchPlayerAbilities } from "@/methods/hooks/fetchers/useFetchPlayerAbilities"
-import { TTileCoordinates } from "@/methods/hooks/useMapTileManipulation"
+import { TTileCoordinates } from "@/methods/hooks/mapTiles/useMapTilesManipulation"
 import { abilityRequirementsAtom, mapTilesActionStatusAtom, playerAbilitiesAtom, selectedAbilityIdAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { useAtom, useAtomValue, useSetAtom } from "jotai"

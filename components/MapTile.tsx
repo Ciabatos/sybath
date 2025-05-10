@@ -3,8 +3,8 @@
 import MapTileLayerHandling from "@/components/MapTileLayerHandling"
 import style from "@/components/styles/MapTile.module.css"
 import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
-import { useCreateImage } from "@/methods/hooks/useCreateImage"
-import { useMapTileManipulation } from "@/methods/hooks/useMapTileManipulation"
+import { useCreateImage } from "@/methods/hooks/mapTiles/useCreateImage"
+import { useMapTileManipulation } from "@/methods/hooks/mapTiles/useMapTilesManipulation"
 
 interface Props {
   tile: TJoinedMapTile
