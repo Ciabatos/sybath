@@ -1,6 +1,6 @@
 "use client"
 
-import { useFetchInventorySlots } from "@/methods/hooks/playerInventory/useFetchInventorySlot"
+import { useFetchInventorySlots } from "@/methods/hooks/playerInventory/useFetchInventorySlots"
 import { inventorySlotsAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 

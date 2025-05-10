@@ -1,12 +1,9 @@
 "use client"
 
-import { useFetchPlayerSkills } from "@/methods/hooks/playerSkills/useFetchPlayerSkills"
-import { playerSkillsAtom } from "@/store/atoms"
-import { useAtomValue } from "jotai"
+import { usePlayerSkills } from "@/methods/hooks/playerSkills/usePlayerSkills"
 
 export default function PlayerSkills() {
-  useFetchPlayerSkills()
-  const playerSkills = useAtomValue(playerSkillsAtom)
+  const { playerSkills } = usePlayerSkills()
 
   return (
     <div

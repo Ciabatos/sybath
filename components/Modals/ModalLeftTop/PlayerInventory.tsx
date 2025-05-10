@@ -1,12 +1,9 @@
 "use client"
 
-import { useFetchInventorySlots } from "@/methods/hooks/playerInventory/useFetchInventorySlot"
-import { inventorySlotsAtom } from "@/store/atoms"
-import { useAtomValue } from "jotai"
+import { useInventorySlots } from "@/methods/hooks/playerInventory/useInventorySlots"
 
 export default function PlayerInventory() {
-  useFetchInventorySlots()
-  const inventorySlots = useAtomValue(inventorySlotsAtom)
+  const { inventorySlots } = useInventorySlots()
 
   const maxRow = Math.max(...inventorySlots.map((slot) => slot.row), 0)
   const maxCol = Math.max(...inventorySlots.map((slot) => slot.col), 0)
