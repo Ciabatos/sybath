@@ -1,15 +1,11 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { useActionPlayerAbility } from "@/methods/hooks/useActionPlayerAbility"
-import { useFetchPlayerAbilities } from "@/methods/hooks/useFetchPlayerAbilities"
-import { playerAbilitiesAtom } from "@/store/atoms"
-import { useAtomValue } from "jotai"
+import { usePlayerAbility } from "@/methods/hooks/usePlayerAbility"
 
 export default function PlayerAbilities() {
-  useFetchPlayerAbilities()
-  const playerAbilities = useAtomValue(playerAbilitiesAtom)
-  const { handleClickOnPlayerAbility } = useActionPlayerAbility()
+  const { playerAbilities, handleClickOnPlayerAbility } = usePlayerAbility()
+
   return (
     <div
       className="inventory-grid"

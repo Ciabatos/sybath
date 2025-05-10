@@ -1,9 +1,9 @@
 "use client"
 
 import styles from "@/components/styles/Modals/ModalBottomCenterBar/ModalMapTilesActionGuardArea.module.css"
+import { useFetchAbilityRequirements } from "@/methods/hooks/fetchers/useFetchAbilityRequirements"
 import { useActionMapTilesMovement } from "@/methods/hooks/useActionMapTilesMovement"
-import { useActionPlayerAbility } from "@/methods/hooks/useActionPlayerAbility"
-import { useFetchAbilityRequirements } from "@/methods/hooks/useFetchAbilityRequirements"
+import { usePlayerAbility } from "@/methods/hooks/usePlayerAbility"
 import { abilityRequirementsAtom, clickedTileAtom, mapTilesActionStatusAtom, selectedAbilityIdAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { useAtomValue, useSetAtom } from "jotai"
@@ -15,7 +15,7 @@ export default function ModalMapTilesActionAbility() {
   const [startingPoint] = useState(clickedTile)
   const setOpenModalBottomCenterBar = useSetAtom(mapTilesActionStatusAtom)
   const { actionMapTilesMovement } = useActionMapTilesMovement()
-  const { handleUsePlayerAbility } = useActionPlayerAbility()
+  const { handleUsePlayerAbility } = usePlayerAbility()
 
   useFetchAbilityRequirements(abilityId)
   const abilityRequirements = useAtomValue(abilityRequirementsAtom)

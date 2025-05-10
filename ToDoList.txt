@@ -20,3 +20,14 @@ export function usePlayerAbilities() {
 
   return { playerAbilities, getAbilityById }
 }
+
+i przerobic pobieranie atomValue wszedzie w componentach tam gdzie wystepuje z customHookow
+
+
+
+
+Db functions - Akcje na bazie danych
+API routes - api routy
+useFetch - fetchowanie danych do atoms
+useCustomHooks - logika
+Actions - akcje

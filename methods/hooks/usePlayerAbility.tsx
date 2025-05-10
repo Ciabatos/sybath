@@ -1,17 +1,21 @@
 "use client"
 
 import { mapTilesAbilityAction } from "@/methods/actions/mapTilesAbilityAction"
+import { useFetchPlayerAbilities } from "@/methods/hooks/fetchers/useFetchPlayerAbilities"
 import { TTileCoordinates } from "@/methods/hooks/useMapTileClick"
-import { mapTilesActionStatusAtom, selectedAbilityIdAtom } from "@/store/atoms"
+import { mapTilesActionStatusAtom, playerAbilitiesAtom, selectedAbilityIdAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 
-export function useActionPlayerAbility() {
-  const setselectedAbilityIdAtom = useSetAtom(selectedAbilityIdAtom)
+export function usePlayerAbility() {
+  useFetchPlayerAbilities()
+
+  const playerAbilities = useAtomValue(playerAbilitiesAtom)
+  const setSelectedAbilityIdAtom = useSetAtom(selectedAbilityIdAtom)
   const setOpenModalBottomCenterBar = useSetAtom(mapTilesActionStatusAtom)
 
   function handleClickOnPlayerAbility(abilityId: number) {
-    setselectedAbilityIdAtom(abilityId)
+    setSelectedAbilityIdAtom(abilityId)
     setOpenModalBottomCenterBar(EMapTilesActionStatus.UseAbilityAction)
   }
 
@@ -21,5 +25,5 @@ export function useActionPlayerAbility() {
     }
     mapTilesAbilityAction(abilityId, clickedTile)
   }
-  return { handleClickOnPlayerAbility, handleUsePlayerAbility }
+  return { playerAbilities, handleClickOnPlayerAbility, handleUsePlayerAbility }
 }
