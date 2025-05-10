@@ -1,21 +1,25 @@
 "use client"
 
 import { mapTilesAbilityAction } from "@/methods/actions/mapTilesAbilityAction"
+import { useFetchAbilityRequirements } from "@/methods/hooks/fetchers/useFetchAbilityRequirements"
 import { useFetchPlayerAbilities } from "@/methods/hooks/fetchers/useFetchPlayerAbilities"
-import { TTileCoordinates } from "@/methods/hooks/useMapTileClick"
-import { mapTilesActionStatusAtom, playerAbilitiesAtom, selectedAbilityIdAtom } from "@/store/atoms"
+import { TTileCoordinates } from "@/methods/hooks/useMapTileManipulation"
+import { abilityRequirementsAtom, mapTilesActionStatusAtom, playerAbilitiesAtom, selectedAbilityIdAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
-import { useAtomValue, useSetAtom } from "jotai"
+import { useAtom, useAtomValue, useSetAtom } from "jotai"
 
 export function usePlayerAbility() {
   useFetchPlayerAbilities()
 
   const playerAbilities = useAtomValue(playerAbilitiesAtom)
-  const setSelectedAbilityIdAtom = useSetAtom(selectedAbilityIdAtom)
+  const [selectedAbilityId, setSelectedAbilityId] = useAtom(selectedAbilityIdAtom)
   const setOpenModalBottomCenterBar = useSetAtom(mapTilesActionStatusAtom)
 
+  useFetchAbilityRequirements(selectedAbilityId)
+  const abilityRequirements = useAtomValue(abilityRequirementsAtom)
+
   function handleClickOnPlayerAbility(abilityId: number) {
-    setSelectedAbilityIdAtom(abilityId)
+    setSelectedAbilityId(abilityId)
     setOpenModalBottomCenterBar(EMapTilesActionStatus.UseAbilityAction)
   }
 
@@ -32,5 +36,5 @@ export function usePlayerAbility() {
     setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
   }
 
-  return { playerAbilities, handleClickOnPlayerAbility, handleUsePlayerAbility, handleCancelPlayerAbility }
+  return { playerAbilities, selectedAbilityId, abilityRequirements, handleClickOnPlayerAbility, handleUsePlayerAbility, handleCancelPlayerAbility }
 }
