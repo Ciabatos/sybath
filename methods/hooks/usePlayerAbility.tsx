@@ -21,9 +21,16 @@ export function usePlayerAbility() {
 
   function handleUsePlayerAbility(abilityId: number | undefined, clickedTile: TTileCoordinates) {
     if (abilityId === undefined) {
+      setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
       return
     }
     mapTilesAbilityAction(abilityId, clickedTile)
+    setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
   }
-  return { playerAbilities, handleClickOnPlayerAbility, handleUsePlayerAbility }
+
+  function handleCancelPlayerAbility() {
+    setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
+  }
+
+  return { playerAbilities, handleClickOnPlayerAbility, handleUsePlayerAbility, handleCancelPlayerAbility }
 }

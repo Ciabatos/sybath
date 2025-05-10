@@ -4,18 +4,16 @@ import styles from "@/components/styles/Modals/ModalBottomCenterBar/ModalMapTile
 import { useFetchAbilityRequirements } from "@/methods/hooks/fetchers/useFetchAbilityRequirements"
 import { useActionMapTilesMovement } from "@/methods/hooks/useActionMapTilesMovement"
 import { usePlayerAbility } from "@/methods/hooks/usePlayerAbility"
-import { abilityRequirementsAtom, clickedTileAtom, mapTilesActionStatusAtom, selectedAbilityIdAtom } from "@/store/atoms"
-import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
-import { useAtomValue, useSetAtom } from "jotai"
+import { abilityRequirementsAtom, clickedTileAtom, selectedAbilityIdAtom } from "@/store/atoms"
+import { useAtomValue } from "jotai"
 import { useEffect, useState } from "react"
 
 export default function ModalMapTilesActionAbility() {
   const clickedTile = useAtomValue(clickedTileAtom)
   const abilityId = useAtomValue(selectedAbilityIdAtom)
   const [startingPoint] = useState(clickedTile)
-  const setOpenModalBottomCenterBar = useSetAtom(mapTilesActionStatusAtom)
   const { actionMapTilesMovement } = useActionMapTilesMovement()
-  const { handleUsePlayerAbility } = usePlayerAbility()
+  const { handleUsePlayerAbility, handleCancelPlayerAbility } = usePlayerAbility()
 
   useFetchAbilityRequirements(abilityId)
   const abilityRequirements = useAtomValue(abilityRequirementsAtom)
@@ -27,13 +25,12 @@ export default function ModalMapTilesActionAbility() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clickedTile])
 
-  const handleUseAbility = () => {
+  const handleButtonUseAbility = () => {
     handleUsePlayerAbility(abilityId, clickedTile)
-    setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
   }
 
-  const handleCancel = () => {
-    setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
+  const handleButtonCancel = () => {
+    handleCancelPlayerAbility()
   }
 
   return (
@@ -48,12 +45,12 @@ export default function ModalMapTilesActionAbility() {
         <div className={styles.actionGrid}>
           <button
             className={styles.actionButton}
-            onClick={handleUseAbility}>
+            onClick={handleButtonUseAbility}>
             Use Ability
           </button>
           <button
             className={styles.actionButton}
-            onClick={handleCancel}>
+            onClick={handleButtonCancel}>
             Cancel
           </button>
         </div>
