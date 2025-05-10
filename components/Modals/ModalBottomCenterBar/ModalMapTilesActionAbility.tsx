@@ -2,6 +2,7 @@
 
 import styles from "@/components/styles/Modals/ModalBottomCenterBar/ModalMapTilesActionGuardArea.module.css"
 import { usePlayerAbility } from "@/methods/hooks/playerAbility/usePlayerAbility"
+import { usePlayerAbilityRequirements } from "@/methods/hooks/playerAbility/usePlayerAbilityRequirements"
 import { useActionMapTilesMovement } from "@/methods/hooks/playerMapTilesActions/useActionMapTilesMovement"
 import { clickedTileAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
@@ -11,8 +12,10 @@ export default function ModalMapTilesActionAbility() {
   const clickedTile = useAtomValue(clickedTileAtom)
 
   const [startingPoint] = useState(clickedTile)
+
   const { actionMapTilesMovement } = useActionMapTilesMovement()
-  const { selectedAbilityId, abilityRequirements, handleUsePlayerAbility, handleCancelPlayerAbility } = usePlayerAbility()
+  const { selectedAbilityId, handleUsePlayerAbility, handleCancelPlayerAbility } = usePlayerAbility()
+  const { abilityRequirements } = usePlayerAbilityRequirements()
 
   useEffect(() => {
     if (startingPoint && clickedTile) {
