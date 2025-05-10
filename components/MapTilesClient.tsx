@@ -4,12 +4,7 @@ import MapTile from "@/components/MapTile"
 import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
 import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
-import { useFetchMapTiles } from "@/methods/hooks/mapTiles/useFetchMapTiles"
-import { useFetchPlayerVisibleMapData } from "@/methods/hooks/mapTiles/useFetchPlayerVisibleMapData"
-import { useJoinMapTiles } from "@/methods/hooks/mapTiles/useJoinMapTiles"
-import { joinedMapTilesAtom } from "@/store/atoms"
-import { useAtomValue } from "jotai"
-import { useHydrateAtoms } from "jotai/utils"
+import { useMapTilesBuildOnClient } from "@/methods/hooks/mapTiles/mapTilesBuildOnClient/useMapTilesBuildOnClient"
 
 interface Props {
   joinedMapTiles: Record<string, TJoinedMapTile>
@@ -18,17 +13,11 @@ interface Props {
 }
 
 export default function MapTilesClient({ joinedMapTiles, terrainTypes, landscapeTypes }: Props) {
-  useHydrateAtoms([[joinedMapTilesAtom, joinedMapTiles]])
-
-  const updatedTiles = useAtomValue(joinedMapTilesAtom)
-
-  useFetchMapTiles()
-  useFetchPlayerVisibleMapData()
-  useJoinMapTiles(terrainTypes, landscapeTypes)
+  const { mapTilesBuildOnClient } = useMapTilesBuildOnClient({ joinedMapTiles, terrainTypes, landscapeTypes })
 
   return (
     <>
-      {Object.entries(updatedTiles).map(([key, tile]) => (
+      {Object.entries(mapTilesBuildOnClient).map(([key, tile]) => (
         <MapTile
           key={key}
           tile={tile}
