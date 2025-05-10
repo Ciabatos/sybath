@@ -1,4 +1,4 @@
-import { useFetchAbilityRequirements } from "@/methods/hooks/fetchers/useFetchAbilityRequirements"
+import { useFetchAbilityRequirements } from "@/methods/hooks/playerAbility/useFetchAbilityRequirements"
 import { abilityRequirementsAtom, selectedAbilityIdAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 

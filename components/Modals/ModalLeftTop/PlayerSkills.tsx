@@ -1,6 +1,6 @@
 "use client"
 
-import { useFetchPlayerSkills } from "@/methods/hooks/fetchers/useFetchPlayerSkills"
+import { useFetchPlayerSkills } from "@/methods/hooks/playerSkills/useFetchPlayerSkills"
 import { playerSkillsAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 
