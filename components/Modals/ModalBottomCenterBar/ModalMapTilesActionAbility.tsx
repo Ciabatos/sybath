@@ -1,36 +1,10 @@
 "use client"
 
 import styles from "@/components/styles/Modals/ModalBottomCenterBar/ModalMapTilesActionGuardArea.module.css"
-import { usePlayerAbility } from "@/methods/hooks/playerAbility/usePlayerAbility"
-import { usePlayerAbilityRequirements } from "@/methods/hooks/playerAbility/usePlayerAbilityRequirements"
-import { useActionMapTilesMovement } from "@/methods/hooks/playerMapTilesActions/useActionMapTilesMovement"
-import { clickedTileAtom } from "@/store/atoms"
-import { useAtomValue } from "jotai"
-import { useEffect, useState } from "react"
+import { useActionMapTilesAbility } from "@/methods/hooks/playerMapTilesActions/useActionMapTilesAbility"
 
 export default function ModalMapTilesActionAbility() {
-  const clickedTile = useAtomValue(clickedTileAtom)
-
-  const [startingPoint] = useState(clickedTile)
-
-  const { actionMapTilesMovement } = useActionMapTilesMovement()
-  const { selectedAbilityId, handleUsePlayerAbility, handleCancelPlayerAbility } = usePlayerAbility()
-  const { abilityRequirements } = usePlayerAbilityRequirements()
-
-  useEffect(() => {
-    if (startingPoint && clickedTile) {
-      actionMapTilesMovement(startingPoint, clickedTile)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [clickedTile])
-
-  const handleButtonUseAbility = () => {
-    handleUsePlayerAbility(selectedAbilityId, clickedTile)
-  }
-
-  const handleButtonCancel = () => {
-    handleCancelPlayerAbility()
-  }
+  const { endingPoint, abilityRequirements, handleButtonUseAbility, handleButtonCancel } = useActionMapTilesAbility()
 
   return (
     <div>
@@ -38,7 +12,7 @@ export default function ModalMapTilesActionAbility() {
         <div className={styles.modalTitle}>
           <p>Select Options for Ability {abilityRequirements.map((ability) => ability.requirement_type)}</p>
           <p>
-            Use Ability on tile : {clickedTile?.x}, {clickedTile?.y}
+            Use Ability on tile : {endingPoint?.x}, {endingPoint?.y}
           </p>
         </div>
         <div className={styles.actionGrid}>

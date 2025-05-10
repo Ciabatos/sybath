@@ -1,41 +1,41 @@
 "use client"
 
-import { useMapTilesArea } from "@/methods/hooks/mapTiles/useMapTilesArea"
 import { useMapTilesPath } from "@/methods/hooks/mapTiles/useMapTilesPath"
-import { clickedTileAtom, mapTilesActionStatusAtom, mapTilesGuardAreaAtom, mapTilesMovmentPathAtom } from "@/store/atoms"
-import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
+import { usePlayerAbility } from "@/methods/hooks/playerAbility/usePlayerAbility"
+import { usePlayerAbilityRequirements } from "@/methods/hooks/playerAbility/usePlayerAbilityRequirements"
+import { clickedTileAtom, mapTilesMovmentPathAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useState } from "react"
 
-export function useActionMapTilesGuardArea() {
+export function useActionMapTilesAbility() {
   const clickedTile = useAtomValue(clickedTileAtom)
   const [startingPoint] = useState(clickedTile)
   const { pathFromPointToPoint } = useMapTilesPath()
   const setMapTilesMovmentPath = useSetAtom(mapTilesMovmentPathAtom)
-  const { areaFromPoint } = useMapTilesArea()
-  const setMapTilesGuardArea = useSetAtom(mapTilesGuardAreaAtom)
-  const setOpenModalBottomCenterBar = useSetAtom(mapTilesActionStatusAtom)
+  const { selectedAbilityId, handleUsePlayerAbility, handleCancelPlayerAbility } = usePlayerAbility()
+  const { abilityRequirements } = usePlayerAbilityRequirements()
 
   useEffect(() => {
     if (startingPoint && clickedTile) {
       const movmentPath = pathFromPointToPoint(startingPoint.x, startingPoint.y, clickedTile.x, clickedTile.y, 0)
       setMapTilesMovmentPath(movmentPath)
-      const guardArea = areaFromPoint(clickedTile.x, clickedTile.y, 1)
-      setMapTilesGuardArea(guardArea)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clickedTile])
 
-  const handleButtonGuardArea = () => {
-    setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
+  const handleButtonUseAbility = () => {
+    handleUsePlayerAbility(selectedAbilityId, clickedTile)
   }
 
   const handleButtonCancel = () => {
-    setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
+    handleCancelPlayerAbility()
   }
+
   return {
+    startingPoint,
     endingPoint: clickedTile,
-    handleButtonGuardArea,
+    abilityRequirements,
+    handleButtonUseAbility,
     handleButtonCancel,
   }
 }

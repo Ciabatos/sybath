@@ -31,6 +31,7 @@ export const abilitiesAtom = atom<TAbilities[]>([])
 export const abilityRequirementsAtom = atom<TAbilityRequirements[]>([])
 
 //Player
+export const playerPositionMapTileIdAtom = atom<number>()
 export const inventorySlotsAtom = atom<TInventorySlots[]>([])
 export const playerSkillsAtom = atom<TPlayerSkills[]>([])
 export const playerAbilitiesAtom = atom<TPlayerAbilities[]>([])

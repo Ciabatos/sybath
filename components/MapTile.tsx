@@ -12,22 +12,17 @@ interface Props {
 
 export default function MapTile({ tile }: Props) {
   const { createPlayerImage, createLandscapeImage, createBackgroundImage, combineImages } = useCreateImage()
+  const { handleClickOnMapTile } = useMapTileManipulation()
 
   const backgroundImage = createBackgroundImage(tile.terrainTypes.image_url)
   const landscapeImage = createLandscapeImage(tile.landscapeTypes?.image_url)
   const playerImage = createPlayerImage(tile.playerVisibleMapData?.player_image_url)
   const combinedImages = combineImages(landscapeImage, backgroundImage)
 
-  const { handleClickOnMapTile } = useMapTileManipulation()
-
-  const handleButtonClick = (x: number, y: number) => {
-    handleClickOnMapTile(x, y)
-  }
-
   return (
     <div
       className={style.BackgroundImage}
-      onDoubleClick={() => handleButtonClick(tile.mapTile.x, tile.mapTile.y)}
+      onDoubleClick={() => handleClickOnMapTile(tile)}
       style={{
         gridColumnStart: tile.mapTile.x,
         gridRowStart: tile.mapTile.y,
@@ -39,7 +34,7 @@ export default function MapTile({ tile }: Props) {
           backgroundImage: playerImage,
         }}></div>
       <div>
-        {tile.mapTile.x}, {tile.mapTile.y}
+        {tile.mapTile.id}, {tile.mapTile.x}, {tile.mapTile.y}
       </div>
       <MapTileLayerHandling tile={tile} />
     </div>

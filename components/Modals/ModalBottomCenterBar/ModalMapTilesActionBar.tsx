@@ -7,23 +7,23 @@ export default function ModalMapTilesActionBar() {
   const clickedTile = useAtomValue(clickedTileAtom)
   const setOpenModalBottomCenterBar = useSetAtom(mapTilesActionStatusAtom)
 
-  const handleMove = () => {
+  const handleButtonMove = () => {
     setOpenModalBottomCenterBar(EMapTilesActionStatus.MovementAction)
   }
 
-  const handleAttack = () => {
+  const handleButtonAttack = () => {
     setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
   }
 
-  const handleGuardArea = () => {
+  const handleButtonGuardArea = () => {
     setOpenModalBottomCenterBar(EMapTilesActionStatus.GuardAreaAction)
   }
 
-  const handleInteract = () => {
+  const handleButtonInteract = () => {
     setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
   }
 
-  const handleInspect = () => {
+  const handleButtonInspect = () => {
     setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
   }
 
@@ -41,32 +41,32 @@ export default function ModalMapTilesActionBar() {
         <div className={styles.actionGrid}>
           <Button
             className={styles.actionButton}
-            onClick={handleMove}>
+            onClick={handleButtonMove}>
             Move
           </Button>
           <Button
             className={styles.actionButton}
-            onClick={handleAttack}>
+            onClick={handleButtonAttack}>
             Interact
           </Button>
           <Button
             className={styles.actionButton}
-            onClick={handleInteract}>
+            onClick={handleButtonInteract}>
             Attack
           </Button>
           <Button
             className={styles.actionButton}
-            onClick={handleGuardArea}>
+            onClick={handleButtonGuardArea}>
             Guar Area
           </Button>
           <Button
             className={styles.actionButton}
-            onClick={handleInspect}>
+            onClick={handleButtonInspect}>
             Build
           </Button>
           <Button
             className={styles.actionButton}
-            onClick={handleInspect}>
+            onClick={handleButtonInspect}>
             Inspect
           </Button>
         </div>
