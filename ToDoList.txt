@@ -4,7 +4,17 @@
 	
 
 
+ + // 👮 Check if the user is allowed to access another player's data
+  const canView = await checkPermissionToView(playerId, targetPlayerId)
+  if (!canView) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 })
+  }
 
+
++Problem z wyznaczeniem początku sciezki (playePosition) w hookach
+
+
++przerobienie visableDataMapTiles tak aby oznaczaly Ciebie jako Typ:Player a innych graczy Neutral
 
 Db functions - Akcje na bazie danych
 API routes - api routy
