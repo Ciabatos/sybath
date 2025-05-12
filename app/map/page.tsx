@@ -10,7 +10,7 @@ import { getInventorySlots } from "@/db/postgresMainDatabase/schemas/players/tab
 import { getPlayerAbilities } from "@/db/postgresMainDatabase/schemas/players/tables/playerAbilities"
 import { getPlayerSkills } from "@/db/postgresMainDatabase/schemas/players/tables/playerSkills"
 import { getSkills } from "@/db/postgresMainDatabase/schemas/players/tables/skills"
-import { arrayToObjectKeyId } from "@/methods/functions/converters"
+import { arrayToObjectKeyId, arrayToObjectKeysId } from "@/methods/functions/converters"
 import { joinMapTiles } from "@/methods/functions/joinMapTiles"
 import { SWRProvider } from "@/providers/swr-provider"
 import styles from "./page.module.css"
@@ -39,7 +39,7 @@ export default async function MapPage() {
 
   const landscapeTypes = arrayToObjectKeyId("id", mapLandscapeTypes) as TMapLandscapeTypesById
 
-  const playerVisibleMapData = mapPlayerVisibleMapData ? (arrayToObjectKeyId("map_tile_id", mapPlayerVisibleMapData) as TPlayerVisibleMapDataById) : {}
+  const playerVisibleMapData = mapPlayerVisibleMapData ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", mapPlayerVisibleMapData) as TPlayerVisibleMapDataById) : {}
 
   const joinedMapTiles = joinMapTiles(mapTiles, terrainTypes, landscapeTypes, playerVisibleMapData)
 

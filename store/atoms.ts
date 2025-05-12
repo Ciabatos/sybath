@@ -15,7 +15,7 @@ import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusE
 import { atom } from "jotai"
 
 //Map
-export const clickedTileAtom = atom<TTileCoordinates>({ x: 1, y: 1 })
+export const clickedTileAtom = atom<TTileCoordinates | null>(null)
 export const mapTilesAtom = atom<TMapTile[]>([])
 export const mapTilesActionStatusAtom = atom<EMapTilesActionStatus>(EMapTilesActionStatus.Inactive)
 export const mapTilesMovmentPathAtom = atom<TMovmentPath[]>([])
@@ -31,7 +31,7 @@ export const abilitiesAtom = atom<TAbilities[]>([])
 export const abilityRequirementsAtom = atom<TAbilityRequirements[]>([])
 
 //Player
-export const playerPositionMapTileIdAtom = atom<number>()
+export const playerPositionMapTileAtom = atom<TTileCoordinates>({ x: 0, y: 0 })
 export const inventorySlotsAtom = atom<TInventorySlots[]>([])
 export const playerSkillsAtom = atom<TPlayerSkills[]>([])
 export const playerAbilitiesAtom = atom<TPlayerAbilities[]>([])

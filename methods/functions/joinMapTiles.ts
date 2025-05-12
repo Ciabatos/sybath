@@ -29,7 +29,7 @@ export function joinMapTiles(
   const createOrUpdateTile = (tile: TMapTile): TJoinedMapTile => {
     const terrain = terrainTypes[tile.terrain_type_id]
     const landscape = tile.landscape_type_id != null ? landscapeTypes[tile.landscape_type_id] : undefined
-    const playerData = playerVisibleMapData?.[tile.id]
+    const playerData = playerVisibleMapData?.[tile.x + "," + tile.y]
 
     return {
       mapTile: tile,
