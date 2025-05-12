@@ -13,7 +13,6 @@ export function useFetchPlayerAbilities() {
   const { data, error, isLoading } = useSWR(`/api/players/${playerId}/abilities`)
 
   useEffect(() => {
-    console.log("useFetchPlayerAbilities", { data, error, isLoading })
     setPlayerAbilities(data)
   }, [data, error, isLoading])
 }

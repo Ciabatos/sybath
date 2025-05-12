@@ -9,7 +9,6 @@ export function useFetchAbilities() {
   const { data, error, isLoading } = useSWR(`/api/abilities`)
 
   useEffect(() => {
-    console.log("useFetchAbilities", { data, error, isLoading })
     setAbilities(data)
   }, [data, error, isLoading])
 }

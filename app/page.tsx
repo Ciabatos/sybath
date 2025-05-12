@@ -1,12 +1,9 @@
-import { auth } from "@/auth"
 import SignUp from "@/components/SignUp"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import styles from "./page.module.css"
 
 export default async function HomePage() {
-  const session = await auth()
-  console.log(session, "Server session")
   return (
     <div className={styles.main}>
       <Button>

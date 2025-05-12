@@ -13,7 +13,6 @@ export function useFetchInventorySlots() {
   const { data, error, isLoading } = useSWR(`/api/players/${playerId}/inventory-slots`)
 
   useEffect(() => {
-    console.log("useFetchInventorySlots", { data, error, isLoading })
     setInventorySlots(data)
   }, [data, error, isLoading])
 }

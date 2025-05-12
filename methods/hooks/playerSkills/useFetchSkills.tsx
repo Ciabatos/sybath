@@ -9,7 +9,6 @@ export function useFetchSkills() {
   const { data, error, isLoading } = useSWR(`/api/skills`)
 
   useEffect(() => {
-    console.log("useFetchSkills", { data, error, isLoading })
     setSkills(data)
   }, [data, error, isLoading])
 }

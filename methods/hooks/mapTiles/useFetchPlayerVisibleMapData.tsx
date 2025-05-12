@@ -22,8 +22,6 @@ export function useFetchPlayerVisibleMapData() {
     const playerPositionMapTile = data ? data.find((tile: TPlayerVisibleMapData) => tile.player_id === playerId) : null
 
     if (playerPositionMapTile) {
-      console.log(playerPositionMapTile, "playerPositionMapTile")
-      console.log(playerPositionMapTile.map_tile_x, playerPositionMapTile.map_tile_y, "playerPositionMapTile")
       setPlayerPositionMapTile({ x: playerPositionMapTile.map_tile_x, y: playerPositionMapTile.map_tile_y })
     } else {
       setPlayerPositionMapTile({ x: 0, y: 0 })
