@@ -34,7 +34,7 @@ export default function MapTile({ tile }: Props) {
           backgroundImage: playerImage,
         }}></div>
       <div>
-        {tile.mapTile.id}, {tile.mapTile.x}, {tile.mapTile.y}
+        {tile.mapTile.x}, {tile.mapTile.y}, {tile.cities?.name}, {tile.districts?.name}
       </div>
       <MapTileLayerHandling tile={tile} />
     </div>

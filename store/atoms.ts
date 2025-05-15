@@ -1,6 +1,8 @@
 "use client"
 
 import { TPlayerVisibleMapDataById } from "@/db/postgresMainDatabase/schemas/map/functions/playerVisibleMapData"
+import { TCitiesByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/tables/cities"
+import { TDistrictsByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/tables/districts"
 import type { TMapTile } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
 import { TAbilities } from "@/db/postgresMainDatabase/schemas/players/tables/abilities"
 import { TAbilityRequirements } from "@/db/postgresMainDatabase/schemas/players/tables/abilityRequirements"
@@ -17,6 +19,8 @@ import { atom } from "jotai"
 //Map
 export const clickedTileAtom = atom<TTileCoordinates | null>(null)
 export const mapTilesAtom = atom<TMapTile[]>([])
+export const citiesAtom = atom<TCitiesByMapCoordinates>({})
+export const districtsAtom = atom<TDistrictsByMapCoordinates>({})
 export const mapTilesActionStatusAtom = atom<EMapTilesActionStatus>(EMapTilesActionStatus.Inactive)
 export const mapTilesMovmentPathAtom = atom<TMovmentPath[]>([])
 export const mapTilesGuardAreaAtom = atom<TJoinedMapTile[]>([])

@@ -1,4 +1,6 @@
 import { TPlayerVisibleMapData, TPlayerVisibleMapDataById } from "@/db/postgresMainDatabase/schemas/map/functions/playerVisibleMapData"
+import { TCities, TCitiesByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/tables/cities"
+import { TDistricts, TDistrictsByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/tables/districts"
 import { TMapLandscapeTypes, TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import type { TMapTile } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
 import type { TMapTerrainTypes, TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
@@ -8,6 +10,8 @@ export interface TJoinedMapTile {
   mapTile: TMapTile
   terrainTypes: TMapTerrainTypes
   landscapeTypes?: TMapLandscapeTypes
+  cities?: TCities
+  districts?: TDistricts
   playerVisibleMapData?: TPlayerVisibleMapData
   moveCost?: number
 }
@@ -18,6 +22,8 @@ export function joinMapTiles(
   tiles: TMapTile[],
   terrainTypes: TMapTerrainTypesById,
   landscapeTypes: TMapLandscapeTypesById,
+  cities: TCitiesByMapCoordinates,
+  districts: TDistrictsByMapCoordinates,
   playerVisibleMapData: TPlayerVisibleMapDataById,
   options: {
     oldTilesToUpdate?: Record<string, TJoinedMapTile>
@@ -29,14 +35,18 @@ export function joinMapTiles(
   const createOrUpdateTile = (tile: TMapTile): TJoinedMapTile => {
     const terrain = terrainTypes[tile.terrain_type_id]
     const landscape = tile.landscape_type_id != null ? landscapeTypes[tile.landscape_type_id] : undefined
+    const city = cities?.[tile.x + "," + tile.y]
+    const district = districts?.[tile.x + "," + tile.y]
     const playerData = playerVisibleMapData?.[tile.x + "," + tile.y]
 
     return {
       mapTile: tile,
       terrainTypes: terrain,
       landscapeTypes: landscape,
+      cities: city,
+      districts: district,
       playerVisibleMapData: playerData,
-      moveCost: terrain.terrain_move_cost + (landscape?.landscape_move_cost ?? 0),
+      moveCost: terrain.move_cost + (landscape?.move_cost ?? 0) + (city?.move_cost ?? 0) + (district?.move_cost ?? 0),
     }
   }
 

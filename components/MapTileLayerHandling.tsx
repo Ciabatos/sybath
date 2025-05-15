@@ -16,8 +16,8 @@ export default function MapTileLayerHandling({ tile }: Props) {
   const mapTilesMovmentPath = useAtomValue(mapTilesMovmentPathAtom)
   const mapTilesGuardArea = useAtomValue(mapTilesGuardAreaAtom)
 
-  const isTileInMovementPath = mapTilesMovmentPath.some((pathTile) => pathTile.mapTile.id === tile.mapTile.id)
-  const isTileInGuardArea = mapTilesGuardArea.some((pathTile) => pathTile.mapTile.id === tile.mapTile.id)
+  const isTileInMovementPath = mapTilesMovmentPath.some((pathTile) => pathTile.mapTile.x === tile.mapTile.x && pathTile.mapTile.y === tile.mapTile.y)
+  const isTileInGuardArea = mapTilesGuardArea.some((pathTile) => pathTile.mapTile.x === tile.mapTile.x && pathTile.mapTile.y === tile.mapTile.y)
 
   if (!isTileInMovementPath && !isTileInGuardArea) {
     return null

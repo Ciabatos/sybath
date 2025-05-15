@@ -2,6 +2,8 @@
 import { auth } from "@/auth"
 import MapWrapper from "@/components/MapWrapper"
 import { getPlayerVisibleMapData, TPlayerVisibleMapDataById } from "@/db/postgresMainDatabase/schemas/map/functions/playerVisibleMapData"
+import { getMapCities, TCitiesByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/tables/cities"
+import { getMapDistricts, TDistrictsByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/tables/districts"
 import { getMapLandscapeTypes, TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import { getMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
 import { getMapTerrainTypes, TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
@@ -23,10 +25,12 @@ export default async function MapPage() {
     return null
   }
 
-  const [mapTerrainTypes, mapTiles, mapLandscapeTypes, skills, abilities, mapPlayerVisibleMapData, inventorySlots, playerSkills, playerAbilities] = await Promise.all([
+  const [mapTerrainTypes, mapTiles, mapLandscapeTypes, mapCities, mapDistricts, skills, abilities, mapPlayerVisibleMapData, inventorySlots, playerSkills, playerAbilities] = await Promise.all([
     getMapTerrainTypes(),
     getMapTiles(),
     getMapLandscapeTypes(),
+    getMapCities(),
+    getMapDistricts(),
     getSkills(),
     getAbilities(),
     getPlayerVisibleMapData(playerId),
@@ -39,9 +43,13 @@ export default async function MapPage() {
 
   const landscapeTypes = arrayToObjectKeyId("id", mapLandscapeTypes) as TMapLandscapeTypesById
 
+  const cities = mapCities ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", mapCities) as TCitiesByMapCoordinates) : {}
+
+  const districts = mapDistricts ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", mapDistricts) as TDistrictsByMapCoordinates) : {}
+
   const playerVisibleMapData = mapPlayerVisibleMapData ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", mapPlayerVisibleMapData) as TPlayerVisibleMapDataById) : {}
 
-  const joinedMapTiles = joinMapTiles(mapTiles, terrainTypes, landscapeTypes, playerVisibleMapData)
+  const joinedMapTiles = joinMapTiles(mapTiles, terrainTypes, landscapeTypes, cities, districts, playerVisibleMapData)
 
   return (
     <div className={styles.main}>
@@ -51,6 +59,8 @@ export default async function MapPage() {
             "/api/map-tiles": mapTiles,
             "/api/skills": skills,
             "/api/abilities": abilities,
+            "/api/cities": mapCities,
+            "/api/districts": mapDistricts,
             ...(playerId && { [`/api/map-tiles/player-visible-map-data/${playerId}`]: mapPlayerVisibleMapData }),
             ...(playerId && { [`/api/players/${playerId}/inventory-slots`]: inventorySlots }),
             ...(playerId && { [`/api/players/${playerId}/skills`]: playerSkills }),

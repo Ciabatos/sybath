@@ -13,11 +13,11 @@ interface Props {
 }
 
 export default function MapTilesClient({ joinedMapTiles, terrainTypes, landscapeTypes }: Props) {
-  const { mapTilesBuildOnClient } = useMapTilesBuildOnClient({ joinedMapTiles, terrainTypes, landscapeTypes })
+  const { newJoinedMapTilesOnClient } = useMapTilesBuildOnClient({ joinedMapTiles, terrainTypes, landscapeTypes })
 
   return (
     <>
-      {Object.entries(mapTilesBuildOnClient).map(([key, tile]) => (
+      {Object.entries(newJoinedMapTilesOnClient).map(([key, tile]) => (
         <MapTile
           key={key}
           tile={tile}

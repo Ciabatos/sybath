@@ -2,8 +2,6 @@
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 
 export type TMapTile = {
-  id: number
-  map_id: number
   x: number
   y: number
   terrain_type_id: number
