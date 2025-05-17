@@ -30,21 +30,27 @@ export default function MapTile({ tile }: Props) {
         gridRowStart: tile.mapTile.y,
         backgroundImage: combinedImages,
       }}>
-      <div
-        className={style.CitiesImage}
-        style={{
-          backgroundImage: citiesImage,
-        }}></div>
-      <div
-        className={style.DistrictsImage}
-        style={{
-          backgroundImage: districtsImage,
-        }}></div>
-      <div
-        className={style.PlayerImage}
-        style={{
-          backgroundImage: playerImage,
-        }}></div>
+      {citiesImage && (
+        <div
+          className={style.CitiesImage}
+          style={{
+            backgroundImage: citiesImage,
+          }}></div>
+      )}
+      {districtsImage && (
+        <div
+          className={style.DistrictsImage}
+          style={{
+            backgroundImage: districtsImage,
+          }}></div>
+      )}
+      {playerImage && (
+        <div
+          className={style.PlayerImage}
+          style={{
+            backgroundImage: playerImage,
+          }}></div>
+      )}
       <div>
         {tile.mapTile.x}, {tile.mapTile.y}, {tile.cities?.name}, {tile.districts?.name}
       </div>
