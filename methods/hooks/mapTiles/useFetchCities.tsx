@@ -8,7 +8,7 @@ import useSWR from "swr"
 
 export function useFetchCities() {
   const setCitiesAtom = useSetAtom(citiesAtom)
-  const { data, error, isLoading } = useSWR("/api/cities", { refreshInterval: 3000 })
+  const { data, error, isLoading } = useSWR("/api/cities", { refreshInterval: 1 })
 
   useEffect(() => {
     const cititesByCoordinates = data ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", data) as TCitiesByMapCoordinates) : {}

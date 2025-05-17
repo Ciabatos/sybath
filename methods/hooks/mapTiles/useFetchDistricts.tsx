@@ -8,10 +8,11 @@ import useSWR from "swr"
 
 export function useFetchDistricts() {
   const setDistrictsAtom = useSetAtom(districtsAtom)
-  const { data, error, isLoading } = useSWR("/api/districts", { refreshInterval: 3000 })
+  const { data, error, isLoading } = useSWR("/api/districts", { refreshInterval: 1, revalidateOnFocus: true })
 
   useEffect(() => {
     const districtByCoordinates = data ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", data) as TDistrictsByMapCoordinates) : {}
     setDistrictsAtom(districtByCoordinates)
+    console.log("districts", districtByCoordinates)
   }, [data, error, isLoading, setDistrictsAtom])
 }

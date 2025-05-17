@@ -1,8 +1,8 @@
 "use client"
-import useSWR from "swr"
-import { useEffect } from "react"
-import { useSetAtom } from "jotai"
 import { mapTilesAtom } from "@/store/atoms"
+import { useSetAtom } from "jotai"
+import { useEffect } from "react"
+import useSWR from "swr"
 
 export function useFetchMapTiles() {
   const setMapTiles = useSetAtom(mapTilesAtom)

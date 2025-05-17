@@ -28,5 +28,5 @@ export function useJoinMapTiles(terrainTypes: TMapTerrainTypesById, landscapeTyp
       setJoinedMapTiles(updatedTiles)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [newMapTiles, playerVisibleMapData])
+  }, [newMapTiles, cities, districts, playerVisibleMapData])
 }
