@@ -264,7 +264,8 @@
   GridNode.prototype.getCost = function (fromNeighbor) {
     // Take diagonal weight into consideration.
     if (fromNeighbor && fromNeighbor.x != this.x && fromNeighbor.y != this.y) {
-      return this.weight * 1.41421
+      // return this.weight * 1.41421-- nie chce aby mi to przeliczalo po przekatnych bo sasiadow nie traktuja jako sasiadow
+      return this.weight * 1
     }
     return this.weight
   }

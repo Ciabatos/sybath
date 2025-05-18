@@ -23,7 +23,7 @@ export interface TMovmentPath extends TJoinedMapTile {
 
 export function useMapTilesPath() {
   const mapTiles = useAtomValue(joinedMapTilesAtom)
-
+  console.log("mapTiles", mapTiles)
   function pathFromPointToPoint(startX: number, startY: number, endX: number, endY: number, objectProperties: unknown): TMovmentPath[] {
     if (!startX || !startY || !endX || !endY) {
       return []
@@ -49,7 +49,7 @@ export function useMapTilesPath() {
 
     const resultWithWeight: GridNode[] = astar.search(graphWithWeight, startWithWeight, endWithWeight)
 
-    const startNode = { x: startX, y: startY, weight: 0 } as GridNode
+    const startNode = { x: startX, y: startY, weight: 0.1 } as GridNode
     const fullPath = [startNode, ...resultWithWeight]
 
     const filteredMapTiles = fullPath.map((node) => {
@@ -62,7 +62,7 @@ export function useMapTilesPath() {
         totalMovmentCost: node.weight,
       }
     })
-
+    console.log("filteredMapTiles", filteredMapTiles)
     return filteredMapTiles
   }
 

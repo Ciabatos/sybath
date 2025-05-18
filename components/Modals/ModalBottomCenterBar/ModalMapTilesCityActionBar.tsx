@@ -7,8 +7,8 @@ export default function ModalMapTilesCityActionBar() {
   const clickedTile = useAtomValue(clickedTileAtom)
   const setOpenModalBottomCenterBar = useSetAtom(mapTilesActionStatusAtom)
 
-  const handleButtonMove = () => {
-    setOpenModalBottomCenterBar(EMapTilesActionStatus.MovementAction)
+  const handleButtonEnter = () => {
+    setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
   }
 
   return (
@@ -25,7 +25,7 @@ export default function ModalMapTilesCityActionBar() {
         <div className={styles.actionGrid}>
           <Button
             className={styles.actionButton}
-            onClick={handleButtonMove}>
+            onClick={handleButtonEnter}>
             Enter
           </Button>
         </div>
