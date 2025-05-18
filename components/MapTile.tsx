@@ -53,8 +53,8 @@ export default function MapTile({ tile }: Props) {
       )}
       <div>
         {tile.mapTile.x}, {tile.mapTile.y}, {tile.cities?.name}, {tile.districts?.name}
+        <MapTileLayerHandling tile={tile} />
       </div>
-      <MapTileLayerHandling tile={tile} />
     </div>
   )
 }

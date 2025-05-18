@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { clickedTileAtom, mapTilesActionStatusAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { useAtomValue, useSetAtom } from "jotai"
-export default function ModalMapTilesActionBar() {
+export default function ModalMapTilesPlayerActionBar() {
   const clickedTile = useAtomValue(clickedTileAtom)
   const setOpenModalBottomCenterBar = useSetAtom(mapTilesActionStatusAtom)
 
@@ -11,20 +11,8 @@ export default function ModalMapTilesActionBar() {
     setOpenModalBottomCenterBar(EMapTilesActionStatus.MovementAction)
   }
 
-  const handleButtonAttack = () => {
-    setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
-  }
-
   const handleButtonGuardArea = () => {
     setOpenModalBottomCenterBar(EMapTilesActionStatus.GuardAreaAction)
-  }
-
-  const handleButtonInteract = () => {
-    setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
-  }
-
-  const handleButtonInspect = () => {
-    setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
   }
 
   return (
@@ -44,30 +32,11 @@ export default function ModalMapTilesActionBar() {
             onClick={handleButtonMove}>
             Move
           </Button>
-          <Button
-            className={styles.actionButton}
-            onClick={handleButtonAttack}>
-            Interact
-          </Button>
-          <Button
-            className={styles.actionButton}
-            onClick={handleButtonInteract}>
-            Attack
-          </Button>
+
           <Button
             className={styles.actionButton}
             onClick={handleButtonGuardArea}>
             Guar Area
-          </Button>
-          <Button
-            className={styles.actionButton}
-            onClick={handleButtonInspect}>
-            Build
-          </Button>
-          <Button
-            className={styles.actionButton}
-            onClick={handleButtonInspect}>
-            Inspect
           </Button>
         </div>
       </div>

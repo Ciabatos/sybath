@@ -6,6 +6,17 @@
 
 +przerobienie visableDataMapTiles tak aby oznaczaly Ciebie jako Typ:Player a innych graczy Neutral
 
+
++City Page - grid
++Buildings Page/ Districts Page - the same shit
++GameLoop!
++Okreslic sie z action POST
++Okreslic jak bedzie wygladala validacja
++MarketPlace
++Mechaniki kupowania/sprzedawania
++Mechaniki produkcji
++Mechaniki budowania budynkow
+
 Db functions - Akcje na bazie danych
 API routes - api routy
 useFetch - fetchowanie danych do atoms

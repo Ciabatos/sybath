@@ -1,9 +1,9 @@
 "use client"
 
 import ModalMapTilesActionAbility from "@/components/Modals/ModalBottomCenterBar/ModalMapTilesActionAbility"
-import ModalMapTilesActionBar from "@/components/Modals/ModalBottomCenterBar/ModalMapTilesActionBar"
 import ModalMapTilesActionGuardArea from "@/components/Modals/ModalBottomCenterBar/ModalMapTilesActionGuardArea"
 import ModalMapTilesActionMovment from "@/components/Modals/ModalBottomCenterBar/ModalMapTilesActionMovment"
+import ModalMapTilesPlayerActionBar from "@/components/Modals/ModalBottomCenterBar/ModalMapTilesPlayerActionBar"
 import styles from "@/components/styles/Modals/ModalBottomCenterBar/ModalBottomCenterBarHandling.module.css"
 import { mapTilesActionStatusAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
@@ -17,7 +17,7 @@ export default function ModalBottomCenterBarHandling() {
 	<>
     <div className={styles.modalOverlay}>
       <div className={styles.modalContainer}>
-		{mapTilesActionStatus === EMapTilesActionStatus.TileActionList && <ModalMapTilesActionBar />}
+		{mapTilesActionStatus === EMapTilesActionStatus.PlayerActionList && <ModalMapTilesPlayerActionBar />}
 		{mapTilesActionStatus === EMapTilesActionStatus.MovementAction && <ModalMapTilesActionMovment />}
 		{mapTilesActionStatus === EMapTilesActionStatus.GuardAreaAction && <ModalMapTilesActionGuardArea />}
 		{mapTilesActionStatus === EMapTilesActionStatus.UseAbilityAction && <ModalMapTilesActionAbility />}

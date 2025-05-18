@@ -19,12 +19,29 @@ export function useMapTileManipulation() {
   }
 
   function handleClickOnMapTile(tile: TJoinedMapTile) {
-    setCoordinatesOnClick(tile.mapTile.x, tile.mapTile.y)
+    if (
+      statusModalBottomCenterBar === EMapTilesActionStatus.MovementAction ||
+      statusModalBottomCenterBar === EMapTilesActionStatus.GuardAreaAction ||
+      statusModalBottomCenterBar === EMapTilesActionStatus.UseAbilityAction
+    ) {
+      setCoordinatesOnClick(tile.mapTile.x, tile.mapTile.y)
+    } else if (tile.cities?.name) {
+      showPlayerActionList(tile)
+    } else if (tile.districts?.name) {
+      showPlayerActionList(tile)
+    } else if (tile.playerVisibleMapData?.player_id) {
+      showPlayerActionList(tile)
+    } else {
+      setCoordinatesOnClick(tile.mapTile.x, tile.mapTile.y)
+      setStatusModalBottomCenterBar(EMapTilesActionStatus.Inactive)
+    }
+  }
 
+  function showPlayerActionList(tile: TJoinedMapTile) {
+    setCoordinatesOnClick(tile.mapTile.x, tile.mapTile.y)
     //prettier-ignore
-    if (statusModalBottomCenterBar === EMapTilesActionStatus.Inactive
-	 || statusModalBottomCenterBar === EMapTilesActionStatus.TileActionList) {
-	  setStatusModalBottomCenterBar(EMapTilesActionStatus.TileActionList)
+    if (statusModalBottomCenterBar === EMapTilesActionStatus.Inactive) {
+	  setStatusModalBottomCenterBar(EMapTilesActionStatus.PlayerActionList)
 	}
   }
 
