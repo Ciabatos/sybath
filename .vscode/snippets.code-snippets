@@ -1,31 +1,8 @@
 {
-  "apiGet": {
-    "prefix": "apiGet",
-    "scope": "typescript, typescriptreact",
-    "body": [
-      "export async function GET(request: NextRequest): Promise<NextResponse> {",
-      "  const session = await auth()",
-      "  const sessionPlayerId = session?.user?.playerId",
-      "",
-      "  if (!sessionPlayerId || isNaN(sessionPlayerId)) {",
-      "    return NextResponse.json({ success: false })",
-      "  }",
-      "  // const searchQueryParams = request.nextUrl.searchParams;",
-      "  // const login = searchQueryParams.get(\"login\");",
-      "",
-      "  try {",
-      "    const result = await get${1:/pascalCase}();",
-      "    return NextResponse.json(result);",
-      "  } catch (error) {",
-      "    return NextResponse.json({ success: false, error: error });",
-      "  }",
-      "}"
-    ],
-    "description": "apiGet"
-  },
+
 
   "DBGet": {
-    "prefix": "DBGet",
+    "prefix": "snippetDBGet",
     "scope": "typescript, typescriptreact",
     "body": [
       "\"use server\"",
@@ -52,8 +29,45 @@
     "description": "DBGet"
   },
 
+
+  "apiGet": {
+    "prefix": "snippetApiGet",
+    "scope": "typescript, typescriptreact",
+    "body": [
+      "/* eslint-disable @typescript-eslint/no-unused-vars */",
+      "export async function GET(request: NextRequest): Promise<NextResponse> {",
+      "  const session = await auth()",
+      "  const sessionPlayerId = session?.user?.playerId",
+      "",
+      "  if (!sessionPlayerId || isNaN(sessionPlayerId)) {",
+      "    return NextResponse.json({ success: false })",
+      "  }",
+      "  // const searchQueryParams = request.nextUrl.searchParams;",
+      "  // const login = searchQueryParams.get(\"login\");",
+      "",
+      "  try {",
+      "    const result = await get${1:/pascalCase}();",
+      "    return NextResponse.json(result);",
+      "  } catch (error) {",
+      "    return NextResponse.json({ success: false, error: error });",
+      "  }",
+      "}"
+    ],
+    "description": "apiGet"
+  },
+
+  "createAtom": {
+    "prefix": "snippetCreateAtom",
+    "scope": "typescript, typescriptreact",
+    "body": [
+      "export const ${1:/lowercase}Atom = atom<T${1:/pascalCase}>({});"
+    ],
+    "description": "createAtom"
+  },
+
+  
   "Reusable Fetch Hook": {
-    "prefix": "useFetchHook",
+    "prefix": "snippetUseFetchHook",
     "scope": "typescript, typescriptreact",
     "body": [
       "\"use client\"",
@@ -74,14 +88,9 @@
       "}"
     ],
     "description": "Client-side SWR + Jotai fetch hook with dynamic atom name and endpoint based on entity name."
-  },
-
-  "createAtom": {
-    "prefix": "createAtom",
-    "scope": "typescript, typescriptreact",
-    "body": [
-      "export const ${1:/lowercase}Atom = atom<T${1:/pascalCase}>({});"
-    ],
-    "description": "createAtom"
   }
+
+
+
+
 }

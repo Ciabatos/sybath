@@ -1,7 +1,7 @@
 "use client"
 
 import { mapTilesAbilityAction } from "@/methods/actions/mapTilesAbilityAction"
-import { TTileCoordinates } from "@/methods/hooks/mapTiles/useMapTilesManipulation"
+import { TTileCoordinates } from "@/methods/hooks/mapTiles/useFetchPlayerVisibleMapData"
 import { useFetchPlayerAbilities } from "@/methods/hooks/playerAbility/useFetchPlayerAbilities"
 import { mapTilesActionStatusAtom, playerAbilitiesAtom, selectedAbilityIdAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"

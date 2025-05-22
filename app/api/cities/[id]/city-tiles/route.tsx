@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { auth } from "@/auth"
-import { getInventorySlots } from "@/db/postgresMainDatabase/schemas/players/tables/inventories"
+import { getCityTiles } from "@/db/postgresMainDatabase/schemas/map/tables/cityTiles"
 import { NextRequest, NextResponse } from "next/server"
 
 type TypeParams = {
-  playerId: number
+  id: number
 }
 
 export async function GET(request: NextRequest, { params }: { params: TypeParams }): Promise<NextResponse> {
@@ -15,13 +15,13 @@ export async function GET(request: NextRequest, { params }: { params: TypeParams
     return NextResponse.json({ success: false })
   }
 
-  const playerId = (await params).playerId
-  // const searchQueryParams = request.nextUrl.searchParams
-  // const login = searchQueryParams.get("login")
+  const cityId = (await params).id
+
+  // const searchQueryParams = request.nextUrl.searchParams;
+  // const login = searchQueryParams.get("login");
 
   try {
-    const result = await getInventorySlots(playerId)
-
+    const result = await getCityTiles(cityId)
     return NextResponse.json(result)
   } catch (error) {
     return NextResponse.json({ success: false, error: error })

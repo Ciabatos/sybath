@@ -1,27 +1,23 @@
 "use client"
-import MapTilesClient from "@/components/MapTilesClient"
-import ModalBottomCenterBarHandling from "@/components/Modals/ModalBottomCenterBar/ModalBottomCenterBarHandling"
+import CityTilesClient from "@/components/CityTilesClient"
 import ModalLeftTopHandling from "@/components/Modals/ModalLeftTop/ModalLeftTopHandling"
 import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
-import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
-import { mapTilesActionStatusAtom } from "@/store/atoms"
-import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
-import { useAtomValue } from "jotai"
+import { TJoinedCityTilesById } from "@/methods/functions/joinCityTiles"
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
 import style from "./styles/Map.module.css"
 
 interface Props {
-  joinedMapTiles: Record<string, TJoinedMapTile>
+  cityId: number
+  joinedCityTiles: TJoinedCityTilesById
   terrainTypes: TMapTerrainTypesById
   landscapeTypes: TMapLandscapeTypesById
 }
 
-export default function MapWrapper({ joinedMapTiles, terrainTypes, landscapeTypes }: Props) {
+export default function CityWrapper({ cityId, joinedCityTiles, terrainTypes, landscapeTypes }: Props) {
   const [isMounted, setIsMounted] = useState(false)
-  const mapTilesActionStatus = useAtomValue(mapTilesActionStatusAtom)
 
   useEffect(() => {
     setIsMounted(true)
@@ -30,7 +26,7 @@ export default function MapWrapper({ joinedMapTiles, terrainTypes, landscapeType
   // Lepszy sposób na wyliczenie maxX i maxY
   let maxX = 0
   let maxY = 0
-  Object.keys(joinedMapTiles).forEach((key) => {
+  Object.keys(joinedCityTiles).forEach((key) => {
     const [x, y] = key.split("_").map(Number)
     if (x > maxX) maxX = x
     if (y > maxY) maxY = y
@@ -39,7 +35,7 @@ export default function MapWrapper({ joinedMapTiles, terrainTypes, landscapeType
   return (
     <>
       <div
-        id="Map"
+        id="City"
         className={style.map}>
         <TransformWrapper
           minScale={0.4}
@@ -47,17 +43,17 @@ export default function MapWrapper({ joinedMapTiles, terrainTypes, landscapeType
           doubleClick={{ disabled: true }}>
           <TransformComponent wrapperStyle={{ width: "100%", height: "100%" }}>
             <div
-              id="MapTiles"
+              id="CityTiles"
               className={style.Tiles}>
-              <MapTilesClient
-                joinedMapTiles={joinedMapTiles}
+              <CityTilesClient
+                cityId={cityId}
+                joinedCityTiles={joinedCityTiles}
                 terrainTypes={terrainTypes}
                 landscapeTypes={landscapeTypes}
               />
             </div>
           </TransformComponent>
         </TransformWrapper>
-        {isMounted && mapTilesActionStatus != EMapTilesActionStatus.Inactive && createPortal(<ModalBottomCenterBarHandling />, document.body)}
         {isMounted && createPortal(<ModalLeftTopHandling></ModalLeftTopHandling>, document.body)}
       </div>
     </>

@@ -1,18 +1,22 @@
 "use client"
 import { TPlayerVisibleMapData, TPlayerVisibleMapDataById } from "@/db/postgresMainDatabase/schemas/map/functions/playerVisibleMapData"
 import { arrayToObjectKeysId } from "@/methods/functions/converters"
-import { playerPositionMapTileAtom, playerVisibleMapDataAtom } from "@/store/atoms"
+import { playerPositionMapTileCoordinatesAtom, playerVisibleMapDataAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 import { useSession } from "next-auth/react"
 import { useEffect } from "react"
 import useSWR from "swr"
 
+export type TTileCoordinates = {
+  x: number
+  y: number
+}
 export function useFetchPlayerVisibleMapData() {
   const session = useSession()
   const playerId = session?.data?.user.playerId
 
   const setPlayerVisibleMapData = useSetAtom(playerVisibleMapDataAtom)
-  const setPlayerPositionMapTile = useSetAtom(playerPositionMapTileAtom)
+  const setPlayerPositionMapTile = useSetAtom(playerPositionMapTileCoordinatesAtom)
   const { data, error, isLoading } = useSWR(`/api/map-tiles/player-visible-map-data/${playerId}`, { refreshInterval: 3000 })
 
   useEffect(() => {

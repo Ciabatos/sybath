@@ -1,7 +1,7 @@
 "use server"
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 
-export type TMapTile = {
+export type TMapTiles = {
   x: number
   y: number
   terrain_type_id: number
@@ -11,7 +11,7 @@ export type TMapTile = {
 export async function getMapTiles() {
   try {
     const result = await query("SELECT * FROM map.map_tiles")
-    return result.rows as TMapTile[]
+    return result.rows as TMapTiles[]
   } catch (error) {
     console.error("Error fetching getMapTiles:", error)
     throw new Error("Failed to fetch getMapTiles")

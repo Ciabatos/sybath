@@ -15,7 +15,7 @@ export default function ModalMapTilesDistrictActionBar() {
     <div>
       <div className={styles.modalHeader}>
         <div className={styles.modalTitle}>
-          Player Actions on Tile {clickedTile?.x}, {clickedTile?.y}
+          Player Actions on Tile {clickedTile?.mapTile.x}, {clickedTile?.mapTile.y}
         </div>
       </div>
 

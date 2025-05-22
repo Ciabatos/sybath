@@ -1,13 +1,13 @@
 import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
-import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
+import { TJoinedMapTileById } from "@/methods/functions/joinMapTiles"
 import { useJoinMapTiles } from "@/methods/hooks/mapTiles/useJoinMapTiles"
 import { joinedMapTilesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { useHydrateAtoms } from "jotai/utils"
 
 interface Props {
-  joinedMapTiles: Record<string, TJoinedMapTile>
+  joinedMapTiles: TJoinedMapTileById
   terrainTypes: TMapTerrainTypesById
   landscapeTypes: TMapLandscapeTypesById
 }

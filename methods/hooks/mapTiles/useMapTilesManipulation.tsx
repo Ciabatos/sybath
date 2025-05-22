@@ -5,17 +5,12 @@ import { clickedTileAtom, mapTilesActionStatusAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { useAtom, useSetAtom } from "jotai"
 
-export type TTileCoordinates = {
-  x: number
-  y: number
-}
-
 export function useMapTileManipulation() {
   const setClickedTile = useSetAtom(clickedTileAtom)
   const [statusModalBottomCenterBar, setStatusModalBottomCenterBar] = useAtom(mapTilesActionStatusAtom)
 
-  function setCoordinatesOnClick(x: number, y: number) {
-    setClickedTile({ x, y })
+  function setCoordinatesOnClick(tile: TJoinedMapTile) {
+    setClickedTile(tile)
   }
 
   function handleClickOnMapTile(tile: TJoinedMapTile) {
@@ -24,7 +19,7 @@ export function useMapTileManipulation() {
       statusModalBottomCenterBar === EMapTilesActionStatus.GuardAreaAction ||
       statusModalBottomCenterBar === EMapTilesActionStatus.UseAbilityAction
     ) {
-      setCoordinatesOnClick(tile.mapTile.x, tile.mapTile.y)
+      setCoordinatesOnClick(tile)
     } else if (tile.cities?.name) {
       showCityActionList(tile)
     } else if (tile.districts?.name) {
@@ -32,13 +27,13 @@ export function useMapTileManipulation() {
     } else if (tile.playerVisibleMapData?.player_id) {
       showPlayerActionList(tile)
     } else {
-      setCoordinatesOnClick(tile.mapTile.x, tile.mapTile.y)
+      setCoordinatesOnClick(tile)
       setStatusModalBottomCenterBar(EMapTilesActionStatus.Inactive)
     }
   }
 
   function showPlayerActionList(tile: TJoinedMapTile) {
-    setCoordinatesOnClick(tile.mapTile.x, tile.mapTile.y)
+    setCoordinatesOnClick(tile)
     //prettier-ignore
     if (statusModalBottomCenterBar === EMapTilesActionStatus.Inactive) {
 	  setStatusModalBottomCenterBar(EMapTilesActionStatus.PlayerActionList)
@@ -46,7 +41,7 @@ export function useMapTileManipulation() {
   }
 
   function showCityActionList(tile: TJoinedMapTile) {
-    setCoordinatesOnClick(tile.mapTile.x, tile.mapTile.y)
+    setCoordinatesOnClick(tile)
     //prettier-ignore
     if (statusModalBottomCenterBar === EMapTilesActionStatus.Inactive) {
 	  setStatusModalBottomCenterBar(EMapTilesActionStatus.CityActionList)
@@ -54,7 +49,7 @@ export function useMapTileManipulation() {
   }
 
   function showDistrictActionList(tile: TJoinedMapTile) {
-    setCoordinatesOnClick(tile.mapTile.x, tile.mapTile.y)
+    setCoordinatesOnClick(tile)
     //prettier-ignore
     if (statusModalBottomCenterBar === EMapTilesActionStatus.Inactive) {
 	  setStatusModalBottomCenterBar(EMapTilesActionStatus.DistrictActionList)

@@ -13,6 +13,5 @@ export function useFetchDistricts() {
   useEffect(() => {
     const districtByCoordinates = data ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", data) as TDistrictsByMapCoordinates) : {}
     setDistrictsAtom(districtByCoordinates)
-    console.log("districts", districtByCoordinates)
   }, [data, error, isLoading, setDistrictsAtom])
 }

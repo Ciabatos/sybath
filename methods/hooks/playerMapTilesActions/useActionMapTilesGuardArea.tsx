@@ -18,9 +18,9 @@ export function useActionMapTilesGuardArea() {
 
   useEffect(() => {
     if (startingPoint && clickedTile) {
-      const movmentPath = pathFromPointToPoint(startingPoint.x, startingPoint.y, clickedTile.x, clickedTile.y, 0)
+      const movmentPath = pathFromPointToPoint(startingPoint.mapTile.x, startingPoint.mapTile.y, clickedTile.mapTile.x, clickedTile.mapTile.y, 0)
       setMapTilesMovmentPath(movmentPath)
-      const guardArea = areaFromPoint(clickedTile.x, clickedTile.y, 1)
+      const guardArea = areaFromPoint(clickedTile.mapTile.x, clickedTile.mapTile.y, 1)
       setMapTilesGuardArea(guardArea)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -2,12 +2,12 @@ import { TPlayerVisibleMapData, TPlayerVisibleMapDataById } from "@/db/postgresM
 import { TCities, TCitiesByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/tables/cities"
 import { TDistricts, TDistrictsByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/tables/districts"
 import { TMapLandscapeTypes, TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
-import type { TMapTile } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
+import type { TMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
 import type { TMapTerrainTypes, TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
 import { produce } from "immer"
 
 export interface TJoinedMapTile {
-  mapTile: TMapTile
+  mapTile: TMapTiles
   terrainTypes: TMapTerrainTypes
   landscapeTypes?: TMapLandscapeTypes
   cities?: TCities
@@ -19,20 +19,20 @@ export interface TJoinedMapTile {
 export type TJoinedMapTileById = Record<string, TJoinedMapTile>
 
 export function joinMapTiles(
-  tiles: TMapTile[],
+  tiles: TMapTiles[],
   terrainTypes: TMapTerrainTypesById,
   landscapeTypes: TMapLandscapeTypesById,
   cities: TCitiesByMapCoordinates,
   districts: TDistrictsByMapCoordinates,
   playerVisibleMapData: TPlayerVisibleMapDataById,
   options: {
-    oldTilesToUpdate?: Record<string, TJoinedMapTile>
+    oldTilesToUpdate?: TJoinedMapTileById
   } = {},
-): Record<string, TJoinedMapTile> {
+): TJoinedMapTileById {
   const { oldTilesToUpdate } = options
 
   // to jest funkcja pomocnicza dla bloku poniżej
-  const createOrUpdateTile = (tile: TMapTile): TJoinedMapTile => {
+  const createOrUpdateTile = (tile: TMapTiles): TJoinedMapTile => {
     const terrain = terrainTypes[tile.terrain_type_id]
     const landscape = tile.landscape_type_id != null ? landscapeTypes[tile.landscape_type_id] : undefined
     const city = cities?.[tile.x + "," + tile.y]

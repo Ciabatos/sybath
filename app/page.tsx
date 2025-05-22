@@ -1,3 +1,4 @@
+"use server"
 import SignUp from "@/components/SignUp"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"

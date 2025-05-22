@@ -15,7 +15,7 @@ export function useActionMapTilesMovement() {
 
   useEffect(() => {
     if (startingPoint && clickedTile) {
-      const movmentPath = pathFromPointToPoint(startingPoint.x, startingPoint.y, clickedTile.x, clickedTile.y, 0)
+      const movmentPath = pathFromPointToPoint(startingPoint.mapTile.x, startingPoint.mapTile.y, clickedTile.mapTile.x, clickedTile.mapTile.y, 0)
       setMapTilesMovmentPath(movmentPath)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
