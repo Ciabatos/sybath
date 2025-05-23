@@ -1,14 +1,19 @@
 "use client"
 import { skillsAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import useSWR from "swr"
 
 export function useFetchSkills() {
   const setSkills = useSetAtom(skillsAtom)
-  const { data, error, isLoading } = useSWR(`/api/skills`)
+  const { data } = useSWR(`/api/skills`)
+
+  const prevDataRef = useRef<unknown>(null)
 
   useEffect(() => {
-    setSkills(data)
-  }, [data, error, isLoading])
+    if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
+      setSkills(data)
+      prevDataRef.current = data
+    }
+  }, [data])
 }

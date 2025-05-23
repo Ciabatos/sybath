@@ -3,15 +3,20 @@ import { TDistrictsByMapCoordinates } from "@/db/postgresMainDatabase/schemas/ma
 import { arrayToObjectKeysId } from "@/methods/functions/converters"
 import { districtsAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import useSWR from "swr"
 
 export function useFetchDistricts() {
   const setDistrictsAtom = useSetAtom(districtsAtom)
-  const { data, error, isLoading } = useSWR("/api/districts", { refreshInterval: 1, revalidateOnFocus: true })
+  const { data } = useSWR("/api/districts", { refreshInterval: 3000 })
+
+  const prevDataRef = useRef<unknown>(null)
 
   useEffect(() => {
-    const districtByCoordinates = data ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", data) as TDistrictsByMapCoordinates) : {}
-    setDistrictsAtom(districtByCoordinates)
-  }, [data, error, isLoading, setDistrictsAtom])
+    if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
+      const districtByCoordinates = data ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", data) as TDistrictsByMapCoordinates) : {}
+      setDistrictsAtom(districtByCoordinates)
+      prevDataRef.current = data
+    }
+  }, [data])
 }

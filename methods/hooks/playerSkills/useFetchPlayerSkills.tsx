@@ -2,7 +2,7 @@
 import { playerSkillsAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 import { useSession } from "next-auth/react"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import useSWR from "swr"
 
 export function useFetchPlayerSkills() {
@@ -10,9 +10,14 @@ export function useFetchPlayerSkills() {
   const playerId = session?.data?.user.playerId
 
   const setPlayerSkills = useSetAtom(playerSkillsAtom)
-  const { data, error, isLoading } = useSWR(`/api/players/${playerId}/skills`)
+  const { data } = useSWR(`/api/players/${playerId}/skills`)
+
+  const prevDataRef = useRef<unknown>(null)
 
   useEffect(() => {
-    setPlayerSkills(data)
-  }, [data, error, isLoading])
+    if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
+      setPlayerSkills(data)
+      prevDataRef.current = data
+    }
+  }, [data])
 }

@@ -4,7 +4,7 @@ import { usePlayerSkills } from "@/methods/hooks/playerSkills/usePlayerSkills"
 
 export default function PlayerSkills() {
   const { playerSkills } = usePlayerSkills()
-  console.log("PlayerSkills", playerSkills)
+
   return (
     <div
       className="inventory-grid"

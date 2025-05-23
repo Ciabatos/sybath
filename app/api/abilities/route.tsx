@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { auth } from "@/auth"
 import { getAbilities } from "@/db/postgresMainDatabase/schemas/players/tables/abilities"
+import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
@@ -16,8 +17,14 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
   try {
     const result = await getAbilities()
+    const etag = crypto.createHash("sha1").update(JSON.stringify(result)).digest("hex")
+    const clientEtag = request.headers.get("if-none-match")
 
-    return NextResponse.json(result)
+    if (clientEtag === etag) {
+      return new NextResponse(null, { status: 304, headers: { ETag: etag } })
+    }
+
+    return NextResponse.json(result, { headers: { ETag: etag } })
   } catch (error) {
     return NextResponse.json({ success: false, error: error })
   }

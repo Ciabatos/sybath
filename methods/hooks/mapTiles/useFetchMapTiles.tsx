@@ -1,14 +1,18 @@
 "use client"
 import { mapTilesAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import useSWR from "swr"
 
 export function useFetchMapTiles() {
   const setMapTiles = useSetAtom(mapTilesAtom)
-  const { data, error, isLoading } = useSWR("/api/map-tiles", { refreshInterval: 3000 })
+  const { data } = useSWR("/api/map-tiles", { refreshInterval: 3000 })
+  const prevDataRef = useRef<unknown>(null)
 
   useEffect(() => {
-    setMapTiles(data)
-  }, [data, error, isLoading, setMapTiles])
+    if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
+      setMapTiles(data)
+      prevDataRef.current = data
+    }
+  }, [data])
 }

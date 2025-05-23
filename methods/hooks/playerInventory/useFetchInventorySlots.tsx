@@ -2,7 +2,7 @@
 import { inventorySlotsAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 import { useSession } from "next-auth/react"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import useSWR from "swr"
 
 export function useFetchInventorySlots() {
@@ -10,9 +10,14 @@ export function useFetchInventorySlots() {
   const playerId = session?.data?.user.playerId
 
   const setInventorySlots = useSetAtom(inventorySlotsAtom)
-  const { data, error, isLoading } = useSWR(`/api/players/${playerId}/inventory-slots`)
+  const { data } = useSWR(`/api/players/${playerId}/inventory-slots`)
+
+  const prevDataRef = useRef<unknown>(null)
 
   useEffect(() => {
-    setInventorySlots(data)
-  }, [data, error, isLoading])
+    if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
+      setInventorySlots(data)
+      prevDataRef.current = data
+    }
+  }, [data])
 }
