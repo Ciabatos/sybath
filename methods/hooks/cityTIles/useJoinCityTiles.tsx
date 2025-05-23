@@ -1,16 +1,23 @@
 "use client"
 import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
-import { joinCityTiles } from "@/methods/functions/joinCityTiles"
+import { joinCityTiles, TJoinedCityTilesById } from "@/methods/functions/joinCityTiles"
 import { useFetchCityTiles } from "@/methods/hooks/cityTIles/useFetchCityTiles"
 import { cityTilesAtom, joinedCityTilesAtom } from "@/store/atoms"
-import { useAtom, useAtomValue } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 
-export function useJoinCityTiles(cityId: number, terrainTypes: TMapTerrainTypesById, landscapeTypes: TMapLandscapeTypesById) {
+interface Props {
+  cityId: number
+  joinedCityTiles: TJoinedCityTilesById
+  terrainTypes: TMapTerrainTypesById
+  landscapeTypes: TMapLandscapeTypesById
+}
+
+export function useJoinCityTiles({ cityId, joinedCityTiles, terrainTypes, landscapeTypes }: Props) {
   useFetchCityTiles(cityId)
 
-  const [joinedCityTiles, setJoinedCityTiles] = useAtom(joinedCityTilesAtom)
+  const setJoinedCityTiles = useSetAtom(joinedCityTilesAtom)
   const newCityTiles = useAtomValue(cityTilesAtom)
 
   useEffect(() => {

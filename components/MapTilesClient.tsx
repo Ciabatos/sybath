@@ -4,7 +4,9 @@ import MapTile from "@/components/MapTile"
 import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
 import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
-import { useMapTilesBuildOnClient } from "@/methods/hooks/mapTiles/mapTilesBuildOnClient/useMapTilesBuildOnClient"
+import { useJoinMapTiles } from "@/methods/hooks/mapTiles/useJoinMapTiles"
+import { joinedMapTilesAtom } from "@/store/atoms"
+import { useAtomValue } from "jotai"
 
 interface Props {
   joinedMapTiles: Record<string, TJoinedMapTile>
@@ -13,7 +15,9 @@ interface Props {
 }
 
 export default function MapTilesClient({ joinedMapTiles, terrainTypes, landscapeTypes }: Props) {
-  const { newJoinedMapTilesOnClient } = useMapTilesBuildOnClient({ joinedMapTiles, terrainTypes, landscapeTypes })
+  useJoinMapTiles({ joinedMapTiles, terrainTypes, landscapeTypes })
+
+  const newJoinedMapTilesOnClient = useAtomValue(joinedMapTilesAtom)
 
   return (
     <>

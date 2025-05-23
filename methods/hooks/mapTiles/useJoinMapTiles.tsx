@@ -1,22 +1,27 @@
 "use client"
 import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
-import { joinMapTiles } from "@/methods/functions/joinMapTiles"
+import { joinMapTiles, TJoinedMapTileById } from "@/methods/functions/joinMapTiles"
 import { useFetchCities } from "@/methods/hooks/mapTiles/useFetchCities"
 import { useFetchDistricts } from "@/methods/hooks/mapTiles/useFetchDistricts"
 import { useFetchMapTiles } from "@/methods/hooks/mapTiles/useFetchMapTiles"
 import { useFetchPlayerVisibleMapData } from "@/methods/hooks/mapTiles/useFetchPlayerVisibleMapData"
 import { citiesAtom, districtsAtom, joinedMapTilesAtom, mapTilesAtom, playerVisibleMapDataAtom } from "@/store/atoms"
-import { useAtom, useAtomValue } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
+interface Props {
+  joinedMapTiles: TJoinedMapTileById
+  terrainTypes: TMapTerrainTypesById
+  landscapeTypes: TMapLandscapeTypesById
+}
 
-export function useJoinMapTiles(terrainTypes: TMapTerrainTypesById, landscapeTypes: TMapLandscapeTypesById) {
+export function useJoinMapTiles({ joinedMapTiles, terrainTypes, landscapeTypes }: Props) {
   useFetchMapTiles()
   useFetchCities()
   useFetchDistricts()
   useFetchPlayerVisibleMapData()
 
-  const [joinedMapTiles, setJoinedMapTiles] = useAtom(joinedMapTilesAtom)
+  const setJoinedMapTiles = useSetAtom(joinedMapTilesAtom)
   const newMapTiles = useAtomValue(mapTilesAtom)
   const cities = useAtomValue(citiesAtom)
   const districts = useAtomValue(districtsAtom)
