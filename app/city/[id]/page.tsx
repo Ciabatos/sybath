@@ -1,6 +1,7 @@
 "use server"
 import { auth } from "@/auth"
 import CityWrapper from "@/components/CityWrapper"
+import { getCityBuildings, TCityBuildingsMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/tables/buildings"
 import { getCityTiles } from "@/db/postgresMainDatabase/schemas/map/tables/cityTiles"
 import { getMapLandscapeTypes, TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import { getMapTerrainTypes, TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
@@ -9,7 +10,7 @@ import { getInventorySlots } from "@/db/postgresMainDatabase/schemas/players/tab
 import { getPlayerAbilities } from "@/db/postgresMainDatabase/schemas/players/tables/playerAbilities"
 import { getPlayerSkills } from "@/db/postgresMainDatabase/schemas/players/tables/playerSkills"
 import { getSkills } from "@/db/postgresMainDatabase/schemas/players/tables/skills"
-import { arrayToObjectKeyId } from "@/methods/functions/converters"
+import { arrayToObjectKeyId, arrayToObjectKeysId } from "@/methods/functions/converters"
 import { joinCityTiles } from "@/methods/functions/joinCityTiles"
 import { SWRProvider } from "@/providers/swr-provider"
 import styles from "./page.module.css"
@@ -32,10 +33,11 @@ export default async function CityPage({ params }: { params: TypeParams }) {
     return null
   }
 
-  const [cityTiles, mapTerrainTypes, mapLandscapeTypes, skills, abilities, inventorySlots, playerSkills, playerAbilities] = await Promise.all([
+  const [cityTiles, mapTerrainTypes, mapLandscapeTypes, cityBuildings, skills, abilities, inventorySlots, playerSkills, playerAbilities] = await Promise.all([
     getCityTiles(cityId),
     getMapTerrainTypes(),
     getMapLandscapeTypes(),
+    getCityBuildings(cityId),
     getSkills(),
     getAbilities(),
     getInventorySlots(playerId),
@@ -51,7 +53,9 @@ export default async function CityPage({ params }: { params: TypeParams }) {
 
   const landscapeTypes = arrayToObjectKeyId("id", mapLandscapeTypes) as TMapLandscapeTypesById
 
-  const joinedCityTiles = joinCityTiles(cityTiles, terrainTypes, landscapeTypes)
+  const buildings = cityBuildings ? (arrayToObjectKeysId("city_tile_x", "city_tile_y", cityBuildings) as TCityBuildingsMapCoordinates) : {}
+
+  const joinedCityTiles = joinCityTiles(cityTiles, terrainTypes, landscapeTypes, buildings)
 
   return (
     <div className={styles.main}>
@@ -61,6 +65,7 @@ export default async function CityPage({ params }: { params: TypeParams }) {
             "/api/skills": skills,
             "/api/abilities": abilities,
             ...(cityId && { [`/api/cities/${cityId}/city-tiles`]: cityTiles }),
+            ...(cityId && { [`/api/cities/${cityId}/buildings`]: cityBuildings }),
             ...(playerId && { [`/api/players/${playerId}/inventory-slots`]: inventorySlots }),
             ...(playerId && { [`/api/players/${playerId}/skills`]: playerSkills }),
             ...(playerId && { [`/api/players/${playerId}/abilities`]: playerAbilities }),

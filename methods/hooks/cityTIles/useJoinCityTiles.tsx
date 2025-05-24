@@ -2,9 +2,10 @@
 import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
 import { joinCityTiles, TJoinedCityTilesById } from "@/methods/functions/joinCityTiles"
+import { useFetchBuildings } from "@/methods/hooks/cityTIles/useFetchBuildings"
 import { useFetchCityTiles } from "@/methods/hooks/cityTIles/useFetchCityTiles"
-import { cityTilesAtom, joinedCityTilesAtom } from "@/store/atoms"
-import { useAtomValue, useSetAtom } from "jotai"
+import { buildingsAtom, cityTilesAtom, joinedCityTilesAtom } from "@/store/atoms"
+import { useAtom, useAtomValue } from "jotai"
 import { useEffect } from "react"
 
 interface Props {
@@ -16,15 +17,19 @@ interface Props {
 
 export function useJoinCityTiles({ cityId, joinedCityTiles, terrainTypes, landscapeTypes }: Props) {
   useFetchCityTiles(cityId)
+  useFetchBuildings(cityId)
 
-  const setJoinedCityTiles = useSetAtom(joinedCityTilesAtom)
+  const [newJoinedCityTilesOnClient, setJoinedCityTiles] = useAtom(joinedCityTilesAtom)
   const newCityTiles = useAtomValue(cityTilesAtom)
+  const buildings = useAtomValue(buildingsAtom)
 
   useEffect(() => {
     if (newCityTiles) {
-      const updatedTiles = joinCityTiles(newCityTiles, terrainTypes, landscapeTypes, { oldTilesToUpdate: joinedCityTiles })
+      const updatedTiles = joinCityTiles(newCityTiles, terrainTypes, landscapeTypes, buildings, { oldTilesToUpdate: joinedCityTiles })
       setJoinedCityTiles(updatedTiles)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [newCityTiles])
+  }, [newCityTiles, buildings])
+
+  return { newJoinedCityTilesOnClient }
 }

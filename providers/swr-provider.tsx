@@ -10,7 +10,7 @@ const fetchWithETag = async (url: string) => {
   if (etag) headers["If-None-Match"] = etag
 
   const res = await fetch(url, { headers })
-  if (res.status === 304) return undefined
+  if (res.status === 304) throw new Error("304 Not Modified")
 
   const newEtag = res.headers.get("etag")
   if (newEtag) etagMap.set(url, newEtag)

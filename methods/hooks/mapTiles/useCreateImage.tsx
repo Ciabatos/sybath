@@ -41,9 +41,13 @@ export function useCreateImage() {
   function creatDistrictsImage(imageUrl: string | undefined) {
     return createImageFromUrl(imageUrl, "districstPicture")
   }
+
+  function creatBuildingsImage(imageUrl: string | undefined) {
+    return createImageFromUrl(imageUrl, "buildingsPicture")
+  }
   const combineImages = (...images: string[]): string => {
     return images.filter(Boolean).join(", ")
   }
 
-  return { createPlayerImage, createLandscapeImage, createBackgroundImage, createCitiesImage, creatDistrictsImage, combineImages }
+  return { createPlayerImage, createLandscapeImage, createBackgroundImage, createCitiesImage, creatDistrictsImage, creatBuildingsImage, combineImages }
 }

@@ -5,8 +5,6 @@ import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/ta
 import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
 import { TJoinedCityTilesById } from "@/methods/functions/joinCityTiles"
 import { useJoinCityTiles } from "@/methods/hooks/cityTIles/useJoinCityTiles"
-import { joinedCityTilesAtom } from "@/store/atoms"
-import { useAtomValue } from "jotai"
 
 interface Props {
   cityId: number
@@ -16,8 +14,8 @@ interface Props {
 }
 
 export default function CityTilesClient({ cityId, joinedCityTiles, terrainTypes, landscapeTypes }: Props) {
-  useJoinCityTiles({ cityId, joinedCityTiles, terrainTypes, landscapeTypes })
-  const newJoinedCityTilesOnClient = useAtomValue(joinedCityTilesAtom)
+  const { newJoinedCityTilesOnClient } = useJoinCityTiles({ cityId, joinedCityTiles, terrainTypes, landscapeTypes })
+
   return (
     <>
       {Object.entries(newJoinedCityTilesOnClient).map(([key, tile]) => (
