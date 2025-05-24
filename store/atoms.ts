@@ -1,6 +1,6 @@
 "use client"
 
-import { TPlayerVisibleMapDataById } from "@/db/postgresMainDatabase/schemas/map/functions/playerVisibleMapData"
+import { TPlayerVisibleMapData, TPlayerVisibleMapDataById } from "@/db/postgresMainDatabase/schemas/map/functions/playerVisibleMapData"
 import { TCitiesByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/tables/cities"
 import { TCityTiles } from "@/db/postgresMainDatabase/schemas/map/tables/cityTiles"
 import { TDistrictsByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/tables/districts"
@@ -13,7 +13,6 @@ import { TPlayerSkills } from "@/db/postgresMainDatabase/schemas/players/tables/
 import { TSkills } from "@/db/postgresMainDatabase/schemas/players/tables/skills"
 import { TJoinedCityTilesById } from "@/methods/functions/joinCityTiles"
 import { TJoinedMapTile, TJoinedMapTileById } from "@/methods/functions/joinMapTiles"
-import { TTileCoordinates } from "@/methods/hooks/mapTiles/useFetchPlayerVisibleMapData"
 import { TMovmentPath } from "@/methods/hooks/mapTiles/useMapTilesPath"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { atom } from "jotai"
@@ -39,7 +38,7 @@ export const abilitiesAtom = atom<TAbilities[]>([])
 export const abilityRequirementsAtom = atom<TAbilityRequirements[]>([])
 
 //Player
-export const playerPositionMapTileCoordinatesAtom = atom<TTileCoordinates>({ x: 0, y: 0 })
+export const playerPositionMapTileAtom = atom<TPlayerVisibleMapData>()
 export const inventorySlotsAtom = atom<TInventorySlots[]>([])
 export const playerSkillsAtom = atom<TPlayerSkills[]>([])
 export const playerAbilitiesAtom = atom<TPlayerAbilities[]>([])

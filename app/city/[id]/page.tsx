@@ -43,6 +43,10 @@ export default async function CityPage({ params }: { params: TypeParams }) {
     getPlayerAbilities(playerId),
   ])
 
+  if (!cityTiles || cityTiles.length === 0) {
+    return <div>City dont exsists</div>
+  }
+
   const terrainTypes = arrayToObjectKeyId("id", mapTerrainTypes) as TMapTerrainTypesById
 
   const landscapeTypes = arrayToObjectKeyId("id", mapLandscapeTypes) as TMapLandscapeTypesById

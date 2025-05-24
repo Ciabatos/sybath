@@ -11,7 +11,7 @@ export default function ModalMapTilesActionMovment() {
         <div className={styles.modalTitle}>
           <p>Select Tile to move to from tiles</p>
           <p>
-            Movment path : {startingPoint?.x}, {startingPoint?.y} to {endingPoint?.x}, {endingPoint?.y}
+            Movment path : {startingPoint?.mapTile.x}, {startingPoint?.mapTile.y} to {endingPoint?.mapTile.x}, {endingPoint?.mapTile.y}
           </p>
         </div>
         <div className={styles.actionGrid}>

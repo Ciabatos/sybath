@@ -3,12 +3,18 @@ import { auth } from "@/auth"
 import { getAbilityRequirements } from "@/db/postgresMainDatabase/schemas/players/tables/abilityRequirements"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
+import { z } from "zod"
 
-type TypeParams = {
-  abilityId: number
-}
+const typeParamsSchema = z.object({
+  id: z.coerce.number(),
+})
+
+type TypeParams = z.infer<typeof typeParamsSchema>
 
 export async function GET(request: NextRequest, { params }: { params: TypeParams }): Promise<NextResponse> {
+  const paramsFromPromise = await params
+  const parsedParamsZod = typeParamsSchema.parse(paramsFromPromise)
+
   const session = await auth()
   const sessionPlayerId = session?.user?.playerId
 
@@ -16,7 +22,8 @@ export async function GET(request: NextRequest, { params }: { params: TypeParams
     return NextResponse.json({ success: false })
   }
 
-  const abilityId = (await params).abilityId
+  const abilityId = parsedParamsZod.id
+
   // const searchQueryParams = request.nextUrl.searchParams
   // const login = searchQueryParams.get("login")
 

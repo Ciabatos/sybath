@@ -1,7 +1,6 @@
 "use client"
 
-import { mapTilesAbilityAction } from "@/methods/actions/mapTilesAbilityAction"
-import { TTileCoordinates } from "@/methods/hooks/mapTiles/useFetchPlayerVisibleMapData"
+import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
 import { useFetchPlayerAbilities } from "@/methods/hooks/playerAbility/useFetchPlayerAbilities"
 import { mapTilesActionStatusAtom, playerAbilitiesAtom, selectedAbilityIdAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
@@ -19,12 +18,12 @@ export function usePlayerAbility() {
     setOpenModalBottomCenterBar(EMapTilesActionStatus.UseAbilityAction)
   }
 
-  function handleUsePlayerAbility(abilityId: number | undefined, clickedTile: TTileCoordinates) {
+  function handleUsePlayerAbility(abilityId: number | undefined, clickedTile: TJoinedMapTile) {
     if (abilityId === undefined) {
       setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
       return
     }
-    mapTilesAbilityAction(abilityId, clickedTile)
+    // mapTilesAbilityAction(abilityId, clickedTile)
     setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
   }
 

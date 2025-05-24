@@ -10,9 +10,9 @@ export default function ModalMapTilesActionAbility() {
     <div>
       <div className={styles.modalHeader}>
         <div className={styles.modalTitle}>
-          <p>Select Options for Ability {abilityRequirements.map((ability) => ability.requirement_type)}</p>
+          <p>Select Options for Ability {abilityRequirements?.map((ability) => ability.requirement_type)}</p>
           <p>
-            Use Ability on tile : {endingPoint?.x}, {endingPoint?.y}
+            Use Ability on tile : {endingPoint?.mapTile.x}, {endingPoint?.mapTile.y}
           </p>
         </div>
         <div className={styles.actionGrid}>

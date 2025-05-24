@@ -12,7 +12,7 @@ export default function ModalMapTilesActionGuardArea() {
         <div className={styles.modalTitle}>
           <p>Select Options for Guard Area</p>
           <p>
-            Guard Area Radius from {endingPoint?.x}, {endingPoint?.y}
+            Guard Area Radius from {endingPoint?.mapTile.x}, {endingPoint?.mapTile.y}
           </p>
         </div>
         <div className={styles.actionGrid}>

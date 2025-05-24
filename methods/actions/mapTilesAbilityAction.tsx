@@ -1,8 +1,8 @@
 "use server"
 
-import { TTileCoordinates } from "@/methods/hooks/useMapTileClick"
+import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
 
-export async function mapTilesAbilityAction(abilityId: number, clickedTile: TTileCoordinates) {
+export async function mapTilesAbilityAction(abilityId: number, clickedTile: TJoinedMapTile) {
   try {
   } catch (error) {
     console.error("Error validateAbilityAction :", error)
