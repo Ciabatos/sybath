@@ -1,4 +1,4 @@
-import ModalBottomCenterBarHandling from "@/components/Modals/ModalBottomCenterBar/ModalBottomCenterBarHandling"
+import ModalBottomCenterBarHandling from "@/components/modals/modalBottomCenterBar/ModalBottomCenterBarHandling"
 import { mapTilesActionStatusAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { useAtomValue } from "jotai"

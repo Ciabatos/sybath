@@ -1,5 +1,5 @@
 "use client"
-import styles from "@/components/styles/Modals/ModalBottomCenterBar/ModalMapTilesActionMovment.module.css"
+import styles from "@/components/Modals/ModalBottomCenterBar/styles/ModalMapTilesActionMovment.module.css"
 import { useActionMapTilesMovement } from "@/methods/hooks/playerMapTilesActions/useActionMapTilesMovement"
 
 export default function ModalMapTilesActionMovment() {

@@ -1,6 +1,7 @@
 "use server"
 import { auth } from "@/auth"
-import MapWrapper from "@/components/MapWrapper"
+
+import MapWrapper from "@/components/map/MapWrapper"
 import { getPlayerVisibleMapData, TPlayerVisibleMapDataById } from "@/db/postgresMainDatabase/schemas/map/functions/playerVisibleMapData"
 import { getMapCities, TCitiesByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/tables/cities"
 import { getMapDistricts, TDistrictsByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/tables/districts"

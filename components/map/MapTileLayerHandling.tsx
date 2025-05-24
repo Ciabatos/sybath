@@ -1,7 +1,7 @@
 "use client"
 
-import MapTileLayerGuardAreaAction from "@/components/MapTileLayerGuardAreaAction"
-import MapTileLayerMovementAction from "@/components/MapTileLayerMovmentAction"
+import MapTileLayerGuardAreaAction from "@/components/map/MapTileLayerGuardAreaAction"
+import MapTileLayerMovementAction from "@/components/map/MapTileLayerMovmentAction"
 import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
 import { mapTilesActionStatusAtom, mapTilesGuardAreaAtom, mapTilesMovmentPathAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"

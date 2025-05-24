@@ -1,0 +1,54 @@
+.BackgroundImage {
+  position: relative;
+  border: 0.05vmin solid rgb(223, 61, 61);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: black;
+  aspect-ratio: 1;
+  width: 100px;
+  height: 100px;
+}
+
+.PlayerImage {
+  position: absolute;
+  transform: rotate(35deg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Ensure clicks pass through to the parent */
+}
+
+.CitiesImage {
+  position: absolute;
+  transform: rotate(40deg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Ensure clicks pass through to the parent */
+}
+
+.DistrictsImage {
+  position: absolute;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Ensure clicks pass through to the parent */
+}
+
+.BuildingsImage {
+  position: absolute;
+  transform: rotate(40deg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Ensure clicks pass through to the parent */
+}

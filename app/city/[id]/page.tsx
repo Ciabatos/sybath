@@ -1,6 +1,7 @@
 "use server"
 import { auth } from "@/auth"
-import CityWrapper from "@/components/CityWrapper"
+
+import CityWrapper from "@/components/city/CityWrapper"
 import { getCityBuildings, TCityBuildingsMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/tables/buildings"
 import { getCityTiles } from "@/db/postgresMainDatabase/schemas/map/tables/cityTiles"
 import { getMapLandscapeTypes, TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"

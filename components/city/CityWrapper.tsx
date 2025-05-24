@@ -1,6 +1,7 @@
 "use client"
-import CityTilesClient from "@/components/CityTilesClient"
-import ModalLeftTopHandling from "@/components/Modals/ModalLeftTop/ModalLeftTopHandling"
+
+import CityTilesClient from "@/components/city/CityTilesClient"
+import ModalLeftTopHandling from "@/components/modals/modalLeftTop/ModalLeftTopHandling"
 import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
 import { TJoinedCityTilesById } from "@/methods/functions/joinCityTiles"

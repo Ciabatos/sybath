@@ -7,7 +7,6 @@ export type TCityBuildings = {
   city_tile_x: number
   city_tile_y: number
   name: string
-  owner: number
   type_name: string
   image_url: string
 }

@@ -1,4 +1,4 @@
-import ModalLeftTopHandling from "@/components/Modals/ModalLeftTop/ModalLeftTopHandling"
+import ModalLeftTopHandling from "@/components/modals/modalLeftTop/ModalLeftTopHandling"
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 

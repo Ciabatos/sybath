@@ -1,9 +1,9 @@
 "use client"
-import PartyInventory from "@/components/Modals/ModalLeftTop/PartyInventory"
-import PlayerAbilities from "@/components/Modals/ModalLeftTop/PlayerAbilities"
-import PlayerInventory from "@/components/Modals/ModalLeftTop/PlayerInventory"
-import PlayerSkills from "@/components/Modals/ModalLeftTop/PlayerSkills"
-import styles from "@/components/styles/ModalPlayerPanel.module.css" // Import the CSS module
+import PartyInventory from "@/components/modals/modalLeftTop/PartyInventory"
+import PlayerAbilities from "@/components/modals/modalLeftTop/PlayerAbilities"
+import PlayerInventory from "@/components/modals/modalLeftTop/PlayerInventory"
+import PlayerSkills from "@/components/modals/modalLeftTop/PlayerSkills"
+import styles from "@/components/Modals/ModalLeftTop/styles/ModalPlayerPanel.module.css" // Import the CSS module
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"

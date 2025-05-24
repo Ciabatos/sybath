@@ -1,7 +1,8 @@
 "use client"
-import MapTilesClient from "@/components/MapTilesClient"
-import BottomCenterPortal from "@/components/Modals/BottomCenterPortal"
-import LeftTopPortal from "@/components/Modals/LeftTopPortal"
+
+import MapTilesClient from "@/components/map/MapTilesClient"
+import BottomCenterPortal from "@/components/modals/BottomCenterPortal"
+import LeftTopPortal from "@/components/modals/LeftTopPortal"
 import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
 import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"

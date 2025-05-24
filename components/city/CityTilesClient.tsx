@@ -1,6 +1,6 @@
 "use client"
 
-import CityTile from "@/components/CityTile"
+import CityTile from "@/components/city/CityTile"
 import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
 import { TJoinedCityTilesById } from "@/methods/functions/joinCityTiles"

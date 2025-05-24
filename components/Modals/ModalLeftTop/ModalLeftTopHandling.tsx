@@ -1,5 +1,6 @@
 "use client"
-import ModalPlayerPanel from "@/components/Modals/ModalLeftTop/ModalPlayerPanel"
+
+import ModalPlayerPanel from "@/components/modals/modalLeftTop/ModalPlayerPanel"
 
 export default function ModalLeftTopHandling() {
   return <ModalPlayerPanel />

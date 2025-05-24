@@ -1,6 +1,6 @@
 "use client"
 
-import styles from "@/components/styles/Modals/ModalBottomCenterBar/ModalMapTilesActionGuardArea.module.css"
+import styles from "@/components/Modals/ModalBottomCenterBar/styles/ModalMapTilesActionGuardArea.module.css"
 import { useActionMapTilesGuardArea } from "@/methods/hooks/playerMapTilesActions/useActionMapTilesGuardArea"
 
 export default function ModalMapTilesActionGuardArea() {

@@ -1,4 +1,4 @@
-import styles from "@/components/styles/Modals/ModalBottomCenterBar/ModalMapTilesActionBar.module.css"
+import styles from "@/components/Modals/ModalBottomCenterBar/styles/ModalMapTilesActionBar.module.css"
 import { Button } from "@/components/ui/button"
 import { clickedTileAtom, mapTilesActionStatusAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"

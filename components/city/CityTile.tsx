@@ -1,6 +1,6 @@
 "use client"
 
-import style from "@/components/styles/Tile.module.css"
+import style from "@/components/city/styles/Tile.module.css"
 import { TJoinedCityTiles } from "@/methods/functions/joinCityTiles"
 import { useCreateImage } from "@/methods/hooks/mapTiles/useCreateImage"
 

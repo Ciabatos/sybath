@@ -6,7 +6,6 @@ export type TDistricts = {
   map_tile_x: number
   map_tile_y: number
   name: string
-  owner: number
   type_name: string
   move_cost: number
   image_url: string
