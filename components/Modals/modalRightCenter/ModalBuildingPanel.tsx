@@ -28,8 +28,8 @@ export function ModalBuildingPanel() {
         style={{ width: "50%", maxWidth: "none" }}>
         <div className="flex h-full flex-col p-6">
           <DrawerHeader className="px-0">
-            <DrawerTitle>{clickedCityTile?.buildings?.name}</DrawerTitle>
-            <DrawerDescription>{clickedCityTile?.buildings?.type_name}</DrawerDescription>
+            <DrawerTitle>{clickedCityTile?.buildings?.type_name}</DrawerTitle>
+            <DrawerDescription>{clickedCityTile?.buildings?.name}</DrawerDescription>
           </DrawerHeader>
           <div className="flex-1 py-4">
             <div>

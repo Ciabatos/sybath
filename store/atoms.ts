@@ -32,7 +32,7 @@ export const mapTilesGuardAreaAtom = atom<TJoinedMapTile[]>([])
 export const clickedCityTileAtom = atom<TJoinedCityTiles>()
 export const cityTilesAtom = atom<TCityTiles[]>([])
 export const buildingsAtom = atom<TCityBuildingsMapCoordinates>({})
-export const cityTilesActionStatusAtom = atom<ECityTilesActionStatus>(ECityTilesActionStatus.BuildingActionList)
+export const cityTilesActionStatusAtom = atom<ECityTilesActionStatus>(ECityTilesActionStatus.Inactive)
 
 //objects
 export const joinedMapTilesAtom = atom<TJoinedMapTileById>({})
