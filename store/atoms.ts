@@ -12,9 +12,10 @@ import { TInventorySlots } from "@/db/postgresMainDatabase/schemas/players/table
 import { TPlayerAbilities } from "@/db/postgresMainDatabase/schemas/players/tables/playerAbilities"
 import { TPlayerSkills } from "@/db/postgresMainDatabase/schemas/players/tables/playerSkills"
 import { TSkills } from "@/db/postgresMainDatabase/schemas/players/tables/skills"
-import { TJoinedCityTilesById } from "@/methods/functions/joinCityTiles"
+import { TJoinedCityTiles, TJoinedCityTilesById } from "@/methods/functions/joinCityTiles"
 import { TJoinedMapTile, TJoinedMapTileById } from "@/methods/functions/joinMapTiles"
 import { TMovmentPath } from "@/methods/hooks/mapTiles/useMapTilesPath"
+import { ECityTilesActionStatus } from "@/types/enumeration/CityTilesActionStatusEnum"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { atom } from "jotai"
 
@@ -22,12 +23,16 @@ import { atom } from "jotai"
 export const clickedTileAtom = atom<TJoinedMapTile>()
 export const mapTilesAtom = atom<TMapTiles[]>([])
 export const citiesAtom = atom<TCitiesByMapCoordinates>({})
-export const buildingsAtom = atom<TCityBuildingsMapCoordinates>({})
-export const cityTilesAtom = atom<TCityTiles[]>([])
 export const districtsAtom = atom<TDistrictsByMapCoordinates>({})
 export const mapTilesActionStatusAtom = atom<EMapTilesActionStatus>(EMapTilesActionStatus.Inactive)
 export const mapTilesMovmentPathAtom = atom<TMovmentPath[]>([])
 export const mapTilesGuardAreaAtom = atom<TJoinedMapTile[]>([])
+
+//City
+export const clickedCityTileAtom = atom<TJoinedCityTiles>()
+export const cityTilesAtom = atom<TCityTiles[]>([])
+export const buildingsAtom = atom<TCityBuildingsMapCoordinates>({})
+export const cityTilesActionStatusAtom = atom<ECityTilesActionStatus>(ECityTilesActionStatus.BuildingActionList)
 
 //objects
 export const joinedMapTilesAtom = atom<TJoinedMapTileById>({})

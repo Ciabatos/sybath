@@ -1,11 +1,5 @@
-+ Chce widziec tylko swojego herosa + flagi na filtrach kogo widziec
-	jak bedzie wiecej niz jedn heroes  w jednym tiles to popup po najechaniu na to pole
-	dodatkowo po kliknieciu na tiles da sie zobaczyc wszystko co tam jest
-	
-
-
-+Modale zagniezdzic nizej zeby nie odswiezaly parenta
-+tabela BuildingOwners, CitiOwners, DistrictOwners etc
++nie uzywac Widoku - tylko funkcje bo widoczne dane nie zawsze beda wszystkie, w funkcji to wykonam a w widoku nie.
+Przyklad: pobrane dane CityTiles, nie wszystkie dane budynkow bedzie mial gracz dostepne dlatego w funkcji do GET bedzie mial rozne validacje
 
 
 +GameLoop!

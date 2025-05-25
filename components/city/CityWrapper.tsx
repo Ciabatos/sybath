@@ -1,12 +1,11 @@
 "use client"
 
 import CityTilesClient from "@/components/city/CityTilesClient"
-import ModalLeftTopHandling from "@/components/modals/modalLeftTop/ModalLeftTopHandling"
+import LeftTopPortal from "@/components/modals/LeftTopPortal"
+import RightCenterPortal from "@/components/modals/RightCenterPoratl"
 import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
 import { TJoinedCityTilesById } from "@/methods/functions/joinCityTiles"
-import { useEffect, useState } from "react"
-import { createPortal } from "react-dom"
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
 import style from "./styles/Map.module.css"
 
@@ -18,12 +17,6 @@ interface Props {
 }
 
 export default function CityWrapper({ cityId, joinedCityTiles, terrainTypes, landscapeTypes }: Props) {
-  const [isMounted, setIsMounted] = useState(false)
-
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
   // Lepszy sposób na wyliczenie maxX i maxY
   let maxX = 0
   let maxY = 0
@@ -55,7 +48,8 @@ export default function CityWrapper({ cityId, joinedCityTiles, terrainTypes, lan
             </div>
           </TransformComponent>
         </TransformWrapper>
-        {isMounted && createPortal(<ModalLeftTopHandling></ModalLeftTopHandling>, document.body)}
+        <LeftTopPortal />
+        <RightCenterPortal />
       </div>
     </>
   )

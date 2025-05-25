@@ -5,7 +5,7 @@ import { clickedTileAtom, mapTilesActionStatusAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { useAtom, useSetAtom } from "jotai"
 
-export function useMapTileManipulation() {
+export function useMapTilesManipulation() {
   const setClickedTile = useSetAtom(clickedTileAtom)
   const [statusModalBottomCenterBar, setStatusModalBottomCenterBar] = useAtom(mapTilesActionStatusAtom)
 

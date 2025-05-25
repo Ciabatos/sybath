@@ -4,7 +4,7 @@ import MapTileLayerHandling from "@/components/map/MapTileLayerHandling"
 import style from "@/components/map/styles/Tile.module.css"
 import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
 import { useCreateImage } from "@/methods/hooks/mapTiles/useCreateImage"
-import { useMapTileManipulation } from "@/methods/hooks/mapTiles/useMapTilesManipulation"
+import { useMapTilesManipulation } from "@/methods/hooks/mapTiles/useMapTilesManipulation"
 
 interface Props {
   tile: TJoinedMapTile
@@ -12,7 +12,7 @@ interface Props {
 
 export default function MapTile({ tile }: Props) {
   const { createPlayerImage, createLandscapeImage, createBackgroundImage, createCitiesImage, creatDistrictsImage, combineImages } = useCreateImage()
-  const { handleClickOnMapTile } = useMapTileManipulation()
+  const { handleClickOnMapTile } = useMapTilesManipulation()
 
   const backgroundImage = createBackgroundImage(tile.terrainTypes.image_url)
   const landscapeImage = createLandscapeImage(tile.landscapeTypes?.image_url)
