@@ -31,5 +31,5 @@ export function useFetchPlayerVisibleMapData() {
       }
       prevDataRef.current = data
     }
-  }, [data])
+  }, [data, playerId])
 }

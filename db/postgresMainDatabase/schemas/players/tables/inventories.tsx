@@ -6,6 +6,7 @@ export type TInventorySlots = {
   col: number
   inventory_container_id: number
   item_id: number | null
+  name: string | null
   quantity: number | null
 }
 

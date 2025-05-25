@@ -18,7 +18,7 @@ export function useActionMapTilesAbility() {
   const { abilityRequirements } = usePlayerAbilityRequirements()
   const { pathFromPointToPoint } = useMapTilesPath()
   const setMapTilesMovmentPath = useSetAtom(mapTilesMovmentPathAtom)
-
+  console.log(playerPositionMapTile)
   useEffect(() => {
     if (playerPositionMapTile) {
       const movmentPath = pathFromPointToPoint(

@@ -26,7 +26,7 @@ export function useMapTilesManipulation() {
       showDistrictActionList(tile)
     } else if (tile.playerVisibleMapData?.player_id) {
       showPlayerActionList(tile)
-    } else if (!tile.cities?.name && !tile.districts?.name && !tile.playerVisibleMapData?.player_id) {
+    } else if (!tile.cities?.name && !tile.districts?.name && !tile.playerVisibleMapData?.player_id && EMapTilesActionStatus.Inactive) {
       showEmptyTileActionList(tile)
     } else {
       setCoordinatesOnClick(tile)

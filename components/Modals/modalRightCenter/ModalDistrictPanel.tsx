@@ -34,6 +34,13 @@ export function ModalDistrictPanel() {
           <div className="flex-1 py-4">
             <div>
               {clickedTile?.districts?.map_tile_x} {clickedTile?.districts?.map_tile_y}
+              <p>Zalożenie, że dystrykt produkuje co jakis interwał produky </p>
+              <p>Pracuje tu full dostepnych ludzi z miasta</p>
+              <p>Gracz moze uzyc opcji aby tu pracowac</p>
+              <p>Zakładka dla Ownera</p>
+              <p>Owner moze manipulowac stawkami wynagrodzenia</p>
+              <p>Owner moze sprawdzac ekwipunek budynku</p>
+              <p>Owner moze transportowac ekwipunek</p>
             </div>
           </div>
           <DrawerFooter className="mt-auto px-0">

@@ -32,7 +32,7 @@ export default function PlayerInventory() {
             borderRadius: "4px",
             minHeight: "50px",
           }}>
-          {slot.item_id ? `Item ID: ${slot.item_id}` : "Empty"}
+          {slot.item_id ? `${slot.name}: ${slot.quantity}` : "Empty"}
         </div>
       ))}
     </div>
