@@ -9,11 +9,11 @@ import useSWR from "swr"
 
 export function useFetchPlayerVisibleMapData() {
   const session = useSession()
-  const playerId = session?.data?.user.playerId
+  const playerId = session.data?.user.playerId
 
   const setPlayerVisibleMapData = useSetAtom(playerVisibleMapDataAtom)
   const setPlayerPositionMapTile = useSetAtom(playerPositionMapTileAtom)
-  const { data } = useSWR(`/api/map-tiles/player-visible-map-data/${playerId}`, { refreshInterval: 3000 })
+  const { data } = useSWR(`/api/map-tiles/player-visible-map-data`, { refreshInterval: 3000 })
 
   const prevDataRef = useRef<unknown>(null)
 

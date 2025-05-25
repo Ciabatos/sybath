@@ -3,18 +3,11 @@ import { auth } from "@/auth"
 import { getPlayerVisibleMapData } from "@/db/postgresMainDatabase/schemas/map/functions/playerVisibleMapData"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
-import z from "zod"
 
-const typeParamsSchema = z.object({
-  playerId: z.coerce.number(),
-})
-
-type TypeParams = z.infer<typeof typeParamsSchema>
-
+type TypeParams = {
+  null: string
+}
 export async function GET(request: NextRequest, { params }: { params: TypeParams }): Promise<NextResponse> {
-  const paramsFromPromise = await params
-  const parsedParamsZod = typeParamsSchema.parse(paramsFromPromise)
-
   const session = await auth()
   const sessionPlayerId = session?.user?.playerId
 
@@ -22,13 +15,11 @@ export async function GET(request: NextRequest, { params }: { params: TypeParams
     return NextResponse.json({ success: false })
   }
 
-  const playerId = parsedParamsZod.playerId
-
   // const searchQueryParams = request.nextUrl.searchParams
   // const login = searchQueryParams.get("login")
 
   try {
-    const result = await getPlayerVisibleMapData(playerId)
+    const result = await getPlayerVisibleMapData(sessionPlayerId)
     const etag = crypto.createHash("sha1").update(JSON.stringify(result)).digest("hex")
     const clientEtag = request.headers.get("if-none-match")
 

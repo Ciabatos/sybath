@@ -25,7 +25,7 @@ export function ModalDistrictPanel() {
       }}>
       <DrawerContent
         className="\ml-auto"
-        style={{ width: "50%", maxWidth: "none" }}>
+        style={{ width: "40%", maxWidth: "none" }}>
         <div className="flex h-full flex-col p-6">
           <DrawerHeader className="px-0">
             <DrawerTitle>{clickedTile?.districts?.type_name}</DrawerTitle>
