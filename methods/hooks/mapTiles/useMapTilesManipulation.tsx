@@ -26,6 +26,8 @@ export function useMapTilesManipulation() {
       showDistrictActionList(tile)
     } else if (tile.playerVisibleMapData?.player_id) {
       showPlayerActionList(tile)
+    } else if (!tile.cities?.name && !tile.districts?.name && !tile.playerVisibleMapData?.player_id) {
+      showEmptyTileActionList(tile)
     } else {
       setCoordinatesOnClick(tile)
       setStatusModalBottomCenterBar(EMapTilesActionStatus.Inactive)
@@ -55,5 +57,14 @@ export function useMapTilesManipulation() {
 	  setStatusModalBottomCenterBar(EMapTilesActionStatus.DistrictActionList)
 	}
   }
+
+  function showEmptyTileActionList(tile: TJoinedMapTile) {
+    setCoordinatesOnClick(tile)
+    //prettier-ignore
+    if (statusModalBottomCenterBar === EMapTilesActionStatus.Inactive) {
+	  setStatusModalBottomCenterBar(EMapTilesActionStatus.EmptyTileActionList)
+	}
+  }
+
   return { handleClickOnMapTile }
 }

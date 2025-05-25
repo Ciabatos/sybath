@@ -10,7 +10,7 @@ export type TSkillsById = Record<number, TSkills>
 
 export async function getSkills() {
   try {
-    const result = await query("SELECT * FROM players.skills")
+    const result = await query("SELECT * FROM attributes.skills")
     return result.rows as TSkills[]
   } catch (error) {
     console.error("Error fetching getSkills:", error)

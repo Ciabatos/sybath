@@ -15,20 +15,7 @@ export async function getPlayerSkills(playerId: number) {
   }
 
   try {
-    const result = await query(
-      `
-     SELECT 
-      T1.id
-      ,T1.player_id
-      ,T1.skill_id
-      ,T1.value
-      ,T2.name
-    FROM players.player_skills T1
-      JOIN players.skills T2 ON T1.skill_id = T2.id
-      WHERE T1.player_id = $1 
-    ORDER BY T1.id ASC`,
-      [playerId],
-    )
+    const result = await query(`SELECT * FROM players.player_skills($1)`, [playerId])
     return result.rows as TPlayerSkills[]
   } catch (error) {
     console.error("Error fetching getPlayerSkills:", error)

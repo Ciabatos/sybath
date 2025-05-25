@@ -7,7 +7,7 @@ import RightCenterPortal from "@/components/modals/RightCenterPoratl"
 import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
 import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import type { ReactZoomPanPinchContentRef } from "react-zoom-pan-pinch"
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
 import style from "./styles/Map.module.css"
@@ -20,16 +20,16 @@ interface Props {
 
 export default function MapWrapper({ joinedMapTiles, terrainTypes, landscapeTypes }: Props) {
   const transformRef = useRef<ReactZoomPanPinchContentRef | null>(null)
-  const [savedTransform, setSavedTransform] = useState({ scale: 1, positionX: 0, positionY: 0 })
 
-  useEffect(() => {
+  const [savedTransform] = useState(() => {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem(`MapZoomState`)
       if (stored) {
-        setSavedTransform(JSON.parse(stored))
+        return JSON.parse(stored)
       }
     }
-  }, [])
+    return { scale: 1, positionX: 0, positionY: 0 }
+  })
 
   // Lepszy sposób na wyliczenie maxX i maxY
   let maxX = 0

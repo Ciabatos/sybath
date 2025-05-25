@@ -5,6 +5,7 @@ export enum EMapTilesActionStatus {
   PlayerActionList = "PlayerActionList",
   CityActionList = "CityActionList",
   DistrictActionList = "DistrictActionList",
+  EmptyTileActionList = "EmptyTileActionList",
   MovementAction = "MovementAction",
   GuardAreaAction = "GuardAreaAction",
   UseAbilityAction = "UseAbilityAction",

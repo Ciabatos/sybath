@@ -10,7 +10,7 @@ export type TAbilitiesById = Record<number, TAbilities>
 
 export async function getAbilities() {
   try {
-    const result = await query("SELECT * FROM players.abilities")
+    const result = await query("SELECT * FROM attributes.abilities")
     return result.rows as TAbilities[]
   } catch (error) {
     console.error("Error fetching getAbilities:", error)

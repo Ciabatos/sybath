@@ -15,19 +15,7 @@ export async function getAbilityRequirements(abilityId: number) {
   }
 
   try {
-    const result = await query(
-      `
-		SELECT
-			id,
-			ability_id,
-			requirement_type,
-			requirement_id,
-			min_value
-		FROM players.ability_requirements
-		WHERE ability_id = $1
-		`,
-      [abilityId],
-    )
+    const result = await query(`SELECT *	FROM attributes.ability_requirements WHERE ability_id = $1`, [abilityId])
     return result.rows as TAbilityRequirements[]
   } catch (error) {
     console.error("Error fetching getAbilityRequirements:", error)
