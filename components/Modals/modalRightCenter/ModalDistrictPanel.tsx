@@ -2,22 +2,22 @@
 
 import { Button } from "@/components/ui/button"
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from "@/components/ui/drawer"
-import { cityTilesActionStatusAtom, clickedCityTileAtom } from "@/store/atoms"
-import { ECityTilesActionStatus } from "@/types/enumeration/CityTilesActionStatusEnum"
+import { clickedTileAtom, mapTilesActionStatusAtom } from "@/store/atoms"
+import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { useAtom, useAtomValue } from "jotai"
 
-export function ModalBuildingPanel() {
-  const [cityTilesActionStatus, setCityTilesActionStatus] = useAtom(cityTilesActionStatusAtom)
-  const clickedCityTile = useAtomValue(clickedCityTileAtom)
+export function ModalDistrictPanel() {
+  const [mapTilesActionStatus, setMapTilesActionStatus] = useAtom(mapTilesActionStatusAtom)
+  const clickedTile = useAtomValue(clickedTileAtom)
 
   const handleClose = () => {
-    setCityTilesActionStatus(ECityTilesActionStatus.Inactive)
+    setMapTilesActionStatus(EMapTilesActionStatus.Inactive)
   }
 
   return (
     <Drawer
       direction="right"
-      open={cityTilesActionStatus === ECityTilesActionStatus.BuildingActionList}
+      open={mapTilesActionStatus === EMapTilesActionStatus.DistrictActionList}
       onOpenChange={(open) => {
         if (!open) {
           handleClose()
@@ -28,12 +28,12 @@ export function ModalBuildingPanel() {
         style={{ width: "50%", maxWidth: "none" }}>
         <div className="flex h-full flex-col p-6">
           <DrawerHeader className="px-0">
-            <DrawerTitle>{clickedCityTile?.buildings?.type_name}</DrawerTitle>
-            <DrawerDescription>{clickedCityTile?.buildings?.name}</DrawerDescription>
+            <DrawerTitle>{clickedTile?.districts?.type_name}</DrawerTitle>
+            <DrawerDescription>{clickedTile?.districts?.name}</DrawerDescription>
           </DrawerHeader>
           <div className="flex-1 py-4">
             <div>
-              {clickedCityTile?.buildings?.city_tile_x} {clickedCityTile?.buildings?.city_tile_y}
+              {clickedTile?.districts?.map_tile_x} {clickedTile?.districts?.map_tile_y}
             </div>
           </div>
           <DrawerFooter className="mt-auto px-0">

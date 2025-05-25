@@ -3,10 +3,12 @@
 import CityTilesClient from "@/components/city/CityTilesClient"
 import LeftTopPortal from "@/components/modals/LeftTopPortal"
 import RightCenterPortal from "@/components/modals/RightCenterPoratl"
+import TopCenterPortal from "@/components/modals/TopCenterPortal"
 import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
 import { TJoinedCityTilesById } from "@/methods/functions/joinCityTiles"
-import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
+import { useRef } from "react"
+import { ReactZoomPanPinchContentRef, TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
 import style from "./styles/Map.module.css"
 
 interface Props {
@@ -17,6 +19,9 @@ interface Props {
 }
 
 export default function CityWrapper({ cityId, joinedCityTiles, terrainTypes, landscapeTypes }: Props) {
+  const transformRef = useRef<ReactZoomPanPinchContentRef | null>(null)
+  const savedTransform = JSON.parse(localStorage.getItem(`City${cityId}ZoomState`) || "{}")
+
   // Lepszy sposób na wyliczenie maxX i maxY
   let maxX = 0
   let maxY = 0
@@ -32,6 +37,20 @@ export default function CityWrapper({ cityId, joinedCityTiles, terrainTypes, lan
         id="City"
         className={style.map}>
         <TransformWrapper
+          ref={transformRef}
+          initialScale={savedTransform.scale}
+          initialPositionX={savedTransform.positionX}
+          initialPositionY={savedTransform.positionY}
+          onTransformed={({ state }) => {
+            localStorage.setItem(
+              `City${cityId}ZoomState`,
+              JSON.stringify({
+                scale: state.scale,
+                positionX: state.positionX,
+                positionY: state.positionY,
+              }),
+            )
+          }}
           minScale={0.4}
           limitToBounds={false}
           doubleClick={{ disabled: true }}>
@@ -48,6 +67,7 @@ export default function CityWrapper({ cityId, joinedCityTiles, terrainTypes, lan
             </div>
           </TransformComponent>
         </TransformWrapper>
+        <TopCenterPortal />
         <LeftTopPortal />
         <RightCenterPortal />
       </div>

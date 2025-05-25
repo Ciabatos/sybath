@@ -1,6 +1,11 @@
 +nie uzywac Widoku - tylko funkcje bo widoczne dane nie zawsze beda wszystkie, w funkcji to wykonam a w widoku nie.
 Przyklad: pobrane dane CityTiles, nie wszystkie dane budynkow bedzie mial gracz dostepne dlatego w funkcji do GET bedzie mial rozne validacje
 
++w DB dodac nowa schema = abilities,skill,requirments i przeniesc tam z player
++W DB dodac nowa schema = buildings,districts i przeniesc tam tabele, dodatkowo uzyc skills abilities jak w playerze z tabel skills abilities
+zamysl jest taki zeby uzywac abilities w budynkach w taki sam sposob jak na playerach
+
+
 
 +GameLoop!
 +Okreslic sie z action POST
