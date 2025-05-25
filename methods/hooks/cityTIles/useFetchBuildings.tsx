@@ -15,7 +15,7 @@ export function useFetchBuildings(cityId: number) {
   useEffect(() => {
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
       const buildingsByCoordinates = data ? (arrayToObjectKeysId("city_tile_x", "city_tile_y", data) as TCityBuildingsMapCoordinates) : {}
-      console.log("Buildings data updated:", buildingsByCoordinates)
+
       setBuildingsAtom(buildingsByCoordinates)
       prevDataRef.current = data
     }
