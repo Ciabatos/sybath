@@ -2,15 +2,15 @@
 import { auth } from "@/auth"
 
 import MapWrapper from "@/components/map/MapWrapper"
-import { getAbilities } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
-import { getSkills } from "@/db/postgresMainDatabase/schemas/attributes/skills"
+import { getAbilities } from "@/db/postgresMainDatabase/schemas/attributes/tables/abilities"
+import { getSkills } from "@/db/postgresMainDatabase/schemas/attributes/tables/skills"
+import { getPlayerInventorySlots } from "@/db/postgresMainDatabase/schemas/items/inventories"
 import { getPlayerVisibleMapData, TPlayerVisibleMapDataById } from "@/db/postgresMainDatabase/schemas/map/functions/playerVisibleMapData"
 import { getMapCities, TCitiesByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/tables/cities"
 import { getMapDistricts, TDistrictsByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/tables/districts"
 import { getMapLandscapeTypes, TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import { getMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
 import { getMapTerrainTypes, TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
-import { getInventorySlots } from "@/db/postgresMainDatabase/schemas/players/tables/inventories"
 import { getPlayerAbilities } from "@/db/postgresMainDatabase/schemas/players/tables/playerAbilities"
 import { getPlayerSkills } from "@/db/postgresMainDatabase/schemas/players/tables/playerSkills"
 import { arrayToObjectKeyId, arrayToObjectKeysId } from "@/methods/functions/converters"
@@ -35,7 +35,7 @@ export default async function MapPage() {
     getSkills(),
     getAbilities(),
     getPlayerVisibleMapData(playerId),
-    getInventorySlots(playerId),
+    getPlayerInventorySlots(playerId),
     getPlayerSkills(playerId),
     getPlayerAbilities(playerId),
   ])

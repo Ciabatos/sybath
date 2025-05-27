@@ -2,7 +2,7 @@ WIDOK - ogolnodostepne informacje
 FUNKCJA - z validacja dane
 
 
-
++zunifikowac player_abilities do abilities and ability_owner ability_types
 
 +GameLoop!
 +Okreslic sie z action POST

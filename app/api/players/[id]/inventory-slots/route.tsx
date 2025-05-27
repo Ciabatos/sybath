@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { auth } from "@/auth"
-import { getInventorySlots } from "@/db/postgresMainDatabase/schemas/players/tables/inventories"
+import { getPlayerInventorySlots } from "@/db/postgresMainDatabase/schemas/items/inventories"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
@@ -27,7 +27,7 @@ export async function GET(request: NextRequest, { params }: { params: TypeParams
   // const login = searchQueryParams.get("login")
 
   try {
-    const result = await getInventorySlots(playerId)
+    const result = await getPlayerInventorySlots(playerId)
     const etag = crypto.createHash("sha1").update(JSON.stringify(result)).digest("hex")
     const clientEtag = request.headers.get("if-none-match")
 

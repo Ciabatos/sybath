@@ -2,13 +2,13 @@
 import { auth } from "@/auth"
 
 import CityWrapper from "@/components/city/CityWrapper"
-import { getAbilities } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
-import { getSkills } from "@/db/postgresMainDatabase/schemas/attributes/skills"
+import { getAbilities } from "@/db/postgresMainDatabase/schemas/attributes/tables/abilities"
+import { getSkills } from "@/db/postgresMainDatabase/schemas/attributes/tables/skills"
+import { getPlayerInventorySlots } from "@/db/postgresMainDatabase/schemas/items/inventories"
 import { getCityBuildings, TCityBuildingsMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/tables/buildings"
 import { getCityTiles } from "@/db/postgresMainDatabase/schemas/map/tables/cityTiles"
 import { getMapLandscapeTypes, TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
 import { getMapTerrainTypes, TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
-import { getInventorySlots } from "@/db/postgresMainDatabase/schemas/players/tables/inventories"
 import { getPlayerAbilities } from "@/db/postgresMainDatabase/schemas/players/tables/playerAbilities"
 import { getPlayerSkills } from "@/db/postgresMainDatabase/schemas/players/tables/playerSkills"
 import { arrayToObjectKeyId, arrayToObjectKeysId } from "@/methods/functions/converters"
@@ -41,7 +41,7 @@ export default async function CityPage({ params }: { params: TypeParams }) {
     getCityBuildings(cityId),
     getSkills(),
     getAbilities(),
-    getInventorySlots(playerId),
+    getPlayerInventorySlots(playerId),
     getPlayerSkills(playerId),
     getPlayerAbilities(playerId),
   ])

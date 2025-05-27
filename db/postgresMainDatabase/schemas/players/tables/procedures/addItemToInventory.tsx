@@ -1,5 +1,5 @@
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
-import { TInventorySlots } from "@/db/postgresMainDatabase/schemas/players/tables/inventories"
+import { TInventorySlots } from "@/db/postgresMainDatabase/schemas/items/inventories"
 
 export type TAddItemToInventory = Pick<TInventorySlots, "item_id" | "quantity"> & {
   playerId: number
