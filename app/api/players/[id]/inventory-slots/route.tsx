@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { auth } from "@/auth"
-import { getPlayerInventorySlots } from "@/db/postgresMainDatabase/schemas/items/inventories"
+import { getOtherPlayerInventorySlots, getPlayerInventorySlots } from "@/db/postgresMainDatabase/schemas/items/inventories"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
@@ -26,17 +26,37 @@ export async function GET(request: NextRequest, { params }: { params: TypeParams
   // const searchQueryParams = request.nextUrl.searchParams
   // const login = searchQueryParams.get("login")
 
-  try {
-    const result = await getPlayerInventorySlots(playerId)
-    const etag = crypto.createHash("sha1").update(JSON.stringify(result)).digest("hex")
-    const clientEtag = request.headers.get("if-none-match")
+  if (playerId == sessionPlayerId) {
+    try {
+      const result = await getPlayerInventorySlots(sessionPlayerId)
+      const etag = crypto.createHash("sha1").update(JSON.stringify(result)).digest("hex")
+      const clientEtag = request.headers.get("if-none-match")
 
-    if (clientEtag === etag) {
-      return new NextResponse(null, { status: 304, headers: { ETag: etag } })
+      if (clientEtag === etag) {
+        return new NextResponse(null, { status: 304, headers: { ETag: etag } })
+      }
+
+      return NextResponse.json(result, { headers: { ETag: etag } })
+    } catch (error) {
+      return NextResponse.json({ success: false, error: error })
     }
-
-    return NextResponse.json(result, { headers: { ETag: etag } })
-  } catch (error) {
-    return NextResponse.json({ success: false, error: error })
   }
+
+  if (playerId !== sessionPlayerId) {
+    try {
+      const result = await getOtherPlayerInventorySlots(sessionPlayerId, playerId)
+      const etag = crypto.createHash("sha1").update(JSON.stringify(result)).digest("hex")
+      const clientEtag = request.headers.get("if-none-match")
+
+      if (clientEtag === etag) {
+        return new NextResponse(null, { status: 304, headers: { ETag: etag } })
+      }
+
+      return NextResponse.json(result, { headers: { ETag: etag } })
+    } catch (error) {
+      return NextResponse.json({ success: false, error: error })
+    }
+  }
+
+  return NextResponse.json({ success: false })
 }

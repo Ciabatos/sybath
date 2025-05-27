@@ -26,7 +26,7 @@ export default async function MapPage() {
     return null
   }
 
-  const [mapTerrainTypes, mapTiles, mapLandscapeTypes, mapCities, mapDistricts, skills, abilities, mapPlayerVisibleMapData, inventorySlots, playerSkills, playerAbilities] = await Promise.all([
+  const [mapTerrainTypes, mapTiles, mapLandscapeTypes, mapCities, mapDistricts, skills, abilities, mapPlayerVisibleMapData, playerInventorySlots, playerSkills, playerAbilities] = await Promise.all([
     getMapTerrainTypes(),
     getMapTiles(),
     getMapLandscapeTypes(),
@@ -63,7 +63,7 @@ export default async function MapPage() {
             "/api/cities": mapCities,
             "/api/districts": mapDistricts,
             ...(playerId && { [`/api/map-tiles/player-visible-map-data/${playerId}`]: mapPlayerVisibleMapData }),
-            ...(playerId && { [`/api/players/${playerId}/inventory-slots`]: inventorySlots }),
+            ...(playerId && { [`/api/players/${playerId}/inventory-slots`]: playerInventorySlots }),
             ...(playerId && { [`/api/players/${playerId}/skills`]: playerSkills }),
             ...(playerId && { [`/api/players/${playerId}/abilities`]: playerAbilities }),
           },

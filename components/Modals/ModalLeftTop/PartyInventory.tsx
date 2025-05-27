@@ -1,15 +1,15 @@
 "use client"
 
-import { useFetchInventorySlots } from "@/methods/hooks/playerInventory/useFetchInventorySlots"
-import { inventorySlotsAtom } from "@/store/atoms"
+import { useFetchPlayerInventorySlots } from "@/methods/hooks/playerInventory/useFetchPlayerInventorySlots"
+import { playerInventorySlotsAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 
 export default function PlayerInventory() {
-  useFetchInventorySlots()
-  const inventorySlots = useAtomValue(inventorySlotsAtom)
+  useFetchPlayerInventorySlots()
+  const playerInventorySlots = useAtomValue(playerInventorySlotsAtom)
 
-  const maxRow = Math.max(...inventorySlots.map((slot) => slot.row), 0)
-  const maxCol = Math.max(...inventorySlots.map((slot) => slot.col), 0)
+  const maxRow = Math.max(...playerInventorySlots.map((slot) => slot.row), 0)
+  const maxCol = Math.max(...playerInventorySlots.map((slot) => slot.col), 0)
 
   return (
     <div
@@ -22,7 +22,7 @@ export default function PlayerInventory() {
         width: "100%",
         aspectRatio: `${maxCol} / ${maxRow}`,
       }}>
-      {inventorySlots.map((slot) => (
+      {playerInventorySlots.map((slot) => (
         <div
           key={`${slot.row}-${slot.col}`}
           className={`inventory-slot row-${slot.row} col-${slot.col}`}

@@ -12,17 +12,6 @@ export type TPlayerVisibleMapData = {
 
 export type TPlayerVisibleMapDataById = Record<string, TPlayerVisibleMapData>
 
-export async function getPlayersVisibleMapData() {
-  try {
-    const result = await query(`SELECT * FROM map.all_player_visible_map_data()`)
-
-    return result.rows as TPlayerVisibleMapData[]
-  } catch (error) {
-    console.error("Error fetching getPlayersVisibleMapData:", error)
-    throw new Error("Failed to fetch getPlayersVisibleMapData")
-  }
-}
-
 export async function getPlayerVisibleMapData(playerId: number) {
   if (!playerId || isNaN(playerId)) {
     return null

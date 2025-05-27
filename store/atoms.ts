@@ -27,26 +27,30 @@ export const districtsAtom = atom<TDistrictsByMapCoordinates>({})
 export const mapTilesActionStatusAtom = atom<EMapTilesActionStatus>(EMapTilesActionStatus.Inactive)
 export const mapTilesMovmentPathAtom = atom<TMovmentPath[]>([])
 export const mapTilesGuardAreaAtom = atom<TJoinedMapTile[]>([])
+export const joinedMapTilesAtom = atom<TJoinedMapTileById>({})
+export const playerVisibleMapDataAtom = atom<TPlayerVisibleMapDataById>({})
 
 //City
 export const clickedCityTileAtom = atom<TJoinedCityTiles>()
 export const cityTilesAtom = atom<TCityTiles[]>([])
 export const buildingsAtom = atom<TCityBuildingsMapCoordinates>({})
 export const cityTilesActionStatusAtom = atom<ECityTilesActionStatus>(ECityTilesActionStatus.Inactive)
-
-//objects
-export const joinedMapTilesAtom = atom<TJoinedMapTileById>({})
 export const joinedCityTilesAtom = atom<TJoinedCityTilesById>({})
-export const playerVisibleMapDataAtom = atom<TPlayerVisibleMapDataById>({})
 
-//
+//Player
+export const playerPositionMapTileAtom = atom<TPlayerVisibleMapData>()
+export const playerInventorySlotsAtom = atom<TInventorySlots[]>([])
+export const playerSkillsAtom = atom<TPlayerSkills[]>([])
+export const playerAbilitiesAtom = atom<TPlayerAbilities[]>([])
+
+//Attributes
+export const selectedAbilityIdAtom = atom<number>()
 export const skillsAtom = atom<TSkills[]>([])
 export const abilitiesAtom = atom<TAbilities[]>([])
 export const abilityRequirementsAtom = atom<TAbilityRequirements[]>([])
 
-//Player
-export const playerPositionMapTileAtom = atom<TPlayerVisibleMapData>()
-export const inventorySlotsAtom = atom<TInventorySlots[]>([])
-export const playerSkillsAtom = atom<TPlayerSkills[]>([])
-export const playerAbilitiesAtom = atom<TPlayerAbilities[]>([])
-export const selectedAbilityIdAtom = atom<number>()
+//Districts
+export const districtInventorySlotsAtom = atom<TInventorySlots[]>([])
+
+//Buildings
+export const buildingInventorySlotsAtom = atom<TInventorySlots[]>([])

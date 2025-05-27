@@ -34,7 +34,7 @@ export default async function CityPage({ params }: { params: TypeParams }) {
     return null
   }
 
-  const [cityTiles, mapTerrainTypes, mapLandscapeTypes, cityBuildings, skills, abilities, inventorySlots, playerSkills, playerAbilities] = await Promise.all([
+  const [cityTiles, mapTerrainTypes, mapLandscapeTypes, cityBuildings, skills, abilities, playerIventorySlots, playerSkills, playerAbilities] = await Promise.all([
     getCityTiles(cityId),
     getMapTerrainTypes(),
     getMapLandscapeTypes(),
@@ -67,7 +67,7 @@ export default async function CityPage({ params }: { params: TypeParams }) {
             "/api/abilities": abilities,
             ...(cityId && { [`/api/cities/${cityId}/city-tiles`]: cityTiles }),
             ...(cityId && { [`/api/cities/${cityId}/buildings`]: cityBuildings }),
-            ...(playerId && { [`/api/players/${playerId}/inventory-slots`]: inventorySlots }),
+            ...(playerId && { [`/api/players/${playerId}/inventory-slots`]: playerIventorySlots }),
             ...(playerId && { [`/api/players/${playerId}/skills`]: playerSkills }),
             ...(playerId && { [`/api/players/${playerId}/abilities`]: playerAbilities }),
           },

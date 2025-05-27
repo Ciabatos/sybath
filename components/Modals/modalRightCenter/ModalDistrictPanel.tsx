@@ -1,7 +1,9 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import Inventory from "@/components/ui/custom/Inventory"
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from "@/components/ui/drawer"
+import { useDistrictInventorySlots } from "@/methods/hooks/districtInventory/useDistrictInventorySlots"
 import { clickedTileAtom, mapTilesActionStatusAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { useAtom, useAtomValue } from "jotai"
@@ -9,6 +11,8 @@ import { useAtom, useAtomValue } from "jotai"
 export function ModalDistrictPanel() {
   const [mapTilesActionStatus, setMapTilesActionStatus] = useAtom(mapTilesActionStatusAtom)
   const clickedTile = useAtomValue(clickedTileAtom)
+
+  const { districtInventorySlots } = useDistrictInventorySlots(clickedTile?.districts?.id)
 
   const handleClose = () => {
     setMapTilesActionStatus(EMapTilesActionStatus.Inactive)
@@ -43,6 +47,7 @@ export function ModalDistrictPanel() {
               <p>Owner moze transportowac ekwipunek</p>
             </div>
           </div>
+          <Inventory inventorySlots={districtInventorySlots}></Inventory>
           <DrawerFooter className="mt-auto px-0">
             <DrawerClose asChild>
               <Button

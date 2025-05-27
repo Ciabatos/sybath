@@ -1,7 +1,9 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import Inventory from "@/components/ui/custom/Inventory"
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from "@/components/ui/drawer"
+import { useBuildingInventorySlots } from "@/methods/hooks/buildingInventory/useBuildingInventorySlots"
 import { cityTilesActionStatusAtom, clickedCityTileAtom } from "@/store/atoms"
 import { ECityTilesActionStatus } from "@/types/enumeration/CityTilesActionStatusEnum"
 import { useAtom, useAtomValue } from "jotai"
@@ -9,6 +11,8 @@ import { useAtom, useAtomValue } from "jotai"
 export function ModalBuildingPanel() {
   const [cityTilesActionStatus, setCityTilesActionStatus] = useAtom(cityTilesActionStatusAtom)
   const clickedCityTile = useAtomValue(clickedCityTileAtom)
+
+  const { buildingInventorySlots } = useBuildingInventorySlots(clickedCityTile?.buildings?.id)
 
   const handleClose = () => {
     setCityTilesActionStatus(ECityTilesActionStatus.Inactive)
@@ -36,6 +40,7 @@ export function ModalBuildingPanel() {
               {clickedCityTile?.buildings?.city_tile_x} {clickedCityTile?.buildings?.city_tile_y}
             </div>
           </div>
+          <Inventory inventorySlots={buildingInventorySlots}></Inventory>
           <DrawerFooter className="mt-auto px-0">
             <DrawerClose asChild>
               <Button
