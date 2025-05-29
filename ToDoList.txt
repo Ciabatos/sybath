@@ -3,6 +3,8 @@ FUNKCJA - z validacja dane
 
 
 +zunifikowac player_abilities do abilities and ability_owner ability_types
+ability_effects 
+ability_conditions 
 
 +GameLoop!
 +Okreslic sie z action POST

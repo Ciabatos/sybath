@@ -5,7 +5,6 @@ interface Props {
 }
 
 export default function Inventory({ inventorySlots }: Props) {
-  console.log("Inventory component rendered with slots:", inventorySlots)
   if (!inventorySlots || inventorySlots.length === 0) {
     return <div className="inventory-grid">You dont have permission to see this inventory</div>
   }
