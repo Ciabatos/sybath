@@ -15,6 +15,7 @@ export function useFetchPlayerAbilities() {
   const prevDataRef = useRef<unknown>(null)
 
   useEffect(() => {
+    if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
       setPlayerAbilities(data)
       prevDataRef.current = data

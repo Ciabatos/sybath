@@ -1,18 +1,19 @@
 "use client"
-import { mapTilesAtom } from "@/store/atoms"
+import { actionTaskInProcessAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 import { useEffect, useRef } from "react"
 import useSWR from "swr"
 
-export function useFetchMapTiles() {
-  const setMapTiles = useSetAtom(mapTilesAtom)
-  const { data } = useSWR("/api/map-tiles", { refreshInterval: 3000 })
+export function useFetchActionTaskInProcess() {
+  const setActionTaskInProcess = useSetAtom(actionTaskInProcessAtom)
+  const { data } = useSWR("/api/map-tiles/action-task-in-process", { refreshInterval: 3000 })
+
   const prevDataRef = useRef<unknown>(null)
 
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      setMapTiles(data)
+      setActionTaskInProcess(data)
       prevDataRef.current = data
     }
   }, [data])

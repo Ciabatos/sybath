@@ -1,5 +1,6 @@
 "use client"
 
+import { TActionTaskInProcess } from "@/app/api/map-tiles/action-task-in-process/route"
 import { TAbilities } from "@/db/postgresMainDatabase/schemas/attributes/tables/abilities"
 import { TAbilityRequirements } from "@/db/postgresMainDatabase/schemas/attributes/tables/abilityRequirements"
 import { TSkills } from "@/db/postgresMainDatabase/schemas/attributes/tables/skills"
@@ -54,3 +55,6 @@ export const districtInventorySlotsAtom = atom<TInventorySlots[]>([])
 
 //Buildings
 export const buildingInventorySlotsAtom = atom<TInventorySlots[]>([])
+
+//Tasks
+export const actionTaskInProcessAtom = atom<TActionTaskInProcess>()

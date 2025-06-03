@@ -1,0 +1,26 @@
+"use client"
+
+import { TMovmentActionTaskInProcess } from "@/db/postgresMainDatabase/schemas/map/functions/movmentActionInProcess"
+
+interface Props {
+  movementActionTask: TMovmentActionTaskInProcess
+}
+
+export default function MapTileLayerMovementTaskInProcess({ movementActionTask }: Props) {
+  return (
+    <>
+      <p>{movementActionTask?.scheduled_at?.toString()}</p>
+      <svg
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}>
+        <rect
+          width="100%"
+          height="100%"
+          fill="red"
+          opacity={0.5}
+        />
+      </svg>
+    </>
+  )
+}

@@ -11,6 +11,7 @@ export function useFetchCityTiles(cityId: number) {
   const prevDataRef = useRef<unknown>(null)
 
   useEffect(() => {
+    if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
       setCityTiles(data)
       prevDataRef.current = data

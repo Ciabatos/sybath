@@ -11,6 +11,7 @@ export function useFetchSkills() {
   const prevDataRef = useRef<unknown>(null)
 
   useEffect(() => {
+    if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
       setSkills(data)
       prevDataRef.current = data

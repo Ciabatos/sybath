@@ -13,6 +13,7 @@ export function useFetchBuildings(cityId: number) {
   const prevDataRef = useRef<unknown>(null)
 
   useEffect(() => {
+    if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
       const buildingsByCoordinates = data ? (arrayToObjectKeysId("city_tile_x", "city_tile_y", data) as TCityBuildingsMapCoordinates) : {}
 

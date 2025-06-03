@@ -1,6 +1,6 @@
 "use client"
 
-import MapTilesClient from "@/components/map/MapTilesClient"
+import MapTilesHandling from "@/components/map/MapTilesHandling"
 import BottomCenterPortal from "@/components/modals/BottomCenterPortal"
 import LeftTopPortal from "@/components/modals/LeftTopPortal"
 import RightCenterPortal from "@/components/modals/RightCenterPoratl"
@@ -67,7 +67,7 @@ export default function MapWrapper({ joinedMapTiles, terrainTypes, landscapeType
             <div
               id="MapTiles"
               className={style.Tiles}>
-              <MapTilesClient
+              <MapTilesHandling
                 joinedMapTiles={joinedMapTiles}
                 terrainTypes={terrainTypes}
                 landscapeTypes={landscapeTypes}

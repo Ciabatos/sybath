@@ -18,6 +18,7 @@ export function useFetchPlayerVisibleMapData() {
   const prevDataRef = useRef<unknown>(null)
 
   useEffect(() => {
+    if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
       const playerVisibleMapData = data ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", data) as TPlayerVisibleMapDataById) : {}
       setPlayerVisibleMapData(playerVisibleMapData)

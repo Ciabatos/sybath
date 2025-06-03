@@ -14,6 +14,7 @@ export function useFetchAbilityRequirements(abilityId: number | undefined) {
   const prevDataRef = useRef<unknown>(null)
 
   useEffect(() => {
+    if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
       setAbilityRequirementsAtom(data)
       prevDataRef.current = data

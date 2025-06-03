@@ -15,6 +15,7 @@ export function useFetchPlayerInventorySlots() {
   const prevDataRef = useRef<unknown>(null)
 
   useEffect(() => {
+    if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
       setPlayerInventorySlots(data)
       prevDataRef.current = data

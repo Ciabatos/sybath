@@ -10,6 +10,7 @@ export function useFetchAbilities() {
   const prevDataRef = useRef<unknown>(null)
 
   useEffect(() => {
+    if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
       setAbilities(data)
       prevDataRef.current = data

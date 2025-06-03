@@ -13,6 +13,7 @@ export function useFetchDistricts() {
   const prevDataRef = useRef<unknown>(null)
 
   useEffect(() => {
+    if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
       const districtByCoordinates = data ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", data) as TDistrictsByMapCoordinates) : {}
       setDistrictsAtom(districtByCoordinates)

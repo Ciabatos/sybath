@@ -11,6 +11,7 @@ export function useFetchDistrictInventorySlots(districtId: number | undefined) {
   const prevDataRef = useRef<unknown>(null)
 
   useEffect(() => {
+    if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
       setDistrictInventorySlotsAtom(data)
       prevDataRef.current = data

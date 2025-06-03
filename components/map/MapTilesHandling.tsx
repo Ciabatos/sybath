@@ -5,6 +5,7 @@ import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/ta
 import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
 import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
 import { useJoinMapTiles } from "@/methods/hooks/mapTiles/useJoinMapTiles"
+import { useActionTaskInProcess } from "@/methods/hooks/tasks/useActionTaskInProcess"
 
 interface Props {
   joinedMapTiles: Record<string, TJoinedMapTile>
@@ -12,8 +13,9 @@ interface Props {
   landscapeTypes: TMapLandscapeTypesById
 }
 
-export default function MapTilesClient({ joinedMapTiles, terrainTypes, landscapeTypes }: Props) {
+export default function MapTilesHandling({ joinedMapTiles, terrainTypes, landscapeTypes }: Props) {
   const { newJoinedMapTilesOnClient } = useJoinMapTiles({ joinedMapTiles, terrainTypes, landscapeTypes })
+  useActionTaskInProcess()
 
   return (
     <>

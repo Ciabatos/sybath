@@ -1,17 +1,20 @@
 "use client"
 
+import { playerMovmentAction } from "@/methods/actions/mapTiles/playerMovmentAction"
 import { useMapTilesPath } from "@/methods/hooks/mapTiles/useMapTilesPath"
+import { useActionTaskInProcess } from "@/methods/hooks/tasks/useActionTaskInProcess"
 import { clickedTileAtom, mapTilesActionStatusAtom, mapTilesMovmentPathAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
-import { useAtomValue, useSetAtom } from "jotai"
+import { useAtom, useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useState } from "react"
 
 export function useActionMapTilesMovement() {
   const clickedTile = useAtomValue(clickedTileAtom)
   const [startingPoint] = useState(clickedTile)
   const { pathFromPointToPoint } = useMapTilesPath()
-  const setMapTilesMovmentPath = useSetAtom(mapTilesMovmentPathAtom)
+  const [mapTilesMovmentPath, setMapTilesMovmentPath] = useAtom(mapTilesMovmentPathAtom)
   const setOpenModalBottomCenterBar = useSetAtom(mapTilesActionStatusAtom)
+  const { mutateActionTaskInProcess } = useActionTaskInProcess()
 
   useEffect(() => {
     if (startingPoint && clickedTile) {
@@ -23,6 +26,8 @@ export function useActionMapTilesMovement() {
 
   const handleButtonMove = () => {
     setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
+    mutateActionTaskInProcess(mapTilesMovmentPath)
+    playerMovmentAction(mapTilesMovmentPath)
   }
 
   const handleButtonCancel = () => {
