@@ -1,6 +1,6 @@
 "use server"
 
-import { TAddItemToInventory, addItemToInventory } from "@/db/postgresMainDatabase/schemas/players/tables/procedures/addItemToInventory"
+import { TAddItemToInventory, addItemToInventory } from "@/db/postgresMainDatabase/schemas/players/procedures/addItemToInventory"
 
 export async function addItemToInventoryAction({ playerId, item_id, quantity }: TAddItemToInventory) {
   try {
