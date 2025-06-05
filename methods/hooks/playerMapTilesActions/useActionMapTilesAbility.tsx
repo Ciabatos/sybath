@@ -1,6 +1,6 @@
 "use client"
 
-import { TPlayerVisibleMapData } from "@/db/postgresMainDatabase/schemas/map/functions/playerVisibleMapData"
+import { TPlayerVisibleMapData } from "@/db/postgresMainDatabase/schemas/map/playerVisibleMapData"
 import { playerMovementAction } from "@/methods/actions/mapTiles/playerMovementAction"
 import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
 import { useMapTilesPath } from "@/methods/hooks/mapTiles/useMapTilesPath"

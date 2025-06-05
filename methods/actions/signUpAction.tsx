@@ -1,6 +1,6 @@
 "use server"
 
-import { insertUser } from "@/db/postgresMainDatabase/schemas/auth/functions/insertUser"
+import { insertUser } from "@/db/postgresMainDatabase/schemas/auth/insertUser"
 
 export async function signUpAction(prevState: unknown, formData: FormData) {
   const email = formData.get("email") as string

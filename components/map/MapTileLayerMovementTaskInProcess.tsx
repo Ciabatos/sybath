@@ -1,6 +1,6 @@
 "use client"
 
-import { TMovementActionTaskInProcess } from "@/db/postgresMainDatabase/schemas/map/functions/movementActionInProcess"
+import { TMovementActionTaskInProcess } from "@/db/postgresMainDatabase/schemas/map/movementActionInProcess"
 
 interface Props {
   movementActionTask: TMovementActionTaskInProcess

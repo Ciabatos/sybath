@@ -1,5 +1,5 @@
 "use client"
-import { TCitiesByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/tables/cities"
+import { TCitiesByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/cities"
 import { arrayToObjectKeysId } from "@/methods/functions/converters"
 import { citiesAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { auth } from "@/auth"
-import { getPlayerVisibleMapData } from "@/db/postgresMainDatabase/schemas/map/functions/playerVisibleMapData"
+import { getPlayerVisibleMapData } from "@/db/postgresMainDatabase/schemas/map/playerVisibleMapData"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { auth } from "@/auth"
-import { getCityBuildings } from "@/db/postgresMainDatabase/schemas/map/tables/buildings"
+import { getCityBuildings } from "@/db/postgresMainDatabase/schemas/map/buildings"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"

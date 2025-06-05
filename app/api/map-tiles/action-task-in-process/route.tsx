@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { auth } from "@/auth"
-import { getMovementActionInProcess, TMovementActionTaskInProcess } from "@/db/postgresMainDatabase/schemas/map/functions/movementActionInProcess"
+import { getMovementActionInProcess, TMovementActionTaskInProcess } from "@/db/postgresMainDatabase/schemas/map/movementActionInProcess"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 

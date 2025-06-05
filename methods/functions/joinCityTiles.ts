@@ -1,7 +1,7 @@
-import { TCityBuildings, TCityBuildingsMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/tables/buildings"
-import { TCityTiles } from "@/db/postgresMainDatabase/schemas/map/tables/cityTiles"
-import { TMapLandscapeTypes, TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
-import type { TMapTerrainTypes, TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
+import { TCityBuildings, TCityBuildingsMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/buildings"
+import { TCityTiles } from "@/db/postgresMainDatabase/schemas/map/cityTiles"
+import { TMapLandscapeTypes, TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
+import type { TMapTerrainTypes, TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
 import { produce } from "immer"
 
 export interface TJoinedCityTiles {

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { auth } from "@/auth"
-import { getPlayerSkills } from "@/db/postgresMainDatabase/schemas/players/tables/playerSkills"
+import { getPlayerSkills } from "@/db/postgresMainDatabase/schemas/players/playerSkills"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"

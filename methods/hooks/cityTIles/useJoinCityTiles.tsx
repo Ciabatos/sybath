@@ -1,6 +1,6 @@
 "use client"
-import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
-import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
+import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
+import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
 import { joinCityTiles, TJoinedCityTilesById } from "@/methods/functions/joinCityTiles"
 import { useFetchBuildings } from "@/methods/hooks/cityTIles/useFetchBuildings"
 import { useFetchCityTiles } from "@/methods/hooks/cityTIles/useFetchCityTiles"

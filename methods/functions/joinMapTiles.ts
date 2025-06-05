@@ -1,9 +1,9 @@
-import { TPlayerVisibleMapData, TPlayerVisibleMapDataById } from "@/db/postgresMainDatabase/schemas/map/functions/playerVisibleMapData"
-import { TCities, TCitiesByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/tables/cities"
-import { TDistricts, TDistrictsByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/tables/districts"
-import { TMapLandscapeTypes, TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
-import type { TMapTiles } from "@/db/postgresMainDatabase/schemas/map/tables/mapTiles"
-import type { TMapTerrainTypes, TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
+import { TCities, TCitiesByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/cities"
+import { TDistricts, TDistrictsByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/districts"
+import { TMapLandscapeTypes, TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
+import type { TMapTiles } from "@/db/postgresMainDatabase/schemas/map/mapTiles"
+import { TPlayerVisibleMapData, TPlayerVisibleMapDataById } from "@/db/postgresMainDatabase/schemas/map/playerVisibleMapData"
+import type { TMapTerrainTypes, TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
 import { produce } from "immer"
 
 export interface TJoinedMapTile {

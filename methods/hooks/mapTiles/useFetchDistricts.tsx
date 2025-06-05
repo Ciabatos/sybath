@@ -1,5 +1,5 @@
 "use client"
-import { TDistrictsByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/tables/districts"
+import { TDistrictsByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/districts"
 import { arrayToObjectKeysId } from "@/methods/functions/converters"
 import { districtsAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"

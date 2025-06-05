@@ -1,8 +1,8 @@
 "use client"
 
 import MapTile from "@/components/map/MapTile"
-import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/landscapeTypes"
-import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/tables/terrainTypes"
+import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
+import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
 import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
 import { useJoinMapTiles } from "@/methods/hooks/mapTiles/useJoinMapTiles"
 import { useActionTaskInProcess } from "@/methods/hooks/tasks/useActionTaskInProcess"

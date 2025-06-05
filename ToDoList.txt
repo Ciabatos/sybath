@@ -1,6 +1,3 @@
-WIDOK - ogolnodostepne informacje
-FUNKCJA - z validacja dane
-
 napisz najpierw procedury SQL bedzie latwiej
 1.oczyscic baze 
 2.Tworzenie Miasta akcja
@@ -22,19 +19,11 @@ ability_effects
 ability_conditions 
 
 +GameLoop!
-+Okreslic sie z action POST
-+Okreslic jak bedzie wygladala validacja
 +MarketPlace
-
 +Mechaniki kupowania/sprzedawania
 +Mechaniki produkcji
 +Mechaniki budowania budynkow
 
-Db functions - Akcje na bazie danych
-API routes - api routy
-useFetch - fetchowanie danych do atoms
-useCustomHooks - logika
-Actions - akcje
 
 
 

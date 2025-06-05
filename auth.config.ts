@@ -1,4 +1,4 @@
-import { getUser } from "@/db/postgresMainDatabase/schemas/auth/tables/users"
+import { getUser } from "@/db/postgresMainDatabase/schemas/auth/users"
 import bcrypt from "bcrypt"
 import type { NextAuthConfig } from "next-auth"
 import Credentials from "next-auth/providers/credentials"

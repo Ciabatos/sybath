@@ -1,5 +1,5 @@
 "use client"
-import { TPlayerVisibleMapData, TPlayerVisibleMapDataById } from "@/db/postgresMainDatabase/schemas/map/functions/playerVisibleMapData"
+import { TPlayerVisibleMapData, TPlayerVisibleMapDataById } from "@/db/postgresMainDatabase/schemas/map/playerVisibleMapData"
 import { arrayToObjectKeysId } from "@/methods/functions/converters"
 import { playerPositionMapTileAtom, playerVisibleMapDataAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
