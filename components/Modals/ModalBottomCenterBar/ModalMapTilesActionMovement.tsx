@@ -1,8 +1,8 @@
 "use client"
-import styles from "@/components/Modals/ModalBottomCenterBar/styles/ModalMapTilesActionMovment.module.css"
+import styles from "@/components/Modals/ModalBottomCenterBar/styles/ModalMapTilesActionMovement.module.css"
 import { useActionMapTilesMovement } from "@/methods/hooks/playerMapTilesActions/useActionMapTilesMovement"
 
-export default function ModalMapTilesActionMovment() {
+export default function ModalMapTilesActionMovement() {
   const { startingPoint, endingPoint, handleButtonMove, handleButtonCancel } = useActionMapTilesMovement()
 
   return (
@@ -11,7 +11,7 @@ export default function ModalMapTilesActionMovment() {
         <div className={styles.modalTitle}>
           <p>Select Tile to move to from tiles</p>
           <p>
-            Movment path : {startingPoint?.mapTile.x}, {startingPoint?.mapTile.y} to {endingPoint?.mapTile.x}, {endingPoint?.mapTile.y}
+            Movement path : {startingPoint?.mapTile.x}, {startingPoint?.mapTile.y} to {endingPoint?.mapTile.x}, {endingPoint?.mapTile.y}
           </p>
         </div>
         <div className={styles.actionGrid}>

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { auth } from "@/auth"
-import { getMovmentActionInProcess, TMovmentActionTaskInProcess } from "@/db/postgresMainDatabase/schemas/map/functions/movmentActionInProcess"
+import { getMovementActionInProcess, TMovementActionTaskInProcess } from "@/db/postgresMainDatabase/schemas/map/functions/movementActionInProcess"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 
@@ -9,7 +9,7 @@ type TypeParams = {
 }
 
 export type TActionTaskInProcess = {
-  movmentInProcess: TMovmentActionTaskInProcess[]
+  movementInProcess: TMovementActionTaskInProcess[]
 }
 
 export async function GET(request: NextRequest, { params }: { params: TypeParams }): Promise<NextResponse> {
@@ -24,10 +24,10 @@ export async function GET(request: NextRequest, { params }: { params: TypeParams
   // const login = searchQueryParams.get("login")
 
   try {
-    const [movmentInProcess] = await Promise.all([getMovmentActionInProcess(sessionPlayerId)])
+    const [movementInProcess] = await Promise.all([getMovementActionInProcess(sessionPlayerId)])
 
     const result = {
-      movmentInProcess: movmentInProcess,
+      movementInProcess: movementInProcess,
     }
 
     const etag = crypto.createHash("sha1").update(JSON.stringify(result)).digest("hex")

@@ -11,7 +11,7 @@ interface Props {
 export default function MapTileLayerHandlingActionTaskInProcess({ tile }: Props) {
   const { actionTaskInProcess } = useActionTaskInProcess()
 
-  const movementActionTask = actionTaskInProcess?.movmentInProcess.find((pathTile) => pathTile.method_parameters.x === tile.mapTile.x && pathTile.method_parameters.y === tile.mapTile.y)
+  const movementActionTask = actionTaskInProcess?.movementInProcess.find((pathTile) => pathTile.method_parameters.x === tile.mapTile.x && pathTile.method_parameters.y === tile.mapTile.y)
 
   if (!movementActionTask) {
     return null

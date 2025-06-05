@@ -2,7 +2,7 @@
 
 import ModalMapTilesActionAbility from "@/components/modals/modalBottomCenterBar/ModalMapTilesActionAbility"
 import ModalMapTilesActionGuardArea from "@/components/modals/modalBottomCenterBar/ModalMapTilesActionGuardArea"
-import ModalMapTilesActionMovment from "@/components/modals/modalBottomCenterBar/ModalMapTilesActionMovment"
+import ModalMapTilesActionMovement from "@/components/modals/modalBottomCenterBar/ModalMapTilesActionMovement"
 import ModalMapTilesCityActionBar from "@/components/modals/modalBottomCenterBar/ModalMapTilesCityActionBar"
 import ModalMapTilesPlayerActionBar from "@/components/modals/modalBottomCenterBar/ModalMapTilesPlayerActionBar"
 import styles from "@/components/Modals/ModalBottomCenterBar/styles/ModalBottomCenterBarHandling.module.css"
@@ -20,7 +20,7 @@ export default function ModalBottomCenterBarHandling() {
       <div className={styles.modalContainer}>
 		{mapTilesActionStatus === EMapTilesActionStatus.PlayerActionList && <ModalMapTilesPlayerActionBar />}
 		{mapTilesActionStatus === EMapTilesActionStatus.CityActionList && <ModalMapTilesCityActionBar />}
-		{mapTilesActionStatus === EMapTilesActionStatus.MovementAction && <ModalMapTilesActionMovment />}
+		{mapTilesActionStatus === EMapTilesActionStatus.MovementAction && <ModalMapTilesActionMovement />}
 		{mapTilesActionStatus === EMapTilesActionStatus.GuardAreaAction && <ModalMapTilesActionGuardArea />}
 		{mapTilesActionStatus === EMapTilesActionStatus.UseAbilityAction && <ModalMapTilesActionAbility />}
     </div>

@@ -3,16 +3,16 @@
 import { auth } from "@/auth"
 import { cancelTasks, insertTasks } from "@/db/postgresMainDatabase/schemas/tasks/tasks"
 import { isMovementPathNeighborhoodTile } from "@/methods/functions/isMovementPathNeighborhoodTile"
-import { TMovmentPath } from "@/methods/hooks/mapTiles/useMapTilesPath"
+import { TMovementPath } from "@/methods/hooks/mapTiles/useMapTilesPath"
 
-export type TPlayerMovmentAction = {
+export type TPlayerMovementAction = {
   playerId: number
   x: number
   y: number
 }
 
-export async function playerMovmentAction(parameters: TMovmentPath[]) {
-  const methodName = "map.movmentAction"
+export async function playerMovementAction(parameters: TMovementPath[]) {
+  const methodName = "map.movementAction"
   const session = await auth()
   const sessionPlayerId = session?.user?.playerId
 
@@ -32,14 +32,14 @@ export async function playerMovmentAction(parameters: TMovmentPath[]) {
 
     for (const param of parameters) {
       const index = parameters.indexOf(param)
-      // const totalMovmentCost = param.totalMovmentCost
-      //dodac przeliczenie movmentCost na czas
+      // const totalMovementCost = param.totalMovementCost
+      //dodac przeliczenie movementCost na czas
       if (index > 0) {
-        await insertTasks<TPlayerMovmentAction>({ playerId: sessionPlayerId, methodName, parameters: { playerId: sessionPlayerId, x: param.mapTile.x, y: param.mapTile.y } })
+        await insertTasks<TPlayerMovementAction>({ playerId: sessionPlayerId, methodName, parameters: { playerId: sessionPlayerId, x: param.mapTile.x, y: param.mapTile.y } })
       }
     }
   } catch (error) {
-    console.error("Error movmentAction :", error)
-    return "Failed to movmentAction"
+    console.error("Error movementAction :", error)
+    return "Failed to movementAction"
   }
 }

@@ -1,6 +1,21 @@
 WIDOK - ogolnodostepne informacje
 FUNKCJA - z validacja dane
 
+napisz najpierw procedury SQL bedzie latwiej
+1.oczyscic baze 
+2.Tworzenie Miasta akcja
+3.Tworzenie Dystryktu akcja
+4.Tworzenie Budynku Akcja
+
+
+
+teraz zajac sie districtem
+dodac inventory
+produkowanie co interwal produktow
+Owner zakladka - ustawianie placy/sprzedaz
+zatrudnianie graczy
+zatrudnianie populacji miasta
+transport
 
 +zunifikowac player_abilities do abilities and ability_owner ability_types
 ability_effects 
@@ -10,6 +25,7 @@ ability_conditions
 +Okreslic sie z action POST
 +Okreslic jak bedzie wygladala validacja
 +MarketPlace
+
 +Mechaniki kupowania/sprzedawania
 +Mechaniki produkcji
 +Mechaniki budowania budynkow

@@ -17,14 +17,14 @@ interface GridNode {
   visited: boolean // Whether the node has been visited in the search process
 }
 
-export interface TMovmentPath extends TJoinedMapTile {
-  totalMovmentCost: number
+export interface TMovementPath extends TJoinedMapTile {
+  totalMovementCost: number
 }
 
 export function useMapTilesPath() {
   const mapTiles = useAtomValue(joinedMapTilesAtom)
 
-  function pathFromPointToPoint(startX: number, startY: number, endX: number, endY: number, objectProperties: unknown): TMovmentPath[] {
+  function pathFromPointToPoint(startX: number, startY: number, endX: number, endY: number, objectProperties: unknown): TMovementPath[] {
     if (!startX || !startY || !endX || !endY) {
       return []
     }
@@ -59,7 +59,7 @@ export function useMapTilesPath() {
       }
       return {
         ...tile,
-        totalMovmentCost: node.weight,
+        totalMovementCost: node.weight,
       }
     })
 

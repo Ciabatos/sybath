@@ -15,7 +15,7 @@ import { TPlayerAbilities } from "@/db/postgresMainDatabase/schemas/players/tabl
 import { TPlayerSkills } from "@/db/postgresMainDatabase/schemas/players/tables/playerSkills"
 import { TJoinedCityTiles, TJoinedCityTilesById } from "@/methods/functions/joinCityTiles"
 import { TJoinedMapTile, TJoinedMapTileById } from "@/methods/functions/joinMapTiles"
-import { TMovmentPath } from "@/methods/hooks/mapTiles/useMapTilesPath"
+import { TMovementPath } from "@/methods/hooks/mapTiles/useMapTilesPath"
 import { ECityTilesActionStatus } from "@/types/enumeration/CityTilesActionStatusEnum"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { atom } from "jotai"
@@ -26,7 +26,7 @@ export const mapTilesAtom = atom<TMapTiles[]>([])
 export const citiesAtom = atom<TCitiesByMapCoordinates>({})
 export const districtsAtom = atom<TDistrictsByMapCoordinates>({})
 export const mapTilesActionStatusAtom = atom<EMapTilesActionStatus>(EMapTilesActionStatus.Inactive)
-export const mapTilesMovmentPathAtom = atom<TMovmentPath[]>([])
+export const mapTilesMovementPathAtom = atom<TMovementPath[]>([])
 export const mapTilesGuardAreaAtom = atom<TJoinedMapTile[]>([])
 export const joinedMapTilesAtom = atom<TJoinedMapTileById>({})
 export const playerVisibleMapDataAtom = atom<TPlayerVisibleMapDataById>({})

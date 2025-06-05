@@ -1,9 +1,9 @@
 "use client"
 
-import { TMovmentActionTaskInProcess } from "@/db/postgresMainDatabase/schemas/map/functions/movmentActionInProcess"
+import { TMovementActionTaskInProcess } from "@/db/postgresMainDatabase/schemas/map/functions/movementActionInProcess"
 
 interface Props {
-  movementActionTask: TMovmentActionTaskInProcess
+  movementActionTask: TMovementActionTaskInProcess
 }
 
 export default function MapTileLayerMovementTaskInProcess({ movementActionTask }: Props) {

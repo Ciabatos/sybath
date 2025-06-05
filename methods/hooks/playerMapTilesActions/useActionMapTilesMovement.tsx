@@ -1,9 +1,9 @@
 "use client"
 
-import { playerMovmentAction } from "@/methods/actions/mapTiles/playerMovmentAction"
+import { playerMovementAction } from "@/methods/actions/mapTiles/playerMovementAction"
 import { useMapTilesPath } from "@/methods/hooks/mapTiles/useMapTilesPath"
 import { useActionTaskInProcess } from "@/methods/hooks/tasks/useActionTaskInProcess"
-import { clickedTileAtom, mapTilesActionStatusAtom, mapTilesMovmentPathAtom } from "@/store/atoms"
+import { clickedTileAtom, mapTilesActionStatusAtom, mapTilesMovementPathAtom } from "@/store/atoms"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { useAtom, useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useState } from "react"
@@ -12,22 +12,22 @@ export function useActionMapTilesMovement() {
   const clickedTile = useAtomValue(clickedTileAtom)
   const [startingPoint] = useState(clickedTile)
   const { pathFromPointToPoint } = useMapTilesPath()
-  const [mapTilesMovmentPath, setMapTilesMovmentPath] = useAtom(mapTilesMovmentPathAtom)
+  const [mapTilesMovementPath, setMapTilesMovementPath] = useAtom(mapTilesMovementPathAtom)
   const setOpenModalBottomCenterBar = useSetAtom(mapTilesActionStatusAtom)
   const { mutateActionTaskInProcess } = useActionTaskInProcess()
 
   useEffect(() => {
     if (startingPoint && clickedTile) {
-      const movmentPath = pathFromPointToPoint(startingPoint.mapTile.x, startingPoint.mapTile.y, clickedTile.mapTile.x, clickedTile.mapTile.y, 0)
-      setMapTilesMovmentPath(movmentPath)
+      const movementPath = pathFromPointToPoint(startingPoint.mapTile.x, startingPoint.mapTile.y, clickedTile.mapTile.x, clickedTile.mapTile.y, 0)
+      setMapTilesMovementPath(movementPath)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clickedTile])
 
   const handleButtonMove = () => {
     setOpenModalBottomCenterBar(EMapTilesActionStatus.Inactive)
-    mutateActionTaskInProcess(mapTilesMovmentPath)
-    playerMovmentAction(mapTilesMovmentPath)
+    mutateActionTaskInProcess(mapTilesMovementPath)
+    playerMovementAction(mapTilesMovementPath)
   }
 
   const handleButtonCancel = () => {
