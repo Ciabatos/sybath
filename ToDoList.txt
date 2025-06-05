@@ -35,3 +35,8 @@ API routes - api routy
 useFetch - fetchowanie danych do atoms
 useCustomHooks - logika
 Actions - akcje
+
+
+
+dodać codegen - plop
+zmienić nazwe na Handling dla generalnych hookow ktore gromadza podhooki
