@@ -1,10 +1,10 @@
 "use client"
 
-import MapTileLayerHandling from "@/components/map/MapTileLayerHandling"
+import LayersHandling from "@/components/map/layers/LayersHandling"
 import style from "@/components/map/styles/Tile.module.css"
 import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
-import { useCreateImage } from "@/methods/hooks/mapTiles/useCreateImage"
-import { useMapTilesManipulation } from "@/methods/hooks/mapTiles/useMapTilesManipulation"
+import { useMapTilesManipulation } from "@/methods/hooks/mapTiles/composite/useMapTilesManipulation"
+import { useCreateImage } from "@/methods/hooks/mapTiles/core/useCreateImage"
 
 interface Props {
   tile: TJoinedMapTile
@@ -53,7 +53,7 @@ export default function MapTile({ tile }: Props) {
       )}
       <div>
         {tile.mapTile.x}, {tile.mapTile.y}, {tile.cities?.name}, {tile.districts?.name}
-        <MapTileLayerHandling tile={tile} />
+        <LayersHandling tile={tile} />
       </div>
     </div>
   )

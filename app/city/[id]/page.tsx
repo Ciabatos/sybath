@@ -1,7 +1,7 @@
 "use server"
 import { auth } from "@/auth"
 
-import CityWrapper from "@/components/city/CityWrapper"
+import CityTilesWrapper from "@/components/city/CityTilesWrapper"
 import { getAbilities } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
 import { getSkills } from "@/db/postgresMainDatabase/schemas/attributes/skills"
 import { getPlayerInventorySlots } from "@/db/postgresMainDatabase/schemas/items/inventories"
@@ -72,7 +72,7 @@ export default async function CityPage({ params }: { params: TypeParams }) {
             ...(playerId && { [`/api/players/${playerId}/abilities`]: playerAbilities }),
           },
         }}>
-        <CityWrapper
+        <CityTilesWrapper
           cityId={cityId}
           joinedCityTiles={joinedCityTiles}
           terrainTypes={terrainTypes}

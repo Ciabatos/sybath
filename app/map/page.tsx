@@ -1,7 +1,7 @@
 "use server"
 import { auth } from "@/auth"
 
-import MapWrapper from "@/components/map/MapWrapper"
+import MapTilesWrapper from "@/components/map/MapTilesWrapper"
 import { getAbilities } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
 import { getSkills } from "@/db/postgresMainDatabase/schemas/attributes/skills"
 import { getPlayerInventorySlots } from "@/db/postgresMainDatabase/schemas/items/inventories"
@@ -68,7 +68,7 @@ export default async function MapPage() {
             ...(playerId && { [`/api/players/${playerId}/abilities`]: playerAbilities }),
           },
         }}>
-        <MapWrapper
+        <MapTilesWrapper
           terrainTypes={terrainTypes}
           landscapeTypes={landscapeTypes}
           joinedMapTiles={joinedMapTiles}

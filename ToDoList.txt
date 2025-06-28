@@ -13,19 +13,22 @@ Owner zakladka - ustawianie placy/sprzedaz
 zatrudnianie graczy
 zatrudnianie populacji miasta
 transport
-
-+zunifikowac player_abilities do abilities and ability_owner ability_types
-ability_effects 
-ability_conditions 
-
 +GameLoop!
 +MarketPlace
 +Mechaniki kupowania/sprzedawania
 +Mechaniki produkcji
 +Mechaniki budowania budynkow
 
-
-
++zunifikowac player_abilities do abilities and ability_owner ability_types
+ability_effects 
+ability_conditions 
 
 dodać codegen - plop
-zmienić nazwe na Handling dla generalnych hookow ktore gromadza podhooki
+
+Podzielic Componenty na Handling i składowe - renderowanie UI
+Dodac Atom zaznaczony hero
+
+  movment
+  colonize
+  inventoryAdd
+  inventoryRemove
