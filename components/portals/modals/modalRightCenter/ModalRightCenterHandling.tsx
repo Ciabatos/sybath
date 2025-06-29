@@ -1,8 +1,8 @@
 "use client"
 
-import { ModalBuildingPanel } from "@/components/portals/modals/modalRightCenter/ModalBuildingPanel"
-import { ModalDistrictPanel } from "@/components/portals/modals/modalRightCenter/ModalDistrictPanel"
-import { ModalEmptyTilePanel } from "@/components/portals/modals/modalRightCenter/ModalEmptyTilePanel"
+import { ModalBuildingPanel } from "@/components/portals/modals/modalRightCenter/modalBuildingPanel/ModalBuildingPanel"
+import { ModalDistrictPanel } from "@/components/portals/modals/modalRightCenter/modalDistrictPanel/ModalDistrictPanel"
+import { ModalEmptyTilePanel } from "@/components/portals/modals/modalRightCenter/modalEmptyTilePanel/ModalEmptyTilePanel"
 import { useCityTilesActionStatus } from "@/methods/hooks/cityTiles/core/useCityTilesActionStatus"
 import { useMapTilesActionStatus } from "@/methods/hooks/mapTiles/core/useMapTilesActionStatus"
 
