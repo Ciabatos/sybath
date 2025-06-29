@@ -1,5 +1,5 @@
 "use server"
-import SignUp from "@/components/SignUp"
+import SignUp from "@/components/singUp/SignUp"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import styles from "./page.module.css"
