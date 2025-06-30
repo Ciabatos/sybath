@@ -4,13 +4,11 @@ import { playerMovementAction } from "@/methods/actions/mapTiles/playerMovementA
 import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
 import { useMapTilesPath } from "@/methods/hooks/mapTiles/core/useMapTilesPath"
 import { mapTilesMovementPathAtom, mapTilesMovementPathSetAtom } from "@/store/atoms"
-import { useAtomValue, useSetAtom } from "jotai"
+import { useAtom } from "jotai"
 
 export function useActionMapTilesMovement() {
-  const mapTilesMovementPath = useAtomValue(mapTilesMovementPathAtom)
-  const setMapTilesMovementPath = useSetAtom(mapTilesMovementPathAtom)
-  const mapTilesMovementPathSet = useAtomValue(mapTilesMovementPathSetAtom)
-  const setMapTilesMovementPathSet = useSetAtom(mapTilesMovementPathSetAtom)
+  const [mapTilesMovementPath, setMapTilesMovementPath] = useAtom(mapTilesMovementPathAtom)
+  const [mapTilesMovementPathSet, setMapTilesMovementPathSet] = useAtom(mapTilesMovementPathSetAtom)
   const { pathFromPointToPoint } = useMapTilesPath()
 
   function selectMapTilesMovementPath(startingPoint: TJoinedMapTile | undefined, clickedTile: TJoinedMapTile | undefined) {

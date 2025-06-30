@@ -7,7 +7,7 @@ import { useFetchDistricts } from "@/methods/hooks/mapTiles/core/useFetchDistric
 import { useFetchMapTiles } from "@/methods/hooks/mapTiles/core/useFetchMapTiles"
 import { useFetchPlayerVisibleMapData } from "@/methods/hooks/mapTiles/core/useFetchPlayerVisibleMapData"
 import { joinedMapTilesAtom } from "@/store/atoms"
-import { useAtomValue, useSetAtom } from "jotai"
+import { useAtom } from "jotai"
 import { useEffect } from "react"
 interface Props {
   joinedMapTiles: TJoinedMapTileById
@@ -18,8 +18,7 @@ interface Props {
 export function useJoinMapTiles({ joinedMapTiles, terrainTypes, landscapeTypes }: Props) {
   useFetchDistricts()
 
-  const setJoinedMapTiles = useSetAtom(joinedMapTilesAtom)
-  const newJoinedMapTilesOnClient = useAtomValue(joinedMapTilesAtom)
+  const [newJoinedMapTilesOnClient, setJoinedMapTiles] = useAtom(joinedMapTilesAtom)
   const { mapTiles } = useFetchMapTiles()
   const { cities } = useFetchCities()
   const { playerVisibleMapData } = useFetchPlayerVisibleMapData()

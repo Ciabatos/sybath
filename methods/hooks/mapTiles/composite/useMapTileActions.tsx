@@ -4,11 +4,10 @@ import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
 import { usePlayerPositionMapTile } from "@/methods/hooks/mapTiles/composite/usePlayerPositionMapTile"
 import { useMapTilesActionStatus } from "@/methods/hooks/mapTiles/core/useMapTilesActionStatus"
 import { clickedTileAtom } from "@/store/atoms"
-import { useAtomValue, useSetAtom } from "jotai"
+import { useAtom } from "jotai"
 
 export function useMapTileActions() {
-  const clickedTile = useAtomValue(clickedTileAtom)
-  const setClickedTile = useSetAtom(clickedTileAtom)
+  const [clickedTile, setClickedTile] = useAtom(clickedTileAtom)
   const { actualMapTilesActionStatus, newMapTilesActionStatus, resetMapTilesActionStatus } = useMapTilesActionStatus()
 
   const { playerMapTile } = usePlayerPositionMapTile()

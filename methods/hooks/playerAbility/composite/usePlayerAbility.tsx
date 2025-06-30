@@ -3,12 +3,11 @@
 import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
 import { useFetchPlayerAbilities } from "@/methods/hooks/playerAbility/core/useFetchPlayerAbilities"
 import { selectedAbilityIdAtom } from "@/store/atoms"
-import { useAtomValue, useSetAtom } from "jotai"
+import { useAtom } from "jotai"
 
 export function usePlayerAbility() {
   const { playerAbilities } = useFetchPlayerAbilities()
-  const selectedAbilityId = useAtomValue(selectedAbilityIdAtom)
-  const setSelectedAbilityId = useSetAtom(selectedAbilityIdAtom)
+  const [selectedAbilityId, setSelectedAbilityId] = useAtom(selectedAbilityIdAtom)
 
   function selectAbility(abilityId: number) {
     setSelectedAbilityId(abilityId)

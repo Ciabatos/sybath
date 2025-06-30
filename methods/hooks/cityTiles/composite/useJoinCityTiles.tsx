@@ -5,7 +5,7 @@ import { joinCityTiles, TJoinedCityTilesById } from "@/methods/functions/joinCit
 import { useFetchBuildings } from "@/methods/hooks/cityTiles/core/useFetchBuildings"
 import { useFetchCityTiles } from "@/methods/hooks/cityTiles/core/useFetchCityTiles"
 import { joinedCityTilesAtom } from "@/store/atoms"
-import { useAtomValue, useSetAtom } from "jotai"
+import { useAtom } from "jotai"
 import { useEffect } from "react"
 
 interface Props {
@@ -18,8 +18,7 @@ interface Props {
 export function useJoinCityTiles({ cityId, joinedCityTiles, terrainTypes, landscapeTypes }: Props) {
   const { cityTiles: newCityTiles } = useFetchCityTiles(cityId)
   const { buildings } = useFetchBuildings(cityId)
-  const setJoinedCityTiles = useSetAtom(joinedCityTilesAtom)
-  const newJoinedCityTilesOnClient = useAtomValue(joinedCityTilesAtom)
+  const [newJoinedCityTilesOnClient, setJoinedCityTiles] = useAtom(joinedCityTilesAtom)
 
   useEffect(() => {
     if (newCityTiles) {

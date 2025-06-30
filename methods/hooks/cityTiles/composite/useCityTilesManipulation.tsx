@@ -1,11 +1,10 @@
 "use client"
 
 import { clickedCityTileAtom } from "@/store/atoms"
-import { useAtomValue, useSetAtom } from "jotai"
+import { useAtom } from "jotai"
 
 export function useCityTilesManipulation() {
-  const clickedCityTile = useAtomValue(clickedCityTileAtom)
-  const setClickedCityTile = useSetAtom(clickedCityTileAtom)
+  const [clickedCityTile, setClickedCityTile] = useAtom(clickedCityTileAtom)
 
   return { clickedCityTile, setClickedCityTile }
 }
