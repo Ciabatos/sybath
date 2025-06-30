@@ -25,10 +25,10 @@ import { atom } from "jotai"
 //Map
 export const clickedTileAtom = atom<TJoinedMapTile>()
 export const mapTilesAtom = atom<TMapTiles[]>([])
+export const joinedMapTilesAtom = atom<TJoinedMapTileById>({})
 export const citiesAtom = atom<TCitiesByMapCoordinates>({})
 export const districtsAtom = atom<TDistrictsByMapCoordinates>({})
 export const mapTilesActionStatusAtom = atom<EMapTilesActionStatus>(EMapTilesActionStatus.Inactive)
-export const joinedMapTilesAtom = atom<TJoinedMapTileById>({})
 export const playerVisibleMapDataAtom = atom<TPlayerVisibleMapDataById>({})
 export const mapTilesMovementPathAtom = atom<TMovementPath[]>([])
 export const mapTilesGuardAreaAtom = atom<TJoinedMapTile[]>([])
