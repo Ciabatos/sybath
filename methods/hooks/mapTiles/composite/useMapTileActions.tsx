@@ -5,7 +5,7 @@ import { useMapTilesActionStatus } from "@/methods/hooks/mapTiles/core/useMapTil
 import { clickedTileAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 
-export function useMapTilesManipulation() {
+export function useMapTileActions() {
   const clickedTile = useAtomValue(clickedTileAtom)
   const setClickedTile = useSetAtom(clickedTileAtom)
   const { actualMapTilesActionStatus, newMapTilesActionStatus, resetMapTilesActionStatus } = useMapTilesActionStatus()
@@ -23,14 +23,23 @@ export function useMapTilesManipulation() {
     } else if (tile.districts?.name) {
       showDistrictActionList()
       setCoordinatesOnClick(tile)
-    } else if (tile.playerVisibleMapData?.player_id) {
-      showPlayerActionList()
-      setCoordinatesOnClick(tile)
-    } else if (!tile.cities?.name && !tile.districts?.name && !tile.playerVisibleMapData?.player_id && actualMapTilesActionStatus.Inactive) {
+    } else if (!tile.cities?.name && !tile.districts?.name && actualMapTilesActionStatus.Inactive) {
       showEmptyTileActionList()
       setCoordinatesOnClick(tile)
     } else {
       setCoordinatesOnClick(tile)
+      resetMapTilesActionStatus()
+    }
+  }
+
+  function handleOpenPlayerActionList() {
+    if (actualMapTilesActionStatus.Inactive) {
+      showPlayerActionList()
+    }
+  }
+
+  function handleClosePlayerActionList() {
+    if (actualMapTilesActionStatus.PlayerActionList) {
       resetMapTilesActionStatus()
     }
   }
@@ -63,5 +72,5 @@ export function useMapTilesManipulation() {
 	}
   }
 
-  return { clickedTile, handleClickOnMapTile }
+  return { clickedTile, handleClickOnMapTile, handleOpenPlayerActionList, handleClosePlayerActionList }
 }

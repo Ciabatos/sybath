@@ -2,13 +2,13 @@
 
 import styles from "@/components/portals/modals/ModalBottomCenterBar/modalActionGuardArea/styles/ModalActionGuardArea.module.css"
 import { useActionMapTilesMovement } from "@/methods/hooks/mapTiles/composite/useActionMapTilesMovement"
-import { useMapTilesManipulation } from "@/methods/hooks/mapTiles/composite/useMapTilesManipulation"
+import { useMapTileActions } from "@/methods/hooks/mapTiles/composite/useMapTileActions"
 import { useMapTilesActionStatus } from "@/methods/hooks/mapTiles/core/useMapTilesActionStatus"
 import { useMutateActionTaskInProcess } from "@/methods/hooks/tasks/core/useMutateActionTaskInProcess"
 import { useEffect, useState } from "react"
 
 export default function ModalActionGuardArea() {
-  const { clickedTile } = useMapTilesManipulation()
+  const { clickedTile } = useMapTileActions()
   const [startingPoint] = useState(clickedTile)
   const { selectMapTilesMovementPath, mapTilesMovementPath, doPlayerMovementAction } = useActionMapTilesMovement()
   const { mutateActionTaskInProcess } = useMutateActionTaskInProcess()

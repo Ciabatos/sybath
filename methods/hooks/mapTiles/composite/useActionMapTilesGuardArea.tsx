@@ -1,13 +1,13 @@
 "use client"
 
-import { useMapTilesManipulation } from "@/methods/hooks/mapTiles/composite/useMapTilesManipulation"
+import { useMapTileActions } from "@/methods/hooks/mapTiles/composite/useMapTileActions"
 import { useMapTilesArea } from "@/methods/hooks/mapTiles/core/useMapTilesArea"
 import { mapTilesGuardAreaAtom, mapTilesGuardAreaSetAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useState } from "react"
 
 export function useActionMapTilesGuardArea() {
-  const { clickedTile } = useMapTilesManipulation()
+  const { clickedTile } = useMapTileActions()
   const [startingPoint] = useState(clickedTile)
   const { areaFromPoint } = useMapTilesArea()
   const setMapTilesGuardAreaSet = useSetAtom(mapTilesGuardAreaSetAtom)

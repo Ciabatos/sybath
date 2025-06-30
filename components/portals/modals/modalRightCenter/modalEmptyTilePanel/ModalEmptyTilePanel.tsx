@@ -2,13 +2,13 @@
 
 import { Button } from "@/components/ui/button"
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from "@/components/ui/drawer"
-import { useMapTilesManipulation } from "@/methods/hooks/mapTiles/composite/useMapTilesManipulation"
+import { useMapTileActions } from "@/methods/hooks/mapTiles/composite/useMapTileActions"
 
 import { useMapTilesActionStatus } from "@/methods/hooks/mapTiles/core/useMapTilesActionStatus"
 
 export function ModalEmptyTilePanel() {
   const { actualMapTilesActionStatus, resetMapTilesActionStatus } = useMapTilesActionStatus()
-  const { clickedTile } = useMapTilesManipulation()
+  const { clickedTile } = useMapTileActions()
 
   const handleClose = () => {
     resetMapTilesActionStatus()

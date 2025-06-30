@@ -2,7 +2,7 @@
 
 import styles from "@/components/portals/modals/ModalBottomCenterBar/styles/ModalActionBar.module.css"
 import { useActionMapTilesMovement } from "@/methods/hooks/mapTiles/composite/useActionMapTilesMovement"
-import { useMapTilesManipulation } from "@/methods/hooks/mapTiles/composite/useMapTilesManipulation"
+import { useMapTileActions } from "@/methods/hooks/mapTiles/composite/useMapTileActions"
 import { useMapTilesActionStatus } from "@/methods/hooks/mapTiles/core/useMapTilesActionStatus"
 import { usePlayerAbility } from "@/methods/hooks/playerAbility/composite/usePlayerAbility"
 import { usePlayerAbilityRequirements } from "@/methods/hooks/playerAbility/composite/usePlayerAbilityRequirements"
@@ -10,7 +10,7 @@ import { useMutateActionTaskInProcess } from "@/methods/hooks/tasks/core/useMuta
 import { useEffect, useState } from "react"
 
 export default function ModalActionAbility() {
-  const { clickedTile } = useMapTilesManipulation()
+  const { clickedTile } = useMapTileActions()
   const [startingPoint] = useState(clickedTile)
   const { selectMapTilesMovementPath, mapTilesMovementPath, doPlayerMovementAction } = useActionMapTilesMovement()
   const { mutateActionTaskInProcess } = useMutateActionTaskInProcess()

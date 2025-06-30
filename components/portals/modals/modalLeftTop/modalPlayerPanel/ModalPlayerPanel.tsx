@@ -7,18 +7,30 @@ import styles from "@/components/portals/modals/modalLeftTop/modalPlayerPanel/st
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
+import { useMapTileActions } from "@/methods/hooks/mapTiles/composite/useMapTileActions"
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
 import { useState } from "react"
 
 export default function ModalPlayerPanel() {
   const [isOpen, setIsOpen] = useState(false)
   const [isPartyVisible, setIsPartyVisible] = useState(false)
+  const { handleOpenPlayerActionList, handleClosePlayerActionList } = useMapTileActions()
+
+  function handleOpenPanel() {
+    setIsOpen(!isOpen)
+    handleOpenPlayerActionList()
+  }
+
+  function handleClosePanel() {
+    setIsOpen(false)
+    handleClosePlayerActionList()
+  }
 
   return (
     <div className={styles.container}>
       {!isOpen && (
         <Button
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={handleOpenPanel}
           className={cn(styles.button, isOpen ? styles.panelClosed : styles.button, "h-auto w-auto p-1")}
           size="icon">
           <Avatar className="h-12 w-12">
@@ -34,7 +46,7 @@ export default function ModalPlayerPanel() {
       <div className={cn(styles.panel, isOpen ? styles.panelOpen : styles.panelClosed)}>
         <div className={styles.panelContent}>
           <Button
-            onClick={() => setIsOpen(false)}
+            onClick={handleClosePanel}
             className={styles.closeButton}>
             Close Panel
           </Button>

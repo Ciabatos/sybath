@@ -1,11 +1,11 @@
 import styles from "@/components/portals/modals/ModalBottomCenterBar/styles/ModalActionBar.module.css"
 import { Button } from "@/components/ui/button"
-import { useMapTilesManipulation } from "@/methods/hooks/mapTiles/composite/useMapTilesManipulation"
+import { useMapTileActions } from "@/methods/hooks/mapTiles/composite/useMapTileActions"
 import { useMapTilesActionStatus } from "@/methods/hooks/mapTiles/core/useMapTilesActionStatus"
 import Link from "next/link"
 
 export default function ModalCityActionBar() {
-  const { clickedTile } = useMapTilesManipulation()
+  const { clickedTile } = useMapTileActions()
   const { resetMapTilesActionStatus } = useMapTilesActionStatus()
 
   const handleButtonEnter = () => {
