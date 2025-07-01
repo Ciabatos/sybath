@@ -38,3 +38,4 @@ Uzycie PlayerActions po kliknieciu na portret
 
 
   ZMIANA ATOMOW NA NAJMNIEJSZE MOZLIWE ELEMENTY! - bardzo ważne bo po clicku na tiles dane moga sie zmienic a atom bedzie mial stare dane - dodatkowo mniejsze elementy sa lepsze do budowania !
+UseAtom w FETCHERZE ETAG trzeba zapisac
