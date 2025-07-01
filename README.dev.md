@@ -1,0 +1,1 @@
+-- napisac do copilota zeby mi zwieźle opisal jakie schematy używam w projekcie
