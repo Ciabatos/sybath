@@ -24,6 +24,8 @@ ability_effects
 ability_conditions 
 
 dodać codegen - plop
+ZOD W SERVER ACTION I API
+ROZDZIELIC POBIERANIE POZYCJI GRACZA OD MAPTILESDATAVISABLE - i zmienic nazwe na MAPTILES_DATA_KNOWN
 
 Dodac Atom zaznaczony hero w celu posiadania wielu Herosow
 Uzycie PlayerActions po kliknieciu na portret
