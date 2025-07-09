@@ -1,13 +1,13 @@
 "use client"
 import { SWRConfig } from "swr"
 
-const etagMap = new Map<string, string>()
+const storedEtagMap = new Map<string, string>()
 
 const fetchWithETag = async (url: string) => {
   const headers: Record<string, string> = {}
-  const etag = etagMap.get(url)
+  const storedEtag = storedEtagMap.get(url)
 
-  if (etag) headers["If-None-Match"] = etag
+  if (storedEtag) headers["If-None-Match"] = storedEtag
 
   const res = await fetch(url, { headers })
   if (res.status === 304) {
@@ -15,7 +15,7 @@ const fetchWithETag = async (url: string) => {
     return undefined
   }
   const newEtag = res.headers.get("etag")
-  if (newEtag) etagMap.set(url, newEtag)
+  if (newEtag) storedEtagMap.set(url, newEtag)
   return res.json()
 }
 
