@@ -5,11 +5,11 @@ import MapTilesWrapper from "@/components/map/MapTilesWrapper"
 import { getAbilities } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
 import { getSkills } from "@/db/postgresMainDatabase/schemas/attributes/skills"
 import { getPlayerInventorySlots } from "@/db/postgresMainDatabase/schemas/items/inventories"
-import { getMapCities, TCitiesByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/cities"
-import { getMapDistricts, TDistrictsByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/districts"
+import { getMapCities, TCitiesByCoordinates } from "@/db/postgresMainDatabase/schemas/map/cities"
+import { getMapDistricts, TDistrictsByCoordinates } from "@/db/postgresMainDatabase/schemas/map/districts"
 import { getMapLandscapeTypes, TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
 import { getMapTiles } from "@/db/postgresMainDatabase/schemas/map/mapTiles"
-import { getPlayerVisibleMapData, TPlayerVisibleMapDataById } from "@/db/postgresMainDatabase/schemas/map/playerVisibleMapData"
+import { getPlayerVisibleMapData, TPlayerVisibleMapDataByCoordinates } from "@/db/postgresMainDatabase/schemas/map/playerVisibleMapData"
 import { getMapTerrainTypes, TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
 import { getPlayerAbilities } from "@/db/postgresMainDatabase/schemas/players/playerAbilities"
 import { getPlayerSkills } from "@/db/postgresMainDatabase/schemas/players/playerSkills"
@@ -44,11 +44,11 @@ export default async function MapPage() {
 
   const landscapeTypes = arrayToObjectKeyId("id", mapLandscapeTypes) as TMapLandscapeTypesById
 
-  const cities = mapCities ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", mapCities) as TCitiesByMapCoordinates) : {}
+  const cities = mapCities ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", mapCities) as TCitiesByCoordinates) : {}
 
-  const districts = mapDistricts ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", mapDistricts) as TDistrictsByMapCoordinates) : {}
+  const districts = mapDistricts ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", mapDistricts) as TDistrictsByCoordinates) : {}
 
-  const playerVisibleMapData = mapPlayerVisibleMapData ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", mapPlayerVisibleMapData) as TPlayerVisibleMapDataById) : {}
+  const playerVisibleMapData = mapPlayerVisibleMapData ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", mapPlayerVisibleMapData) as TPlayerVisibleMapDataByCoordinates) : {}
 
   const joinedMapTiles = joinMapTiles(mapTiles, terrainTypes, landscapeTypes, cities, districts, playerVisibleMapData)
 

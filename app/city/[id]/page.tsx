@@ -5,7 +5,7 @@ import CityTilesWrapper from "@/components/city/CityTilesWrapper"
 import { getAbilities } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
 import { getSkills } from "@/db/postgresMainDatabase/schemas/attributes/skills"
 import { getPlayerInventorySlots } from "@/db/postgresMainDatabase/schemas/items/inventories"
-import { getCityBuildings, TCityBuildingsMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/buildings"
+import { getCityBuildings, TCityBuildingsByCoordinates } from "@/db/postgresMainDatabase/schemas/map/buildings"
 import { getCityTiles } from "@/db/postgresMainDatabase/schemas/map/cityTiles"
 import { getMapLandscapeTypes, TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
 import { getMapTerrainTypes, TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
@@ -54,7 +54,7 @@ export default async function CityPage({ params }: { params: TypeParams }) {
 
   const landscapeTypes = arrayToObjectKeyId("id", mapLandscapeTypes) as TMapLandscapeTypesById
 
-  const buildings = cityBuildings ? (arrayToObjectKeysId("city_tile_x", "city_tile_y", cityBuildings) as TCityBuildingsMapCoordinates) : {}
+  const buildings = cityBuildings ? (arrayToObjectKeysId("city_tile_x", "city_tile_y", cityBuildings) as TCityBuildingsByCoordinates) : {}
 
   const joinedCityTiles = joinCityTiles(cityTiles, terrainTypes, landscapeTypes, buildings)
 

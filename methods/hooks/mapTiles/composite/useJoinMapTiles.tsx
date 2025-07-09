@@ -1,7 +1,7 @@
 "use client"
 import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
 import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
-import { joinMapTiles, TJoinedMapTileById } from "@/methods/functions/joinMapTiles"
+import { joinMapTiles, TJoinedMapTileByCoordinates } from "@/methods/functions/joinMapTiles"
 import { useFetchCities } from "@/methods/hooks/mapTiles/core/useFetchCities"
 import { useFetchDistricts } from "@/methods/hooks/mapTiles/core/useFetchDistricts"
 import { useFetchMapTiles } from "@/methods/hooks/mapTiles/core/useFetchMapTiles"
@@ -10,7 +10,7 @@ import { joinedMapTilesAtom } from "@/store/atoms"
 import { useAtom } from "jotai"
 import { useEffect } from "react"
 interface Props {
-  joinedMapTiles: TJoinedMapTileById
+  joinedMapTiles: TJoinedMapTileByCoordinates
   terrainTypes: TMapTerrainTypesById
   landscapeTypes: TMapLandscapeTypesById
 }

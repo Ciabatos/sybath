@@ -11,7 +11,7 @@ export type TCityBuildings = {
   image_url: string
 }
 
-export type TCityBuildingsMapCoordinates = Record<string, TCityBuildings>
+export type TCityBuildingsByCoordinates = Record<string, TCityBuildings>
 
 export async function getCityBuildings(cityId: number) {
   if (!cityId || isNaN(cityId)) {

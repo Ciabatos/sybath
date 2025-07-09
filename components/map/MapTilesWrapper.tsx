@@ -35,7 +35,7 @@ export default function MapTilesWrapper({ joinedMapTiles, terrainTypes, landscap
   let maxX = 0
   let maxY = 0
   Object.keys(joinedMapTiles).forEach((key) => {
-    const [x, y] = key.split("_").map(Number)
+    const [x, y] = key.split(",").map(Number)
     if (x > maxX) maxX = x
     if (y > maxY) maxY = y
   })

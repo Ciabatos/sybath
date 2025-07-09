@@ -10,7 +10,7 @@ export type TCities = {
   image_url: string
 }
 
-export type TCitiesByMapCoordinates = Record<string, TCities>
+export type TCitiesByCoordinates = Record<string, TCities>
 
 export async function getMapCities() {
   try {

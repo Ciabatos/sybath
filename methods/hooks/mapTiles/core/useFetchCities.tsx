@@ -1,5 +1,5 @@
 "use client"
-import { TCitiesByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/cities"
+import { TCitiesByCoordinates } from "@/db/postgresMainDatabase/schemas/map/cities"
 import { arrayToObjectKeysId } from "@/methods/functions/converters"
 import { citiesAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
@@ -16,7 +16,7 @@ export function useFetchCities() {
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const cititesByCoordinates = data ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", data) as TCitiesByMapCoordinates) : {}
+      const cititesByCoordinates = data ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", data) as TCitiesByCoordinates) : {}
       setCitiesAtom(cititesByCoordinates)
       prevDataRef.current = data
     }

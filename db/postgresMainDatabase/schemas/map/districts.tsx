@@ -11,7 +11,7 @@ export type TDistricts = {
   image_url: string
 }
 
-export type TDistrictsByMapCoordinates = Record<string, TDistricts>
+export type TDistrictsByCoordinates = Record<string, TDistricts>
 
 export async function getMapDistricts() {
   try {

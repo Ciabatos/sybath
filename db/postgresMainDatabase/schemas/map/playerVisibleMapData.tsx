@@ -10,7 +10,7 @@ export type TPlayerVisibleMapData = {
   player_image_url: string
 }
 
-export type TPlayerVisibleMapDataById = Record<string, TPlayerVisibleMapData>
+export type TPlayerVisibleMapDataByCoordinates = Record<string, TPlayerVisibleMapData>
 
 export async function getPlayerVisibleMapData(playerId: number) {
   if (!playerId || isNaN(playerId)) {

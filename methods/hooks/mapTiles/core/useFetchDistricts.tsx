@@ -1,5 +1,5 @@
 "use client"
-import { TDistrictsByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/districts"
+import { TDistrictsByCoordinates } from "@/db/postgresMainDatabase/schemas/map/districts"
 import { arrayToObjectKeysId } from "@/methods/functions/converters"
 import { districtsAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
@@ -16,7 +16,7 @@ export function useFetchDistricts() {
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const districtByCoordinates = data ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", data) as TDistrictsByMapCoordinates) : {}
+      const districtByCoordinates = data ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", data) as TDistrictsByCoordinates) : {}
       setDistrictsAtom(districtByCoordinates)
       prevDataRef.current = data
     }

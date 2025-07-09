@@ -1,5 +1,5 @@
 "use client"
-import { TPlayerVisibleMapData, TPlayerVisibleMapDataById } from "@/db/postgresMainDatabase/schemas/map/playerVisibleMapData"
+import { TPlayerVisibleMapData, TPlayerVisibleMapDataByCoordinates } from "@/db/postgresMainDatabase/schemas/map/playerVisibleMapData"
 import { arrayToObjectKeysId } from "@/methods/functions/converters"
 import { playerPositionMapTileAtom, playerVisibleMapDataAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
@@ -22,7 +22,7 @@ export function useFetchPlayerVisibleMapData() {
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const playerVisibleMapData = data ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", data) as TPlayerVisibleMapDataById) : {}
+      const playerVisibleMapData = data ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", data) as TPlayerVisibleMapDataByCoordinates) : {}
       setPlayerVisibleMapData(playerVisibleMapData)
       console.log("useFetchPlayerVisibleMapData", playerVisibleMapData)
       const playerPositionMapTile = data ? data.find((tile: TPlayerVisibleMapData) => tile.player_id === playerId) : null

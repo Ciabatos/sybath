@@ -1,7 +1,7 @@
 "use client"
 import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
 import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
-import { joinCityTiles, TJoinedCityTilesById } from "@/methods/functions/joinCityTiles"
+import { joinCityTiles, TJoinedCityTilesByCoordinates } from "@/methods/functions/joinCityTiles"
 import { useFetchBuildings } from "@/methods/hooks/cityTiles/core/useFetchBuildings"
 import { useFetchCityTiles } from "@/methods/hooks/cityTiles/core/useFetchCityTiles"
 import { joinedCityTilesAtom } from "@/store/atoms"
@@ -10,7 +10,7 @@ import { useEffect } from "react"
 
 interface Props {
   cityId: number
-  joinedCityTiles: TJoinedCityTilesById
+  joinedCityTiles: TJoinedCityTilesByCoordinates
   terrainTypes: TMapTerrainTypesById
   landscapeTypes: TMapLandscapeTypesById
 }

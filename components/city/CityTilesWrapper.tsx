@@ -6,14 +6,14 @@ import RightCenterPortal from "@/components/portals/RightCenterPoratl"
 import TopCenterPortal from "@/components/portals/TopCenterPortal"
 import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
 import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
-import { TJoinedCityTilesById } from "@/methods/functions/joinCityTiles"
+import { TJoinedCityTilesByCoordinates } from "@/methods/functions/joinCityTiles"
 import { useRef, useState } from "react"
 import { ReactZoomPanPinchContentRef, TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
 import style from "./styles/Map.module.css"
 
 interface Props {
   cityId: number
-  joinedCityTiles: TJoinedCityTilesById
+  joinedCityTiles: TJoinedCityTilesByCoordinates
   terrainTypes: TMapTerrainTypesById
   landscapeTypes: TMapLandscapeTypesById
 }

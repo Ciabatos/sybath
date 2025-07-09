@@ -1,8 +1,8 @@
-import { TCities, TCitiesByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/cities"
-import { TDistricts, TDistrictsByMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/districts"
+import { TCities, TCitiesByCoordinates } from "@/db/postgresMainDatabase/schemas/map/cities"
+import { TDistricts, TDistrictsByCoordinates } from "@/db/postgresMainDatabase/schemas/map/districts"
 import { TMapLandscapeTypes, TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
 import type { TMapTiles } from "@/db/postgresMainDatabase/schemas/map/mapTiles"
-import { TPlayerVisibleMapData, TPlayerVisibleMapDataById } from "@/db/postgresMainDatabase/schemas/map/playerVisibleMapData"
+import { TPlayerVisibleMapData, TPlayerVisibleMapDataByCoordinates } from "@/db/postgresMainDatabase/schemas/map/playerVisibleMapData"
 import type { TMapTerrainTypes, TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
 import { produce } from "immer"
 
@@ -16,19 +16,19 @@ export interface TJoinedMapTile {
   moveCost?: number
 }
 
-export type TJoinedMapTileById = Record<string, TJoinedMapTile>
+export type TJoinedMapTileByCoordinates = Record<string, TJoinedMapTile>
 
 export function joinMapTiles(
   tiles: TMapTiles[],
   terrainTypes: TMapTerrainTypesById,
   landscapeTypes: TMapLandscapeTypesById,
-  cities: TCitiesByMapCoordinates,
-  districts: TDistrictsByMapCoordinates,
-  playerVisibleMapData: TPlayerVisibleMapDataById,
+  cities: TCitiesByCoordinates,
+  districts: TDistrictsByCoordinates,
+  playerVisibleMapData: TPlayerVisibleMapDataByCoordinates,
   options: {
-    oldTilesToUpdate?: TJoinedMapTileById
+    oldTilesToUpdate?: TJoinedMapTileByCoordinates
   } = {},
-): TJoinedMapTileById {
+): TJoinedMapTileByCoordinates {
   const { oldTilesToUpdate } = options
 
   // to jest funkcja pomocnicza dla bloku poniżej

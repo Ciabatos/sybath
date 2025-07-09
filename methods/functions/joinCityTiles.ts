@@ -1,4 +1,4 @@
-import { TCityBuildings, TCityBuildingsMapCoordinates } from "@/db/postgresMainDatabase/schemas/map/buildings"
+import { TCityBuildings, TCityBuildingsByCoordinates } from "@/db/postgresMainDatabase/schemas/map/buildings"
 import { TCityTiles } from "@/db/postgresMainDatabase/schemas/map/cityTiles"
 import { TMapLandscapeTypes, TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
 import type { TMapTerrainTypes, TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
@@ -11,17 +11,17 @@ export interface TJoinedCityTiles {
   buildings?: TCityBuildings
 }
 
-export type TJoinedCityTilesById = Record<string, TJoinedCityTiles>
+export type TJoinedCityTilesByCoordinates = Record<string, TJoinedCityTiles>
 
 export function joinCityTiles(
   tiles: TCityTiles[],
   terrainTypes: TMapTerrainTypesById,
   landscapeTypes: TMapLandscapeTypesById,
-  buildings: TCityBuildingsMapCoordinates,
+  buildings: TCityBuildingsByCoordinates,
   options: {
-    oldTilesToUpdate?: TJoinedCityTilesById
+    oldTilesToUpdate?: TJoinedCityTilesByCoordinates
   } = {},
-): TJoinedCityTilesById {
+): TJoinedCityTilesByCoordinates {
   const { oldTilesToUpdate } = options
 
   // to jest funkcja pomocnicza dla bloku poniżej
