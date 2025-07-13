@@ -1,3 +1,5 @@
+"use client"
+
 import { useFetchPlayerVisibleMapData } from "@/methods/hooks/mapTiles/core/useFetchPlayerVisibleMapData"
 import { useGetJoinedMapTileByCoordinates } from "@/methods/hooks/mapTiles/core/useGetMapTileByCoordinates"
 

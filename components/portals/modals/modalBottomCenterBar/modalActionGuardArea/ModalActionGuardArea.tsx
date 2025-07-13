@@ -1,6 +1,7 @@
 "use client"
 
 import styles from "@/components/portals/modals/ModalBottomCenterBar/modalActionGuardArea/styles/ModalActionGuardArea.module.css"
+import { useActionMapTilesGuardArea } from "@/methods/hooks/mapTiles/composite/useActionMapTilesGuardArea"
 import { useActionMapTilesMovement } from "@/methods/hooks/mapTiles/composite/useActionMapTilesMovement"
 import { useMapTileActions } from "@/methods/hooks/mapTiles/composite/useMapTileActions"
 import { useMapTilesActionStatus } from "@/methods/hooks/mapTiles/core/useMapTilesActionStatus"
@@ -11,22 +12,24 @@ export default function ModalActionGuardArea() {
   const { clickedTile } = useMapTileActions()
   const [startingPoint] = useState(clickedTile)
   const { selectMapTilesMovementPath, mapTilesMovementPathSet, doPlayerMovementAction } = useActionMapTilesMovement()
+  const { selectMapTilesGuardArea } = useActionMapTilesGuardArea()
+  const { newMapTilesActionStatus } = useMapTilesActionStatus()
   const { mutateActionTaskInProcess } = useMutateActionTaskInProcess()
-  const { resetMapTilesActionStatus } = useMapTilesActionStatus()
 
   useEffect(() => {
     selectMapTilesMovementPath(startingPoint, clickedTile)
+    selectMapTilesGuardArea(startingPoint, clickedTile)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clickedTile])
 
-  function handleButtonGuardArea() {
+  function handleGuardArea() {
     mutateActionTaskInProcess(mapTilesMovementPathSet)
     doPlayerMovementAction()
-    resetMapTilesActionStatus()
+    newMapTilesActionStatus.PlayerActionList()
   }
 
-  function handleButtonCancel() {
-    resetMapTilesActionStatus()
+  function resetGuardArea() {
+    newMapTilesActionStatus.PlayerActionList()
   }
 
   return (
@@ -41,12 +44,12 @@ export default function ModalActionGuardArea() {
         <div className={styles.actionGrid}>
           <button
             className={styles.actionButton}
-            onClick={handleButtonGuardArea}>
+            onClick={handleGuardArea}>
             Guard Area
           </button>
           <button
             className={styles.actionButton}
-            onClick={handleButtonCancel}>
+            onClick={resetGuardArea}>
             Cancel
           </button>
         </div>

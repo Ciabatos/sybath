@@ -10,7 +10,7 @@ export default function ModalActionMovement() {
   const { clickedTile } = useMapTileActions()
   const [startingPoint] = useState(clickedTile)
   const { selectMapTilesMovementPath, mapTilesMovementPathSet, doPlayerMovementAction } = useActionMapTilesMovement()
-  const { resetMapTilesActionStatus } = useMapTilesActionStatus()
+  const { newMapTilesActionStatus } = useMapTilesActionStatus()
   const { mutateActionTaskInProcess } = useMutateActionTaskInProcess()
 
   useEffect(() => {
@@ -21,11 +21,11 @@ export default function ModalActionMovement() {
   function handleMove() {
     mutateActionTaskInProcess(mapTilesMovementPathSet)
     doPlayerMovementAction()
-    resetMapTilesActionStatus()
+    newMapTilesActionStatus.PlayerActionList()
   }
 
   function resetMove() {
-    resetMapTilesActionStatus()
+    newMapTilesActionStatus.PlayerActionList()
   }
 
   return (

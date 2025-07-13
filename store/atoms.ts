@@ -15,6 +15,7 @@ import { TPlayerAbilities } from "@/db/postgresMainDatabase/schemas/players/play
 import { TPlayerSkills } from "@/db/postgresMainDatabase/schemas/players/playerSkills"
 import { TJoinedCityTiles, TJoinedCityTilesByCoordinates } from "@/methods/functions/joinCityTiles"
 import { TJoinedMapTile, TJoinedMapTileByCoordinates } from "@/methods/functions/joinMapTiles"
+import { TMapTilesGuardAreaSet } from "@/methods/hooks/mapTiles/composite/useActionMapTilesGuardArea"
 import { TMapTilesMovementPathSet } from "@/methods/hooks/mapTiles/composite/useActionMapTilesMovement"
 import { ECityTilesActionStatus } from "@/types/enumeration/CityTilesActionStatusEnum"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
@@ -30,7 +31,7 @@ export const mapTilesActionStatusAtom = atom<EMapTilesActionStatus>(EMapTilesAct
 export const playerVisibleMapDataAtom = atom<TPlayerVisibleMapDataByCoordinates>({})
 
 //Map Set
-export const mapTilesGuardAreaSetAtom = atom<Set<string>>(new Set<string>())
+export const mapTilesGuardAreaSetAtom = atom<TMapTilesGuardAreaSet>(new Set<string>())
 export const mapTilesMovementPathSetAtom = atom<TMapTilesMovementPathSet>(new Set<string>())
 
 //City
