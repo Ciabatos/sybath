@@ -1,17 +1,19 @@
 "use client"
 import { TActionTaskInProcess } from "@/app/api/map-tiles/action-task-in-process/route"
-import { TMovementPath } from "@/methods/hooks/mapTiles/core/useMapTilesPath"
-import { actionTaskInProcessAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { actionTaskInProcessAtom, joinedMapTilesAtom } from "@/store/atoms"
+import { useAtomValue, useSetAtom } from "jotai"
 import useSWR from "swr"
 
 export function useMutateActionTaskInProcess() {
   const { mutate } = useSWR("/api/map-tiles/action-task-in-process")
   const setActionTaskInProcess = useSetAtom(actionTaskInProcessAtom)
+  const joinedMapTiles = useAtomValue(joinedMapTilesAtom)
 
-  function mutateActionTaskInProcess(movementPath: TMovementPath[]) {
+  function mutateActionTaskInProcess(mapTilesMovementPathSet?: Set<string>) {
+    const movementPathTiles = Array.from(mapTilesMovementPathSet ?? []).map((key) => joinedMapTiles[key])
+
     const optimisticData: TActionTaskInProcess = {
-      movementInProcess: movementPath.map((tile) => ({
+      movementInProcess: movementPathTiles.map((tile) => ({
         scheduled_at: null,
         method_parameters: {
           x: tile.mapTile.x,

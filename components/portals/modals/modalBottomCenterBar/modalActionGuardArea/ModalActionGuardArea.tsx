@@ -10,7 +10,7 @@ import { useEffect, useState } from "react"
 export default function ModalActionGuardArea() {
   const { clickedTile } = useMapTileActions()
   const [startingPoint] = useState(clickedTile)
-  const { selectMapTilesMovementPath, mapTilesMovementPath, doPlayerMovementAction } = useActionMapTilesMovement()
+  const { selectMapTilesMovementPath, mapTilesMovementPathSet, doPlayerMovementAction } = useActionMapTilesMovement()
   const { mutateActionTaskInProcess } = useMutateActionTaskInProcess()
   const { resetMapTilesActionStatus } = useMapTilesActionStatus()
 
@@ -20,7 +20,7 @@ export default function ModalActionGuardArea() {
   }, [clickedTile])
 
   function handleButtonGuardArea() {
-    mutateActionTaskInProcess(mapTilesMovementPath)
+    mutateActionTaskInProcess(mapTilesMovementPathSet)
     doPlayerMovementAction()
     resetMapTilesActionStatus()
   }

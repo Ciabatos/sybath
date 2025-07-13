@@ -3,7 +3,7 @@
 import { auth } from "@/auth"
 import { cancelTasks, insertTasks } from "@/db/postgresMainDatabase/schemas/tasks/tasks"
 import { isMovementPathNeighborhoodTile } from "@/methods/functions/isMovementPathNeighborhoodTile"
-import { TMovementPath } from "@/methods/hooks/mapTiles/core/useMapTilesPath"
+import { TMapTilesMovementPathSet } from "@/methods/hooks/mapTiles/composite/useActionMapTilesMovement"
 
 export type TPlayerMovementAction = {
   playerId: number
@@ -11,7 +11,7 @@ export type TPlayerMovementAction = {
   y: number
 }
 
-export async function playerMovementAction(parameters: TMovementPath[]) {
+export async function playerMovementAction(parameters: TMapTilesMovementPathSet) {
   const methodName = "map.movementAction"
   const session = await auth()
   const sessionPlayerId = session?.user?.playerId
@@ -20,7 +20,10 @@ export async function playerMovementAction(parameters: TMovementPath[]) {
     return
   }
 
-  const path = parameters.map((p) => [p.mapTile.x, p.mapTile.y])
+  const path = Array.from(parameters).map((tile) => {
+    const [x, y] = tile.split(",").map(Number)
+    return { x, y }
+  })
 
   if (!isMovementPathNeighborhoodTile(path)) {
     console.warn("Invalid movement path:", path)
@@ -30,13 +33,9 @@ export async function playerMovementAction(parameters: TMovementPath[]) {
   try {
     await cancelTasks({ playerId: sessionPlayerId, methodName })
 
-    for (const param of parameters) {
-      const index = parameters.indexOf(param)
-      // const totalMovementCost = param.totalMovementCost
-      //dodac przeliczenie movementCost na czas
-      if (index > 0) {
-        await insertTasks<TPlayerMovementAction>({ playerId: sessionPlayerId, methodName, parameters: { playerId: sessionPlayerId, x: param.mapTile.x, y: param.mapTile.y } })
-      }
+    for (let i = 1; i < path.length; i++) {
+      const param = path[i]
+      await insertTasks<TPlayerMovementAction>({ playerId: sessionPlayerId, methodName, parameters: { playerId: sessionPlayerId, x: param.x, y: param.y } })
     }
   } catch (error) {
     console.error("Error movementAction :", error)

@@ -12,7 +12,7 @@ import { useEffect, useState } from "react"
 export default function ModalActionAbility() {
   const { clickedTile } = useMapTileActions()
   const [startingPoint] = useState(clickedTile)
-  const { selectMapTilesMovementPath, mapTilesMovementPath, doPlayerMovementAction } = useActionMapTilesMovement()
+  const { selectMapTilesMovementPath, mapTilesMovementPathSet, doPlayerMovementAction } = useActionMapTilesMovement()
   const { mutateActionTaskInProcess } = useMutateActionTaskInProcess()
   const { selectedAbilityId, doPlayerAbility } = usePlayerAbility()
   const { resetMapTilesActionStatus } = useMapTilesActionStatus()
@@ -24,7 +24,7 @@ export default function ModalActionAbility() {
   }, [clickedTile])
 
   function handleButtonUseAbility() {
-    mutateActionTaskInProcess(mapTilesMovementPath)
+    mutateActionTaskInProcess(mapTilesMovementPathSet)
     doPlayerMovementAction()
     doPlayerAbility(selectedAbilityId, clickedTile)
     resetMapTilesActionStatus()

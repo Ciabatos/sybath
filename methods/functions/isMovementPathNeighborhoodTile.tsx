@@ -1,7 +1,7 @@
-export function isMovementPathNeighborhoodTile(xyArrayOfArrays: number[][]): boolean {
+export function isMovementPathNeighborhoodTile(xyArrayOfArrays: { x: number; y: number }[]): boolean {
   for (let i = 0; i < xyArrayOfArrays.length - 1; i++) {
-    const [x1, y1] = xyArrayOfArrays[i]
-    const [x2, y2] = xyArrayOfArrays[i + 1]
+    const { x: x1, y: y1 } = xyArrayOfArrays[i]
+    const { x: x2, y: y2 } = xyArrayOfArrays[i + 1]
 
     const dx = Math.abs(x2 - x1)
     const dy = Math.abs(y2 - y1)

@@ -9,7 +9,7 @@ import { useEffect, useState } from "react"
 export default function ModalActionMovement() {
   const { clickedTile } = useMapTileActions()
   const [startingPoint] = useState(clickedTile)
-  const { selectMapTilesMovementPath, mapTilesMovementPath, doPlayerMovementAction } = useActionMapTilesMovement()
+  const { selectMapTilesMovementPath, mapTilesMovementPathSet, doPlayerMovementAction } = useActionMapTilesMovement()
   const { resetMapTilesActionStatus } = useMapTilesActionStatus()
   const { mutateActionTaskInProcess } = useMutateActionTaskInProcess()
 
@@ -19,7 +19,7 @@ export default function ModalActionMovement() {
   }, [clickedTile])
 
   function handleMove() {
-    mutateActionTaskInProcess(mapTilesMovementPath)
+    mutateActionTaskInProcess(mapTilesMovementPathSet)
     doPlayerMovementAction()
     resetMapTilesActionStatus()
   }

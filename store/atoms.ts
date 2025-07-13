@@ -15,11 +15,9 @@ import { TPlayerAbilities } from "@/db/postgresMainDatabase/schemas/players/play
 import { TPlayerSkills } from "@/db/postgresMainDatabase/schemas/players/playerSkills"
 import { TJoinedCityTiles, TJoinedCityTilesByCoordinates } from "@/methods/functions/joinCityTiles"
 import { TJoinedMapTile, TJoinedMapTileByCoordinates } from "@/methods/functions/joinMapTiles"
-import { TMovementPath } from "@/methods/hooks/mapTiles/core/useMapTilesPath"
-
+import { TMapTilesMovementPathSet } from "@/methods/hooks/mapTiles/composite/useActionMapTilesMovement"
 import { ECityTilesActionStatus } from "@/types/enumeration/CityTilesActionStatusEnum"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
-
 import { atom } from "jotai"
 
 //Map
@@ -30,11 +28,10 @@ export const citiesAtom = atom<TCitiesByCoordinates>({})
 export const districtsAtom = atom<TDistrictsByCoordinates>({})
 export const mapTilesActionStatusAtom = atom<EMapTilesActionStatus>(EMapTilesActionStatus.Inactive)
 export const playerVisibleMapDataAtom = atom<TPlayerVisibleMapDataByCoordinates>({})
-export const mapTilesMovementPathAtom = atom<TMovementPath[]>([])
-export const mapTilesGuardAreaAtom = atom<TJoinedMapTile[]>([])
+
 //Map Set
 export const mapTilesGuardAreaSetAtom = atom<Set<string>>(new Set<string>())
-export const mapTilesMovementPathSetAtom = atom<Set<string>>(new Set<string>())
+export const mapTilesMovementPathSetAtom = atom<TMapTilesMovementPathSet>(new Set<string>())
 
 //City
 export const clickedCityTileAtom = atom<TJoinedCityTiles>()
