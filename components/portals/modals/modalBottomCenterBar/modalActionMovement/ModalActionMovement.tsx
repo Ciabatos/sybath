@@ -2,19 +2,20 @@
 import styles from "@/components/portals/modals/ModalBottomCenterBar/modalActionMovement/styles/ModalActionMovement.module.css"
 import { useActionMapTilesMovement } from "@/methods/hooks/mapTiles/composite/useActionMapTilesMovement"
 import { useMapTileActions } from "@/methods/hooks/mapTiles/composite/useMapTileActions"
+import { usePlayerPositionMapTile } from "@/methods/hooks/mapTiles/composite/usePlayerPositionMapTile"
 import { useMapTilesActionStatus } from "@/methods/hooks/mapTiles/core/useMapTilesActionStatus"
 import { useMutateActionTaskInProcess } from "@/methods/hooks/tasks/core/useMutateActionTaskInProcess"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
 export default function ModalActionMovement() {
+  const { playerMapTile } = usePlayerPositionMapTile()
   const { clickedTile } = useMapTileActions()
-  const [startingPoint] = useState(clickedTile)
   const { selectMapTilesMovementPath, mapTilesMovementPathSet, doPlayerMovementAction } = useActionMapTilesMovement()
   const { newMapTilesActionStatus } = useMapTilesActionStatus()
   const { mutateActionTaskInProcess } = useMutateActionTaskInProcess()
 
   useEffect(() => {
-    selectMapTilesMovementPath(startingPoint, clickedTile)
+    selectMapTilesMovementPath(playerMapTile, clickedTile)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clickedTile])
 
@@ -34,7 +35,7 @@ export default function ModalActionMovement() {
         <div className={styles.modalTitle}>
           <p>Select Tile to move to from tiles</p>
           <p>
-            Movement path : {startingPoint?.mapTile.x}, {startingPoint?.mapTile.y} to {clickedTile?.mapTile.x}, {clickedTile?.mapTile.y}
+            Movement path : {playerMapTile?.mapTile.x}, {playerMapTile?.mapTile.y} to {clickedTile?.mapTile.x}, {clickedTile?.mapTile.y}
           </p>
         </div>
         <div className={styles.actionGrid}>

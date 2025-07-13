@@ -1,7 +1,6 @@
 "use client"
 
 import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
-import { usePlayerPositionMapTile } from "@/methods/hooks/mapTiles/composite/usePlayerPositionMapTile"
 import { useMapTilesActionStatus } from "@/methods/hooks/mapTiles/core/useMapTilesActionStatus"
 import { clickedTileAtom } from "@/store/atoms"
 import { useAtom } from "jotai"
@@ -9,8 +8,6 @@ import { useAtom } from "jotai"
 export function useMapTileActions() {
   const [clickedTile, setClickedTile] = useAtom(clickedTileAtom)
   const { actualMapTilesActionStatus, newMapTilesActionStatus, resetMapTilesActionStatus } = useMapTilesActionStatus()
-
-  const { playerMapTile } = usePlayerPositionMapTile()
 
   function handleClickOnMapTile(tile: TJoinedMapTile) {
     if (actualMapTilesActionStatus.MovementAction || actualMapTilesActionStatus.GuardAreaAction || actualMapTilesActionStatus.UseAbilityAction) {
@@ -31,8 +28,7 @@ export function useMapTileActions() {
   }
 
   function handleOpenPlayerActionList() {
-    if (actualMapTilesActionStatus.Inactive && playerMapTile) {
-      setClickedTile(playerMapTile)
+    if (actualMapTilesActionStatus.Inactive) {
       showPlayerActionList()
     }
   }

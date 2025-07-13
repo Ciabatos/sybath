@@ -8,6 +8,6 @@ export function usePlayerPositionMapTile() {
   const { getTileByCoordinates } = useGetJoinedMapTileByCoordinates()
 
   const playerMapTile = playerPositionMapTile ? getTileByCoordinates(playerPositionMapTile.map_tile_x, playerPositionMapTile.map_tile_y) : undefined
-
+  //tu zmienic po id trzeba brac z kliknietego obrazka
   return { playerMapTile }
 }

@@ -4,21 +4,22 @@ import styles from "@/components/portals/modals/ModalBottomCenterBar/modalAction
 import { useActionMapTilesGuardArea } from "@/methods/hooks/mapTiles/composite/useActionMapTilesGuardArea"
 import { useActionMapTilesMovement } from "@/methods/hooks/mapTiles/composite/useActionMapTilesMovement"
 import { useMapTileActions } from "@/methods/hooks/mapTiles/composite/useMapTileActions"
+import { usePlayerPositionMapTile } from "@/methods/hooks/mapTiles/composite/usePlayerPositionMapTile"
 import { useMapTilesActionStatus } from "@/methods/hooks/mapTiles/core/useMapTilesActionStatus"
 import { useMutateActionTaskInProcess } from "@/methods/hooks/tasks/core/useMutateActionTaskInProcess"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
 export default function ModalActionGuardArea() {
+  const { playerMapTile } = usePlayerPositionMapTile()
   const { clickedTile } = useMapTileActions()
-  const [startingPoint] = useState(clickedTile)
   const { selectMapTilesMovementPath, mapTilesMovementPathSet, doPlayerMovementAction } = useActionMapTilesMovement()
   const { selectMapTilesGuardArea } = useActionMapTilesGuardArea()
   const { newMapTilesActionStatus } = useMapTilesActionStatus()
   const { mutateActionTaskInProcess } = useMutateActionTaskInProcess()
 
   useEffect(() => {
-    selectMapTilesMovementPath(startingPoint, clickedTile)
-    selectMapTilesGuardArea(startingPoint, clickedTile)
+    selectMapTilesMovementPath(playerMapTile, clickedTile)
+    selectMapTilesGuardArea(playerMapTile, clickedTile)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clickedTile])
 
