@@ -13,8 +13,9 @@ import { TMapTiles } from "@/db/postgresMainDatabase/schemas/map/mapTiles"
 import { TPlayerVisibleMapData, TPlayerVisibleMapDataByCoordinates } from "@/db/postgresMainDatabase/schemas/map/playerVisibleMapData"
 import { TPlayerAbilities } from "@/db/postgresMainDatabase/schemas/players/playerAbilities"
 import { TPlayerSkills } from "@/db/postgresMainDatabase/schemas/players/playerSkills"
-import { TJoinedCityTiles, TJoinedCityTilesByCoordinates } from "@/methods/functions/joinCityTiles"
+import { TJoinedCityTilesByCoordinates } from "@/methods/functions/joinCityTiles"
 import { TJoinedMapTileByCoordinates } from "@/methods/functions/joinMapTiles"
+import { TClickeCityTile } from "@/methods/hooks/cityTiles/composite/useCityTilesActions"
 import { TMapTilesGuardAreaSet } from "@/methods/hooks/mapTiles/composite/useActionMapTilesGuardArea"
 import { TMapTilesMovementPathSet } from "@/methods/hooks/mapTiles/composite/useActionMapTilesMovement"
 import { TClickedTile } from "@/methods/hooks/mapTiles/composite/useMapTileActions"
@@ -36,7 +37,7 @@ export const mapTilesGuardAreaSetAtom = atom<TMapTilesGuardAreaSet>(new Set<stri
 export const mapTilesMovementPathSetAtom = atom<TMapTilesMovementPathSet>(new Set<string>())
 
 //City
-export const clickedCityTileAtom = atom<TJoinedCityTiles>()
+export const clickedCityTileAtom = atom<TClickeCityTile>()
 export const cityTilesAtom = atom<TCityTiles[]>([])
 export const buildingsAtom = atom<TCityBuildingsByCoordinates>({})
 export const cityTilesActionStatusAtom = atom<ECityTilesActionStatus>(ECityTilesActionStatus.Inactive)

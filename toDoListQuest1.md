@@ -55,7 +55,7 @@ Dzięki temu zawsze będziesz miał aktualne dane kafelka, bo będziesz je pobie
 
 - `store/atoms.ts` – definicje atomów (clickedTileAtom, clickedCityTileAtom, mapTilesGuardAreaAtom, mapTilesMovementPathAtom)
 - `methods/hooks/mapTiles/composite/useMapTileActions.tsx` – logika kliknięcia i ustawiania clickedTile
-- `methods/hooks/cityTiles/composite/useCityTilesManipulation.tsx` – logika kliknięcia i ustawiania clickedCityTile
+- `methods/hooks/cityTiles/composite/useCityTilesActions.tsx` – logika kliknięcia i ustawiania clickedCityTile
 - `methods/hooks/mapTiles/composite/useActionMapTilesGuardArea.tsx` i `useActionMapTilesMovement.tsx` – logika ustawiania ścieżek i obszarów na mapie
 - `methods/hooks/mapTiles/core/useGetMapTileByCoordinates.tsx` – hook do pobierania kafelka po x, y
 

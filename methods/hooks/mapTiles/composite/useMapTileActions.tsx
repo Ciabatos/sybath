@@ -1,7 +1,7 @@
 "use client"
 
 import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
-import { useGetJoinedMapTileByCoordinates } from "@/methods/hooks/mapTiles/core/useGetMapTileByCoordinates"
+import { useGetJoinedMapTileByKey } from "@/methods/hooks/mapTiles/core/useGetMapTileByCoordinates"
 import { useMapTilesActionStatus } from "@/methods/hooks/mapTiles/core/useMapTilesActionStatus"
 import { clickedTileAtom } from "@/store/atoms"
 import { useAtom } from "jotai"
@@ -11,7 +11,7 @@ export type TClickedTile = { x: number; y: number } | undefined
 export function useMapTileActions() {
   const [clickedTile, setClickedTile] = useAtom(clickedTileAtom)
   const { actualMapTilesActionStatus, newMapTilesActionStatus, resetMapTilesActionStatus } = useMapTilesActionStatus()
-  const { getTileByCoordinates } = useGetJoinedMapTileByCoordinates()
+  const { getTileByCoordinates } = useGetJoinedMapTileByKey()
 
   function handleClickOnMapTile(tile: TJoinedMapTile) {
     if (actualMapTilesActionStatus.MovementAction || actualMapTilesActionStatus.GuardAreaAction || actualMapTilesActionStatus.UseAbilityAction) {

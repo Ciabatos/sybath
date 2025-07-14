@@ -2,7 +2,7 @@
 
 import style from "@/components/city/styles/Tile.module.css"
 import { TJoinedCityTiles } from "@/methods/functions/joinCityTiles"
-import { useCityTilesManipulation } from "@/methods/hooks/cityTiles/composite/useCityTilesManipulation"
+import { useCityTilesActions } from "@/methods/hooks/cityTiles/composite/useCityTilesActions"
 import { useCityTilesActionStatus } from "@/methods/hooks/cityTiles/core/useCityTilesActionStatus"
 import { useCreateImage } from "@/methods/hooks/mapTiles/core/useCreateImage"
 
@@ -13,7 +13,7 @@ interface Props {
 export default function CityTile({ tile }: Props) {
   const { createLandscapeImage, createBackgroundImage, creatBuildingsImage, combineImages } = useCreateImage()
   const { actualCityTileStatus, newCityTilesActionStatus } = useCityTilesActionStatus()
-  const { setClickedCityTile } = useCityTilesManipulation()
+  const { setClickedCityTile } = useCityTilesActions()
 
   const backgroundImage = createBackgroundImage(tile.terrainTypes.image_url)
   const landscapeImage = createLandscapeImage(tile.landscapeTypes?.image_url)
@@ -27,7 +27,7 @@ export default function CityTile({ tile }: Props) {
   }
 
   function showBuildingActionList(tile: TJoinedCityTiles) {
-    setClickedCityTile(tile)
+    setClickedCityTile({ x: tile.cityTiles.x, y: tile.cityTiles.y })
     //prettier-ignore
     if (actualCityTileStatus.Inactive) {
       newCityTilesActionStatus.BuildingActionList()
