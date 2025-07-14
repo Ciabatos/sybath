@@ -28,7 +28,6 @@ ZOD W SERVER ACTION I API
 ROZDZIELIC POBIERANIE POZYCJI GRACZA OD MAPTILESDATAVISABLE - i zmienic nazwe na MAPTILES_DATA_KNOWN
 
 Dodac Atom zaznaczony hero w celu posiadania wielu Herosow
-Uzycie PlayerActions po kliknieciu na portret
 
   movment
   colonize
@@ -36,6 +35,4 @@ Uzycie PlayerActions po kliknieciu na portret
   inventoryRemove
 
 
-
-ZMIANA ATOMOW NA NAJMNIEJSZE MOZLIWE ELEMENTY! - bardzo ważne bo po clicku na tiles dane moga sie zmienic a atom bedzie mial stare dane - dodatkowo mniejsze elementy sa lepsze do budowania !
 rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmianie URL
