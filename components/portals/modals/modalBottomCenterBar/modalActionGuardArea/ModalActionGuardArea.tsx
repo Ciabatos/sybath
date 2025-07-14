@@ -11,17 +11,17 @@ import { useEffect } from "react"
 
 export default function ModalActionGuardArea() {
   const { playerMapTile } = usePlayerPositionMapTile()
-  const { clickedTile } = useMapTileActions()
+  const { getClickedMapTile } = useMapTileActions()
   const { selectMapTilesMovementPath, mapTilesMovementPathSet, doPlayerMovementAction } = useActionMapTilesMovement()
   const { selectMapTilesGuardArea } = useActionMapTilesGuardArea()
   const { newMapTilesActionStatus } = useMapTilesActionStatus()
   const { mutateActionTaskInProcess } = useMutateActionTaskInProcess()
 
   useEffect(() => {
-    selectMapTilesMovementPath(playerMapTile, clickedTile)
-    selectMapTilesGuardArea(playerMapTile, clickedTile)
+    selectMapTilesMovementPath(playerMapTile, getClickedMapTile())
+    selectMapTilesGuardArea(playerMapTile, getClickedMapTile())
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [clickedTile])
+  }, [getClickedMapTile()])
 
   function handleGuardArea() {
     mutateActionTaskInProcess(mapTilesMovementPathSet)
@@ -39,7 +39,7 @@ export default function ModalActionGuardArea() {
         <div className={styles.modalTitle}>
           <p>Select Options for Guard Area</p>
           <p>
-            Guard Area Radius from {clickedTile?.mapTile.x}, {clickedTile?.mapTile.y}
+            Guard Area Radius from {getClickedMapTile()?.mapTile.x}, {getClickedMapTile()?.mapTile.y}
           </p>
         </div>
         <div className={styles.actionGrid}>

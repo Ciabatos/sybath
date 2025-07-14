@@ -14,15 +14,16 @@ import { TPlayerVisibleMapData, TPlayerVisibleMapDataByCoordinates } from "@/db/
 import { TPlayerAbilities } from "@/db/postgresMainDatabase/schemas/players/playerAbilities"
 import { TPlayerSkills } from "@/db/postgresMainDatabase/schemas/players/playerSkills"
 import { TJoinedCityTiles, TJoinedCityTilesByCoordinates } from "@/methods/functions/joinCityTiles"
-import { TJoinedMapTile, TJoinedMapTileByCoordinates } from "@/methods/functions/joinMapTiles"
+import { TJoinedMapTileByCoordinates } from "@/methods/functions/joinMapTiles"
 import { TMapTilesGuardAreaSet } from "@/methods/hooks/mapTiles/composite/useActionMapTilesGuardArea"
 import { TMapTilesMovementPathSet } from "@/methods/hooks/mapTiles/composite/useActionMapTilesMovement"
+import { TClickedTile } from "@/methods/hooks/mapTiles/composite/useMapTileActions"
 import { ECityTilesActionStatus } from "@/types/enumeration/CityTilesActionStatusEnum"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { atom } from "jotai"
 
 //Map
-export const clickedTileAtom = atom<TJoinedMapTile>()
+export const clickedTileAtom = atom<TClickedTile>()
 export const mapTilesAtom = atom<TMapTiles[]>([])
 export const joinedMapTilesAtom = atom<TJoinedMapTileByCoordinates>({})
 export const citiesAtom = atom<TCitiesByCoordinates>({})

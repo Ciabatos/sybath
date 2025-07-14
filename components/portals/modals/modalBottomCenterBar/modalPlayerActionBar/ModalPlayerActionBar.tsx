@@ -4,7 +4,7 @@ import { useMapTileActions } from "@/methods/hooks/mapTiles/composite/useMapTile
 import { useMapTilesActionStatus } from "@/methods/hooks/mapTiles/core/useMapTilesActionStatus"
 
 export default function ModalPlayerActionBar() {
-  const { clickedTile } = useMapTileActions()
+  const { getClickedMapTile } = useMapTileActions()
   const { newMapTilesActionStatus } = useMapTilesActionStatus()
 
   const handleButtonMove = () => {
@@ -19,7 +19,7 @@ export default function ModalPlayerActionBar() {
     <div>
       <div className={styles.modalHeader}>
         <div className={styles.modalTitle}>
-          Player Actions on Tile {clickedTile?.mapTile.x}, {clickedTile?.mapTile.y}
+          Player Actions on Tile {getClickedMapTile()?.mapTile.x}, {getClickedMapTile()?.mapTile.y}
         </div>
       </div>
 

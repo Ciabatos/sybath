@@ -8,7 +8,7 @@ import { useMapTilesActionStatus } from "@/methods/hooks/mapTiles/core/useMapTil
 
 export function ModalEmptyTilePanel() {
   const { actualMapTilesActionStatus, resetMapTilesActionStatus } = useMapTilesActionStatus()
-  const { clickedTile } = useMapTileActions()
+  const { getClickedMapTile } = useMapTileActions()
 
   const handleClose = () => {
     resetMapTilesActionStatus()
@@ -28,12 +28,12 @@ export function ModalEmptyTilePanel() {
         style={{ width: "40%", maxWidth: "none" }}>
         <div className="flex h-full flex-col p-6">
           <DrawerHeader className="px-0">
-            <DrawerTitle>{clickedTile?.terrainTypes?.name}</DrawerTitle>
-            <DrawerDescription>{clickedTile?.landscapeTypes?.name}</DrawerDescription>
+            <DrawerTitle>{getClickedMapTile()?.terrainTypes?.name}</DrawerTitle>
+            <DrawerDescription>{getClickedMapTile()?.landscapeTypes?.name}</DrawerDescription>
           </DrawerHeader>
           <div className="flex-1 py-4">
             <div>
-              {clickedTile?.moveCost} {clickedTile?.mapTile.x} {clickedTile?.mapTile.y}
+              {getClickedMapTile()?.moveCost} {getClickedMapTile()?.mapTile.x} {getClickedMapTile()?.mapTile.y}
               <p>Zalożenie, że Tile mozna odkrywac i wtedy eventy sie pojawiaja np walka </p>
               <p>Mozna po odkryciu cos tu wybudowac miasto/dystrykt w celu wydobycia surowca</p>
             </div>

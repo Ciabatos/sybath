@@ -5,7 +5,7 @@ import { useMapTilesActionStatus } from "@/methods/hooks/mapTiles/core/useMapTil
 import Link from "next/link"
 
 export default function ModalCityActionBar() {
-  const { clickedTile } = useMapTileActions()
+  const { getClickedMapTile } = useMapTileActions()
   const { resetMapTilesActionStatus } = useMapTilesActionStatus()
 
   const handleButtonEnter = () => {
@@ -16,7 +16,7 @@ export default function ModalCityActionBar() {
     <div>
       <div className={styles.modalHeader}>
         <div className={styles.modalTitle}>
-          Player Actions on Tile {clickedTile?.mapTile.x}, {clickedTile?.mapTile.y}
+          Player Actions on Tile {getClickedMapTile()?.mapTile.x}, {getClickedMapTile()?.mapTile.y}
         </div>
       </div>
 
@@ -24,7 +24,7 @@ export default function ModalCityActionBar() {
         <div>Select an action to perform on this tile.</div>
 
         <div className={styles.actionGrid}>
-          <Link href={`/city/${clickedTile?.cities?.id}`}>
+          <Link href={`/city/${getClickedMapTile()?.cities?.id}`}>
             <Button
               className={styles.actionButton}
               onClick={handleButtonEnter}>

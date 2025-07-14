@@ -9,15 +9,15 @@ import { useEffect } from "react"
 
 export default function ModalActionMovement() {
   const { playerMapTile } = usePlayerPositionMapTile()
-  const { clickedTile } = useMapTileActions()
+  const { getClickedMapTile } = useMapTileActions()
   const { selectMapTilesMovementPath, mapTilesMovementPathSet, doPlayerMovementAction } = useActionMapTilesMovement()
   const { newMapTilesActionStatus } = useMapTilesActionStatus()
   const { mutateActionTaskInProcess } = useMutateActionTaskInProcess()
 
   useEffect(() => {
-    selectMapTilesMovementPath(playerMapTile, clickedTile)
+    selectMapTilesMovementPath(playerMapTile, getClickedMapTile())
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [clickedTile])
+  }, [getClickedMapTile()])
 
   function handleMove() {
     mutateActionTaskInProcess(mapTilesMovementPathSet)
@@ -35,7 +35,7 @@ export default function ModalActionMovement() {
         <div className={styles.modalTitle}>
           <p>Select Tile to move to from tiles</p>
           <p>
-            Movement path : {playerMapTile?.mapTile.x}, {playerMapTile?.mapTile.y} to {clickedTile?.mapTile.x}, {clickedTile?.mapTile.y}
+            Movement path : {playerMapTile?.mapTile.x}, {playerMapTile?.mapTile.y} to {getClickedMapTile()?.mapTile.x}, {getClickedMapTile()?.mapTile.y}
           </p>
         </div>
         <div className={styles.actionGrid}>

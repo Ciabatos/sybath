@@ -1,29 +1,39 @@
 "use client"
 
 import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
+import { useGetJoinedMapTileByCoordinates } from "@/methods/hooks/mapTiles/core/useGetMapTileByCoordinates"
 import { useMapTilesActionStatus } from "@/methods/hooks/mapTiles/core/useMapTilesActionStatus"
 import { clickedTileAtom } from "@/store/atoms"
 import { useAtom } from "jotai"
 
+export type TClickedTile = { x: number; y: number } | undefined
+
 export function useMapTileActions() {
   const [clickedTile, setClickedTile] = useAtom(clickedTileAtom)
   const { actualMapTilesActionStatus, newMapTilesActionStatus, resetMapTilesActionStatus } = useMapTilesActionStatus()
+  const { getTileByCoordinates } = useGetJoinedMapTileByCoordinates()
 
   function handleClickOnMapTile(tile: TJoinedMapTile) {
     if (actualMapTilesActionStatus.MovementAction || actualMapTilesActionStatus.GuardAreaAction || actualMapTilesActionStatus.UseAbilityAction) {
-      setClickedTile(tile)
+      setClickedTile({ x: tile.mapTile.x, y: tile.mapTile.y })
     } else if (tile.cities?.name) {
       showCityActionList()
-      setClickedTile(tile)
+      setClickedTile({ x: tile.mapTile.x, y: tile.mapTile.y })
     } else if (tile.districts?.name) {
       showDistrictActionList()
-      setClickedTile(tile)
+      setClickedTile({ x: tile.mapTile.x, y: tile.mapTile.y })
     } else if (!tile.cities?.name && !tile.districts?.name && actualMapTilesActionStatus.Inactive) {
       showEmptyTileActionList()
-      setClickedTile(tile)
+      setClickedTile({ x: tile.mapTile.x, y: tile.mapTile.y })
     } else {
-      setClickedTile(tile)
+      setClickedTile({ x: tile.mapTile.x, y: tile.mapTile.y })
       resetMapTilesActionStatus()
+    }
+  }
+
+  function getClickedMapTile() {
+    if (clickedTile) {
+      return getTileByCoordinates(clickedTile.x, clickedTile.y)
     }
   }
 
@@ -67,5 +77,5 @@ export function useMapTileActions() {
 	}
   }
 
-  return { clickedTile, handleClickOnMapTile, handleOpenPlayerActionList, handleClosePlayerActionList }
+  return { getClickedMapTile, handleClickOnMapTile, handleOpenPlayerActionList, handleClosePlayerActionList }
 }
