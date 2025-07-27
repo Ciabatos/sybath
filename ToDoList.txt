@@ -36,3 +36,8 @@ Dodac Atom zaznaczony hero w celu posiadania wielu Herosow
 
 
 rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmianie URL
+
+
+Najpierw robic podstawowe akcje
+Zmienic Movment tak aby obliczal na serverze !
+Dodac wybieranie PlayerId
