@@ -7,7 +7,11 @@ export type {{typeName}} = {
 {{/each}}
 }
 
+{{#if (eq indexMethodName "arrayToObjectKeysId")}}
 export type {{typeName}}RecordBy{{typeRecordName}} = Record<string, {{typeName}}>
+{{else}}
+export type {{typeName}}RecordBy{{typeRecordName}} = Record<number, {{typeName}}> 
+{{/if}}
 
 export async function get{{methodName}}() {
   try {

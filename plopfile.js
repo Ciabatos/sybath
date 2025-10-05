@@ -31,6 +31,7 @@ async function fetchColumns(schema, table) {
 }
 
 export default function plopfile(plop) {
+  plop.setHelper("eq", (a, b) => a === b)
   plop.setGenerator("Get Table", {
     description: "Generate TypeScript types and fetcher from Postgres table",
     prompts: async (inquirer) => {
@@ -113,6 +114,10 @@ export default function plopfile(plop) {
       const methodName = schema.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase()) + tablePascalName
 
       const indexMethodName = indexFields.length > 1 ? "arrayToObjectKeysId" : "arrayToObjectKeyId"
+      const indexMethodArgs =
+        indexMethodName === "arrayToObjectKeysId"
+          ? indexFields.map((f) => `"${f.name}"`).join(", ") // "id", "name"
+          : indexFields[0].name // id
 
       console.log({
         schema,
@@ -124,6 +129,7 @@ export default function plopfile(plop) {
         fields,
         indexFields,
         indexMethodName,
+        indexMethodArgs,
       })
 
       //  Zwróć wszystkie dane jako answers
@@ -137,6 +143,7 @@ export default function plopfile(plop) {
         indexFields,
         fields,
         indexMethodName,
+        indexMethodArgs,
       }
     },
 

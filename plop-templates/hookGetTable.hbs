@@ -7,8 +7,8 @@ import { useEffect, useRef } from "react"
 import useSWR from "swr"
 
 export function useFetch{{tablePascalName}}() {
-  const set{{tablePascalName}} = useSetAtom({{table}}Atom)
   const {{table}} = useAtomValue({{table}}Atom)
+  const set{{tablePascalName}} = useSetAtom({{table}}Atom)
   const { data } = useSWR("/api/{{table}}", { refreshInterval: 3000 })
 
   const prevDataRef = useRef<unknown>(null)
@@ -16,7 +16,7 @@ export function useFetch{{tablePascalName}}() {
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const index = data ? ({{indexMethodName}}({{#each indexFields}}"{{name}}"{{#unless @last}}, {{/unless}}{{/each}},data) as {{typeName}}RecordBy{{typeRecordName}}) : {}
+      const index = data ? ({{{indexMethodName}}}({{{indexMethodArgs}}}, data) as {{typeName}}RecordBy{{typeRecordName}}) : {}
       set{{tablePascalName}}(index)
       prevDataRef.current = data
     }
