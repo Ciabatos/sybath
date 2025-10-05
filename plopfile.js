@@ -114,10 +114,7 @@ export default function plopfile(plop) {
       const methodName = schema.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase()) + tablePascalName
 
       const indexMethodName = indexFields.length > 1 ? "arrayToObjectKeysId" : "arrayToObjectKeyId"
-      const indexMethodArgs =
-        indexMethodName === "arrayToObjectKeysId"
-          ? indexFields.map((f) => `"${f.name}"`).join(", ") // "id", "name"
-          : indexFields[0].name // id
+      const indexMethodArgs = indexFields.map((f) => `"${f.name}"`).join(", ")
 
       console.log({
         schema,
