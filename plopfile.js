@@ -164,6 +164,12 @@ export default function plopfile(plop) {
         templateFile: "plop-templates/hookGetTable.hbs",
         force: true,
       },
+      {
+        type: "modify",
+        path: "store/atoms.ts",
+        pattern: /(\/\/Tables\s*\n)/,
+        template: `$1export const {{table}}Atom = atom<{{typeName}}RecordBy{{typeRecordName}}>({})\n`,
+      },
     ],
   })
 }
