@@ -1,13 +1,13 @@
 "use client"
 import { {{typeName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{table}}"
 import { {{indexMethodName}} } from "@/methods/functions/converters"
-import { citiesAtom } from "@/store/atoms"
+import { {{table}}Atom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useRef } from "react"
 import useSWR from "swr"
 
 export function useFetch{{tablePascalName}}() {
-  const set{{tablePascalName}}Atom = useSetAtom({{table}}Atom)
+  const set{{tablePascalName}} = useSetAtom({{table}}Atom)
   const {{table}} = useAtomValue({{table}}Atom)
   const { data } = useSWR("/api/{{table}}", { refreshInterval: 3000 })
 
@@ -17,7 +17,7 @@ export function useFetch{{tablePascalName}}() {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
       const index = data ? ({{indexMethodName}}({{#each indexFields}}"{{name}}"{{#unless @last}}, {{/unless}}{{/each}},data) as {{typeName}}RecordBy{{typeRecordName}}) : {}
-      set{{tablePascalName}}Atom(index)
+      set{{tablePascalName}}(index)
       prevDataRef.current = data
     }
   }, [data])

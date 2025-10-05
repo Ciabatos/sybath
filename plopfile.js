@@ -156,7 +156,7 @@ export default function plopfile(plop) {
       },
       {
         type: "add",
-        path: "methods/hooks/mapTiles/core/useFetch{{tablePascalName}}.tsx",
+        path: "methods/hooks/{{schema}}/core/useFetch{{tablePascalName}}.tsx",
         templateFile: "plop-templates/hookGetTable.hbs",
         force: true,
       },
