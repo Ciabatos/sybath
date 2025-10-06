@@ -41,11 +41,13 @@ export default function plopfile(plop) {
           type: "input",
           name: "schema",
           message: "Postgres schema:",
+          filter: (val) => val.toLowerCase(),
         },
         {
           type: "input",
           name: "table",
           message: "Table name:",
+          filter: (val) => val.toLowerCase(),
         },
       ])
 
