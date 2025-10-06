@@ -28,7 +28,7 @@ const typeMap = {
 }
 
 // Pobranie parametrów i typu zwracanego procedury
-async function fetchProcedureMeta(schema, procedureName) {
+async function fetchProcedureMeta(schema, procedure) {
   const client = new Client({
     host: process.env.PG_MAIN_HOST,
     user: process.env.PG_MAIN_USER,
@@ -49,8 +49,8 @@ async function fetchProcedureMeta(schema, procedureName) {
       WHERE n.nspname = $1 AND p.proname = $2
     `
 
-    const res = await client.query(sql, [schema, procedureName])
-    if (!res.rows[0]) throw new Error(`Function ${schema}.${procedureName} not found`)
+    const res = await client.query(sql, [schema, procedure])
+    if (!res.rows[0]) throw new Error(`Function ${schema}.${procedure} not found`)
     return res.rows[0]
   } finally {
     try { await client.end() } catch {}
@@ -86,7 +86,7 @@ export default function addProcedure(plop) {
     description: "Generate TS types and async function from Postgres procedure",
 
     prompts: async (inquirer) => {
-      const { schema, procedureName } = await inquirer.prompt([
+      const { schema, procedure } = await inquirer.prompt([
         {
           type: "input",
           name: "schema",
@@ -95,21 +95,21 @@ export default function addProcedure(plop) {
         },
         {
           type: "input",
-          name: "procedureName",
+          name: "procedure",
           message: "Procedure name:",
           filter: (val) => val.toLowerCase(),
         },
       ])
 
-      const meta = await fetchProcedureMeta(schema, procedureName)
+      const meta = await fetchProcedureMeta(schema, procedure)
 
       const tsArgsType = parseArgsToTS(meta.arguments)
-      const procedurePascalName = procedureName.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
+      const procedurePascalName = procedure.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
       const tsReturnType = parseResultToTS(meta.result, `T${procedurePascalName}Result`)
 
       return {
         schema,
-        procedureName,
+        procedure,
         procedurePascalName,
         tsArgsType,
         tsReturnType,
@@ -119,7 +119,7 @@ export default function addProcedure(plop) {
     actions: [
       {
         type: "add",
-        path: "db/postgresMainDatabase/procedures/{{schema}}/{{procedureName}}.ts",
+        path: "db/postgresMainDatabase/procedures/{{schema}}/{{procedure}}.ts",
         templateFile: "plop-templates/procedure.ts.hbs",
         force: true,
       },
