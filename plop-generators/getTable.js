@@ -31,7 +31,6 @@ async function fetchColumns(schema, table) {
 
 
 export default function getTable(plop) {
-    plop.setHelper("eq", (a, b) => a === b)
   plop.setGenerator("Get Table", {
     description: "Generate TypeScript types and fetcher from Postgres table",
     prompts: async (inquirer) => {
