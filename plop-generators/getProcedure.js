@@ -82,7 +82,7 @@ function parseResultToTS(resultStr, typeName) {
 }
 
 export default function addProcedure(plop) {
-  plop.setGenerator("Add Procedure", {
+  plop.setGenerator("Get Procedure", {
     description: "Generate TS types and async function from Postgres procedure",
 
     prompts: async (inquirer) => {
