@@ -104,13 +104,13 @@ export default function addProcedure(plop) {
       const meta = await fetchProcedureMeta(schema, procedureName)
 
       const tsArgsType = parseArgsToTS(meta.arguments)
-      const procedurePascal = procedureName.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
-      const tsReturnType = parseResultToTS(meta.result, `T${procedurePascal}Result`)
+      const procedurePascalName = procedureName.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
+      const tsReturnType = parseResultToTS(meta.result, `T${procedurePascalName}Result`)
 
       return {
         schema,
         procedureName,
-        procedurePascal,
+        procedurePascalName,
         tsArgsType,
         tsReturnType,
       }
