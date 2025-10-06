@@ -1,6 +1,6 @@
-import { Client } from "pg"
-import path from "path"
 import dotenv from "dotenv"
+import path from "path"
+import { Client } from "pg"
 
 dotenv.config({ path: path.resolve(process.cwd(), ".env.development") })
 
@@ -53,7 +53,9 @@ async function fetchProcedureMeta(schema, procedure) {
     if (!res.rows[0]) throw new Error(`Function ${schema}.${procedure} not found`)
     return res.rows[0]
   } finally {
-    try { await client.end() } catch {}
+    try {
+      await client.end()
+    } catch {}
   }
 }
 
@@ -81,7 +83,6 @@ function parseResultToTS(resultStr, typeName) {
   return `export type ${typeName} = {\n  ${columns.join("\n  ")}\n}`
 }
 
-
 // Zwraca string do użycia w sygnaturze funkcji TS: "arg1: number, arg2: string"
 function parseArgsToTSList(argsStr) {
   if (!argsStr) return ""
@@ -98,14 +99,11 @@ function parseArgsToTSList(argsStr) {
 // Zwraca tablicę nazw argumentów do przekazania do query: "[arg1, arg2]"
 function getArgsArray(argsStr) {
   if (!argsStr) return "[]"
-  const args = argsStr
-    .split(",")
-    .map((a) => a.trim().split(/\s+/)[0]) // tylko nazwa argumentu
+  const args = argsStr.split(",").map((a) => a.trim().split(/\s+/)[0]) // tylko nazwa argumentu
   return `[${args.join(", ")}]`
 }
 
-
-export default function addProcedure(plop) {
+export default function getProcedure(plop) {
   plop.setGenerator("Get Procedure", {
     description: "Generate TS types and async function from Postgres procedure",
 
@@ -132,7 +130,7 @@ export default function addProcedure(plop) {
       const tsReturnType = parseResultToTS(meta.result, `T${procedurePascalName}Result`)
       const tsArgsList = parseArgsToTSList(meta.arguments)
       const argsArray = getArgsArray(meta.arguments)
-      
+
       return {
         schema,
         procedure,
