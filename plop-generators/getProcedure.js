@@ -81,6 +81,30 @@ function parseResultToTS(resultStr, typeName) {
   return `export type ${typeName} = {\n  ${columns.join("\n  ")}\n}`
 }
 
+
+// Zwraca string do użycia w sygnaturze funkcji TS: "arg1: number, arg2: string"
+function parseArgsToTSList(argsStr) {
+  if (!argsStr) return ""
+  return argsStr
+    .split(",")
+    .map((a) => {
+      const [name, type] = a.trim().split(/\s+/)
+      const tsType = typeMap[type] || "any"
+      return `${name}: ${tsType}`
+    })
+    .join(", ")
+}
+
+// Zwraca tablicę nazw argumentów do przekazania do query: "[arg1, arg2]"
+function getArgsArray(argsStr) {
+  if (!argsStr) return "[]"
+  const args = argsStr
+    .split(",")
+    .map((a) => a.trim().split(/\s+/)[0]) // tylko nazwa argumentu
+  return `[${args.join(", ")}]`
+}
+
+
 export default function addProcedure(plop) {
   plop.setGenerator("Get Procedure", {
     description: "Generate TS types and async function from Postgres procedure",
@@ -106,13 +130,17 @@ export default function addProcedure(plop) {
       const tsArgsType = parseArgsToTS(meta.arguments)
       const procedurePascalName = procedure.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
       const tsReturnType = parseResultToTS(meta.result, `T${procedurePascalName}Result`)
-
+      const tsArgsList = parseArgsToTSList(meta.arguments)
+      const argsArray = getArgsArray(meta.arguments)
+      
       return {
         schema,
         procedure,
         procedurePascalName,
         tsArgsType,
         tsReturnType,
+        tsArgsList,
+        argsArray,
       }
     },
 
