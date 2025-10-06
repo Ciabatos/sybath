@@ -96,8 +96,14 @@ export default function plopfile(plop) {
           choices: fields.map((f) => ({
             name: `${f.name} (${f.tsType})`,
             value: f.name,
-            checked: false, // domyślnie wszystkie zaznaczone
+            checked: false, // domyślnie wszystkie zaznaczone?
           })),
+          validate: (answer) => {
+            if (answer.length < 1) {
+              return "Musisz zaznaczyć przynajmniej jedną kolumnę."
+            }
+            return true
+          },
         },
       ])
 
