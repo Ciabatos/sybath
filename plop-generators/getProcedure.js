@@ -146,7 +146,7 @@ export default function getProcedure(plop) {
       {
         type: "add",
         path: "db/postgresMainDatabase/procedures/{{schema}}/{{procedure}}.ts",
-        templateFile: "plop-templates/procedure.ts.hbs",
+        templateFile: "plop-templates/dbGetProcedure.hbs",
         force: true,
       },
     ],
