@@ -3,6 +3,30 @@ import path from "path"
 import { Client } from "pg"
 dotenv.config({ path: path.resolve(process.cwd(), ".env.development") })
 
+      //  Konwersja typów SQL → TypeScript
+      const typeMap = {
+        integer: "number",
+        bigint: "number",
+        smallint: "number",
+        numeric: "number",
+        double: "number",
+        real: "number",
+        serial: "number",
+        bigserial: "number",
+        boolean: "boolean",
+        text: "string",
+        varchar: "string",
+        "character varying": "string",
+        date: "string",
+        timestamp: "string",
+        "timestamp without time zone": "string",
+        "timestamp with time zone": "string",
+        json: "any",
+        jsonb: "any",
+        uuid: "string",
+      }
+
+
 async function fetchColumns(schema, table) {
   if (!table) throw new Error("Table name is required for fetchColumns")
   const client = new Client({
@@ -57,35 +81,15 @@ export default function getTable(plop) {
         throw new Error(`No columns found for ${schema}.${table}`)
       }
 
-      //  Konwersja typów SQL → TypeScript
-      const typeMap = {
-        integer: "number",
-        bigint: "number",
-        smallint: "number",
-        numeric: "number",
-        double: "number",
-        real: "number",
-        serial: "number",
-        bigserial: "number",
-        boolean: "boolean",
-        text: "string",
-        varchar: "string",
-        "character varying": "string",
-        date: "string",
-        timestamp: "string",
-        "timestamp without time zone": "string",
-        "timestamp with time zone": "string",
-        json: "any",
-        jsonb: "any",
-        uuid: "string",
-      }
-
       const fields = rows.map((col) => ({
         name: col.column_name,
         tsType: typeMap[col.data_type] || "any",
         optional: col.is_nullable === "YES" ? "?" : "",
       }))
 
+
+
+      
       //  Zapytaj użytkownika o wybór kolumn
       const { selectedColumnsIndex } = await inquirer.prompt([
         {
