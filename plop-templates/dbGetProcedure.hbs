@@ -1,0 +1,23 @@
+"use server"
+import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
+
+{{tsReturnType}}
+
+export async function {{procedurePascalName}}({{tsArgsList}}) {
+  try {
+    const result = await query(
+      `
+      CALL {{schema}}.{{procedure}}(
+        {{#each argsArray}}
+        ${{@indexPlusOne}}{{#unless @last}},{{/unless}}
+        {{/each}}
+      );`,
+      {{argsArray}}
+    )
+
+    return result.rows as T{{procedurePascalName}}Result[]
+  } catch (error) {
+    console.error("Error executing {{procedure}}:", error)
+    throw new Error("Failed to execute {{procedure}}")
+  }
+}
