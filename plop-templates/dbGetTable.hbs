@@ -23,9 +23,7 @@ export async function get{{methodName}}({{#if paramsFields}}params: {{typeName}}
     {{#if paramsFields}}
 
     const sqlParams = Object.values(params)
-    const whereClauses = Object.keys(params)
-                                            .map((key, i) => `"${key}" = $${i + 1}`)
-                                            .join(" AND ")
+    const whereClauses = Object.keys(params).map((key, i) => `"${key}" = $${i + 1}`).join(" AND ")
 
     const sql = `SELECT * FROM {{schema}}.{{table}}${whereClauses ? " WHERE " + whereClauses : ""}`
     const result = await query(sql, sqlParams)
