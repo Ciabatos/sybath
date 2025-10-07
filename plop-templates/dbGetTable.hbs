@@ -18,18 +18,22 @@ export type {{typeName}} = {
 }
 
 
-export async function get{{methodName}}({{#if paramsFields}}{{paramsList}}: TParams{{/if}}) {
+export async function get{{methodName}}({{#if paramsFields}}params: {{typeName}}Params{{/if}}) {
   try {
     {{#if paramsFields}}
-    const sqlParams = [{{paramsList}}]
-    const whereClauses = [{{#each paramsFields}}"{{name}} = $" + ({{@index}} + 1){{#unless @last}}, {{/unless}}{{/each}}]
-    const sql = `SELECT * FROM {{schema}}.{{table}} WHERE ${whereClauses.join(" AND ")}`
-    {{else}}
-    const sql = `SELECT * FROM {{schema}}.{{table}}`
-    const sqlParams: any[] = []
-    {{/if}}
 
+    const sqlParams = Object.values(params)
+    const whereClauses = Object.keys(params)
+                                            .map((key, i) => `"${key}" = $${i + 1}`)
+                                            .join(" AND ")
+
+    const sql = `SELECT * FROM {{schema}}.{{table}}${whereClauses ? " WHERE " + whereClauses : ""}`
     const result = await query(sql, sqlParams)
+    {{else}}
+
+    const sql = `SELECT * FROM {{schema}}.{{table}}`
+    const result = await query(sql)
+    {{/if}}
     return result.rows as {{typeName}}[]
 
   } catch (error) {
