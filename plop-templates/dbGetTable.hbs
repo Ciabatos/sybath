@@ -1,3 +1,4 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - dbGetTable.hbs
 "use server"
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 
@@ -7,15 +8,24 @@ export type {{typeName}} = {
 {{/each}}
 }
 
-{{#if (eq indexMethodName "arrayToObjectKeysId")}}
-export type {{typeName}}RecordBy{{typeRecordName}} = Record<string, {{typeName}}>
-{{else}}
-export type {{typeName}}RecordBy{{typeRecordName}} = Record<number, {{typeName}}> 
-{{/if}}
+export type {{whereTypeName}} = {
+{{#each whereFields}}
+  {{name}}{{optional}}: {{tsType}}
+{{/each}}
+}
 
-export async function get{{methodName}}() {
+export async function get{{methodName}}(where: {{whereTypeName}}) { 
   try {
-    const result = await query("SELECT * FROM {{schema}}.{{table}}")
+    const whereClauses = Object.keys(where)
+      .map((key) => key + " = $" + (Object.keys(where).indexOf(key) + 1))
+      .join(" AND ")
+
+    const params = Object.values(where)
+
+    const sql = `SELECT * FROM {{schema}}.{{table}}${whereClauses ? " WHERE " + whereClauses : ""}`
+
+    const result = await query(sql, params)
+
     return result.rows as {{typeName}}[]
   } catch (error) {
     console.error("Error fetching get{{methodName}}:", error)
