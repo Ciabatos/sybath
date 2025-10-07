@@ -22,7 +22,7 @@ export function useFetch{{tablePascalName}}() {
       set{{tablePascalName}}(index)
       prevDataRef.current = data
     }
-  }, [data], set{{tablePascalName}})
+  }, [data, set{{tablePascalName}}])
 
   return { {{table}} }
 }
