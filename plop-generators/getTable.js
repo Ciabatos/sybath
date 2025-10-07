@@ -139,7 +139,7 @@ export default function getTable(plop) {
       const indexMethodName = indexFields.length > 1 ? "arrayToObjectKeysId" : "arrayToObjectKeyId"
       const indexMethodArgs = indexFields.map((f) => `"${f.name}"`).join(", ")
 
-      const paramsTypeName = "TParams"
+
       const paramsList = paramsFields.map(f => f.name).join(", ")
           
       console.log({
@@ -154,7 +154,6 @@ export default function getTable(plop) {
         indexMethodName,
         indexMethodArgs,
         paramsFields,
-        paramsTypeName,
         paramsList,    
       })
 
@@ -171,7 +170,6 @@ export default function getTable(plop) {
         indexMethodName,
         indexMethodArgs,
         paramsFields,
-        paramsTypeName,
         paramsList,  
       }
     },
