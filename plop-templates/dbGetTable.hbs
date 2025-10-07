@@ -25,6 +25,13 @@ export type {{typeName}} = {
 }
 
 
+{{#if (eq indexMethodName "arrayToObjectKeysId")}}
+export type {{typeName}}RecordBy{{typeRecordName}} = Record<string, {{typeName}}>
+{{else}}
+export type {{typeName}}RecordBy{{typeRecordName}} = Record<number, {{typeName}}> 
+{{/if}}
+
+
 {{#if paramsFields}}
 export async function get{{methodName}}(params: {{typeName}}Params, options?: TQueryOptions) {
   try {
