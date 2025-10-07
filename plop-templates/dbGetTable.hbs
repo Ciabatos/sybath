@@ -3,7 +3,7 @@
 "use server"
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 
-export type QueryOptions = {
+export type TQueryOptions = {
   limit?: number
   offset?: number
   orderBy?: string
@@ -26,7 +26,7 @@ export type {{typeName}} = {
 
 
 {{#if paramsFields}}
-export async function get{{methodName}}(params: {{typeName}}Params, options?: QueryOptions) {
+export async function get{{methodName}}(params: {{typeName}}Params, options?: TQueryOptions) {
   try {
     const sqlParams = Object.values(params)
     const whereClauses = Object.keys(params).map((key, i) => `"${key}" = $${i + 1}`).join(" AND ")
@@ -56,7 +56,7 @@ export async function get{{methodName}}(params: {{typeName}}Params, options?: Qu
     return result.rows as {{typeName}}[]
 
 {{else}}
-export async function get{{methodName}}(options?: QueryOptions) {
+export async function get{{methodName}}(options?: TQueryOptions) {
   try {
     const sqlParams = []
     let sql = `SELECT * FROM {{schema}}.{{table}}`
