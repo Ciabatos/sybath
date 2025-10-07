@@ -3,7 +3,7 @@
 "use server"
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 
-{{#if paramsFields.length}}
+{{#if paramsFields}}
 export type {{typeName}}Params = {
 {{#each paramsFields}}
   {{name}}: {{tsType}}
@@ -18,9 +18,9 @@ export type {{typeName}} = {
 }
 
 
-export async function get{{methodName}}({{#if paramsFields.length}}{{paramsList}}: TParams{{/if}}) {
+export async function get{{methodName}}({{#if paramsFields}}{{paramsList}}: TParams{{/if}}) {
   try {
-    {{#if paramsFields.length}}
+    {{#if paramsFields}}
     const sqlParams = [{{paramsList}}]
     const whereClauses = [{{#each paramsFields}}"{{name}} = $" + ({{@index}} + 1){{#unless @last}}, {{/unless}}{{/each}}]
     const sql = `SELECT * FROM {{schema}}.{{table}} WHERE ${whereClauses.join(" AND ")}`
