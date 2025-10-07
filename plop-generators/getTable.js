@@ -118,10 +118,11 @@ export default function getTable(plop) {
         f.pascalName = f.name.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
       })
 
-      const typeRecordName = indexFields.map((f) => f.pascalName).join("")
-
+     
+ 
       const tablePascalName = table.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
       const typeName = "T" + tablePascalName
+      const typeRecordName = indexFields.map((f) => f.pascalName).join("")
       const methodName = schema.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase()) + tablePascalName
 
       const indexMethodName = indexFields.length > 1 ? "arrayToObjectKeysId" : "arrayToObjectKeyId"
