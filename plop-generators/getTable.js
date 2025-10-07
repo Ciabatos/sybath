@@ -119,22 +119,17 @@ export default function getTable(plop) {
       })
 
 
-      const { whereColumns } = await inquirer.prompt([
+      const { paramsColumns } = await inquirer.prompt([
         {
           type: "checkbox",
-          name: "whereColumns",
+          name: "paramsColumns",
           message: "Wybierz kolumny, które będą używane jako parametry funkcji (opcjonalnie):",
           choices: fields.map(f => ({ name: `${f.name} (${f.tsType})`, value: f.name })),
         },
       ]);
       
-      const whereFields = fields.filter(f => whereColumns.includes(f.name))
+      const paramsFields = fields.filter(f => paramsColumns.includes(f.name))
 
-
-
-
-
-          
  
       const tablePascalName = table.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
       const typeName = "T" + tablePascalName
@@ -145,7 +140,7 @@ export default function getTable(plop) {
       const indexMethodArgs = indexFields.map((f) => `"${f.name}"`).join(", ")
 
       const paramsTypeName = "TParams"
-      const paramsList = whereFields.map(f => f.name).join(", ")
+      const paramsList = paramsFields.map(f => f.name).join(", ")
           
       console.log({
         schema,
@@ -158,6 +153,7 @@ export default function getTable(plop) {
         indexFields,
         indexMethodName,
         indexMethodArgs,
+        paramsFields,
         paramsTypeName,
         paramsList,    
       })
@@ -168,14 +164,15 @@ export default function getTable(plop) {
         table,
         tablePascalName,
         typeName,
-        typeRecordName,
         methodName,
-        indexFields,
+        typeRecordName,
         fields,
+        indexFields,
         indexMethodName,
         indexMethodArgs,
+        paramsFields,
         paramsTypeName,
-        paramsList, 
+        paramsList,  
       }
     },
 
