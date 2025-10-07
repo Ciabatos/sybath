@@ -3,29 +3,28 @@ import path from "path"
 import { Client } from "pg"
 dotenv.config({ path: path.resolve(process.cwd(), ".env.development") })
 
-      //  Konwersja typów SQL → TypeScript
-      const typeMap = {
-        integer: "number",
-        bigint: "number",
-        smallint: "number",
-        numeric: "number",
-        double: "number",
-        real: "number",
-        serial: "number",
-        bigserial: "number",
-        boolean: "boolean",
-        text: "string",
-        varchar: "string",
-        "character varying": "string",
-        date: "string",
-        timestamp: "string",
-        "timestamp without time zone": "string",
-        "timestamp with time zone": "string",
-        json: "any",
-        jsonb: "any",
-        uuid: "string",
-      }
-
+//  Konwersja typów SQL → TypeScript
+const typeMap = {
+  integer: "number",
+  bigint: "number",
+  smallint: "number",
+  numeric: "number",
+  double: "number",
+  real: "number",
+  serial: "number",
+  bigserial: "number",
+  boolean: "boolean",
+  text: "string",
+  varchar: "string",
+  "character varying": "string",
+  date: "string",
+  timestamp: "string",
+  "timestamp without time zone": "string",
+  "timestamp with time zone": "string",
+  json: "any",
+  jsonb: "any",
+  uuid: "string",
+}
 
 async function fetchColumns(schema, table) {
   if (!table) throw new Error("Table name is required for fetchColumns")
@@ -52,7 +51,6 @@ async function fetchColumns(schema, table) {
     } catch {}
   }
 }
-
 
 export default function getTable(plop) {
   plop.setGenerator("Get Table", {
@@ -87,9 +85,6 @@ export default function getTable(plop) {
         optional: col.is_nullable === "YES" ? "?" : "",
       }))
 
-
-
-      
       //  Zapytaj użytkownika o wybór kolumn
       const { selectedColumnsIndex } = await inquirer.prompt([
         {
@@ -118,19 +113,17 @@ export default function getTable(plop) {
         f.pascalName = f.name.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
       })
 
-
       const { paramsColumns } = await inquirer.prompt([
         {
           type: "checkbox",
           name: "paramsColumns",
           message: "Wybierz kolumny, które będą używane jako parametry funkcji (opcjonalnie):",
-          choices: fields.map(f => ({ name: `${f.name} (${f.tsType})`, value: f.name })),
+          choices: fields.map((f) => ({ name: `${f.name} (${f.tsType})`, value: f.name })),
         },
-      ]);
-      
-      const paramsFields = fields.filter(f => paramsColumns.includes(f.name))
+      ])
 
- 
+      const paramsFields = fields.filter((f) => paramsColumns.includes(f.name))
+
       const tablePascalName = table.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
       const typeName = "T" + tablePascalName
       const typeRecordName = indexFields.map((f) => f.pascalName).join("")
@@ -139,9 +132,8 @@ export default function getTable(plop) {
       const indexMethodName = indexFields.length > 1 ? "arrayToObjectKeysId" : "arrayToObjectKeyId"
       const indexMethodArgs = indexFields.map((f) => `"${f.name}"`).join(", ")
 
+      const paramsList = paramsFields.map((f) => f.name).join(", ")
 
-      const paramsList = paramsFields.map(f => f.name).join(", ")
-          
       console.log({
         schema,
         table,
@@ -154,7 +146,7 @@ export default function getTable(plop) {
         indexMethodName,
         indexMethodArgs,
         paramsFields,
-        paramsList,    
+        paramsList,
       })
 
       //  Zwróć wszystkie dane jako answers
@@ -170,7 +162,7 @@ export default function getTable(plop) {
         indexMethodName,
         indexMethodArgs,
         paramsFields,
-        paramsList,  
+        paramsList,
       }
     },
 
@@ -193,6 +185,12 @@ export default function getTable(plop) {
         path: "methods/hooks/{{schema}}/core/useFetch{{tablePascalName}}.tsx",
         templateFile: "plop-templates/hookGetTable.hbs",
         force: true,
+      },
+      {
+        type: "modify",
+        path: "store/atoms.ts",
+        pattern: /((?:^"use client"\n)?(?:import[\s\S]*?\n))(?!import)/m,
+        template: `$&import { {{typeName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{table}}"\n`,
       },
       {
         type: "modify",
