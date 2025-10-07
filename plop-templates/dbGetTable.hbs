@@ -81,9 +81,7 @@ export async function get{{methodName}}(options?: QueryOptions) {
 
     const result = await query(sql, sqlParams)
     return result.rows as {{typeName}}[]
-
-
-    {{/if}}
+{{/if}}
 
   } catch (error) {
     console.error("Error fetching get{{methodName}}:", error)
