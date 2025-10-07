@@ -5,22 +5,36 @@ import { auth } from "@/auth"
 import { get{{methodName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{table}}"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
+import z from "zod"
 
-type TypeParams = {
-  null: string
-}
-export async function GET(request: NextRequest, { params }: { params: TypeParams }): Promise<NextResponse> {
+
+{{#if paramsFields}}
+const typeParamsSchema = z.object({
+  {{#each paramsFields}}
+  {{name}}: z.coerce.{{tsType}}(),
+  {{/each}}
+})
+
+type TypeParams = z.infer<typeof typeParamsSchema>
+{{/if}}
+
+
+export async function GET(request: NextRequest{{#if paramsFields}}, { params }: { params: TypeParams }{{/if}}): Promise<NextResponse> {
+  
   const session = await auth()
   const sessionPlayerId = session?.user?.playerId
-
   if (!sessionPlayerId || isNaN(sessionPlayerId)) {
     return NextResponse.json({ success: false })
   }
-  // const searchQueryParams = request.nextUrl.searchParams;
-  // const login = searchQueryParams.get("login");
+  
+  {{#if paramsFields}}
+  const paramsFromPromise = await params
+  const parsedParams: TypeParams = typeParamsSchema.parse(paramsFromPromise)
+  {{/if}}
 
   try {
-    const result = await get{{methodName}}()
+    const result = await get{{methodName}}({{#if paramsFields}}{{#each paramsFields}}parsedParams.{{name}}{{#unless @last}}, {{/unless}}{{/each}}{{/if}})
+  
     const etag = crypto.createHash("sha1").update(JSON.stringify(result)).digest("hex")
     const clientEtag = request.headers.get("if-none-match")
 
