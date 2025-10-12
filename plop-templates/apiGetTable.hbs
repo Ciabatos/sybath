@@ -2,18 +2,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { auth } from "@/auth"
-import { get{{methodName}},{{#if paramsFields}}{{typeName}}Params,{{/if}}{{typeName}},TQueryOptions} from "@/db/postgresMainDatabase/schemas/{{schema}}/{{table}}"
+import { get{{methodName}}, {{#if paramsFields}}{{typeName}}Params, {{/if}}{{typeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{table}}"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
 
-
-const QueryOptionsSchema = z.object({
-  limit: z.coerce.number().int().positive().optional(),
-  offset: z.coerce.number().int().nonnegative().optional(),
-  orderBy: z.string().optional(),
-  orderDirection: z.enum(["ASC", "DESC"]).optional(),
-}) satisfies z.ZodType<TQueryOptions>
 
 {{#if paramsFields}}
 const typeParamsSchema = z.object({
@@ -31,29 +24,6 @@ export async function GET(request: NextRequest{{#if paramsFields}}, { params }: 
   if (!sessionPlayerId || isNaN(sessionPlayerId)) {
     return NextResponse.json({ success: false })
   }
-
-  
-  // Parse query options from URL search params
-  const searchParams = request.nextUrl.searchParams
-  const QueryOptions: TQueryOptions = {}
-  
-  if (searchParams.has("limit")) {
-    QueryOptions.limit = parseInt(searchParams.get("limit")!)
-  }
-  if (searchParams.has("offset")) {
-    QueryOptions.offset = parseInt(searchParams.get("offset")!)
-  }
-  if (searchParams.has("orderBy")) {
-    QueryOptions.orderBy = searchParams.get("orderBy")!
-  }
-  if (searchParams.has("orderDirection")) {
-    QueryOptions.orderDirection = searchParams.get("orderDirection") as "ASC" | "DESC"
-  }
-
-  // Validate query options
-  const parsedQueryOptions = QueryOptionsSchema.parse(QueryOptions)
-
-
   
   {{#if paramsFields}}
   const paramsFromPromise = await params
@@ -61,7 +31,7 @@ export async function GET(request: NextRequest{{#if paramsFields}}, { params }: 
   {{/if}}
 
   try {
-    const result = await get{{methodName}}({{#if paramsFields}}parsedParams, {{/if}}parsedQueryOptions)
+    const result = await get{{methodName}}({{#if paramsFields}}parsedParams {{/if}})
   
     const etag = crypto.createHash("sha1").update(JSON.stringify(result)).digest("hex")
     const clientEtag = request.headers.get("if-none-match")

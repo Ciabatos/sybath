@@ -3,13 +3,6 @@
 "use server"
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 
-export type TQueryOptions = {
-  limit?: number
-  offset?: number
-  orderBy?: string
-  orderDirection?: "ASC" | "DESC"
-}
-
 {{#if paramsFields}}
 export type {{typeName}}Params = {
 {{#each paramsFields}}
@@ -32,63 +25,16 @@ export type {{typeName}}RecordBy{{typeRecordName}} = Record<number, {{typeName}}
 {{/if}}
 
 
-{{#if paramsFields}}
-export async function get{{methodName}}(params: {{typeName}}Params, options?: TQueryOptions) {
+export async function get{{methodName}}(params: {{typeName}}Params) {
   try {
     const sqlParams = Object.values(params)
     const whereClauses = Object.keys(params).map((key, i) => `"${key}" = $${i + 1}`).join(" AND ")
-    let sql = `SELECT * FROM {{schema}}.{{table}}${whereClauses ? " WHERE " + whereClauses : ""}`
-
-    // Add ORDER BY clause
-    if (options?.orderBy) {
-      const direction = options.orderDirection || "ASC"
-      sql += ` ORDER BY "${options.orderBy}" ${direction}`
-    }
-    
-    // Add LIMIT clause
-    if (options?.limit !== undefined) {
-      sqlParams.push(options.limit)
-      sql += ` LIMIT $${sqlParams.length}`
-    }
-    
-    // Add OFFSET clause
-    if (options?.offset !== undefined) {
-      sqlParams.push(options.offset)
-      sql += ` OFFSET $${sqlParams.length}`
-    }
-
+    const sql = `SELECT * FROM {{schema}}.{{table}}${whereClauses ? " WHERE " + whereClauses : ""}`
 
 
     const result = await query(sql, sqlParams)
     return result.rows as {{typeName}}[]
 
-{{else}}
-export async function get{{methodName}}(options?: TQueryOptions) {
-  try {
-    const sqlParams = []
-    let sql = `SELECT * FROM {{schema}}.{{table}}`
-
-    // Add ORDER BY clause
-    if (options?.orderBy) {
-      const direction = options.orderDirection || "ASC"
-      sql += ` ORDER BY "${options.orderBy}" ${direction}`
-    }
-    
-    // Add LIMIT clause
-    if (options?.limit !== undefined) {
-      sqlParams.push(options.limit)
-      sql += ` LIMIT $${sqlParams.length}`
-    }
-    
-    // Add OFFSET clause
-    if (options?.offset !== undefined) {
-      sqlParams.push(options.offset)
-      sql += ` OFFSET $${sqlParams.length}`
-    }
-
-    const result = await query(sql, sqlParams)
-    return result.rows as {{typeName}}[]
-{{/if}}
 
   } catch (error) {
     console.error("Error fetching get{{methodName}}:", error)
