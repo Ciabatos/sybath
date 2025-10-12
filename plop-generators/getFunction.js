@@ -302,7 +302,55 @@ export default function getMethod(plop) {
       const methodPascalName = snakeToPascal(method)
       const methodCamelName = snakeToCamel(method)
 
+      // Zapytaj użytkownika o wybór kolumn dla indexu
+      const { selectedColumnsIndex } = await inquirer.prompt([
+        {
+          type: "checkbox",
+          name: "selectedColumnsIndex",
+          message: "Wybierz kolumny dla indexu:",
+          choices: resultColumns.map((f) => ({
+            name: `${f.camelName} (${f.type})`,
+            value: f.camelName,
+            checked: false,
+          })),
+          validate: (answer) => {
+            if (answer.length < 1) {
+              return "Musisz zaznaczyć przynajmniej jedną kolumnę."
+            }
+            return true
+          },
+        },
+      ])
+
+      // Filtruj tylko wybrane kolumny dla indexu
+      const indexFields = resultColumns.filter((f) => selectedColumnsIndex.includes(f.camelName))
+
+      // Formatuj nazwy dla indexu
+      indexFields.forEach((f) => {
+        f.pascalName = snakeToPascal(f.camelName)
+      })
+
+      const typeRecordName = indexFields.map((f) => f.pascalName).join("")
+      const indexMethodName = indexFields.length > 1 ? "arrayToObjectKeysId" : "arrayToObjectKeyId"
+      const indexMethodArgs = indexFields.map((f) => `"${f.camelName}"`).join(", ")
+
       const tsReturnType = `export type T${methodPascalName} = {\n${resultColumns.map((c) => `  ${c.camelName}: ${c.type}`).join("\n")}\n}`
+
+      console.log({
+        schema,
+        method,
+        methodPascalName,
+        methodCamelName,
+        tsArgsList,
+        paramsFields,
+        argsArrayString,
+        sqlParamsPlaceholders,
+        tsReturnType,
+        indexFields,
+        typeRecordName,
+        indexMethodName,
+        indexMethodArgs,
+      })
 
       return {
         schema,
@@ -314,6 +362,10 @@ export default function getMethod(plop) {
         argsArrayString: argsArrayString,
         sqlParamsPlaceholders,
         tsReturnType,
+        indexFields,
+        typeRecordName,
+        indexMethodName,
+        indexMethodArgs,
       }
     },
 

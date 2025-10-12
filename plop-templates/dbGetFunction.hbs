@@ -14,6 +14,15 @@ export type T{{methodPascalName}}Params = {
 
 {{{tsReturnType}}}
 
+
+{{#if indexFields}}
+{{#if (eq indexMethodName "arrayToObjectKeysId")}}
+export type T{{methodPascalName}}RecordBy{{typeRecordName}} = Record<string, T{{methodPascalName}}>
+{{else}}
+export type T{{methodPascalName}}RecordBy{{typeRecordName}} = Record<number, T{{methodPascalName}}> 
+{{/if}}
+{{/if}}
+
 export async function get{{methodPascalName}}(params: T{{methodPascalName}}Params) {
   try {
     const sqlParams = Object.values(params)
