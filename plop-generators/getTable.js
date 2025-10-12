@@ -1,31 +1,104 @@
 import dotenv from "dotenv"
 import path from "path"
 import { Client } from "pg"
+
 dotenv.config({ path: path.resolve(process.cwd(), ".env.development") })
 
-//  Konwersja typów SQL → TypeScript
+// Konwersja typów SQL → TypeScript
 const typeMap = {
   integer: "number",
   bigint: "number",
   smallint: "number",
   numeric: "number",
-  double: "number",
+  decimal: "number",
+  "double precision": "number",
   real: "number",
   serial: "number",
   bigserial: "number",
   boolean: "boolean",
   text: "string",
-  varchar: "string",
   "character varying": "string",
+  character: "string",
+  varchar: "string",
   date: "string",
   timestamp: "string",
   "timestamp without time zone": "string",
   "timestamp with time zone": "string",
+  timestamptz: "string",
+  time: "string",
   json: "any",
   jsonb: "any",
   uuid: "string",
+  bytea: "Buffer",
 }
 
+// Mapowanie SQL -> TS typ
+function mapSQLTypeToTS(sqlType) {
+  if (!sqlType) return "any"
+
+  let cleanType = sqlType.trim().toLowerCase()
+
+  // Obsługa array types, np. "integer[]" -> "number[]"
+  if (cleanType.endsWith("[]")) {
+    const baseType = cleanType.slice(0, -2).replace(/\([^)]*\)/g, "")
+    const baseTsType = typeMap[baseType] || "any"
+    return `${baseTsType}[]`
+  }
+
+  // Usuń długości i parametry typu, np. "varchar(255)" -> "varchar"
+  cleanType = cleanType.replace(/\([^)]*\)/g, "")
+
+  return typeMap[cleanType] || "any"
+}
+
+// Pobranie listy schematów
+async function fetchSchemas() {
+  const client = new Client({
+    host: process.env.PG_MAIN_HOST,
+    user: process.env.PG_MAIN_USER,
+    password: process.env.PG_MAIN_PASSWORD ?? "",
+    database: process.env.PG_MAIN_DATABASE,
+    port: process.env.PG_MAIN_PORT ? Number(process.env.PG_MAIN_PORT) : undefined,
+  })
+  await client.connect()
+  try {
+    const res = await client.query(
+      `SELECT schema_name
+       FROM information_schema.schemata
+       WHERE schema_name NOT IN ('pg_catalog', 'information_schema', 'pg_toast')
+       ORDER BY schema_name`,
+    )
+    return res.rows.map((r) => r.schema_name)
+  } finally {
+    await client.end()
+  }
+}
+
+// Pobranie listy tabel w schemacie
+async function fetchTables(schema) {
+  const client = new Client({
+    host: process.env.PG_MAIN_HOST,
+    user: process.env.PG_MAIN_USER,
+    password: process.env.PG_MAIN_PASSWORD ?? "",
+    database: process.env.PG_MAIN_DATABASE,
+    port: process.env.PG_MAIN_PORT ? Number(process.env.PG_MAIN_PORT) : undefined,
+  })
+  await client.connect()
+  try {
+    const res = await client.query(
+      `SELECT table_name
+       FROM information_schema.tables
+       WHERE table_schema = $1 AND table_type = 'BASE TABLE'
+       ORDER BY table_name`,
+      [schema],
+    )
+    return res.rows.map((r) => r.table_name)
+  } finally {
+    await client.end()
+  }
+}
+
+// Pobranie kolumn tabeli
 async function fetchColumns(schema, table) {
   if (!table) throw new Error("Table name is required for fetchColumns")
   const client = new Client({
@@ -55,46 +128,65 @@ async function fetchColumns(schema, table) {
 export default function getTable(plop) {
   plop.setGenerator("Get Table", {
     description: "Generate TypeScript types and fetcher from Postgres table",
+
     prompts: async (inquirer) => {
-      //  Zapytaj o schema i table
-      const { schema, table } = await inquirer.prompt([
+      // Pobranie schematów
+      const schemas = await fetchSchemas()
+
+      if (schemas.length === 0) {
+        throw new Error("Brak dostępnych schematów")
+      }
+
+      // Wybór schematu
+      const { schema } = await inquirer.prompt([
         {
-          type: "input",
+          type: "list",
           name: "schema",
-          message: "Postgres schema:",
-          filter: (val) => val.toLowerCase(),
-        },
-        {
-          type: "input",
-          name: "table",
-          message: "Table name:",
-          filter: (val) => val.toLowerCase(),
+          message: "Wybierz schemat:",
+          choices: schemas,
         },
       ])
 
-      //  Pobierz kolumny z bazy
+      // Pobranie tabel w schemacie
+      const tables = await fetchTables(schema)
+
+      if (tables.length === 0) {
+        throw new Error(`Brak tabel w schemacie: ${schema}`)
+      }
+
+      // Wybór tabeli
+      const { table } = await inquirer.prompt([
+        {
+          type: "list",
+          name: "table",
+          message: "Wybierz tabelę:",
+          choices: tables,
+        },
+      ])
+
+      // Pobierz kolumny z bazy
       const rows = await fetchColumns(schema, table)
 
       if (rows.length === 0) {
-        throw new Error(`No columns found for ${schema}.${table}`)
+        throw new Error(`Brak kolumn w tabeli ${schema}.${table}`)
       }
 
       const fields = rows.map((col) => ({
         name: col.column_name,
-        tsType: typeMap[col.data_type] || "any",
+        tsType: mapSQLTypeToTS(col.data_type),
         optional: col.is_nullable === "YES" ? "?" : "",
       }))
 
-      //  Zapytaj użytkownika o wybór kolumn
+      // Zapytaj użytkownika o wybór kolumn dla indexu
       const { selectedColumnsIndex } = await inquirer.prompt([
         {
           type: "checkbox",
           name: "selectedColumnsIndex",
-          message: "Wybierz kolumny dla indexu",
+          message: "Wybierz kolumny dla indexu:",
           choices: fields.map((f) => ({
             name: `${f.name} (${f.tsType})`,
             value: f.name,
-            checked: false, // domyślnie wszystkie zaznaczone?
+            checked: false,
           })),
           validate: (answer) => {
             if (answer.length < 1) {
@@ -105,20 +197,24 @@ export default function getTable(plop) {
         },
       ])
 
-      //  Filtruj tylko wybrane kolumny
+      // Filtruj tylko wybrane kolumny
       const indexFields = fields.filter((f) => selectedColumnsIndex.includes(f.name))
 
-      //  Formatuj nazwy
+      // Formatuj nazwy
       indexFields.forEach((f) => {
         f.pascalName = f.name.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
       })
 
+      // Wybór kolumn jako parametry funkcji
       const { paramsColumns } = await inquirer.prompt([
         {
           type: "checkbox",
           name: "paramsColumns",
-          message: "Wybierz kolumny, które będą używane jako parametry funkcji (opcjonalnie):",
-          choices: fields.map((f) => ({ name: `${f.name} (${f.tsType})`, value: f.name })),
+          message: "Wybierz kolumny jako parametry funkcji (opcjonalnie):",
+          choices: fields.map((f) => ({
+            name: `${f.name} (${f.tsType})`,
+            value: f.name,
+          })),
         },
       ])
 
@@ -149,7 +245,6 @@ export default function getTable(plop) {
         paramsList,
       })
 
-      //  Zwróć wszystkie dane jako answers
       return {
         schema,
         table,
@@ -166,7 +261,6 @@ export default function getTable(plop) {
       }
     },
 
-    // 🎯 ACTIONS - mają dostęp do danych z prompts
     actions: [
       {
         type: "add",

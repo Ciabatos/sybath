@@ -2,11 +2,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { auth } from "@/auth"
-import { get{{methodName}}, {{#if paramsFields}}{{typeName}}Params, {{/if}}} from "@/db/postgresMainDatabase/schemas/{{schema}}/{{table}}"
+import { get{{methodName}}{{#if paramsFields}}, {{typeName}}Params{{/if}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{table}}"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
-
 
 {{#if paramsFields}}
 const typeParamsSchema = z.object({
@@ -15,7 +14,6 @@ const typeParamsSchema = z.object({
   {{/each}}
 }) satisfies z.ZodType<{{typeName}}Params>
 {{/if}}
-
 
 export async function GET(request: NextRequest{{#if paramsFields}}, { params }: { params: {{typeName}}Params }{{/if}}): Promise<NextResponse> {
   
@@ -31,7 +29,7 @@ export async function GET(request: NextRequest{{#if paramsFields}}, { params }: 
   {{/if}}
 
   try {
-    const result = await get{{methodName}}({{#if paramsFields}}parsedParams {{/if}})
+    const result = await get{{methodName}}({{#if paramsFields}}parsedParams{{/if}})
   
     const etag = crypto.createHash("sha1").update(JSON.stringify(result)).digest("hex")
     const clientEtag = request.headers.get("if-none-match")

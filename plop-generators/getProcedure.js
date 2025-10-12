@@ -4,141 +4,275 @@ import { Client } from "pg"
 
 dotenv.config({ path: path.resolve(process.cwd(), ".env.development") })
 
-// Mapowanie typów SQL -> TS
 const typeMap = {
   integer: "number",
   bigint: "number",
   smallint: "number",
   numeric: "number",
-  double: "number",
+  decimal: "number",
+  "double precision": "number",
   real: "number",
   serial: "number",
   bigserial: "number",
   boolean: "boolean",
   text: "string",
-  varchar: "string",
   "character varying": "string",
+  character: "string",
+  varchar: "string",
   date: "string",
   timestamp: "string",
   "timestamp without time zone": "string",
   "timestamp with time zone": "string",
+  timestamptz: "string",
+  time: "string",
   json: "any",
   jsonb: "any",
   uuid: "string",
+  bytea: "Buffer",
 }
 
-// Pobranie parametrów i typu zwracanego procedury
-async function fetchProcedureMeta(schema, procedure) {
+// Mapowanie SQL -> TS typ
+function mapSQLTypeToTS(sqlType) {
+  if (!sqlType) return "any"
+
+  let cleanType = sqlType.trim().toLowerCase()
+
+  // Obsługa array types, np. "integer[]" -> "number[]"
+  if (cleanType.endsWith("[]")) {
+    const baseType = cleanType.slice(0, -2).replace(/\([^)]*\)/g, "")
+    const baseTsType = typeMap[baseType] || "any"
+    return `${baseTsType}[]`
+  }
+
+  // Usuń długości i parametry typu, np. "varchar(255)" -> "varchar"
+  cleanType = cleanType.replace(/\([^)]*\)/g, "")
+
+  return typeMap[cleanType] || "any"
+}
+
+// Pobranie listy schematów
+async function fetchSchemas() {
   const client = new Client({
     host: process.env.PG_MAIN_HOST,
     user: process.env.PG_MAIN_USER,
-    password: process.env.PG_MAIN_PASSWORD ?? "",
+    password: process.env.PG_MAIN_PASSWORD || "",
     database: process.env.PG_MAIN_DATABASE,
     port: process.env.PG_MAIN_PORT ? Number(process.env.PG_MAIN_PORT) : undefined,
   })
-
+  await client.connect()
   try {
-    await client.connect()
-
-    const sql = `
-      SELECT
-        pg_get_function_arguments(p.oid) AS arguments,
-        pg_get_function_result(p.oid) AS result
-      FROM pg_proc p
-      JOIN pg_namespace n ON p.pronamespace = n.oid
-      WHERE n.nspname = $1 AND p.proname = $2
-    `
-
-    const res = await client.query(sql, [schema, procedure])
-    if (!res.rows[0]) throw new Error(`Function ${schema}.${procedure} not found`)
-    return res.rows[0]
+    const res = await client.query(
+      `SELECT schema_name
+       FROM information_schema.schemata
+       WHERE schema_name NOT IN ('pg_catalog', 'information_schema', 'pg_toast')
+       ORDER BY schema_name`,
+    )
+    return res.rows.map((r) => r.schema_name)
   } finally {
-    try {
-      await client.end()
-    } catch {}
+    await client.end()
   }
 }
 
-// Parser argumentów na TS type
-function parseArgsToTS(argsStr) {
-  if (!argsStr) return "void"
-  const args = argsStr.split(",").map((a) => {
-    const [name, type] = a.trim().split(/\s+/)
-    const tsType = typeMap[type] || "any"
-    return `${name}: ${tsType}`
+// Pobranie listy procedur w schemacie
+async function fetchProcedures(schema) {
+  const client = new Client({
+    host: process.env.PG_MAIN_HOST,
+    user: process.env.PG_MAIN_USER,
+    password: process.env.PG_MAIN_PASSWORD || "",
+    database: process.env.PG_MAIN_DATABASE,
+    port: process.env.PG_MAIN_PORT ? Number(process.env.PG_MAIN_PORT) : undefined,
   })
-  return `{ ${args.join("; ")} }`
+  await client.connect()
+  try {
+    const res = await client.query(
+      `SELECT proname
+       FROM pg_proc p
+       JOIN pg_namespace n ON p.pronamespace = n.oid
+       WHERE n.nspname = $1
+       ORDER BY proname`,
+      [schema],
+    )
+    return res.rows.map((r) => r.proname)
+  } finally {
+    await client.end()
+  }
 }
 
-// Parser typu zwracanego na TS type
-function parseResultToTS(resultStr, typeName) {
-  const match = resultStr.match(/TABLE\((.*)\)/i)
-  if (!match) return "any"
-
-  const columns = match[1].split(",").map((c) => {
-    const [name, type] = c.trim().split(/\s+/)
-    const tsType = typeMap[type] || "any"
-    return `${name}: ${tsType}`
+// Pobranie parametrów procedury
+async function fetchProcedureArgs(schema, procedure) {
+  const client = new Client({
+    host: process.env.PG_MAIN_HOST,
+    user: process.env.PG_MAIN_USER,
+    password: process.env.PG_MAIN_PASSWORD || "",
+    database: process.env.PG_MAIN_DATABASE,
+    port: process.env.PG_MAIN_PORT ? Number(process.env.PG_MAIN_PORT) : undefined,
   })
-  return `export type ${typeName} = {\n  ${columns.join("\n  ")}\n}`
+  await client.connect()
+  try {
+    const res = await client.query(
+      `SELECT pg_get_function_arguments(p.oid) AS args
+       FROM pg_proc p
+       JOIN pg_namespace n ON p.pronamespace = n.oid
+       WHERE n.nspname = $1 AND p.proname = $2`,
+      [schema, procedure],
+    )
+    if (!res.rows[0]) throw new Error(`Function ${schema}.${procedure} not found`)
+    return res.rows[0].args || ""
+  } finally {
+    await client.end()
+  }
 }
 
-// Zwraca string do użycia w sygnaturze funkcji TS: "arg1: number, arg2: string"
-function parseArgsToTSList(argsStr) {
+// Pobranie kolumn zwracanych przez funkcję TABLE
+async function fetchProcedureResultColumns(schema, procedure) {
+  const client = new Client({
+    host: process.env.PG_MAIN_HOST,
+    user: process.env.PG_MAIN_USER,
+    password: process.env.PG_MAIN_PASSWORD || "",
+    database: process.env.PG_MAIN_DATABASE,
+    port: process.env.PG_MAIN_PORT ? Number(process.env.PG_MAIN_PORT) : undefined,
+  })
+  await client.connect()
+  try {
+    // Najpierw pobierz typ zwracany
+    const resultTypeRes = await client.query(
+      `SELECT pg_get_function_result(p.oid) AS result
+       FROM pg_proc p
+       JOIN pg_namespace n ON p.pronamespace = n.oid
+       WHERE n.nspname = $1 AND p.proname = $2`,
+      [schema, procedure],
+    )
+
+    if (!resultTypeRes.rows[0]) {
+      throw new Error(`Function ${schema}.${procedure} not found`)
+    }
+
+    const resultType = resultTypeRes.rows[0].result
+
+    // Sprawdź czy to TABLE type
+    if (!resultType.startsWith("TABLE(")) {
+      // Jeśli nie jest TABLE, zwróć prosty typ
+      return [{ name: "result", type: mapSQLTypeToTS(resultType) }]
+    }
+
+    // Wyciągnij nazwę composite type z TABLE(...)
+    const tableMatch = resultType.match(/TABLE\((.*?)\)/)
+    if (!tableMatch) {
+      return [{ name: "result", type: "any" }]
+    }
+
+    // Parsuj kolumny bezpośrednio z definicji TABLE
+    const columnsStr = tableMatch[1]
+    const columns = columnsStr
+      .split(",")
+      .map((col) => {
+        const trimmed = col.trim()
+        const spaceIndex = trimmed.indexOf(" ")
+        if (spaceIndex === -1) return null
+
+        const name = trimmed.substring(0, spaceIndex)
+        const type = trimmed.substring(spaceIndex + 1)
+
+        return { name, type: mapSQLTypeToTS(type) }
+      })
+      .filter(Boolean)
+
+    return columns
+  } finally {
+    await client.end()
+  }
+}
+
+// Parser do sygnatury TS
+function parseArgsToList(argsStr) {
   if (!argsStr) return ""
+
   return argsStr
     .split(",")
-    .map((a) => {
-      const [name, type] = a.trim().split(/\s+/)
-      const tsType = typeMap[type] || "any"
-      return `${name}: ${tsType}`
+    .map((arg) => {
+      const trimmed = arg.trim()
+      const spaceIndex = trimmed.indexOf(" ")
+      if (spaceIndex === -1) return null
+
+      const name = trimmed.substring(0, spaceIndex)
+      const type = trimmed.substring(spaceIndex + 1)
+
+      return `${name}: ${mapSQLTypeToTS(type)}`
     })
+    .filter(Boolean)
     .join(", ")
 }
 
-// Zwraca tablicę nazw argumentów do przekazania do query: "[arg1, arg2]"
+// Pobierz nazwy argumentów
 function getArgsArray(argsStr) {
-  if (!argsStr) return "[]"
-  const args = argsStr.split(",").map((a) => a.trim().split(/\s+/)[0]) // tylko nazwa argumentu
-  return `[${args.join(", ")}]`
+  if (!argsStr) return []
+
+  return argsStr
+    .split(",")
+    .map((arg) => {
+      const trimmed = arg.trim()
+      const spaceIndex = trimmed.indexOf(" ")
+      return spaceIndex === -1 ? trimmed : trimmed.substring(0, spaceIndex)
+    })
+    .filter(Boolean)
 }
 
+// Generator plop
 export default function getProcedure(plop) {
   plop.setGenerator("Get Procedure", {
-    description: "Generate TS types and async function from Postgres procedure",
+    description: "Generate TS async function from Postgres procedure",
 
     prompts: async (inquirer) => {
-      const { schema, procedure } = await inquirer.prompt([
+      const schemas = await fetchSchemas()
+
+      if (schemas.length === 0) {
+        throw new Error("Brak dostępnych schematów")
+      }
+
+      const { schema } = await inquirer.prompt([
         {
-          type: "input",
+          type: "list",
           name: "schema",
-          message: "Procedure schema:",
-          filter: (val) => val.toLowerCase(),
-        },
-        {
-          type: "input",
-          name: "procedure",
-          message: "Procedure name:",
-          filter: (val) => val.toLowerCase(),
+          message: "Wybierz schemat:",
+          choices: schemas,
         },
       ])
 
-      const meta = await fetchProcedureMeta(schema, procedure)
+      const procedures = await fetchProcedures(schema)
 
-      const tsArgsType = parseArgsToTS(meta.arguments)
+      if (procedures.length === 0) {
+        throw new Error(`Brak procedur w schemacie: ${schema}`)
+      }
+
+      const { procedure } = await inquirer.prompt([
+        {
+          type: "list",
+          name: "procedure",
+          message: "Wybierz procedurę:",
+          choices: procedures,
+        },
+      ])
+
+      const argsStr = await fetchProcedureArgs(schema, procedure)
+      const resultColumns = await fetchProcedureResultColumns(schema, procedure)
+
+      const tsArgsList = parseArgsToList(argsStr)
+      const argsArray = getArgsArray(argsStr)
+      const sqlParamsPlaceholders = argsArray.map((_, i) => `$${i + 1}`).join(", ")
       const procedurePascalName = procedure.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
-      const tsReturnType = parseResultToTS(meta.result, `T${procedurePascalName}Result`)
-      const tsArgsList = parseArgsToTSList(meta.arguments)
-      const argsArray = getArgsArray(meta.arguments)
+      const procedureCamelName = procedure.replace(/_([a-z])/g, (_, c) => c.toUpperCase())
+
+      const tsReturnType = `export type T${procedurePascalName}Result = {\n${resultColumns.map((c) => `  ${c.name}: ${c.type}`).join("\n")}\n}`
 
       return {
         schema,
         procedure,
         procedurePascalName,
-        tsArgsType,
-        tsReturnType,
+        procedureCamelName,
         tsArgsList,
-        argsArray,
+        argsArray: argsArray.join(", "),
+        sqlParamsPlaceholders,
+        tsReturnType,
       }
     },
 
