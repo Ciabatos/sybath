@@ -259,6 +259,7 @@ export default function getMethod(plop) {
 
       const tsArgsList = parseArgsToList(argsStr)
       const argsArray = getArgsArray(argsStr)
+      const argsArrayString = argsArray.join(", ")
       const sqlParamsPlaceholders = argsArray.map((_, i) => `$${i + 1}`).join(", ")
       const methodPascalName = method.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
       const methodCamelName = method.replace(/_([a-z])/g, (_, c) => c.toUpperCase())
@@ -271,7 +272,7 @@ export default function getMethod(plop) {
         methodPascalName,
         methodCamelName,
         tsArgsList,
-        argsArray: argsArray.join(", "),
+        argsArrayString: argsArrayString,
         sqlParamsPlaceholders,
         tsReturnType,
       }

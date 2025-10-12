@@ -9,7 +9,7 @@ export async function get{{methodPascalName}}({{tsArgsList}}) {
   try {
     const result = await query(
       `SELECT * FROM {{schema}}.{{method}}({{sqlParamsPlaceholders}});`,
-      [{{argsArray}}]
+      [{{argsArrayString}}]
     )
 
     return result.rows as T{{methodPascalName}}Result[]
