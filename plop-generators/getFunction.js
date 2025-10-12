@@ -280,7 +280,7 @@ export default function getMethod(plop) {
     actions: [
       {
         type: "add",
-        path: "db/postgresMainDatabase/methods/{{schema}}/{{method}}.ts",
+        path: "db/postgresMainDatabase/schemas/{{schema}}/{{method}}.ts",
         templateFile: "plop-templates/dbGetFunction.hbs",
         force: true,
       },
