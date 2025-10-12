@@ -32,6 +32,16 @@ const typeMap = {
   bytea: "Buffer",
 }
 
+// Konwersja snake_case -> camelCase
+function snakeToCamel(str) {
+  return str.replace(/_([a-z])/g, (_, letter) => letter.toUpperCase())
+}
+
+// Konwersja snake_case -> PascalCase
+function snakeToPascal(str) {
+  return str.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
+}
+
 // Mapowanie SQL -> TS typ
 function mapSQLTypeToTS(sqlType) {
   if (!sqlType) return "any"
@@ -173,6 +183,7 @@ export default function getTable(plop) {
 
       const fields = rows.map((col) => ({
         name: col.column_name,
+        camelName: snakeToCamel(col.column_name),
         tsType: mapSQLTypeToTS(col.data_type),
         optional: col.is_nullable === "YES" ? "?" : "",
       }))
@@ -202,7 +213,7 @@ export default function getTable(plop) {
 
       // Formatuj nazwy
       indexFields.forEach((f) => {
-        f.pascalName = f.name.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
+        f.pascalName = snakeToPascal(f.name)
       })
 
       // Wybór kolumn jako parametry funkcji
@@ -220,15 +231,15 @@ export default function getTable(plop) {
 
       const paramsFields = fields.filter((f) => paramsColumns.includes(f.name))
 
-      const tablePascalName = table.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
+      const tablePascalName = snakeToPascal(table)
       const typeName = "T" + tablePascalName
       const typeRecordName = indexFields.map((f) => f.pascalName).join("")
-      const methodName = schema.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase()) + tablePascalName
+      const methodName = snakeToPascal(schema) + tablePascalName
 
       const indexMethodName = indexFields.length > 1 ? "arrayToObjectKeysId" : "arrayToObjectKeyId"
-      const indexMethodArgs = indexFields.map((f) => `"${f.name}"`).join(", ")
+      const indexMethodArgs = indexFields.map((f) => `"${snakeToCamel(f.name)}"`).join(", ")
 
-      const paramsList = paramsFields.map((f) => f.name).join(", ")
+      const paramsList = paramsFields.map((f) => snakeToCamel(f.name)).join(", ")
 
       console.log({
         schema,

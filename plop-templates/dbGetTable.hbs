@@ -6,14 +6,14 @@ import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 {{#if paramsFields}}
 export type {{typeName}}Params = {
 {{#each paramsFields}}
-  {{name}}: {{tsType}}
+  {{camelName}}: {{tsType}}
 {{/each}}
 }
 {{/if}}
 
 export type {{typeName}} = {
 {{#each fields}}
-  {{name}}{{optional}}: {{tsType}}
+  {{camelName}}{{optional}}: {{tsType}}
 {{/each}}
 }
 
@@ -27,8 +27,10 @@ export type {{typeName}}RecordBy{{typeRecordName}} = Record<number, {{typeName}}
 
 export async function get{{methodName}}(params: {{typeName}}Params) {
   try {
+    const camelToSnake = (str: string) => str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`)
+
     const sqlParams = Object.values(params)
-    const whereClauses = Object.keys(params).map((key, i) => `"${key}" = $${i + 1}`).join(" AND ")
+    const whereClauses = Object.keys(params).map((key, i) => `"${camelToSnake(key)}" = ${i + 1}`).join(" AND ")
     const sql = `SELECT * FROM {{schema}}.{{table}}${whereClauses ? " WHERE " + whereClauses : ""}`
 
 

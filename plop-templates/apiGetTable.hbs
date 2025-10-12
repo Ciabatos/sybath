@@ -10,7 +10,7 @@ import z from "zod"
 {{#if paramsFields}}
 const typeParamsSchema = z.object({
   {{#each paramsFields}}
-  {{name}}: z.coerce.{{tsType}}(),
+  {{camelName}}: z.coerce.{{tsType}}(),
   {{/each}}
 }) satisfies z.ZodType<{{typeName}}Params>
 {{/if}}
