@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { auth } from "@/auth"
-import { get{{methodName}}, {{#if paramsFields}}{{typeName}}Params, {{/if}}{{typeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{table}}"
+import { get{{methodName}}, {{#if paramsFields}}{{typeName}}Params, {{/if}}} from "@/db/postgresMainDatabase/schemas/{{schema}}/{{table}}"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
