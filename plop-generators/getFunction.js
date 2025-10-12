@@ -263,7 +263,7 @@ export default function getMethod(plop) {
       const methodPascalName = method.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
       const methodCamelName = method.replace(/_([a-z])/g, (_, c) => c.toUpperCase())
 
-      const tsReturnType = `export type T${methodPascalName}Result = {\n${resultColumns.map((c) => `  ${c.name}: ${c.type}`).join("\n")}\n}`
+      const tsReturnType = `export type T${methodPascalName} = {\n${resultColumns.map((c) => `  ${c.name}: ${c.type}`).join("\n")}\n}`
 
       return {
         schema,
@@ -280,7 +280,7 @@ export default function getMethod(plop) {
     actions: [
       {
         type: "add",
-        path: "db/postgresMainDatabase/schemas/{{schema}}/{{method}}.ts",
+        path: "db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}.tsx",
         templateFile: "plop-templates/dbGetFunction.hbs",
         force: true,
       },

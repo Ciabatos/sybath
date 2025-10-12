@@ -5,7 +5,7 @@ import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 
 {{{tsReturnType}}}
 
-export async function {{methodCamelName}}({{tsArgsList}}) {
+export async function get{{methodPascalName}}({{tsArgsList}}) {
   try {
     const result = await query(
       `SELECT * FROM {{schema}}.{{method}}({{sqlParamsPlaceholders}});`,
@@ -14,7 +14,7 @@ export async function {{methodCamelName}}({{tsArgsList}}) {
 
     return result.rows as T{{methodPascalName}}Result[]
   } catch (error) {
-    console.error("Error executing {{methodCamelName}}:", error)
-    throw new Error("Failed to execute {{methodCamelName}}")
+    console.error("Error executing get{{methodPascalName}}:", error)
+    throw new Error("Failed to execute get{{methodPascalName}}")
   }
 }
