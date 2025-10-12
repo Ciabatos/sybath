@@ -6,7 +6,7 @@ import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 {{#if paramsFields}}
 export type T{{methodPascalName}}Params = {
 {{#each paramsFields}}
-  {{name}}: {{tsType}}
+  {{camelName}}: {{tsType}}
 {{/each}}
 }
 {{/if}}

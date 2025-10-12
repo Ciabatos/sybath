@@ -31,6 +31,18 @@ const typeMap = {
   bytea: "Buffer",
 }
 
+// Konwersja snake_case -> camelCase
+function snakeToCamel(str) {
+  // Usuń przedrostek p_ jeśli istnieje
+  const withoutPrefix = str.replace(/^p_/, "")
+  return withoutPrefix.replace(/_([a-z])/g, (_, letter) => letter.toUpperCase())
+}
+
+// Konwersja snake_case -> PascalCase
+function snakeToPascal(str) {
+  return str.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
+}
+
 // Mapowanie SQL -> TS typ
 function mapSQLTypeToTS(sqlType) {
   if (!sqlType) return "any"
@@ -153,13 +165,13 @@ async function fetchMethodResultColumns(schema, method) {
     // Sprawdź czy to TABLE type
     if (!resultType.startsWith("TABLE(")) {
       // Jeśli nie jest TABLE, zwróć prosty typ
-      return [{ name: "result", type: mapSQLTypeToTS(resultType) }]
+      return [{ name: "result", camelName: "result", type: mapSQLTypeToTS(resultType) }]
     }
 
     // Wyciągnij nazwę composite type z TABLE(...)
     const tableMatch = resultType.match(/TABLE\((.*?)\)/)
     if (!tableMatch) {
-      return [{ name: "result", type: "any" }]
+      return [{ name: "result", camelName: "result", type: "any" }]
     }
 
     // Parsuj kolumny bezpośrednio z definicji TABLE
@@ -174,7 +186,11 @@ async function fetchMethodResultColumns(schema, method) {
         const name = trimmed.substring(0, spaceIndex)
         const type = trimmed.substring(spaceIndex + 1)
 
-        return { name, type: mapSQLTypeToTS(type) }
+        return {
+          name,
+          camelName: snakeToCamel(name),
+          type: mapSQLTypeToTS(type),
+        }
       })
       .filter(Boolean)
 
@@ -197,7 +213,11 @@ function getParamsFields(argsStr) {
       const name = trimmed.substring(0, spaceIndex)
       const sqlType = trimmed.substring(spaceIndex + 1)
 
-      return { name, tsType: mapSQLTypeToTS(sqlType) }
+      return {
+        name,
+        camelName: snakeToCamel(name),
+        tsType: mapSQLTypeToTS(sqlType),
+      }
     })
     .filter(Boolean)
 }
@@ -216,7 +236,7 @@ function parseArgsToList(argsStr) {
       const name = trimmed.substring(0, spaceIndex)
       const type = trimmed.substring(spaceIndex + 1)
 
-      return `${name}: ${mapSQLTypeToTS(type)}`
+      return `${snakeToCamel(name)}: ${mapSQLTypeToTS(type)}`
     })
     .filter(Boolean)
     .join(", ")
@@ -279,10 +299,10 @@ export default function getMethod(plop) {
       const argsArray = getArgsArray(argsStr)
       const argsArrayString = argsArray.join(", ")
       const sqlParamsPlaceholders = argsArray.map((_, i) => `$${i + 1}`).join(", ")
-      const methodPascalName = method.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
-      const methodCamelName = method.replace(/_([a-z])/g, (_, c) => c.toUpperCase())
+      const methodPascalName = snakeToPascal(method)
+      const methodCamelName = snakeToCamel(method)
 
-      const tsReturnType = `export type T${methodPascalName} = {\n${resultColumns.map((c) => `  ${c.name}: ${c.type}`).join("\n")}\n}`
+      const tsReturnType = `export type T${methodPascalName} = {\n${resultColumns.map((c) => `  ${c.camelName}: ${c.type}`).join("\n")}\n}`
 
       return {
         schema,
