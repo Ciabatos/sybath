@@ -74,7 +74,7 @@ async function fetchSchemas() {
 }
 
 // Pobranie listy procedur w schemacie
-async function fetchProcedures(schema) {
+async function fetchMethods(schema) {
   const client = new Client({
     host: process.env.PG_MAIN_HOST,
     user: process.env.PG_MAIN_USER,
@@ -89,6 +89,7 @@ async function fetchProcedures(schema) {
        FROM pg_proc p
        JOIN pg_namespace n ON p.pronamespace = n.oid
        WHERE n.nspname = $1
+       AND p.prokind = 'f'
        ORDER BY proname`,
       [schema],
     )
@@ -99,7 +100,7 @@ async function fetchProcedures(schema) {
 }
 
 // Pobranie parametrów procedury
-async function fetchProcedureArgs(schema, procedure) {
+async function fetchMethodArgs(schema, method) {
   const client = new Client({
     host: process.env.PG_MAIN_HOST,
     user: process.env.PG_MAIN_USER,
@@ -114,9 +115,9 @@ async function fetchProcedureArgs(schema, procedure) {
        FROM pg_proc p
        JOIN pg_namespace n ON p.pronamespace = n.oid
        WHERE n.nspname = $1 AND p.proname = $2`,
-      [schema, procedure],
+      [schema, method],
     )
-    if (!res.rows[0]) throw new Error(`Function ${schema}.${procedure} not found`)
+    if (!res.rows[0]) throw new Error(`Function ${schema}.${method} not found`)
     return res.rows[0].args || ""
   } finally {
     await client.end()
@@ -124,7 +125,7 @@ async function fetchProcedureArgs(schema, procedure) {
 }
 
 // Pobranie kolumn zwracanych przez funkcję TABLE
-async function fetchProcedureResultColumns(schema, procedure) {
+async function fetchMethodResultColumns(schema, method) {
   const client = new Client({
     host: process.env.PG_MAIN_HOST,
     user: process.env.PG_MAIN_USER,
@@ -140,11 +141,11 @@ async function fetchProcedureResultColumns(schema, procedure) {
        FROM pg_proc p
        JOIN pg_namespace n ON p.pronamespace = n.oid
        WHERE n.nspname = $1 AND p.proname = $2`,
-      [schema, procedure],
+      [schema, method],
     )
 
     if (!resultTypeRes.rows[0]) {
-      throw new Error(`Function ${schema}.${procedure} not found`)
+      throw new Error(`Function ${schema}.${method} not found`)
     }
 
     const resultType = resultTypeRes.rows[0].result
@@ -218,9 +219,9 @@ function getArgsArray(argsStr) {
 }
 
 // Generator plop
-export default function getProcedure(plop) {
-  plop.setGenerator("Get Procedure", {
-    description: "Generate TS async function from Postgres procedure",
+export default function getMethod(plop) {
+  plop.setGenerator("Get Function", {
+    description: "Generate TS async function from Postgres method",
 
     prompts: async (inquirer) => {
       const schemas = await fetchSchemas()
@@ -238,37 +239,37 @@ export default function getProcedure(plop) {
         },
       ])
 
-      const procedures = await fetchProcedures(schema)
+      const methods = await fetchMethods(schema)
 
-      if (procedures.length === 0) {
+      if (methods.length === 0) {
         throw new Error(`Brak procedur w schemacie: ${schema}`)
       }
 
-      const { procedure } = await inquirer.prompt([
+      const { method } = await inquirer.prompt([
         {
           type: "list",
-          name: "procedure",
+          name: "method",
           message: "Wybierz procedurę:",
-          choices: procedures,
+          choices: methods,
         },
       ])
 
-      const argsStr = await fetchProcedureArgs(schema, procedure)
-      const resultColumns = await fetchProcedureResultColumns(schema, procedure)
+      const argsStr = await fetchMethodArgs(schema, method)
+      const resultColumns = await fetchMethodResultColumns(schema, method)
 
       const tsArgsList = parseArgsToList(argsStr)
       const argsArray = getArgsArray(argsStr)
       const sqlParamsPlaceholders = argsArray.map((_, i) => `$${i + 1}`).join(", ")
-      const procedurePascalName = procedure.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
-      const procedureCamelName = procedure.replace(/_([a-z])/g, (_, c) => c.toUpperCase())
+      const methodPascalName = method.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
+      const methodCamelName = method.replace(/_([a-z])/g, (_, c) => c.toUpperCase())
 
-      const tsReturnType = `export type T${procedurePascalName}Result = {\n${resultColumns.map((c) => `  ${c.name}: ${c.type}`).join("\n")}\n}`
+      const tsReturnType = `export type T${methodPascalName}Result = {\n${resultColumns.map((c) => `  ${c.name}: ${c.type}`).join("\n")}\n}`
 
       return {
         schema,
-        procedure,
-        procedurePascalName,
-        procedureCamelName,
+        method,
+        methodPascalName,
+        methodCamelName,
         tsArgsList,
         argsArray: argsArray.join(", "),
         sqlParamsPlaceholders,
@@ -279,8 +280,8 @@ export default function getProcedure(plop) {
     actions: [
       {
         type: "add",
-        path: "db/postgresMainDatabase/procedures/{{schema}}/{{procedure}}.ts",
-        templateFile: "plop-templates/dbGetProcedure.hbs",
+        path: "db/postgresMainDatabase/methods/{{schema}}/{{method}}.ts",
+        templateFile: "plop-templates/dbGetFunction.hbs",
         force: true,
       },
     ],

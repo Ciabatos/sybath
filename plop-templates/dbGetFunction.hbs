@@ -1,0 +1,20 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - dbGetFunction.hbs
+
+"use server"
+import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
+
+{{{tsReturnType}}}
+
+export async function {{methodCamelName}}({{tsArgsList}}) {
+  try {
+    const result = await query(
+      `SELECT * FROM {{schema}}.{{method}}({{sqlParamsPlaceholders}});`,
+      [{{argsArray}}]
+    )
+
+    return result.rows as T{{methodPascalName}}Result[]
+  } catch (error) {
+    console.error("Error executing {{methodCamelName}}:", error)
+    throw new Error("Failed to execute {{methodCamelName}}")
+  }
+}
