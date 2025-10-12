@@ -3,16 +3,24 @@
 "use server"
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 
+{{#if paramsFields}}
+export type T{{methodPascalName}}Params = {
+{{#each paramsFields}}
+  {{name}}: {{tsType}}
+{{/each}}
+}
+{{/if}}
+
+
 {{{tsReturnType}}}
 
-export async function get{{methodPascalName}}({{tsArgsList}}) {
+export async function get{{methodPascalName}}(params: T{{methodPascalName}}Params) {
   try {
-    const result = await query(
-      `SELECT * FROM {{schema}}.{{method}}({{sqlParamsPlaceholders}});`,
-      [{{argsArrayString}}]
-    )
-
-    return result.rows as T{{methodPascalName}}Result[]
+    const sqlParams = Object.values(params)
+    const sql = `SELECT * FROM {{schema}}.{{method}}({{sqlParamsPlaceholders}});`
+    
+    const result = await query(sql, sqlParams)
+    return result.rows as T{{methodPascalName}}[]
   } catch (error) {
     console.error("Error executing get{{methodPascalName}}:", error)
     throw new Error("Failed to execute get{{methodPascalName}}")

@@ -184,6 +184,24 @@ async function fetchMethodResultColumns(schema, method) {
   }
 }
 
+function getParamsFields(argsStr) {
+  if (!argsStr) return []
+
+  return argsStr
+    .split(",")
+    .map((arg) => {
+      const trimmed = arg.trim()
+      const spaceIndex = trimmed.indexOf(" ")
+      if (spaceIndex === -1) return null
+
+      const name = trimmed.substring(0, spaceIndex)
+      const sqlType = trimmed.substring(spaceIndex + 1)
+
+      return { name, tsType: mapSQLTypeToTS(sqlType) }
+    })
+    .filter(Boolean)
+}
+
 // Parser do sygnatury TS
 function parseArgsToList(argsStr) {
   if (!argsStr) return ""
@@ -256,7 +274,7 @@ export default function getMethod(plop) {
 
       const argsStr = await fetchMethodArgs(schema, method)
       const resultColumns = await fetchMethodResultColumns(schema, method)
-
+      const paramsFields = getParamsFields(argsStr)
       const tsArgsList = parseArgsToList(argsStr)
       const argsArray = getArgsArray(argsStr)
       const argsArrayString = argsArray.join(", ")
@@ -272,6 +290,7 @@ export default function getMethod(plop) {
         methodPascalName,
         methodCamelName,
         tsArgsList,
+        paramsFields,
         argsArrayString: argsArrayString,
         sqlParamsPlaceholders,
         tsReturnType,
