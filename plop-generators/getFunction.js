@@ -388,6 +388,12 @@ export default function getMethod(plop) {
     force: true,
   },
   {
+  type: "add",
+  path: "methods/fetchers/{{schema}}/fetch{{methodPascalName}}Server.ts",
+  templateFile: "plop-templates/fetchServerGetFunction.hbs",
+  force: true,
+  },
+  {
     type: "modify",
     path: "store/atoms.ts",
     pattern: /((?:^"use client"\n)?(?:import[\s\S]*?\n))(?!import)/m,
