@@ -376,6 +376,12 @@ export default function getMethod(plop) {
         templateFile: "plop-templates/dbGetFunction.hbs",
         force: true,
       },
+  {
+    type: "add",
+    path: "app/api/{{methodCamelName}}/route.tsx",
+    templateFile: "plop-templates/apiGetFunction.hbs",
+    force: true,
+  },
     ],
   })
 }
