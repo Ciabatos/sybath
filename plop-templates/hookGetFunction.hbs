@@ -1,0 +1,23 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - hookGetFunction.hbs
+"use client"
+import { T{{methodPascalName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
+import { {{indexMethodName}} } from "@/methods/functions/converters"
+import { {{methodCamelName}}Atom } from "@/store/atoms"
+import { useAtomValue, useSetAtom } from "jotai"
+import { useEffect, useRef } from "react"
+import useSWR from "swr"
+export function useFetch{{methodPascalName}}() {
+  const {{methodCamelName}} = useAtomValue({{methodCamelName}}Atom)
+  const set{{methodPascalName}} = useSetAtom({{methodCamelName}}Atom)
+  const { data } = useSWR("/api/{{methodCamelName}}", { refreshInterval: 3000 })
+  const prevDataRef = useRef<unknown>(null)
+  useEffect(() => {
+    if (data === undefined) return
+    if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
+      const index = data ? ({{{indexMethodName}}}({{{indexMethodArgs}}}, data) as T{{methodPascalName}}RecordBy{{typeRecordName}}) : {}
+      set{{methodPascalName}}(index)
+      prevDataRef.current = data
+    }
+  }, [data, set{{methodPascalName}}])
+  return { {{methodCamelName}} }
+}
