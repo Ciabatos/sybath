@@ -65,3 +65,6 @@ export const buildingInventorySlotsAtom = atom<TInventorySlots[]>([])
 export const actionTaskInProcessAtom = atom<TActionTaskInProcess>()
 
 //Tables
+
+
+//Functions
