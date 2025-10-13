@@ -1,0 +1,15 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - fetch{{tablePascalName}}Server.hbs
+
+import { {{typeName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{table}}"
+import { {{indexMethodName}} } from "@/methods/functions/converters"
+import { get{{tablePascalName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{table}}"
+
+export async function fetch{{tablePascalName}}Server(): Promise<{{typeName}}RecordBy{{typeRecordName}}> {
+  const {{table}}Data = await get{{tablePascalName}}()
+
+  const index = {{table}}Data
+    ? ({{{indexMethodName}}}({{{indexMethodArgs}}}, {{table}}Data) as {{typeName}}RecordBy{{typeRecordName}})
+    : {}
+
+  return index
+}
