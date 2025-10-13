@@ -291,12 +291,12 @@ export default function getTable(plop) {
         templateFile: "plop-templates/hookGetTable.hbs",
         force: true,
       },
-        {
-    type: "add",
-    path: "methods/fetchers/{{schema}}/fetch{{tablePascalName}}Server.ts",
-    templateFile: "plop-templates/fetchServerGetTable.hbs",
-    force: true,
-  },
+      {
+        type: "add",
+        path: "methods/fetchers/{{schema}}/fetch{{tablePascalName}}Server.ts",
+        templateFile: "plop-templates/hookGetTableServer.hbs",
+        force: true,
+      },
       {
         type: "modify",
         path: "store/atoms.ts",
