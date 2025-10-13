@@ -1,0 +1,39 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - apiGetFunction.hbs
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { auth } from "@/auth"
+import { {{methodCamelName}}{{#if paramsFields}}, T{{methodPascalName}}Params{{/if}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
+import crypto from "crypto"
+import { NextRequest, NextResponse } from "next/server"
+import z from "zod"
+{{#if paramsFields}}
+const typeParamsSchema = z.object({
+  {{#each paramsFields}}
+  {{camelName}}: z.coerce.{{tsType}}(),
+  {{/each}}
+}) satisfies z.ZodType<T{{methodPascalName}}Params>
+{{/if}}
+export async function GET(request: NextRequest{{#if paramsFields}}, { params }: { params: T{{methodPascalName}}Params }{{/if}}): Promise<NextResponse> {
+  
+  const session = await auth()
+  const sessionPlayerId = session?.user?.playerId
+  if (!sessionPlayerId || isNaN(sessionPlayerId)) {
+    return NextResponse.json({ success: false })
+  }
+  
+  {{#if paramsFields}}
+  const paramsFromPromise = await params
+  const parsedParams = typeParamsSchema.parse(paramsFromPromise)
+  {{/if}}
+  try {
+    const result = await {{methodCamelName}}({{#if paramsFields}}parsedParams{{/if}})
+  
+    const etag = crypto.createHash("sha1").update(JSON.stringify(result)).digest("hex")
+    const clientEtag = request.headers.get("if-none-match")
+    if (clientEtag === etag) {
+      return new NextResponse(null, { status: 304, headers: { ETag: etag } })
+    }
+    return NextResponse.json(result, { headers: { ETag: etag } })
+  } catch (error) {
+    return NextResponse.json({ success: false, error: error })
+  }
+}
