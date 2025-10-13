@@ -381,6 +381,23 @@ export default function getMethod(plop) {
     path: "app/api/{{methodCamelName}}/route.tsx",
     templateFile: "plop-templates/apiGetFunction.hbs",
     force: true,
+  },  {
+    type: "add",
+    path: "methods/hooks/{{schema}}/core/useFetch{{methodPascalName}}.tsx",
+    templateFile: "plop-templates/hookGetFunction.hbs",
+    force: true,
+  },
+  {
+    type: "modify",
+    path: "store/atoms.ts",
+    pattern: /((?:^"use client"\n)?(?:import[\s\S]*?\n))(?!import)/m,
+    template: `$&import { T{{methodPascalName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"\n`,
+  },
+  {
+    type: "modify",
+    path: "store/atoms.ts",
+    pattern: /(\/\/Functions\s*\n)/,
+    template: `$1export const {{methodCamelName}}Atom = atom<T{{methodPascalName}}RecordBy{{typeRecordName}}>({})\n`,
   },
     ],
   })
