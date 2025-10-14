@@ -1,20 +1,24 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetFunctionServer.hbs
 "use server"
 
-import { get{{methodPascalName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
+import { {{methodCamelName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
 import { {{indexMethodName}} } from "@/methods/functions/converters"
 {{#if indexFields}}
-import type { T{{methodPascalName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
+{{#if (eq indexMethodName "arrayToObjectKeysId")}}
+import type T{{methodPascalName}}RecordBy{{typeRecordName}} from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
+{{else}}
+import type T{{methodPascalName}}RecordBy{{typeRecordName}} from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
+{{/if}}
 {{/if}}
 
-export async function get{{methodPascalName}}Server(){{#if indexFields}}: Promise<T{{methodPascalName}}RecordBy{{typeRecordName}}>{{/if}} {
-  const data = await {{methodCamelName}}({{#if paramsFields}}parsedParams{{/if}})
+export async function {{methodCamelName}}Server({{#if paramsFields}}parsedParams{{/if}}): Promise<T{{methodPascalName}}RecordBy{{typeRecordName}}>{{/if}} {
+  const {{methodCamelName}}Data = await {{methodCamelName}}({{#if paramsFields}}parsedParams{{/if}})
 
 
-  const index = data
+  const data = {{methodCamelName}}Data
     ? ({{{indexMethodName}}}({{{indexMethodArgs}}}, data) as T{{methodPascalName}}RecordBy{{typeRecordName}})
     : {}
 
-  return index
+  return data
 
 }
