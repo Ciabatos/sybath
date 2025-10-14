@@ -7,16 +7,14 @@ import { {{indexMethodName}} } from "@/methods/functions/converters"
 import type { T{{methodPascalName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
 {{/if}}
 
-export async function fetch{{methodPascalName}}Server(){{#if indexFields}}: Promise<T{{methodPascalName}}RecordBy{{typeRecordName}}>{{/if}} {
-  const data = await get{{methodPascalName}}({{{paramsList}}})
+export async function get{{methodPascalName}}Server(){{#if indexFields}}: Promise<T{{methodPascalName}}RecordBy{{typeRecordName}}>{{/if}} {
+  const data = await {{methodCamelName}}({{#if paramsFields}}parsedParams{{/if}})
 
-  {{#if indexFields}}
+
   const index = data
     ? ({{{indexMethodName}}}({{{indexMethodArgs}}}, data) as T{{methodPascalName}}RecordBy{{typeRecordName}})
     : {}
 
   return index
-  {{else}}
-  return data
-  {{/if}}
+
 }
