@@ -23,7 +23,12 @@ transport
 ability_effects 
 ability_conditions 
 
-dodać codegen - plop
+dodać codegen - plop - dla :
+-Componentów małych typu Button
+-Componentów dużych typu Modal
+-Procedur - actions
+
+
 ZOD W SERVER ACTION I API
 ROZDZIELIC POBIERANIE POZYCJI GRACZA OD MAPTILESDATAVISABLE - i zmienic nazwe na MAPTILES_DATA_KNOWN
 
