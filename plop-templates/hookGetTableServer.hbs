@@ -2,12 +2,12 @@
 "use server"
 
 import { {{indexMethodName}} } from "@/methods/functions/converters"
-import { get{{methodName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{table}}"
-{{#if paramsFields}}import { {{typeName}}Params } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{table}}"{{/if}}
+import { get{{methodName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tablePascalName}}"
+{{#if paramsFields}}import { {{typeName}}Params } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tablePascalName}}"{{/if}}
 {{#if (eq indexMethodName "arrayToObjectKeysId")}}
-import type { {{typeName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{table}}"
+import type { {{typeName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tablePascalName}}"
 {{else}}
-import type { {{typeName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{table}}"
+import type { {{typeName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tablePascalName}}"
 {{/if}}
 
 

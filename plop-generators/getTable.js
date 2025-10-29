@@ -301,7 +301,7 @@ export default function getTable(plop) {
         type: "modify",
         path: "store/atoms.ts",
         pattern: /((?:^"use client"\n)?(?:import[\s\S]*?\n))(?!import)/m,
-        template: `$&import { {{typeName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{table}}"\n`,
+        template: `$&import { {{typeName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tablePascalName}}"\n`,
       },
       {
         type: "modify",
