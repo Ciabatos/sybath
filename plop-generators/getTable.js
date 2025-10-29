@@ -232,6 +232,7 @@ export default function getTable(plop) {
       const paramsFields = fields.filter((f) => paramsColumns.includes(f.name))
 
       const tablePascalName = snakeToPascal(table)
+      const tableCamelName = snakeToCamel(table)
       const typeName = "T" + snakeToPascal(schema) + tablePascalName
       const typeRecordName = indexFields.map((f) => f.pascalName).join("")
       const methodName = snakeToPascal(schema) + tablePascalName
@@ -245,6 +246,7 @@ export default function getTable(plop) {
         schema,
         table,
         tablePascalName,
+        tableCamelName,
         typeName,
         methodName,
         typeRecordName,
@@ -260,6 +262,7 @@ export default function getTable(plop) {
         schema,
         table,
         tablePascalName,
+        tableCamelName,
         typeName,
         methodName,
         typeRecordName,
@@ -275,7 +278,7 @@ export default function getTable(plop) {
     actions: [
       {
         type: "add",
-        path: "db/postgresMainDatabase/schemas/{{schema}}/{{tablePascalName}}.tsx",
+        path: "db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}.tsx",
         templateFile: "plop-templates/dbGetTable.hbs",
         force: true,
       },
@@ -301,7 +304,7 @@ export default function getTable(plop) {
         type: "modify",
         path: "store/atoms.ts",
         pattern: /((?:^"use client"\n)?(?:import[\s\S]*?\n))(?!import)/m,
-        template: `$&import { {{typeName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tablePascalName}}"\n`,
+        template: `$&import { {{typeName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"\n`,
       },
       {
         type: "modify",

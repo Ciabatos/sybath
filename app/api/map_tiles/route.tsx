@@ -2,35 +2,29 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { auth } from "@/auth"
-import { get{{methodName}}{{#if paramsFields}}, {{typeName}}Params{{/if}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
+import { getMapMapTiles, TMapMapTilesParams } from "@/db/postgresMainDatabase/schemas/map/mapTiles"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
 
-{{#if paramsFields}}
 const typeParamsSchema = z.object({
-  {{#each paramsFields}}
-  {{camelName}}: z.coerce.{{tsType}}(),
-  {{/each}}
-}) satisfies z.ZodType<{{typeName}}Params>
-{{/if}}
+  x: z.coerce.number(),
+  y: z.coerce.number(),
+}) satisfies z.ZodType<TMapMapTilesParams>
 
-export async function GET(request: NextRequest{{#if paramsFields}}, { params }: { params: {{typeName}}Params }{{/if}}): Promise<NextResponse> {
-  
+export async function GET(request: NextRequest, { params }: { params: TMapMapTilesParams }): Promise<NextResponse> {
   const session = await auth()
   const sessionPlayerId = session?.user?.playerId
   if (!sessionPlayerId || isNaN(sessionPlayerId)) {
     return NextResponse.json({ success: false })
   }
-  
-  {{#if paramsFields}}
+
   const paramsFromPromise = await params
   const parsedParams = typeParamsSchema.parse(paramsFromPromise)
-  {{/if}}
 
   try {
-    const result = await get{{methodName}}({{#if paramsFields}}parsedParams{{/if}})
-  
+    const result = await getMapMapTiles(parsedParams)
+
     const etag = crypto.createHash("sha1").update(JSON.stringify(result)).digest("hex")
     const clientEtag = request.headers.get("if-none-match")
 
