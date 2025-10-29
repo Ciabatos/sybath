@@ -1,10 +1,3 @@
-napisz najpierw procedury SQL bedzie latwiej
-1.oczyscic baze 
-2.Tworzenie Miasta akcja
-3.Tworzenie Dystryktu akcja
-4.Tworzenie Budynku Akcja
-
-
 
 teraz zajac sie districtem
 dodac inventory
@@ -29,20 +22,15 @@ dodać codegen - plop - dla :
 -Procedur - actions
 
 
-ZOD W SERVER ACTION I API
-ROZDZIELIC POBIERANIE POZYCJI GRACZA OD MAPTILESDATAVISABLE - i zmienic nazwe na MAPTILES_DATA_KNOWN
 
+ROZDZIELIC POBIERANIE POZYCJI GRACZA OD MAPTILESDATAVISABLE - i zmienic nazwe na MAPTILES_DATA_KNOWN
 Dodac Atom zaznaczony hero w celu posiadania wielu Herosow
 
-  movment
-  colonize
-  inventoryAdd
-  inventoryRemove
 
 
 rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmianie URL
 
 
-Najpierw robic podstawowe akcje
-Zmienic Movment tak aby obliczal na serverze !
-Dodac wybieranie PlayerId
+Funkcje pisac w taki sposób function przykladowaFunkcja({ email, name }: User) { 
+-pokazuje jawnie, które pola są używane, ale nadal przyjmuje pełny Obiekt (User) dla ułatwienia
+
