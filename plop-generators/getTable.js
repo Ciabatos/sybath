@@ -310,7 +310,7 @@ export default function getTable(plop) {
         type: "modify",
         path: "store/atoms.ts",
         pattern: /(\/\/Tables\s*\n)/,
-        template: `$1export const {{tablePascalName}}Atom = atom<{{typeName}}RecordBy{{typeRecordName}}>({})\n`,
+        template: `$1export const {{tableCamelName}}Atom = atom<{{typeName}}RecordBy{{typeRecordName}}>({})\n`,
       },
     ],
   })
