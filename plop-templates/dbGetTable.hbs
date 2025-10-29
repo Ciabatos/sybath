@@ -25,7 +25,7 @@ export type {{typeName}}RecordBy{{typeRecordName}} = Record<number, {{typeName}}
 {{/if}}
 
 
-export async function get{{methodName}}(params: {{typeName}}Params) {
+export async function get{{methodName}}({{#if paramsFields}}params: {{typeName}}Params{{/if}}) {
   try {
     const camelToSnake = (str: string) => str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`)
 

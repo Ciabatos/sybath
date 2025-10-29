@@ -3,19 +3,19 @@
 
 import { {{indexMethodName}} } from "@/methods/functions/converters"
 import { get{{methodName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{table}}"
+{{#if paramsFields}}import { {{typeName}}Params } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{table}}"{{/if}}
 {{#if (eq indexMethodName "arrayToObjectKeysId")}}
-import type {{typeName}}RecordBy{{typeRecordName}} from "@/db/postgresMainDatabase/schemas/{{schema}}/{{table}}"
+import type { {{typeName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{table}}"
 {{else}}
-import type {{typeName}}RecordBy{{typeRecordName}} from "@/db/postgresMainDatabase/schemas/{{schema}}/{{table}}"
+import type { {{typeName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{table}}"
 {{/if}}
 
 
-export async function get{{methodName}}Server({{#if paramsFields}}parsedParams{{/if}}): Promise<{{typeName}}RecordBy{{typeRecordName}}> {
+
+export async function get{{methodName}}Server({{#if paramsFields}}params: {{typeName}}Params{{/if}}): Promise<{{typeName}}RecordBy{{typeRecordName}}> {
   const get{{methodName}}Data = await get{{methodName}}({{#if paramsFields}}parsedParams{{/if}})
 
-  const data = get{{methodName}}Data
-    ? ({{{indexMethodName}}}({{{indexMethodArgs}}}, {{table}}Data) as {{typeName}}RecordBy{{typeRecordName}})
-    : {}
+  const data = get{{methodName}}Data ? ({{{indexMethodName}}}({{{indexMethodArgs}}}, get{{methodName}}Data) as {{typeName}}RecordBy{{typeRecordName}}) : {}
 
   return data
 }

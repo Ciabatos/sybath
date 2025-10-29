@@ -232,7 +232,7 @@ export default function getTable(plop) {
       const paramsFields = fields.filter((f) => paramsColumns.includes(f.name))
 
       const tablePascalName = snakeToPascal(table)
-      const typeName = "T" + tablePascalName
+      const typeName = "T" + snakeToPascal(schema) + tablePascalName
       const typeRecordName = indexFields.map((f) => f.pascalName).join("")
       const methodName = snakeToPascal(schema) + tablePascalName
 
@@ -275,7 +275,7 @@ export default function getTable(plop) {
     actions: [
       {
         type: "add",
-        path: "db/postgresMainDatabase/schemas/{{schema}}/{{table}}.tsx",
+        path: "db/postgresMainDatabase/schemas/{{schema}}/{{tablePascalName}}.tsx",
         templateFile: "plop-templates/dbGetTable.hbs",
         force: true,
       },
