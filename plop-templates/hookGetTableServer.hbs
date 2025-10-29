@@ -13,7 +13,7 @@ import type { {{typeName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDa
 
 
 export async function get{{methodName}}Server({{#if paramsFields}}params: {{typeName}}Params{{/if}}): Promise<{{typeName}}RecordBy{{typeRecordName}}> {
-  const get{{methodName}}Data = await get{{methodName}}({{#if paramsFields}}parsedParams{{/if}})
+  const get{{methodName}}Data = await get{{methodName}}({{#if paramsFields}}params{{/if}})
 
   const data = get{{methodName}}Data ? ({{{indexMethodName}}}({{{indexMethodArgs}}}, get{{methodName}}Data) as {{typeName}}RecordBy{{typeRecordName}}) : {}
 

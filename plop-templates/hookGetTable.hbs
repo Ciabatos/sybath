@@ -3,15 +3,15 @@
 "use client"
 import { {{typeName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 import { {{indexMethodName}} } from "@/methods/functions/converters"
-import { {{table}}Atom } from "@/store/atoms"
+import { {{tableCamelName}}Atom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useRef } from "react"
 import useSWR from "swr"
 
 export function useFetch{{tablePascalName}}() {
-  const {{table}} = useAtomValue({{table}}Atom)
-  const set{{tablePascalName}} = useSetAtom({{table}}Atom)
-  const { data } = useSWR("/api/{{table}}", { refreshInterval: 3000 })
+  const {{tableCamelName}} = useAtomValue({{tableCamelName}}Atom)
+  const set{{tablePascalName}} = useSetAtom({{tableCamelName}}Atom)
+  const { data } = useSWR("/api/{{tableCamelName}}", { refreshInterval: 3000 })
 
   const prevDataRef = useRef<unknown>(null)
 
@@ -24,5 +24,5 @@ export function useFetch{{tablePascalName}}() {
     }
   }, [data, set{{tablePascalName}}])
 
-  return { {{table}} }
+  return { {{tableCamelName}} }
 }
