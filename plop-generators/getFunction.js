@@ -101,6 +101,9 @@ export default function getMethod(plop) {
       const indexTypeName = methodTypeName + "RecordBy" + indexTypeMethodName
       const indexMethodName = indexFields.length > 1 ? "arrayToObjectKeysId" : "arrayToObjectKeyId"
 
+      const apiParamPath = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `[${f.camelName}]`).join("/") : ""
+      const apiPath = `app/api/${methodCamelName}${apiParamPath}/route.tsx`
+
       console.log({
         schema,
         method,
@@ -118,6 +121,7 @@ export default function getMethod(plop) {
         indexTypeName,
         indexColumns,
         sqlParamsPlaceholders,
+        apiPath,
       })
 
       return {
@@ -137,6 +141,7 @@ export default function getMethod(plop) {
         indexTypeName,
         indexColumns,
         sqlParamsPlaceholders,
+        apiPath,
       }
     },
 
@@ -149,7 +154,7 @@ export default function getMethod(plop) {
       },
       {
         type: "add",
-        path: "app/api/{{methodCamelName}}/route.tsx",
+        path: "{{apiPath}}",
         templateFile: "plop-templates/apiGetFunction.hbs",
         force: true,
       },

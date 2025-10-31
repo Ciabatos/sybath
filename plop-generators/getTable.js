@@ -121,6 +121,9 @@ export default function getTable(plop) {
       const indexMethodParams = indexColumns.map((f) => `"${snakeToCamel(f.name)}"`).join(", ")
       const indexParamsColumns = methodParamsColumns.map((f) => snakeToCamel(f.name)).join(", ")
 
+      const apiParamPath = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `[${f.camelName}]`).join("/") : ""
+      const apiPath = `app/api/${tableCamelName}${apiParamPath}/route.tsx`
+
       console.log({
         schema,
         table,
@@ -137,6 +140,7 @@ export default function getTable(plop) {
         indexMethodName,
         indexTypeName,
         indexColumns,
+        apiPath,
       })
 
       return {
@@ -155,6 +159,7 @@ export default function getTable(plop) {
         indexMethodName,
         indexTypeName,
         indexColumns,
+        apiPath,
       }
     },
 
@@ -167,7 +172,7 @@ export default function getTable(plop) {
       },
       {
         type: "add",
-        path: "app/api/{{tableCamelName}}/route.tsx",
+        path: "{{apiPath}}",
         templateFile: "plop-templates/apiGetTable.hbs",
         force: true,
       },
