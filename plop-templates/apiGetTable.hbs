@@ -13,8 +13,8 @@ const typeParamsSchema = z.object({
   {{camelName}}: z.coerce.{{tsType}}(),
   {{/each}}
 }) satisfies z.ZodType<{{methodParamsTypeName}}>
-{{/if}}
 
+{{/if}}
 export async function GET(request: NextRequest{{#if methodParamsColumns}}, { params }: { params: {{methodParamsTypeName}} }{{/if}}): Promise<NextResponse> {
   
   const session = await auth()

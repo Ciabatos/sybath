@@ -44,22 +44,6 @@ export function mapSQLTypeToTS(sqlType) {
   return typeMap[cleanType] || "any"
 }
 
-export function parseArgsToList(argsStr) {
-  if (!argsStr) return ""
-  return argsStr
-    .split(",")
-    .map((arg) => {
-      const trimmed = arg.trim()
-      const spaceIndex = trimmed.indexOf(" ")
-      if (spaceIndex === -1) return null
-      const name = trimmed.substring(0, spaceIndex)
-      const type = trimmed.substring(spaceIndex + 1)
-      return `${snakeToCamel(name)}: ${mapSQLTypeToTS(type)}`
-    })
-    .filter(Boolean)
-    .join(", ")
-}
-
 export function getArgsArray(argsStr) {
   if (!argsStr) return []
   return argsStr

@@ -1,24 +1,20 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetFunctionServer.hbs
 "use server"
 
-import { {{methodCamelName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
 import { {{indexMethodName}} } from "@/methods/functions/converters"
-{{#if indexFields}}
+import { {{methodName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
+{{#if methodParamsColumns}}import { {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}" {{/if}}
 {{#if (eq indexMethodName "arrayToObjectKeysId")}}
-import type T{{methodPascalName}}RecordBy{{typeRecordName}} from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
+import type { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
 {{else}}
-import type T{{methodPascalName}}RecordBy{{typeRecordName}} from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
+import type { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
 {{/if}}
-{{/if}}
 
-export async function {{methodCamelName}}Server({{#if paramsFields}}parsedParams{{/if}}): Promise<T{{methodPascalName}}RecordBy{{typeRecordName}}> {
-  const {{methodCamelName}}Data = await {{methodCamelName}}({{#if paramsFields}}parsedParams{{/if}})
+export async function {{methodName}}Server({{#if methodParamsColumns}}params: {{methodParamsTypeName}}{{/if}}): Promise<{{indexTypeName}}> {
+  const {{methodName}}Data = await {{methodName}}({{#if methodParamsColumns}}params{{/if}})
 
-
-  const data = {{methodCamelName}}Data
-    ? ({{{indexMethodName}}}({{{indexMethodArgs}}}, data) as T{{methodPascalName}}RecordBy{{typeRecordName}})
-    : {}
+  const data = {{methodName}}Data ? ({{{indexMethodName}}}({{{indexMethodParams}}}, {{methodName}}Data) as {{indexTypeName}}) : {}
 
   return data
-
 }
+

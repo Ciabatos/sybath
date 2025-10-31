@@ -127,6 +127,7 @@ export async function fetchMethodResultColumns(schema, method) {
           ? {
               name,
               camelName: snakeToCamel(name),
+              pascalName: snakeToCamel(name),
               type: mapSQLTypeToTS(type),
             }
           : null

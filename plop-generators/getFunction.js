@@ -1,4 +1,4 @@
-import { getArgsArray, parseArgsToList, parseParamsFields, snakeToCamel, snakeToPascal } from "./helpers.js"
+import { getArgsArray, parseParamsFields, snakeToCamel, snakeToPascal } from "./helpers.js"
 import { fetchMethodArgs, fetchMethodResultColumns, fetchMethods, fetchSchemas } from "./queries.js"
 
 // Generator plop
@@ -40,17 +40,27 @@ export default function getMethod(plop) {
       // Ustal nazwy po wyborze metody
       const methodCamelName = snakeToCamel(method)
       const methodPascalName = snakeToPascal(method)
-      const name = method
-      const camelName = methodCamelName
-      const pascalName = methodPascalName
+      const methodTypeName = `T${methodPascalName}`
+      const methodParamsTypeName = `${methodTypeName}Params`
 
       // Zapewniamy że używamy parseParamsFields z helpers
       const argsStr = await fetchMethodArgs(schema, method)
       const resultColumns = await fetchMethodResultColumns(schema, method)
-      const paramsFields = parseParamsFields(argsStr) // DRY, helpers version
-      const tsArgsList = parseArgsToList(argsStr)
+
+      // Ujednolicone pole methodColumns (tak jak w getTable)
+      const methodColumns = resultColumns.map((col) => ({
+        name: col.name || col.camelName,
+        camelName: col.camelName,
+        pascalName: snakeToPascal(col.name || col.camelName),
+        tsType: col.type,
+        optional: "",
+      }))
+
+      // nazwa wrappera (funkcja generowanego get...)
+      const methodName = `get${methodPascalName}`
+
+      const methodParamsColumns = parseParamsFields(argsStr) // DRY, helpers version
       const argsArray = getArgsArray(argsStr)
-      const argsArrayString = argsArray.join(", ")
       const sqlParamsPlaceholders = argsArray.map((_, i) => `$${i + 1}`).join(", ")
 
       // Zapytaj użytkownika o wybór kolumn dla indexu
@@ -81,45 +91,52 @@ export default function getMethod(plop) {
         f.pascalName = snakeToPascal(f.camelName)
       })
 
-      const typeRecordName = indexFields.map((f) => f.pascalName).join("")
-      const indexMethodName = indexFields.length > 1 ? "arrayToObjectKeysId" : "arrayToObjectKeyId"
-      const indexMethodArgs = indexFields.map((f) => `"${f.camelName}"`).join(", ")
+      // indexColumns: kolumny wybrane dla indeksu (struktura jak w getTable)
+      const indexColumns = methodColumns.filter((c) => selectedColumnsIndex.includes(c.camelName))
 
-      const tsReturnType = `export type T${methodPascalName} = {\n${resultColumns.map((c) => `  ${c.camelName}: ${c.type}`).join("\n")}\n}`
+      // nazwa fragmentu typu dla indeksu
+      const indexTypeMethodName = indexColumns.map((f) => f.pascalName).join("")
+      const indexMethodParams = indexColumns.map((f) => `"${snakeToCamel(f.name)}"`).join(", ")
+      const indexParamsColumns = methodParamsColumns.map((f) => snakeToCamel(f.name)).join(", ")
+      const indexTypeName = methodTypeName + "RecordBy" + indexTypeMethodName
+      const indexMethodName = indexFields.length > 1 ? "arrayToObjectKeysId" : "arrayToObjectKeyId"
 
       console.log({
         schema,
         method,
-        methodPascalName,
         methodCamelName,
-        tsArgsList,
-        paramsFields,
-        argsArrayString,
-        sqlParamsPlaceholders,
-        tsReturnType,
-        indexFields,
-        typeRecordName,
+        methodPascalName,
+        methodName,
+        methodTypeName,
+        methodParamsTypeName,
+        methodParamsColumns,
+        methodColumns,
+        indexMethodParams,
+        indexParamsColumns,
+        indexTypeMethodName,
         indexMethodName,
-        indexMethodArgs,
+        indexTypeName,
+        indexColumns,
+        sqlParamsPlaceholders,
       })
 
       return {
         schema,
-        method: name,
-        methodCamelName: camelName,
-        methodPascalName: pascalName,
-        name,
-        camelName,
-        pascalName,
-        tsArgsList,
-        paramsFields,
-        argsArrayString,
-        sqlParamsPlaceholders,
-        tsReturnType,
-        indexFields,
-        typeRecordName,
+        method,
+        methodCamelName,
+        methodPascalName,
+        methodName,
+        methodTypeName,
+        methodParamsTypeName,
+        methodParamsColumns,
+        methodColumns,
+        indexMethodParams,
+        indexParamsColumns,
+        indexTypeMethodName,
         indexMethodName,
-        indexMethodArgs,
+        indexTypeName,
+        indexColumns,
+        sqlParamsPlaceholders,
       }
     },
 
@@ -152,13 +169,13 @@ export default function getMethod(plop) {
         type: "modify",
         path: "store/atoms.ts",
         pattern: /((?:^"use client"\n)?(?:import[\s\S]*?\n))(?!import)/m,
-        template: `$&import { T{{methodPascalName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"\n`,
+        template: `$&import { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"\n`,
       },
       {
         type: "modify",
         path: "store/atoms.ts",
         pattern: /(\/\/Functions\s*\n)/,
-        template: `$1export const {{methodCamelName}}Atom = atom<T{{methodPascalName}}RecordBy{{typeRecordName}}>({})\n`,
+        template: `$1export const {{methodCamelName}}Atom = atom<{{indexTypeName}}>({})\n`,
       },
     ],
   })
