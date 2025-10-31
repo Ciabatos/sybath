@@ -101,8 +101,11 @@ export default function getMethod(plop) {
       const indexTypeName = methodTypeName + "RecordBy" + indexTypeMethodName
       const indexMethodName = indexFields.length > 1 ? "arrayToObjectKeysId" : "arrayToObjectKeyId"
 
-      const apiParamPath = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `[${f.camelName}]`).join("/") : ""
-      const apiPath = `app/api/${methodCamelName}${apiParamPath}/route.tsx`
+      const apiParamPathSquareBrackets = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `[${f.camelName}]`).join("/") : ""
+      const apiParamPath = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `\${params.${f.camelName}}`).join("/") : ""
+
+      const apiPath = `app/api/${methodCamelName}${apiParamPathSquareBrackets}/route.tsx`
+      const apiPathParams = `/api/${methodCamelName}${apiParamPath}`
 
       console.log({
         schema,
@@ -122,6 +125,7 @@ export default function getMethod(plop) {
         indexColumns,
         sqlParamsPlaceholders,
         apiPath,
+        apiPathParams,
       })
 
       return {
@@ -142,6 +146,7 @@ export default function getMethod(plop) {
         indexColumns,
         sqlParamsPlaceholders,
         apiPath,
+        apiPathParams,
       }
     },
 

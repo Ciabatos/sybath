@@ -4,14 +4,16 @@
 import { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 import { {{indexMethodName}} } from "@/methods/functions/converters"
 import { {{tableCamelName}}Atom } from "@/store/atoms"
+import { {{#if methodParamsColumns}}, {{methodParamsTypeName}}{{/if}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useRef } from "react"
 import useSWR from "swr"
 
-export function useFetch{{tablePascalName}}() {
+export function useFetch{{tablePascalName}}({{#if methodParamsColumns}} { params }: { params: {{methodParamsTypeName}} }{{/if}}) {
   const {{tableCamelName}} = useAtomValue({{tableCamelName}}Atom)
   const set{{tablePascalName}} = useSetAtom({{tableCamelName}}Atom)
-  const { data } = useSWR("/api/{{tableCamelName}}", { refreshInterval: 3000 })
+  
+  const { data } = useSWR(`{{apiPathParams}}`, { refreshInterval: 3000 })
 
   const prevDataRef = useRef<unknown>(null)
 

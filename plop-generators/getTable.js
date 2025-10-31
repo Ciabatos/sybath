@@ -121,8 +121,11 @@ export default function getTable(plop) {
       const indexMethodParams = indexColumns.map((f) => `"${snakeToCamel(f.name)}"`).join(", ")
       const indexParamsColumns = methodParamsColumns.map((f) => snakeToCamel(f.name)).join(", ")
 
-      const apiParamPath = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `[${f.camelName}]`).join("/") : ""
-      const apiPath = `app/api/${tableCamelName}${apiParamPath}/route.tsx`
+      const apiParamPathSquareBrackets = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `[${f.camelName}]`).join("/") : ""
+      const apiParamPath = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `\${params.${f.camelName}}`).join("/") : ""
+
+      const apiPath = `app/api/${tableCamelName}${apiParamPathSquareBrackets}/route.tsx`
+      const apiPathParams = `/api/${tableCamelName}${apiParamPath}`
 
       console.log({
         schema,
@@ -141,6 +144,7 @@ export default function getTable(plop) {
         indexTypeName,
         indexColumns,
         apiPath,
+        apiPathParams,
       })
 
       return {
@@ -160,6 +164,7 @@ export default function getTable(plop) {
         indexTypeName,
         indexColumns,
         apiPath,
+        apiPathParams,
       }
     },
 
