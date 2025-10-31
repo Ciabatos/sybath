@@ -1,139 +1,11 @@
 import dotenv from "dotenv"
 import path from "path"
-import { Client } from "pg"
+import { mapSQLTypeToTS, snakeToCamel, snakeToPascal } from "./helpers.js"
+import { fetchColumns, fetchSchemas, fetchTables } from "./queries.js"
 
 dotenv.config({ path: path.resolve(process.cwd(), ".env.development") })
 
 // Konwersja typów SQL → TypeScript
-const typeMap = {
-  integer: "number",
-  bigint: "number",
-  smallint: "number",
-  numeric: "number",
-  decimal: "number",
-  "double precision": "number",
-  real: "number",
-  serial: "number",
-  bigserial: "number",
-  boolean: "boolean",
-  text: "string",
-  "character varying": "string",
-  character: "string",
-  varchar: "string",
-  date: "string",
-  timestamp: "string",
-  "timestamp without time zone": "string",
-  "timestamp with time zone": "string",
-  timestamptz: "string",
-  time: "string",
-  json: "any",
-  jsonb: "any",
-  uuid: "string",
-  bytea: "Buffer",
-}
-
-// Konwersja snake_case -> camelCase
-function snakeToCamel(str) {
-  return str.replace(/_([a-z])/g, (_, letter) => letter.toUpperCase())
-}
-
-// Konwersja snake_case -> PascalCase
-function snakeToPascal(str) {
-  return str.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
-}
-
-// Mapowanie SQL -> TS typ
-function mapSQLTypeToTS(sqlType) {
-  if (!sqlType) return "any"
-
-  let cleanType = sqlType.trim().toLowerCase()
-
-  // Obsługa array types, np. "integer[]" -> "number[]"
-  if (cleanType.endsWith("[]")) {
-    const baseType = cleanType.slice(0, -2).replace(/\([^)]*\)/g, "")
-    const baseTsType = typeMap[baseType] || "any"
-    return `${baseTsType}[]`
-  }
-
-  // Usuń długości i parametry typu, np. "varchar(255)" -> "varchar"
-  cleanType = cleanType.replace(/\([^)]*\)/g, "")
-
-  return typeMap[cleanType] || "any"
-}
-
-// Pobranie listy schematów
-async function fetchSchemas() {
-  const client = new Client({
-    host: process.env.PG_MAIN_HOST,
-    user: process.env.PG_MAIN_USER,
-    password: process.env.PG_MAIN_PASSWORD ?? "",
-    database: process.env.PG_MAIN_DATABASE,
-    port: process.env.PG_MAIN_PORT ? Number(process.env.PG_MAIN_PORT) : undefined,
-  })
-  await client.connect()
-  try {
-    const res = await client.query(
-      `SELECT schema_name
-       FROM information_schema.schemata
-       WHERE schema_name NOT IN ('pg_catalog', 'information_schema', 'pg_toast')
-       ORDER BY schema_name`,
-    )
-    return res.rows.map((r) => r.schema_name)
-  } finally {
-    await client.end()
-  }
-}
-
-// Pobranie listy tabel w schemacie
-async function fetchTables(schema) {
-  const client = new Client({
-    host: process.env.PG_MAIN_HOST,
-    user: process.env.PG_MAIN_USER,
-    password: process.env.PG_MAIN_PASSWORD ?? "",
-    database: process.env.PG_MAIN_DATABASE,
-    port: process.env.PG_MAIN_PORT ? Number(process.env.PG_MAIN_PORT) : undefined,
-  })
-  await client.connect()
-  try {
-    const res = await client.query(
-      `SELECT table_name
-       FROM information_schema.tables
-       WHERE table_schema = $1 AND table_type = 'BASE TABLE'
-       ORDER BY table_name`,
-      [schema],
-    )
-    return res.rows.map((r) => r.table_name)
-  } finally {
-    await client.end()
-  }
-}
-
-// Pobranie kolumn tabeli
-async function fetchColumns(schema, table) {
-  if (!table) throw new Error("Table name is required for fetchColumns")
-  const client = new Client({
-    host: process.env.PG_MAIN_HOST,
-    user: process.env.PG_MAIN_USER,
-    password: process.env.PG_MAIN_PASSWORD ?? "",
-    database: process.env.PG_MAIN_DATABASE,
-    port: process.env.PG_MAIN_PORT ? Number(process.env.PG_MAIN_PORT) : undefined,
-  })
-  try {
-    await client.connect()
-    const sql = `
-      SELECT column_name, data_type, is_nullable
-      FROM information_schema.columns
-      WHERE table_schema = $1 AND table_name = $2
-      ORDER BY ordinal_position
-    `
-    const res = await client.query(sql, [schema, table])
-    return res.rows
-  } finally {
-    try {
-      await client.end()
-    } catch {}
-  }
-}
 
 export default function getTable(plop) {
   plop.setGenerator("Get Table", {
@@ -229,7 +101,14 @@ export default function getTable(plop) {
         },
       ])
 
-      const paramsFields = fields.filter((f) => paramsColumns.includes(f.name))
+      // paramsFields: DRY, bez helpers, tylko lokalne mapowanie
+      const paramsFields = fields
+        .filter((f) => paramsColumns.includes(f.name))
+        .map((f) => ({
+          name: f.name,
+          camelName: f.camelName,
+          tsType: f.tsType,
+        }))
 
       const tablePascalName = snakeToPascal(table)
       const tableCamelName = snakeToCamel(table)
@@ -258,11 +137,19 @@ export default function getTable(plop) {
         paramsList,
       })
 
+      // Dodaj ujednolicone nazwy dla return
+      const name = table
+      const camelName = snakeToCamel(table)
+      const pascalName = snakeToPascal(table)
+
       return {
         schema,
-        table,
-        tablePascalName,
-        tableCamelName,
+        table: name,
+        tableCamelName: camelName,
+        tablePascalName: pascalName,
+        name,
+        camelName,
+        pascalName,
         typeName,
         methodName,
         typeRecordName,

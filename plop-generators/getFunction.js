@@ -1,265 +1,10 @@
-import dotenv from "dotenv"
-import path from "path"
-import { Client } from "pg"
-
-dotenv.config({ path: path.resolve(process.cwd(), ".env.development") })
-
-const typeMap = {
-  integer: "number",
-  bigint: "number",
-  smallint: "number",
-  numeric: "number",
-  decimal: "number",
-  "double precision": "number",
-  real: "number",
-  serial: "number",
-  bigserial: "number",
-  boolean: "boolean",
-  text: "string",
-  "character varying": "string",
-  character: "string",
-  varchar: "string",
-  date: "string",
-  timestamp: "string",
-  "timestamp without time zone": "string",
-  "timestamp with time zone": "string",
-  timestamptz: "string",
-  time: "string",
-  json: "any",
-  jsonb: "any",
-  uuid: "string",
-  bytea: "Buffer",
-}
-
-// Konwersja snake_case -> camelCase
-function snakeToCamel(str) {
-  // Usuń przedrostek p_ jeśli istnieje
-  const withoutPrefix = str.replace(/^p_/, "")
-  return withoutPrefix.replace(/_([a-z])/g, (_, letter) => letter.toUpperCase())
-}
-
-// Konwersja snake_case -> PascalCase
-function snakeToPascal(str) {
-  return str.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
-}
-
-// Mapowanie SQL -> TS typ
-function mapSQLTypeToTS(sqlType) {
-  if (!sqlType) return "any"
-
-  let cleanType = sqlType.trim().toLowerCase()
-
-  // Obsługa array types, np. "integer[]" -> "number[]"
-  if (cleanType.endsWith("[]")) {
-    const baseType = cleanType.slice(0, -2).replace(/\([^)]*\)/g, "")
-    const baseTsType = typeMap[baseType] || "any"
-    return `${baseTsType}[]`
-  }
-
-  // Usuń długości i parametry typu, np. "varchar(255)" -> "varchar"
-  cleanType = cleanType.replace(/\([^)]*\)/g, "")
-
-  return typeMap[cleanType] || "any"
-}
-
-// Pobranie listy schematów
-async function fetchSchemas() {
-  const client = new Client({
-    host: process.env.PG_MAIN_HOST,
-    user: process.env.PG_MAIN_USER,
-    password: process.env.PG_MAIN_PASSWORD || "",
-    database: process.env.PG_MAIN_DATABASE,
-    port: process.env.PG_MAIN_PORT ? Number(process.env.PG_MAIN_PORT) : undefined,
-  })
-  await client.connect()
-  try {
-    const res = await client.query(
-      `SELECT schema_name
-       FROM information_schema.schemata
-       WHERE schema_name NOT IN ('pg_catalog', 'information_schema', 'pg_toast')
-       ORDER BY schema_name`,
-    )
-    return res.rows.map((r) => r.schema_name)
-  } finally {
-    await client.end()
-  }
-}
-
-// Pobranie listy procedur w schemacie
-async function fetchMethods(schema) {
-  const client = new Client({
-    host: process.env.PG_MAIN_HOST,
-    user: process.env.PG_MAIN_USER,
-    password: process.env.PG_MAIN_PASSWORD || "",
-    database: process.env.PG_MAIN_DATABASE,
-    port: process.env.PG_MAIN_PORT ? Number(process.env.PG_MAIN_PORT) : undefined,
-  })
-  await client.connect()
-  try {
-    const res = await client.query(
-      `SELECT proname
-       FROM pg_proc p
-       JOIN pg_namespace n ON p.pronamespace = n.oid
-       WHERE n.nspname = $1
-       AND p.prokind = 'f'
-       ORDER BY proname`,
-      [schema],
-    )
-    return res.rows.map((r) => r.proname)
-  } finally {
-    await client.end()
-  }
-}
-
-// Pobranie parametrów procedury
-async function fetchMethodArgs(schema, method) {
-  const client = new Client({
-    host: process.env.PG_MAIN_HOST,
-    user: process.env.PG_MAIN_USER,
-    password: process.env.PG_MAIN_PASSWORD || "",
-    database: process.env.PG_MAIN_DATABASE,
-    port: process.env.PG_MAIN_PORT ? Number(process.env.PG_MAIN_PORT) : undefined,
-  })
-  await client.connect()
-  try {
-    const res = await client.query(
-      `SELECT pg_get_function_arguments(p.oid) AS args
-       FROM pg_proc p
-       JOIN pg_namespace n ON p.pronamespace = n.oid
-       WHERE n.nspname = $1 AND p.proname = $2`,
-      [schema, method],
-    )
-    if (!res.rows[0]) throw new Error(`Function ${schema}.${method} not found`)
-    return res.rows[0].args || ""
-  } finally {
-    await client.end()
-  }
-}
-
-// Pobranie kolumn zwracanych przez funkcję TABLE
-async function fetchMethodResultColumns(schema, method) {
-  const client = new Client({
-    host: process.env.PG_MAIN_HOST,
-    user: process.env.PG_MAIN_USER,
-    password: process.env.PG_MAIN_PASSWORD || "",
-    database: process.env.PG_MAIN_DATABASE,
-    port: process.env.PG_MAIN_PORT ? Number(process.env.PG_MAIN_PORT) : undefined,
-  })
-  await client.connect()
-  try {
-    // Najpierw pobierz typ zwracany
-    const resultTypeRes = await client.query(
-      `SELECT pg_get_function_result(p.oid) AS result
-       FROM pg_proc p
-       JOIN pg_namespace n ON p.pronamespace = n.oid
-       WHERE n.nspname = $1 AND p.proname = $2`,
-      [schema, method],
-    )
-
-    if (!resultTypeRes.rows[0]) {
-      throw new Error(`Function ${schema}.${method} not found`)
-    }
-
-    const resultType = resultTypeRes.rows[0].result
-
-    // Sprawdź czy to TABLE type
-    if (!resultType.startsWith("TABLE(")) {
-      // Jeśli nie jest TABLE, zwróć prosty typ
-      return [{ name: "result", camelName: "result", type: mapSQLTypeToTS(resultType) }]
-    }
-
-    // Wyciągnij nazwę composite type z TABLE(...)
-    const tableMatch = resultType.match(/TABLE\((.*?)\)/)
-    if (!tableMatch) {
-      return [{ name: "result", camelName: "result", type: "any" }]
-    }
-
-    // Parsuj kolumny bezpośrednio z definicji TABLE
-    const columnsStr = tableMatch[1]
-    const columns = columnsStr
-      .split(",")
-      .map((col) => {
-        const trimmed = col.trim()
-        const spaceIndex = trimmed.indexOf(" ")
-        if (spaceIndex === -1) return null
-
-        const name = trimmed.substring(0, spaceIndex)
-        const type = trimmed.substring(spaceIndex + 1)
-
-        return {
-          name,
-          camelName: snakeToCamel(name),
-          type: mapSQLTypeToTS(type),
-        }
-      })
-      .filter(Boolean)
-
-    return columns
-  } finally {
-    await client.end()
-  }
-}
-
-function getParamsFields(argsStr) {
-  if (!argsStr) return []
-
-  return argsStr
-    .split(",")
-    .map((arg) => {
-      const trimmed = arg.trim()
-      const spaceIndex = trimmed.indexOf(" ")
-      if (spaceIndex === -1) return null
-
-      const name = trimmed.substring(0, spaceIndex)
-      const sqlType = trimmed.substring(spaceIndex + 1)
-
-      return {
-        name,
-        camelName: snakeToCamel(name),
-        tsType: mapSQLTypeToTS(sqlType),
-      }
-    })
-    .filter(Boolean)
-}
-
-// Parser do sygnatury TS
-function parseArgsToList(argsStr) {
-  if (!argsStr) return ""
-
-  return argsStr
-    .split(",")
-    .map((arg) => {
-      const trimmed = arg.trim()
-      const spaceIndex = trimmed.indexOf(" ")
-      if (spaceIndex === -1) return null
-
-      const name = trimmed.substring(0, spaceIndex)
-      const type = trimmed.substring(spaceIndex + 1)
-
-      return `${snakeToCamel(name)}: ${mapSQLTypeToTS(type)}`
-    })
-    .filter(Boolean)
-    .join(", ")
-}
-
-// Pobierz nazwy argumentów
-function getArgsArray(argsStr) {
-  if (!argsStr) return []
-
-  return argsStr
-    .split(",")
-    .map((arg) => {
-      const trimmed = arg.trim()
-      const spaceIndex = trimmed.indexOf(" ")
-      return spaceIndex === -1 ? trimmed : trimmed.substring(0, spaceIndex)
-    })
-    .filter(Boolean)
-}
+import { getArgsArray, parseArgsToList, parseParamsFields, snakeToCamel, snakeToPascal } from "./helpers.js"
+import { fetchMethodArgs, fetchMethodResultColumns, fetchMethods, fetchSchemas } from "./queries.js"
 
 // Generator plop
 export default function getMethod(plop) {
   plop.setGenerator("Get Function", {
-    description: "Generate TS async function from Postgres method",
+    description: "Generate TypeScript types and fetcher from Postgres method",
 
     prompts: async (inquirer) => {
       const schemas = await fetchSchemas()
@@ -292,9 +37,14 @@ export default function getMethod(plop) {
         },
       ])
 
+      const name = method
+      const camelName = methodCamelName
+      const pascalName = methodPascalName
+
+      // Zapewniamy że używamy parseParamsFields z helpers
       const argsStr = await fetchMethodArgs(schema, method)
       const resultColumns = await fetchMethodResultColumns(schema, method)
-      const paramsFields = getParamsFields(argsStr)
+      const paramsFields = parseParamsFields(argsStr) // DRY, helpers version
       const tsArgsList = parseArgsToList(argsStr)
       const argsArray = getArgsArray(argsStr)
       const argsArrayString = argsArray.join(", ")
@@ -354,12 +104,15 @@ export default function getMethod(plop) {
 
       return {
         schema,
-        method,
-        methodPascalName,
-        methodCamelName,
+        method: name,
+        methodCamelName: camelName,
+        methodPascalName: pascalName,
+        name,
+        camelName,
+        pascalName,
         tsArgsList,
         paramsFields,
-        argsArrayString: argsArrayString,
+        argsArrayString,
         sqlParamsPlaceholders,
         tsReturnType,
         indexFields,
@@ -376,35 +129,36 @@ export default function getMethod(plop) {
         templateFile: "plop-templates/dbGetFunction.hbs",
         force: true,
       },
-  {
-    type: "add",
-    path: "app/api/{{methodCamelName}}/route.tsx",
-    templateFile: "plop-templates/apiGetFunction.hbs",
-    force: true,
-  },  {
-    type: "add",
-    path: "methods/hooks/{{schema}}/core/useFetch{{methodPascalName}}.tsx",
-    templateFile: "plop-templates/hookGetFunction.hbs",
-    force: true,
-  },
-  {
-  type: "add",
-  path: "methods/fetchers/{{schema}}/fetch{{methodPascalName}}Server.ts",
-  templateFile: "plop-templates/fetchServerGetFunction.hbs",
-  force: true,
-  },
-  {
-    type: "modify",
-    path: "store/atoms.ts",
-    pattern: /((?:^"use client"\n)?(?:import[\s\S]*?\n))(?!import)/m,
-    template: `$&import { T{{methodPascalName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"\n`,
-  },
-  {
-    type: "modify",
-    path: "store/atoms.ts",
-    pattern: /(\/\/Functions\s*\n)/,
-    template: `$1export const {{methodCamelName}}Atom = atom<T{{methodPascalName}}RecordBy{{typeRecordName}}>({})\n`,
-  },
+      {
+        type: "add",
+        path: "app/api/{{methodCamelName}}/route.tsx",
+        templateFile: "plop-templates/apiGetFunction.hbs",
+        force: true,
+      },
+      {
+        type: "add",
+        path: "methods/hooks/{{schema}}/core/useFetch{{methodPascalName}}.tsx",
+        templateFile: "plop-templates/hookGetFunction.hbs",
+        force: true,
+      },
+      {
+        type: "add",
+        path: "methods/fetchers/{{schema}}/fetch{{methodPascalName}}Server.ts",
+        templateFile: "plop-templates/fetchServerGetFunction.hbs",
+        force: true,
+      },
+      {
+        type: "modify",
+        path: "store/atoms.ts",
+        pattern: /((?:^"use client"\n)?(?:import[\s\S]*?\n))(?!import)/m,
+        template: `$&import { T{{methodPascalName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"\n`,
+      },
+      {
+        type: "modify",
+        path: "store/atoms.ts",
+        pattern: /(\/\/Functions\s*\n)/,
+        template: `$1export const {{methodCamelName}}Atom = atom<T{{methodPascalName}}RecordBy{{typeRecordName}}>({})\n`,
+      },
     ],
   })
 }
