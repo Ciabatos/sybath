@@ -5,9 +5,9 @@ import { auth } from "@/auth"
 import { {{methodName}}{{#if methodParamsColumns}}, {{methodParamsTypeName}}{{/if}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
+{{#if methodParamsColumns}}
 import z from "zod"
 
-{{#if methodParamsColumns}}
 const typeParamsSchema = z.object({
   {{#each methodParamsColumns}}
   {{camelName}}: z.coerce.{{tsType}}(),

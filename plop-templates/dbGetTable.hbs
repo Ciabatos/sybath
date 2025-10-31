@@ -27,14 +27,17 @@ export type {{indexTypeName}} = Record<number, {{methodTypeName}}>
 
 export async function {{methodName}}({{#if methodParamsColumns}}params:{{methodParamsTypeName}}{{/if}}) {
   try {
+    {{#if methodParamsColumns}}
     const camelToSnake = (str: string) => str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`)
 
     const sqlParams = Object.values(params)
     const whereClauses = Object.keys(params).map((key, i) => `"${camelToSnake(key)}" = ${i + 1}`).join(" AND ")
     const sql = `SELECT * FROM {{schema}}.{{table}}${whereClauses ? " WHERE " + whereClauses : ""}`
+    {{else}}
+    const sql = `SELECT * FROM {{schema}}.{{table}}`
+    {{/if}}
 
-
-    const result = await query(sql, sqlParams)
+    const result = await query(sql{{#if methodParamsColumns}}, sqlParams{{/if}})
     return result.rows as {{methodTypeName}}[]
 
 
