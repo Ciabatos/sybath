@@ -4,7 +4,7 @@ import { fetchMethodArgs, fetchMethodResultColumns, fetchMethods, fetchSchemas }
 // Generator plop
 export default function getMethod(plop) {
   plop.setGenerator("Get Function", {
-    description: "Generate TypeScript types and fetcher from Postgres method",
+    description: "Generate fetcher from Postgres method",
 
     prompts: async (inquirer) => {
       const schemas = await fetchSchemas()
