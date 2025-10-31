@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetFunction.hbs
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { auth } from "@/auth"
-import { {{methodCamelName}}{{#if paramsFields}}, T{{methodPascalName}}Params{{/if}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
+import { get{{methodPascalName}}{{#if paramsFields}}, T{{methodPascalName}}Params{{/if}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
@@ -25,7 +25,7 @@ export async function GET(request: NextRequest{{#if paramsFields}}, { params }: 
   const parsedParams = typeParamsSchema.parse(paramsFromPromise)
   {{/if}}
   try {
-    const result = await {{methodCamelName}}({{#if paramsFields}}parsedParams{{/if}})
+    const result = await get{{methodPascalName}}({{#if paramsFields}}parsedParams{{/if}})
   
     const etag = crypto.createHash("sha1").update(JSON.stringify(result)).digest("hex")
     const clientEtag = request.headers.get("if-none-match")

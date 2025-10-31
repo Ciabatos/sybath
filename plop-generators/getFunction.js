@@ -37,6 +37,9 @@ export default function getMethod(plop) {
         },
       ])
 
+      // Ustal nazwy po wyborze metody
+      const methodCamelName = snakeToCamel(method)
+      const methodPascalName = snakeToPascal(method)
       const name = method
       const camelName = methodCamelName
       const pascalName = methodPascalName
@@ -49,8 +52,6 @@ export default function getMethod(plop) {
       const argsArray = getArgsArray(argsStr)
       const argsArrayString = argsArray.join(", ")
       const sqlParamsPlaceholders = argsArray.map((_, i) => `$${i + 1}`).join(", ")
-      const methodPascalName = snakeToPascal(method)
-      const methodCamelName = snakeToCamel(method)
 
       // Zapytaj użytkownika o wybór kolumn dla indexu
       const { selectedColumnsIndex } = await inquirer.prompt([
@@ -144,7 +145,7 @@ export default function getMethod(plop) {
       {
         type: "add",
         path: "methods/fetchers/{{schema}}/fetch{{methodPascalName}}Server.ts",
-        templateFile: "plop-templates/fetchServerGetFunction.hbs",
+        templateFile: "plop-templates/hookGetFunctionServer.hbs",
         force: true,
       },
       {

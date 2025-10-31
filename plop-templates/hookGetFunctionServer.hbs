@@ -11,7 +11,7 @@ import type T{{methodPascalName}}RecordBy{{typeRecordName}} from "@/db/postgresM
 {{/if}}
 {{/if}}
 
-export async function {{methodCamelName}}Server({{#if paramsFields}}parsedParams{{/if}}): Promise<T{{methodPascalName}}RecordBy{{typeRecordName}}>{{/if}} {
+export async function {{methodCamelName}}Server({{#if paramsFields}}parsedParams{{/if}}): Promise<T{{methodPascalName}}RecordBy{{typeRecordName}}> {
   const {{methodCamelName}}Data = await {{methodCamelName}}({{#if paramsFields}}parsedParams{{/if}})
 
 
