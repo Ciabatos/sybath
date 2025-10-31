@@ -167,7 +167,7 @@ export default function getTable(plop) {
       },
       {
         type: "add",
-        path: "app/api/{{table}}/route.tsx",
+        path: "app/api/{{tableCamelName}}/route.tsx",
         templateFile: "plop-templates/apiGetTable.hbs",
         force: true,
       },
