@@ -1,7 +1,7 @@
 import dotenv from "dotenv"
 import path from "path"
 import { mapSQLTypeToTS, snakeToCamel, snakeToPascal } from "./helpers.js"
-import { fetchColumns, fetchSchemas, fetchTables } from "./queries.js"
+import { fetchColumns, fetchSchemas, fetchTables } from "./helpers/queries.js"
 
 dotenv.config({ path: path.resolve(process.cwd(), ".env.development") })
 

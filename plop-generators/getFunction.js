@@ -1,5 +1,5 @@
 import { getArgsArray, parseParamsFields, snakeToCamel, snakeToPascal } from "./helpers.js"
-import { fetchMethodArgs, fetchMethodResultColumns, fetchMethods, fetchSchemas } from "./queries.js"
+import { fetchMethodArgs, fetchMethodResultColumns, fetchMethods, fetchSchemas } from "./helpers/queries.js"
 
 // Generator plop
 export default function getMethod(plop) {
