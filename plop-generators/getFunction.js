@@ -1,4 +1,4 @@
-import { getArgsArray, parseParamsFields, snakeToCamel, snakeToPascal } from "./helpers.js"
+import { getArgsArray, parseParamsFields, snakeToCamel, snakeToPascal } from "./helpers/helpers.js"
 import { fetchMethodArgs, fetchMethodResultColumns, fetchMethods, fetchSchemas } from "./helpers/queries.js"
 
 // Generator plop

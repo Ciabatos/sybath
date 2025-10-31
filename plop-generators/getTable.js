@@ -1,6 +1,6 @@
 import dotenv from "dotenv"
 import path from "path"
-import { mapSQLTypeToTS, snakeToCamel, snakeToPascal } from "./helpers.js"
+import { mapSQLTypeToTS, snakeToCamel, snakeToPascal } from "./helpers/helpers.js"
 import { fetchColumns, fetchSchemas, fetchTables } from "./helpers/queries.js"
 
 dotenv.config({ path: path.resolve(process.cwd(), ".env.development") })
@@ -9,7 +9,7 @@ dotenv.config({ path: path.resolve(process.cwd(), ".env.development") })
 
 export default function getTable(plop) {
   plop.setGenerator("Get Table", {
-    description: "Generate TypeScript types and fetcher from Postgres table",
+    description: "Generate from Postgres table",
 
     prompts: async (inquirer) => {
       // Pobranie schematów

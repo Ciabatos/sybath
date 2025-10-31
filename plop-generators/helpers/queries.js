@@ -1,4 +1,4 @@
-import { createClient } from "../dbClient.js"
+import { createClient } from "./dbClient.js"
 import { mapSQLTypeToTS, snakeToCamel } from "./helpers.js"
 
 export async function fetchSchemas() {
