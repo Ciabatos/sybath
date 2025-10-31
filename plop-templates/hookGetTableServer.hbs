@@ -2,20 +2,20 @@
 "use server"
 
 import { {{indexMethodName}} } from "@/methods/functions/converters"
-import { get{{methodName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
-{{#if paramsFields}}import { {{typeName}}Params } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"{{/if}}
+import { {{methodName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
+{{#if methodParamsColumns}}import { {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}" {{/if}}
 {{#if (eq indexMethodName "arrayToObjectKeysId")}}
-import type { {{typeName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
+import type { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 {{else}}
-import type { {{typeName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
+import type { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 {{/if}}
 
 
 
-export async function get{{methodName}}Server({{#if paramsFields}}params: {{typeName}}Params{{/if}}): Promise<{{typeName}}RecordBy{{typeRecordName}}> {
-  const get{{methodName}}Data = await get{{methodName}}({{#if paramsFields}}params{{/if}})
+export async function {{methodName}}Server({{#if methodParamsColumns}}params: {{methodParamsTypeName}}{{/if}}): Promise<{{indexTypeName}}> {
+  const {{methodName}}Data = await {{methodName}}({{#if methodParamsColumns}}params{{/if}})
 
-  const data = get{{methodName}}Data ? ({{{indexMethodName}}}({{{indexMethodArgs}}}, get{{methodName}}Data) as {{typeName}}RecordBy{{typeRecordName}}) : {}
+  const data = {{methodName}}Data ? ({{{indexMethodName}}}({{{indexMethodParams}}}, {{methodName}}Data) as {{indexTypeName}}) : {}
 
   return data
 }

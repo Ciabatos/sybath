@@ -53,7 +53,7 @@ export default function getTable(plop) {
         throw new Error(`Brak kolumn w tabeli ${schema}.${table}`)
       }
 
-      const fields = rows.map((col) => ({
+      const methodColumns = rows.map((col) => ({
         name: col.column_name,
         camelName: snakeToCamel(col.column_name),
         tsType: mapSQLTypeToTS(col.data_type),
@@ -66,7 +66,7 @@ export default function getTable(plop) {
           type: "checkbox",
           name: "selectedColumnsIndex",
           message: "Wybierz kolumny dla indexu:",
-          choices: fields.map((f) => ({
+          choices: methodColumns.map((f) => ({
             name: `${f.name} (${f.tsType})`,
             value: f.name,
             checked: false,
@@ -81,10 +81,10 @@ export default function getTable(plop) {
       ])
 
       // Filtruj tylko wybrane kolumny
-      const indexFields = fields.filter((f) => selectedColumnsIndex.includes(f.name))
+      const indexColumns = methodColumns.filter((f) => selectedColumnsIndex.includes(f.name))
 
       // Formatuj nazwy
-      indexFields.forEach((f) => {
+      indexColumns.forEach((f) => {
         f.pascalName = snakeToPascal(f.name)
       })
 
@@ -94,15 +94,14 @@ export default function getTable(plop) {
           type: "checkbox",
           name: "paramsColumns",
           message: "Wybierz kolumny jako parametry funkcji (opcjonalnie):",
-          choices: fields.map((f) => ({
+          choices: methodColumns.map((f) => ({
             name: `${f.name} (${f.tsType})`,
             value: f.name,
           })),
         },
       ])
 
-      // paramsFields: DRY, bez helpers, tylko lokalne mapowanie
-      const paramsFields = fields
+      const methodParamsColumns = methodColumns
         .filter((f) => paramsColumns.includes(f.name))
         .map((f) => ({
           name: f.name,
@@ -112,53 +111,50 @@ export default function getTable(plop) {
 
       const tablePascalName = snakeToPascal(table)
       const tableCamelName = snakeToCamel(table)
-      const typeName = "T" + snakeToPascal(schema) + tablePascalName
-      const typeRecordName = indexFields.map((f) => f.pascalName).join("")
-      const methodName = snakeToPascal(schema) + tablePascalName
+      const methodTypeName = "T" + snakeToPascal(schema) + tablePascalName
+      const methodParamsTypeName = methodTypeName + "Params"
+      const methodName = "get" + snakeToPascal(schema) + tablePascalName
 
-      const indexMethodName = indexFields.length > 1 ? "arrayToObjectKeysId" : "arrayToObjectKeyId"
-      const indexMethodArgs = indexFields.map((f) => `"${snakeToCamel(f.name)}"`).join(", ")
-
-      const paramsList = paramsFields.map((f) => snakeToCamel(f.name)).join(", ")
+      const indexTypeMethodName = indexColumns.map((f) => f.pascalName).join("")
+      const indexMethodName = indexColumns.length > 1 ? "arrayToObjectKeysId" : "arrayToObjectKeyId"
+      const indexTypeName = methodTypeName + "RecordBy" + indexTypeMethodName
+      const indexMethodParams = indexColumns.map((f) => `"${snakeToCamel(f.name)}"`).join(", ")
+      const indexParamsColumns = methodParamsColumns.map((f) => snakeToCamel(f.name)).join(", ")
 
       console.log({
         schema,
         table,
-        tablePascalName,
         tableCamelName,
-        typeName,
+        tablePascalName,
+        methodTypeName,
+        methodParamsTypeName,
+        methodParamsColumns,
         methodName,
-        typeRecordName,
-        fields,
-        indexFields,
+        methodColumns,
+        indexMethodParams,
+        indexParamsColumns,
+        indexTypeMethodName,
         indexMethodName,
-        indexMethodArgs,
-        paramsFields,
-        paramsList,
+        indexTypeName,
+        indexColumns,
       })
-
-      // Dodaj ujednolicone nazwy dla return
-      const name = table
-      const camelName = snakeToCamel(table)
-      const pascalName = snakeToPascal(table)
 
       return {
         schema,
-        table: name,
-        tableCamelName: camelName,
-        tablePascalName: pascalName,
-        name,
-        camelName,
-        pascalName,
-        typeName,
+        table,
+        tableCamelName,
+        tablePascalName,
+        methodTypeName,
+        methodParamsTypeName,
+        methodParamsColumns,
         methodName,
-        typeRecordName,
-        fields,
-        indexFields,
+        methodColumns,
+        indexMethodParams,
+        indexParamsColumns,
+        indexTypeMethodName,
         indexMethodName,
-        indexMethodArgs,
-        paramsFields,
-        paramsList,
+        indexTypeName,
+        indexColumns,
       }
     },
 
@@ -191,13 +187,13 @@ export default function getTable(plop) {
         type: "modify",
         path: "store/atoms.ts",
         pattern: /((?:^"use client"\n)?(?:import[\s\S]*?\n))(?!import)/m,
-        template: `$&import { {{typeName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"\n`,
+        template: `$&import { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"\n`,
       },
       {
         type: "modify",
         path: "store/atoms.ts",
         pattern: /(\/\/Tables\s*\n)/,
-        template: `$1export const {{tableCamelName}}Atom = atom<{{typeName}}RecordBy{{typeRecordName}}>({})\n`,
+        template: `$1export const {{tableCamelName}}Atom = atom<{{indexTypeName}}>({})\n`,
       },
     ],
   })

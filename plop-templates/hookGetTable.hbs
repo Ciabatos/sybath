@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTable.hbs
 
 "use client"
-import { {{typeName}}RecordBy{{typeRecordName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
+import { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 import { {{indexMethodName}} } from "@/methods/functions/converters"
 import { {{tableCamelName}}Atom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
@@ -18,7 +18,7 @@ export function useFetch{{tablePascalName}}() {
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const index = data ? ({{{indexMethodName}}}({{{indexMethodArgs}}}, data) as {{typeName}}RecordBy{{typeRecordName}}) : {}
+      const index = data ? ({{{indexMethodName}}}({{{indexMethodParams}}}, data) as {{indexTypeName}}) : {}
       set{{tablePascalName}}(index)
       prevDataRef.current = data
     }

@@ -2,20 +2,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { auth } from "@/auth"
-import { get{{methodName}}{{#if paramsFields}}, {{typeName}}Params{{/if}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
+import { {{methodName}}{{#if methodParamsColumns}}, {{methodParamsTypeName}}{{/if}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
 
-{{#if paramsFields}}
+{{#if methodParamsColumns}}
 const typeParamsSchema = z.object({
-  {{#each paramsFields}}
+  {{#each methodParamsColumns}}
   {{camelName}}: z.coerce.{{tsType}}(),
   {{/each}}
-}) satisfies z.ZodType<{{typeName}}Params>
+}) satisfies z.ZodType<{{methodParamsTypeName}}>
 {{/if}}
 
-export async function GET(request: NextRequest{{#if paramsFields}}, { params }: { params: {{typeName}}Params }{{/if}}): Promise<NextResponse> {
+export async function GET(request: NextRequest{{#if methodParamsColumns}}, { params }: { params: {{methodParamsTypeName}} }{{/if}}): Promise<NextResponse> {
   
   const session = await auth()
   const sessionPlayerId = session?.user?.playerId
@@ -23,13 +23,13 @@ export async function GET(request: NextRequest{{#if paramsFields}}, { params }: 
     return NextResponse.json({ success: false })
   }
   
-  {{#if paramsFields}}
+  {{#if methodParamsColumns}}
   const paramsFromPromise = await params
   const parsedParams = typeParamsSchema.parse(paramsFromPromise)
   {{/if}}
 
   try {
-    const result = await get{{methodName}}({{#if paramsFields}}parsedParams{{/if}})
+    const result = await {{methodName}}({{#if methodParamsColumns}}parsedParams{{/if}})
   
     const etag = crypto.createHash("sha1").update(JSON.stringify(result)).digest("hex")
     const clientEtag = request.headers.get("if-none-match")
