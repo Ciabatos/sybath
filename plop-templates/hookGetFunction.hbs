@@ -9,7 +9,7 @@ import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useRef } from "react"
 import useSWR from "swr"
 
-export function useFetch{{methodPascalName}}({{#if methodParamsColumns}} { params }: { params: {{methodParamsTypeName}} }{{/if}}) {
+export function useFetch{{methodPascalName}}({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}) {
   const {{methodCamelName}} = useAtomValue({{methodCamelName}}Atom)
   const set{{methodPascalName}} = useSetAtom({{methodCamelName}}Atom)
 
