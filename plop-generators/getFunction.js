@@ -78,6 +78,9 @@ export default function getMethod(plop) {
             if (answer.length < 1) {
               return "Musisz zaznaczyć przynajmniej jedną kolumnę."
             }
+            if (answer.length > 2) {
+              return "Możesz zaznaczyć maksymalnie dwie kolumny."
+            }            
             return true
           },
         },
