@@ -10,7 +10,7 @@ import type { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{sche
 import type { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 {{/if}}
 
-export async function {{methodName}}Server({{#if methodParamsColumns}}params: {{methodParamsTypeName}}{{/if}}): Promise<{{indexTypeName}}> {
+export async function {{methodName}}Server({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}): Promise<{{indexTypeName}}> {
   const {{methodName}}Data = await {{methodName}}({{#if methodParamsColumns}}params{{/if}})
 
   const data = {{methodName}}Data ? ({{{indexMethodName}}}({{{indexMethodParams}}}, {{methodName}}Data) as {{indexTypeName}}) : {}
