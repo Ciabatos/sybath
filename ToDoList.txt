@@ -19,7 +19,13 @@ Gry:
 -Battle brothers
 -Dominions
 Zagrywane są karty akcji co turę (5 minut) i odpalane w sekwencji - potem tylko ogladasz replay rundy
+na przyklad atak, parry/rest, riposte
 
+Mapa
+-na początek tylko miasta maja sub-mapy
+-stworzyc UI dla tilesow - modala z meta danymi o tilesie
+
+UI i flow dla „systemu informacji”
 
 dodać codegen - plop - dla :
 -Componentów małych typu Button
