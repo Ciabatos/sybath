@@ -1,4 +1,3 @@
-
 teraz zajac sie districtem
 dodac inventory
 produkowanie co interwal produktow
@@ -20,9 +19,6 @@ Gry:
 -Dominions
 Zagrywane są karty akcji co turę (5 minut) i odpalane w sekwencji - potem tylko ogladasz replay rundy
 
-+zunifikowac player_abilities do abilities and ability_owner ability_types
-ability_effects 
-ability_conditions 
 
 dodać codegen - plop - dla :
 -Componentów małych typu Button
@@ -30,14 +26,14 @@ dodać codegen - plop - dla :
 -Procedur - actions
 
 
++zunifikowac player_abilities do abilities and ability_owner ability_types
+ability_effects 
+ability_conditions 
 
 ROZDZIELIC POBIERANIE POZYCJI GRACZA OD MAPTILESDATAVISABLE - i zmienic nazwe na MAPTILES_DATA_KNOWN
 Dodac Atom zaznaczony hero w celu posiadania wielu Herosow
 
-
-
 rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmianie URL
-
 
 Funkcje pisac w taki sposób function przykladowaFunkcja({ email, name }: User) { 
 -pokazuje jawnie, które pola są używane, ale nadal przyjmuje pełny Obiekt (User) dla ułatwienia
