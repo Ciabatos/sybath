@@ -35,6 +35,29 @@ const eslintConfig = [
     },
   },
 
+  // 🚫 Domyślnie: zakaz importów z actions/*
+  {
+    files: ["**/*.{js,jsx,ts,tsx}"],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [
+            {
+              group: [
+                "@/methods/actions",
+                "@/methods/actions/*",
+                "@/methods/actions/**/*",
+              ],
+              message:
+                "Importy z methods/actions są dozwolone tylko wewnątrz odpowiadających folderów composite hooków.",
+            },
+          ],
+        },
+      ],
+    },
+  },
+
   // ✅ Wyjątek: composite/* może importować z core/*
   {
     files: ["methods/hooks/*/composite/**/*.{js,jsx,ts,tsx}"],
