@@ -56,7 +56,7 @@ export async function fetchColumns(schema, table) {
   }
 }
 
-export async function fetchMethods(schema) {
+export async function fetchFunctions(schema) {
   const client = createClient()
   await client.connect()
   try {
