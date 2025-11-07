@@ -12,6 +12,14 @@ transport
 +Mechaniki produkcji
 +Mechaniki budowania budynkow
 
+
+Walka:
+Gry: 
+-Slay the spire
+-Combo Card Clashers
+-Dominions
+Zagrywane są karty akcji co turę (5 minut) i odpalane w sekwencji - potem tylko ogladasz replay rundy
+
 +zunifikowac player_abilities do abilities and ability_owner ability_types
 ability_effects 
 ability_conditions 
