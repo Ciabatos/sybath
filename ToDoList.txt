@@ -26,7 +26,7 @@ ability_conditions
 
 dodać codegen - plop - dla :
 -Componentów małych typu Button
--Componentów dużych typu Modal
+-Componentów dużych typu Modal,Page
 -Procedur - actions
 
 
