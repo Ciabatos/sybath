@@ -1,8 +1,8 @@
 import { getArgsArray, parseParamsFields, snakeToCamel, snakeToPascal } from "./helpers/helpers.js"
-import { fetchMethodArgs, fetchMethodResultColumns, fetchFunctions, fetchSchemas } from "./helpers/queries.js"
+import { fetchFunctionsNonScalar, fetchMethodArgs, fetchMethodResultColumns, fetchSchemas } from "./helpers/queries.js"
 
 // Generator plop
-export default function getMethod(plop) {
+export default function getMethodFetcher(plop) {
   plop.setGenerator("Get Function", {
     description: "Generate fetcher from Postgres method",
 
@@ -22,7 +22,7 @@ export default function getMethod(plop) {
         },
       ])
 
-      const methods = await fetchFunctions(schema)
+      const methods = await fetchFunctionsNonScalar(schema)
 
       if (methods.length === 0) {
         throw new Error(`Brak procedur w schemacie: ${schema}`)
@@ -80,7 +80,7 @@ export default function getMethod(plop) {
             }
             if (answer.length > 2) {
               return "Możesz zaznaczyć maksymalnie dwie kolumny."
-            }            
+            }
             return true
           },
         },
@@ -157,25 +157,25 @@ export default function getMethod(plop) {
       {
         type: "add",
         path: "db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}.tsx",
-        templateFile: "plop-templates/dbGetFunction.hbs",
+        templateFile: "plop-templates/dbGetMethodFetcher.hbs",
         force: true,
       },
       {
         type: "add",
         path: "{{apiPath}}",
-        templateFile: "plop-templates/apiGetFunction.hbs",
+        templateFile: "plop-templates/apiGetMethodFetcher.hbs",
         force: true,
       },
       {
         type: "add",
         path: "methods/hooks/{{schema}}/core/useFetch{{methodPascalName}}.tsx",
-        templateFile: "plop-templates/hookGetFunction.hbs",
+        templateFile: "plop-templates/hookGetMethodFetcher.hbs",
         force: true,
       },
       {
         type: "add",
         path: "methods/fetchers/{{schema}}/fetch{{methodPascalName}}Server.ts",
-        templateFile: "plop-templates/hookGetFunctionServer.hbs",
+        templateFile: "plop-templates/hookGetMethodFetcherServer.hbs",
         force: true,
       },
       {
