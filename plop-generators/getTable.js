@@ -92,17 +92,17 @@ export default function getTable(plop) {
       })
 
       // Wybór kolumn jako parametry funkcji
-      // const { paramsColumns } = await inquirer.prompt([
-      //   {
-      //     type: "checkbox",
-      //     name: "paramsColumns",
-      //     message: "Wybierz kolumny jako parametry WHERE (opcjonalnie):",
-      //     choices: methodColumns.map((f) => ({
-      //       name: `${f.name} (${f.tsType})`,
-      //       value: f.name,
-      //     })),
-      //   },
-      // ])
+      const { paramsColumns } = await inquirer.prompt([
+        {
+          type: "checkbox",
+          name: "paramsColumns",
+          message: "Wybierz kolumny jako parametry WHERE (opcjonalnie):",
+          choices: methodColumns.map((f) => ({
+            name: `${f.name} (${f.tsType})`,
+            value: f.name,
+          })),
+        },
+      ])
 
       const methodParamsColumns = methodColumns
         .filter((f) => paramsColumns.includes(f.name))
