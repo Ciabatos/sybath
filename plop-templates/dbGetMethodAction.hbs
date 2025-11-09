@@ -21,10 +21,10 @@ export async function {{methodCamelName}}({{#if methodParamsColumns}}params: {{m
   try {
     {{#if methodParamsColumns}}
     const sqlParams = Object.values(params)
-    const sql = `CALL {{schema}}.{{method}}({{sqlParamsPlaceholders}});`
+    const sql = `SELECT {{schema}}.{{method}}({{sqlParamsPlaceholders}});`
     const result = await query(sql, sqlParams)
     {{else}}
-    const sql = `CALL {{schema}}.{{method}}();`
+    const sql = `SELECT {{schema}}.{{method}}();`
     const result = await query(sql)
     {{/if}}
 
