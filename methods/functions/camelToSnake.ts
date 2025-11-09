@@ -1,3 +1,3 @@
-  export default function camelToSnake(str: string) {
-    return str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`)
-  }
+export function camelToSnake(str: string) {
+  return str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)
+}
