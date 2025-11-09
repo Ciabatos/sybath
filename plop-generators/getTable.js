@@ -8,7 +8,7 @@ dotenv.config({ path: path.resolve(process.cwd(), ".env.development") })
 // Konwersja typów SQL → TypeScript
 
 export default function getTable(plop) {
-  plop.setGenerator("Get Table", {
+  plop.setGenerator("Get Data From Table", {
     description: "Generate from Postgres table",
 
     prompts: async (inquirer) => {

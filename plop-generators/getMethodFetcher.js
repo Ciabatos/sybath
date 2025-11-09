@@ -3,8 +3,8 @@ import { fetchFunctionsNonScalar, fetchMethodArgs, fetchMethodResultColumns, fet
 
 // Generator plop
 export default function getMethodFetcher(plop) {
-  plop.setGenerator("Get Function", {
-    description: "Generate fetcher from Postgres method",
+  plop.setGenerator("Get Data From Function", {
+    description: "Generate fetcher from Postgres scalar method",
 
     prompts: async (inquirer) => {
       const schemas = await fetchSchemas()

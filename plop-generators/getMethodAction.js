@@ -3,8 +3,8 @@ import { fetchFucntionScalar, fetchMethodArgs, fetchMethodResultColumns, fetchSc
 
 // Generator plop
 export default function getMethodAction(plop) {
-  plop.setGenerator("Get Procedure", {
-    description: "Generate action from Postgres method",
+  plop.setGenerator("Get Action", {
+    description: "Generate action from Postgres non-scalar method",
 
     prompts: async (inquirer) => {
       const schemas = await fetchSchemas()
