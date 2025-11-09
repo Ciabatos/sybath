@@ -33,6 +33,8 @@ dodać codegen - plop - dla :
 -Procedur - actions
 
 
+ESLINT - dodac zakaz importow z folderu db do componentow, wszystko ma byc przez folder methods robione nawet serwerowe funkcje
+
 +zunifikowac player_abilities do abilities and ability_owner ability_types
 ability_effects 
 ability_conditions 
