@@ -4,7 +4,7 @@ import { fetchFucntionForAction, fetchMethodArgs, fetchMethodResultColumns, fetc
 // Generator plop
 export default function getMethodAction(plop) {
   plop.setGenerator("Get Action", {
-    description: "Generate action from Postgres non-scalar method",
+    description: "Generate action from Postgres method",
 
     prompts: async (inquirer) => {
       const schemas = await fetchSchemas()
@@ -25,14 +25,14 @@ export default function getMethodAction(plop) {
       const methods = await fetchFucntionForAction(schema)
 
       if (methods.length === 0) {
-        throw new Error(`Brak procedur w schemacie: ${schema}`)
+        throw new Error(`Brak metod w schemacie: ${schema}`)
       }
 
       const { method } = await inquirer.prompt([
         {
           type: "list",
           name: "method",
-          message: "Wybierz procedurę:",
+          message: "Wybierz metodę:",
           choices: methods,
         },
       ])

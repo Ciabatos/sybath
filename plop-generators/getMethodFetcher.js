@@ -4,7 +4,7 @@ import { fetchFunction, fetchMethodArgs, fetchMethodResultColumns, fetchSchemas 
 // Generator plop
 export default function getMethodFetcher(plop) {
   plop.setGenerator("Get Data From Function", {
-    description: "Generate fetcher from Postgres scalar method",
+    description: "Generate fetcher from Postgres method",
 
     prompts: async (inquirer) => {
       const schemas = await fetchSchemas()
@@ -25,14 +25,14 @@ export default function getMethodFetcher(plop) {
       const methods = await fetchFunction(schema)
 
       if (methods.length === 0) {
-        throw new Error(`Brak procedur w schemacie: ${schema}`)
+        throw new Error(`Brak metod w schemacie: ${schema}`)
       }
 
       const { method } = await inquirer.prompt([
         {
           type: "list",
           name: "method",
-          message: "Wybierz procedurę:",
+          message: "Wybierz metodę:",
           choices: methods,
         },
       ])
@@ -68,7 +68,7 @@ export default function getMethodFetcher(plop) {
         {
           type: "checkbox",
           name: "selectedColumnsIndex",
-          message: "Wybierz kolumny dla indexu:",
+          message: "Wybierz kolumny dla indexu do szybkiego wyszukiwania krotki:",
           choices: resultColumns.map((f) => ({
             name: `${f.camelName} (${f.type})`,
             value: f.camelName,
