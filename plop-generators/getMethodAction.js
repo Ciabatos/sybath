@@ -1,5 +1,5 @@
 import { getArgsArray, parseParamsFields, snakeToCamel, snakeToPascal } from "./helpers/helpers.js"
-import { fetchFucntionScalar, fetchMethodArgs, fetchMethodResultColumns, fetchSchemas } from "./helpers/queries.js"
+import { fetchFucntionForAction, fetchMethodArgs, fetchMethodResultColumns, fetchSchemas } from "./helpers/queries.js"
 
 // Generator plop
 export default function getMethodAction(plop) {
@@ -22,7 +22,7 @@ export default function getMethodAction(plop) {
         },
       ])
 
-      const methods = await fetchFucntionScalar(schema)
+      const methods = await fetchFucntionForAction(schema)
 
       if (methods.length === 0) {
         throw new Error(`Brak procedur w schemacie: ${schema}`)

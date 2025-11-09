@@ -12,9 +12,9 @@ export type {{methodParamsTypeName}} = {
 {{/if}}
 
 export type {{methodTypeName}} = {
-  status: "ok" | "fail" | "error"
-  message: string
-  data?: unknown
+{{#each methodColumns}}
+  {{camelName}}{{optional}}: {{tsType}}
+{{/each}}
 }
 
 export async function {{methodCamelName}}({{#if methodParamsColumns}}params: {{methodParamsTypeName}}{{/if}}) {

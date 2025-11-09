@@ -56,24 +56,20 @@ export async function fetchColumns(schema, table) {
   }
 }
 
-export async function fetchFunctionsNonScalar(schema) {
+export async function fetchFunction(schema) {
   const client = createClient()
   await client.connect()
   try {
     const res = await client.query(
       `
       SELECT p.proname
-      FROM pg_catalog.pg_proc p
-      JOIN pg_catalog.pg_namespace n ON n.oid = p.pronamespace
+      FROM pg_proc p
+      JOIN pg_namespace n ON n.oid = p.pronamespace
       WHERE n.nspname = $1
         AND p.prokind = 'f'
-        AND (
-              p.proretset = true
-              OR (p.proargmodes IS NOT NULL AND 
-                  (array_position(p.proargmodes, 'o') IS NOT NULL OR array_position(p.proargmodes, 'b') IS NOT NULL))
-            )
+        AND pg_get_function_result(p.oid) NOT LIKE '%status%'
+        AND pg_get_function_result(p.oid) NOT LIKE '%message%'
       ORDER BY proname;
-
     `,
       [schema],
     )
@@ -83,20 +79,21 @@ export async function fetchFunctionsNonScalar(schema) {
   }
 }
 
-export async function fetchFucntionScalar(schema) {
+export async function fetchFucntionForAction(schema) {
   const client = createClient()
   await client.connect()
   try {
     const res = await client.query(
       `
       SELECT p.proname
-      FROM pg_catalog.pg_proc p
-      JOIN pg_catalog.pg_namespace n ON n.oid = p.pronamespace
+      FROM pg_proc p
+      JOIN pg_namespace n ON n.oid = p.pronamespace
       WHERE n.nspname = $1
         AND p.prokind = 'f'
-        AND p.proretset = false
-        AND (p.proargmodes IS NULL OR array_position(p.proargmodes, 'o') IS NULL)
+        AND pg_get_function_result(p.oid) LIKE '%status%'
+        AND pg_get_function_result(p.oid) LIKE '%message%'
       ORDER BY proname;
+
     `,
       [schema],
     )
