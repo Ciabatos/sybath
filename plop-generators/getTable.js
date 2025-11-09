@@ -127,7 +127,7 @@ export default function getTable(plop) {
       const apiParamPathSquareBrackets = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `[${f.camelName}]`).join("/") : ""
       const apiParamPath = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `\${params.${f.camelName}}`).join("/") : ""
 
-      const apiPath = `app/api/${tableCamelName}${apiParamPathSquareBrackets}/route.tsx`
+      const apiPath = `app/api/${tableCamelName}${apiParamPathSquareBrackets}/route.ts`
       const apiPathParams = `/api/${tableCamelName}${apiParamPath}`
 
       console.log({
@@ -174,7 +174,7 @@ export default function getTable(plop) {
     actions: [
       {
         type: "add",
-        path: "db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}.tsx",
+        path: "db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}.ts",
         templateFile: "plop-templates/dbGetTable.hbs",
         force: true,
       },
@@ -186,7 +186,7 @@ export default function getTable(plop) {
       },
       {
         type: "add",
-        path: "methods/hooks/{{schema}}/core/useFetch{{tablePascalName}}.tsx",
+        path: "methods/hooks/{{schema}}/core/useFetch{{tablePascalName}}.ts",
         templateFile: "plop-templates/hookGetTable.hbs",
         force: true,
       },

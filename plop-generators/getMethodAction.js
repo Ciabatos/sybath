@@ -99,7 +99,7 @@ export default function getMethodAction(plop) {
       },
       {
         type: "add",
-        path: "db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}.tsx",
+        path: "db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}.ts",
         templateFile: "plop-templates/dbGetMethodAction.hbs",
         force: true,
       },

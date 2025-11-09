@@ -107,7 +107,7 @@ export default function getMethodFetcher(plop) {
       const apiParamPathSquareBrackets = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `[${f.camelName}]`).join("/") : ""
       const apiParamPath = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `\${params.${f.camelName}}`).join("/") : ""
 
-      const apiPath = `app/api/${methodCamelName}${apiParamPathSquareBrackets}/route.tsx`
+      const apiPath = `app/api/${methodCamelName}${apiParamPathSquareBrackets}/route.ts`
       const apiPathParams = `/api/${methodCamelName}${apiParamPath}`
 
       console.log({
@@ -156,7 +156,7 @@ export default function getMethodFetcher(plop) {
     actions: [
       {
         type: "add",
-        path: "db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}.tsx",
+        path: "db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}.ts",
         templateFile: "plop-templates/dbGetMethodFetcher.hbs",
         force: true,
       },
@@ -168,7 +168,7 @@ export default function getMethodFetcher(plop) {
       },
       {
         type: "add",
-        path: "methods/hooks/{{schema}}/core/useFetch{{methodPascalName}}.tsx",
+        path: "methods/hooks/{{schema}}/core/useFetch{{methodPascalName}}.ts",
         templateFile: "plop-templates/hookGetMethodFetcher.hbs",
         force: true,
       },
