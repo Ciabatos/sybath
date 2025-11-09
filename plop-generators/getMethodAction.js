@@ -94,7 +94,7 @@ export default function getMethodAction(plop) {
       {
         type: "add",
         path: "methods/actions/{{schema}}/{{methodName}}.ts",
-        templateFile: "plop-templates/actionMethodAction.hbs",
+        templateFile: "plop-templates/actionGetMethodAction.hbs",
         force: true,
       },
       {

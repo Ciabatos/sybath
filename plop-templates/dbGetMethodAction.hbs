@@ -28,7 +28,7 @@ export async function {{methodCamelName}}({{#if methodParamsColumns}}params: {{m
     const result = await query(sql)
     {{/if}}
 
-    return result.rows as {{methodTypeName}}[]
+    return result.rows[0]?.result as {{methodTypeName}}
   } catch (error) {
     console.error("Error executing {{methodCamelName}}:", error)
     throw new Error("Failed to execute {{methodCamelName}}")

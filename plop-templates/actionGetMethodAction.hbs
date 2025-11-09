@@ -1,4 +1,4 @@
-// GENERATED CODE - DO NOT EDIT MANUALLY - actionMethodAction.hbs
+// GENERATED CODE - DO NOT EDIT MANUALLY - actionGetMethodAction.hbs
 "use server"
 
 import { {{methodParamsTypeName}}, {{methodCamelName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
@@ -6,7 +6,7 @@ import { {{methodParamsTypeName}}, {{methodCamelName}} } from "@/db/postgresMain
 export async function {{methodName}}(params: {{methodParamsTypeName}}) {
   try {
     const result = await {{methodCamelName}}(params) 
-    return result.rows as {{methodTypeName}}[]
+    return result
   } catch (error) {
     console.error("Error {{methodName}} :", error)
     return "Failed to {{methodName}}"
