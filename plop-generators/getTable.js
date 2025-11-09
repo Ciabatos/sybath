@@ -65,7 +65,7 @@ export default function getTable(plop) {
         {
           type: "checkbox",
           name: "selectedColumnsIndex",
-          message: "Wybierz kolumny dla indexu:",
+          message: "Wybierz kolumny dla indexu do szybkiego wyszukiwania krotki:",
           choices: methodColumns.map((f) => ({
             name: `${f.name} (${f.tsType})`,
             value: f.name,
@@ -96,7 +96,7 @@ export default function getTable(plop) {
         {
           type: "checkbox",
           name: "paramsColumns",
-          message: "Wybierz kolumny jako parametry funkcji (opcjonalnie):",
+          message: "Wybierz kolumny jako parametry WHERE (opcjonalnie):",
           choices: methodColumns.map((f) => ({
             name: `${f.name} (${f.tsType})`,
             value: f.name,
