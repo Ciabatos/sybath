@@ -12,7 +12,7 @@ export function useFetch{{tablePascalName}}ByKey({{#if methodParamsColumns}} par
   const {{tableCamelName}} = useAtomValue({{tableCamelName}}Atom)
   const set{{tablePascalName}} = useSetAtom({{tableCamelName}}Atom)
   
-  const { data } = useSWR(`{{apiPathParams}}`, { refreshInterval: 3000 })
+  const { data } = useSWR(`{{apiPathParamsByKey}}`, { refreshInterval: 3000 })
 
   const prevDataRef = useRef<unknown>(null)
 
