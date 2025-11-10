@@ -69,6 +69,7 @@ export async function fetchFunction(schema) {
         AND p.prokind = 'f'
         AND pg_get_function_result(p.oid) NOT LIKE '%status%'
         AND pg_get_function_result(p.oid) NOT LIKE '%message%'
+        AND pg_get_function_result(p.oid) NOT LIKE '%SETOF ' || $1 || '.%'
       ORDER BY proname;
     `,
       [schema],
