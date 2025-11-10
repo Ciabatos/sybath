@@ -33,8 +33,13 @@ tego użyć do wyciagania po kluczu
 const key = [`${tile.x},${tile.y}`]
 
 dodać codegen - plop - dla :
--Componentów małych typu Button
--Componentów dużych typu Modal,Page
+-page - zrobic
+	czy parametry sa
+	pobieranie z fetcherow metod i wybranie
+	SWRProvider generowanie
+	
+-Componentów małych typu Button - to chyba juz istnieje ?
+-Componentów dużych typu Modal - to nie wiem trzeba zobaczyc przy budowaniu
 
 
 ESLINT - dodac zakaz importow z folderu db do componentow, wszystko ma byc przez folder methods robione nawet serwerowe funkcje
