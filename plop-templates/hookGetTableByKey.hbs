@@ -1,0 +1,29 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTable.hbs
+
+"use client"
+import { {{indexTypeName}}{{#if methodParamsColumns}}, {{methodParamsTypeName}}{{/if}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
+import { {{indexMethodName}} } from "@/methods/functions/converters"
+import { {{tableCamelName}}Atom } from "@/store/atoms"
+import { useAtomValue, useSetAtom } from "jotai"
+import { useEffect, useRef } from "react"
+import useSWR from "swr"
+
+export function useFetch{{tablePascalName}}ByKey({{#if methodParamsColumns}} params: {{methodParamsTypeName}} {{/if}}) {
+  const {{tableCamelName}} = useAtomValue({{tableCamelName}}Atom)
+  const set{{tablePascalName}} = useSetAtom({{tableCamelName}}Atom)
+  
+  const { data } = useSWR(`{{apiPathParams}}`, { refreshInterval: 3000 })
+
+  const prevDataRef = useRef<unknown>(null)
+
+  useEffect(() => {
+    if (data === undefined) return
+    if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
+      const index = data ? ({{{indexMethodName}}}({{{indexMethodParams}}}, data) as {{indexTypeName}}) : {}
+      set{{tablePascalName}}(index)
+      prevDataRef.current = data
+    }
+  }, [data, set{{tablePascalName}}])
+
+  return { {{tableCamelName}} }
+}

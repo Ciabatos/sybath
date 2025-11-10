@@ -3,15 +3,14 @@
 
 import { {{indexMethodName}} } from "@/methods/functions/converters"
 import { {{methodName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
-{{#if methodParamsColumns}}import { {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}" {{/if}}
 {{#if (eq indexMethodName "arrayToObjectKeysId")}}
 import type { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 {{else}}
 import type { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 {{/if}}
 
-export async function {{methodName}}Server({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}): Promise<{{indexTypeName}}> {
-  const {{methodName}}Data = await {{methodName}}({{#if methodParamsColumns}}params{{/if}})
+export async function {{methodName}}Server(): Promise<{{indexTypeName}}> {
+  const {{methodName}}Data = await {{methodName}}()
 
   const data = {{methodName}}Data ? ({{{indexMethodName}}}({{{indexMethodParams}}}, {{methodName}}Data) as {{indexTypeName}}) : {}
 

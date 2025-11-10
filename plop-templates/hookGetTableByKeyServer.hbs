@@ -1,0 +1,19 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableServer.hbs
+"use server"
+
+import { {{indexMethodName}} } from "@/methods/functions/converters"
+import { {{methodNameByKey}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
+{{#if methodParamsColumns}}import { {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}" {{/if}}
+{{#if (eq indexMethodName "arrayToObjectKeysId")}}
+import type { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
+{{else}}
+import type { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
+{{/if}}
+
+export async function {{methodNameByKey}}Server({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}): Promise<{{indexTypeName}}> {
+  const {{methodNameByKey}}Data = await {{methodNameByKey}}({{#if methodParamsColumns}}params{{/if}})
+
+  const data = {{methodNameByKey}}Data ? ({{{indexMethodName}}}({{{indexMethodParams}}}, {{methodNameByKey}}Data) as {{indexTypeName}}) : {}
+
+  return data
+}

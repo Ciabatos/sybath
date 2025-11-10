@@ -11,13 +11,11 @@ export type {{methodParamsTypeName}} = {
 }
 {{/if}}
 
-
 export type {{methodTypeName}} = {
 {{#each methodColumns}}
   {{camelName}}{{optional}}: {{tsType}}
 {{/each}}
 }
-
 
 {{#if (eq indexMethodName "arrayToObjectKeysId")}}
 export type {{indexTypeName}} = Record<string, {{methodTypeName}}>
