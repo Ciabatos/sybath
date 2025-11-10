@@ -1,7 +1,7 @@
 import dotenv from "dotenv"
 import path from "path"
-import { mapSQLTypeToTS, snakeToCamel, snakeToPascal } from "./helpers/helpers.js"
-import { createMethodGetRecords, createMethodGetRecordsByKey, fetchColumns, fetchSchemas, fetchTables } from "./helpers/queries.js"
+import { getArgsArray, mapSQLTypeToTS, snakeToCamel, snakeToPascal } from "./helpers/helpers.js"
+import { createMethodGetRecords, createMethodGetRecordsByKey, fetchColumns, fetchMethodArgs, fetchSchemas, fetchTables } from "./helpers/queries.js"
 
 dotenv.config({ path: path.resolve(process.cwd(), ".env.development") })
 
@@ -131,11 +131,16 @@ export default function getTable(plop) {
       const indexMethodParams = indexColumns.map((f) => `"${snakeToCamel(f.name)}"`).join(", ")
       const indexParamsColumns = methodParamsColumns.map((f) => snakeToCamel(f.name)).join(", ")
 
-      createMethodGetRecordsByKey(schema, table, indexParamsColumns)
       createMethodGetRecords(schema, table)
+      console.log(schema, table, indexParamsColumns)
+      await createMethodGetRecordsByKey(schema, table, indexParamsColumns)
 
       const methodRecords = `get_${table}`
       const methodRecordsByKey = `get_${table}_by_key`
+
+      const argsStr = await fetchMethodArgs(schema, methodRecordsByKey)
+      const argsArray = getArgsArray(argsStr)
+      const sqlParamsPlaceholders = argsArray.map((_, i) => `$${i + 1}`).join(", ")
 
       const apiParamPathSquareBrackets = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `[${f.camelName}]`).join("/") : ""
       const apiParamPath = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `\${params.${f.camelName}}`).join("/") : ""
@@ -155,6 +160,7 @@ export default function getTable(plop) {
         methodNameByKey,
         methodRecords,
         methodRecordsByKey,
+        sqlParamsPlaceholders,
         methodColumns,
         indexMethodParams,
         indexParamsColumns,
@@ -178,6 +184,7 @@ export default function getTable(plop) {
         methodNameByKey,
         methodRecords,
         methodRecordsByKey,
+        sqlParamsPlaceholders,
         methodColumns,
         indexMethodParams,
         indexParamsColumns,

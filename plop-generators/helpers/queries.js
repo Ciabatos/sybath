@@ -169,8 +169,7 @@ export async function createMethodGetRecords(schema, table) {
   const client = createClient()
   await client.connect()
   try {
-    const res = await client.query(
-      `
+    const sql = `
       CREATE OR REPLACE FUNCTION ${schema}.get_${table}()
       RETURNS SETOF ${schema}.${table}
       LANGUAGE plpgsql
@@ -180,11 +179,9 @@ export async function createMethodGetRecords(schema, table) {
           SELECT * FROM ${schema}.${table};
       END;
       $$;
-    `,
-      [schema, table],
-    )
-    if (!res.rows[0]) throw new Error(`Table ${schema}.${table} not found`)
-    return res.rows[0].args || ""
+    `
+    await client.query(sql)
+    return true
   } finally {
     await client.end()
   }
@@ -194,7 +191,7 @@ export async function createMethodGetRecordsByKey(schema, table, indexParamsColu
   const client = createClient()
   await client.connect()
   try {
-    // Normalize input to array of column names
+    // Normalize input to array of column names (accept "a,b" or ["a","b"])
     const cols = Array.isArray(indexParamsColumns)
       ? indexParamsColumns.map((c) => String(c).trim()).filter(Boolean)
       : String(indexParamsColumns || "")
@@ -206,30 +203,41 @@ export async function createMethodGetRecordsByKey(schema, table, indexParamsColu
       throw new Error("indexParamsColumns must contain at least one column name")
     }
 
-    // Pobierz typy kolumn z information_schema
+    // helper: convert camelCase to snake_case if needed
+    const camelToSnake = (s) => (s.includes("_") ? s : s.replace(/([A-Z])/g, "_$1").toLowerCase())
+
+    // map to DB column names (snake_case)
+    const dbCols = cols.map((c) => camelToSnake(c))
+
+    // Pobierz typy kolumn z information_schema (data_type + character_maximum_length)
     const resCols = await client.query(
       `
-      SELECT column_name, data_type
+      SELECT column_name, data_type, character_maximum_length
       FROM information_schema.columns
       WHERE table_schema = $1 AND table_name = $2 AND column_name = ANY($3::text[])
     `,
-      [schema, table, cols],
+      [schema, table, dbCols],
     )
 
     const typeMap = {}
     resCols.rows.forEach((r) => {
-      typeMap[r.column_name] = r.data_type
+      let typeStr = r.data_type
+      // dopasuj długość dla character varying
+      if (r.data_type === "character varying" && r.character_maximum_length) {
+        typeStr = `character varying(${r.character_maximum_length})`
+      }
+      typeMap[r.column_name] = typeStr
     })
 
-    const missing = cols.filter((c) => !typeMap[c])
+    const missing = dbCols.filter((c) => !typeMap[c])
     if (missing.length) {
       throw new Error(`Columns not found in ${schema}.${table}: ${missing.join(", ")}`)
     }
 
     // Zbuduj definicję parametrów i klauzulę WHERE (p_<col>)
-    const paramsDef = cols.map((c) => `p_${c} ${typeMap[c]}`).join(", ")
-    const whereClause = cols.map((c) => `"${c}" = p_${c}`).join(" AND ")
-
+    const paramsDef = dbCols.map((c) => `p_${c} ${typeMap[c]}`).join(", ")
+    const whereClause = dbCols.map((c) => `"${c}" = p_${c}`).join(" AND ")
+    console.log(paramsDef, whereClause)
     const sql = `
       CREATE OR REPLACE FUNCTION ${schema}.get_${table}_by_key(${paramsDef})
       RETURNS SETOF ${schema}.${table}
