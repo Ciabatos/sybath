@@ -9,7 +9,7 @@ dotenv.config({ path: path.resolve(process.cwd(), ".env.development") })
 
 export default function getTable(plop) {
   plop.setGenerator("Get Data From Table", {
-    description: "Generate from Postgres table",
+    description: "Generate fetchers from Postgres table",
 
     prompts: async (inquirer) => {
       // Pobranie schematów
