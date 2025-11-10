@@ -28,9 +28,15 @@ Mapa
 UI i flow dla „systemu informacji”
 
 dodać codegen - plop - dla :
+-Zmienic generowanie tabel na :
+-tworzenie funkcji w DB do pobierania wszystkich krotek, pobierania jednej krotki
+get_ → GET
+sufiks _by_key → dodaje /:[parameters] do ścieżki
+tworzenie api i reszty jak teraz w plopjs
+i dodac RLS z policy
+
 -Componentów małych typu Button
 -Componentów dużych typu Modal,Page
--Procedur - actions
 
 
 ESLINT - dodac zakaz importow z folderu db do componentow, wszystko ma byc przez folder methods robione nawet serwerowe funkcje

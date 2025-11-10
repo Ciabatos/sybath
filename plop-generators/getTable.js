@@ -1,7 +1,7 @@
 import dotenv from "dotenv"
 import path from "path"
 import { mapSQLTypeToTS, snakeToCamel, snakeToPascal } from "./helpers/helpers.js"
-import { fetchColumns, fetchSchemas, fetchTables } from "./helpers/queries.js"
+import { createMethodGetRecords, createMethodGetRecordsByKey, fetchColumns, fetchSchemas, fetchTables } from "./helpers/queries.js"
 
 dotenv.config({ path: path.resolve(process.cwd(), ".env.development") })
 
@@ -96,11 +96,17 @@ export default function getTable(plop) {
         {
           type: "checkbox",
           name: "paramsColumns",
-          message: "Wybierz kolumny jako parametry WHERE (opcjonalnie):",
+          message: "Wybierz kolumny jako parametry WHERE dla jednego rekordu:",
           choices: methodColumns.map((f) => ({
             name: `${f.name} (${f.tsType})`,
             value: f.name,
           })),
+          validate: (answer) => {
+            if (answer.length < 1) {
+              return "Musisz zaznaczyć przynajmniej jedną kolumnę."
+            }
+            return true
+          },
         },
       ])
 
@@ -117,12 +123,19 @@ export default function getTable(plop) {
       const methodTypeName = "T" + snakeToPascal(schema) + tablePascalName
       const methodParamsTypeName = methodTypeName + "Params"
       const methodName = "get" + snakeToPascal(schema) + tablePascalName
+      const methodNameByKey = "get" + snakeToPascal(schema) + tablePascalName + "ByKey"
 
       const indexTypeMethodName = indexColumns.map((f) => f.pascalName).join("")
       const indexMethodName = indexColumns.length > 1 ? "arrayToObjectKeysId" : "arrayToObjectKeyId"
       const indexTypeName = methodTypeName + "RecordBy" + indexTypeMethodName
       const indexMethodParams = indexColumns.map((f) => `"${snakeToCamel(f.name)}"`).join(", ")
       const indexParamsColumns = methodParamsColumns.map((f) => snakeToCamel(f.name)).join(", ")
+
+      createMethodGetRecordsByKey(schema, table, indexParamsColumns)
+      createMethodGetRecords(schema, table)
+
+      const methodRecords = `get_${table}`
+      const methodRecordsByKey = `get_${table}_by_key`
 
       const apiParamPathSquareBrackets = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `[${f.camelName}]`).join("/") : ""
       const apiParamPath = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `\${params.${f.camelName}}`).join("/") : ""
@@ -139,6 +152,9 @@ export default function getTable(plop) {
         methodParamsTypeName,
         methodParamsColumns,
         methodName,
+        methodNameByKey,
+        methodRecords,
+        methodRecordsByKey,
         methodColumns,
         indexMethodParams,
         indexParamsColumns,
@@ -159,6 +175,9 @@ export default function getTable(plop) {
         methodParamsTypeName,
         methodParamsColumns,
         methodName,
+        methodNameByKey,
+        methodRecords,
+        methodRecordsByKey,
         methodColumns,
         indexMethodParams,
         indexParamsColumns,

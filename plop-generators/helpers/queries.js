@@ -164,3 +164,88 @@ export async function fetchMethodResultColumns(schema, method) {
     await client.end()
   }
 }
+
+export async function createMethodGetRecords(schema, table) {
+  const client = createClient()
+  await client.connect()
+  try {
+    const res = await client.query(
+      `
+      CREATE OR REPLACE FUNCTION ${schema}.get_${table}()
+      RETURNS SETOF ${schema}.${table}
+      LANGUAGE plpgsql
+      AS $$
+      BEGIN
+          RETURN QUERY
+          SELECT * FROM ${schema}.${table};
+      END;
+      $$;
+    `,
+      [schema, table],
+    )
+    if (!res.rows[0]) throw new Error(`Table ${schema}.${table} not found`)
+    return res.rows[0].args || ""
+  } finally {
+    await client.end()
+  }
+}
+
+export async function createMethodGetRecordsByKey(schema, table, indexParamsColumns) {
+  const client = createClient()
+  await client.connect()
+  try {
+    // Normalize input to array of column names
+    const cols = Array.isArray(indexParamsColumns)
+      ? indexParamsColumns.map((c) => String(c).trim()).filter(Boolean)
+      : String(indexParamsColumns || "")
+          .split(",")
+          .map((c) => c.trim())
+          .filter(Boolean)
+
+    if (cols.length === 0) {
+      throw new Error("indexParamsColumns must contain at least one column name")
+    }
+
+    // Pobierz typy kolumn z information_schema
+    const resCols = await client.query(
+      `
+      SELECT column_name, data_type
+      FROM information_schema.columns
+      WHERE table_schema = $1 AND table_name = $2 AND column_name = ANY($3::text[])
+    `,
+      [schema, table, cols],
+    )
+
+    const typeMap = {}
+    resCols.rows.forEach((r) => {
+      typeMap[r.column_name] = r.data_type
+    })
+
+    const missing = cols.filter((c) => !typeMap[c])
+    if (missing.length) {
+      throw new Error(`Columns not found in ${schema}.${table}: ${missing.join(", ")}`)
+    }
+
+    // Zbuduj definicję parametrów i klauzulę WHERE (p_<col>)
+    const paramsDef = cols.map((c) => `p_${c} ${typeMap[c]}`).join(", ")
+    const whereClause = cols.map((c) => `"${c}" = p_${c}`).join(" AND ")
+
+    const sql = `
+      CREATE OR REPLACE FUNCTION ${schema}.get_${table}_by_key(${paramsDef})
+      RETURNS SETOF ${schema}.${table}
+      LANGUAGE plpgsql
+      AS $$
+      BEGIN
+          RETURN QUERY
+          SELECT * FROM ${schema}.${table}
+          WHERE ${whereClause};
+      END;
+      $$;
+    `
+
+    await client.query(sql)
+    return true
+  } finally {
+    await client.end()
+  }
+}
