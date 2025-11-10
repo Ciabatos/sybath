@@ -6,7 +6,6 @@ import { {{methodName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{t
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 {{#if methodParamsColumns}}
-import z from "zod"
 
 {{/if}}
 export async function GET(request: NextRequest): Promise<NextResponse> {
