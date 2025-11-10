@@ -27,9 +27,12 @@ Mapa
 
 UI i flow dla „systemu informacji”
 
-dodać codegen - plop - dla :
 dodac RLS z policy
 
+tego użyć do wyciagania po kluczu
+const key = [`${tile.x},${tile.y}`]
+
+dodać codegen - plop - dla :
 -Componentów małych typu Button
 -Componentów dużych typu Modal,Page
 
