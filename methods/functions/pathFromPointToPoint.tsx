@@ -1,4 +1,4 @@
-import { astar, Graph } from "@/methods/functions/astar"
+import { astar, Graph } from "@/methods/functions/astar.cjs"
 import { TJoinedMapTile, TJoinedMapTileByCoordinates } from "@/methods/functions/joinMapTiles"
 
 interface GridNode {
