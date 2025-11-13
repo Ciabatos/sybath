@@ -19,6 +19,6 @@ export async function {{methodName}}Server({{#if methodParamsColumns}} params: {
 
   const data = {{methodName}}Data ? ({{{indexMethodName}}}({{{indexMethodParams}}}, {{methodName}}Data) as {{indexTypeName}}) : {}
 
-  return { raw: {{methodName}}Data, byKey: data, apiPath: {{apiPath}} }
+  return { raw: {{methodName}}Data, byKey: data, apiPath: {{apiPathParams}} }
 }
 
