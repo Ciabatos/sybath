@@ -12,10 +12,11 @@ import type { {{methodTypeName}}, {{indexTypeName}} } from "@/db/postgresMainDat
 export async function {{methodName}}Server(): Promise<{
   raw: {{methodTypeName}}[]
   byKey: {{indexTypeName}}
+  apiPath: string
 }> {
   const {{methodName}}Data = await {{methodName}}()
 
   const data = {{methodName}}Data ? ({{{indexMethodName}}}({{{indexMethodParams}}}, {{methodName}}Data) as {{indexTypeName}}) : {}
 
-  return { raw: {{methodName}}Data, byKey: data }
+  return { raw: {{methodName}}Data, byKey: data, apiPath: {{apiPath}} }
 }

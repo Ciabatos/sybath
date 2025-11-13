@@ -13,10 +13,11 @@ import type { {{methodTypeName}}, {{indexTypeName}} } from "@/db/postgresMainDat
 export async function {{methodNameByKey}}Server({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}): Promise<{
   raw: {{methodTypeName}}[]
   byKey: {{indexTypeName}}
+  apiPath: string
 }> {
   const {{methodNameByKey}}Data = await {{methodNameByKey}}({{#if methodParamsColumns}}params{{/if}})
 
   const data = {{methodNameByKey}}Data ? ({{{indexMethodName}}}({{{indexMethodParams}}}, {{methodNameByKey}}Data) as {{indexTypeName}}) : {}
 
-  return { raw: {{methodNameByKey}}Data, byKey: data }
+  return { raw: {{methodNameByKey}}Data, byKey: data, apiPath: {{apiPathByKey}} }
 }
