@@ -33,6 +33,10 @@ export function snakeToPascal(str) {
   return str.replace(/(^|_)([a-z])/g, (_, __, c) => c.toUpperCase())
 }
 
+function camelToKebab(str) {
+  return str.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase()
+}
+
 export function mapSQLTypeToTS(sqlType) {
   if (!sqlType) return "any"
   let cleanType = sqlType.trim().toLowerCase()

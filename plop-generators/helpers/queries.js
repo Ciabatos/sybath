@@ -150,7 +150,8 @@ export async function fetchMethodResultColumns(schema, method) {
     return tableMatch[1]
       .split(",")
       .map((col) => {
-        const [name, type] = col.trim().split(" ")
+        const [rawName, type] = col.trim().split(" ")
+        const name = rawName.replace(/"/g, "")
         return name && type
           ? {
               name,

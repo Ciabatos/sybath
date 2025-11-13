@@ -1,6 +1,6 @@
 import dotenv from "dotenv"
 import path from "path"
-import { getArgsArray, mapSQLTypeToTS, snakeToCamel, snakeToPascal } from "./helpers/helpers.js"
+import { camelToKebab, getArgsArray, mapSQLTypeToTS, snakeToCamel, snakeToPascal } from "./helpers/helpers.js"
 import { createMethodGetRecords, createMethodGetRecordsByKey, fetchColumns, fetchMethodArgs, fetchSchemas, fetchTables } from "./helpers/queries.js"
 
 dotenv.config({ path: path.resolve(process.cwd(), ".env.development") })
@@ -144,16 +144,18 @@ export default function getTable(plop) {
       const apiParamPathSquareBrackets = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `[${f.camelName}]`).join("/") : ""
       const apiParamPath = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `\${params.${f.camelName}}`).join("/") : ""
 
-      const apiPath = `app/api/${schema}/${tableCamelName}/route.ts`
-      const apiPathByKey = `app/api/${schema}/${tableCamelName}${apiParamPathSquareBrackets}/route.ts`
-      const apiPathParams = `/api/${schema}/${tableCamelName}`
-      const apiPathParamsByKey = `/api/${schema}/${tableCamelName}${apiParamPath}`
+      const tableKebabName = camelToKebab(tableCamelName)
+      const apiPath = `app/api/${schema}/${tableKebabName}/route.ts`
+      const apiPathByKey = `app/api/${schema}/${tableKebabName}${apiParamPathSquareBrackets}/route.ts`
+      const apiPathParams = `/api/${schema}/${tableKebabName}`
+      const apiPathParamsByKey = `/api/${schema}/${tableKebabName}${apiParamPath}`
 
       console.log({
         schema,
         table,
         tableCamelName,
         tablePascalName,
+        tableKebabName,
         methodTypeName,
         methodParamsTypeName,
         methodParamsColumns,
@@ -180,6 +182,7 @@ export default function getTable(plop) {
         table,
         tableCamelName,
         tablePascalName,
+        tableKebabName,
         methodTypeName,
         methodParamsTypeName,
         methodParamsColumns,

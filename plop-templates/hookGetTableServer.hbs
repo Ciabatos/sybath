@@ -4,15 +4,18 @@
 import { {{indexMethodName}} } from "@/methods/functions/converters"
 import { {{methodName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 {{#if (eq indexMethodName "arrayToObjectKeysId")}}
-import type { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
+import type { {{methodTypeName}}, {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 {{else}}
-import type { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
+import type { {{methodTypeName}}. {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 {{/if}}
 
-export async function {{methodName}}Server(): Promise<{{indexTypeName}}> {
+export async function {{methodName}}Server(): Promise<{
+  raw: {{methodTypeName}}[]
+  byKey: {{indexTypeName}}
+}> {
   const {{methodName}}Data = await {{methodName}}()
 
   const data = {{methodName}}Data ? ({{{indexMethodName}}}({{{indexMethodParams}}}, {{methodName}}Data) as {{indexTypeName}}) : {}
 
-  return data
+  return { raw: {{methodName}}Data, byKey: data }
 }
