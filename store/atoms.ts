@@ -22,6 +22,7 @@ import { TClickedTile } from "@/methods/hooks/mapTiles/composite/useMapTileActio
 import { ECityTilesActionStatus } from "@/types/enumeration/CityTilesActionStatusEnum"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { atom } from "jotai"
+import { TAttributesSkillsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/skills"
 
 //Map
 export const clickedTileAtom = atom<TClickedTile>()
@@ -67,4 +68,5 @@ export const actionTaskInProcessAtom = atom<TActionTaskInProcess>()
 //Tables
 
 
+export const skillsAtom = atom<TAttributesSkillsRecordById>({})
 //Functions
