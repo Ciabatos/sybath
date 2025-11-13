@@ -23,6 +23,7 @@ import { ECityTilesActionStatus } from "@/types/enumeration/CityTilesActionStatu
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { atom } from "jotai"
 import { TAttributesSkillsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/skills"
+import { TAttributesSkillsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/skills"
 
 //Map
 export const clickedTileAtom = atom<TClickedTile>()
@@ -68,5 +69,6 @@ export const actionTaskInProcessAtom = atom<TActionTaskInProcess>()
 //Tables
 
 
+export const skillsAtom = atom<TAttributesSkillsRecordById>({})
 export const skillsAtom = atom<TAttributesSkillsRecordById>({})
 //Functions

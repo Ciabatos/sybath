@@ -8,10 +8,11 @@ import type { TAttributesSkills, TAttributesSkillsRecordById } from "@/db/postgr
 export async function getAttributesSkillsServer(): Promise<{
   raw: TAttributesSkills[]
   byKey: TAttributesSkillsRecordById
+  apiPath: string
 }> {
   const getAttributesSkillsData = await getAttributesSkills()
 
   const data = getAttributesSkillsData ? (arrayToObjectKeyId("id", getAttributesSkillsData) as TAttributesSkillsRecordById) : {}
 
-  return { raw: getAttributesSkillsData, byKey: data }
+  return { raw: getAttributesSkillsData, byKey: data, apiPath: `/api/attributes/skills` }
 }
