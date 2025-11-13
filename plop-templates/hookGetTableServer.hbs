@@ -18,5 +18,5 @@ export async function {{methodName}}Server(): Promise<{
 
   const data = {{methodName}}Data ? ({{{indexMethodName}}}({{{indexMethodParams}}}, {{methodName}}Data) as {{indexTypeName}}) : {}
 
-  return { raw: {{methodName}}Data, byKey: data, apiPath: {{apiPathParams}} }
+  return { raw: {{methodName}}Data, byKey: data, apiPath: `{{apiPathParams}}` }
 }
