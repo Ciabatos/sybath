@@ -37,7 +37,6 @@ dodać codegen - plop - dla :
 	czy parametry sa
 	pobieranie z fetcherow metod i wybranie
 	SWRProvider generowanie
-	
 -Componentów małych typu Button - to chyba juz istnieje ?
 -Componentów dużych typu Modal - to nie wiem trzeba zobaczyc przy budowaniu
 

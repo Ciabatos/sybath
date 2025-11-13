@@ -106,9 +106,10 @@ export default function getMethodFetcher(plop) {
 
       const apiParamPathSquareBrackets = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `[${f.camelName}]`).join("/") : ""
       const apiParamPath = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `\${params.${f.camelName}}`).join("/") : ""
-
-      const apiPath = `app/api/${methodCamelName}${apiParamPathSquareBrackets}/route.ts`
-      const apiPathParams = `/api/${methodCamelName}${apiParamPath}`
+      
+      //rpc jednoznacznie oznacza “remote procedure call”
+      const apiPath = `app/api/${schema}/rpc/${methodCamelName}${apiParamPathSquareBrackets}/route.ts`
+      const apiPathParams = `/api/${schema}/rpc/${methodCamelName}${apiParamPath}`
 
       console.log({
         schema,

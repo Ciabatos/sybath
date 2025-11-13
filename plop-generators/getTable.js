@@ -144,10 +144,10 @@ export default function getTable(plop) {
       const apiParamPathSquareBrackets = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `[${f.camelName}]`).join("/") : ""
       const apiParamPath = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `\${params.${f.camelName}}`).join("/") : ""
 
-      const apiPath = `app/api/${tableCamelName}/route.ts`
-      const apiPathByKey = `app/api/${tableCamelName}${apiParamPathSquareBrackets}/route.ts`
-      const apiPathParams = `/api/${tableCamelName}`
-      const apiPathParamsByKey = `/api/${tableCamelName}${apiParamPath}`
+      const apiPath = `app/api/${schema}/${tableCamelName}/route.ts`
+      const apiPathByKey = `app/api/${schema}/${tableCamelName}${apiParamPathSquareBrackets}/route.ts`
+      const apiPathParams = `/api/${schema}/${tableCamelName}`
+      const apiPathParamsByKey = `/api/${schema}/${tableCamelName}${apiParamPath}`
 
       console.log({
         schema,
