@@ -33,6 +33,10 @@ tego użyć do wyciagania po kluczu
 const key = [`${tile.x},${tile.y}`]
 
 dodać codegen - plop - dla :
+-Modale-w hooku i bar handlingu zrobic dynamicznie z typow enum i tam budowac plopem
+1. Stwórz enum z nazwami statusów, a obok niego typowaną mapę Record<Enum, React.ComponentType> przypisującą każdy status do odpowiedniego komponentu.
+2. W hooku useMapTilesActionStatus trzymaj aktualny status w atomie Jotai i zwracaj go do komponentu BarHandling, który pobiera komponent z mapy na podstawie tego statusu i go renderuje.
+
 -page - zrobic
 	czy parametry sa
 	pobieranie z fetcherow metod i wybranie
