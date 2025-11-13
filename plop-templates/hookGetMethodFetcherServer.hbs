@@ -3,7 +3,7 @@
 
 import { {{indexMethodName}} } from "@/methods/functions/converters"
 import { {{methodName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
-{{#if methodParamsColumns}}import { {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}" {{/if}}
+{{#if methodParamsColumns}}import type { {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}" {{/if}}
 {{#if (eq indexMethodName "arrayToObjectKeysId")}}
 import type { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
 {{else}}
