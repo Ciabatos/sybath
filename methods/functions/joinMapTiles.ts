@@ -71,3 +71,39 @@ export function joinMapTiles(
     )
   }
 }
+
+
+
+
+
+// type ParentRecord = {
+//   id: number
+//   name: string
+//   // dowolne pola
+//   [key: string]: any
+// }
+
+// type ParentRecordById = { [key: number]: ParentRecord }
+
+// type ChildSource<T> = {
+//   keyName: string // nazwa pola w parent, np. "skill", "ability"
+//   getServer: () => Promise<{ byKey: { [id: number]: T } }>
+// }
+
+// async function attachMultipleChildrenToParent(
+//   parentById: ParentRecordById,
+//   childSources: ChildSource<any>[]
+// ) {
+//   // pobieramy wszystkie dane child
+//   const childData = await Promise.all(childSources.map(cs => cs.getServer()))
+
+//   // iterujemy po rekordach parent
+//   Object.values(parentById).forEach(parentRecord => {
+//     childData.forEach((data, index) => {
+//       const keyName = childSources[index].keyName
+//       parentRecord[keyName] = data.byKey[parentRecord.id] || null
+//     })
+//   })
+
+//   return parentById
+// }
