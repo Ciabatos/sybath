@@ -11,8 +11,8 @@ import { getMapLandscapeTypes, TMapLandscapeTypesById } from "@/db/postgresMainD
 import { getMapTerrainTypes, TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
 import { getPlayerAbilities } from "@/db/postgresMainDatabase/schemas/players/playerAbilities"
 import { getPlayerSkills } from "@/db/postgresMainDatabase/schemas/players/playerSkills"
-import { arrayToObjectKeyId, arrayToObjectKeysId } from "@/methods/functions/converters"
-import { joinCityTiles } from "@/methods/functions/joinCityTiles"
+import { joinCityTiles } from "@/methods/functions/map/joinCityTiles"
+import { arrayToObjectKeyId, arrayToObjectKeysId } from "@/methods/functions/util/converters"
 import { SWRProvider } from "@/providers/swr-provider"
 import styles from "./page.module.css"
 

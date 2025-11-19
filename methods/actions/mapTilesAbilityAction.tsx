@@ -1,8 +1,8 @@
 "use server"
 
-import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
+import { TJoinMap } from "@/methods/functions/map/joinMap"
 
-export async function mapTilesAbilityAction(abilityId: number, clickedTile: TJoinedMapTile) {
+export async function mapTilesAbilityAction(abilityId: number, clickedTile: TJoinMap) {
   try {
   } catch (error) {
     console.error("Error validateAbilityAction :", error)

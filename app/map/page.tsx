@@ -1,20 +1,19 @@
 "use server"
 import { auth } from "@/auth"
 
-import MapTilesWrapper from "@/components/map/MapTilesWrapper"
-import { getAbilities } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
-import { getSkills } from "@/db/postgresMainDatabase/schemas/attributes/skills"
-import { getPlayerInventorySlots } from "@/db/postgresMainDatabase/schemas/items/inventories"
-import { getMapCities, TCitiesByCoordinates } from "@/db/postgresMainDatabase/schemas/map/cities"
-import { getMapDistricts, TDistrictsByCoordinates } from "@/db/postgresMainDatabase/schemas/map/districts"
-import { getMapLandscapeTypes, TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
-import { getMapTiles } from "@/db/postgresMainDatabase/schemas/map/mapTiles"
-import { getPlayerVisibleMapData, TPlayerVisibleMapDataByCoordinates } from "@/db/postgresMainDatabase/schemas/map/playerVisibleMapData"
-import { getMapTerrainTypes, TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
-import { getPlayerAbilities } from "@/db/postgresMainDatabase/schemas/players/playerAbilities"
-import { getPlayerSkills } from "@/db/postgresMainDatabase/schemas/players/playerSkills"
-import { arrayToObjectKeyId, arrayToObjectKeysId } from "@/methods/functions/converters"
-import { joinMapTiles } from "@/methods/functions/joinMapTiles"
+import MapWrapper from "@/components/map/MapWrapper"
+import { getAttributesAbilitiesServer } from "@/methods/fetchers/attributes/fetchAbilitiesServer"
+import { getAttributesSkillsServer } from "@/methods/fetchers/attributes/fetchSkillsServer"
+import { getPlayerInventoryServer } from "@/methods/fetchers/items/fetchPlayerInventoryServer"
+import { getMapCitiesServer } from "@/methods/fetchers/map/fetchCitiesServer"
+import { getMapDistrictsServer } from "@/methods/fetchers/map/fetchDistrictsServer"
+import { getMapLandscapeTypesServer } from "@/methods/fetchers/map/fetchLandscapeTypesServer"
+import { getMapMapTilesServer } from "@/methods/fetchers/map/fetchMapTilesServer"
+import { getPlayerVisibleMapDataServer } from "@/methods/fetchers/map/fetchPlayerVisibleMapDataServer"
+import { getMapTerrainTypesServer } from "@/methods/fetchers/map/fetchTerrainTypesServer"
+import { getPlayerAbilitiesServer } from "@/methods/fetchers/players/fetchPlayerAbilitiesServer"
+import { getPlayerSkillsServer } from "@/methods/fetchers/players/fetchPlayerSkillsServer"
+import { joinMap } from "@/methods/functions/map/joinMap"
 import { SWRProvider } from "@/providers/swr-provider"
 import styles from "./page.module.css"
 
@@ -26,52 +25,42 @@ export default async function MapPage() {
     return null
   }
 
-  const [mapTerrainTypes, mapTiles, mapLandscapeTypes, mapCities, mapDistricts, skills, abilities, mapPlayerVisibleMapData, playerInventorySlots, playerSkills, playerAbilities] = await Promise.all([
-    getMapTerrainTypes(),
-    getMapTiles(),
-    getMapLandscapeTypes(),
-    getMapCities(),
-    getMapDistricts(),
-    getSkills(),
-    getAbilities(),
-    getPlayerVisibleMapData(playerId),
-    getPlayerInventorySlots(playerId),
-    getPlayerSkills(playerId),
-    getPlayerAbilities(playerId),
+  const [terrainTypes, mapTiles, landscapeTypes, cities, districts, skills, abilities, playerVisibleMapData, playerInventory, playerSkills, playerAbilities] = await Promise.all([
+    getMapTerrainTypesServer(),
+    getMapMapTilesServer(),
+    getMapLandscapeTypesServer(),
+    getMapCitiesServer(),
+    getMapDistrictsServer(),
+    getAttributesSkillsServer(),
+    getAttributesAbilitiesServer(),
+    getPlayerVisibleMapDataServer({ playerId }),
+    getPlayerInventoryServer({ playerId }),
+    getPlayerSkillsServer({ playerId }),
+    getPlayerAbilitiesServer({ playerId }),
   ])
 
-  const terrainTypes = arrayToObjectKeyId("id", mapTerrainTypes) as TMapTerrainTypesById
-
-  const landscapeTypes = arrayToObjectKeyId("id", mapLandscapeTypes) as TMapLandscapeTypesById
-
-  const cities = mapCities ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", mapCities) as TCitiesByCoordinates) : {}
-
-  const districts = mapDistricts ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", mapDistricts) as TDistrictsByCoordinates) : {}
-
-  const playerVisibleMapData = mapPlayerVisibleMapData ? (arrayToObjectKeysId("map_tile_x", "map_tile_y", mapPlayerVisibleMapData) as TPlayerVisibleMapDataByCoordinates) : {}
-
-  const joinedMapTiles = joinMapTiles(mapTiles, terrainTypes, landscapeTypes, cities, districts, playerVisibleMapData)
+  const joinedMap = joinMap(mapTiles.byKey, terrainTypes.byKey, landscapeTypes.byKey, cities.byKey, districts.byKey, playerVisibleMapData.byKey)
 
   return (
     <div className={styles.main}>
       <SWRProvider
         value={{
           fallback: {
-            "/api/map-tiles": mapTiles,
-            "/api/skills": skills,
-            "/api/abilities": abilities,
-            "/api/cities": mapCities,
-            "/api/districts": mapDistricts,
-            ...(playerId && { [`/api/map-tiles/player-visible-map-data/${playerId}`]: mapPlayerVisibleMapData }),
-            ...(playerId && { [`/api/players/${playerId}/inventory-slots`]: playerInventorySlots }),
-            ...(playerId && { [`/api/players/${playerId}/skills`]: playerSkills }),
-            ...(playerId && { [`/api/players/${playerId}/abilities`]: playerAbilities }),
+            ...{ [mapTiles.apiPath]: mapTiles.raw },
+            ...{ [skills.apiPath]: skills.raw },
+            ...{ [abilities.apiPath]: abilities.raw },
+            ...{ [cities.apiPath]: cities.raw },
+            ...{ [districts.apiPath]: districts.raw },
+            ...{ [playerVisibleMapData.apiPath]: playerVisibleMapData.raw },
+            ...{ [playerInventory.apiPath]: playerInventory.raw },
+            ...{ [playerSkills.apiPath]: playerSkills.raw },
+            ...{ [playerAbilities.apiPath]: playerAbilities.raw },
           },
         }}>
-        <MapTilesWrapper
-          terrainTypes={terrainTypes}
-          landscapeTypes={landscapeTypes}
-          joinedMapTiles={joinedMapTiles}
+        <MapWrapper
+          terrainTypes={terrainTypes.byKey}
+          landscapeTypes={landscapeTypes.byKey}
+          joinedMap={joinedMap}
         />
       </SWRProvider>
     </div>

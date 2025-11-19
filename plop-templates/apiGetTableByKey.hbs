@@ -7,6 +7,8 @@ import { NextRequest, NextResponse } from "next/server"
 {{#if methodParamsColumns}}
 import z from "zod"
 
+type TApiParams = Record<string, string></string>
+
 const typeParamsSchema = z.object({
   {{#each methodParamsColumns}}
   {{camelName}}: z.coerce.{{tsType}}(),
@@ -14,7 +16,7 @@ const typeParamsSchema = z.object({
 }) satisfies z.ZodType<{{methodParamsTypeName}}>
 
 {{/if}}
-export async function GET(request: NextRequest{{#if methodParamsColumns}}, params: {{methodParamsTypeName}} {{/if}}): Promise<NextResponse> {
+export async function GET(request: NextRequest{{#if methodParamsColumns}}, { params }: { params: TApiParams }  {{/if}}): Promise<NextResponse> {
   
   const session = await auth()
   const sessionPlayerId = session?.user?.playerId

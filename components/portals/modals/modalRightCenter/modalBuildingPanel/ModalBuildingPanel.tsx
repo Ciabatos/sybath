@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button"
 import Inventory from "@/components/ui/custom/Inventory"
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from "@/components/ui/drawer"
 import { useFetchBuildingInventorySlots } from "@/methods/hooks/buildingInventory/core/useFetchBuildingInventorySlots"
-import { useCityTilesActions } from "@/methods/hooks/cityTiles/composite/useCityTilesActions"
-import { useCityTilesActionStatus } from "@/methods/hooks/cityTiles/core/useCityTilesActionStatus"
+import { useCityTilesActions } from "@/methods/hooks/map/composite/useCityTilesActions"
+import { useCityTilesActionStatus } from "@/methods/hooks/map/composite/useCityTilesActionStatus"
 
 export function ModalBuildingPanel() {
   const { resetNewCityTilesActionStatus, actualCityTileStatus } = useCityTilesActionStatus()

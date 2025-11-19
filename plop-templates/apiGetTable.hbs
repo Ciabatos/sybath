@@ -4,9 +4,7 @@ import { auth } from "@/auth"
 import { {{methodName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
-{{#if methodParamsColumns}}
 
-{{/if}}
 export async function GET(request: NextRequest): Promise<NextResponse> {
   
   const session = await auth()

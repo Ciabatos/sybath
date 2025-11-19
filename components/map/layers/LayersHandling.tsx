@@ -1,18 +1,17 @@
 "use client"
 
 import HandlingAction from "@/components/map/layers/actionLayer/HandlingActionLayer"
-import HandlingActionTaskInProcess from "@/components/map/layers/actionTaskInProcessLayer/HandlingActionTaskInProcess"
-import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
+import { TJoinMap } from "@/methods/functions/map/joinMap"
 
 interface Props {
-  tile: TJoinedMapTile
+  tile: TJoinMap
 }
 
 export default function LayersHandling({ tile }: Props) {
   return (
     <>
       <HandlingAction tile={tile} />
-      <HandlingActionTaskInProcess tile={tile} />
+      {/* <HandlingActionTaskInProcess tile={tile} /> */}
     </>
   )
 }

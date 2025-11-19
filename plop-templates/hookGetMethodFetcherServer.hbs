@@ -1,8 +1,9 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcherServer.hbs
 "use server"
 
-import { {{indexMethodName}} } from "@/methods/functions/converters"
+import { {{indexMethodName}} } from "@/methods/functions/util/converters"
 import { {{methodName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
+import type { {{methodTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
 {{#if methodParamsColumns}}import type { {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}" {{/if}}
 {{#if (eq indexMethodName "arrayToObjectKeysId")}}
 import type { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
@@ -19,6 +20,6 @@ export async function {{methodName}}Server({{#if methodParamsColumns}} params: {
 
   const data = {{methodName}}Data ? ({{{indexMethodName}}}({{{indexMethodParams}}}, {{methodName}}Data) as {{indexTypeName}}) : {}
 
-  return { raw: {{methodName}}Data, byKey: data, apiPath: {{apiPathParams}} }
+  return { raw: {{methodName}}Data, byKey: data, apiPath: `{{apiPathParams}}` }
 }
 

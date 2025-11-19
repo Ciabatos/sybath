@@ -1,11 +1,11 @@
 "use client"
 
 import styles from "@/components/portals/modals/ModalBottomCenterBar/modalActionGuardArea/styles/ModalActionGuardArea.module.css"
-import { useActionMapTilesGuardArea } from "@/methods/hooks/mapTiles/composite/useActionMapTilesGuardArea"
-import { useActionMapTilesMovement } from "@/methods/hooks/mapTiles/composite/useActionMapTilesMovement"
-import { useMapTileActions } from "@/methods/hooks/mapTiles/composite/useMapTileActions"
+import { useActionMapTilesGuardArea } from "@/methods/hooks/map/composite/useActionMapTilesGuardArea"
+import { useActionMapTilesMovement } from "@/methods/hooks/map/composite/useActionMapTilesMovement"
+import { useMapTileActions } from "@/methods/hooks/map/composite/useMapTileActions"
+import { useMapTilesActionStatus } from "@/methods/hooks/map/composite/useMapTilesActionStatus"
 import { usePlayerPositionMapTile } from "@/methods/hooks/mapTiles/composite/usePlayerPositionMapTile"
-import { useMapTilesActionStatus } from "@/methods/hooks/mapTiles/core/useMapTilesActionStatus"
 import { useMutateActionTaskInProcess } from "@/methods/hooks/tasks/core/useMutateActionTaskInProcess"
 import { useEffect } from "react"
 

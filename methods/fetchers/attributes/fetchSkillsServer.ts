@@ -1,9 +1,9 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableServer.hbs
 "use server"
 
-import { arrayToObjectKeyId } from "@/methods/functions/converters"
-import { getAttributesSkills } from "@/db/postgresMainDatabase/schemas/attributes/skills"
 import type { TAttributesSkills, TAttributesSkillsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/skills"
+import { getAttributesSkills } from "@/db/postgresMainDatabase/schemas/attributes/skills"
+import { arrayToObjectKeyId } from "@/methods/functions/util/converters"
 
 export async function getAttributesSkillsServer(): Promise<{
   raw: TAttributesSkills[]

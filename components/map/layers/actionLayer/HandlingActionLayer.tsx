@@ -2,13 +2,13 @@
 
 import GuardAreaActionLayer from "@/components/map/layers/actionLayer/GuardAreaActionLayer"
 import MovementActionLayer from "@/components/map/layers/actionLayer/MovementActionLayer"
-import { TJoinedMapTile } from "@/methods/functions/joinMapTiles"
-import { useActionMapTilesGuardArea } from "@/methods/hooks/mapTiles/composite/useActionMapTilesGuardArea"
-import { useActionMapTilesMovement } from "@/methods/hooks/mapTiles/composite/useActionMapTilesMovement"
-import { useMapTilesActionStatus } from "@/methods/hooks/mapTiles/core/useMapTilesActionStatus"
+import { TJoinMap } from "@/methods/functions/map/joinMap"
+import { useActionMapTilesGuardArea } from "@/methods/hooks/map/composite/useActionMapTilesGuardArea"
+import { useActionMapTilesMovement } from "@/methods/hooks/map/composite/useActionMapTilesMovement"
+import { useMapTilesActionStatus } from "@/methods/hooks/map/composite/useMapTilesActionStatus"
 
 interface Props {
-  tile: TJoinedMapTile
+  tile: TJoinMap
 }
 
 export default function HandlingActionLayer({ tile }: Props) {

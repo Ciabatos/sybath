@@ -2,7 +2,7 @@
 
 "use client"
 import { {{indexTypeName}}{{#if methodParamsColumns}}, {{methodParamsTypeName}}{{/if}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
-import { {{indexMethodName}} } from "@/methods/functions/converters"
+import { {{indexMethodName}} } from "@/methods/functions/util/converters"
 import { {{tableCamelName}}Atom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useRef } from "react"

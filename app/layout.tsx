@@ -1,6 +1,7 @@
 import { Provider } from "jotai"
 import type { Metadata } from "next"
 import { SessionProvider } from "next-auth/react"
+// @ts-expect-error: missing type declarations for side-effect import of './globals.css'
 import "./globals.css"
 
 export const metadata: Metadata = {

@@ -1,17 +1,17 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableByKey.hbs
 
 "use client"
-import { TAttributesSkillsRecordById, TAttributesSkillsParams } from "@/db/postgresMainDatabase/schemas/attributes/skills"
-import { arrayToObjectKeyId } from "@/methods/functions/converters"
+import { TAttributesSkillsParams, TAttributesSkillsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/skills"
+import { arrayToObjectKeyId } from "@/methods/functions/util/converters"
 import { skillsAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useRef } from "react"
 import useSWR from "swr"
 
-export function useFetchSkillsByKey( params: TAttributesSkillsParams ) {
+export function useFetchSkillsByKey(params: TAttributesSkillsParams) {
   const skills = useAtomValue(skillsAtom)
   const setSkills = useSetAtom(skillsAtom)
-  
+
   const { data } = useSWR(`/api/attributes/skills/${params.id}`, { refreshInterval: 3000 })
 
   const prevDataRef = useRef<unknown>(null)

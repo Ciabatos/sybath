@@ -1,10 +1,10 @@
 "use client"
 
 import style from "@/components/city/styles/Tile.module.css"
-import { TJoinedCityTiles } from "@/methods/functions/joinCityTiles"
-import { useCityTilesActions } from "@/methods/hooks/cityTiles/composite/useCityTilesActions"
-import { useCityTilesActionStatus } from "@/methods/hooks/cityTiles/core/useCityTilesActionStatus"
-import { useCreateImage } from "@/methods/hooks/mapTiles/core/useCreateImage"
+import { TJoinedCityTiles } from "@/methods/functions/map/joinCityTiles"
+import { useCityTilesActions } from "@/methods/hooks/map/composite/useCityTilesActions"
+import { useCityTilesActionStatus } from "@/methods/hooks/map/composite/useCityTilesActionStatus"
+import { useCreateImage } from "@/methods/hooks/map/composite/useCreateImage"
 
 interface Props {
   tile: TJoinedCityTiles

@@ -1,8 +1,8 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { useMapTilesActionStatus } from "@/methods/hooks/mapTiles/core/useMapTilesActionStatus"
-import { usePlayerAbility } from "@/methods/hooks/playerAbility/composite/usePlayerAbility"
+import { useMapTilesActionStatus } from "@/methods/hooks/map/composite/useMapTilesActionStatus"
+import { usePlayerAbility } from "@/methods/hooks/players/composite/usePlayerAbility"
 
 export default function PlayerAbilities() {
   const { playerAbilities, selectAbility } = usePlayerAbility()

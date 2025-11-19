@@ -3,7 +3,7 @@
 
 import type { TAttributesSkills, TAttributesSkillsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/skills"
 import { getAttributesSkillsByKey, TAttributesSkillsParams } from "@/db/postgresMainDatabase/schemas/attributes/skills"
-import { arrayToObjectKeyId } from "@/methods/functions/converters"
+import { arrayToObjectKeyId } from "@/methods/functions/util/converters"
 
 export async function getAttributesSkillsByKeyServer(params: TAttributesSkillsParams): Promise<{
   raw: TAttributesSkills[]
