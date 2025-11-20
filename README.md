@@ -45,7 +45,7 @@ src/
 │
 ├── methods/
 │   ├── hooks/            (React useFetch* - client-side)
-│   ├── fetchers/         (Server-side data fetching)
+│   ├── server-fetchers/  (Server-side data fetching)
 │   └── actions/          (Server actions - mutacje)
 │
 ├── components/
@@ -137,8 +137,8 @@ plop "Get Data From Table"
 | `app/api/[schema]/[table]/[id]/route.ts` | API Route | GET po ID |
 | `methods/hooks/[schema]/useFetch[Table].ts` | React Hook | Client-side fetch |
 | `methods/hooks/[schema]/useFetch[Table]ByKey.ts` | React Hook | Fetch z cache |
-| `methods/fetchers/[schema]/fetch[Table]Server.ts` | Server Function | Server-side fetch |
-| `methods/fetchers/[schema]/fetch[Table]ByKeyServer.ts` | Server Function | By Key server |
+| `methods/server-fetchers/[schema]/get[Table]Server.ts` | Server Function | Server-side fetch |
+| `methods/server-fetchers/[schema]/get[Table]ByKeyServer.ts` | Server Function | By Key server |
 | `store/atoms.ts` | Atom Store | State management |
 
 ### Redukcja Boilerplate
