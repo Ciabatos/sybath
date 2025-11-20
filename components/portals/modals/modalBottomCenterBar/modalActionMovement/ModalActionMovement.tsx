@@ -35,7 +35,7 @@ export default function ModalActionMovement() {
         <div className={styles.modalTitle}>
           <p>Select Tile to move to from tiles</p>
           <p>
-            Movement path : {playerMapTile?.mapTile.x}, {playerMapTile?.mapTile.y} to {getClickedMapTile()?.mapTile.x}, {getClickedMapTile()?.mapTile.y}
+            Movement path : {playerMapTile?.mapTile.x}, {playerMapTile?.mapTile.y} to {getClickedMapTile()?.tiles.x}, {getClickedMapTile()?.tiles.y}
           </p>
         </div>
         <div className={styles.actionGrid}>

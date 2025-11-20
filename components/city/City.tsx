@@ -1,16 +1,16 @@
 "use client"
 
 import style from "@/components/city/styles/Tile.module.css"
-import { TJoinedCityTiles } from "@/methods/functions/map/joinCityTiles"
+import { TJoinCity } from "@/methods/functions/map/joinCity"
 import { useCityTilesActions } from "@/methods/hooks/map/composite/useCityTilesActions"
 import { useCityTilesActionStatus } from "@/methods/hooks/map/composite/useCityTilesActionStatus"
 import { useCreateImage } from "@/methods/hooks/map/composite/useCreateImage"
 
 interface Props {
-  tile: TJoinedCityTiles
+  tile: TJoinCity
 }
 
-export default function CityTile({ tile }: Props) {
+export default function City({ tile }: Props) {
   const { createLandscapeImage, createBackgroundImage, creatBuildingsImage, combineImages } = useCreateImage()
   const { actualCityTileStatus, newCityTilesActionStatus } = useCityTilesActionStatus()
   const { setClickedCityTile } = useCityTilesActions()
@@ -20,14 +20,14 @@ export default function CityTile({ tile }: Props) {
   const buildingsImage = creatBuildingsImage(tile.buildings?.image_url)
   const combinedImages = combineImages(landscapeImage, backgroundImage, buildingsImage)
 
-  function handleClickOnCityTile(tile: TJoinedCityTiles) {
+  function handleClickOnCityTile(tile: TJoinCity) {
     if (actualCityTileStatus.Inactive) {
       showBuildingActionList(tile)
     }
   }
 
-  function showBuildingActionList(tile: TJoinedCityTiles) {
-    setClickedCityTile({ x: tile.cityTiles.x, y: tile.cityTiles.y })
+  function showBuildingActionList(tile: TJoinCity) {
+    setClickedCityTile({ x: tile.tiles.x, y: tile.tiles.y })
     //prettier-ignore
     if (actualCityTileStatus.Inactive) {
       newCityTilesActionStatus.BuildingActionList()
@@ -38,8 +38,8 @@ export default function CityTile({ tile }: Props) {
       className={style.BackgroundImage}
       onDoubleClick={() => handleClickOnCityTile(tile)}
       style={{
-        gridColumnStart: tile.cityTiles.x,
-        gridRowStart: tile.cityTiles.y,
+        gridColumnStart: tile.tiles.x,
+        gridRowStart: tile.tiles.y,
         backgroundImage: combinedImages,
       }}>
       {buildingsImage && (
@@ -50,7 +50,7 @@ export default function CityTile({ tile }: Props) {
           }}></div>
       )}
       <div>
-        {tile.cityTiles.x}, {tile.cityTiles.y}
+        {tile.tiles.x}, {tile.tiles.y}
       </div>
     </div>
   )

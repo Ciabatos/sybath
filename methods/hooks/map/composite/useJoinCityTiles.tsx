@@ -1,7 +1,7 @@
 "use client"
 import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
 import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
-import { joinCityTiles, TJoinedCityTilesByCoordinates } from "@/methods/functions/map/joinCityTiles"
+import { joinCity, TJoinCityByXY } from "@/methods/functions/map/joinCity"
 import { useFetchBuildings } from "@/methods/hooks/cityTiles/core/useFetchBuildings"
 import { useFetchCityTiles } from "@/methods/hooks/cityTiles/core/useFetchCityTiles"
 import { joinedCityTilesAtom } from "@/store/atoms"
@@ -10,23 +10,24 @@ import { useEffect } from "react"
 
 interface Props {
   cityId: number
-  joinedCityTiles: TJoinedCityTilesByCoordinates
-  terrainTypes: TMapTerrainTypesById
-  landscapeTypes: TMapLandscapeTypesById
+  joinedCity: TJoinCityByXY
+  terrainTypes: TMapTerrainTypesRecordById
+  landscapeTypes: TMapLandscapeTypesRecordById
 }
 
-export function useJoinCityTiles({ cityId, joinedCityTiles, terrainTypes, landscapeTypes }: Props) {
-  const { cityTiles: newCityTiles } = useFetchCityTiles(cityId)
+export function useRefreshCityHandling({ cityId, joinedCity, terrainTypes, landscapeTypes }: Props) {
+  const [refreshedJoinedCity, setJoinedCity] = useAtom(joinedCityAtom)
+  const { cityTiles } = useFetchCityTiles(cityId)
   const { buildings } = useFetchBuildings(cityId)
-  const [newJoinedCityTilesOnClient, setJoinedCityTiles] = useAtom(joinedCityTilesAtom)
+
 
   useEffect(() => {
-    if (newCityTiles) {
-      const updatedTiles = joinCityTiles(newCityTiles, terrainTypes, landscapeTypes, buildings, { oldTilesToUpdate: joinedCityTiles })
-      setJoinedCityTiles(updatedTiles)
+    if (cityTiles) {
+      const refreshedData = joinCity(cityTiles, terrainTypes, landscapeTypes, buildings, { oldDataToUpdate: joinedCity })
+      setJoinedCity(refreshedData)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [newCityTiles, buildings])
+  }, [cityTiles, buildings])
 
-  return { newJoinedCityTilesOnClient }
+  return { refreshedJoinedCity }
 }

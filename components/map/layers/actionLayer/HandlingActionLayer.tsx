@@ -16,8 +16,8 @@ export default function HandlingActionLayer({ tile }: Props) {
   const { mapTilesMovementPathSet } = useActionMapTilesMovement()
   const { mapTilesGuardAreaSet } = useActionMapTilesGuardArea()
 
-  const isTileInMovementPath = mapTilesMovementPathSet.has(`${tile.mapTile.x},${tile.mapTile.y}`)
-  const isTileInGuardArea = mapTilesGuardAreaSet.has(`${tile.mapTile.x},${tile.mapTile.y}`)
+  const isTileInMovementPath = mapTilesMovementPathSet.has(`${tile.tiles.x},${tile.tiles.y}`)
+  const isTileInGuardArea = mapTilesGuardAreaSet.has(`${tile.tiles.x},${tile.tiles.y}`)
 
   if (!isTileInMovementPath && !isTileInGuardArea) {
     return null

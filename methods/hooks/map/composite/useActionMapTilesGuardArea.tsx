@@ -13,8 +13,8 @@ export function useActionMapTilesGuardArea() {
 
   function selectMapTilesGuardArea(startingPoint: TJoinMap | undefined, clickedTile: TJoinMap | undefined) {
     if (startingPoint && clickedTile) {
-      const guardArea = areaFromPoint(clickedTile.mapTile.x, clickedTile.mapTile.y, 1)
-      const guardAreaSet = new Set(guardArea.map((tile) => `${tile.mapTile.x},${tile.mapTile.y}`))
+      const guardArea = areaFromPoint(clickedTile.tiles.x, clickedTile.tiles.y, 1)
+      const guardAreaSet = new Set(guardArea.map((tile) => `${tile.tiles.x},${tile.tiles.y}`))
       setMapTilesGuardAreaSet(guardAreaSet)
     }
   }

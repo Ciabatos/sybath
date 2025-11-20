@@ -17,7 +17,7 @@ import { TPlayerVisibleMapData, TPlayerVisibleMapDataRecordByMapTileXMapTileY } 
 import { TMapTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
 import { TPlayerAbilitiesRecordByPlayerId } from "@/db/postgresMainDatabase/schemas/players/playerAbilities"
 import { TPlayerSkillsRecordByPlayerId } from "@/db/postgresMainDatabase/schemas/players/playerSkills"
-import { TJoinedCityTilesByCoordinates } from "@/methods/functions/map/joinCityTiles"
+import { TJoinCityByXY } from "@/methods/functions/map/joinCity"
 import { TJoinMapByXY } from "@/methods/functions/map/joinMap"
 import { TMapTilesGuardAreaSet } from "@/methods/hooks/map/composite/useActionMapTilesGuardArea"
 import { TMapTilesMovementPathSet } from "@/methods/hooks/map/composite/useActionMapTilesMovement"
@@ -27,12 +27,9 @@ import { ECityTilesActionStatus } from "@/types/enumeration/CityTilesActionStatu
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { atom } from "jotai"
 
-export const playerIdAtom = atom<number>(0)
 //Map
 export const clickedTileAtom = atom<TClickedTile>()
-
 export const joinedMapAtom = atom<TJoinMapByXY>({})
-
 export const mapTilesActionStatusAtom = atom<EMapTilesActionStatus>(EMapTilesActionStatus.Inactive)
 
 //Map Set
@@ -41,11 +38,11 @@ export const mapTilesMovementPathSetAtom = atom<TMapTilesMovementPathSet>(new Se
 
 //City
 export const clickedCityTileAtom = atom<TClickeCityTile>()
-
+export const joinedCityAtom = atom<TJoinCityByXY>({})
 export const cityTilesActionStatusAtom = atom<ECityTilesActionStatus>(ECityTilesActionStatus.Inactive)
-export const joinedCityTilesAtom = atom<TJoinedCityTilesByCoordinates>({})
 
 //Player
+export const playerIdAtom = atom<number>(0)
 export const playerPositionMapTileAtom = atom<TPlayerVisibleMapData>()
 export const playerInventorySlotsAtom = atom<TInventorySlots[]>([])
 
@@ -63,7 +60,6 @@ export const buildingInventorySlotsAtom = atom<TInventorySlots[]>([])
 export const actionTaskInProcessAtom = atom<TActionTaskInProcess>()
 
 //Tables
-
 export const cityTilesAtom = atom<TMapCityTilesRecordByXY>({})
 export const skillsAtom = atom<TAttributesSkillsRecordById>({})
 export const abilitiesAtom = atom<TAttributesAbilitiesRecordById>({})

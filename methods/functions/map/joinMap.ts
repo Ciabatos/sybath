@@ -7,7 +7,7 @@ import type { TMapTerrainTypesRecordById } from "@/db/postgresMainDatabase/schem
 import { produce } from "immer"
 
 export interface TJoinMap {
-  mapTile: TMapMapTilesRecordByXY[keyof TMapTerrainTypesRecordById]
+  tiles: TMapMapTilesRecordByXY[keyof TMapTerrainTypesRecordById]
   terrainTypes: TMapTerrainTypesRecordById[keyof TMapTerrainTypesRecordById]
   landscapeTypes?: TMapLandscapeTypesRecordById[keyof TMapTerrainTypesRecordById]
   cities?: TMapCitiesRecordByMapTileXMapTileY[keyof TMapTerrainTypesRecordById]
@@ -31,15 +31,15 @@ export function joinMap(
 ): TJoinMapByXY {
   const { oldDataToUpdate } = options
 
-  const createOrUpdateTile = (tileData: TMapMapTilesRecordByXY[keyof TMapTerrainTypesRecordById]): TJoinMap => {
-    const terrainTypesData = terrainTypes[tileData.terrainTypeId]
-    const landscapeTypesData = tileData.landscapeTypeId ? landscapeTypes[tileData.landscapeTypeId] : undefined
-    const citiesData = cities[`${tileData.x},${tileData.y}`]
-    const districtsData = districts[`${tileData.x},${tileData.y}`]
-    const playerVisibleMapDataData = playerVisibleMapData[`${tileData.x},${tileData.y}`]
+  const createOrUpdate = (tilesData: TMapMapTilesRecordByXY[keyof TMapTerrainTypesRecordById]): TJoinMap => {
+    const terrainTypesData = terrainTypes[tilesData.terrainTypeId]
+    const landscapeTypesData = tilesData.landscapeTypeId ? landscapeTypes[tilesData.landscapeTypeId] : undefined
+    const citiesData = cities[`${tilesData.x},${tilesData.y}`]
+    const districtsData = districts[`${tilesData.x},${tilesData.y}`]
+    const playerVisibleMapDataData = playerVisibleMapData[`${tilesData.x},${tilesData.y}`]
 
     return {
-      mapTile: tileData,
+      tiles: tilesData,
       terrainTypes: terrainTypesData,
       landscapeTypes: landscapeTypesData,
       cities: citiesData,
@@ -58,7 +58,7 @@ export function joinMap(
       tileEntries.forEach(([, tile]) => {
         const key = `${tile.x},${tile.y}`
         if (draft[key]) {
-          draft[key] = createOrUpdateTile(tile)
+          draft[key] = createOrUpdate(tile)
         }
       })
     })
@@ -67,7 +67,7 @@ export function joinMap(
     return Object.fromEntries(
       tileEntries.map(([, tile]) => {
         const key = `${tile.x},${tile.y}`
-        return [key, createOrUpdateTile(tile)]
+        return [key, createOrUpdate(tile)]
       }),
     )
   }

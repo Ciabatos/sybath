@@ -41,7 +41,7 @@ export default function ModalActionAbility() {
         <div className={styles.modalTitle}>
           <p>Select Options for Ability {abilityRequirements?.map((ability) => ability.requirement_type)}</p>
           <p>
-            Use Ability on tile : {getClickedMapTile()?.mapTile.x}, {getClickedMapTile()?.mapTile.y}
+            Use Ability on tile : {getClickedMapTile()?.tiles.x}, {getClickedMapTile()?.tiles.y}
           </p>
         </div>
         <div className={styles.actionGrid}>

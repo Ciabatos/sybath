@@ -33,7 +33,7 @@ export function ModalEmptyTilePanel() {
           </DrawerHeader>
           <div className="flex-1 py-4">
             <div>
-              {getClickedMapTile()?.moveCost} {getClickedMapTile()?.mapTile.x} {getClickedMapTile()?.mapTile.y}
+              {getClickedMapTile()?.moveCost} {getClickedMapTile()?.tiles.x} {getClickedMapTile()?.tiles.y}
               <p>Zalożenie, że Tile mozna odkrywac i wtedy eventy sie pojawiaja np walka </p>
               <p>Mozna po odkryciu cos tu wybudowac miasto/dystrykt w celu wydobycia surowca</p>
             </div>

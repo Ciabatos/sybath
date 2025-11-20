@@ -39,7 +39,7 @@ export default function ModalActionGuardArea() {
         <div className={styles.modalTitle}>
           <p>Select Options for Guard Area</p>
           <p>
-            Guard Area Radius from {getClickedMapTile()?.mapTile.x}, {getClickedMapTile()?.mapTile.y}
+            Guard Area Radius from {getClickedMapTile()?.tiles.x}, {getClickedMapTile()?.tiles.y}
           </p>
         </div>
         <div className={styles.actionGrid}>

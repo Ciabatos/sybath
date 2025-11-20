@@ -1,7 +1,7 @@
 "use server"
 import { auth } from "@/auth"
 
-import CityTilesWrapper from "@/components/city/CityTilesWrapper"
+import CityWrapper from "@/components/city/CityWrapper"
 import { getAbilities } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
 import { getSkills } from "@/db/postgresMainDatabase/schemas/attributes/skills"
 import { getPlayerInventorySlots } from "@/db/postgresMainDatabase/schemas/items/inventories"
@@ -11,16 +11,16 @@ import { getMapLandscapeTypes, TMapLandscapeTypesById } from "@/db/postgresMainD
 import { getMapTerrainTypes, TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
 import { getPlayerAbilities } from "@/db/postgresMainDatabase/schemas/players/playerAbilities"
 import { getPlayerSkills } from "@/db/postgresMainDatabase/schemas/players/playerSkills"
-import { joinCityTiles } from "@/methods/functions/map/joinCityTiles"
+import { joinCity } from "@/methods/functions/map/joinCity"
 import { arrayToObjectKeyId, arrayToObjectKeysId } from "@/methods/functions/util/converters"
 import { SWRProvider } from "@/providers/swr-provider"
 import styles from "./page.module.css"
 
-type TypeParams = {
-  id: number
+type TParams = {
+  cityId: number
 }
 
-export default async function CityPage({ params }: { params: TypeParams }) {
+export default async function CityPage({ params }: { params: TParams }) {
   const session = await auth()
   const playerId = session?.user?.playerId
 
@@ -28,55 +28,51 @@ export default async function CityPage({ params }: { params: TypeParams }) {
     return null
   }
 
-  const cityId = (await params).id
+  const cityId = (await params).cityId
 
   if (!cityId || isNaN(cityId)) {
     return null
   }
 
-  const [cityTiles, mapTerrainTypes, mapLandscapeTypes, cityBuildings, skills, abilities, playerIventorySlots, playerSkills, playerAbilities] = await Promise.all([
-    getCityTiles(cityId),
-    getMapTerrainTypes(),
-    getMapLandscapeTypes(),
+  const [cityTiles, terrainTypes, landscapeTypes, buildings, skills, abilities, playerIventory, playerSkills, playerAbilities] = await Promise.all([
+    getMapCityTilesServer(cityId),
+    getMapTerrainTypesServer(),
+    getMapLandscapeTypesServer(),
     getCityBuildings(cityId),
-    getSkills(),
-    getAbilities(),
-    getPlayerInventorySlots(playerId),
-    getPlayerSkills(playerId),
-    getPlayerAbilities(playerId),
+    getAttributesSkillsServer(),
+    getAttributesAbilitiesServer(),
+    getPlayerInventoryServer(playerId),
+    getPlayerSkillsServer(playerId),
+    getPlayerAbilitiesServer(playerId),
   ])
 
   if (!cityTiles || cityTiles.length === 0) {
     return <div>City dont exsists</div>
   }
 
-  const terrainTypes = arrayToObjectKeyId("id", mapTerrainTypes) as TMapTerrainTypesById
-
-  const landscapeTypes = arrayToObjectKeyId("id", mapLandscapeTypes) as TMapLandscapeTypesById
-
-  const buildings = cityBuildings ? (arrayToObjectKeysId("city_tile_x", "city_tile_y", cityBuildings) as TCityBuildingsByCoordinates) : {}
-
-  const joinedCityTiles = joinCityTiles(cityTiles, terrainTypes, landscapeTypes, buildings)
+  const joinedCity = joinCity(cityTiles.byKey, terrainTypes.byKey, landscapeTypes.byKey, buildings.byKey)
 
   return (
     <div className={styles.main}>
       <SWRProvider
         value={{
           fallback: {
-            "/api/skills": skills,
-            "/api/abilities": abilities,
-            ...(cityId && { [`/api/cities/${cityId}/city-tiles`]: cityTiles }),
-            ...(cityId && { [`/api/cities/${cityId}/buildings`]: cityBuildings }),
-            ...(playerId && { [`/api/players/${playerId}/inventory-slots`]: playerIventorySlots }),
-            ...(playerId && { [`/api/players/${playerId}/skills`]: playerSkills }),
-            ...(playerId && { [`/api/players/${playerId}/abilities`]: playerAbilities }),
+            ...{ [cityTiles.apiPath]: cityTiles.raw },
+            ...{ [terrainTypes.apiPath]: terrainTypes.raw },
+            ...{ [landscapeTypes.apiPath]: landscapeTypes.raw },
+            ...{ [buildings.apiPath]: buildings.raw },
+            ...{ [skills.apiPath]: skills.raw },
+            ...{ [abilities.apiPath]: abilities.raw },
+            ...{ [playerIventory.apiPath]: playerIventory.raw },
+            ...{ [playerSkills.apiPath]: playerSkills.raw },
+            ...{ [playerAbilities.apiPath]: playerAbilities.raw },
           },
         }}>
-        <CityTilesWrapper
+        <CityWrapper
           cityId={cityId}
-          joinedCityTiles={joinedCityTiles}
           terrainTypes={terrainTypes}
           landscapeTypes={landscapeTypes}
+          joinedCity={joinedCity}
         />
       </SWRProvider>
     </div>

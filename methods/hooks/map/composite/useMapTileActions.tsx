@@ -15,18 +15,18 @@ export function useMapTileActions() {
 
   function handleClickOnMapTile(tile: TJoinMap) {
     if (actualMapTilesActionStatus.MovementAction || actualMapTilesActionStatus.GuardAreaAction || actualMapTilesActionStatus.UseAbilityAction) {
-      setClickedTile({ x: tile.mapTile.x, y: tile.mapTile.y })
+      setClickedTile({ x: tile.tiles.x, y: tile.tiles.y })
     } else if (tile.cities?.name) {
       showCityActionList()
-      setClickedTile({ x: tile.mapTile.x, y: tile.mapTile.y })
+      setClickedTile({ x: tile.tiles.x, y: tile.tiles.y })
     } else if (tile.districts?.name) {
       showDistrictActionList()
-      setClickedTile({ x: tile.mapTile.x, y: tile.mapTile.y })
+      setClickedTile({ x: tile.tiles.x, y: tile.tiles.y })
     } else if (!tile.cities?.name && !tile.districts?.name && actualMapTilesActionStatus.Inactive) {
       showEmptyTileActionList()
-      setClickedTile({ x: tile.mapTile.x, y: tile.mapTile.y })
+      setClickedTile({ x: tile.tiles.x, y: tile.tiles.y })
     } else {
-      setClickedTile({ x: tile.mapTile.x, y: tile.mapTile.y })
+      setClickedTile({ x: tile.tiles.x, y: tile.tiles.y })
       resetMapTilesActionStatus()
     }
   }

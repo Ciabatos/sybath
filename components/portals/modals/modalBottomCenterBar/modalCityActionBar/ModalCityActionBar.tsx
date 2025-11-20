@@ -16,7 +16,7 @@ export default function ModalCityActionBar() {
     <div>
       <div className={styles.modalHeader}>
         <div className={styles.modalTitle}>
-          Player Actions on Tile {getClickedMapTile()?.mapTile.x}, {getClickedMapTile()?.mapTile.y}
+          Player Actions on Tile {getClickedMapTile()?.tiles.x}, {getClickedMapTile()?.tiles.y}
         </div>
       </div>
 

@@ -14,8 +14,8 @@ export function useActionMapTilesMovement() {
 
   function selectMapTilesMovementPath(startingPoint: TJoinMap | undefined, clickedTile: TJoinMap | undefined) {
     if (startingPoint && clickedTile) {
-      const movementPath = pathFromPointToPoint(startingPoint.mapTile.x, startingPoint.mapTile.y, clickedTile.mapTile.x, clickedTile.mapTile.y, 0)
-      const movementPathSet = new Set(movementPath.map((tile) => `${tile.mapTile.x},${tile.mapTile.y}`))
+      const movementPath = pathFromPointToPoint(startingPoint.tiles.x, startingPoint.tiles.y, clickedTile.tiles.x, clickedTile.tiles.y, 0)
+      const movementPathSet = new Set(movementPath.map((tile) => `${tile.tiles.x},${tile.tiles.y}`))
       setMapTilesMovementPathSet(movementPathSet)
     }
   }

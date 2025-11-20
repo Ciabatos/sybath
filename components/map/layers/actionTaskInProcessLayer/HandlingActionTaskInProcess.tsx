@@ -11,7 +11,7 @@ interface Props {
 export default function HandlingActionTaskInProcess({ tile }: Props) {
   const { actionTaskInProcess } = useFetchActionTaskInProcess()
 
-  const movementActionTask = actionTaskInProcess?.movementInProcess.find((pathTile) => pathTile.method_parameters.x === tile.mapTile.x && pathTile.method_parameters.y === tile.mapTile.y)
+  const movementActionTask = actionTaskInProcess?.movementInProcess.find((pathTile) => pathTile.method_parameters.x === tile.tiles.x && pathTile.method_parameters.y === tile.tiles.y)
 
   if (!movementActionTask) {
     return null

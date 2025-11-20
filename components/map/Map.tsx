@@ -25,8 +25,8 @@ export default function Map({ tile }: Props) {
       className={style.BackgroundImage}
       onDoubleClick={() => handleClickOnMapTile(tile)}
       style={{
-        gridColumnStart: tile.mapTile.x,
-        gridRowStart: tile.mapTile.y,
+        gridColumnStart: tile.tiles.x,
+        gridRowStart: tile.tiles.y,
         backgroundImage: combinedImages,
       }}>
       {citiesImage && (
@@ -51,7 +51,7 @@ export default function Map({ tile }: Props) {
           }}></div>
       )}
       <div>
-        {tile.mapTile.x}, {tile.mapTile.y}, {tile.cities?.name}, {tile.districts?.name}
+        {tile.tiles.x}, {tile.tiles.y}, {tile.cities?.name}, {tile.districts?.name}
         <LayersHandling tile={tile} />
       </div>
     </div>
