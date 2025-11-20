@@ -19,7 +19,7 @@ export default function Map({ tile }: Props) {
   const citiesImage = createCitiesImage(tile.cities?.imageUrl)
   const districtsImage = createCitiesImage(tile.cities?.imageUrl) //creatDistrictsImage(tile.districts?.image_url)
   const combinedImages = combineImages(landscapeImage, backgroundImage)
-
+  console.log("RENDER TILE", combinedImages)
   return (
     <div
       className={style.BackgroundImage}
