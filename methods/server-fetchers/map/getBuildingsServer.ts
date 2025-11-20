@@ -1,9 +1,9 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableServer.hbs
 "use server"
 
-import type { TMapBuildings, TMapBuildingsRecordByCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/map/buildings"
-import { getMapBuildings } from "@/db/postgresMainDatabase/schemas/map/buildings"
 import { arrayToObjectKeysId } from "@/methods/functions/util/converters"
+import { getMapBuildings } from "@/db/postgresMainDatabase/schemas/map/buildings"
+import type { TMapBuildings, TMapBuildingsRecordByCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/map/buildings"
 
 export async function getMapBuildingsServer(): Promise<{
   raw: TMapBuildings[]

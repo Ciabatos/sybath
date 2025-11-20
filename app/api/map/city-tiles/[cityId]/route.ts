@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetTableByKey.hbs
 
 import { auth } from "@/auth"
-import { getMapBuildingsByKey, TMapBuildingsParams } from "@/db/postgresMainDatabase/schemas/map/buildings"
+import { getMapCityTilesByKey, TMapCityTilesParams } from "@/db/postgresMainDatabase/schemas/map/cityTiles"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
@@ -9,8 +9,8 @@ import z from "zod"
 type TApiParams = Record<string, string></string>
 
 const typeParamsSchema = z.object({
-  id: z.coerce.number(),
-}) satisfies z.ZodType<TMapBuildingsParams>
+  cityId: z.coerce.number(),
+}) satisfies z.ZodType<TMapCityTilesParams>
 
 export async function GET(request: NextRequest, { params }: { params: TApiParams }  ): Promise<NextResponse> {
   
@@ -24,7 +24,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
   const parsedParams = typeParamsSchema.parse(paramsFromPromise)
 
   try {
-    const result = await getMapBuildingsByKey(parsedParams)
+    const result = await getMapCityTilesByKey(parsedParams)
   
     const etag = crypto.createHash("sha1").update(JSON.stringify(result)).digest("hex")
     const clientEtag = request.headers.get("if-none-match")

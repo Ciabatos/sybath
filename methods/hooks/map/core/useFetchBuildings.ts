@@ -11,7 +11,7 @@ import useSWR from "swr"
 export function useFetchBuildings() {
   const buildings = useAtomValue(buildingsAtom)
   const setBuildings = useSetAtom(buildingsAtom)
-
+  
   const { data } = useSWR(`/api/map/buildings`, { refreshInterval: 3000 })
 
   const prevDataRef = useRef<unknown>(null)

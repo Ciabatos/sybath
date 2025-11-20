@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableServer.hbs
 "use server"
 
-import { arrayToObjectKeysId } from "@/methods/functions/converters"
+import { arrayToObjectKeysId } from "@/methods/functions/util/converters"
 import { getMapCityTiles } from "@/db/postgresMainDatabase/schemas/map/cityTiles"
 import type { TMapCityTiles, TMapCityTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/map/cityTiles"
 

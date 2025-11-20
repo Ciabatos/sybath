@@ -2,17 +2,16 @@
 import { auth } from "@/auth"
 
 import CityWrapper from "@/components/city/CityWrapper"
-import { getAbilities } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
-import { getSkills } from "@/db/postgresMainDatabase/schemas/attributes/skills"
-import { getPlayerInventorySlots } from "@/db/postgresMainDatabase/schemas/items/inventories"
-import { getCityBuildings, TCityBuildingsByCoordinates } from "@/db/postgresMainDatabase/schemas/map/buildings"
-import { getCityTiles } from "@/db/postgresMainDatabase/schemas/map/cityTiles"
-import { getMapLandscapeTypes, TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
-import { getMapTerrainTypes, TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
-import { getPlayerAbilities } from "@/db/postgresMainDatabase/schemas/players/playerAbilities"
-import { getPlayerSkills } from "@/db/postgresMainDatabase/schemas/players/playerSkills"
 import { joinCity } from "@/methods/functions/map/joinCity"
-import { arrayToObjectKeyId, arrayToObjectKeysId } from "@/methods/functions/util/converters"
+import { getAttributesAbilitiesServer } from "@/methods/server-fetchers/attributes/getAbilitiesServer"
+import { getAttributesSkillsServer } from "@/methods/server-fetchers/attributes/getSkillsServer"
+import { getPlayerInventoryServer } from "@/methods/server-fetchers/items/getPlayerInventoryServer"
+import { getMapBuildingsByKeyServer } from "@/methods/server-fetchers/map/getBuildingsByKeyServer"
+import { getMapCityTilesByKeyServer } from "@/methods/server-fetchers/map/getCityTilesByKeyServer"
+import { getMapLandscapeTypesServer } from "@/methods/server-fetchers/map/getLandscapeTypesServer"
+import { getMapTerrainTypesServer } from "@/methods/server-fetchers/map/getTerrainTypesServer"
+import { getPlayerAbilitiesServer } from "@/methods/server-fetchers/players/getPlayerAbilitiesServer"
+import { getPlayerSkillsServer } from "@/methods/server-fetchers/players/getPlayerSkillsServer"
 import { SWRProvider } from "@/providers/swr-provider"
 import styles from "./page.module.css"
 
@@ -35,18 +34,18 @@ export default async function CityPage({ params }: { params: TParams }) {
   }
 
   const [cityTiles, terrainTypes, landscapeTypes, buildings, skills, abilities, playerIventory, playerSkills, playerAbilities] = await Promise.all([
-    getMapCityTilesServer(cityId),
+    getMapCityTilesByKeyServer({ cityId }),
     getMapTerrainTypesServer(),
     getMapLandscapeTypesServer(),
-    getCityBuildings(cityId),
+    getMapBuildingsByKeyServer({ id: cityId }),
     getAttributesSkillsServer(),
     getAttributesAbilitiesServer(),
-    getPlayerInventoryServer(playerId),
-    getPlayerSkillsServer(playerId),
-    getPlayerAbilitiesServer(playerId),
+    getPlayerInventoryServer({ playerId }),
+    getPlayerSkillsServer({ playerId }),
+    getPlayerAbilitiesServer({ playerId }),
   ])
 
-  if (!cityTiles || cityTiles.length === 0) {
+  if (!cityTiles) {
     return <div>City dont exsists</div>
   }
 

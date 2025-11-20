@@ -26,6 +26,8 @@ import { TClickedTile } from "@/methods/hooks/map/composite/useMapTileActions"
 import { ECityTilesActionStatus } from "@/types/enumeration/CityTilesActionStatusEnum"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { atom } from "jotai"
+import { TMapCityTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/map/cityTiles"
+import { TMapBuildingsRecordByCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/map/buildings"
 
 //Map
 export const clickedTileAtom = atom<TClickedTile>()
@@ -60,6 +62,8 @@ export const buildingInventorySlotsAtom = atom<TInventorySlots[]>([])
 export const actionTaskInProcessAtom = atom<TActionTaskInProcess>()
 
 //Tables
+export const buildingsAtom = atom<TMapBuildingsRecordByCityTileXCityTileY>({})
+export const cityTilesAtom = atom<TMapCityTilesRecordByXY>({})
 export const cityTilesAtom = atom<TMapCityTilesRecordByXY>({})
 export const skillsAtom = atom<TAttributesSkillsRecordById>({})
 export const abilitiesAtom = atom<TAttributesAbilitiesRecordById>({})

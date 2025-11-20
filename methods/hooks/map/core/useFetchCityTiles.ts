@@ -2,7 +2,7 @@
 
 "use client"
 import { TMapCityTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/map/cityTiles"
-import { arrayToObjectKeysId } from "@/methods/functions/converters"
+import { arrayToObjectKeysId } from "@/methods/functions/util/converters"
 import { cityTilesAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useRef } from "react"

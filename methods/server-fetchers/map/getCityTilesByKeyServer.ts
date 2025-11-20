@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableByKeyServer.hbs
 "use server"
 
-import { arrayToObjectKeysId } from "@/methods/functions/converters"
+import { arrayToObjectKeysId } from "@/methods/functions/util/converters"
 import { getMapCityTilesByKey } from "@/db/postgresMainDatabase/schemas/map/cityTiles"
 import { TMapCityTilesParams } from "@/db/postgresMainDatabase/schemas/map/cityTiles" 
 import type { TMapCityTiles, TMapCityTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/map/cityTiles"
@@ -15,5 +15,5 @@ export async function getMapCityTilesByKeyServer( params: TMapCityTilesParams): 
 
   const data = getMapCityTilesByKeyData ? (arrayToObjectKeysId("x", "y", getMapCityTilesByKeyData) as TMapCityTilesRecordByXY) : {}
 
-  return { raw: getMapCityTilesByKeyData, byKey: data, apiPath: `/api/map/city-tiles/${params.x}/${params.y}` }
+  return { raw: getMapCityTilesByKeyData, byKey: data, apiPath: `/api/map/city-tiles/${params.cityId}` }
 }

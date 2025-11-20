@@ -1,10 +1,8 @@
 "use client"
 
 import City from "@/components/city/City"
-import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
-import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
 import { TJoinCityByXY } from "@/methods/functions/map/joinCity"
-import { useJoinCityTiles } from "@/methods/hooks/map/composite/useJoinCityTiles"
+import { useRefreshCityHandling } from "@/methods/hooks/map/composite/useJoinCityTiles"
 
 interface Props {
   cityId: number
