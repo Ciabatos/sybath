@@ -4,7 +4,7 @@ Projekt zaawansowanej gry online (MMO) napisanej w **Next.js** z architekturą *
 
 ## 🎯 O Projekcie
 
-**Sybath** to gra strategiczna MMO łącząca elementy city-buildingu, zarządzania zasobami i eksploracji mapy świata. Projekt stanowi showcase zaawansowanych technik programowania oraz skalowania aplikacji webowych.
+**Sybath** to gra strategiczna MMO łącząca elementy rpg, city-buildingu, zarządzania zasobami i eksploracji mapy świata.
 
 ---
 
@@ -31,13 +31,12 @@ Automatyczne tworzenie:
 
 ```
 src/
-├── db/postgresMainDatabase/
-│   ├── schemas/
-│   │   ├── map/          (świat, miasta, dystrykt)
-│   │   ├── players/      (gracze, umiejętności)
-│   │   ├── items/        (inwentarz, przedmioty)
-│   │   └── attributes/   (atrybuty, zdolności)
-│   └── methods/          (funkcje SQL)
+├── db/postgresMainDatabase/schemas/
+│      ├── map/          (świat, miasta, dystrykt)
+│      ├── players/      (gracze, umiejętności)
+│      ├── items/        (inwentarz, przedmioty)
+│      └── attributes/   (atrybuty, zdolności)
+│   
 │
 ├── app/api/
 │   ├── [schema]/[table]/          (GET - wszystkie rekordy)
@@ -92,10 +91,10 @@ src/
 - Proceduralne generowanie terenu
 - Dynamiczne załadowanie danych
 - Real-time pozycja gracza
-- Eksploracja świata 30×30
+- Eksploracja świata
 
 ### 🏘️ Miasta i Dystrykt
-- Sub-mapy 10×10 dla miast
+- Sub-mapy dla miast
 - Zarządzanie budynkami
 - Strefa produkcji (dystrykt)
 - System ról (Owner, Worker)
@@ -198,38 +197,6 @@ export const selectedHeroAtom = atom<number | null>(null)
 
 ---
 
-## 📈 Status Projektu
-
-### ✅ Ukończone
-
-- [x] System mapy i nawigacji
-- [x] Struktura miast i dystryktów
-- [x] System inwentarza
-- [x] Umiejętności i zdolności
-- [x] Generowanie proceduralne
-- [x] Autoryzacja i sesje
-- [x] API z cachingiem
-- [x] Database-driven architecture
-
-### 🚧 W Trakcie
-
-- [ ] Game loop system (5-minute turns)
-- [ ] Battle mechanics (Slay the Spire inspired)
-- [ ] Transport system
-- [ ] MarketPlace
-- [ ] Owner management panel
-- [ ] Population system
-
-### 📋 Planowane
-
-- [ ] Guilds system
-- [ ] Crafting system
-- [ ] Trading system
-- [ ] Multiplayer combat
-- [ ] Achievements & Leaderboards
-
----
-
 ## 💼 Portfolio Value
 
 ### Demonstrowane Umiejętności
@@ -287,19 +254,12 @@ export const selectedHeroAtom = atom<number | null>(null)
 # Instalacja zależności
 npm install
 
-# Setup PostgreSQL
-npm run db:setup
-
 # Uruchomienie development
 npm run dev
 
 # Code generation
-npm run plop
+npx run plop
 ```
-
-**URL**: http://localhost:3000
-
----
 
 ## 📞 O Projekcie
 
@@ -313,12 +273,4 @@ Projekt demonstruje zaawansowaną wiedzę z zakresu:
 - ✅ Performance Optimization
 - ✅ Security Best Practices
 
----
 
-## 📄 Licencja
-
-MIT
-
----
-
-**Status**: 🚀 Aktywnie rozwijany | **Wersja**: 0.1.0-alpha | **Ostatnia aktualizacja**: 2025-11
