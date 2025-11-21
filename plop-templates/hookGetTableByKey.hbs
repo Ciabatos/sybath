@@ -8,9 +8,9 @@ import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useRef } from "react"
 import useSWR from "swr"
 
-export function useFetch{{tablePascalName}}ByKey({{#if methodParamsColumns}} params: {{methodParamsTypeName}} {{/if}}) {
+export function useFetch{{schemaTablePascalName}}ByKey({{#if methodParamsColumns}} params: {{methodParamsTypeName}} {{/if}}) {
   const {{tableCamelName}} = useAtomValue({{tableCamelName}}Atom)
-  const set{{tablePascalName}} = useSetAtom({{tableCamelName}}Atom)
+  const set{{schemaTablePascalName}} = useSetAtom({{tableCamelName}}Atom)
   
   const { data } = useSWR(`{{apiPathParamsByKey}}`, { refreshInterval: 3000 })
 
@@ -20,10 +20,10 @@ export function useFetch{{tablePascalName}}ByKey({{#if methodParamsColumns}} par
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
       const index = data ? ({{{indexMethodName}}}({{{indexMethodParams}}}, data) as {{indexTypeName}}) : {}
-      set{{tablePascalName}}(index)
+      set{{schemaTablePascalName}}(index)
       prevDataRef.current = data
     }
-  }, [data, set{{tablePascalName}}])
+  }, [data, set{{schemaTablePascalName}}])
 
   return { {{tableCamelName}} }
 }

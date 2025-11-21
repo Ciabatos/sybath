@@ -120,10 +120,11 @@ export default function getTable(plop) {
 
       const tablePascalName = snakeToPascal(table)
       const tableCamelName = snakeToCamel(table)
-      const methodTypeName = "T" + snakeToPascal(schema) + tablePascalName
+      const schemaTablePascalName = snakeToPascal(schema) + tablePascalName
+      const methodTypeName = "T" + schemaTablePascalName
       const methodParamsTypeName = methodTypeName + "Params"
-      const methodName = "get" + snakeToPascal(schema) + tablePascalName
-      const methodNameByKey = "get" + snakeToPascal(schema) + tablePascalName + "ByKey"
+      const methodName = "get" + schemaTablePascalName
+      const methodNameByKey = "get" + schemaTablePascalName + "ByKey"
 
       const indexTypeMethodName = indexColumns.map((f) => f.pascalName).join("")
       const indexMethodName = indexColumns.length > 1 ? "arrayToObjectKeysId" : "arrayToObjectKeyId"
@@ -156,6 +157,7 @@ export default function getTable(plop) {
         tableCamelName,
         tablePascalName,
         tableKebabName,
+        schemaTablePascalName,
         methodTypeName,
         methodParamsTypeName,
         methodParamsColumns,
@@ -183,6 +185,7 @@ export default function getTable(plop) {
         tableCamelName,
         tablePascalName,
         tableKebabName,
+        schemaTablePascalName,
         methodTypeName,
         methodParamsTypeName,
         methodParamsColumns,
@@ -226,25 +229,25 @@ export default function getTable(plop) {
       },
       {
         type: "add",
-        path: "methods/hooks/{{schema}}/core/useFetch{{tablePascalName}}.ts",
+        path: "methods/hooks/{{schema}}/core/useFetch{{schemaTablePascalName}}.ts",
         templateFile: "plop-templates/hookGetTable.hbs",
         force: true,
       },
       {
         type: "add",
-        path: "methods/hooks/{{schema}}/core/useFetch{{tablePascalName}}ByKey.ts",
+        path: "methods/hooks/{{schema}}/core/useFetch{{schemaTablePascalName}}ByKey.ts",
         templateFile: "plop-templates/hookGetTableByKey.hbs",
         force: true,
       },
       {
         type: "add",
-        path: "methods/server-fetchers/{{schema}}/get{{tablePascalName}}Server.ts",
+        path: "methods/server-fetchers/{{schema}}/get{{schemaTablePascalName}}Server.ts",
         templateFile: "plop-templates/hookGetTableServer.hbs",
         force: true,
       },
       {
         type: "add",
-        path: "methods/server-fetchers/{{schema}}/get{{tablePascalName}}ByKeyServer.ts",
+        path: "methods/server-fetchers/{{schema}}/get{{schemaTablePascalName}}ByKeyServer.ts",
         templateFile: "plop-templates/hookGetTableByKeyServer.hbs",
         force: true,
       },
