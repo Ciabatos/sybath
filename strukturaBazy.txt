@@ -1,0 +1,84 @@
+-- ============================================
+-- SCHEMA: auth (bez zmian)
+-- ============================================
+-- Autentykacja użytkowników (NextAuth)
+auth.users
+auth.accounts
+auth.sessions
+auth.verification_token
+
+-- ============================================
+-- SCHEMA: players
+-- ============================================
+-- Dane graczy i ich postaci
+players.players
+players.player_stats
+players.player_skills
+players.player_abilities
+
+-- ============================================
+-- SCHEMA: attributes
+-- ============================================
+-- Definicje atrybutów systemu gry
+attributes.stats
+attributes.skills
+attributes.abilities
+attributes.ability_requirements
+attributes.roles
+
+-- ============================================
+-- SCHEMA: world
+-- ============================================
+-- Mapa świata (overworld)
+world.maps
+world.map_tiles
+world.terrain_types
+world.landscape_types
+world.map_tiles_players_positions
+
+-- ============================================
+-- SCHEMA: cities
+-- ============================================
+-- System miast
+cities.cities
+cities.city_tiles
+cities.city_roles
+
+-- ============================================
+-- SCHEMA: districts
+-- ============================================
+-- System dzielnic
+districts.districts
+districts.district_types
+districts.district_roles
+
+-- ============================================
+-- SCHEMA: buildings
+-- ============================================
+-- System budynków
+buildings.buildings
+buildings.building_types
+buildings.building_roles
+
+-- ============================================
+-- SCHEMA: items
+-- ============================================
+-- Definicje przedmiotów
+items.items
+items.item_stats
+
+-- ============================================
+-- SCHEMA: inventory
+-- ============================================
+-- System inwentarzy
+inventory.containers
+inventory.container_types
+inventory.container_roles
+inventory.slots
+
+-- ============================================
+-- SCHEMA: tasks
+-- ============================================
+-- System zadań asynchronicznych
+tasks.tasks
+tasks.status_types
