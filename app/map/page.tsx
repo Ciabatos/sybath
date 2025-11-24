@@ -1,8 +1,8 @@
 "use server"
 import { auth } from "@/auth"
-
 import MapWrapper from "@/components/map/MapWrapper"
 import { joinMap } from "@/methods/functions/map/joinMap"
+import { createSwrFallback } from "@/methods/functions/util/createSwrFallback"
 import { getAttributesAbilitiesServer } from "@/methods/server-fetchers/attributes/getAbilitiesServer"
 import { getAttributesSkillsServer } from "@/methods/server-fetchers/attributes/getSkillsServer"
 import { getPlayerInventoryServer } from "@/methods/server-fetchers/items/getPlayerInventoryServer"
@@ -41,24 +41,13 @@ export default async function MapPage() {
 
   const joinedMap = joinMap(mapTiles.byKey, terrainTypes.byKey, landscapeTypes.byKey, cities.byKey, districts.byKey, playerVisibleMapData.byKey)
 
-
-const fallbackData = createSwrFallback(
-  mapTiles,
-  skills,
-  abilities,
-  cities,
-  districts,
-  playerVisibleMapData,
-  playerInventory,
-  playerSkills,
-  playerAbilities,
-)
+  const fallbackData = createSwrFallback(mapTiles, skills, abilities, cities, districts, playerVisibleMapData, playerInventory, playerSkills, playerAbilities)
 
   return (
     <div className={styles.main}>
       <SWRProvider
         value={{
-          fallback: fallbackData
+          fallback: fallbackData,
         }}>
         <MapWrapper
           terrainTypes={terrainTypes.byKey}

@@ -1,8 +1,8 @@
 "use server"
 import { auth } from "@/auth"
-
 import CityWrapper from "@/components/city/CityWrapper"
 import { joinCity } from "@/methods/functions/map/joinCity"
+import { createSwrFallback } from "@/methods/functions/util/createSwrFallback"
 import { getAttributesAbilitiesServer } from "@/methods/server-fetchers/attributes/getAbilitiesServer"
 import { getAttributesSkillsServer } from "@/methods/server-fetchers/attributes/getSkillsServer"
 import { getPlayerInventoryServer } from "@/methods/server-fetchers/items/getPlayerInventoryServer"
@@ -51,21 +51,13 @@ export default async function CityPage({ params }: { params: TParams }) {
 
   const joinedCity = joinCity(cityTiles.byKey, terrainTypes.byKey, landscapeTypes.byKey, buildings.byKey)
 
+  const fallbackData = createSwrFallback(cityTiles, terrainTypes, landscapeTypes, buildings)
+
   return (
     <div className={styles.main}>
       <SWRProvider
         value={{
-          fallback: {
-            ...{ [cityTiles.apiPath]: cityTiles.raw },
-            ...{ [terrainTypes.apiPath]: terrainTypes.raw },
-            ...{ [landscapeTypes.apiPath]: landscapeTypes.raw },
-            ...{ [buildings.apiPath]: buildings.raw },
-            ...{ [skills.apiPath]: skills.raw },
-            ...{ [abilities.apiPath]: abilities.raw },
-            ...{ [playerIventory.apiPath]: playerIventory.raw },
-            ...{ [playerSkills.apiPath]: playerSkills.raw },
-            ...{ [playerAbilities.apiPath]: playerAbilities.raw },
-          },
+          fallback: fallbackData,
         }}>
         <CityWrapper
           cityId={cityId}
