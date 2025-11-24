@@ -2,7 +2,7 @@
 
 import City from "@/components/city/City"
 import { TJoinCityByXY } from "@/methods/functions/map/joinCity"
-import { useRefreshCityHandling } from "@/methods/hooks/map/composite/useJoinCityTiles"
+import { useRefreshCityHandling } from "@/methods/hooks/map/composite/useRefreshCityHandling"
 
 interface Props {
   cityId: number
