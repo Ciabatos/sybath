@@ -41,21 +41,24 @@ export default async function MapPage() {
 
   const joinedMap = joinMap(mapTiles.byKey, terrainTypes.byKey, landscapeTypes.byKey, cities.byKey, districts.byKey, playerVisibleMapData.byKey)
 
+
+const fallbackData = createSwrFallback(
+  mapTiles,
+  skills,
+  abilities,
+  cities,
+  districts,
+  playerVisibleMapData,
+  playerInventory,
+  playerSkills,
+  playerAbilities,
+)
+
   return (
     <div className={styles.main}>
       <SWRProvider
         value={{
-          fallback: {
-            ...{ [mapTiles.apiPath]: mapTiles.raw },
-            ...{ [skills.apiPath]: skills.raw },
-            ...{ [abilities.apiPath]: abilities.raw },
-            ...{ [cities.apiPath]: cities.raw },
-            ...{ [districts.apiPath]: districts.raw },
-            ...{ [playerVisibleMapData.apiPath]: playerVisibleMapData.raw },
-            ...{ [playerInventory.apiPath]: playerInventory.raw },
-            ...{ [playerSkills.apiPath]: playerSkills.raw },
-            ...{ [playerAbilities.apiPath]: playerAbilities.raw },
-          },
+          fallback: fallbackData
         }}>
         <MapWrapper
           terrainTypes={terrainTypes.byKey}
