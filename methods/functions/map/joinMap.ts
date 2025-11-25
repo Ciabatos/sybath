@@ -31,15 +31,15 @@ export function joinMap(
 ): TJoinMapByXY {
   const { oldDataToUpdate } = options
 
-  function createOrUpdate  (tilesData: TMapMapTilesRecordByXY[keyof TMapTerrainTypesRecordById]): TJoinMap  {
-    const terrainTypesData = terrainTypes[tilesData.terrainTypeId]
-    const landscapeTypesData = tilesData.landscapeTypeId ? landscapeTypes[tilesData.landscapeTypeId] : undefined
-    const citiesData = cities[`${tilesData.x},${tilesData.y}`]
-    const districtsData = districts[`${tilesData.x},${tilesData.y}`]
-    const playerVisibleMapDataData = playerVisibleMapData[`${tilesData.x},${tilesData.y}`]
+  function createOrUpdate  (mainData: TMapMapTilesRecordByXY[keyof TMapTerrainTypesRecordById]): TJoinMap  {
+    const terrainTypesData = terrainTypes[mainData.terrainTypeId]
+    const landscapeTypesData = mainData.landscapeTypeId ? landscapeTypes[mainData.landscapeTypeId] : undefined
+    const citiesData = cities[`${mainData.x},${mainData.y}`]
+    const districtsData = districts[`${mainData.x},${mainData.y}`]
+    const playerVisibleMapDataData = playerVisibleMapData[`${mainData.x},${mainData.y}`]
 
     return {
-      tiles: tilesData,
+      tiles: mainData,
       terrainTypes: terrainTypesData,
       landscapeTypes: landscapeTypesData,
       cities: citiesData,
@@ -49,22 +49,22 @@ export function joinMap(
     }
   }
 
-  const tileEntries = Object.entries(tiles)
+  const dataEntries = Object.entries(tiles)
 
   // To jest render block
   // (client-side behavior)
   if (oldDataToUpdate) {
     return produce(oldDataToUpdate, (draft) => {
-      tileEntries.forEach(([key, tile]) => {
+      dataEntries.forEach(([key, data]) => {
         if (draft[key]) {
-          draft[key] = createOrUpdate(tile)
+          draft[key] = createOrUpdate(data)
         }
       })
     })
   } else {
     // (server-side behavior)
     return Object.fromEntries(
-      tileEntries.map(([key, tile]) => [key, createOrUpdate(tile)]),
+      dataEntries.map(([key, data]) => [key, createOrUpdate(data)]),
     )
   }
 }

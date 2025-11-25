@@ -25,35 +25,35 @@ export function joinCity(
   const { oldDataToUpdate } = options
 
   // to jest funkcja pomocnicza dla bloku poniżej
-  function createOrUpdate (tilesData: TMapCityTilesRecordByXY[keyof TMapCityTilesRecordByXY]): TJoinCity {
-    const terrainTypesData = terrainTypes[tilesData.terrainTypeId]
-    const landscapeTypesData = tilesData.landscapeTypeId ? landscapeTypes[tilesData.landscapeTypeId] : undefined
-    const buildingsData = tilesData.cityId ? buildings[`${tilesData.x},${tilesData.y}`] : undefined
+  function createOrUpdate (mainData: TMapCityTilesRecordByXY[keyof TMapCityTilesRecordByXY]): TJoinCity {
+    const terrainTypesData = terrainTypes[mainData.terrainTypeId]
+    const landscapeTypesData = mainData.landscapeTypeId ? landscapeTypes[mainData.landscapeTypeId] : undefined
+    const buildingsData = mainData.cityId ? buildings[`${mainData.x},${mainData.y}`] : undefined
 
     return {
-      tiles: tilesData,
+      tiles: mainData,
       terrainTypes: terrainTypesData,
       landscapeTypes: landscapeTypesData,
       buildings: buildingsData,
     }
   }
 
-  const tileEntries = Object.entries(tiles)
+  const dataEntries = Object.entries(tiles)
 
   // To jest render block
   // (client-side behavior)
   if (oldDataToUpdate) {
     return produce(oldDataToUpdate, (draft) => {
-      tileEntries.forEach(([key, tile]) => {
+      dataEntries.forEach(([key, data]) => {
         if (draft[key]) {
-          draft[key] = createOrUpdate(tile)
+          draft[key] = createOrUpdate(data)
         }
       })
     })
   } else {
     // (server-side behavior)
     return Object.fromEntries(
-      tileEntries.map(([key, tile]) => [key, createOrUpdate(tile)]),
+      dataEntries.map(([key, data]) => [key, createOrUpdate(data)]),
     )
   }
 }
