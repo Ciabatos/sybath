@@ -5,9 +5,9 @@ import { TMapTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/ma
 import { produce } from "immer"
 
 export interface TJoinCity {
-  tiles: TMapCityTilesRecordByXY[keyof TMapTerrainTypesRecordById]
+  tiles: TMapCityTilesRecordByXY[keyof TMapCityTilesRecordByXY]
   terrainTypes: TMapTerrainTypesRecordById[keyof TMapTerrainTypesRecordById]
-  landscapeTypes?: TMapLandscapeTypesRecordById[keyof TMapTerrainTypesRecordById]
+  landscapeTypes?: TMapLandscapeTypesRecordById[keyof TMapLandscapeTypesRecordById]
   buildings?: TMapBuildingsRecordByCityTileXCityTileY[keyof TMapBuildingsRecordByCityTileXCityTileY]
 }
 

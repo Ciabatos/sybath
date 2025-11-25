@@ -7,12 +7,12 @@ import type { TMapTerrainTypesRecordById } from "@/db/postgresMainDatabase/schem
 import { produce } from "immer"
 
 export interface TJoinMap {
-  tiles: TMapMapTilesRecordByXY[keyof TMapTerrainTypesRecordById]
+  tiles: TMapMapTilesRecordByXY[keyof TMapMapTilesRecordByXY]
   terrainTypes: TMapTerrainTypesRecordById[keyof TMapTerrainTypesRecordById]
-  landscapeTypes?: TMapLandscapeTypesRecordById[keyof TMapTerrainTypesRecordById]
-  cities?: TMapCitiesRecordByMapTileXMapTileY[keyof TMapTerrainTypesRecordById]
-  districts?: TMapDistrictsRecordByMapTileXMapTileY[keyof TMapTerrainTypesRecordById]
-  playerVisibleMapData?: TPlayerVisibleMapDataRecordByMapTileXMapTileY[keyof TMapTerrainTypesRecordById]
+  landscapeTypes?: TMapLandscapeTypesRecordById[keyof TMapLandscapeTypesRecordById]
+  cities?: TMapCitiesRecordByMapTileXMapTileY[keyof TMapCitiesRecordByMapTileXMapTileY]
+  districts?: TMapDistrictsRecordByMapTileXMapTileY[keyof TMapDistrictsRecordByMapTileXMapTileY]
+  playerVisibleMapData?: TPlayerVisibleMapDataRecordByMapTileXMapTileY[keyof TPlayerVisibleMapDataRecordByMapTileXMapTileY]
   moveCost?: number
 }
 
