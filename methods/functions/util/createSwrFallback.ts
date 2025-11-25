@@ -9,10 +9,13 @@ type TFallbackMap = Record<string, unknown[]>
 export function createSwrFallback(
   ...entities: TServerEntity<any>[]
 ): TFallbackMap {
-  return entities.reduce((acc: TFallbackMap, entity) => {
+  const fallbackMap: TFallbackMap = {}
+  
+  for (const entity of entities) {
     if (entity && entity.apiPath && entity.raw) {
-      acc[entity.apiPath] = entity.raw
+      fallbackMap[entity.apiPath] = entity.raw
     }
-    return acc
-  }, {} as TFallbackMap)
+  }
+
+  return fallbackMap
 }
