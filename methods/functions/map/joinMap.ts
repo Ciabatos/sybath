@@ -31,7 +31,7 @@ export function joinMap(
 ): TJoinMapByXY {
   const { oldDataToUpdate } = options
 
-  const createOrUpdate = (tilesData: TMapMapTilesRecordByXY[keyof TMapTerrainTypesRecordById]): TJoinMap => {
+  function createOrUpdate  (tilesData: TMapMapTilesRecordByXY[keyof TMapTerrainTypesRecordById]): TJoinMap  {
     const terrainTypesData = terrainTypes[tilesData.terrainTypeId]
     const landscapeTypesData = tilesData.landscapeTypeId ? landscapeTypes[tilesData.landscapeTypeId] : undefined
     const citiesData = cities[`${tilesData.x},${tilesData.y}`]
@@ -55,8 +55,7 @@ export function joinMap(
   // (client-side behavior)
   if (oldDataToUpdate) {
     return produce(oldDataToUpdate, (draft) => {
-      tileEntries.forEach(([, tile]) => {
-        const key = `${tile.x},${tile.y}`
+      tileEntries.forEach(([key, tile]) => {
         if (draft[key]) {
           draft[key] = createOrUpdate(tile)
         }
@@ -65,10 +64,7 @@ export function joinMap(
   } else {
     // (server-side behavior)
     return Object.fromEntries(
-      tileEntries.map(([, tile]) => {
-        const key = `${tile.x},${tile.y}`
-        return [key, createOrUpdate(tile)]
-      }),
+      tileEntries.map(([key, tile]) => [key, createOrUpdate(tile)]),
     )
   }
 }

@@ -25,7 +25,7 @@ export function joinCity(
   const { oldDataToUpdate } = options
 
   // to jest funkcja pomocnicza dla bloku poniżej
-  const createOrUpdate = (tilesData: TMapCityTilesRecordByXY[keyof TMapCityTilesRecordByXY]): TJoinCity => {
+  function createOrUpdate (tilesData: TMapCityTilesRecordByXY[keyof TMapCityTilesRecordByXY]): TJoinCity {
     const terrainTypesData = terrainTypes[tilesData.terrainTypeId]
     const landscapeTypesData = tilesData.landscapeTypeId ? landscapeTypes[tilesData.landscapeTypeId] : undefined
     const buildingsData = tilesData.cityId ? buildings[`${tilesData.x},${tilesData.y}`] : undefined
@@ -44,8 +44,7 @@ export function joinCity(
   // (client-side behavior)
   if (oldDataToUpdate) {
     return produce(oldDataToUpdate, (draft) => {
-      tileEntries.forEach(([, tile]) => {
-        const key = `${tile.x},${tile.y}`
+      tileEntries.forEach(([key, tile]) => {
         if (draft[key]) {
           draft[key] = createOrUpdate(tile)
         }
@@ -54,10 +53,7 @@ export function joinCity(
   } else {
     // (server-side behavior)
     return Object.fromEntries(
-      tileEntries.map(([, tile]) => {
-        const key = `${tile.x},${tile.y}`
-        return [key, createOrUpdate(tile)]
-      }),
+      tileEntries.map(([key, tile]) => [key, createOrUpdate(tile)]),
     )
   }
 }
