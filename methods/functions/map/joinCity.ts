@@ -1,23 +1,24 @@
-import { TMapBuildingsRecordByCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/map/buildings"
-import { TMapCityTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/map/cityTiles"
-import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
-import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
+\
+import { TBuildingsBuildingsRecordByCityIdCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
+import { TCitiesCitiesRecordByMapIdMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
+import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
+import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { produce } from "immer"
 
 export interface TJoinCity {
-  tiles: TMapCityTilesRecordByXY[keyof TMapCityTilesRecordByXY]
+  tiles: TCitiesCitiesRecordByMapIdMapTileXMapTileY[keyof TCitiesCitiesRecordByMapIdMapTileXMapTileY]
   terrainTypes: TWorldTerrainTypesRecordById[keyof TWorldTerrainTypesRecordById]
   landscapeTypes?: TWorldLandscapeTypesRecordById[keyof TWorldLandscapeTypesRecordById]
-  buildings?: TMapBuildingsRecordByCityTileXCityTileY[keyof TMapBuildingsRecordByCityTileXCityTileY]
+  buildings?: TBuildingsBuildingsRecordByCityIdCityTileXCityTileY[keyof TBuildingsBuildingsRecordByCityIdCityTileXCityTileY]
 }
 
 export type TJoinCityByXY = Record<string, TJoinCity>
 
 export function joinCity(
-  tiles: TMapCityTilesRecordByXY,
+  tiles: TCitiesCitiesRecordByMapIdMapTileXMapTileY,
   terrainTypes: TWorldTerrainTypesRecordById,
   landscapeTypes: TWorldLandscapeTypesRecordById,
-  buildings: TMapBuildingsRecordByCityTileXCityTileY,
+  buildings: TBuildingsBuildingsRecordByCityIdCityTileXCityTileY,
   options: {
     oldDataToUpdate?: TJoinCityByXY
   } = {},
@@ -25,7 +26,7 @@ export function joinCity(
   const { oldDataToUpdate } = options
 
   // to jest funkcja pomocnicza dla bloku poniżej
-  function createOrUpdate(mainData: TMapCityTilesRecordByXY[keyof TMapCityTilesRecordByXY]): TJoinCity {
+  function createOrUpdate(mainData: TCitiesCitiesRecordByMapIdMapTileXMapTileY[keyof TCitiesCitiesRecordByMapIdMapTileXMapTileY]): TJoinCity {
     const terrainTypesData = terrainTypes[mainData.terrainTypeId]
     const landscapeTypesData = mainData.landscapeTypeId ? landscapeTypes[mainData.landscapeTypeId] : undefined
     const buildingsData = mainData.cityId ? buildings[`${mainData.x},${mainData.y}`] : undefined
