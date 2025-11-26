@@ -81,3 +81,54 @@ const joinedTiles = joinWithMultipleMetadata(cityTiles.byKey,
   { metaData: buildings.byKey, foreignKey: "tileKey", joinOn: "building" },
   ]
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import { produce } from "immer"
+
+type JoinConfig<T> = {
+  data: Record<string, any>
+  key: keyof T | ((item: T) => string)
+  optional?: boolean
+}
+
+export function joinData<TMain, TResult = any>(
+  main: Record<string, TMain>,
+  joins: JoinConfig<TMain>[],
+  transform: (item: TMain, joined: any[]) => TResult,
+  oldData?: Record<string, TResult>
+): Record<string, TResult> {
+  function process(item: TMain): TResult {
+    const joined = joins.map(({ data, key, optional }) => {
+      const k = typeof key === "function" ? key(item) : item[key]
+      return data[k as string]
+    })
+    return transform(item, joined)
+  }
+
+  const entries = Object.entries(main)
+
+  if (oldData) {
+    return produce(oldData, (draft) => {
+      entries.forEach(([k, item]) => {
+        if (draft[k]) draft[k] = process(item)
+      })
+    })
+  }
+
+  return Object.fromEntries(entries.map(([k, item]) => [k, process(item)]))
+}
