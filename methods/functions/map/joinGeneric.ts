@@ -106,3 +106,40 @@ export function joinData<TMain, TResult = any>(
 
   return Object.fromEntries(entries.map(([k, item]) => [k, process(item)]))
 }
+
+////////////////////////
+SELECT
+  kcu.table_name AS main_table,
+  kcu.column_name AS main_column,
+  ccu.table_name AS foreign_table,
+  ccu.column_name AS foreign_column
+FROM
+  information_schema.table_constraints AS tc
+  JOIN information_schema.key_column_usage AS kcu
+    ON tc.constraint_name = kcu.constraint_name
+  JOIN information_schema.constraint_column_usage AS ccu
+    ON ccu.constraint_name = tc.constraint_name
+WHERE
+  tc.constraint_type = 'FOREIGN KEY'
+  AND kcu.table_name = 'cities'; -- np. tabela główna
+
+  /////////////////
+
+type ForeignKeyInfo = {
+  mainColumn: string
+  foreignTable: string
+  foreignColumn: string
+}
+
+const foreignKeys: ForeignKeyInfo[] = await getForeignKeysFromDB("cities")
+
+for (const fk of foreignKeys) {
+  joinMasterSlave(cities, {
+    master: {
+      object: foreignData[fk.foreignTable],
+      key: fk.mainColumn as keyof TCity,
+      foreignKey: fk.foreignColumn,
+      output: fk.foreignTable
+    }
+  })
+}
