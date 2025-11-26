@@ -12,7 +12,7 @@ export function useFetchWorldMapTilesByKey( params: TWorldMapTilesParams ) {
   const mapTiles = useAtomValue(mapTilesAtom)
   const setWorldMapTiles = useSetAtom(mapTilesAtom)
   
-  const { data } = useSWR(`/api/world/map-tiles/${params.mapId}/${params.x}/${params.y}`, { refreshInterval: 3000 })
+  const { data } = useSWR(`/api/world/map-tiles/${params.mapId}`, { refreshInterval: 3000 })
 
   const prevDataRef = useRef<unknown>(null)
 

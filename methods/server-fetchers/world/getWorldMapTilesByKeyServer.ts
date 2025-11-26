@@ -15,5 +15,5 @@ export async function getWorldMapTilesByKeyServer( params: TWorldMapTilesParams)
 
   const data = getWorldMapTilesByKeyData ? (arrayToObjectKey(["mapId", "x", "y"], getWorldMapTilesByKeyData) as TWorldMapTilesRecordByMapIdXY) : {}
 
-  return { raw: getWorldMapTilesByKeyData, byKey: data, apiPath: `/api/world/map-tiles/${params.mapId}/${params.x}/${params.y}` }
+  return { raw: getWorldMapTilesByKeyData, byKey: data, apiPath: `/api/world/map-tiles/${params.mapId}` }
 }

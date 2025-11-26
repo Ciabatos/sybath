@@ -1,15 +1,15 @@
 "use client"
 
 import Map from "@/components/map/Map"
-import { TMapLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
-import type { TMapTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
+import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
+import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { TJoinMapByXY } from "@/methods/functions/map/joinMap"
 import { useRefreshMapHandling } from "@/methods/hooks/world/composite/useRefreshMapHandling"
 
 interface Props {
   joinedMap: TJoinMapByXY
-  terrainTypes: TMapTerrainTypesRecordById
-  landscapeTypes: TMapLandscapeTypesRecordById
+  terrainTypes: TWorldTerrainTypesRecordById
+  landscapeTypes: TWorldLandscapeTypesRecordById
 }
 
 export default function MapHandling({ joinedMap, terrainTypes, landscapeTypes }: Props) {

@@ -1,13 +1,13 @@
 import { TMapBuildingsRecordByCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/map/buildings"
 import { TMapCityTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/map/cityTiles"
-import { TMapLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
-import { TMapTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
+import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
+import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
 import { produce } from "immer"
 
 export interface TJoinCity {
   tiles: TMapCityTilesRecordByXY[keyof TMapCityTilesRecordByXY]
-  terrainTypes: TMapTerrainTypesRecordById[keyof TMapTerrainTypesRecordById]
-  landscapeTypes?: TMapLandscapeTypesRecordById[keyof TMapLandscapeTypesRecordById]
+  terrainTypes: TWorldTerrainTypesRecordById[keyof TWorldTerrainTypesRecordById]
+  landscapeTypes?: TWorldLandscapeTypesRecordById[keyof TWorldLandscapeTypesRecordById]
   buildings?: TMapBuildingsRecordByCityTileXCityTileY[keyof TMapBuildingsRecordByCityTileXCityTileY]
 }
 
@@ -15,8 +15,8 @@ export type TJoinCityByXY = Record<string, TJoinCity>
 
 export function joinCity(
   tiles: TMapCityTilesRecordByXY,
-  terrainTypes: TMapTerrainTypesRecordById,
-  landscapeTypes: TMapLandscapeTypesRecordById,
+  terrainTypes: TWorldTerrainTypesRecordById,
+  landscapeTypes: TWorldLandscapeTypesRecordById,
   buildings: TMapBuildingsRecordByCityTileXCityTileY,
   options: {
     oldDataToUpdate?: TJoinCityByXY
@@ -25,7 +25,7 @@ export function joinCity(
   const { oldDataToUpdate } = options
 
   // to jest funkcja pomocnicza dla bloku poniżej
-  function createOrUpdate (mainData: TMapCityTilesRecordByXY[keyof TMapCityTilesRecordByXY]): TJoinCity {
+  function createOrUpdate(mainData: TMapCityTilesRecordByXY[keyof TMapCityTilesRecordByXY]): TJoinCity {
     const terrainTypesData = terrainTypes[mainData.terrainTypeId]
     const landscapeTypesData = mainData.landscapeTypeId ? landscapeTypes[mainData.landscapeTypeId] : undefined
     const buildingsData = mainData.cityId ? buildings[`${mainData.x},${mainData.y}`] : undefined
@@ -52,8 +52,6 @@ export function joinCity(
     })
   } else {
     // (server-side behavior)
-    return Object.fromEntries(
-      dataEntries.map(([key, data]) => [key, createOrUpdate(data)]),
-    )
+    return Object.fromEntries(dataEntries.map(([key, data]) => [key, createOrUpdate(data)]))
   }
 }

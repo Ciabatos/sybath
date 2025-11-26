@@ -11,12 +11,16 @@ import { getPlayerAbilitiesServer } from "@/methods/server-fetchers/players/getP
 import { getPlayerSkillsServer } from "@/methods/server-fetchers/players/getPlayerSkillsServer"
 import { getPlayerVisibleMapDataServer } from "@/methods/server-fetchers/world/getPlayerVisibleMapDataServer"
 import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/getWorldLandscapeTypesServer"
-import { getWorldMapTilesServer } from "@/methods/server-fetchers/world/getWorldMapTilesServer"
+import { getWorldMapTilesByKeyServer } from "@/methods/server-fetchers/world/getWorldMapTilesByKeyServer"
 import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/getWorldTerrainTypesServer"
 import { SWRProvider } from "@/providers/swr-provider"
 import styles from "./page.module.css"
 
-export default async function MapPage() {
+type TParams = {
+  mapId: number
+}
+
+export default async function WorldPage({ params }: { params: TParams }) {
   const session = await auth()
   const playerId = session?.user?.playerId
 
@@ -24,9 +28,15 @@ export default async function MapPage() {
     return null
   }
 
+  const mapId = (await params).mapId
+
+  if (!mapId || isNaN(mapId)) {
+    return null
+  }
+
   const [terrainTypes, mapTiles, landscapeTypes, cities, districts, skills, abilities, playerVisibleMapData, playerSkills, playerAbilities] = await Promise.all([
     getWorldTerrainTypesServer(),
-    getWorldMapTilesServer(),
+    getWorldMapTilesByKeyServer({ mapId }),
     getWorldLandscapeTypesServer(),
     getCitiesCitiesServer(),
     getDistrictsDistrictsServer(),

@@ -1,15 +1,15 @@
 import { TMapCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/map/cities"
 import { TMapDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/map/districts"
-import { TMapLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
+import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
 import type { TMapMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/map/mapTiles"
 import { TPlayerVisibleMapDataRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/map/playerVisibleMapData"
-import type { TMapTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
+import type { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
 import { produce } from "immer"
 
 export interface TJoinMap {
   tiles: TMapMapTilesRecordByXY[keyof TMapMapTilesRecordByXY]
-  terrainTypes: TMapTerrainTypesRecordById[keyof TMapTerrainTypesRecordById]
-  landscapeTypes?: TMapLandscapeTypesRecordById[keyof TMapLandscapeTypesRecordById]
+  terrainTypes: TWorldTerrainTypesRecordById[keyof TWorldTerrainTypesRecordById]
+  landscapeTypes?: TWorldLandscapeTypesRecordById[keyof TWorldLandscapeTypesRecordById]
   cities?: TMapCitiesRecordByMapTileXMapTileY[keyof TMapCitiesRecordByMapTileXMapTileY]
   districts?: TMapDistrictsRecordByMapTileXMapTileY[keyof TMapDistrictsRecordByMapTileXMapTileY]
   playerVisibleMapData?: TPlayerVisibleMapDataRecordByMapTileXMapTileY[keyof TPlayerVisibleMapDataRecordByMapTileXMapTileY]
@@ -20,8 +20,8 @@ export type TJoinMapByXY = Record<string, TJoinMap>
 
 export function joinMap(
   tiles: TMapMapTilesRecordByXY,
-  terrainTypes: TMapTerrainTypesRecordById,
-  landscapeTypes: TMapLandscapeTypesRecordById,
+  terrainTypes: TWorldTerrainTypesRecordById,
+  landscapeTypes: TWorldLandscapeTypesRecordById,
   cities: TMapCitiesRecordByMapTileXMapTileY,
   districts: TMapDistrictsRecordByMapTileXMapTileY,
   playerVisibleMapData: TPlayerVisibleMapDataRecordByMapTileXMapTileY,
@@ -31,7 +31,7 @@ export function joinMap(
 ): TJoinMapByXY {
   const { oldDataToUpdate } = options
 
-  function createOrUpdate  (mainData: TMapMapTilesRecordByXY[keyof TMapTerrainTypesRecordById]): TJoinMap  {
+  function createOrUpdate(mainData: TMapMapTilesRecordByXY[keyof TWorldTerrainTypesRecordById]): TJoinMap {
     const terrainTypesData = terrainTypes[mainData.terrainTypeId]
     const landscapeTypesData = mainData.landscapeTypeId ? landscapeTypes[mainData.landscapeTypeId] : undefined
     const citiesData = cities[`${mainData.x},${mainData.y}`]
@@ -63,8 +63,6 @@ export function joinMap(
     })
   } else {
     // (server-side behavior)
-    return Object.fromEntries(
-      dataEntries.map(([key, data]) => [key, createOrUpdate(data)]),
-    )
+    return Object.fromEntries(dataEntries.map(([key, data]) => [key, createOrUpdate(data)]))
   }
 }

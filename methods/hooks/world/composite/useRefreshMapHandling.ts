@@ -1,6 +1,6 @@
 "use client"
-import { TMapLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
-import type { TMapTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
+import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
+import type { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
 import { joinMap, TJoinMapByXY } from "@/methods/functions/map/joinMap"
 import { useFetchCitiesCities } from "@/methods/hooks/cities/core/useFetchCitiesCities"
 import { useFetchDistrictsDistricts } from "@/methods/hooks/districts/core/useFetchDistrictsDistricts"
@@ -14,8 +14,8 @@ import { useEffect } from "react"
 
 interface Props {
   joinedMap: TJoinMapByXY
-  terrainTypes: TMapTerrainTypesRecordById
-  landscapeTypes: TMapLandscapeTypesRecordById
+  terrainTypes: TWorldTerrainTypesRecordById
+  landscapeTypes: TWorldLandscapeTypesRecordById
 }
 
 export function useRefreshMapHandling({ joinedMap, terrainTypes, landscapeTypes }: Props) {

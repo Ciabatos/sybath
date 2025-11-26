@@ -1,8 +1,9 @@
 "use client"
 
 import MapHandling from "@/components/map/MapHandling"
-import { TMapLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
-import { TMapTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
+
+import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
+import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { TJoinMapByXY } from "@/methods/functions/map/joinMap"
 import { useRef, useState } from "react"
 import type { ReactZoomPanPinchContentRef } from "react-zoom-pan-pinch"
@@ -11,8 +12,8 @@ import style from "./styles/Map.module.css"
 
 interface Props {
   joinedMap: TJoinMapByXY
-  terrainTypes: TMapTerrainTypesRecordById
-  landscapeTypes: TMapLandscapeTypesRecordById
+  terrainTypes: TWorldTerrainTypesRecordById
+  landscapeTypes: TWorldLandscapeTypesRecordById
 }
 
 export default function MapWrapper({ joinedMap, terrainTypes, landscapeTypes }: Props) {

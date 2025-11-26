@@ -6,8 +6,6 @@ import { snakeToCamelRows } from "@/methods/functions/util/snakeToCamel"
 
 export type TWorldMapTilesParams = {
   mapId: number
-  x: number
-  y: number
 }
 
 export type TWorldMapTiles = {
@@ -35,7 +33,7 @@ export async function getWorldMapTiles() {
 export async function getWorldMapTilesByKey(params: TWorldMapTilesParams) {
   try {
     const sqlParams = Object.values(params)
-    const sql = `SELECT * FROM world.get_map_tiles_by_key($1, $2, $3);`
+    const sql = `SELECT * FROM world.get_map_tiles_by_key($1);`
     
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TWorldMapTiles[]
