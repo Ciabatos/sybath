@@ -6,11 +6,13 @@ import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
 
+type TApiParams = Record<string, string>
+
 const typeParamsSchema = z.object({
   playerId: z.coerce.number(),
 }) satisfies z.ZodType<TPlayerSkillsParams>
 
-export async function GET(request: NextRequest, params: TPlayerSkillsParams ): Promise<NextResponse> {
+export async function GET(request: NextRequest, { params }: { params: TApiParams } ): Promise<NextResponse> {
   const session = await auth()
   const sessionPlayerId = session?.user?.playerId
   if (!sessionPlayerId || isNaN(sessionPlayerId)) {

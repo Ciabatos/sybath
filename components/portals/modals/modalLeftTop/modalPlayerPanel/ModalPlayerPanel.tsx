@@ -7,7 +7,7 @@ import styles from "@/components/portals/modals/modalLeftTop/modalPlayerPanel/st
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
-import { useMapTileActions } from "@/methods/hooks/map/composite/useMapTileActions"
+import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
 import { useState } from "react"
 

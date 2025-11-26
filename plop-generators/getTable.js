@@ -75,9 +75,6 @@ export default function getTable(plop) {
             if (answer.length < 1) {
               return "Musisz zaznaczyć przynajmniej jedną kolumnę."
             }
-            if (answer.length > 2) {
-              return "Możesz zaznaczyć maksymalnie dwie kolumny."
-            }
             return true
           },
         },
@@ -129,7 +126,7 @@ export default function getTable(plop) {
       const indexTypeMethodName = indexColumns.map((f) => f.pascalName).join("")
       const indexMethodName = "arrayToObjectKey"
       const indexTypeName = methodTypeName + "RecordBy" + indexTypeMethodName
-      const indexMethodParams = `[${indexColumns.map((f) => `"${snakeToCamel(f.name)}"`).join(", ")}]` 
+      const indexMethodParams = `[${indexColumns.map((f) => `"${snakeToCamel(f.name)}"`).join(", ")}]`
       const indexParamsColumns = methodParamsColumns.map((f) => snakeToCamel(f.name)).join(", ")
 
       await createMethodGetRecords(schema, table)

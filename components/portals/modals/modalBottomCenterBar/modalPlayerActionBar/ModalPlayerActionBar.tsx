@@ -1,7 +1,7 @@
 import styles from "@/components/portals/modals/ModalBottomCenterBar/styles/ModalActionBar.module.css"
 import { Button } from "@/components/ui/button"
-import { useMapTileActions } from "@/methods/hooks/map/composite/useMapTileActions"
-import { useMapTilesActionStatus } from "@/methods/hooks/map/composite/useMapTilesActionStatus"
+import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
+import { useMapTilesActionStatus } from "@/methods/hooks/world/composite/useMapTilesActionStatus"
 
 export default function ModalPlayerActionBar() {
   const { getClickedMapTile } = useMapTileActions()

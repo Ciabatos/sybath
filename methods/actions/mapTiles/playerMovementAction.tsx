@@ -3,7 +3,7 @@
 import { auth } from "@/auth"
 import { cancelTasks, insertTasks } from "@/db/postgresMainDatabase/schemas/tasks/tasks"
 import { isMovementPathNeighborhoodTile } from "@/methods/functions/map/isMovementPathNeighborhoodTile"
-import { TMapTilesMovementPathSet } from "@/methods/hooks/map/composite/useActionMapTilesMovement"
+import { TMapTilesMovementPathSet } from "@/methods/hooks/world/composite/useActionMapTilesMovement"
 
 export type TPlayerMovementAction = {
   playerId: number

@@ -27,14 +27,14 @@
 //   )
 // }
 
-
-export function arrayToObjectKey<T extends Record<string, any>, K extends keyof T>(
-  keys: K[],
-  arr: T[],
-): { [key: string]: T } {
-  return arr.reduce((acc, item) => {
-    const compositeKey = keys.map(k => item[k]).join(',');
-    acc[compositeKey] = item;
-    return acc;
-  }, {} as { [key: string]: T });
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function arrayToObjectKey<T extends Record<string, any>, K extends keyof T>(keys: K[], arr: T[]): { [key: string]: T } {
+  return arr.reduce(
+    (acc, item) => {
+      const compositeKey = keys.map((k) => item[k]).join(",")
+      acc[compositeKey] = item
+      return acc
+    },
+    {} as { [key: string]: T },
+  )
 }

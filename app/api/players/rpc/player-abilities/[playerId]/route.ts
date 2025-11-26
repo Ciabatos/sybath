@@ -12,19 +12,19 @@ const typeParamsSchema = z.object({
   playerId: z.coerce.number(),
 }) satisfies z.ZodType<TPlayerAbilitiesParams>
 
-export async function GET(request: NextRequest, { params }: { params: TApiParams }): Promise<NextResponse> {
+export async function GET(request: NextRequest, { params }: { params: TApiParams } ): Promise<NextResponse> {
   const session = await auth()
   const sessionPlayerId = session?.user?.playerId
   if (!sessionPlayerId || isNaN(sessionPlayerId)) {
     return NextResponse.json({ success: false })
   }
-
+  
   const paramsFromPromise = await params
   const parsedParams = typeParamsSchema.parse(paramsFromPromise)
 
   try {
     const result = await getPlayerAbilities(parsedParams)
-
+  
     const etag = crypto.createHash("sha1").update(JSON.stringify(result)).digest("hex")
     const clientEtag = request.headers.get("if-none-match")
     if (clientEtag === etag) {

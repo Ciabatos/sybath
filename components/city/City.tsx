@@ -2,9 +2,9 @@
 
 import style from "@/components/city/styles/Tile.module.css"
 import { TJoinCity } from "@/methods/functions/map/joinCity"
-import { useCityTilesActions } from "@/methods/hooks/map/composite/useCityTilesActions"
-import { useCityTilesActionStatus } from "@/methods/hooks/map/composite/useCityTilesActionStatus"
-import { useCreateImage } from "@/methods/hooks/map/composite/useCreateImage"
+import { useCityTilesActionStatus } from "@/methods/hooks/cities/composite/useCityTilesActionStatus"
+import { useCityTilesActions } from "@/methods/hooks/cities/composite/useCityTilesActions"
+import { useCreateImage } from "@/methods/hooks/world/composite/useCreateImage"
 
 interface Props {
   tile: TJoinCity

@@ -1,7 +1,7 @@
 "use client"
 
 import { TJoinMap } from "@/methods/functions/map/joinMap"
-import { useFetchPlayerAbilities } from "@/methods/hooks/playerAbility/core/useFetchPlayerAbilities"
+import { useFetchPlayerAbilities } from "@/methods/hooks/players/core/useFetchPlayerAbilities"
 import { selectedAbilityIdAtom } from "@/store/atoms"
 import { useAtom } from "jotai"
 

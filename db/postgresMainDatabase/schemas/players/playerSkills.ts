@@ -8,6 +8,7 @@ export type TPlayerSkillsParams = {
   playerId: number
 }
 
+
 export type TPlayerSkills = {
   id: number
   playerId: number
@@ -16,13 +17,13 @@ export type TPlayerSkills = {
   name: string
 }
 
-export type TPlayerSkillsRecordByPlayerId = Record<number, TPlayerSkills>
+export type TPlayerSkillsRecordByPlayerId = Record<string, TPlayerSkills>
 
 export async function getPlayerSkills(params: TPlayerSkillsParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM players.player_skills($1);`
-
+    
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TPlayerSkills[]
   } catch (error) {

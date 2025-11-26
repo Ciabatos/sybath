@@ -2,27 +2,30 @@
 
 import { TActionTaskInProcess } from "@/app/api/map-tiles/action-task-in-process/route"
 import { TAttributesAbilitiesRecordById } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
-import { TAbilityRequirements } from "@/db/postgresMainDatabase/schemas/attributes/abilityRequirements"
 import { TAttributesSkillsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/skills"
-import { TInventorySlots } from "@/db/postgresMainDatabase/schemas/items/inventories"
-import { TPlayerInventoryRecordByRowCol } from "@/db/postgresMainDatabase/schemas/items/playerInventory"
-import { TMapBuildingsRecordByCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/map/buildings"
-import { TMapCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/map/cities"
-import { TMapCityTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/map/cityTiles"
-import { TMapDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/map/districts"
-import { TMapLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
-import { TMapMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/map/mapTiles"
-import { TMovementActionInProcessRecordByScheduledAt } from "@/db/postgresMainDatabase/schemas/map/movementActionInProcess"
-import { TPlayerVisibleMapData, TPlayerVisibleMapDataRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/map/playerVisibleMapData"
-import { TMapTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
+import { TAttributesStatsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/stats"
+import { TBuildingsBuildingTypesRecordById } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
+import { TBuildingsBuildingsRecordByCityIdCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
+import { TCitiesCitiesRecordByMapIdMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
+import { TCitiesCityTilesRecordByCityIdXY } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
+import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
+import { TDistrictsDistrictsRecordByMapIdMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/districts/districts"
+import { TItemsItemStatsRecordByItemId } from "@/db/postgresMainDatabase/schemas/items/itemStats"
+import { TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/items"
 import { TPlayerAbilitiesRecordByPlayerId } from "@/db/postgresMainDatabase/schemas/players/playerAbilities"
 import { TPlayerSkillsRecordByPlayerId } from "@/db/postgresMainDatabase/schemas/players/playerSkills"
+import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
+import { TWorldMapTilesRecordByMapIdXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
+import { TWorldMapTilesPlayersPositionsRecordByMapIdMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/world/mapTilesPlayersPositions"
+import { TWorldMapsRecordById } from "@/db/postgresMainDatabase/schemas/world/maps"
+import { TPlayerVisibleMapData, TPlayerVisibleMapDataRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/world/playerVisibleMapData"
+import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { TJoinCityByXY } from "@/methods/functions/map/joinCity"
 import { TJoinMapByXY } from "@/methods/functions/map/joinMap"
-import { TMapTilesGuardAreaSet } from "@/methods/hooks/map/composite/useActionMapTilesGuardArea"
-import { TMapTilesMovementPathSet } from "@/methods/hooks/map/composite/useActionMapTilesMovement"
-import { TClickeCityTile } from "@/methods/hooks/map/composite/useCityTilesActions"
-import { TClickedTile } from "@/methods/hooks/map/composite/useMapTileActions"
+import { TClickeCityTile } from "@/methods/hooks/cities/composite/useCityTilesActions"
+import { TMapTilesGuardAreaSet } from "@/methods/hooks/world/composite/useActionMapTilesGuardArea"
+import { TMapTilesMovementPathSet } from "@/methods/hooks/world/composite/useActionMapTilesMovement"
+import { TClickedTile } from "@/methods/hooks/world/composite/useMapTileActions"
 import { ECityTilesActionStatus } from "@/types/enumeration/CityTilesActionStatusEnum"
 import { EMapTilesActionStatus } from "@/types/enumeration/MapTilesActionStatusEnum"
 import { atom } from "jotai"
@@ -60,19 +63,25 @@ export const buildingInventorySlotsAtom = atom<TInventorySlots[]>([])
 export const actionTaskInProcessAtom = atom<TActionTaskInProcess>()
 
 //Tables
-export const cityTilesAtom = atom<TMapCityTilesRecordByXY>({})
+export const itemStatsAtom = atom<TItemsItemStatsRecordByItemId>({})
+export const itemsAtom = atom<TItemsItemsRecordById>({})
+export const districtsAtom = atom<TDistrictsDistrictsRecordByMapIdMapTileXMapTileY>({})
+export const districtTypesAtom = atom<TDistrictsDistrictTypesRecordById>({})
+export const cityTilesAtom = atom<TCitiesCityTilesRecordByCityIdXY>({})
+export const citiesAtom = atom<TCitiesCitiesRecordByMapIdMapTileXMapTileY>({})
+export const buildingsAtom = atom<TBuildingsBuildingsRecordByCityIdCityTileXCityTileY>({})
+export const buildingTypesAtom = atom<TBuildingsBuildingTypesRecordById>({})
+export const statsAtom = atom<TAttributesStatsRecordById>({})
 export const skillsAtom = atom<TAttributesSkillsRecordById>({})
 export const abilitiesAtom = atom<TAttributesAbilitiesRecordById>({})
-export const districtsAtom = atom<TMapDistrictsRecordByMapTileXMapTileY>({})
-export const citiesAtom = atom<TMapCitiesRecordByMapTileXMapTileY>({})
-export const landscapeTypesAtom = atom<TMapLandscapeTypesRecordById>({})
-export const mapTilesAtom = atom<TMapMapTilesRecordByXY>({})
-export const terrainTypesAtom = atom<TMapTerrainTypesRecordById>({})
-export const buildingsAtom = atom<TMapBuildingsRecordByCityTileXCityTileY>({})
+export const terrainTypesAtom = atom<TWorldTerrainTypesRecordById>({})
+export const mapsAtom = atom<TWorldMapsRecordById>({})
+export const mapTilesAtom = atom<TWorldMapTilesRecordByMapIdXY>({})
+export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
+export const mapTilesPlayersPositionsAtom = atom<TWorldMapTilesPlayersPositionsRecordByMapIdMapTileXMapTileY>({})
 
 //Functions
+export const playerSkillsAtom = atom<TPlayerSkillsRecordByPlayerId>({})
+export const playerAbilitiesAtom = atom<TPlayerAbilitiesRecordByPlayerId>({})
 export const movementActionInProcessAtom = atom<TMovementActionInProcessRecordByScheduledAt>({})
 export const playerVisibleMapDataAtom = atom<TPlayerVisibleMapDataRecordByMapTileXMapTileY>({})
-export const playerInventoryAtom = atom<TPlayerInventoryRecordByRowCol>({})
-export const playerAbilitiesAtom = atom<TPlayerAbilitiesRecordByPlayerId>({})
-export const playerSkillsAtom = atom<TPlayerSkillsRecordByPlayerId>({})

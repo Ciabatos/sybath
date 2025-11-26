@@ -3,7 +3,7 @@
 import ModalCityActionBar from "@/components/portals/modals/modalBottomCenterBar/modalCityActionBar/ModalCityActionBar"
 import ModalPlayerActionBar from "@/components/portals/modals/modalBottomCenterBar/modalPlayerActionBar/ModalPlayerActionBar"
 import styles from "@/components/portals/modals/ModalBottomCenterBar/styles/ModalBottomCenterBarHandling.module.css"
-import { useMapTilesActionStatus } from "@/methods/hooks/map/composite/useMapTilesActionStatus"
+import { useMapTilesActionStatus } from "@/methods/hooks/world/composite/useMapTilesActionStatus"
 
 export default function ModalBottomCenterBarHandling() {
   const { actualMapTilesActionStatus } = useMapTilesActionStatus()

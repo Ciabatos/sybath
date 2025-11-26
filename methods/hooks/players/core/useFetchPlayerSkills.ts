@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcher.hbs
 
 "use client"
-import { TPlayerSkillsParams, TPlayerSkillsRecordByPlayerId } from "@/db/postgresMainDatabase/schemas/players/playerSkills"
-import { arrayToObjectKeyId } from "@/methods/functions/util/converters"
+import { TPlayerSkillsRecordByPlayerId , TPlayerSkillsParams  } from "@/db/postgresMainDatabase/schemas/players/playerSkills"
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { playerSkillsAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useRef } from "react"
 import useSWR from "swr"
 
-export function useFetchPlayerSkills(params: TPlayerSkillsParams) {
+export function useFetchPlayerSkills( params: TPlayerSkillsParams) {
   const playerSkills = useAtomValue(playerSkillsAtom)
   const setPlayerSkills = useSetAtom(playerSkillsAtom)
 
@@ -19,11 +19,11 @@ export function useFetchPlayerSkills(params: TPlayerSkillsParams) {
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const index = data ? (arrayToObjectKeyId("playerId", data) as TPlayerSkillsRecordByPlayerId) : {}
+      const index = data ? (arrayToObjectKey(["playerId"], data) as TPlayerSkillsRecordByPlayerId) : {}
       setPlayerSkills(index)
       prevDataRef.current = data
     }
   }, [data, setPlayerSkills])
-
+  
   return { playerSkills }
 }

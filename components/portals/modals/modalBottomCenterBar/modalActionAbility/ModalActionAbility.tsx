@@ -1,13 +1,13 @@
 "use client"
 
 import styles from "@/components/portals/modals/ModalBottomCenterBar/styles/ModalActionBar.module.css"
-import { useActionMapTilesMovement } from "@/methods/hooks/map/composite/useActionMapTilesMovement"
-import { useMapTileActions } from "@/methods/hooks/map/composite/useMapTileActions"
-import { useMapTilesActionStatus } from "@/methods/hooks/map/composite/useMapTilesActionStatus"
 import { usePlayerPositionMapTile } from "@/methods/hooks/mapTiles/composite/usePlayerPositionMapTile"
 import { usePlayerAbility } from "@/methods/hooks/players/composite/usePlayerAbility"
 import { usePlayerAbilityRequirements } from "@/methods/hooks/players/composite/usePlayerAbilityRequirements"
 import { useMutateActionTaskInProcess } from "@/methods/hooks/tasks/core/useMutateActionTaskInProcess"
+import { useActionMapTilesMovement } from "@/methods/hooks/world/composite/useActionMapTilesMovement"
+import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
+import { useMapTilesActionStatus } from "@/methods/hooks/world/composite/useMapTilesActionStatus"
 import { useEffect } from "react"
 
 export default function ModalActionAbility() {

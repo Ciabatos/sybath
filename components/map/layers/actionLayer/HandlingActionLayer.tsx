@@ -3,9 +3,9 @@
 import GuardAreaActionLayer from "@/components/map/layers/actionLayer/GuardAreaActionLayer"
 import MovementActionLayer from "@/components/map/layers/actionLayer/MovementActionLayer"
 import { TJoinMap } from "@/methods/functions/map/joinMap"
-import { useActionMapTilesGuardArea } from "@/methods/hooks/map/composite/useActionMapTilesGuardArea"
-import { useActionMapTilesMovement } from "@/methods/hooks/map/composite/useActionMapTilesMovement"
-import { useMapTilesActionStatus } from "@/methods/hooks/map/composite/useMapTilesActionStatus"
+import { useActionMapTilesGuardArea } from "@/methods/hooks/world/composite/useActionMapTilesGuardArea"
+import { useActionMapTilesMovement } from "@/methods/hooks/world/composite/useActionMapTilesMovement"
+import { useMapTilesActionStatus } from "@/methods/hooks/world/composite/useMapTilesActionStatus"
 
 interface Props {
   tile: TJoinMap

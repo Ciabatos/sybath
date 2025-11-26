@@ -7,7 +7,7 @@ import { NextRequest, NextResponse } from "next/server"
 {{#if methodParamsColumns}}
 import z from "zod"
 
-type TApiParams = Record<string, string></string>
+type TApiParams = Record<string, string>
 
 const typeParamsSchema = z.object({
   {{#each methodParamsColumns}}

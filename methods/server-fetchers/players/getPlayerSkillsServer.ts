@@ -1,18 +1,22 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcherServer.hbs
 "use server"
 
-import type { TPlayerSkills, TPlayerSkillsParams, TPlayerSkillsRecordByPlayerId } from "@/db/postgresMainDatabase/schemas/players/playerSkills"
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { getPlayerSkills } from "@/db/postgresMainDatabase/schemas/players/playerSkills"
-import { arrayToObjectKeyId } from "@/methods/functions/util/converters"
+import type { TPlayerSkills } from "@/db/postgresMainDatabase/schemas/players/playerSkills"
+import type { TPlayerSkillsParams } from "@/db/postgresMainDatabase/schemas/players/playerSkills" 
+import type { TPlayerSkillsRecordByPlayerId } from "@/db/postgresMainDatabase/schemas/players/playerSkills"
 
-export async function getPlayerSkillsServer(params: TPlayerSkillsParams): Promise<{
+
+export async function getPlayerSkillsServer( params: TPlayerSkillsParams): Promise<{
   raw: TPlayerSkills[]
   byKey: TPlayerSkillsRecordByPlayerId
   apiPath: string
 }> {
   const getPlayerSkillsData = await getPlayerSkills(params)
 
-  const data = getPlayerSkillsData ? (arrayToObjectKeyId("playerId", getPlayerSkillsData) as TPlayerSkillsRecordByPlayerId) : {}
+  const data = getPlayerSkillsData ? (arrayToObjectKey(["playerId"], getPlayerSkillsData) as TPlayerSkillsRecordByPlayerId) : {}
 
   return { raw: getPlayerSkillsData, byKey: data, apiPath: `/api/players/rpc/player-skills/${params.playerId}` }
 }
+
