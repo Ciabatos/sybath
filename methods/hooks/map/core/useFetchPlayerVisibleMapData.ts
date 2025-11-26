@@ -2,7 +2,7 @@
 
 "use client"
 import { TPlayerVisibleMapDataParams, TPlayerVisibleMapDataRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/map/playerVisibleMapData"
-import { arrayToObjectKeysId } from "@/methods/functions/util/converters"
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { playerVisibleMapDataAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useRef } from "react"
@@ -19,7 +19,7 @@ export function useFetchPlayerVisibleMapData(params: TPlayerVisibleMapDataParams
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const index = data ? (arrayToObjectKeysId("mapTileX", "mapTileY", data) as TPlayerVisibleMapDataRecordByMapTileXMapTileY) : {}
+      const index = data ? (arrayToObjectKey("mapTileX", "mapTileY", data) as TPlayerVisibleMapDataRecordByMapTileXMapTileY) : {}
       setPlayerVisibleMapData(index)
       prevDataRef.current = data
     }

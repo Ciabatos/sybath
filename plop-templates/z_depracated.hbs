@@ -18,7 +18,7 @@ export type {{methodTypeName}} = {
 {{/each}}
 }
 
-{{#if (eq indexMethodName "arrayToObjectKeysId")}}
+{{#if (eq indexMethodName "arrayToObjectKey")}}
 export type {{indexTypeName}} = Record<string, {{methodTypeName}}>
 {{else}}
 export type {{indexTypeName}} = Record<number, {{methodTypeName}}> 

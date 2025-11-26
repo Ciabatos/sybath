@@ -127,9 +127,9 @@ export default function getTable(plop) {
       const methodNameByKey = "get" + schemaTablePascalName + "ByKey"
 
       const indexTypeMethodName = indexColumns.map((f) => f.pascalName).join("")
-      const indexMethodName = indexColumns.length > 1 ? "arrayToObjectKeysId" : "arrayToObjectKeyId"
+      const indexMethodName = "arrayToObjectKey"
       const indexTypeName = methodTypeName + "RecordBy" + indexTypeMethodName
-      const indexMethodParams = indexColumns.map((f) => `"${snakeToCamel(f.name)}"`).join(", ")
+      const indexMethodParams = `[${indexColumns.map((f) => `"${snakeToCamel(f.name)}"`).join(", ")}]` 
       const indexParamsColumns = methodParamsColumns.map((f) => snakeToCamel(f.name)).join(", ")
 
       await createMethodGetRecords(schema, table)

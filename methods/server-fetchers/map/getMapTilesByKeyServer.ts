@@ -3,7 +3,7 @@
 
 import type { TMapMapTiles, TMapMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/map/mapTiles"
 import { getMapMapTilesByKey, TMapMapTilesParams } from "@/db/postgresMainDatabase/schemas/map/mapTiles"
-import { arrayToObjectKeysId } from "@/methods/functions/util/converters"
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export async function getMapMapTilesByKeyServer(params: TMapMapTilesParams): Promise<{
   raw: TMapMapTiles[]
@@ -12,7 +12,7 @@ export async function getMapMapTilesByKeyServer(params: TMapMapTilesParams): Pro
 }> {
   const getMapMapTilesByKeyData = await getMapMapTilesByKey(params)
 
-  const data = getMapMapTilesByKeyData ? (arrayToObjectKeysId("x", "y", getMapMapTilesByKeyData) as TMapMapTilesRecordByXY) : {}
+  const data = getMapMapTilesByKeyData ? (arrayToObjectKey("x", "y", getMapMapTilesByKeyData) as TMapMapTilesRecordByXY) : {}
 
   return { raw: getMapMapTilesByKeyData, byKey: data, apiPath: `/api/map/map-tiles/${params.x}/${params.y}` }
 }

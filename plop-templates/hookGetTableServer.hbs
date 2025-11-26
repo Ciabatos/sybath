@@ -3,11 +3,8 @@
 
 import { {{indexMethodName}} } from "@/methods/functions/util/converters"
 import { {{methodName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
-{{#if (eq indexMethodName "arrayToObjectKeysId")}}
 import type { {{methodTypeName}}, {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
-{{else}}
-import type { {{methodTypeName}}, {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
-{{/if}}
+
 
 export async function {{methodName}}Server(): Promise<{
   raw: {{methodTypeName}}[]

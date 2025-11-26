@@ -2,7 +2,7 @@
 
 "use client"
 import { TMapCitiesParams, TMapCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/map/cities"
-import { arrayToObjectKeysId } from "@/methods/functions/util/converters"
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { citiesAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useRef } from "react"
@@ -19,7 +19,7 @@ export function useFetchCitiesByKey(params: TMapCitiesParams) {
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const index = data ? (arrayToObjectKeysId("mapTileX", "mapTileY", data) as TMapCitiesRecordByMapTileXMapTileY) : {}
+      const index = data ? (arrayToObjectKey("mapTileX", "mapTileY", data) as TMapCitiesRecordByMapTileXMapTileY) : {}
       setCities(index)
       prevDataRef.current = data
     }

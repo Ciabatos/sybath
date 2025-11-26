@@ -99,10 +99,10 @@ export default function getMethodFetcher(plop) {
 
       // nazwa fragmentu typu dla indeksu
       const indexTypeMethodName = indexColumns.map((f) => f.pascalName).join("")
-      const indexMethodParams = indexColumns.map((f) => `"${snakeToCamel(f.name)}"`).join(", ")
+      const indexMethodParams = `[${indexColumns.map((f) => `"${snakeToCamel(f.name)}"`).join(", ")}]`
       const indexParamsColumns = methodParamsColumns.map((f) => snakeToCamel(f.name)).join(", ")
       const indexTypeName = methodTypeName + "RecordBy" + indexTypeMethodName
-      const indexMethodName = indexFields.length > 1 ? "arrayToObjectKeysId" : "arrayToObjectKeyId"
+      const indexMethodName = "arrayToObjectKey"
 
       const apiParamPathSquareBrackets = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `[${f.camelName}]`).join("/") : ""
       const apiParamPath = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `\${params.${f.camelName}}`).join("/") : ""

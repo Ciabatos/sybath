@@ -2,7 +2,7 @@
 
 "use client"
 import { TMapDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/map/districts"
-import { arrayToObjectKeysId } from "@/methods/functions/util/converters"
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { districtsAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useRef } from "react"
@@ -19,7 +19,7 @@ export function useFetchDistricts() {
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const index = data ? (arrayToObjectKeysId("mapTileX", "mapTileY", data) as TMapDistrictsRecordByMapTileXMapTileY) : {}
+      const index = data ? (arrayToObjectKey("mapTileX", "mapTileY", data) as TMapDistrictsRecordByMapTileXMapTileY) : {}
       setDistricts(index)
       prevDataRef.current = data
     }

@@ -4,11 +4,7 @@
 import { {{indexMethodName}} } from "@/methods/functions/util/converters"
 import { {{methodNameByKey}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 {{#if methodParamsColumns}}import { {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}" {{/if}}
-{{#if (eq indexMethodName "arrayToObjectKeysId")}}
 import type { {{methodTypeName}}, {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
-{{else}}
-import type { {{methodTypeName}}, {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
-{{/if}}
 
 export async function {{methodNameByKey}}Server({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}): Promise<{
   raw: {{methodTypeName}}[]

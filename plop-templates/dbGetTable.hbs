@@ -18,11 +18,7 @@ export type {{methodTypeName}} = {
 {{/each}}
 }
 
-{{#if (eq indexMethodName "arrayToObjectKeysId")}}
 export type {{indexTypeName}} = Record<string, {{methodTypeName}}>
-{{else}}
-export type {{indexTypeName}} = Record<number, {{methodTypeName}}> 
-{{/if}}
 
 export async function {{methodName}}() {
   try {

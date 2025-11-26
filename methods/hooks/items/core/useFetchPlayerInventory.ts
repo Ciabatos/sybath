@@ -2,7 +2,7 @@
 
 "use client"
 import { TPlayerInventoryParams, TPlayerInventoryRecordByRowCol } from "@/db/postgresMainDatabase/schemas/items/playerInventory"
-import { arrayToObjectKeysId } from "@/methods/functions/util/converters"
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { playerInventoryAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useRef } from "react"
@@ -19,7 +19,7 @@ export function useFetchPlayerInventory(params: TPlayerInventoryParams) {
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const index = data ? (arrayToObjectKeysId("row", "col", data) as TPlayerInventoryRecordByRowCol) : {}
+      const index = data ? (arrayToObjectKey("row", "col", data) as TPlayerInventoryRecordByRowCol) : {}
       setPlayerInventory(index)
       prevDataRef.current = data
     }

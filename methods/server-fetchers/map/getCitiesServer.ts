@@ -3,7 +3,7 @@
 
 import type { TMapCities, TMapCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/map/cities"
 import { getMapCities } from "@/db/postgresMainDatabase/schemas/map/cities"
-import { arrayToObjectKeysId } from "@/methods/functions/util/converters"
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export async function getMapCitiesServer(): Promise<{
   raw: TMapCities[]
@@ -12,7 +12,7 @@ export async function getMapCitiesServer(): Promise<{
 }> {
   const getMapCitiesData = await getMapCities()
 
-  const data = getMapCitiesData ? (arrayToObjectKeysId("mapTileX", "mapTileY", getMapCitiesData) as TMapCitiesRecordByMapTileXMapTileY) : {}
+  const data = getMapCitiesData ? (arrayToObjectKey("mapTileX", "mapTileY", getMapCitiesData) as TMapCitiesRecordByMapTileXMapTileY) : {}
 
   return { raw: getMapCitiesData, byKey: data, apiPath: `/api/map/cities` }
 }

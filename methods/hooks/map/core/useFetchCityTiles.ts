@@ -2,7 +2,7 @@
 
 "use client"
 import { TMapCityTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/map/cityTiles"
-import { arrayToObjectKeysId } from "@/methods/functions/util/converters"
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { cityTilesAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useRef } from "react"
@@ -19,7 +19,7 @@ export function useFetchCityTiles() {
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const index = data ? (arrayToObjectKeysId("x", "y", data) as TMapCityTilesRecordByXY) : {}
+      const index = data ? (arrayToObjectKey("x", "y", data) as TMapCityTilesRecordByXY) : {}
       setCityTiles(index)
       prevDataRef.current = data
     }

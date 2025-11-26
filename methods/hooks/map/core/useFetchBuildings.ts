@@ -2,7 +2,7 @@
 
 "use client"
 import { TMapBuildingsRecordByCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/map/buildings"
-import { arrayToObjectKeysId } from "@/methods/functions/util/converters"
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { buildingsAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useRef } from "react"
@@ -19,7 +19,7 @@ export function useFetchBuildings() {
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const index = data ? (arrayToObjectKeysId("cityTileX", "cityTileY", data) as TMapBuildingsRecordByCityTileXCityTileY) : {}
+      const index = data ? (arrayToObjectKey("cityTileX", "cityTileY", data) as TMapBuildingsRecordByCityTileXCityTileY) : {}
       setBuildings(index)
       prevDataRef.current = data
     }

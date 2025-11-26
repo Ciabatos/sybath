@@ -3,7 +3,7 @@
 
 import type { TMapDistricts, TMapDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/map/districts"
 import { getMapDistricts } from "@/db/postgresMainDatabase/schemas/map/districts"
-import { arrayToObjectKeysId } from "@/methods/functions/util/converters"
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export async function getMapDistrictsServer(): Promise<{
   raw: TMapDistricts[]
@@ -12,7 +12,7 @@ export async function getMapDistrictsServer(): Promise<{
 }> {
   const getMapDistrictsData = await getMapDistricts()
 
-  const data = getMapDistrictsData ? (arrayToObjectKeysId("mapTileX", "mapTileY", getMapDistrictsData) as TMapDistrictsRecordByMapTileXMapTileY) : {}
+  const data = getMapDistrictsData ? (arrayToObjectKey(["mapTileX", "mapTileY"], getMapDistrictsData) as TMapDistrictsRecordByMapTileXMapTileY) : {}
 
   return { raw: getMapDistrictsData, byKey: data, apiPath: `/api/map/districts` }
 }

@@ -3,7 +3,7 @@
 
 import type { TPlayerInventory, TPlayerInventoryParams, TPlayerInventoryRecordByRowCol } from "@/db/postgresMainDatabase/schemas/items/playerInventory"
 import { getPlayerInventory } from "@/db/postgresMainDatabase/schemas/items/playerInventory"
-import { arrayToObjectKeysId } from "@/methods/functions/util/converters"
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export async function getPlayerInventoryServer(params: TPlayerInventoryParams): Promise<{
   raw: TPlayerInventory[]
@@ -12,7 +12,7 @@ export async function getPlayerInventoryServer(params: TPlayerInventoryParams): 
 }> {
   const getPlayerInventoryData = await getPlayerInventory(params)
 
-  const data = getPlayerInventoryData ? (arrayToObjectKeysId("row", "col", getPlayerInventoryData) as TPlayerInventoryRecordByRowCol) : {}
+  const data = getPlayerInventoryData ? (arrayToObjectKey("row", "col", getPlayerInventoryData) as TPlayerInventoryRecordByRowCol) : {}
 
   return { raw: getPlayerInventoryData, byKey: data, apiPath: `/api/items/rpc/player-inventory/${params.playerId}` }
 }
