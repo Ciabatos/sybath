@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { useMapTilesActionStatus } from "@/methods/hooks/world/composite/useMapTilesActionStatus"
 
-export default function ModalPlayerActionBar() {
+export default function PanelPlayerActionBar() {
   const { getClickedMapTile } = useMapTileActions()
   const { newMapTilesActionStatus } = useMapTilesActionStatus()
 

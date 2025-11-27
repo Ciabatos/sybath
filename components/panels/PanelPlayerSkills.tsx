@@ -2,7 +2,7 @@
 
 import { useFetchPlayerSkills } from "@/methods/hooks/playerSkills/core/useFetchPlayerSkills"
 
-export default function PlayerSkills() {
+export default function PanelPlayerSkills() {
   const { playerSkills } = useFetchPlayerSkills()
 
   return (

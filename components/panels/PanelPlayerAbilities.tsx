@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { usePlayerAbility } from "@/methods/hooks/players/composite/usePlayerAbility"
 import { useMapTilesActionStatus } from "@/methods/hooks/world/composite/useMapTilesActionStatus"
 
-export default function PlayerAbilities() {
+export default function PanelPlayerAbilities() {
   const { playerAbilities, selectAbility } = usePlayerAbility()
   const { newMapTilesActionStatus } = useMapTilesActionStatus()
 

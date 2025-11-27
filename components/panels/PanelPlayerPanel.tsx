@@ -1,8 +1,8 @@
 "use client"
-import PartyInventory from "@/components/portals/modals/modalLeftTop/modalPlayerPanel/PartyInventory"
-import PlayerAbilities from "@/components/portals/modals/modalLeftTop/modalPlayerPanel/PlayerAbilities"
-import PlayerInventory from "@/components/portals/modals/modalLeftTop/modalPlayerPanel/PlayerInventory"
-import PlayerSkills from "@/components/portals/modals/modalLeftTop/modalPlayerPanel/PlayerSkills"
+import PartyInventory from "@/components/panels/PanelPartyInventory"
+import PanelPlayerAbilities from "@/components/panels/PanelPlayerAbilities"
+import PanelPlayerInventory from "@/components/panels/PanelPlayerInventory"
+import PanelPlayerSkills from "@/components/panels/PanelPlayerSkills"
 import styles from "@/components/portals/modals/modalLeftTop/modalPlayerPanel/styles/ModalPlayerPanel.module.css" // Import the CSS module
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -11,7 +11,7 @@ import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileAct
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
 import { useState } from "react"
 
-export default function ModalPlayerPanel() {
+export default function PanelPlayerPanel() {
   const [isOpen, setIsOpen] = useState(false)
   const [isPartyVisible, setIsPartyVisible] = useState(false)
   const { handleOpenPlayerActionList, handleClosePlayerActionList } = useMapTileActions()
@@ -81,20 +81,20 @@ export default function ModalPlayerPanel() {
                 <TabsContent
                   value="Inventory"
                   className="flex-1 overflow-auto">
-                  <PlayerInventory />
+                  <PanelPlayerInventory />
                 </TabsContent>
                 <TabsContent
                   value="Skills"
                   className="flex-1 overflow-auto">
                   Skills slużą do pokazania jakie umiejętności posiada postać. Można je przekazywać innym postaciom ale nie są to aktywne abilities
-                  <PlayerSkills />
+                  <PanelPlayerSkills />
                 </TabsContent>
                 <TabsContent
                   value="Abilities"
                   className="flex-1 overflow-auto">
                   Abilities służą do używania, są to aktywne umiejętności, które można używać w walce lub produkcji i innych sytuacjach, ability powstaja jeżeli masz różne kombinacje skills, stats i
                   knowledge.
-                  <PlayerAbilities />
+                  <PanelPlayerAbilities />
                 </TabsContent>
                 <TabsContent
                   value="Knowledge"

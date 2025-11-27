@@ -4,7 +4,7 @@ import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileAct
 import { useMapTilesActionStatus } from "@/methods/hooks/world/composite/useMapTilesActionStatus"
 import Link from "next/link"
 
-export default function ModalCityActionBar() {
+export default function PanelCityActionBar() {
   const { getClickedMapTile } = useMapTileActions()
   const { resetMapTilesActionStatus } = useMapTilesActionStatus()
 

@@ -3,7 +3,7 @@ import styles from "@/components/portals/modals/modalTopCenter/modalBackToMap/st
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
-export default function ModalBackToMap() {
+export default function PanelBackToMap() {
   return (
     <div className={styles.container}>
       <Link href="/map">

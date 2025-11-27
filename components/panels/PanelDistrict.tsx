@@ -1,14 +1,18 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import Inventory from "@/components/ui/custom/Inventory"
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from "@/components/ui/drawer"
+import { useFetchDistrictInventorySlots } from "@/methods/hooks/districtInventory/core/useFetchDistrictInventorySlots"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 
 import { useMapTilesActionStatus } from "@/methods/hooks/world/composite/useMapTilesActionStatus"
 
-export function ModalEmptyTilePanel() {
+export function PanelDistrict() {
   const { actualMapTilesActionStatus, resetMapTilesActionStatus } = useMapTilesActionStatus()
   const { getClickedMapTile } = useMapTileActions()
+
+  const { districtInventorySlots } = useFetchDistrictInventorySlots(getClickedMapTile()?.districts?.id)
 
   const handleClose = () => {
     resetMapTilesActionStatus()
@@ -17,7 +21,7 @@ export function ModalEmptyTilePanel() {
   return (
     <Drawer
       direction="right"
-      open={actualMapTilesActionStatus.EmptyTileActionList}
+      open={actualMapTilesActionStatus.DistrictActionList}
       onOpenChange={(open) => {
         if (!open) {
           handleClose()
@@ -28,16 +32,22 @@ export function ModalEmptyTilePanel() {
         style={{ width: "40%", maxWidth: "none" }}>
         <div className="flex h-full flex-col p-6">
           <DrawerHeader className="px-0">
-            <DrawerTitle>{getClickedMapTile()?.terrainTypes?.name}</DrawerTitle>
-            <DrawerDescription>{getClickedMapTile()?.landscapeTypes?.name}</DrawerDescription>
+            <DrawerTitle>{getClickedMapTile()?.districts?.type_name}</DrawerTitle>
+            <DrawerDescription>{getClickedMapTile()?.districts?.name}</DrawerDescription>
           </DrawerHeader>
           <div className="flex-1 py-4">
             <div>
-              {getClickedMapTile()?.moveCost} {getClickedMapTile()?.tiles.x} {getClickedMapTile()?.tiles.y}
-              <p>Zalożenie, że Tile mozna odkrywac i wtedy eventy sie pojawiaja np walka </p>
-              <p>Mozna po odkryciu cos tu wybudowac miasto/dystrykt w celu wydobycia surowca</p>
+              {getClickedMapTile()?.districts?.map_tile_x} {getClickedMapTile()?.districts?.map_tile_y}
+              <p>Zalożenie, że dystrykt produkuje co jakis interwał produky </p>
+              <p>Pracuje tu full dostepnych ludzi z miasta</p>
+              <p>Gracz moze uzyc opcji aby tu pracowac</p>
+              <p>Zakładka dla Ownera</p>
+              <p>Owner moze manipulowac stawkami wynagrodzenia</p>
+              <p>Owner moze sprawdzac ekwipunek budynku</p>
+              <p>Owner moze transportowac ekwipunek</p>
             </div>
           </div>
+          <Inventory inventorySlots={districtInventorySlots}></Inventory>
           <DrawerFooter className="mt-auto px-0">
             <DrawerClose asChild>
               <Button

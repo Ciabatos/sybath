@@ -10,7 +10,7 @@ import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileAct
 import { useMapTilesActionStatus } from "@/methods/hooks/world/composite/useMapTilesActionStatus"
 import { useEffect } from "react"
 
-export default function ModalActionAbility() {
+export default function PanelActionAbility() {
   const { getClickedMapTile } = useMapTileActions()
   const { playerMapTile } = usePlayerPositionMapTile()
   const { selectMapTilesMovementPath, mapTilesMovementPathSet, doPlayerMovementAction } = useActionMapTilesMovement()

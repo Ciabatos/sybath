@@ -7,7 +7,7 @@ import { useFetchBuildingInventorySlots } from "@/methods/hooks/buildingInventor
 import { useCityTilesActionStatus } from "@/methods/hooks/cities/composite/useCityTilesActionStatus"
 import { useCityTilesActions } from "@/methods/hooks/cities/composite/useCityTilesActions"
 
-export function ModalBuildingPanel() {
+export function PanelBuilding() {
   const { resetNewCityTilesActionStatus, actualCityTileStatus } = useCityTilesActionStatus()
   const { getClickedCityTile } = useCityTilesActions()
   const { buildingInventorySlots } = useFetchBuildingInventorySlots(getClickedCityTile()?.buildings?.id)
