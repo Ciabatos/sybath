@@ -1,6 +1,6 @@
 // hooks/
 import { useAtom } from "jotai"
-import { EPanelStatus } from "@/types/enumeration/EPanelStatus"
+import { EPanels } from "@/types/enumeration/EPanels"
 import { modalBottomCenterBarAtom as modalBottomCenterBarAtom } from "@/store/atoms"
 import { usePanelMap } from "./useLazyPanelLoader"
 import { FC } from "react"
@@ -12,7 +12,7 @@ export function useModalBottomCenterBar() {
   const [ActivePanel, setActivePanel] = useState<FC | null>(null)
 
   useEffect(() => {
-    if (status === EPanelStatus.Inactive) {
+    if (status === EPanels.Inactive) {
       setActivePanel(null)
       return
     }

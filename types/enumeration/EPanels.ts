@@ -1,6 +1,6 @@
 "use client"
 
-export enum EPanelStatus {
+export enum EPanels {
   Inactive = "Inactive",
   PanelPlayerActionList = "PanelPlayerActionList",
   PanelCityActionList = "PanelCityActionList",

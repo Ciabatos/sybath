@@ -3,7 +3,7 @@ import { useAtom } from "jotai"
 import { modalRightCenterAtom } from "@/store/atoms"
 import { useEffect, useState } from "react"
 import { FC } from "react"
-import { EPanelStatus } from "@/types/enumeration/EPanelStatus"
+import { EPanels } from "@/types/enumeration/EPanels"
 
 export function useModalRightCenter() {
   const [status, setStatus] = useAtom(modalRightCenterAtom)
@@ -12,7 +12,7 @@ export function useModalRightCenter() {
   const [ActivePanel, setActivePanel] = useState<FC | null>(null)
 
   useEffect(() => {
-    if (status === EPanelStatus.Inactive) {
+    if (status === EPanels.Inactive) {
       setActivePanel(null)
       return
     }

@@ -27,14 +27,14 @@ import { TMapTilesGuardAreaSet } from "@/methods/hooks/world/composite/useAction
 import { TMapTilesMovementPathSet } from "@/methods/hooks/world/composite/useActionMapTilesMovement"
 import { TClickedTile } from "@/methods/hooks/world/composite/useMapTileActions"
 import { ECityTilesActionStatus } from "@/types/enumeration/CityTilesActionStatusEnum"
-import { EPanelStatus } from "@/types/enumeration/EPanelStatus"
+import { EPanels } from "@/types/enumeration/EPanels"
 import { atom } from "jotai"
 
 //Modals
-export const modalBottomCenterBarAtom = atom<EPanelStatus>(EPanelStatus.Inactive)
-export const modalLeftTopBarAtom = atom<EPanelStatus>(EPanelStatus.Inactive)
-export const modalRightCenterAtom = atom<EPanelStatus>(EPanelStatus.Inactive)
-export const modalTopCenterAtom = atom<EPanelStatus>(EPanelStatus.Inactive)
+export const modalBottomCenterBarAtom = atom<EPanels>(EPanels.Inactive)
+export const modalLeftTopBarAtom = atom<EPanels>(EPanels.Inactive)
+export const modalRightCenterAtom = atom<EPanels>(EPanels.Inactive)
+export const modalTopCenterAtom = atom<EPanels>(EPanels.Inactive)
 
 //Map
 export const clickedTileAtom = atom<TClickedTile>()
