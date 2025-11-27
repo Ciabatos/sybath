@@ -3,17 +3,23 @@ import { useMapTilesActionStatus } from "@/methods/hooks/world/composite/useMapT
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 
-export default function BottomCenterPortal() {
-  const { actualMapTilesActionStatus } = useMapTilesActionStatus()
+export default function Portal() {
   const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
     setIsMounted(true)
   }, [])
 
-  if (!isMounted || actualMapTilesActionStatus.Inactive) {
+  if (!isMounted) {
     return null
   }
 
-  return createPortal(<ModalBottomCenterBarHandling />, document.body)
+  return createPortal(
+    <>
+      <ModalTopCenterHandling />
+      <ModalLeftTopHandling /> 
+      <ModalRightCenterHandling />
+      <ModalBottomCenterBarHandling />
+    </>,
+    document.body)
 }
