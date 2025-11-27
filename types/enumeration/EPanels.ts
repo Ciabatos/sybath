@@ -1,13 +1,19 @@
 "use client"
 
 export enum EPanels {
-  Inactive = "Inactive",
-  PanelPlayerActionList = "PanelPlayerActionList",
-  PanelCityActionList = "PanelCityActionList",
-  PanelDistrictActionList = "PanelDistrictActionList",
-  PanelEmptyTileActionList = "PanelEmptyTileActionList",
-  PanelMovementAction = "PanelMovementAction",
-  PanelGuardAreaAction = "PanelGuardAreaAction",
-  PanelUseAbilityAction = "PanelUseAbilityAction",
-  PanelBuildingActionList = "PanelBuildingActionList",
+Inactive = "Inactive",
+PanelActionAbility				=	"PanelActionAbility",
+PanelActionGuardArea		=	"PanelActionGuardArea",
+PanelActionMovement		=	"PanelActionMovement",
+PanelBackToMap		=	"PanelBackToMap",
+PanelBuilding		=	"PanelBuilding",
+PanelCityActionBar		=	"PanelCityActionBar",
+PanelDistrict		=	"PanelDistrict",
+PanelEmptyTilePanel		=	"PanelEmptyTilePanel",
+PanelPartyInventory		=	"PanelPartyInventory",
+PanelPlayerAbilities		=	"PanelPlayerAbilities",
+PanelPlayerActionBar		=	"PanelPlayerActionBar",
+PanelPlayerInventory		=	"PanelPlayerInventory",
+PanelPlayerPanel		=	"PanelPlayerPanel",
+PanelPlayerSkills		=	"PanelPlayerSkills",
 }
