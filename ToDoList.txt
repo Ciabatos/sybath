@@ -29,9 +29,6 @@ UI i flow dla „systemu informacji”
 
 dodac RLS z policy
 
-tego użyć do wyciagania po kluczu
-const key = [`${tile.x},${tile.y}`]
-
 dodać codegen - plop - dla :
 -Modale-w hooku i bar handlingu zrobic dynamicznie z typow enum i tam budowac plopem
 1. Stwórz enum z nazwami statusów, a obok niego typowaną mapę Record<Enum, React.ComponentType> przypisującą każdy status do odpowiedniego komponentu.
@@ -42,17 +39,8 @@ dodać codegen - plop - dla :
 -Componentów dużych typu Modal - to nie wiem trzeba zobaczyc przy budowaniu
 
 
-ESLINT - dodac zakaz importow z folderu db do componentow, wszystko ma byc przez folder methods robione nawet serwerowe funkcje
-
-+zunifikowac player_abilities do abilities and ability_owner ability_types
-ability_effects 
-ability_conditions 
-
 ROZDZIELIC POBIERANIE POZYCJI GRACZA OD MAPTILESDATAVISABLE - i zmienic nazwe na MAPTILES_DATA_KNOWN
 Dodac Atom zaznaczony hero w celu posiadania wielu Herosow
 
 rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmianie URL
-
-Funkcje pisac w taki sposób function przykladowaFunkcja({ email, name }: User) { 
--pokazuje jawnie, które pola są używane, ale nadal przyjmuje pełny Obiekt (User) dla ułatwienia
 
