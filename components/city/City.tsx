@@ -1,7 +1,7 @@
 "use client"
 
 import style from "@/components/city/styles/Tile.module.css"
-import { TJoinCity } from "@/methods/functions/map/joinCity"
+import { TJoinCity } from "@/methods/functions/city/joinCity"
 import { useCityTilesActionStatus } from "@/methods/hooks/cities/composite/useCityTilesActionStatus"
 import { useCityTilesActions } from "@/methods/hooks/cities/composite/useCityTilesActions"
 import { useCreateImage } from "@/methods/hooks/world/composite/useCreateImage"

@@ -1,7 +1,7 @@
 "use client"
 
 import City from "@/components/city/City"
-import { TJoinCityByXY } from "@/methods/functions/map/joinCity"
+import { TJoinCityByXY } from "@/methods/functions/city/joinCity"
 import { useRefreshCityHandling } from "@/methods/hooks/world/composite/useRefreshCityHandling"
 
 interface Props {

@@ -1,7 +1,7 @@
 "use server"
 import { auth } from "@/auth"
 import CityWrapper from "@/components/city/CityWrapper"
-import { joinCity } from "@/methods/functions/map/joinCity"
+import { joinCity } from "@/methods/functions/city/joinCity"
 import { createSwrFallback } from "@/methods/functions/util/createSwrFallback"
 import { getAttributesAbilitiesServer } from "@/methods/server-fetchers/attributes/getAbilitiesServer"
 import { getAttributesSkillsServer } from "@/methods/server-fetchers/attributes/getSkillsServer"

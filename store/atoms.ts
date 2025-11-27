@@ -20,7 +20,7 @@ import { TWorldMapTilesPlayersPositionsRecordByMapIdMapTileXMapTileY } from "@/d
 import { TWorldMapsRecordById } from "@/db/postgresMainDatabase/schemas/world/maps"
 import { TPlayerVisibleMapData, TPlayerVisibleMapDataRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/world/playerVisibleMapData"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
-import { TJoinCityByXY } from "@/methods/functions/map/joinCity"
+import { TJoinCityByXY } from "@/methods/functions/city/joinCity"
 import { TJoinMapByXY } from "@/methods/functions/map/joinMap"
 import { TClickeCityTile } from "@/methods/hooks/cities/composite/useCityTilesActions"
 import { TMapTilesGuardAreaSet } from "@/methods/hooks/world/composite/useActionMapTilesGuardArea"

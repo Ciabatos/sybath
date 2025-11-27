@@ -1,7 +1,7 @@
 "use client"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
 import type { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
-import { joinCity, TJoinCityByXY } from "@/methods/functions/map/joinCity"
+import { joinCity, TJoinCityByXY } from "@/methods/functions/city/joinCity"
 import { useFetchBuildingsByKey } from "@/methods/hooks/map/core/useFetchBuildingsByKey"
 import { useFetchCityTilesByKey } from "@/methods/hooks/map/core/useFetchCityTilesByKey"
 
