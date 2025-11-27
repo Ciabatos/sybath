@@ -1,11 +1,11 @@
 import styles from "@/components/portals/modals/ModalBottomCenterBar/styles/ModalActionBar.module.css"
 import { Button } from "@/components/ui/button"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
-import { useMapTilesActionStatus } from "@/methods/hooks/world/composite/useMapTilesActionStatus"
+import { useModal } from "@/methods/hooks/modals/useModal"
 
 export default function PanelPlayerActionBar() {
   const { getClickedMapTile } = useMapTileActions()
-  const { newMapTilesActionStatus } = useMapTilesActionStatus()
+  const { newMapTilesActionStatus } = useModal()
 
   const handleButtonMove = () => {
     newMapTilesActionStatus.MovementAction()

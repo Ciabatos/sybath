@@ -5,14 +5,14 @@ import MovementActionLayer from "@/components/map/layers/actionLayer/MovementAct
 import { TJoinMap } from "@/methods/functions/map/joinMap"
 import { useActionMapTilesGuardArea } from "@/methods/hooks/world/composite/useActionMapTilesGuardArea"
 import { useActionMapTilesMovement } from "@/methods/hooks/world/composite/useActionMapTilesMovement"
-import { useMapTilesActionStatus } from "@/methods/hooks/world/composite/useMapTilesActionStatus"
+import { useModal } from "@/methods/hooks/modals/useModal"
 
 interface Props {
   tile: TJoinMap
 }
 
 export default function HandlingActionLayer({ tile }: Props) {
-  const { actualMapTilesActionStatus } = useMapTilesActionStatus()
+  const { actualMapTilesActionStatus } = useModal()
   const { mapTilesMovementPathSet } = useActionMapTilesMovement()
   const { mapTilesGuardAreaSet } = useActionMapTilesGuardArea()
 

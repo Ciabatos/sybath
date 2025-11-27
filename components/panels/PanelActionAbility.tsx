@@ -7,7 +7,7 @@ import { usePlayerAbilityRequirements } from "@/methods/hooks/players/composite/
 import { useMutateActionTaskInProcess } from "@/methods/hooks/tasks/core/useMutateActionTaskInProcess"
 import { useActionMapTilesMovement } from "@/methods/hooks/world/composite/useActionMapTilesMovement"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
-import { useMapTilesActionStatus } from "@/methods/hooks/world/composite/useMapTilesActionStatus"
+import { useModal } from "@/methods/hooks/modals/useModal"
 import { useEffect } from "react"
 
 export default function PanelActionAbility() {
@@ -16,7 +16,7 @@ export default function PanelActionAbility() {
   const { selectMapTilesMovementPath, mapTilesMovementPathSet, doPlayerMovementAction } = useActionMapTilesMovement()
   const { mutateActionTaskInProcess } = useMutateActionTaskInProcess()
   const { selectedAbilityId, doPlayerAbility } = usePlayerAbility()
-  const { newMapTilesActionStatus } = useMapTilesActionStatus()
+  const { newMapTilesActionStatus } = useModal()
   const { abilityRequirements } = usePlayerAbilityRequirements()
 
   useEffect(() => {

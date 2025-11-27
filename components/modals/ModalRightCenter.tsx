@@ -4,17 +4,18 @@ import { PanelBuilding } from "@/components/panels/PanelBuilding"
 import { PanelDistrict } from "@/components/panels/PanelDistrict"
 import { PanelEmptyTilePanel } from "@/components/panels/PanelEmptyTilePanel"
 import { useCityTilesActionStatus } from "@/methods/hooks/cities/composite/useCityTilesActionStatus"
-import { useMapTilesActionStatus } from "@/methods/hooks/world/composite/useMapTilesActionStatus"
+import { useModal } from "@/methods/hooks/modals/useModal"
 
 export function ModalRightCenter() {
-  const { actualCityTileStatus } = useCityTilesActionStatus()
-  const { actualMapTilesActionStatus } = useMapTilesActionStatus()
+  const { ActivePanel } = useModalRightCenter()
+
+ if (!ActivePanel) return null
 
   return (
-    <>
-      {actualCityTileStatus.BuildingActionList && <PanelBuilding />}
-      {actualMapTilesActionStatus.DistrictActionList && <PanelDistrict />}
-      {actualMapTilesActionStatus.EmptyTileActionList && <PanelEmptyTilePanel />}
-    </>
+    <div className={styles.modalOverlay}>
+      <div className={styles.modalContainer}>
+        <ActivePanel />
+      </div>
+    </div>
   )
 }

@@ -2,7 +2,7 @@
 
 import { TJoinMap } from "@/methods/functions/map/joinMap"
 import { useGetJoinedMapTileByKey } from "@/methods/hooks/world/composite/useGetMapTileByCoordinates"
-import { useMapTilesActionStatus } from "@/methods/hooks/world/composite/useMapTilesActionStatus"
+import { useModal } from "@/methods/hooks/modals/useModal"
 import { clickedTileAtom } from "@/store/atoms"
 import { useAtom } from "jotai"
 
@@ -10,7 +10,7 @@ export type TClickedTile = { x: number; y: number } | undefined
 
 export function useMapTileActions() {
   const [clickedTile, setClickedTile] = useAtom(clickedTileAtom)
-  const { actualMapTilesActionStatus, newMapTilesActionStatus, resetMapTilesActionStatus } = useMapTilesActionStatus()
+  const { actualMapTilesActionStatus, newMapTilesActionStatus, resetMapTilesActionStatus } = useModal()
   const { getTileByCoordinates } = useGetJoinedMapTileByKey()
 
   function handleClickOnMapTile(tile: TJoinMap) {

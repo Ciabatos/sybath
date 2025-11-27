@@ -6,7 +6,7 @@ import { useMutateActionTaskInProcess } from "@/methods/hooks/tasks/core/useMuta
 import { useActionMapTilesGuardArea } from "@/methods/hooks/world/composite/useActionMapTilesGuardArea"
 import { useActionMapTilesMovement } from "@/methods/hooks/world/composite/useActionMapTilesMovement"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
-import { useMapTilesActionStatus } from "@/methods/hooks/world/composite/useMapTilesActionStatus"
+import { useModal } from "@/methods/hooks/modals/useModal"
 import { useEffect } from "react"
 
 export default function PanelActionGuardArea() {
@@ -14,7 +14,7 @@ export default function PanelActionGuardArea() {
   const { getClickedMapTile } = useMapTileActions()
   const { selectMapTilesMovementPath, mapTilesMovementPathSet, doPlayerMovementAction } = useActionMapTilesMovement()
   const { selectMapTilesGuardArea } = useActionMapTilesGuardArea()
-  const { newMapTilesActionStatus } = useMapTilesActionStatus()
+  const { newMapTilesActionStatus } = useModal()
   const { mutateActionTaskInProcess } = useMutateActionTaskInProcess()
 
   useEffect(() => {

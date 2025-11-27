@@ -6,10 +6,10 @@ import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, Dr
 import { useFetchDistrictInventorySlots } from "@/methods/hooks/districtInventory/core/useFetchDistrictInventorySlots"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 
-import { useMapTilesActionStatus } from "@/methods/hooks/world/composite/useMapTilesActionStatus"
+import { useModal } from "@/methods/hooks/modals/useModal"
 
 export function PanelDistrict() {
-  const { actualMapTilesActionStatus, resetMapTilesActionStatus } = useMapTilesActionStatus()
+  const { actualMapTilesActionStatus, resetMapTilesActionStatus } = useModal()
   const { getClickedMapTile } = useMapTileActions()
 
   const { districtInventorySlots } = useFetchDistrictInventorySlots(getClickedMapTile()?.districts?.id)

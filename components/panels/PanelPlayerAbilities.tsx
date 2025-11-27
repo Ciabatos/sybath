@@ -2,11 +2,11 @@
 
 import { Button } from "@/components/ui/button"
 import { usePlayerAbility } from "@/methods/hooks/players/composite/usePlayerAbility"
-import { useMapTilesActionStatus } from "@/methods/hooks/world/composite/useMapTilesActionStatus"
+import { useModal } from "@/methods/hooks/modals/useModal"
 
 export default function PanelPlayerAbilities() {
   const { playerAbilities, selectAbility } = usePlayerAbility()
-  const { newMapTilesActionStatus } = useMapTilesActionStatus()
+  const { newMapTilesActionStatus } = useModal()
 
   function handleClickOnPlayerAbility(abilityId: number) {
     selectAbility(abilityId)

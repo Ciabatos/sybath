@@ -1,5 +1,5 @@
 import ModalBottomCenterBarHandling from "@/components/modals/ModalBottomCenterBar"
-import { useMapTilesActionStatus } from "@/methods/hooks/world/composite/useMapTilesActionStatus"
+import { useModal } from "@/methods/hooks/modals/useModal"
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 

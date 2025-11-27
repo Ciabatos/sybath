@@ -4,14 +4,14 @@ import { usePlayerPositionMapTile } from "@/methods/hooks/mapTiles/composite/use
 import { useMutateActionTaskInProcess } from "@/methods/hooks/tasks/core/useMutateActionTaskInProcess"
 import { useActionMapTilesMovement } from "@/methods/hooks/world/composite/useActionMapTilesMovement"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
-import { useMapTilesActionStatus } from "@/methods/hooks/world/composite/useMapTilesActionStatus"
+import { useModal } from "@/methods/hooks/modals/useModal"
 import { useEffect } from "react"
 
 export default function PanelActionMovement() {
   const { playerMapTile } = usePlayerPositionMapTile()
   const { getClickedMapTile } = useMapTileActions()
   const { selectMapTilesMovementPath, mapTilesMovementPathSet, doPlayerMovementAction } = useActionMapTilesMovement()
-  const { newMapTilesActionStatus } = useMapTilesActionStatus()
+  const { newMapTilesActionStatus } = useModal()
   const { mutateActionTaskInProcess } = useMutateActionTaskInProcess()
 
   useEffect(() => {

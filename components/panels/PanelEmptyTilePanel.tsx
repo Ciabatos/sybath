@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button"
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from "@/components/ui/drawer"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 
-import { useMapTilesActionStatus } from "@/methods/hooks/world/composite/useMapTilesActionStatus"
+import { useModal } from "@/methods/hooks/modals/useModal"
 
 export function PanelEmptyTilePanel() {
-  const { actualMapTilesActionStatus, resetMapTilesActionStatus } = useMapTilesActionStatus()
+  const { actualMapTilesActionStatus, resetMapTilesActionStatus } = useModal()
   const { getClickedMapTile } = useMapTileActions()
 
   const handleClose = () => {
