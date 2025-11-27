@@ -74,9 +74,6 @@ export default function MapWrapper({ joinedMap, terrainTypes, landscapeTypes }: 
           </TransformComponent>
         </TransformWrapper>
       </div>
-      {/* <BottomCenterPortal /> */}
-      {/* <LeftTopPortal /> */}
-      {/* <RightCenterPortal /> */}
     </>
   )
 }

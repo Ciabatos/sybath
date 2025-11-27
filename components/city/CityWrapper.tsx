@@ -76,9 +76,6 @@ export default function CityWrapper({ cityId, joinedCity, terrainTypes, landscap
             </div>
           </TransformComponent>
         </TransformWrapper>
-        <TopCenterPortal />
-        <LeftTopPortal />
-        <RightCenterPortal />
       </div>
     </>
   )

@@ -5,6 +5,7 @@ import { createPortal } from "react-dom"
 
 export default function Portal() {
   const [isMounted, setIsMounted] = useState(false)
+useResetModalsOnRouteChange() 
 
   useEffect(() => {
     setIsMounted(true)
