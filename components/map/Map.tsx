@@ -12,7 +12,7 @@ interface Props {
 
 export default function Map({ tile }: Props) {
   const { createPlayerImage, createLandscapeImage, createBackgroundImage, createCitiesImage, /*creatDistrictsImage,*/ combineImages } = useCreateImage()
-  const { handleClickOnMapTile } = useMapTileActions()
+  // const { handleClickOnMapTile } = useMapTileActions()
   const backgroundImage = createBackgroundImage(tile.terrainTypes.imageUrl)
   const landscapeImage = createLandscapeImage(tile.landscapeTypes?.imageUrl)
   const playerImage = createPlayerImage(tile.playerVisibleMapData?.playerImageUrl)
@@ -22,7 +22,7 @@ export default function Map({ tile }: Props) {
   return (
     <div
       className={style.BackgroundImage}
-      onDoubleClick={() => handleClickOnMapTile(tile)}
+      // onDoubleClick={() => handleClickOnMapTile(tile)}
       style={{
         gridColumnStart: tile.tiles.x,
         gridRowStart: tile.tiles.y,
