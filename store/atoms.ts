@@ -26,7 +26,6 @@ import { TClickeCityTile } from "@/methods/hooks/cities/composite/useCityTilesAc
 import { TMapTilesGuardAreaSet } from "@/methods/hooks/world/composite/useActionMapTilesGuardArea"
 import { TMapTilesMovementPathSet } from "@/methods/hooks/world/composite/useActionMapTilesMovement"
 import { TClickedTile } from "@/methods/hooks/world/composite/useMapTileActions"
-import { ECityTilesActionStatus } from "@/types/enumeration/CityTilesActionStatusEnum"
 import { EPanels } from "@/types/enumeration/EPanels"
 import { atom } from "jotai"
 
@@ -48,7 +47,7 @@ export const mapTilesMovementPathSetAtom = atom<TMapTilesMovementPathSet>(new Se
 //City
 export const clickedCityTileAtom = atom<TClickeCityTile>()
 export const joinedCityAtom = atom<TJoinCityByXY>({})
-export const cityTilesActionStatusAtom = atom<ECityTilesActionStatus>(ECityTilesActionStatus.Inactive)
+// export const cityTilesActionStatusAtom = atom<ECityTilesActionStatus>(ECityTilesActionStatus.Inactive)
 
 //Player
 export const playerIdAtom = atom<number>(0)

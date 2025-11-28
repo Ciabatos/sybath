@@ -4,6 +4,7 @@ import { modalRightCenterAtom } from "@/store/atoms"
 import { useEffect, useState } from "react"
 import { FC } from "react"
 import { EPanels } from "@/types/enumeration/EPanels"
+import { useLazyPanelLoader } from "./useLazyPanelLoader"
 
 export function useModalRightCenter() {
   const [status, setStatus] = useAtom(modalRightCenterAtom)

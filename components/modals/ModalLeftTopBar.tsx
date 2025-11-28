@@ -1,6 +1,7 @@
 "use client"
 
-import PanelPlayerPanel from "@/components/panels/PanelPlayerPanel"
+import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
+import styles from "@/components/modals/styles/ModalLeftTopBar.module.css"
 
 export default function ModalLeftTopBar() {
   const { ActivePanel } = useModalLeftTopBar()

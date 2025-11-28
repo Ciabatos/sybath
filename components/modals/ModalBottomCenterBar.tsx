@@ -1,7 +1,7 @@
 "use client"
 
-import styles from "@/components/portals/modals/ModalBottomCenterBar/styles/ModalBottomCenterBarHandling.module.css"
-import { useModal } from "@/methods/hooks/modals/useModal"
+import styles from "@/components/modals/styles/ModalBottomCenterBar.module.css"
+import { useModalBottomCenterBar } from "@/methods/hooks/modals/useModalBottomCenterBar"
 
 export default function ModalBottomCenterBar() {
   const { ActivePanel } = useModalBottomCenterBar()

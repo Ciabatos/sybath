@@ -1,8 +1,8 @@
 import { useAtom } from "jotai"
 import { EPanels } from "@/types/enumeration/EPanels"
 import { modalTopCenterAtom as modalTopCenterAtom } from "@/store/atoms"
-import { usePanelMap } from "./useLazyPanelLoader"
-import { FC } from "react"
+import { useLazyPanelLoader } from "./useLazyPanelLoader"
+import { FC, useEffect, useState } from "react"
 
 export function useModalTopCenter() {
   const [status, setStatus] = useAtom(modalTopCenterAtom)

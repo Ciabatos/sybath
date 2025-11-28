@@ -1,6 +1,7 @@
 "use client"
 
-import PanelBackToMap from "@/components/panels/PanelBackToMap"
+import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
+import styles from "@/components/modals/styles/ModalTopCenter.module.css"
 
 export default function ModalTopCenter() {
   const { ActivePanel } = useModalTopCenter()
