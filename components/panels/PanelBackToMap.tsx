@@ -1,5 +1,5 @@
 "use client"
-import styles from "@/components/portals/modals/modalTopCenter/modalBackToMap/styles/ModalBackToMap.module.css"
+import styles from "@/components/panels/styles/PanelBackToMap.module.css"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"

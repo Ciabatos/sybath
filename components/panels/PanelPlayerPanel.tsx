@@ -3,7 +3,7 @@ import PartyInventory from "@/components/panels/PanelPartyInventory"
 import PanelPlayerAbilities from "@/components/panels/PanelPlayerAbilities"
 import PanelPlayerInventory from "@/components/panels/PanelPlayerInventory"
 import PanelPlayerSkills from "@/components/panels/PanelPlayerSkills"
-import styles from "@/components/portals/modals/modalLeftTop/modalPlayerPanel/styles/ModalPlayerPanel.module.css" // Import the CSS module
+import styles from "@/components/panels/styles/PanelPlayerPanel.module.css" // Import the CSS module
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"

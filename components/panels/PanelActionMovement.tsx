@@ -1,10 +1,10 @@
 "use client"
-import styles from "@/components/portals/modals/ModalBottomCenterBar/modalActionMovement/styles/ModalActionMovement.module.css"
+import styles from "@/components/panels/styles/PanelActionMovement.module.css"
 import { usePlayerPositionMapTile } from "@/methods/hooks/mapTiles/composite/usePlayerPositionMapTile"
+import { useModal } from "@/methods/hooks/modals/useModal"
 import { useMutateActionTaskInProcess } from "@/methods/hooks/tasks/core/useMutateActionTaskInProcess"
 import { useActionMapTilesMovement } from "@/methods/hooks/world/composite/useActionMapTilesMovement"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
-import { useModal } from "@/methods/hooks/modals/useModal"
 import { useEffect } from "react"
 
 export default function PanelActionMovement() {
