@@ -12,7 +12,7 @@ export type TPlayerMovementAction = {
 }
 
 export async function playerMovementAction(parameters: TMapTilesMovementPathSet) {
-  const methodName = "map.movementAction"
+  const methodName = "world.movementAction"
   const session = await auth()
   const sessionPlayerId = session?.user?.playerId
 

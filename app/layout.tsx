@@ -3,7 +3,6 @@ import type { Metadata } from "next"
 import { SessionProvider } from "next-auth/react"
 // @ts-expect-error: missing type declarations for side-effect import of './globals.css'
 import "./globals.css"
-import Portal from "@/components/portals/Portal"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,7 +20,7 @@ export default async function RootLayout({
         <Provider>
           <SessionProvider>
             {children}
-             <Portal />
+            {/* <Portal /> */}
           </SessionProvider>
         </Provider>
       </body>
