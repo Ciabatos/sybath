@@ -1,7 +1,6 @@
 "use client"
 
 import MapHandling from "@/components/map/MapHandling"
-
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { TJoinMapByXY } from "@/methods/functions/map/joinMap"

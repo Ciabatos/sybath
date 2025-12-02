@@ -4,7 +4,6 @@ import LayersHandling from "@/components/map/layers/LayersHandling"
 import style from "@/components/map/styles/Tile.module.css"
 import { TJoinMap } from "@/methods/functions/map/joinMap"
 import { useCreateImage } from "@/methods/hooks/world/composite/useCreateImage"
-import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 
 interface Props {
   tile: TJoinMap
