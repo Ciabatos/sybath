@@ -38,7 +38,7 @@ export default async function CityPage({ params }: { params: TParams }) {
     getCitiesCityTilesByKeyServer({ cityId }),
     getWorldTerrainTypesServer(),
     getWorldLandscapeTypesServer(),
-    getBuildingsBuildingsByKeyServer({ id: cityId }),
+    getBuildingsBuildingsByKeyServer({ cityId }),
     getAttributesSkillsServer(),
     getAttributesAbilitiesServer(),
     getGetPlayerInventoryServer({ playerId }),

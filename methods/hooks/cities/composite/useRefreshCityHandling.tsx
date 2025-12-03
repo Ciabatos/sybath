@@ -21,7 +21,7 @@ interface Props {
 export function useRefreshCityHandling({ cityId, joinedCity, terrainTypes, landscapeTypes, buildingsTypes }: Props) {
   const [refreshedJoinedCity, setJoinedCity] = useAtom(joinedCityAtom)
   const { cityTiles } = useFetchCitiesCityTilesByKey({ cityId })
-  const { buildings } = useFetchBuildingsBuildingsByKey({ id: cityId })
+  const { buildings } = useFetchBuildingsBuildingsByKey({ cityId })
 
   useEffect(() => {
     if (cityTiles) {

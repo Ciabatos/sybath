@@ -67,9 +67,9 @@ export const buildingInventorySlotsAtom = atom<TInventorySlots[]>([])
 export const actionTaskInProcessAtom = atom<TActionTaskInProcess>()
 
 //Tables
+export const buildingsAtom = atom<TBuildingsBuildingsRecordByCityTileXCityTileY>({})
 export const districtsAtom = atom<TDistrictsDistrictsRecordByMapTileXMapTileY>({})
 export const citiesAtom = atom<TCitiesCitiesRecordByMapTileXMapTileY>({})
-export const buildingsAtom = atom<TBuildingsBuildingsRecordByCityTileXCityTileY>({})
 export const mapTilesAtom = atom<TWorldMapTilesRecordByXY>({})
 export const cityTilesAtom = atom<TCitiesCityTilesRecordByXY>({})
 export const itemStatsAtom = atom<TItemsItemStatsRecordByItemId>({})

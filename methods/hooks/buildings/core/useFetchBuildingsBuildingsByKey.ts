@@ -12,7 +12,7 @@ export function useFetchBuildingsBuildingsByKey( params: TBuildingsBuildingsPara
   const buildings = useAtomValue(buildingsAtom)
   const setBuildingsBuildings = useSetAtom(buildingsAtom)
   
-  const { data } = useSWR(`/api/buildings/buildings/${params.id}`, { refreshInterval: 3000 })
+  const { data } = useSWR(`/api/buildings/buildings/${params.cityId}`, { refreshInterval: 3000 })
 
   const prevDataRef = useRef<unknown>(null)
 

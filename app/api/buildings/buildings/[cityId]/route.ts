@@ -9,7 +9,7 @@ import z from "zod"
 type TApiParams = Record<string, string>
 
 const typeParamsSchema = z.object({
-  id: z.coerce.number(),
+  cityId: z.coerce.number(),
 }) satisfies z.ZodType<TBuildingsBuildingsParams>
 
 export async function GET(request: NextRequest, { params }: { params: TApiParams }  ): Promise<NextResponse> {
