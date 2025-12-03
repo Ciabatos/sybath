@@ -12,7 +12,6 @@ export default function City({ tile }: Props) {
   const { createLandscapeImage, createBackgroundImage, creatBuildingsImage, combineImages } = useCreateImage()
   // const { actualCityTileStatus, newCityTilesActionStatus } = useCityTilesActionStatus()
   // const { setClickedCityTile } = useCityTilesActions()
-
   const backgroundImage = createBackgroundImage(tile.terrainTypes.imageUrl)
   const landscapeImage = createLandscapeImage(tile.landscapeTypes?.imageUrl)
   const buildingsImage = creatBuildingsImage(tile.buildingTypes?.imageUrl)

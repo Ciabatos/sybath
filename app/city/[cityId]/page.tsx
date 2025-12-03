@@ -50,7 +50,7 @@ export default async function CityPage({ params }: { params: TParams }) {
   if (!cityTiles) {
     return <div>City dont exsists</div>
   }
-
+  console.log("cityTiles in page", cityTiles.byKey, terrainTypes.byKey, landscapeTypes.byKey, buildings.byKey, buildingTypes.byKey)
   const joinedCity = joinCity(cityTiles.byKey, terrainTypes.byKey, landscapeTypes.byKey, buildings.byKey, buildingTypes.byKey)
 
   const fallbackData = createSwrFallback(cityTiles, terrainTypes, landscapeTypes, buildings, skills, abilities, playerIventory, playerSkills, playerAbilities, buildingTypes)

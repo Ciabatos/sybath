@@ -5,7 +5,7 @@ import { TAttributesAbilitiesRecordById } from "@/db/postgresMainDatabase/schema
 import { TAttributesSkillsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/skills"
 import { TAttributesStatsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/stats"
 import { TBuildingsBuildingTypesRecordById } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
-import { TBuildingsBuildingsRecordByCityIdCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
+import { TBuildingsBuildingsRecordByCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
 import { TCitiesCitiesRecordByMapIdMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
 import { TCitiesCityTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
 import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
@@ -67,6 +67,7 @@ export const buildingInventorySlotsAtom = atom<TInventorySlots[]>([])
 export const actionTaskInProcessAtom = atom<TActionTaskInProcess>()
 
 //Tables
+export const buildingsAtom = atom<TBuildingsBuildingsRecordByCityTileXCityTileY>({})
 export const mapTilesAtom = atom<TWorldMapTilesRecordByXY>({})
 export const cityTilesAtom = atom<TCitiesCityTilesRecordByXY>({})
 export const itemStatsAtom = atom<TItemsItemStatsRecordByItemId>({})
@@ -74,7 +75,6 @@ export const itemsAtom = atom<TItemsItemsRecordById>({})
 export const districtsAtom = atom<TDistrictsDistrictsRecordByMapIdMapTileXMapTileY>({})
 export const districtTypesAtom = atom<TDistrictsDistrictTypesRecordById>({})
 export const citiesAtom = atom<TCitiesCitiesRecordByMapIdMapTileXMapTileY>({})
-export const buildingsAtom = atom<TBuildingsBuildingsRecordByCityIdCityTileXCityTileY>({})
 export const buildingTypesAtom = atom<TBuildingsBuildingTypesRecordById>({})
 export const statsAtom = atom<TAttributesStatsRecordById>({})
 export const skillsAtom = atom<TAttributesSkillsRecordById>({})

@@ -17,7 +17,7 @@ export type TBuildingsBuildings = {
   name: string
 }
 
-export type TBuildingsBuildingsRecordByCityIdCityTileXCityTileY = Record<string, TBuildingsBuildings>
+export type TBuildingsBuildingsRecordByCityTileXCityTileY = Record<string, TBuildingsBuildings>
 
 export async function getBuildingsBuildings() {
   try {

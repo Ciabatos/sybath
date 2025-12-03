@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTable.hbs
 
 "use client"
-import { TBuildingsBuildingsRecordByCityIdCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
+import { TBuildingsBuildingsRecordByCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { buildingsAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
@@ -19,7 +19,7 @@ export function useFetchBuildingsBuildings() {
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const index = data ? (arrayToObjectKey(["cityId", "cityTileX", "cityTileY"], data) as TBuildingsBuildingsRecordByCityIdCityTileXCityTileY) : {}
+      const index = data ? (arrayToObjectKey(["cityTileX", "cityTileY"], data) as TBuildingsBuildingsRecordByCityTileXCityTileY) : {}
       setBuildingsBuildings(index)
       prevDataRef.current = data
     }
