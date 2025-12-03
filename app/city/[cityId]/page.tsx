@@ -6,6 +6,7 @@ import { createSwrFallback } from "@/methods/functions/util/createSwrFallback"
 import { getAttributesAbilitiesServer } from "@/methods/server-fetchers/attributes/getAttributesAbilitiesServer"
 import { getAttributesSkillsServer } from "@/methods/server-fetchers/attributes/getAttributesSkillsServer"
 import { getBuildingsBuildingsByKeyServer } from "@/methods/server-fetchers/buildings/getBuildingsBuildingsByKeyServer"
+import { getBuildingsBuildingTypesServer } from "@/methods/server-fetchers/buildings/getBuildingsBuildingTypesServer"
 import { getCitiesCityTilesByKeyServer } from "@/methods/server-fetchers/cities/getCitiesCityTilesByKeyServer"
 import { getGetPlayerInventoryServer } from "@/methods/server-fetchers/inventory/getGetPlayerInventoryServer"
 import { getPlayerAbilitiesServer } from "@/methods/server-fetchers/players/getPlayerAbilitiesServer"
@@ -33,7 +34,7 @@ export default async function CityPage({ params }: { params: TParams }) {
     return null
   }
 
-  const [cityTiles, terrainTypes, landscapeTypes, buildings, skills, abilities, playerIventory, playerSkills, playerAbilities] = await Promise.all([
+  const [cityTiles, terrainTypes, landscapeTypes, buildings, skills, abilities, playerIventory, playerSkills, playerAbilities, buildingTypes] = await Promise.all([
     getCitiesCityTilesByKeyServer({ cityId }),
     getWorldTerrainTypesServer(),
     getWorldLandscapeTypesServer(),
@@ -43,15 +44,16 @@ export default async function CityPage({ params }: { params: TParams }) {
     getGetPlayerInventoryServer({ playerId }),
     getPlayerSkillsServer({ playerId }),
     getPlayerAbilitiesServer({ playerId }),
+    getBuildingsBuildingTypesServer(),
   ])
 
   if (!cityTiles) {
     return <div>City dont exsists</div>
   }
 
-  const joinedCity = joinCity(cityTiles.byKey, terrainTypes.byKey, landscapeTypes.byKey, buildings.byKey)
+  const joinedCity = joinCity(cityTiles.byKey, terrainTypes.byKey, landscapeTypes.byKey, buildings.byKey, buildingTypes.byKey)
 
-  const fallbackData = createSwrFallback(cityTiles, terrainTypes, landscapeTypes, buildings, skills, abilities, playerIventory, playerSkills, playerAbilities)
+  const fallbackData = createSwrFallback(cityTiles, terrainTypes, landscapeTypes, buildings, skills, abilities, playerIventory, playerSkills, playerAbilities, buildingTypes)
 
   return (
     <div className={styles.main}>
@@ -61,8 +63,9 @@ export default async function CityPage({ params }: { params: TParams }) {
         }}>
         <CityWrapper
           cityId={cityId}
-          terrainTypes={terrainTypes}
-          landscapeTypes={landscapeTypes}
+          terrainTypes={terrainTypes.byKey}
+          landscapeTypes={landscapeTypes.byKey}
+          buildingsTypes={buildingTypes.byKey}
           joinedCity={joinedCity}
         />
       </SWRProvider>

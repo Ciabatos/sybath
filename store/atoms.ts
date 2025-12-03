@@ -10,6 +10,7 @@ import { TCitiesCitiesRecordByMapIdMapTileXMapTileY } from "@/db/postgresMainDat
 import { TCitiesCityTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
 import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
 import { TDistrictsDistrictsRecordByMapIdMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/districts/districts"
+import { TGetPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/getPlayerInventory"
 import { TItemsItemStatsRecordByItemId } from "@/db/postgresMainDatabase/schemas/items/itemStats"
 import { TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/items"
 import { TPlayerAbilitiesRecordByPlayerId } from "@/db/postgresMainDatabase/schemas/players/playerAbilities"
@@ -28,7 +29,6 @@ import { TMapTilesMovementPathSet } from "@/methods/hooks/world/composite/useAct
 import { TClickedTile } from "@/methods/hooks/world/composite/useMapTileActions"
 import { EPanels } from "@/types/enumeration/EPanels"
 import { atom } from "jotai"
-import { TGetPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/getPlayerInventory"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanels>(EPanels.Inactive)
@@ -47,7 +47,6 @@ export const mapTilesMovementPathSetAtom = atom<TMapTilesMovementPathSet>(new Se
 //City
 export const clickedCityTileAtom = atom<TClickeCityTile>()
 export const joinedCityAtom = atom<TJoinCityByXY>({})
-// export const cityTilesActionStatusAtom = atom<ECityTilesActionStatus>(ECityTilesActionStatus.Inactive)
 
 //Player
 export const playerIdAtom = atom<number>(0)

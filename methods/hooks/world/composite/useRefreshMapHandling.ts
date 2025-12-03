@@ -1,10 +1,10 @@
 "use client"
-import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
-import type { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
+
+import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
+import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { joinMap, TJoinMapByXY } from "@/methods/functions/map/joinMap"
 import { useFetchCitiesCities } from "@/methods/hooks/cities/core/useFetchCitiesCities"
 import { useFetchDistrictsDistricts } from "@/methods/hooks/districts/core/useFetchDistrictsDistricts"
-
 import { useFetchPlayerId } from "@/methods/hooks/players/core/useFetchPlayerId"
 import { useFetchPlayerVisibleMapData } from "@/methods/hooks/world/core/useFetchPlayerVisibleMapData"
 import { useFetchWorldMapTiles } from "@/methods/hooks/world/core/useFetchWorldMapTiles"

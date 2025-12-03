@@ -1,11 +1,9 @@
 "use client"
 
 import CityHandling from "@/components/city/CityHandling"
-import LeftTopPortal from "@/components/portals/LeftTopPortal"
-import RightCenterPortal from "@/components/portals/RightCenterPoratl"
-import TopCenterPortal from "@/components/portals/TopCenterPortal"
-import { TMapLandscapeTypesById } from "@/db/postgresMainDatabase/schemas/map/landscapeTypes"
-import type { TMapTerrainTypesById } from "@/db/postgresMainDatabase/schemas/map/terrainTypes"
+import { TBuildingsBuildingTypesRecordById } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
+import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
+import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { TJoinCityByXY } from "@/methods/functions/city/joinCity"
 import { useRef, useState } from "react"
 import { ReactZoomPanPinchContentRef, TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
@@ -14,11 +12,12 @@ import style from "./styles/Map.module.css"
 interface Props {
   cityId: number
   joinedCity: TJoinCityByXY
-  terrainTypes: TMapTerrainTypesById
-  landscapeTypes: TMapLandscapeTypesById
+  terrainTypes: TWorldTerrainTypesRecordById
+  landscapeTypes: TWorldLandscapeTypesRecordById
+  buildingsTypes: TBuildingsBuildingTypesRecordById
 }
 
-export default function CityWrapper({ cityId, joinedCity, terrainTypes, landscapeTypes }: Props) {
+export default function CityWrapper({ cityId, joinedCity, terrainTypes, landscapeTypes, buildingsTypes }: Props) {
   const transformRef = useRef<ReactZoomPanPinchContentRef | null>(null)
 
   const [savedTransform] = useState(() => {
@@ -72,6 +71,7 @@ export default function CityWrapper({ cityId, joinedCity, terrainTypes, landscap
                 joinedCity={joinedCity}
                 terrainTypes={terrainTypes}
                 landscapeTypes={landscapeTypes}
+                buildingsTypes={buildingsTypes}
               />
             </div>
           </TransformComponent>

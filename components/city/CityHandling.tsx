@@ -1,18 +1,22 @@
 "use client"
 
 import City from "@/components/city/City"
+import { TBuildingsBuildingTypesRecordById } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
+import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
+import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { TJoinCityByXY } from "@/methods/functions/city/joinCity"
-import { useRefreshCityHandling } from "@/methods/hooks/world/composite/useRefreshCityHandling"
+import { useRefreshCityHandling } from "@/methods/hooks/cities/composite/useRefreshCityHandling"
 
 interface Props {
   cityId: number
   joinedCity: TJoinCityByXY
-  terrainTypes: TMapTerrainTypesById
-  landscapeTypes: TMapLandscapeTypesById
+  terrainTypes: TWorldTerrainTypesRecordById
+  landscapeTypes: TWorldLandscapeTypesRecordById
+  buildingsTypes: TBuildingsBuildingTypesRecordById
 }
 
-export default function CityHandling({ cityId, joinedCity, terrainTypes, landscapeTypes }: Props) {
-  const { refreshedJoinedCity } = useRefreshCityHandling({ cityId, joinedCity, terrainTypes, landscapeTypes })
+export default function CityHandling({ cityId, joinedCity, terrainTypes, landscapeTypes, buildingsTypes }: Props) {
+  const { refreshedJoinedCity } = useRefreshCityHandling({ cityId, joinedCity, terrainTypes, landscapeTypes, buildingsTypes })
 
   return (
     <>
