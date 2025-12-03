@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTable.hbs
 
 "use client"
-import { TWorldMapTilesRecordByMapIdXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
+import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { mapTilesAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
@@ -19,7 +19,7 @@ export function useFetchWorldMapTiles() {
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const index = data ? (arrayToObjectKey(["mapId", "x", "y"], data) as TWorldMapTilesRecordByMapIdXY) : {}
+      const index = data ? (arrayToObjectKey(["x", "y"], data) as TWorldMapTilesRecordByXY) : {}
       setWorldMapTiles(index)
       prevDataRef.current = data
     }

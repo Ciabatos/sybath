@@ -16,7 +16,7 @@ export type TWorldMapTiles = {
   landscapeTypeId?: number
 }
 
-export type TWorldMapTilesRecordByMapIdXY = Record<string, TWorldMapTiles>
+export type TWorldMapTilesRecordByXY = Record<string, TWorldMapTiles>
 
 export async function getWorldMapTiles() {
   try {

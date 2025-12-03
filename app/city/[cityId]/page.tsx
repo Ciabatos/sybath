@@ -3,15 +3,14 @@ import { auth } from "@/auth"
 import CityWrapper from "@/components/city/CityWrapper"
 import { joinCity } from "@/methods/functions/city/joinCity"
 import { createSwrFallback } from "@/methods/functions/util/createSwrFallback"
-import { getAttributesAbilitiesServer } from "@/methods/server-fetchers/attributes/getAbilitiesServer"
-import { getAttributesSkillsServer } from "@/methods/server-fetchers/attributes/getSkillsServer"
-import { getPlayerInventoryServer } from "@/methods/server-fetchers/items/getPlayerInventoryServer"
-import { getMapBuildingsByKeyServer } from "@/methods/server-fetchers/map/getBuildingsByKeyServer"
-import { getMapCityTilesByKeyServer } from "@/methods/server-fetchers/map/getCityTilesByKeyServer"
-import { getMapLandscapeTypesServer } from "@/methods/server-fetchers/map/getLandscapeTypesServer"
-import { getMapTerrainTypesServer } from "@/methods/server-fetchers/map/getTerrainTypesServer"
+import { getAttributesAbilitiesServer } from "@/methods/server-fetchers/attributes/getAttributesAbilitiesServer"
+import { getAttributesSkillsServer } from "@/methods/server-fetchers/attributes/getAttributesSkillsServer"
+import { getBuildingsBuildingsByKeyServer } from "@/methods/server-fetchers/buildings/getBuildingsBuildingsByKeyServer"
+import { getCitiesCityTilesByKeyServer } from "@/methods/server-fetchers/cities/getCitiesCityTilesByKeyServer"
 import { getPlayerAbilitiesServer } from "@/methods/server-fetchers/players/getPlayerAbilitiesServer"
 import { getPlayerSkillsServer } from "@/methods/server-fetchers/players/getPlayerSkillsServer"
+import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/getWorldLandscapeTypesServer"
+import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/getWorldTerrainTypesServer"
 import { SWRProvider } from "@/providers/swr-provider"
 import styles from "./page.module.css"
 
@@ -34,10 +33,10 @@ export default async function CityPage({ params }: { params: TParams }) {
   }
 
   const [cityTiles, terrainTypes, landscapeTypes, buildings, skills, abilities, playerIventory, playerSkills, playerAbilities] = await Promise.all([
-    getMapCityTilesByKeyServer({ cityId }),
-    getMapTerrainTypesServer(),
-    getMapLandscapeTypesServer(),
-    getMapBuildingsByKeyServer({ id: cityId }),
+    getCitiesCityTilesByKeyServer({ cityId }),
+    getWorldTerrainTypesServer(),
+    getWorldLandscapeTypesServer(),
+    getBuildingsBuildingsByKeyServer({ id: cityId }),
     getAttributesSkillsServer(),
     getAttributesAbilitiesServer(),
     getPlayerInventoryServer({ playerId }),

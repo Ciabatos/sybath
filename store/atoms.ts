@@ -7,7 +7,7 @@ import { TAttributesStatsRecordById } from "@/db/postgresMainDatabase/schemas/at
 import { TBuildingsBuildingTypesRecordById } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
 import { TBuildingsBuildingsRecordByCityIdCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
 import { TCitiesCitiesRecordByMapIdMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
-import { TCitiesCityTilesRecordByCityIdXY } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
+import { TCitiesCityTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
 import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
 import { TDistrictsDistrictsRecordByMapIdMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/districts/districts"
 import { TItemsItemStatsRecordByItemId } from "@/db/postgresMainDatabase/schemas/items/itemStats"
@@ -15,7 +15,7 @@ import { TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/i
 import { TPlayerAbilitiesRecordByPlayerId } from "@/db/postgresMainDatabase/schemas/players/playerAbilities"
 import { TPlayerSkillsRecordByPlayerId } from "@/db/postgresMainDatabase/schemas/players/playerSkills"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
-import { TWorldMapTilesRecordByMapIdXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
+import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
 import { TWorldMapTilesPlayersPositionsRecordByMapIdMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/world/mapTilesPlayersPositions"
 import { TWorldMapsRecordById } from "@/db/postgresMainDatabase/schemas/world/maps"
 import { TPlayerVisibleMapData, TPlayerVisibleMapDataRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/world/playerVisibleMapData"
@@ -38,7 +38,6 @@ export const modalTopCenterAtom = atom<EPanels>(EPanels.Inactive)
 //Map
 export const clickedTileAtom = atom<TClickedTile>()
 export const joinedMapAtom = atom<TJoinMapByXY>({})
-
 
 //Map Set
 export const mapTilesGuardAreaSetAtom = atom<TMapTilesGuardAreaSet>(new Set<string>())
@@ -68,12 +67,12 @@ export const buildingInventorySlotsAtom = atom<TInventorySlots[]>([])
 export const actionTaskInProcessAtom = atom<TActionTaskInProcess>()
 
 //Tables
-export const mapTilesAtom = atom<TWorldMapTilesRecordByMapIdXY>({})
+export const mapTilesAtom = atom<TWorldMapTilesRecordByXY>({})
+export const cityTilesAtom = atom<TCitiesCityTilesRecordByXY>({})
 export const itemStatsAtom = atom<TItemsItemStatsRecordByItemId>({})
 export const itemsAtom = atom<TItemsItemsRecordById>({})
 export const districtsAtom = atom<TDistrictsDistrictsRecordByMapIdMapTileXMapTileY>({})
 export const districtTypesAtom = atom<TDistrictsDistrictTypesRecordById>({})
-export const cityTilesAtom = atom<TCitiesCityTilesRecordByCityIdXY>({})
 export const citiesAtom = atom<TCitiesCitiesRecordByMapIdMapTileXMapTileY>({})
 export const buildingsAtom = atom<TBuildingsBuildingsRecordByCityIdCityTileXCityTileY>({})
 export const buildingTypesAtom = atom<TBuildingsBuildingTypesRecordById>({})

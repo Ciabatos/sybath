@@ -6,8 +6,6 @@ import { snakeToCamelRows } from "@/methods/functions/util/snakeToCamel"
 
 export type TCitiesCityTilesParams = {
   cityId: number
-  x: number
-  y: number
 }
 
 export type TCitiesCityTiles = {
@@ -18,7 +16,7 @@ export type TCitiesCityTiles = {
   landscapeTypeId?: number
 }
 
-export type TCitiesCityTilesRecordByCityIdXY = Record<string, TCitiesCityTiles>
+export type TCitiesCityTilesRecordByXY = Record<string, TCitiesCityTiles>
 
 export async function getCitiesCityTiles() {
   try {
@@ -35,7 +33,7 @@ export async function getCitiesCityTiles() {
 export async function getCitiesCityTilesByKey(params: TCitiesCityTilesParams) {
   try {
     const sqlParams = Object.values(params)
-    const sql = `SELECT * FROM cities.get_city_tiles_by_key($1, $2, $3);`
+    const sql = `SELECT * FROM cities.get_city_tiles_by_key($1);`
     
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TCitiesCityTiles[]
