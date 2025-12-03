@@ -1,15 +1,16 @@
 import styles from "@/components/panels/styles/PanelActionBar.module.css"
 import { Button } from "@/components/ui/button"
-import { useModal } from "@/methods/hooks/modals/useModal"
+import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
+import { EPanels } from "@/types/enumeration/EPanels"
 import Link from "next/link"
 
 export default function PanelCityActionBar() {
   const { getClickedMapTile } = useMapTileActions()
-  const { resetMapTilesActionStatus } = useModal()
+  const { setStatus } = useModalRightCenter()
 
   const handleButtonEnter = () => {
-    resetMapTilesActionStatus()
+    setStatus(EPanels.Inactive)
   }
 
   return (

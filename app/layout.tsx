@@ -1,3 +1,4 @@
+import Portal from "@/components/portals/Portal"
 import { Provider } from "jotai"
 import type { Metadata } from "next"
 import { SessionProvider } from "next-auth/react"
@@ -20,7 +21,7 @@ export default async function RootLayout({
         <Provider>
           <SessionProvider>
             {children}
-            {/* <Portal /> */}
+            <Portal />
           </SessionProvider>
         </Provider>
       </body>

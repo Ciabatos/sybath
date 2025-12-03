@@ -4,9 +4,8 @@ import { Button } from "@/components/ui/button"
 import Inventory from "@/components/ui/custom/Inventory"
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from "@/components/ui/drawer"
 import { useFetchDistrictInventorySlots } from "@/methods/hooks/districtInventory/core/useFetchDistrictInventorySlots"
-import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
-
 import { useModal } from "@/methods/hooks/modals/useModal"
+import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 
 export function PanelDistrict() {
   const { actualMapTilesActionStatus, resetMapTilesActionStatus } = useModal()

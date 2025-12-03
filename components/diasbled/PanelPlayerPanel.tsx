@@ -1,7 +1,7 @@
 "use client"
-import PartyInventory from "@/components/panels/PanelPartyInventory"
+import PartyInventory from "@/components/diasbled/PanelPartyInventory"
+import PanelPlayerInventory from "@/components/diasbled/PanelPlayerInventory"
 import PanelPlayerAbilities from "@/components/panels/PanelPlayerAbilities"
-import PanelPlayerInventory from "@/components/panels/PanelPlayerInventory"
 import PanelPlayerSkills from "@/components/panels/PanelPlayerSkills"
 import styles from "@/components/panels/styles/PanelPlayerPanel.module.css" // Import the CSS module
 import { Button } from "@/components/ui/button"

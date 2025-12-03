@@ -1,9 +1,9 @@
 "use client"
 
-import { useFetchPlayerSkills } from "@/methods/hooks/playerSkills/core/useFetchPlayerSkills"
+import { usePlayerSkills } from "@/methods/hooks/players/composite/usePlayerSkills"
 
 export default function PanelPlayerSkills() {
-  const { playerSkills } = useFetchPlayerSkills()
+  const { playerSkills } = usePlayerSkills()
 
   return (
     <div

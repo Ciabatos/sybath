@@ -2,21 +2,23 @@
 
 import { Button } from "@/components/ui/button"
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from "@/components/ui/drawer"
-import { useModal } from "@/methods/hooks/modals/useModal"
+import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
+import { EPanels } from "@/types/enumeration/EPanels"
 
 export function PanelEmptyTilePanel() {
-  const { actualMapTilesActionStatus, resetMapTilesActionStatus } = useModal()
+  // const { actualMapTilesActionStatus, resetMapTilesActionStatus } = useModal()
+  const { ActivePanel, setStatus } = useModalLeftTopBar()
   const { getClickedMapTile } = useMapTileActions()
 
   const handleClose = () => {
-    resetMapTilesActionStatus()
+    setStatus(EPanels.Inactive)
   }
 
   return (
     <Drawer
       direction="right"
-      open={actualMapTilesActionStatus.EmptyTileActionList}
+      open={ActivePanel !== null}
       onOpenChange={(open) => {
         if (!open) {
           handleClose()

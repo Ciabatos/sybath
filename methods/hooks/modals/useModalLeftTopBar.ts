@@ -1,8 +1,8 @@
-import { useAtom } from "jotai"
+import { modalLeftTopBarAtom } from "@/store/atoms"
 import { EPanels } from "@/types/enumeration/EPanels"
-import { modalLeftTopBarAtom as modalLeftTopBarAtom } from "@/store/atoms"
-import { useLazyPanelLoader } from "./useLazyPanelLoader"
+import { useAtom } from "jotai"
 import { FC, useEffect, useState } from "react"
+import { useLazyPanelLoader } from "./useLazyPanelLoader"
 
 export function useModalLeftTopBar() {
   const [status, setStatus] = useAtom(modalLeftTopBarAtom)
@@ -16,7 +16,7 @@ export function useModalLeftTopBar() {
       return
     }
 
-    loadPanel(status).then(panel => {
+    loadPanel(status).then((panel) => {
       setActivePanel(panel)
     })
   }, [status, loadPanel])

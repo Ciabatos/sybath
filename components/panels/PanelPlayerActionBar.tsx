@@ -1,18 +1,19 @@
 import styles from "@/components/panels/styles/PanelActionBar.module.css"
 import { Button } from "@/components/ui/button"
-import { useModal } from "@/methods/hooks/modals/useModal"
+import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
+import { EPanels } from "@/types/enumeration/EPanels"
 
 export default function PanelPlayerActionBar() {
   const { getClickedMapTile } = useMapTileActions()
-  const { newMapTilesActionStatus } = useModal()
+  const { setStatus } = useModalLeftTopBar()
 
   const handleButtonMove = () => {
-    newMapTilesActionStatus.MovementAction()
+    setStatus(EPanels.PanelActionMovement)
   }
 
   const handleButtonGuardArea = () => {
-    newMapTilesActionStatus.GuardAreaAction()
+    setStatus(EPanels.PanelActionGuardArea)
   }
 
   return (

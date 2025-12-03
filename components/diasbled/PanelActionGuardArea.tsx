@@ -2,11 +2,12 @@
 
 import styles from "@/components/panels/styles/PanelActionGuardArea.module.css"
 import { usePlayerPositionMapTile } from "@/methods/hooks/mapTiles/composite/usePlayerPositionMapTile"
-import { useModal } from "@/methods/hooks/modals/useModal"
+import { useModalBottomCenterBar } from "@/methods/hooks/modals/useModalBottomCenterBar"
 import { useMutateActionTaskInProcess } from "@/methods/hooks/tasks/core/useMutateActionTaskInProcess"
 import { useActionMapTilesGuardArea } from "@/methods/hooks/world/composite/useActionMapTilesGuardArea"
 import { useActionMapTilesMovement } from "@/methods/hooks/world/composite/useActionMapTilesMovement"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
+import { EPanels } from "@/types/enumeration/EPanels"
 import { useEffect } from "react"
 
 export default function PanelActionGuardArea() {
@@ -14,7 +15,7 @@ export default function PanelActionGuardArea() {
   const { getClickedMapTile } = useMapTileActions()
   const { selectMapTilesMovementPath, mapTilesMovementPathSet, doPlayerMovementAction } = useActionMapTilesMovement()
   const { selectMapTilesGuardArea } = useActionMapTilesGuardArea()
-  const { newMapTilesActionStatus } = useModal()
+  const { setStatus } = useModalBottomCenterBar()
   const { mutateActionTaskInProcess } = useMutateActionTaskInProcess()
 
   useEffect(() => {
@@ -26,11 +27,11 @@ export default function PanelActionGuardArea() {
   function handleGuardArea() {
     mutateActionTaskInProcess(mapTilesMovementPathSet)
     doPlayerMovementAction()
-    newMapTilesActionStatus.PlayerActionList()
+    setStatus(EPanels.PanelPlayerActionBar)
   }
 
   function resetGuardArea() {
-    newMapTilesActionStatus.PlayerActionList()
+    setStatus(EPanels.PanelPlayerActionBar)
   }
 
   return (

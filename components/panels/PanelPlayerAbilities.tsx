@@ -1,16 +1,17 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { usePlayerAbility } from "@/methods/hooks/players/composite/usePlayerAbility"
-import { useModal } from "@/methods/hooks/modals/useModal"
+import { EPanels } from "@/types/enumeration/EPanels"
 
 export default function PanelPlayerAbilities() {
   const { playerAbilities, selectAbility } = usePlayerAbility()
-  const { newMapTilesActionStatus } = useModal()
+  const { setStatus } = useModalLeftTopBar()
 
   function handleClickOnPlayerAbility(abilityId: number) {
     selectAbility(abilityId)
-    newMapTilesActionStatus.UseAbilityAction()
+    setStatus(EPanels.PanelActionAbility)
   }
 
   return (

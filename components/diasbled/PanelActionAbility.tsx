@@ -2,12 +2,13 @@
 
 import styles from "@/components/panels/styles/PanelActionBar.module.css"
 import { usePlayerPositionMapTile } from "@/methods/hooks/mapTiles/composite/usePlayerPositionMapTile"
-import { useModal } from "@/methods/hooks/modals/useModal"
+import { useModalBottomCenterBar } from "@/methods/hooks/modals/useModalBottomCenterBar"
 import { usePlayerAbility } from "@/methods/hooks/players/composite/usePlayerAbility"
 import { usePlayerAbilityRequirements } from "@/methods/hooks/players/composite/usePlayerAbilityRequirements"
 import { useMutateActionTaskInProcess } from "@/methods/hooks/tasks/core/useMutateActionTaskInProcess"
 import { useActionMapTilesMovement } from "@/methods/hooks/world/composite/useActionMapTilesMovement"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
+import { EPanels } from "@/types/enumeration/EPanels"
 import { useEffect } from "react"
 
 export default function PanelActionAbility() {
@@ -16,7 +17,7 @@ export default function PanelActionAbility() {
   const { selectMapTilesMovementPath, mapTilesMovementPathSet, doPlayerMovementAction } = useActionMapTilesMovement()
   const { mutateActionTaskInProcess } = useMutateActionTaskInProcess()
   const { selectedAbilityId, doPlayerAbility } = usePlayerAbility()
-  const { newMapTilesActionStatus } = useModal()
+  const { setStatus } = useModalBottomCenterBar()
   const { abilityRequirements } = usePlayerAbilityRequirements()
 
   useEffect(() => {
@@ -28,11 +29,11 @@ export default function PanelActionAbility() {
     mutateActionTaskInProcess(mapTilesMovementPathSet)
     doPlayerMovementAction()
     doPlayerAbility(selectedAbilityId, getClickedMapTile())
-    newMapTilesActionStatus.PlayerActionList()
+    setStatus(EPanels.PanelPlayerActionBar)
   }
 
   function handleButtonCancel() {
-    newMapTilesActionStatus.PlayerActionList()
+    setStatus(EPanels.PanelPlayerActionBar)
   }
 
   return (
