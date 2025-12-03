@@ -5,7 +5,7 @@ import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 import { snakeToCamelRows } from "@/methods/functions/util/snakeToCamel"
 
 export type TDistrictsDistrictsParams = {
-  id: number
+  mapId: number
 }
 
 export type TDistrictsDistricts = {
@@ -17,7 +17,7 @@ export type TDistrictsDistricts = {
   name?: string
 }
 
-export type TDistrictsDistrictsRecordByMapIdMapTileXMapTileY = Record<string, TDistrictsDistricts>
+export type TDistrictsDistrictsRecordByMapTileXMapTileY = Record<string, TDistrictsDistricts>
 
 export async function getDistrictsDistricts() {
   try {

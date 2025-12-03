@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableByKey.hbs
 
 "use client"
-import { TCitiesCitiesRecordByMapIdMapTileXMapTileY, TCitiesCitiesParams } from "@/db/postgresMainDatabase/schemas/cities/cities"
+import { TCitiesCitiesRecordByMapTileXMapTileY, TCitiesCitiesParams } from "@/db/postgresMainDatabase/schemas/cities/cities"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { citiesAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
@@ -12,14 +12,14 @@ export function useFetchCitiesCitiesByKey( params: TCitiesCitiesParams ) {
   const cities = useAtomValue(citiesAtom)
   const setCitiesCities = useSetAtom(citiesAtom)
   
-  const { data } = useSWR(`/api/cities/cities/${params.id}`, { refreshInterval: 3000 })
+  const { data } = useSWR(`/api/cities/cities/${params.mapId}`, { refreshInterval: 3000 })
 
   const prevDataRef = useRef<unknown>(null)
 
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const index = data ? (arrayToObjectKey(["mapId", "mapTileX", "mapTileY"], data) as TCitiesCitiesRecordByMapIdMapTileXMapTileY) : {}
+      const index = data ? (arrayToObjectKey(["mapTileX", "mapTileY"], data) as TCitiesCitiesRecordByMapTileXMapTileY) : {}
       setCitiesCities(index)
       prevDataRef.current = data
     }

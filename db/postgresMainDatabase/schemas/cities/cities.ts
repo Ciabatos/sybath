@@ -5,7 +5,7 @@ import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 import { snakeToCamelRows } from "@/methods/functions/util/snakeToCamel"
 
 export type TCitiesCitiesParams = {
-  id: number
+  mapId: number
 }
 
 export type TCitiesCities = {
@@ -18,7 +18,7 @@ export type TCitiesCities = {
   imageUrl?: string
 }
 
-export type TCitiesCitiesRecordByMapIdMapTileXMapTileY = Record<string, TCitiesCities>
+export type TCitiesCitiesRecordByMapTileXMapTileY = Record<string, TCitiesCities>
 
 export async function getCitiesCities() {
   try {

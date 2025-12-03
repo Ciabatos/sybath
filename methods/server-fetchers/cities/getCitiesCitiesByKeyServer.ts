@@ -4,16 +4,16 @@
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { getCitiesCitiesByKey } from "@/db/postgresMainDatabase/schemas/cities/cities"
 import { TCitiesCitiesParams } from "@/db/postgresMainDatabase/schemas/cities/cities" 
-import type { TCitiesCities, TCitiesCitiesRecordByMapIdMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
+import type { TCitiesCities, TCitiesCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
 
 export async function getCitiesCitiesByKeyServer( params: TCitiesCitiesParams): Promise<{
   raw: TCitiesCities[]
-  byKey: TCitiesCitiesRecordByMapIdMapTileXMapTileY
+  byKey: TCitiesCitiesRecordByMapTileXMapTileY
   apiPath: string
 }> {
   const getCitiesCitiesByKeyData = await getCitiesCitiesByKey(params)
 
-  const data = getCitiesCitiesByKeyData ? (arrayToObjectKey(["mapId", "mapTileX", "mapTileY"], getCitiesCitiesByKeyData) as TCitiesCitiesRecordByMapIdMapTileXMapTileY) : {}
+  const data = getCitiesCitiesByKeyData ? (arrayToObjectKey(["mapTileX", "mapTileY"], getCitiesCitiesByKeyData) as TCitiesCitiesRecordByMapTileXMapTileY) : {}
 
-  return { raw: getCitiesCitiesByKeyData, byKey: data, apiPath: `/api/cities/cities/${params.id}` }
+  return { raw: getCitiesCitiesByKeyData, byKey: data, apiPath: `/api/cities/cities/${params.mapId}` }
 }

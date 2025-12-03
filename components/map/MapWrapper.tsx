@@ -1,6 +1,7 @@
 "use client"
 
 import MapHandling from "@/components/map/MapHandling"
+import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { TJoinMapByXY } from "@/methods/functions/map/joinMap"
@@ -13,9 +14,10 @@ interface Props {
   joinedMap: TJoinMapByXY
   terrainTypes: TWorldTerrainTypesRecordById
   landscapeTypes: TWorldLandscapeTypesRecordById
+  districtTypes: TDistrictsDistrictTypesRecordById
 }
 
-export default function MapWrapper({ joinedMap, terrainTypes, landscapeTypes }: Props) {
+export default function MapWrapper({ joinedMap, terrainTypes, landscapeTypes, districtTypes }: Props) {
   const transformRef = useRef<ReactZoomPanPinchContentRef | null>(null)
 
   const [savedTransform] = useState(() => {
@@ -68,6 +70,7 @@ export default function MapWrapper({ joinedMap, terrainTypes, landscapeTypes }: 
                 joinedMap={joinedMap}
                 terrainTypes={terrainTypes}
                 landscapeTypes={landscapeTypes}
+                districtTypes={districtTypes}
               />
             </div>
           </TransformComponent>

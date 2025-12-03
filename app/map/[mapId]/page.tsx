@@ -5,8 +5,9 @@ import { joinMap } from "@/methods/functions/map/joinMap"
 import { createSwrFallback } from "@/methods/functions/util/createSwrFallback"
 import { getAttributesAbilitiesServer } from "@/methods/server-fetchers/attributes/getAttributesAbilitiesServer"
 import { getAttributesSkillsServer } from "@/methods/server-fetchers/attributes/getAttributesSkillsServer"
-import { getCitiesCitiesServer } from "@/methods/server-fetchers/cities/getCitiesCitiesServer"
-import { getDistrictsDistrictsServer } from "@/methods/server-fetchers/districts/getDistrictsDistrictsServer"
+import { getCitiesCitiesByKeyServer } from "@/methods/server-fetchers/cities/getCitiesCitiesByKeyServer"
+import { getDistrictsDistrictsByKeyServer } from "@/methods/server-fetchers/districts/getDistrictsDistrictsByKeyServer"
+import { getDistrictsDistrictTypesServer } from "@/methods/server-fetchers/districts/getDistrictsDistrictTypesServer"
 import { getGetPlayerInventoryServer } from "@/methods/server-fetchers/inventory/getGetPlayerInventoryServer"
 import { getPlayerAbilitiesServer } from "@/methods/server-fetchers/players/getPlayerAbilitiesServer"
 import { getPlayerSkillsServer } from "@/methods/server-fetchers/players/getPlayerSkillsServer"
@@ -35,12 +36,13 @@ export default async function WorldPage({ params }: { params: TParams }) {
     return null
   }
 
-  const [terrainTypes, mapTiles, landscapeTypes, cities, districts, skills, abilities, playerVisibleMapData, playerSkills, playerAbilities, playerIventory] = await Promise.all([
+  const [terrainTypes, mapTiles, landscapeTypes, cities, districts, districtTypes, skills, abilities, playerVisibleMapData, playerSkills, playerAbilities, playerIventory] = await Promise.all([
     getWorldTerrainTypesServer(),
     getWorldMapTilesByKeyServer({ mapId }),
     getWorldLandscapeTypesServer(),
-    getCitiesCitiesServer(),
-    getDistrictsDistrictsServer(),
+    getCitiesCitiesByKeyServer({ mapId }),
+    getDistrictsDistrictsByKeyServer({ mapId }),
+    getDistrictsDistrictTypesServer(),
     getAttributesSkillsServer(),
     getAttributesAbilitiesServer(),
     getPlayerVisibleMapDataServer({ playerId }),
@@ -49,9 +51,22 @@ export default async function WorldPage({ params }: { params: TParams }) {
     getGetPlayerInventoryServer({ playerId }),
   ])
 
-  const joinedMap = joinMap(mapTiles.byKey, terrainTypes.byKey, landscapeTypes.byKey, cities.byKey, districts.byKey, playerVisibleMapData.byKey)
+  const joinedMap = joinMap(mapTiles.byKey, terrainTypes.byKey, landscapeTypes.byKey, cities.byKey, districts.byKey, districtTypes.byKey, playerVisibleMapData.byKey)
 
-  const fallbackData = createSwrFallback(mapTiles, skills, abilities, cities, districts, playerVisibleMapData, playerSkills, playerAbilities, playerIventory, terrainTypes, landscapeTypes)
+  const fallbackData = createSwrFallback(
+    mapTiles,
+    skills,
+    abilities,
+    cities,
+    districts,
+    districtTypes,
+    playerVisibleMapData,
+    playerSkills,
+    playerAbilities,
+    playerIventory,
+    terrainTypes,
+    landscapeTypes,
+  )
 
   return (
     <div className={styles.main}>
@@ -63,6 +78,7 @@ export default async function WorldPage({ params }: { params: TParams }) {
           terrainTypes={terrainTypes.byKey}
           landscapeTypes={landscapeTypes.byKey}
           joinedMap={joinedMap}
+          districtTypes={districtTypes.byKey}
         />
       </SWRProvider>
     </div>

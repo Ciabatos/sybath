@@ -1,5 +1,6 @@
-import { TCitiesCitiesRecordByMapIdMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
-import { TDistrictsDistrictsRecordByMapIdMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/districts/districts"
+import { TCitiesCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
+import { TDistrictsDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/districts/districts"
+import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
 import { TPlayerVisibleMapDataRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/world/playerVisibleMapData"
@@ -10,8 +11,9 @@ export interface TJoinMap {
   tiles: TWorldMapTilesRecordByXY[keyof TWorldMapTilesRecordByXY]
   terrainTypes: TWorldTerrainTypesRecordById[keyof TWorldTerrainTypesRecordById]
   landscapeTypes?: TWorldLandscapeTypesRecordById[keyof TWorldLandscapeTypesRecordById]
-  cities?: TCitiesCitiesRecordByMapIdMapTileXMapTileY[keyof TCitiesCitiesRecordByMapIdMapTileXMapTileY]
-  districts?: TDistrictsDistrictsRecordByMapIdMapTileXMapTileY[keyof TDistrictsDistrictsRecordByMapIdMapTileXMapTileY]
+  cities?: TCitiesCitiesRecordByMapTileXMapTileY[keyof TCitiesCitiesRecordByMapTileXMapTileY]
+  districts?: TDistrictsDistrictsRecordByMapTileXMapTileY[keyof TDistrictsDistrictsRecordByMapTileXMapTileY]
+  districtTypes?: TDistrictsDistrictTypesRecordById[keyof TDistrictsDistrictTypesRecordById]
   playerVisibleMapData?: TPlayerVisibleMapDataRecordByMapTileXMapTileY[keyof TPlayerVisibleMapDataRecordByMapTileXMapTileY]
   moveCost?: number
 }
@@ -22,8 +24,9 @@ export function joinMap(
   tiles: TWorldMapTilesRecordByXY,
   terrainTypes: TWorldTerrainTypesRecordById,
   landscapeTypes: TWorldLandscapeTypesRecordById,
-  cities: TCitiesCitiesRecordByMapIdMapTileXMapTileY,
-  districts: TDistrictsDistrictsRecordByMapIdMapTileXMapTileY,
+  cities: TCitiesCitiesRecordByMapTileXMapTileY,
+  districts: TDistrictsDistrictsRecordByMapTileXMapTileY,
+  districtTypes: TDistrictsDistrictTypesRecordById,
   playerVisibleMapData: TPlayerVisibleMapDataRecordByMapTileXMapTileY,
   options: {
     oldDataToUpdate?: TJoinMapByXY
@@ -36,6 +39,7 @@ export function joinMap(
     const landscapeTypesData = mainData.landscapeTypeId ? landscapeTypes[mainData.landscapeTypeId] : undefined
     const citiesData = cities[`${mainData.x},${mainData.y}`]
     const districtsData = districts[`${mainData.x},${mainData.y}`]
+    const districtTypesData = districtsData ? districtTypes[districtsData.districtTypeId] : undefined
     const playerVisibleMapDataData = playerVisibleMapData[`${mainData.x},${mainData.y}`]
 
     return {
@@ -44,6 +48,7 @@ export function joinMap(
       landscapeTypes: landscapeTypesData,
       cities: citiesData,
       districts: districtsData,
+      districtTypes: districtTypesData,
       playerVisibleMapData: playerVisibleMapDataData,
       moveCost: terrainTypesData?.moveCost + (landscapeTypesData?.moveCost ?? 0) + (citiesData?.moveCost ?? 0), //+ (districtsData?.moveCost ?? 0),
     }
@@ -58,6 +63,7 @@ export function joinMap(
       dataEntries.forEach(([key, data]) => {
         if (draft[key]) {
           draft[key] = createOrUpdate(data)
+          console.log("updating tile at", createOrUpdate(data))
         }
       })
     })

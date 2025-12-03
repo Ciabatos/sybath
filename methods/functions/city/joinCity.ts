@@ -51,7 +51,6 @@ export function joinCity(
       dataEntries.forEach(([key, data]) => {
         if (draft[key]) {
           draft[key] = createOrUpdate(data)
-          console.log("updating tile at", createOrUpdate(data))
         }
       })
     })

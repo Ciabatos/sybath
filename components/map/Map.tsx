@@ -10,13 +10,13 @@ interface Props {
 }
 
 export default function Map({ tile }: Props) {
-  const { createPlayerImage, createLandscapeImage, createBackgroundImage, createCitiesImage, /*creatDistrictsImage,*/ combineImages } = useCreateImage()
+  const { createPlayerImage, createLandscapeImage, createBackgroundImage, createCitiesImage, creatDistrictsImage, combineImages } = useCreateImage()
   // const { handleClickOnMapTile } = useMapTileActions()
   const backgroundImage = createBackgroundImage(tile.terrainTypes.imageUrl)
   const landscapeImage = createLandscapeImage(tile.landscapeTypes?.imageUrl)
   const playerImage = createPlayerImage(tile.playerVisibleMapData?.playerImageUrl)
   const citiesImage = createCitiesImage(tile.cities?.imageUrl)
-  const districtsImage = createCitiesImage(tile.cities?.imageUrl) //creatDistrictsImage(tile.districts?.image_url)
+  const districtsImage = creatDistrictsImage(tile.districtTypes?.imageUrl)
   const combinedImages = combineImages(landscapeImage, backgroundImage)
   return (
     <div

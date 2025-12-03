@@ -1,5 +1,6 @@
 "use client"
 
+import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { joinMap, TJoinMapByXY } from "@/methods/functions/map/joinMap"
@@ -16,9 +17,10 @@ interface Props {
   joinedMap: TJoinMapByXY
   terrainTypes: TWorldTerrainTypesRecordById
   landscapeTypes: TWorldLandscapeTypesRecordById
+  districtTypes: TDistrictsDistrictTypesRecordById
 }
 
-export function useRefreshMapHandling({ joinedMap, terrainTypes, landscapeTypes }: Props) {
+export function useRefreshMapHandling({ joinedMap, terrainTypes, landscapeTypes, districtTypes }: Props) {
   const { playerId } = useFetchPlayerId()
   const [refreshedJoinedMap, setJoinedMap] = useAtom(joinedMapAtom)
   const { mapTiles } = useFetchWorldMapTiles()
@@ -28,7 +30,7 @@ export function useRefreshMapHandling({ joinedMap, terrainTypes, landscapeTypes 
 
   useEffect(() => {
     if (mapTiles) {
-      const refreshedData = joinMap(mapTiles, terrainTypes, landscapeTypes, cities, districts, playerVisibleMapData, { oldDataToUpdate: joinedMap })
+      const refreshedData = joinMap(mapTiles, terrainTypes, landscapeTypes, cities, districts, districtTypes, playerVisibleMapData, { oldDataToUpdate: joinedMap })
       setJoinedMap(refreshedData)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -6,10 +6,10 @@ import { TAttributesSkillsRecordById } from "@/db/postgresMainDatabase/schemas/a
 import { TAttributesStatsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/stats"
 import { TBuildingsBuildingTypesRecordById } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
 import { TBuildingsBuildingsRecordByCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
-import { TCitiesCitiesRecordByMapIdMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
+import { TCitiesCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
 import { TCitiesCityTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
 import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
-import { TDistrictsDistrictsRecordByMapIdMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/districts/districts"
+import { TDistrictsDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/districts/districts"
 import { TGetPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/getPlayerInventory"
 import { TItemsItemStatsRecordByItemId } from "@/db/postgresMainDatabase/schemas/items/itemStats"
 import { TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/items"
@@ -67,14 +67,14 @@ export const buildingInventorySlotsAtom = atom<TInventorySlots[]>([])
 export const actionTaskInProcessAtom = atom<TActionTaskInProcess>()
 
 //Tables
+export const districtsAtom = atom<TDistrictsDistrictsRecordByMapTileXMapTileY>({})
+export const citiesAtom = atom<TCitiesCitiesRecordByMapTileXMapTileY>({})
 export const buildingsAtom = atom<TBuildingsBuildingsRecordByCityTileXCityTileY>({})
 export const mapTilesAtom = atom<TWorldMapTilesRecordByXY>({})
 export const cityTilesAtom = atom<TCitiesCityTilesRecordByXY>({})
 export const itemStatsAtom = atom<TItemsItemStatsRecordByItemId>({})
 export const itemsAtom = atom<TItemsItemsRecordById>({})
-export const districtsAtom = atom<TDistrictsDistrictsRecordByMapIdMapTileXMapTileY>({})
 export const districtTypesAtom = atom<TDistrictsDistrictTypesRecordById>({})
-export const citiesAtom = atom<TCitiesCitiesRecordByMapIdMapTileXMapTileY>({})
 export const buildingTypesAtom = atom<TBuildingsBuildingTypesRecordById>({})
 export const statsAtom = atom<TAttributesStatsRecordById>({})
 export const skillsAtom = atom<TAttributesSkillsRecordById>({})
