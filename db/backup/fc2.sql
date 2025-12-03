@@ -1,4 +1,11 @@
-    
+ SELECT *
+   FROM inventory.inventory_container_building t1
+     JOIN inventory.inventory_containers t2 on t1.container_id = t2.id 
+     JOIN inventory.inventory_slots t3 on t2.id  = t3.inventory_container_id 
+     
+     
+     
+     
 CREATE OR REPLACE FUNCTION inventory.create_inventory_container(
     p_owner_type TEXT,      -- 'player', 'building', 'district'
     p_owner_id INT,         -- ID właściciela
@@ -13,6 +20,8 @@ DECLARE
     y_count INT;
     x INT;
     y INT;
+	slot_counter INT;
+	
 BEGIN
 
     INSERT INTO inventory.inventory_containers (inventory_size)
@@ -36,15 +45,17 @@ BEGIN
 
     x_count := CEIL(SQRT(p_inventory_size));
     y_count := CEIL(p_inventory_size::NUMERIC / x_count);
+	slot_counter := 0;
 
 
-
-    FOR x IN 1..x_count LOOP
-        FOR y IN 1..y_count LOOP
-            INSERT INTO inventory.inventory_slots (inventory_container_id, x, y)
-            VALUES (container_id, x, y);
-        END LOOP;
-    END LOOP;
+	FOR x IN 1..x_count LOOP
+	    FOR y IN 1..y_count LOOP
+	        EXIT WHEN slot_counter >= p_inventory_size;
+	        INSERT INTO inventory.inventory_slots (inventory_container_id, x, y)
+	        VALUES (container_id, x, y);
+	        slot_counter := slot_counter + 1;
+	    END LOOP;
+	END LOOP;
 
 
     RETURN QUERY SELECT 'ok', 'Container created successfully', container_id;
