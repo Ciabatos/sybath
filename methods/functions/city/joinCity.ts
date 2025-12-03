@@ -1,12 +1,11 @@
-\
 import { TBuildingsBuildingsRecordByCityIdCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
-import { TCitiesCitiesRecordByMapIdMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
+import { TCitiesCityTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { produce } from "immer"
 
 export interface TJoinCity {
-  tiles: TCitiesCitiesRecordByMapIdMapTileXMapTileY[keyof TCitiesCitiesRecordByMapIdMapTileXMapTileY]
+  tiles: TCitiesCityTilesRecordByXY[keyof TCitiesCityTilesRecordByXY]
   terrainTypes: TWorldTerrainTypesRecordById[keyof TWorldTerrainTypesRecordById]
   landscapeTypes?: TWorldLandscapeTypesRecordById[keyof TWorldLandscapeTypesRecordById]
   buildings?: TBuildingsBuildingsRecordByCityIdCityTileXCityTileY[keyof TBuildingsBuildingsRecordByCityIdCityTileXCityTileY]
@@ -15,7 +14,7 @@ export interface TJoinCity {
 export type TJoinCityByXY = Record<string, TJoinCity>
 
 export function joinCity(
-  tiles: TCitiesCitiesRecordByMapIdMapTileXMapTileY,
+  tiles: TCitiesCityTilesRecordByXY,
   terrainTypes: TWorldTerrainTypesRecordById,
   landscapeTypes: TWorldLandscapeTypesRecordById,
   buildings: TBuildingsBuildingsRecordByCityIdCityTileXCityTileY,
@@ -26,7 +25,7 @@ export function joinCity(
   const { oldDataToUpdate } = options
 
   // to jest funkcja pomocnicza dla bloku poniżej
-  function createOrUpdate(mainData: TCitiesCitiesRecordByMapIdMapTileXMapTileY[keyof TCitiesCitiesRecordByMapIdMapTileXMapTileY]): TJoinCity {
+  function createOrUpdate(mainData: TCitiesCityTilesRecordByXY[keyof TCitiesCityTilesRecordByXY]): TJoinCity {
     const terrainTypesData = terrainTypes[mainData.terrainTypeId]
     const landscapeTypesData = mainData.landscapeTypeId ? landscapeTypes[mainData.landscapeTypeId] : undefined
     const buildingsData = mainData.cityId ? buildings[`${mainData.x},${mainData.y}`] : undefined

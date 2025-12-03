@@ -28,6 +28,7 @@ import { TMapTilesMovementPathSet } from "@/methods/hooks/world/composite/useAct
 import { TClickedTile } from "@/methods/hooks/world/composite/useMapTileActions"
 import { EPanels } from "@/types/enumeration/EPanels"
 import { atom } from "jotai"
+import { TGetPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/getPlayerInventory"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanels>(EPanels.Inactive)
@@ -85,6 +86,7 @@ export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
 export const mapTilesPlayersPositionsAtom = atom<TWorldMapTilesPlayersPositionsRecordByMapIdMapTileXMapTileY>({})
 
 //Functions
+export const getPlayerInventoryAtom = atom<TGetPlayerInventoryRecordBySlotId>({})
 export const playerSkillsAtom = atom<TPlayerSkillsRecordByPlayerId>({})
 export const playerAbilitiesAtom = atom<TPlayerAbilitiesRecordByPlayerId>({})
 export const movementActionInProcessAtom = atom<TMovementActionInProcessRecordByScheduledAt>({})

@@ -7,6 +7,7 @@ import { getAttributesAbilitiesServer } from "@/methods/server-fetchers/attribut
 import { getAttributesSkillsServer } from "@/methods/server-fetchers/attributes/getAttributesSkillsServer"
 import { getBuildingsBuildingsByKeyServer } from "@/methods/server-fetchers/buildings/getBuildingsBuildingsByKeyServer"
 import { getCitiesCityTilesByKeyServer } from "@/methods/server-fetchers/cities/getCitiesCityTilesByKeyServer"
+import { getGetPlayerInventoryServer } from "@/methods/server-fetchers/inventory/getGetPlayerInventoryServer"
 import { getPlayerAbilitiesServer } from "@/methods/server-fetchers/players/getPlayerAbilitiesServer"
 import { getPlayerSkillsServer } from "@/methods/server-fetchers/players/getPlayerSkillsServer"
 import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/getWorldLandscapeTypesServer"
@@ -39,7 +40,7 @@ export default async function CityPage({ params }: { params: TParams }) {
     getBuildingsBuildingsByKeyServer({ id: cityId }),
     getAttributesSkillsServer(),
     getAttributesAbilitiesServer(),
-    getPlayerInventoryServer({ playerId }),
+    getGetPlayerInventoryServer({ playerId }),
     getPlayerSkillsServer({ playerId }),
     getPlayerAbilitiesServer({ playerId }),
   ])
@@ -50,7 +51,7 @@ export default async function CityPage({ params }: { params: TParams }) {
 
   const joinedCity = joinCity(cityTiles.byKey, terrainTypes.byKey, landscapeTypes.byKey, buildings.byKey)
 
-  const fallbackData = createSwrFallback(cityTiles, terrainTypes, landscapeTypes, buildings)
+  const fallbackData = createSwrFallback(cityTiles, terrainTypes, landscapeTypes, buildings, skills, abilities, playerIventory, playerSkills, playerAbilities)
 
   return (
     <div className={styles.main}>

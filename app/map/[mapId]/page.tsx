@@ -7,6 +7,7 @@ import { getAttributesAbilitiesServer } from "@/methods/server-fetchers/attribut
 import { getAttributesSkillsServer } from "@/methods/server-fetchers/attributes/getAttributesSkillsServer"
 import { getCitiesCitiesServer } from "@/methods/server-fetchers/cities/getCitiesCitiesServer"
 import { getDistrictsDistrictsServer } from "@/methods/server-fetchers/districts/getDistrictsDistrictsServer"
+import { getGetPlayerInventoryServer } from "@/methods/server-fetchers/inventory/getGetPlayerInventoryServer"
 import { getPlayerAbilitiesServer } from "@/methods/server-fetchers/players/getPlayerAbilitiesServer"
 import { getPlayerSkillsServer } from "@/methods/server-fetchers/players/getPlayerSkillsServer"
 import { getPlayerVisibleMapDataServer } from "@/methods/server-fetchers/world/getPlayerVisibleMapDataServer"
@@ -34,7 +35,7 @@ export default async function WorldPage({ params }: { params: TParams }) {
     return null
   }
 
-  const [terrainTypes, mapTiles, landscapeTypes, cities, districts, skills, abilities, playerVisibleMapData, playerSkills, playerAbilities] = await Promise.all([
+  const [terrainTypes, mapTiles, landscapeTypes, cities, districts, skills, abilities, playerVisibleMapData, playerSkills, playerAbilities, playerIventory] = await Promise.all([
     getWorldTerrainTypesServer(),
     getWorldMapTilesByKeyServer({ mapId }),
     getWorldLandscapeTypesServer(),
@@ -45,11 +46,12 @@ export default async function WorldPage({ params }: { params: TParams }) {
     getPlayerVisibleMapDataServer({ playerId }),
     getPlayerSkillsServer({ playerId }),
     getPlayerAbilitiesServer({ playerId }),
+    getGetPlayerInventoryServer({ playerId }),
   ])
 
   const joinedMap = joinMap(mapTiles.byKey, terrainTypes.byKey, landscapeTypes.byKey, cities.byKey, districts.byKey, playerVisibleMapData.byKey)
 
-  const fallbackData = createSwrFallback(mapTiles, skills, abilities, cities, districts, playerVisibleMapData, playerSkills, playerAbilities)
+  const fallbackData = createSwrFallback(mapTiles, skills, abilities, cities, districts, playerVisibleMapData, playerSkills, playerAbilities, playerIventory, terrainTypes, landscapeTypes)
 
   return (
     <div className={styles.main}>
