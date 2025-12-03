@@ -177,6 +177,7 @@ export async function createMethodGetRecords(schema, table) {
       LANGUAGE plpgsql
       AS $$
       BEGIN
+      -- GENERATED CODE - DO NOT EDIT MANUALLY - getTable.js
           RETURN QUERY
           SELECT * FROM ${schema}.${table};
       END;
@@ -246,6 +247,7 @@ export async function createMethodGetRecordsByKey(schema, table, indexParamsColu
       LANGUAGE plpgsql
       AS $$
       BEGIN
+      -- GENERATED CODE - DO NOT EDIT MANUALLY - getTable.js
           RETURN QUERY
           SELECT * FROM ${schema}.${table}
           WHERE ${whereClause};
