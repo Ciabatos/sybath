@@ -32,6 +32,8 @@ import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/worl
 import { TWorldMapsRecordById } from "@/db/postgresMainDatabase/schemas/world/maps"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { TWorldMapTilesPlayersPositionsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/world/mapTilesPlayersPositions"
+import { TGetPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/getPlayerInventory"
+import { TGetPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/getPlayerInventory"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanels>(EPanels.Inactive)
@@ -110,6 +112,8 @@ export const abilitiesAtom = atom<TAttributesAbilitiesRecordById>({})
 // export const mapTilesPlayersPositionsAtom = atom<TWorldMapTilesPlayersPositionsRecordByMapIdMapTileXMapTileY>({})
 
 //Functions
+export const getPlayerInventoryAtom = atom<TGetPlayerInventoryRecordBySlotId>({})
+export const getPlayerInventoryAtom = atom<TGetPlayerInventoryRecordBySlotId>({})
 // export const getPlayerInventoryAtom = atom<TGetPlayerInventoryRecordBySlotId>({})
 // export const playerSkillsAtom = atom<TPlayerSkillsRecordByPlayerId>({})
 // export const playerAbilitiesAtom = atom<TPlayerAbilitiesRecordByPlayerId>({})

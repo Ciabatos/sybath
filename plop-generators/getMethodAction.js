@@ -1,6 +1,6 @@
 import { getArgsArray, parseParamsFields, snakeToCamel, snakeToPascal } from "./helpers/helpers.js"
+import { formatWithPrettier } from "./helpers/prettier.js"
 import { fetchFucntionForAction, fetchMethodArgs, fetchMethodResultColumns, fetchSchemas } from "./helpers/queries.js"
-
 // Generator plop
 export default function getMethodAction(plop) {
   plop.setGenerator("Get Action", {

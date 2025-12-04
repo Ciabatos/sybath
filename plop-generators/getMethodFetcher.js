@@ -1,6 +1,6 @@
 import { camelToKebab, getArgsArray, parseParamsFields, snakeToCamel, snakeToPascal } from "./helpers/helpers.js"
+import { formatWithPrettier } from "./helpers/prettier.js"
 import { fetchFunction, fetchMethodArgs, fetchMethodResultColumns, fetchSchemas } from "./helpers/queries.js"
-
 // Generator plop
 export default function getMethodFetcher(plop) {
   plop.setGenerator("Get Data From Function", {
