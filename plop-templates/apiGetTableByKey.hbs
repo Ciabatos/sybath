@@ -16,8 +16,7 @@ const typeParamsSchema = z.object({
 }) satisfies z.ZodType<{{methodParamsTypeName}}>
 
 {{/if}}
-export async function GET(request: NextRequest{{#if methodParamsColumns}}, { params }: { params: TApiParams }  {{/if}}): Promise<NextResponse> {
-  
+export async function GET(request: NextRequest{{#if methodParamsColumns}}, { params }: { params: TApiParams }{{/if}}): Promise<NextResponse> {
   const session = await auth()
   const sessionUserId = session?.user?.userId
   if (!sessionUserId || isNaN(sessionUserId)) {
