@@ -1,5 +1,5 @@
 "use client"
-import { TActionTaskInProcess } from "@/app/api/map-tiles/action-task-in-process/route"
+import { TActionTaskInProcess } from "@/app/api/deprecated/map-tiles/action-task-in-process/route"
 import { actionTaskInProcessAtom, joinedMapAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import useSWR from "swr"
