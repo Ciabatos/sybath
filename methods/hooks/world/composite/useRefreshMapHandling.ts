@@ -6,7 +6,7 @@ import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/
 import { joinMap, TJoinMapByXY } from "@/methods/functions/map/joinMap"
 import { useFetchCitiesCities } from "@/methods/hooks/cities/core/useFetchCitiesCities"
 import { useFetchDistrictsDistricts } from "@/methods/hooks/districts/core/useFetchDistrictsDistricts"
-import { useFetchPlayerId } from "@/methods/hooks/players/core/useFetchPlayerId"
+import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { useFetchPlayerVisibleMapData } from "@/methods/hooks/world/core/useFetchPlayerVisibleMapData"
 import { useFetchWorldMapTiles } from "@/methods/hooks/world/core/useFetchWorldMapTiles"
 import { joinedMapAtom } from "@/store/atoms"
@@ -21,7 +21,7 @@ interface Props {
 }
 
 export function useRefreshMapHandling({ joinedMap, terrainTypes, landscapeTypes, districtTypes }: Props) {
-  const { playerId } = useFetchPlayerId()
+  const { playerId } = usePlayerId()
   const [refreshedJoinedMap, setJoinedMap] = useAtom(joinedMapAtom)
   const { mapTiles } = useFetchWorldMapTiles()
   const { cities } = useFetchCitiesCities()

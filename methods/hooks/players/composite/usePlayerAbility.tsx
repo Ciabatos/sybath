@@ -2,12 +2,12 @@
 
 import { TJoinMap } from "@/methods/functions/map/joinMap"
 import { useFetchPlayerAbilities } from "@/methods/hooks/players/core/useFetchPlayerAbilities"
-import { useFetchPlayerId } from "@/methods/hooks/players/core/useFetchPlayerId"
+import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { selectedAbilityIdAtom } from "@/store/atoms"
 import { useAtom } from "jotai"
 
 export function usePlayerAbility() {
-  const { playerId } = useFetchPlayerId()
+  const { playerId } = usePlayerId()
   const { playerAbilities } = useFetchPlayerAbilities({ playerId })
   const [selectedAbilityId, setSelectedAbilityId] = useAtom(selectedAbilityIdAtom)
 
