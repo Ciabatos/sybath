@@ -13,6 +13,13 @@ import { EPanels } from "@/types/enumeration/EPanels"
 import { atom } from "jotai"
 import { TAttributesAbilitiesRecordById } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
 import { TAttributesAbilitiesRecordById } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
+import { TAttributesPlayerAbilitiesRecordByPlayerId } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
+import { TAttributesPlayerSkillsRecordByPlayerId } from "@/db/postgresMainDatabase/schemas/attributes/playerSkills"
+import { TAttributesPlayerStatsRecordByPlayerId } from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
+import { TAttributesSkillsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/skills"
+import { TAttributesStatsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/stats"
+import { TAttributesAbilitiesRecordById } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
+import { TAttributesAbilitiesRecordById } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanels>(EPanels.Inactive)
@@ -51,6 +58,13 @@ export const buildingInventorySlotsAtom = atom<TInventorySlots[]>([])
 export const actionTaskInProcessAtom = atom<TActionTaskInProcess>()
 
 //Tables
+export const abilitiesAtom = atom<TAttributesAbilitiesRecordById>({})
+export const abilitiesAtom = atom<TAttributesAbilitiesRecordById>({})
+export const statsAtom = atom<TAttributesStatsRecordById>({})
+export const skillsAtom = atom<TAttributesSkillsRecordById>({})
+export const playerStatsAtom = atom<TAttributesPlayerStatsRecordByPlayerId>({})
+export const playerSkillsAtom = atom<TAttributesPlayerSkillsRecordByPlayerId>({})
+export const playerAbilitiesAtom = atom<TAttributesPlayerAbilitiesRecordByPlayerId>({})
 export const abilitiesAtom = atom<TAttributesAbilitiesRecordById>({})
 export const abilitiesAtom = atom<TAttributesAbilitiesRecordById>({})
 export const abilitiesAtom = atom<TAttributesAbilitiesRecordById>({})
