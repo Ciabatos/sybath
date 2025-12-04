@@ -20,6 +20,18 @@ import { TAttributesSkillsRecordById } from "@/db/postgresMainDatabase/schemas/a
 import { TAttributesStatsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/stats"
 import { TAttributesAbilitiesRecordById } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
 import { TAttributesAbilitiesRecordById } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
+import { TBuildingsBuildingTypesRecordById } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
+import { TBuildingsBuildingsRecordByCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
+import { TCitiesCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
+import { TCitiesCityTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
+import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
+import { TDistrictsDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/districts/districts"
+import { TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/items"
+import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
+import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
+import { TWorldMapsRecordById } from "@/db/postgresMainDatabase/schemas/world/maps"
+import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
+import { TWorldMapTilesPlayersPositionsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/world/mapTilesPlayersPositions"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanels>(EPanels.Inactive)
@@ -58,6 +70,18 @@ export const buildingInventorySlotsAtom = atom<TInventorySlots[]>([])
 export const actionTaskInProcessAtom = atom<TActionTaskInProcess>()
 
 //Tables
+export const mapTilesPlayersPositionsAtom = atom<TWorldMapTilesPlayersPositionsRecordByMapTileXMapTileY>({})
+export const terrainTypesAtom = atom<TWorldTerrainTypesRecordById>({})
+export const mapsAtom = atom<TWorldMapsRecordById>({})
+export const mapTilesAtom = atom<TWorldMapTilesRecordByXY>({})
+export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
+export const itemsAtom = atom<TItemsItemsRecordById>({})
+export const districtsAtom = atom<TDistrictsDistrictsRecordByMapTileXMapTileY>({})
+export const districtTypesAtom = atom<TDistrictsDistrictTypesRecordById>({})
+export const cityTilesAtom = atom<TCitiesCityTilesRecordByXY>({})
+export const citiesAtom = atom<TCitiesCitiesRecordByMapTileXMapTileY>({})
+export const buildingsAtom = atom<TBuildingsBuildingsRecordByCityTileXCityTileY>({})
+export const buildingTypesAtom = atom<TBuildingsBuildingTypesRecordById>({})
 export const abilitiesAtom = atom<TAttributesAbilitiesRecordById>({})
 export const abilitiesAtom = atom<TAttributesAbilitiesRecordById>({})
 export const statsAtom = atom<TAttributesStatsRecordById>({})
