@@ -103,6 +103,26 @@ export default function getMethodAction(plop) {
         templateFile: "plop-templates/dbGetMethodAction.hbs",
         force: true,
       },
+      {
+        type: "function",
+        description: "Format selected folders with Prettier",
+        async run() {
+          const { exec } = await import("node:child_process")
+          const util = await import("node:util")
+          const execPromise = util.promisify(exec)
+
+          const pathsToFormat = ["store/atoms.ts", "db/postgresMainDatabase/schemas", "app/api", "methods/hooks", "methods/server-fetchers", "methods/actions"]
+
+          try {
+            await execPromise(`npx prettier --write ${pathsToFormat.join(" ")}`)
+            console.log("✓ Prettier formatted selected folders")
+          } catch (err) {
+            console.error("Prettier failed:", err)
+          }
+
+          return "Prettier formatting complete"
+        },
+      },
     ],
   })
 }
