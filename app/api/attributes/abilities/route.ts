@@ -8,8 +8,8 @@ import { NextRequest, NextResponse } from "next/server"
 export async function GET(request: NextRequest): Promise<NextResponse> {
   
   const session = await auth()
-  const sessionPlayerId = session?.user?.playerId
-  if (!sessionPlayerId || isNaN(sessionPlayerId)) {
+  const sessionUserId = session?.user?.userId
+  if (!sessionUserId || isNaN(sessionUserId)) {
     return NextResponse.json({ success: false })
   }
 
