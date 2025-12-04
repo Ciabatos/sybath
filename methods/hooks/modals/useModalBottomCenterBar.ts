@@ -17,7 +17,7 @@ export function useModalBottomCenterBar() {
       return
     }
 
-    loadPanel(status).then(panel => {
+    loadPanel(status).then((panel) => {
       setActivePanel(panel)
     })
   }, [status, loadPanel])

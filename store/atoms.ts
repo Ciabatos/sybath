@@ -1,6 +1,7 @@
 "use client"
 
 import { TActionTaskInProcess } from "@/app/api/deprecated/map-tiles/action-task-in-process/route"
+import { TAttributesAbilitiesRecordById } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
 import { TPlayerVisibleMapData } from "@/db/postgresMainDatabase/schemas/world/playerVisibleMapData"
 import { TJoinCityByXY } from "@/methods/functions/city/joinCity"
 import { TJoinMapByXY } from "@/methods/functions/map/joinMap"
@@ -10,6 +11,8 @@ import { TMapTilesMovementPathSet } from "@/methods/hooks/world/composite/useAct
 import { TClickedTile } from "@/methods/hooks/world/composite/useMapTileActions"
 import { EPanels } from "@/types/enumeration/EPanels"
 import { atom } from "jotai"
+import { TAttributesAbilitiesRecordById } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
+import { TAttributesAbilitiesRecordById } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanels>(EPanels.Inactive)
@@ -48,6 +51,9 @@ export const buildingInventorySlotsAtom = atom<TInventorySlots[]>([])
 export const actionTaskInProcessAtom = atom<TActionTaskInProcess>()
 
 //Tables
+export const abilitiesAtom = atom<TAttributesAbilitiesRecordById>({})
+export const abilitiesAtom = atom<TAttributesAbilitiesRecordById>({})
+export const abilitiesAtom = atom<TAttributesAbilitiesRecordById>({})
 // export const buildingsAtom = atom<TBuildingsBuildingsRecordByCityTileXCityTileY>({})
 // export const districtsAtom = atom<TDistrictsDistrictsRecordByMapTileXMapTileY>({})
 // export const citiesAtom = atom<TCitiesCitiesRecordByMapTileXMapTileY>({})

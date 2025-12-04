@@ -191,25 +191,18 @@ export default function getMethodFetcher(plop) {
         pattern: /(\/\/Functions\s*\n)/,
         template: `$1export const {{methodCamelName}}Atom = atom<{{indexTypeName}}>({})\n`,
       },
-      {
-        type: "function",
-        description: "Format selected folders with Prettier",
-        async run() {
-          const { exec } = await import("node:child_process")
-          const util = await import("node:util")
-          const execPromise = util.promisify(exec)
+      // formatWithPrettier zwraca Promise
+      async () => {
+        const pathsToFormat = ["store/atoms.ts", "db/postgresMainDatabase/schemas", "app/api", "methods/hooks", "methods/server-fetchers"]
 
-          const pathsToFormat = ["store/atoms.ts", "db/postgresMainDatabase/schemas", "app/api", "methods/hooks", "methods/server-fetchers"]
-
-          try {
-            await execPromise(`npx prettier --write ${pathsToFormat.join(" ")}`)
-            console.log("✓ Prettier formatted selected folders")
-          } catch (err) {
-            console.error("Prettier failed:", err)
-          }
-
-          return "Prettier formatting complete"
-        },
+        try {
+          const result = await formatWithPrettier(pathsToFormat)
+          console.log(result)
+          return result
+        } catch (err) {
+          console.error("Prettier failed:", err)
+          throw err
+        }
       },
     ],
   })

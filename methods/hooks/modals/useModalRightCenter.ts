@@ -18,7 +18,7 @@ export function useModalRightCenter() {
       return
     }
 
-    loadPanel(status).then(panel => {
+    loadPanel(status).then((panel) => {
       setActivePanel(panel)
     })
   }, [status, loadPanel])

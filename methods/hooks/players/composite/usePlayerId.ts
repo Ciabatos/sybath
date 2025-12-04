@@ -6,7 +6,6 @@ import { useAtomValue, useSetAtom } from "jotai"
 import { useSession } from "next-auth/react"
 import { useEffect } from "react"
 
-
 export function usePlayerId() {
   const playerId = useAtomValue(playerIdAtom)
   const setPlayerId = useSetAtom(playerIdAtom)
@@ -15,20 +14,16 @@ export function usePlayerId() {
   const sessionPlayerId = session.data?.user.playerId
   const sessionPlayerIds = session.data?.user.playerIds
 
-
   useEffect(() => {
     if (sessionPlayerId && sessionPlayerId !== playerId) {
       setPlayerId(sessionPlayerId)
     }
   }, [sessionPlayerId, playerId, setPlayerId])
 
-
-
   const switchPlayer = (newPlayerId: number) => {
     if (!sessionPlayerIds?.includes(newPlayerId)) return
     setPlayerId(newPlayerId)
   }
 
-
-  return { playerId , switchPlayer}
+  return { playerId, switchPlayer }
 }

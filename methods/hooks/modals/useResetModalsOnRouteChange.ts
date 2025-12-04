@@ -3,12 +3,7 @@
 import { usePathname } from "next/navigation"
 import { useEffect } from "react"
 import { useSetAtom } from "jotai"
-import {
-  modalBottomCenterBarAtom,
-  modalLeftTopBarAtom,
-  modalRightCenterAtom,
-  modalTopCenterAtom
-} from "@/store/atoms"
+import { modalBottomCenterBarAtom, modalLeftTopBarAtom, modalRightCenterAtom, modalTopCenterAtom } from "@/store/atoms"
 import { EPanels } from "@/types/enumeration/EPanels"
 
 export function useResetModalsOnRouteChange() {

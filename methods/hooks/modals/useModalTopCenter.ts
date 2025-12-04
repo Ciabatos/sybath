@@ -16,7 +16,7 @@ export function useModalTopCenter() {
       return
     }
 
-    loadPanel(status).then(panel => {
+    loadPanel(status).then((panel) => {
       setActivePanel(panel)
     })
   }, [status, loadPanel])

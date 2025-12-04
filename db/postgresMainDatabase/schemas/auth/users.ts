@@ -14,17 +14,16 @@ export async function getUser(email: string) {
        JOIN players.players T2 ON T1.id = T2.user_id
        WHERE T1.email = $1
        ORDER BY T1.is_default DESC, T2.id ASC`,
-      [email]
+      [email],
     )
-
 
     const user = {
       name: result.rows[0].name,
       email: result.rows[0].email,
       password: result.rows[0].password,
       userId: result.rows[0].userId,
-      playerIds: result.rows.map(row => row.playerId),
-      playerId: result.rows[0].playerId, 
+      playerIds: result.rows.map((row) => row.playerId),
+      playerId: result.rows[0].playerId,
     }
 
     return user
