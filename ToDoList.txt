@@ -44,3 +44,7 @@ Dodac Atom zaznaczony hero w celu posiadania wielu Herosow
 
 rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmianie URL
 
+
+
+WEBGL - UNITY - nie wydaje się takie trudne jak myślałem
+unityInstance.SendMessage - wysylanie danych do Unity i tam sa funkcje do przesylu do reacta
