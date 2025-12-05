@@ -1,0 +1,4 @@
+world.get_player_position
+world.get_player_vision_about_otcher_players
+world.get_player_vision_objects
+world.get_player_known_information

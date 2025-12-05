@@ -29,18 +29,7 @@ UI i flow dla „systemu informacji”
 
 dodac RLS z policy
 
-dodać codegen - plop - dla :
--Modale-w hooku i bar handlingu zrobic dynamicznie z typow enum i tam budowac plopem
-1. Stwórz enum z nazwami statusów, a obok niego typowaną mapę Record<Enum, React.ComponentType> przypisującą każdy status do odpowiedniego komponentu.
-2. W hooku useMapTilesActionStatus trzymaj aktualny status w atomie Jotai i zwracaj go do komponentu BarHandling, który pobiera komponent z mapy na podstawie tego statusu i go renderuje.
-
-
--Componentów małych typu Button - to chyba juz istnieje ?
--Componentów dużych typu Modal - to nie wiem trzeba zobaczyc przy budowaniu
-
-
 ROZDZIELIC POBIERANIE POZYCJI GRACZA OD MAPTILESDATAVISABLE - i zmienic nazwe na MAPTILES_DATA_KNOWN
-Dodac Atom zaznaczony hero w celu posiadania wielu Herosow
 
 rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmianie URL
 
