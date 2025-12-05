@@ -1,6 +1,8 @@
 world.get_player_position
-world.get_player_vision_on_tile
 world.get_player_vision_players_positions
+
+-- to chyba nie bo zawsze bedzie wszystko widoczne na mapie ?
+world.get_player_vision_on_tile
 world.get_player_vision_cities
 world.get_player_vision_districts
 
