@@ -31,6 +31,8 @@ dodac RLS z policy
 
 ROZDZIELIC POBIERANIE POZYCJI GRACZA OD MAPTILESDATAVISABLE - i zmienic nazwe na MAPTILES_DATA_KNOWN
 
+efemeryczne (zmienne) tokeny po stronie backendu
+
 rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmianie URL
 
 
