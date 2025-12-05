@@ -49,5 +49,5 @@ GENERATOR SPRITESHEETOW - https://liberatedpixelcup.github.io/Universal-LPC-Spri
 https://opengameart.org/
 https://www.spritefusion.com/editor
 
-WEBGL - UNITY - nie wydaje się takie trudne jak myślałem
+WEBGL - UNITY/PIXI/JSREACT - nie wydaje się takie trudne jak myślałem
 unityInstance.SendMessage - wysylanie danych do Unity i tam sa funkcje do przesylu do reacta
