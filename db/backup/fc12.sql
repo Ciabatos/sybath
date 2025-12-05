@@ -1,4 +1,12 @@
 world.get_player_position
-world.get_player_vision_about_otcher_players
-world.get_player_vision_objects
-world.get_player_known_information
+world.get_player_vision_on_tile
+world.get_player_vision_players_positions
+world.get_player_vision_cities
+world.get_player_vision_districts
+
+players.get_player_knowledge_on_player
+buildings.get_player_knowledge_on_building
+cities.get_player_knowledge_on_city
+districts.get_player_knowledge_on_district
+world.get_player_knowledge_on_map_tile
+inventory.get_player_knowledge_on_inventory

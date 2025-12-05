@@ -31,9 +31,38 @@ dodac RLS z policy
 
 ROZDZIELIC POBIERANIE POZYCJI GRACZA OD MAPTILESDATAVISABLE - i zmienic nazwe na MAPTILES_DATA_KNOWN
 
-efemeryczne (zmienne) tokeny po stronie backendu
+
 
 rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmianie URL
+
+
+
+
+
+
+efemeryczne (zmienne) tokeny po stronie backendu
+🧠 Wariant 2 (idealny): middleware podmienia URL automatycznie
+Możesz nawet zrobić tak, że middleware zamieni efemeryczny token na prawdziwe ID w URL i endpointy będą działać 1:1 bez żadnych zmian:
+Przykład
+Frontend woła:
+/api/playerInventory/9f21a2dc-3f16-4b77-a3b9-ab1234567891
+Middleware zamienia to na:
+/api/playerInventory/123   <— prawdziwe ID
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 GENERATOR SPRITESHEETOW - https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/
