@@ -62,14 +62,13 @@ export async function fetchFunction(schema) {
   try {
     const res = await client.query(
       `
-      SELECT p.proname
+ SELECT p.proname
       FROM pg_proc p
       JOIN pg_namespace n ON n.oid = p.pronamespace
+      LEFT JOIN pg_description d ON d.objoid = p.oid
       WHERE n.nspname = $1
         AND p.prokind = 'f'
-        AND pg_get_function_result(p.oid) NOT LIKE '%status%'
-        AND pg_get_function_result(p.oid) NOT LIKE '%message%'
-        AND pg_get_function_result(p.oid) NOT LIKE '%SETOF ' || $1 || '.%'
+        AND d.description = 'get_api'
       ORDER BY proname;
     `,
       [schema],
@@ -86,15 +85,14 @@ export async function fetchFucntionForAction(schema) {
   try {
     const res = await client.query(
       `
-      SELECT p.proname
+ SELECT p.proname
       FROM pg_proc p
       JOIN pg_namespace n ON n.oid = p.pronamespace
+      LEFT JOIN pg_description d ON d.objoid = p.oid
       WHERE n.nspname = $1
         AND p.prokind = 'f'
-        AND pg_get_function_result(p.oid) LIKE '%status%'
-        AND pg_get_function_result(p.oid) LIKE '%message%'
+        AND d.description = 'action_api'
       ORDER BY proname;
-
     `,
       [schema],
     )
