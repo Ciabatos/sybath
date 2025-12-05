@@ -53,3 +53,177 @@ https://wareya.github.io/webtyler/
 
 WEBGL - UNITY/PIXI/JSREACT - nie wydaje się takie trudne jak myślałem
 unityInstance.SendMessage - wysylanie danych do Unity i tam sa funkcje do przesylu do reacta
+
+
+
+animacja bitwy w UNITY
+
+mam zrobione dane do wszystkich ruchow bitwy chce to przeslac do unity i stworzyc z tego filmik zgodnie z  ruchami z tych danych atakami itp jak to zrobic najprosciej
+ChatGPT said:
+
+Ok, jeśli masz wszystkie dane ruchów bitwy i chcesz zrobić z tego odtwarzanie w Unity (filmik/animacja bitwy), to najprostszy sposób to traktować te dane jak “timeline animacji”, czyli krok po kroku odtwarzać ruchy graczy, ataki, efekty itp. w scenie Unity.
+
+Oto prosty plan krok po kroku:
+
+1️⃣ Struktura danych
+
+Przykładowo możesz mieć JSON z ruchami bitwy:
+
+{
+  "turns": [
+    {
+      "playerId": 1,
+      "action": "move",
+      "to": {"x": 2, "y": 3},
+      "time": 0
+    },
+    {
+      "playerId": 2,
+      "action": "attack",
+      "targetId": 1,
+      "damage": 10,
+      "time": 1
+    },
+    ...
+  ]
+}
+
+
+time = kolejność / moment akcji
+
+action = typ akcji (move, attack, skill, effect)
+
+targetId / to = parametry akcji
+
+2️⃣ Skrypt BattleController w Unity
+
+W C# w Unity tworzysz coś w rodzaju odtwarzacza bitwy:
+
+using UnityEngine;
+using Newtonsoft.Json.Linq;
+using System.Collections;
+
+public class BattleController : MonoBehaviour
+{
+    public GameObject[] players; // tablica obiektów graczy
+
+    private JArray turns;
+
+    // Odbierasz dane JSON z React
+    public void LoadBattleData(string json)
+    {
+        turns = JArray.Parse(json);
+        StartCoroutine(PlayBattle());
+    }
+
+    private IEnumerator PlayBattle()
+    {
+        foreach (var turn in turns)
+        {
+            string action = (string)turn["action"];
+            int playerId = (int)turn["playerId"];
+            GameObject player = players[playerId];
+
+            if (action == "move")
+            {
+                float x = (float)turn["to"]["x"];
+                float y = (float)turn["to"]["y"];
+                // animacja ruchu
+                yield return StartCoroutine(MoveTo(player, new Vector3(x, 0, y), 0.5f));
+            }
+            else if (action == "attack")
+            {
+                int targetId = (int)turn["targetId"];
+                GameObject target = players[targetId];
+                // animacja ataku
+                yield return StartCoroutine(Attack(player, target));
+            }
+
+            yield return new WaitForSeconds(0.2f); // mała pauza między akcjami
+        }
+    }
+
+    private IEnumerator MoveTo(GameObject obj, Vector3 target, float duration)
+    {
+        Vector3 start = obj.transform.position;
+        float t = 0;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            obj.transform.position = Vector3.Lerp(start, target, t / duration);
+            yield return null;
+        }
+        obj.transform.position = target;
+    }
+
+    private IEnumerator Attack(GameObject attacker, GameObject target)
+    {
+        // prosty efekt: np. przesunięcie do celu i powrót
+        Vector3 start = attacker.transform.position;
+        Vector3 mid = target.transform.position + Vector3.back * 0.5f;
+        float t = 0;
+        float duration = 0.3f;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            attacker.transform.position = Vector3.Lerp(start, mid, t / duration);
+            yield return null;
+        }
+        attacker.transform.position = start;
+
+        // tu możesz dodać efekt trafienia, animację uderzenia itp.
+        yield return null;
+    }
+}
+
+3️⃣ Integracja z React / Next.js
+
+Wyślij JSON do Unity WebGL przez SendMessage:
+
+const battleData = { /* wszystkie ruchy bitwy */ }
+unityInstance.SendMessage(
+  "BattleController",
+  "LoadBattleData",
+  JSON.stringify(battleData)
+)
+
+
+Unity odbiera dane i odtwarza bitwę automatycznie.
+
+4️⃣ Rozbudowa animacji
+
+Możesz dodać efekty:
+
+ataki → animacja uderzenia, zmiana koloru
+
+heal → animacja leczenia
+
+spell → cząsteczki/efekty particle system
+
+Każda akcja w PlayBattle() wywołuje odpowiednią funkcję.
+
+5️⃣ Podsumowanie
+
+JSON = timeline bitwy
+
+Coroutine w Unity = odtwarzanie krok po kroku
+
+MoveTo / Attack = animacje ruchu i akcji
+
+React = tylko wysyła dane JSON do Unity
+
+💡 Tip: Jeśli chcesz nagrać “filmik” z bitwy w Unity WebGL:
+
+Możesz nagrać każdą klatkę do render texture → wyeksportować jako wideo.
+
+Albo użyć Unity Recorder (w edytorze) dla podglądu/developera.
+
+Jeżeli chcesz, mogę zrobić gotowy przykład w Unity WebGL, który:
+
+Ma 3 graczy
+
+Przyjmuje JSON bitwy z React
+
+Odtwarza wszystkie ruchy, ataki i animacje krok po kroku
+
+Chcesz, żebym taki przykład przygotował?
