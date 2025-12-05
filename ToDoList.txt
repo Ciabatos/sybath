@@ -48,6 +48,7 @@ rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmiani
 GENERATOR SPRITESHEETOW - https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/
 https://opengameart.org/
 https://www.spritefusion.com/editor
+https://itch.io/
 
 WEBGL - UNITY/PIXI/JSREACT - nie wydaje się takie trudne jak myślałem
 unityInstance.SendMessage - wysylanie danych do Unity i tam sa funkcje do przesylu do reacta
