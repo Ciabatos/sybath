@@ -2,7 +2,6 @@
 
 "use server"
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
-import { snakeToCamelRows } from "@/methods/functions/util/snakeToCamel"
 
 {{#if methodParamsColumns}}
 export type {{methodParamsTypeName}} = {
@@ -22,14 +21,14 @@ export async function {{methodCamelName}}({{#if methodParamsColumns}}params: {{m
   try {
     {{#if methodParamsColumns}}
     const sqlParams = Object.values(params)
-    const sql = `SELECT {{schema}}.{{method}}({{sqlParamsPlaceholders}});`
+    const sql = `SELECT * FROM {{schema}}.{{method}}({{sqlParamsPlaceholders}});`
     const result = await query(sql, sqlParams)
     {{else}}
-    const sql = `SELECT {{schema}}.{{method}}();`
+    const sql = `SELECT * FROM {{schema}}.{{method}}();`
     const result = await query(sql)
     {{/if}}
 
-    return snakeToCamelRows(result.rows[0]?.result) as {{methodTypeName}}
+    return result.rows[0] as {{methodTypeName}}
   } catch (error) {
     console.error("Error executing {{methodCamelName}}:", error)
     throw new Error("Failed to execute {{methodCamelName}}")

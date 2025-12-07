@@ -1,9 +1,17 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - actionGetMethodAction.hbs
 "use server"
 
+import { auth } from "@/auth"
 import { {{methodParamsTypeName}}, {{methodCamelName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
 
 export async function {{methodName}}(params: {{methodParamsTypeName}}) {
+  const session = await auth()
+  const sessionPlayerId = session?.user?.playerId
+
+  if (!sessionPlayerId || isNaN(sessionPlayerId)) {
+    return
+  }
+  
   try {
     const result = await {{methodCamelName}}(params) 
     return result
