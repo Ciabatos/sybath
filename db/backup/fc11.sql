@@ -1,1 +1,0 @@
-DROP FUNCTION world.player_visible_map_data(int4);

@@ -1,2 +1,0 @@
-drop world.map_tiles_players_positions;
-drop world.map_tiles_players_positions_by_key;

@@ -20,7 +20,6 @@ interface Props {
   districtTypes: TDistrictsDistrictTypesRecordById
 }
 
-
 export function useRefreshMapHandling({ joinedMap, terrainTypes, landscapeTypes, districtTypes }: Props) {
   const { playerId } = usePlayerId()
   const [refreshedJoinedMap, setJoinedMap] = useAtom(joinedMapAtom)
