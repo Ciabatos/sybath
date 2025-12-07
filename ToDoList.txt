@@ -39,7 +39,7 @@ rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmiani
 
 
 
-
+Nie wiem czy to dodawac bo tak na serio to twarz czlowieka jest ta sama ? ale kaptur mozna zalozyc
 efemeryczne (zmienne) tokeny po stronie backendu
 🧠 Wariant 2 (idealny): middleware podmienia URL automatycznie
 Możesz nawet zrobić tak, że middleware zamieni efemeryczny token na prawdziwe ID w URL i endpointy będą działać 1:1 bez żadnych zmian:
