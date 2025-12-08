@@ -27,13 +27,14 @@ Mapa
 
 UI i flow dla „systemu informacji”
 
-dodac RLS z policy
-
-ROZDZIELIC POBIERANIE POZYCJI GRACZA OD MAPTILESDATAVISABLE - i zmienic nazwe na MAPTILES_DATA_KNOWN
-
-
-
 rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmianie URL
+
+
+
+przerobilem map geetter z servera do osobnych funkcji w server-fetcher/composite trzeba city przerobic
+przerobic task.movment_action_in_process do world.get_movment_action_in_process i zobaczyc czy trzeba to plopem dorobic
+
+
 
 
 

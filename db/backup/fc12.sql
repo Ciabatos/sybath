@@ -12,8 +12,3 @@ cities.get_player_knowledge_on_city
 districts.get_player_knowledge_on_district
 world.get_player_knowledge_on_map_tile
 inventory.get_player_knowledge_on_inventory
-
-
-
-insert.task w jego body zrobic canel task automatyczny
-przerobic movment_action_in_process do get_movment_action_in_process i zobaczyc czy trzeba to plopem dorobic
