@@ -31,7 +31,8 @@ rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmiani
 
 
 
-przerobilem map geetter z servera do osobnych funkcji w server-fetcher/composite trzeba city przerobic
+
+
 przerobic task.movment_action_in_process do world.get_player_movement i zobaczyc czy trzeba to plopem dorobic
 
 

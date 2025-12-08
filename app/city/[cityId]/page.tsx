@@ -1,18 +1,7 @@
 "use server"
 import { auth } from "@/auth"
 import CityWrapper from "@/components/city/CityWrapper"
-import { joinCity } from "@/methods/functions/city/joinCity"
-import { createSwrFallback } from "@/methods/functions/util/createSwrFallback"
-import { getAttributesAbilitiesServer } from "@/methods/server-fetchers/attributes/core/getAttributesAbilitiesServer"
-import { getAttributesSkillsServer } from "@/methods/server-fetchers/attributes/core/getAttributesSkillsServer"
-import { getBuildingsBuildingsByKeyServer } from "@/methods/server-fetchers/buildings/core/getBuildingsBuildingsByKeyServer"
-import { getBuildingsBuildingTypesServer } from "@/methods/server-fetchers/buildings/core/getBuildingsBuildingTypesServer"
-import { getCitiesCityTilesByKeyServer } from "@/methods/server-fetchers/cities/core/getCitiesCityTilesByKeyServer"
-import { getGetPlayerInventoryServer } from "@/methods/server-fetchers/inventory/core/getGetPlayerInventoryServer"
-import { getPlayerAbilitiesServer } from "@/methods/server-fetchers/players/getPlayerAbilitiesServer"
-import { getPlayerSkillsServer } from "@/methods/server-fetchers/players/getPlayerSkillsServer"
-import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
-import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
+import { getCityData } from "@/methods/server-fetchers/cities/composite/getCityData"
 import { SWRProvider } from "@/providers/swr-provider"
 import styles from "./page.module.css"
 
@@ -33,27 +22,13 @@ export default async function CityPage({ params }: { params: TParams }) {
   if (!cityId || isNaN(cityId)) {
     return null
   }
+  const cityData = await getCityData(cityId)
 
-  const [cityTiles, terrainTypes, landscapeTypes, buildings, skills, abilities, playerIventory, playerSkills, playerAbilities, buildingTypes] = await Promise.all([
-    getCitiesCityTilesByKeyServer({ cityId }),
-    getWorldTerrainTypesServer(),
-    getWorldLandscapeTypesServer(),
-    getBuildingsBuildingsByKeyServer({ cityId }),
-    getAttributesSkillsServer(),
-    getAttributesAbilitiesServer(),
-    getGetPlayerInventoryServer({ playerId }),
-    getPlayerSkillsServer({ playerId }),
-    getPlayerAbilitiesServer({ playerId }),
-    getBuildingsBuildingTypesServer(),
-  ])
-
-  if (!cityTiles) {
-    return <div>City dont exsists</div>
+  if (!cityData) {
+    return null
   }
-  console.log("cityTiles in page", cityTiles.byKey, terrainTypes.byKey, landscapeTypes.byKey, buildings.byKey, buildingTypes.byKey)
-  const joinedCity = joinCity(cityTiles.byKey, terrainTypes.byKey, landscapeTypes.byKey, buildings.byKey, buildingTypes.byKey)
 
-  const fallbackData = createSwrFallback(cityTiles, terrainTypes, landscapeTypes, buildings, skills, abilities, playerIventory, playerSkills, playerAbilities, buildingTypes)
+  const { terrainTypes, landscapeTypes, buildingTypes, joinedCity, fallbackData } = cityData
 
   return (
     <div className={styles.main}>
