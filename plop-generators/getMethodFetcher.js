@@ -56,7 +56,7 @@ export default function getMethodFetcher(plop) {
       }))
 
       // nazwa wrappera (funkcja generowanego get...)
-      const methodName = `${methodPascalName}`
+      const methodName = `${methodCamelName}`
 
       const methodParamsColumns = parseParamsFields(argsStr) // DRY, helpers version
       const argsArray = getArgsArray(argsStr)
