@@ -238,13 +238,13 @@ export default function getTable(plop) {
       },
       {
         type: "add",
-        path: "methods/server-fetchers/{{schema}}/get{{schemaTablePascalName}}Server.ts",
+        path: "methods/server-fetchers/core/{{schema}}/get{{schemaTablePascalName}}Server.ts",
         templateFile: "plop-templates/hookGetTableServer.hbs",
         force: true,
       },
       {
         type: "add",
-        path: "methods/server-fetchers/{{schema}}/get{{schemaTablePascalName}}ByKeyServer.ts",
+        path: "methods/server-fetchers/core/{{schema}}/get{{schemaTablePascalName}}ByKeyServer.ts",
         templateFile: "plop-templates/hookGetTableByKeyServer.hbs",
         force: true,
       },

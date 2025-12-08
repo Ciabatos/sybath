@@ -4,16 +4,26 @@
 import { auth } from "@/auth"
 import { {{methodParamsTypeName}}, {{methodCamelName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
 
-export async function {{methodName}}(params: {{methodParamsTypeName}}) {
+export async function {{methodName}}() {
   const session = await auth()
-  const sessionPlayerId = session?.user?.playerId
+  const playerId = session?.user?.playerId
 
-  if (!sessionPlayerId || isNaN(sessionPlayerId)) {
+  if (!playerId || isNaN(playerId)) {
     return
   }
-  
+
+  {{#each methodParamsColumns}}
+  const {{camelName}} =
+  {{/each}}
+
+  const data: {{methodParamsTypeName}} = {
+    {{#each methodParamsColumns}}
+    {{camelName}}: {{camelName}},
+    {{/each}}
+  }
+
   try {
-    const result = await {{methodCamelName}}(params) 
+    const result = await {{methodCamelName}}(data)
     return result
   } catch (error) {
     console.error("Error {{methodName}} :", error)

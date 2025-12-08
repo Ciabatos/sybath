@@ -5,15 +5,15 @@ import { usePlayerPositionMapTile } from "@/methods/hooks/mapTiles/composite/use
 import { useModalBottomCenterBar } from "@/methods/hooks/modals/useModalBottomCenterBar"
 import { useMutateActionTaskInProcess } from "@/methods/hooks/tasks/core/useMutateActionTaskInProcess"
 import { useActionMapTilesGuardArea } from "@/methods/hooks/world/composite/useActionMapTilesGuardArea"
-import { useActionMapTilesMovement } from "@/methods/hooks/world/composite/useActionMapTilesMovement"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
+import { useMapTilesMovement } from "@/methods/hooks/world/composite/useMapTilesMovement"
 import { EPanels } from "@/types/enumeration/EPanels"
 import { useEffect } from "react"
 
 export default function PanelActionGuardArea() {
   const { playerMapTile } = usePlayerPositionMapTile()
   const { getClickedMapTile } = useMapTileActions()
-  const { selectMapTilesMovementPath, mapTilesMovementPathSet, doPlayerMovementAction } = useActionMapTilesMovement()
+  const { selectMapTilesMovementPath, mapTilesMovementPathSet, doPlayerMovementAction } = useMapTilesMovement()
   const { selectMapTilesGuardArea } = useActionMapTilesGuardArea()
   const { setStatus } = useModalBottomCenterBar()
   const { mutateActionTaskInProcess } = useMutateActionTaskInProcess()

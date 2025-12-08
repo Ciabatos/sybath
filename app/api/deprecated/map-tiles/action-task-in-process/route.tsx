@@ -14,9 +14,9 @@ export type TActionTaskInProcess = {
 
 export async function GET(request: NextRequest, { params }: { params: TypeParams }): Promise<NextResponse> {
   const session = await auth()
-  const sessionPlayerId = session?.user?.playerId
+  const playerId = session?.user?.playerId
 
-  if (!sessionPlayerId || isNaN(sessionPlayerId)) {
+  if (!playerId || isNaN(playerId)) {
     return NextResponse.json({ success: false })
   }
 
@@ -24,7 +24,7 @@ export async function GET(request: NextRequest, { params }: { params: TypeParams
   // const login = searchQueryParams.get("login")
 
   try {
-    const [movementInProcess] = await Promise.all([getMovementActionInProcess(sessionPlayerId)])
+    const [movementInProcess] = await Promise.all([getMovementActionInProcess(playerId)])
 
     const result = {
       movementInProcess: movementInProcess,

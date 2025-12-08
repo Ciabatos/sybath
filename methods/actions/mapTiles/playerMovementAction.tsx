@@ -3,7 +3,7 @@
 import { auth } from "@/auth"
 import { cancelTasks, insertTasks } from "@/db/postgresMainDatabase/schemas/tasks/tasks"
 import { isMovementPathNeighborhoodTile } from "@/methods/functions/map/isMovementPathNeighborhoodTile"
-import { TMapTilesMovementPathSet } from "@/methods/hooks/world/composite/useActionMapTilesMovement"
+import { TMapTilesMovementPathSet } from "@/methods/hooks/world/composite/useMapTilesMovement"
 
 export type TPlayerMovementAction = {
   playerId: number
@@ -14,9 +14,9 @@ export type TPlayerMovementAction = {
 export async function playerMovementAction(parameters: TMapTilesMovementPathSet) {
   const methodName = "world.movementAction"
   const session = await auth()
-  const sessionPlayerId = session?.user?.playerId
+  const playerId = session?.user?.playerId
 
-  if (!sessionPlayerId || isNaN(sessionPlayerId)) {
+  if (!playerId || isNaN(playerId)) {
     return
   }
 
@@ -31,11 +31,11 @@ export async function playerMovementAction(parameters: TMapTilesMovementPathSet)
   }
 
   try {
-    await cancelTasks({ playerId: sessionPlayerId, methodName })
+    await cancelTasks({ playerId: playerId, methodName })
 
     for (let i = 1; i < path.length; i++) {
       const param = path[i]
-      await insertTasks<TPlayerMovementAction>({ playerId: sessionPlayerId, methodName, parameters: { playerId: sessionPlayerId, x: param.x, y: param.y } })
+      await insertTasks<TPlayerMovementAction>({ playerId: playerId, methodName, parameters: { playerId: playerId, x: param.x, y: param.y } })
     }
   } catch (error) {
     console.error("Error movementAction :", error)

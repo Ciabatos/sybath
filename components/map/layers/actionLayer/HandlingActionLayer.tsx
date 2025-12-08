@@ -1,12 +1,8 @@
 "use client"
 
-import GuardAreaActionLayer from "@/components/map/layers/actionLayer/GuardAreaActionLayer"
-import MovementActionLayer from "@/components/map/layers/actionLayer/MovementActionLayer"
 import { TJoinMap } from "@/methods/functions/map/joinMap"
-import { useLazyPanelLoader } from "@/methods/hooks/modals/useLazyPanelLoader"
 import { useActionMapTilesGuardArea } from "@/methods/hooks/world/composite/useActionMapTilesGuardArea"
-import { useActionMapTilesMovement } from "@/methods/hooks/world/composite/useActionMapTilesMovement"
-
+import { useMapTilesMovement } from "@/methods/hooks/world/composite/useMapTilesMovement"
 
 interface Props {
   tile: TJoinMap
@@ -14,7 +10,7 @@ interface Props {
 
 export default function HandlingActionLayer({ tile }: Props) {
   // const { loadPanel } = useLazyPanelLoader()
-  const { mapTilesMovementPathSet } = useActionMapTilesMovement()
+  const { mapTilesMovementPathSet } = useMapTilesMovement()
   const { mapTilesGuardAreaSet } = useActionMapTilesGuardArea()
 
   const isTileInMovementPath = mapTilesMovementPathSet.has(`${tile.tiles.x},${tile.tiles.y}`)

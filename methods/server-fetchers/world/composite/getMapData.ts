@@ -1,0 +1,55 @@
+import { auth } from "@/auth"
+import { joinMap } from "@/methods/functions/map/joinMap"
+import { createSwrFallback } from "@/methods/functions/util/createSwrFallback"
+import { getAttributesAbilitiesServer } from "@/methods/server-fetchers/attributes/core/getAttributesAbilitiesServer"
+import { getAttributesSkillsServer } from "@/methods/server-fetchers/attributes/core/getAttributesSkillsServer"
+import { getCitiesCitiesByKeyServer } from "@/methods/server-fetchers/cities/core/getCitiesCitiesByKeyServer"
+import { getDistrictsDistrictsByKeyServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictsByKeyServer"
+import { getDistrictsDistrictTypesServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictTypesServer"
+import { getGetPlayerInventoryServer } from "@/methods/server-fetchers/inventory/core/getGetPlayerInventoryServer"
+import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
+import { getWorldMapTilesByKeyServer } from "@/methods/server-fetchers/world/core/getWorldMapTilesByKeyServer"
+import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
+
+export async function getMapData(mapId: number) {
+  const session = await auth()
+  const playerId = session?.user?.playerId
+
+  if (!playerId || isNaN(playerId)) {
+    return
+  }
+
+  const [terrainTypes, mapTiles, landscapeTypes, cities, districts, districtTypes, playerVisibleMapData, skills, abilities, playerSkills, playerAbilities, playerIventory] = await Promise.all([
+    getWorldTerrainTypesServer(),
+    getWorldMapTilesByKeyServer({ mapId }),
+    getWorldLandscapeTypesServer(),
+    getCitiesCitiesByKeyServer({ mapId }),
+    getDistrictsDistrictsByKeyServer({ mapId }),
+    getDistrictsDistrictTypesServer(),
+    getPlayerVisibleMapDataServer({ playerId }),
+    getAttributesSkillsServer(),
+    getAttributesAbilitiesServer(),
+    getPlayerSkillsServer({ playerId }),
+    getPlayerAbilitiesServer({ playerId }),
+    getGetPlayerInventoryServer({ playerId }),
+  ])
+
+  const joinedMap = joinMap(mapTiles.byKey, terrainTypes.byKey, landscapeTypes.byKey, cities.byKey, districts.byKey, districtTypes.byKey, playerVisibleMapData.byKey)
+
+  const fallbackData = createSwrFallback(
+    mapTiles,
+    skills,
+    abilities,
+    cities,
+    districts,
+    districtTypes,
+    playerVisibleMapData,
+    playerSkills,
+    playerAbilities,
+    playerIventory,
+    terrainTypes,
+    landscapeTypes,
+  )
+
+  return { terrainTypes, mapTiles, landscapeTypes, cities, districts, districtTypes, skills, abilities, playerVisibleMapData, playerSkills, playerAbilities, playerIventory, joinedMap, fallbackData }
+}

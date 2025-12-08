@@ -11,14 +11,14 @@ export function usePlayerId() {
   const setPlayerId = useSetAtom(playerIdAtom)
 
   const session = useSession()
-  const sessionPlayerId = session.data?.user.playerId
+  const playerId = session.data?.user.playerId
   const sessionPlayerIds = session.data?.user.playerIds
 
   useEffect(() => {
-    if (sessionPlayerId && sessionPlayerId !== playerId) {
-      setPlayerId(sessionPlayerId)
+    if (playerId && playerId !== playerId) {
+      setPlayerId(playerId)
     }
-  }, [sessionPlayerId, playerId, setPlayerId])
+  }, [playerId, playerId, setPlayerId])
 
   const switchPlayer = (newPlayerId: number) => {
     if (!sessionPlayerIds?.includes(newPlayerId)) return
