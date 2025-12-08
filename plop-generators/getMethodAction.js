@@ -1,5 +1,4 @@
 import { getArgsArray, parseParamsFields, snakeToCamel, snakeToPascal } from "./helpers/helpers.js"
-import { formatWithPrettier } from "./helpers/prettier.js"
 import { fetchFucntionForAction, fetchMethodArgs, fetchMethodResultColumns, fetchSchemas } from "./helpers/queries.js"
 // Generator plop
 export default function getMethodAction(plop) {
@@ -103,18 +102,8 @@ export default function getMethodAction(plop) {
         templateFile: "plop-templates/dbGetMethodAction.hbs",
         force: true,
       },
-      // formatWithPrettier zwraca Promise
-      async () => {
-        const pathsToFormat = ["store/atoms.ts", "db/postgresMainDatabase/schemas", "app/api", "methods/hooks", "methods/server-fetchers"]
-
-        try {
-          const result = await formatWithPrettier(pathsToFormat)
-          console.log(result)
-          return result
-        } catch (err) {
-          console.error("Prettier failed:", err)
-          throw err
-        }
+      {
+        type: "PrettierFormat",
       },
     ],
   })

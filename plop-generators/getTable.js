@@ -1,7 +1,6 @@
 import dotenv from "dotenv"
 import path from "path"
 import { camelToKebab, getArgsArray, mapSQLTypeToTS, snakeToCamel, snakeToPascal } from "./helpers/helpers.js"
-import { formatWithPrettier } from "./helpers/prettier.js"
 import { createMethodGetRecords, createMethodGetRecordsByKey, fetchColumns, fetchMethodArgs, fetchSchemas, fetchTables } from "./helpers/queries.js"
 dotenv.config({ path: path.resolve(process.cwd(), ".env.development") })
 
@@ -260,18 +259,8 @@ export default function getTable(plop) {
         pattern: /(\/\/Tables\s*\n)/,
         template: `$1export const {{tableCamelName}}Atom = atom<{{indexTypeName}}>({})\n`,
       },
-      // formatWithPrettier zwraca Promise
-      async () => {
-        const pathsToFormat = ["store/atoms.ts", "db/postgresMainDatabase/schemas", "app/api", "methods/hooks", "methods/server-fetchers"]
-
-        try {
-          const result = await formatWithPrettier(pathsToFormat)
-          console.log(result)
-          return result
-        } catch (err) {
-          console.error("Prettier failed:", err)
-          throw err
-        }
+      {
+        type: "PrettierFormat",
       },
     ],
   })
