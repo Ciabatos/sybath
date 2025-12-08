@@ -36,6 +36,13 @@ import { TGetActivePlayerPositionRecordByXY } from "@/db/postgresMainDatabase/sc
 import { TGetActivePlayerVisionPlayersPositionsRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerVisionPlayersPositions"
 import { TGetPlayerAbilitiesRecordByAbilityId } from "@/db/postgresMainDatabase/schemas/attributes/getPlayerAbilities"
 import { TGetPlayerAbilitiesRecordByAbilityId } from "@/db/postgresMainDatabase/schemas/attributes/getPlayerAbilities"
+import { TGetActivePlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerPosition"
+import { TGetActivePlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerPosition"
+import { TGetActivePlayerVisionPlayersPositionsRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerVisionPlayersPositions"
+import { TGetPlayerAbilitiesRecordByAbilityId } from "@/db/postgresMainDatabase/schemas/attributes/getPlayerAbilities"
+import { TGetPlayerSkillsRecordBySkillId } from "@/db/postgresMainDatabase/schemas/attributes/getPlayerSkills"
+import { TGetPlayerStatsRecordByStatId } from "@/db/postgresMainDatabase/schemas/attributes/getPlayerStats"
+import { TGetActivePlayerVisionPlayersPositionsRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerVisionPlayersPositions"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanels>(EPanels.Inactive)
@@ -94,6 +101,13 @@ export const playerSkillsAtom = atom<TAttributesPlayerSkillsRecordByPlayerId>({}
 export const playerAbilitiesAtom = atom<TAttributesPlayerAbilitiesRecordByPlayerId>({})
 
 //Functions
+export const getActivePlayerVisionPlayersPositionsAtom = atom<TGetActivePlayerVisionPlayersPositionsRecordByXY>({})
+export const getPlayerStatsAtom = atom<TGetPlayerStatsRecordByStatId>({})
+export const getPlayerSkillsAtom = atom<TGetPlayerSkillsRecordBySkillId>({})
+export const getPlayerAbilitiesAtom = atom<TGetPlayerAbilitiesRecordByAbilityId>({})
+export const getActivePlayerVisionPlayersPositionsAtom = atom<TGetActivePlayerVisionPlayersPositionsRecordByXY>({})
+export const getActivePlayerPositionAtom = atom<TGetActivePlayerPositionRecordByXY>({})
+export const getActivePlayerPositionAtom = atom<TGetActivePlayerPositionRecordByXY>({})
 export const getPlayerAbilitiesAtom = atom<TGetPlayerAbilitiesRecordByAbilityId>({})
 export const getPlayerAbilitiesAtom = atom<TGetPlayerAbilitiesRecordByAbilityId>({})
 export const getActivePlayerVisionPlayersPositionsAtom = atom<TGetActivePlayerVisionPlayersPositionsRecordByXY>({})
