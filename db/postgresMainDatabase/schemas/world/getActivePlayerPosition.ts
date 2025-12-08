@@ -12,6 +12,7 @@ export type TGetActivePlayerPositionParams = {
 export type TGetActivePlayerPosition = {
   x: number
   y: number
+  imageUrl: string
 }
 
 export type TGetActivePlayerPositionRecordByXY = Record<string, TGetActivePlayerPosition>

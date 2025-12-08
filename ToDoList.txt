@@ -32,7 +32,7 @@ rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmiani
 
 
 
-
+dodac comment automatic_get_api do funkcji automatycznie wygenerowanych
 przerobic task.movment_action_in_process do world.get_player_movement i zobaczyc czy trzeba to plopem dorobic
 
 

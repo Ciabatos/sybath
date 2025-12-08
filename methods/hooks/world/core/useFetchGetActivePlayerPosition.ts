@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcher.hbs
 
 "use client"
-import { TGetActivePlayerPositionParams, TGetActivePlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerPosition"
+import { TGetActivePlayerPositionRecordByXY, TGetActivePlayerPositionParams } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerPosition"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { getActivePlayerPositionAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
