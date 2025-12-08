@@ -17,7 +17,7 @@ export type TGetActivePlayerVisionPlayersPositions = {
 
 export type TGetActivePlayerVisionPlayersPositionsRecordByXY = Record<string, TGetActivePlayerVisionPlayersPositions>
 
-export async function getGetActivePlayerVisionPlayersPositions(params: TGetActivePlayerVisionPlayersPositionsParams) {
+export async function getActivePlayerVisionPlayersPositions(params: TGetActivePlayerVisionPlayersPositionsParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM world.get_active_player_vision_players_positions($1, $2);`
@@ -25,7 +25,7 @@ export async function getGetActivePlayerVisionPlayersPositions(params: TGetActiv
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TGetActivePlayerVisionPlayersPositions[]
   } catch (error) {
-    console.error("Error fetching getGetActivePlayerVisionPlayersPositions:", error)
-    throw new Error("Failed to fetch getGetActivePlayerVisionPlayersPositions")
+    console.error("Error fetching getActivePlayerVisionPlayersPositions:", error)
+    throw new Error("Failed to fetch getActivePlayerVisionPlayersPositions")
   }
 }

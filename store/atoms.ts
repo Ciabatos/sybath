@@ -31,8 +31,6 @@ import { TClickedTile } from "@/methods/hooks/world/composite/useMapTileActions"
 import { TMapTilesMovementPathSet } from "@/methods/hooks/world/composite/useMapTilesMovement"
 import { EPanels } from "@/types/enumeration/EPanels"
 import { atom } from "jotai"
-import { TGetActivePlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerPosition"
-import { TGetActivePlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerPosition"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanels>(EPanels.Inactive)
@@ -91,9 +89,6 @@ export const playerSkillsAtom = atom<TAttributesPlayerSkillsRecordByPlayerId>({}
 export const playerAbilitiesAtom = atom<TAttributesPlayerAbilitiesRecordByPlayerId>({})
 
 //Functions
-export const getActivePlayerPositionAtom = atom<TGetActivePlayerPositionRecordByXY>({})
-export const getActivePlayerPositionAtom = atom<TGetActivePlayerPositionRecordByXY>({})
-export const getActivePlayerVisionPlayersPositionsAtom = atom<TGetActivePlayerVisionPlayersPositionsRecordByXY>({})
 export const getActivePlayerVisionPlayersPositionsAtom = atom<TGetActivePlayerVisionPlayersPositionsRecordByXY>({})
 export const getActivePlayerPositionAtom = atom<TGetActivePlayerPositionRecordByXY>({})
 export const getPlayerInventoryAtom = atom<TGetPlayerInventoryRecordBySlotId>({})

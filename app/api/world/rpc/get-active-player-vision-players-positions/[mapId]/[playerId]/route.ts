@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetMethodFetcher.hbs
 
 import { auth } from "@/auth"
-import { getGetActivePlayerVisionPlayersPositions, TGetActivePlayerVisionPlayersPositionsParams } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerVisionPlayersPositions"
+import { getActivePlayerVisionPlayersPositions, TGetActivePlayerVisionPlayersPositionsParams } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerVisionPlayersPositions"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
@@ -24,7 +24,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
   const parsedParams = typeParamsSchema.parse(paramsFromPromise)
 
   try {
-    const result = await getGetActivePlayerVisionPlayersPositions(parsedParams)
+    const result = await getActivePlayerVisionPlayersPositions(parsedParams)
 
     const etag = crypto.createHash("sha1").update(JSON.stringify(result)).digest("hex")
     const clientEtag = request.headers.get("if-none-match")
