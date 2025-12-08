@@ -56,7 +56,7 @@ export default function getMethodFetcher(plop) {
       }))
 
       // nazwa wrappera (funkcja generowanego get...)
-      const methodName = `get${methodPascalName}`
+      const methodName = `${methodPascalName}`
 
       const methodParamsColumns = parseParamsFields(argsStr) // DRY, helpers version
       const argsArray = getArgsArray(argsStr)
@@ -174,7 +174,7 @@ export default function getMethodFetcher(plop) {
       },
       {
         type: "add",
-        path: "methods/server-fetchers{{schema}}/core/{{methodCamelName}}Server.ts",
+        path: "methods/server-fetchers{{schema}}/core/get{{methodPascalName}}Server.ts",
         templateFile: "plop-templates/hookGetMethodFetcherServer.hbs",
         force: true,
       },
