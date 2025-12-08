@@ -1,5 +1,3 @@
-// GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcher.hbs
-
 "use client"
 import { playerIdAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
@@ -11,14 +9,14 @@ export function usePlayerId() {
   const setPlayerId = useSetAtom(playerIdAtom)
 
   const session = useSession()
-  const playerId = session.data?.user.playerId
+  const sessionPlayerId = session.data?.user.playerId
   const sessionPlayerIds = session.data?.user.playerIds
 
   useEffect(() => {
-    if (playerId && playerId !== playerId) {
-      setPlayerId(playerId)
+    if (sessionPlayerId && sessionPlayerId !== playerId) {
+      setPlayerId(sessionPlayerId)
     }
-  }, [playerId, playerId, setPlayerId])
+  }, [playerId, sessionPlayerId, setPlayerId])
 
   const switchPlayer = (newPlayerId: number) => {
     if (!sessionPlayerIds?.includes(newPlayerId)) return

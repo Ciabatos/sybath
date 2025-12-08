@@ -50,7 +50,7 @@ export const joinedCityAtom = atom<TJoinCityByXY>({})
 
 //Player
 export const playerIdAtom = atom<number>(0)
-export const playerPositionMapTileAtom = atom<TPlayerVisibleMapData>()
+export const playerPositionMapTilesAtom = atom<TPlayerVisibleMapData>()
 export const playerInventorySlotsAtom = atom<TInventorySlots[]>([])
 
 //Attributes
