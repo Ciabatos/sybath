@@ -180,6 +180,8 @@ export async function createMethodGetRecords(schema, table) {
           SELECT * FROM ${schema}.${table};
       END;
       $$;
+
+      COMMENT ON FUNCTION ${schema}.get_${table}() IS 'automatic_get_api';
     `
     await client.query(sql)
     return true
@@ -251,6 +253,8 @@ export async function createMethodGetRecordsByKey(schema, table, indexParamsColu
           WHERE ${whereClause};
       END;
       $$;
+      
+      COMMENT ON FUNCTION ${schema}.get_${table}_by_key(${paramsDef}) IS 'automatic_get_api';
     `
 
     await client.query(sql)
