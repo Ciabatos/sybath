@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcher.hbs
 
 "use client"
-import { TGetPlayerMovementRecordByXY, TGetPlayerMovementParams } from "@/db/postgresMainDatabase/schemas/world/getPlayerMovement"
+import { TGetPlayerMovementParams, TGetPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerMovement"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { getPlayerMovementAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
@@ -24,6 +24,5 @@ export function useFetchGetPlayerMovement(params: TGetPlayerMovementParams) {
       prevDataRef.current = data
     }
   }, [data, setGetPlayerMovement])
-
   return { getPlayerMovement }
 }

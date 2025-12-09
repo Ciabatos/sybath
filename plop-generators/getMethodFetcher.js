@@ -108,6 +108,19 @@ export default function getMethodFetcher(plop) {
       const apiPath = `app/api/${schema}/rpc/${methodKebabName}${apiParamPathSquareBrackets}/route.ts`
       const apiPathParams = `/api/${schema}/rpc/${methodKebabName}${apiParamPath}`
 
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { generateMutation } = await inquirer.prompt([
+        {
+          type: "list",
+          name: "generateMutation",
+          message: "Czy chcesz wygenerować także hook useMutate ? Służy do szybkiego odświeżania UI po użyciu akcji, ale należy dokonać ręcznej konfiguracji",
+          choices: [
+            { name: "Nie", value: false },
+            { name: "Tak", value: true },
+          ],
+        },
+      ])
+
       console.log({
         schema,
         method,
@@ -128,6 +141,7 @@ export default function getMethodFetcher(plop) {
         sqlParamsPlaceholders,
         apiPath,
         apiPathParams,
+        generateMutation,
       })
 
       return {
@@ -150,6 +164,7 @@ export default function getMethodFetcher(plop) {
         sqlParamsPlaceholders,
         apiPath,
         apiPathParams,
+        generateMutation,
       }
     },
 
@@ -189,6 +204,15 @@ export default function getMethodFetcher(plop) {
         path: "store/atoms.ts",
         pattern: /(\/\/Functions\s*\n)/,
         template: `$1export const {{methodCamelName}}Atom = atom<{{indexTypeName}}>({})\n`,
+      },
+      {
+        type: "add",
+        path: "methods/hooks/{{schema}}/core/useMutate{{methodPascalName}}.ts",
+        templateFile: "plop-templates/hookMutateMethodFetcher.hbs",
+        force: true,
+        skip(answers) {
+          return answers.generateMutation ? false : "Pomijam generowanie useMutate..."
+        },
       },
       {
         type: "PrettierFormat",

@@ -44,6 +44,8 @@ import { TGetPlayerSkillsRecordBySkillId } from "@/db/postgresMainDatabase/schem
 import { TGetPlayerStatsRecordByStatId } from "@/db/postgresMainDatabase/schemas/attributes/getPlayerStats"
 import { TGetActivePlayerVisionPlayersPositionsRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerVisionPlayersPositions"
 import { TGetPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerMovement"
+import { TGetPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerMovement"
+import { TGetPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerMovement"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanels>(EPanels.Inactive)
@@ -102,6 +104,8 @@ export const playerSkillsAtom = atom<TAttributesPlayerSkillsRecordByPlayerId>({}
 export const playerAbilitiesAtom = atom<TAttributesPlayerAbilitiesRecordByPlayerId>({})
 
 //Functions
+export const getPlayerMovementAtom = atom<TGetPlayerMovementRecordByXY>({})
+export const getPlayerMovementAtom = atom<TGetPlayerMovementRecordByXY>({})
 export const getPlayerMovementAtom = atom<TGetPlayerMovementRecordByXY>({})
 export const getActivePlayerVisionPlayersPositionsAtom = atom<TGetActivePlayerVisionPlayersPositionsRecordByXY>({})
 export const getPlayerStatsAtom = atom<TGetPlayerStatsRecordByStatId>({})

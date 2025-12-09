@@ -1,0 +1,31 @@
+// GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
+"use client"
+
+import { {{indexTypeName}} {{#if methodParamsColumns}}, {{methodParamsTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
+import { {{methodCamelName}}Atom } from "@/store/atoms"
+import { useSetAtom } from "jotai"
+import useSWR from "swr"
+
+export function useMutate{{methodPascalName}}({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}) {
+  const { mutate } = useSWR(`{{apiPathParams}}`)
+  const set{{methodPascalName}} = useSetAtom({{methodCamelName}}Atom)
+
+
+  function mutate{{methodPascalName}}(optimisticParams: Partial<Record<string, Partial<{{indexTypeName}}[string]>>>) {
+
+    const optimisticData: {{indexTypeName}} = {
+        ...optimisticParams,
+    }
+    
+
+    set{{methodPascalName}}(optimisticData)
+    mutate(undefined, {
+      optimisticData,
+      rollbackOnError: true,
+      revalidate: true,
+      populateCache: true,
+    })
+  }
+
+  return { mutate{{methodPascalName}} }
+}
