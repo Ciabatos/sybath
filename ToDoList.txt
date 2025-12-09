@@ -32,7 +32,7 @@ rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmiani
 
 
 
-przerobic task.movment_action_in_process do world.get_player_movement i zobaczyc czy trzeba to plopem dorobic
+przerobic Mutate - one sa uzywane tylko w akcjach, w PLOP.JS dodac pytanie czy MUTATE ma występować i dorobić generator MUTATE z ACTION
 Zajac sie hookami dla paneli
 
 
