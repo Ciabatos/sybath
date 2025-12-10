@@ -1,26 +1,26 @@
-// GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
+// GENERATED CODE - DO NOT EDIT MANUALLY - hookMutateMethodFetcher.hbs
 "use client"
 
-import { TGetPlayerMovementParams, TGetPlayerMovementRecordByXY,TGetPlayerMovement } from "@/db/postgresMainDatabase/schemas/world/getPlayerMovement"
+import { TGetPlayerMovementRecordByXY, TGetPlayerMovementParams, TGetPlayerMovement } from "@/db/postgresMainDatabase/schemas/world/getPlayerMovement"
 import { getPlayerMovementAtom } from "@/store/atoms"
-import { useAtomValue, useSetAtom } from "jotai"
+import { useSetAtom } from "jotai"
 import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateGetPlayerMovement(params: TGetPlayerMovementParams) {
   const { mutate } = useSWR(`/api/world/rpc/get-player-movement/${params.playerId}`)
   const setGetPlayerMovement = useSetAtom(getPlayerMovementAtom)
-  const getPlayerMovement = useAtomValue(getPlayerMovementAtom)
 
   function mutateGetPlayerMovement(optimisticParams: Partial<TGetPlayerMovement> | Partial<TGetPlayerMovement>[]) {
+    const params = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     const defaultValues = {
-      scheduledAt: '',
-      x: '',
-      y: '',
+      scheduledAt: ``,
+      x: ``,
+      y: ``,
     }
 
-    const dataWithDefaults = Object.values(optimisticParams).map((val) => ({
+    const dataWithDefaults = Object.values(params).map((val) => ({
       ...defaultValues,
       ...val,
     }))
@@ -28,8 +28,7 @@ export function useMutateGetPlayerMovement(params: TGetPlayerMovementParams) {
     const newObj = arrayToObjectKey(["x", "y"], dataWithDefaults) as TGetPlayerMovementRecordByXY
 
     const optimisticData: TGetPlayerMovementRecordByXY = {
-      ...getPlayerMovement, 
-      ...newObj,      
+      ...newObj,
     }
 
     setGetPlayerMovement(optimisticData)
@@ -37,7 +36,7 @@ export function useMutateGetPlayerMovement(params: TGetPlayerMovementParams) {
     mutate(undefined, {
       optimisticData,
       rollbackOnError: true,
-      revalidate: false,
+      revalidate: true,
       populateCache: true,
     })
   }

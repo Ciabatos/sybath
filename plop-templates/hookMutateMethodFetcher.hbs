@@ -3,7 +3,7 @@
 
 import { {{indexTypeName}} {{#if methodParamsColumns}}, {{methodParamsTypeName}}, {{methodTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
 import { {{methodCamelName}}Atom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useSetAtom{{#if mutationMergeOldData}}, useAtomValue{{/if}} } from "jotai"
 import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
@@ -17,7 +17,7 @@ export function useMutate{{methodPascalName}}({{#if methodParamsColumns}} params
 
     const defaultValues = {
     {{#each methodColumns}}
-      {{camelName}}: '',
+      {{camelName}}: ``,
     {{/each}}
     }
 

@@ -2,7 +2,7 @@
 "use client"
 
 import { {{indexTypeName}} {{#if methodParamsColumns}}, {{methodParamsTypeName}}, {{methodTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
-import { {{tableCamelName}}Atom } from "@/store/atoms"
+import { {{tableCamelName}}Atom{{#if mutationMergeOldData}}, useAtomValue{{/if}} } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -17,7 +17,7 @@ export function useMutate{{schemaTablePascalName}}({{#if methodParamsColumns}} p
 
     const defaultValues = {
     {{#each methodColumns}}
-      {{camelName}}: '',
+      {{camelName}}: ``,
     {{/each}}
     }
 

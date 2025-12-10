@@ -1,3 +1,120 @@
 {
-  "files.exclude": {}
+  "workbench.colorTheme": "Default Dark+",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.renderWhitespace": "none",
+  "editor.useTabStops": false,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.insertSpaces": false,
+  "emmet.includeLanguages": {
+    "ejs": "html"
+  },
+
+  "tailwindCSS.includeLanguages": {
+    "javascript": "javascript",
+    "html": "HTML",
+    "plaintext": "javascript"
+  },
+
+  "files.associations": {
+    "*.ejs": "html",
+    "*.css": "tailwindcss"
+  },
+
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "css.validate": false,
+  "editor.inlineSuggest.enabled": true,
+  "tailwindCSS.emmetCompletions": true,
+
+  "editor.formatOnSave": true,
+  "explorer.autoReveal": false,
+  "redhat.telemetry.enabled": true,
+  "workbench.iconTheme": "vscode-icons",
+  "vsicons.dontShowNewVersionMessage": true,
+  "editor.guides.bracketPairs": "active",
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.printWidth": 233,
+  "prettier.bracketSameLine": true,
+  "prettier.semi": false,
+  "prettier.singleAttributePerLine": true,
+  "git.openRepositoryInParentFolders": "always",
+  "terminal.integrated.env.windows": {},
+  "console-ninja.allowedHosts": ["localhost:3000"],
+  "window.commandCenter": true,
+  "editor.minimap.enabled": false,
+  "importCost.typescriptExtensions": ["\\.tsx?$"],
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "explorer.sortOrder": "filesFirst",
+  "workbench.settings.applyToAllProfiles": ["prettier.prettierPath"],
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "git.confirmSync": false,
+  "tabnine.experimentalAutoImports": true,
+  "surround.with.arrowFunction": {
+    "label": "arrowFunction",
+    "description": "const $name = ($params) => { ... }",
+    "disabled": false,
+    "snippet": "const ${1:fnName} = (${2:params}) => {\n\t$TM_SELECTED_TEXT\n}$0"
+  },
+  "surround.custom": {
+    "singleQuotes": { "label": "single quotes", "description": "Single Quotes", "snippet": "'$TM_SELECTED_TEXT'" }
+  },
+  "hediet.vscode-drawio.resizeImages": null,
+  "git.enableSmartCommit": true,
+  "prettier.configPath": ".prettierrc.json",
+  "editor.codeActionsOnSave": {
+    // "source.organizeImports": true,
+    "source.addMissingImports.ts": "always",
+    "source.removeUnused": "never",
+    "source.removeUnusedImports": "always",
+    "source.sortImports": "always"
+  },
+  "eslint.notebooks.rules.customizations": [],
+  "eslint.rules.customizations": [],
+  "eslint.workingDirectories": [],
+  "eslint.nodeEnv": "",
+  "codeium.enableCodeLens": false,
+  "editor.largeFileOptimizations": false,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "console-ninja.featureSet": "Community",
+  "github.copilot.advanced": {},
+  "github.copilot.chat.codesearch.enabled": true,
+  "github.copilot.chat.agent.thinkingTool": true,
+  "workbench.editor.enablePreview": false,
+  "auto-close-tag.activationOnLanguage": [
+    "xml",
+    "php",
+    "blade",
+    "ejs",
+    "jinja",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "plaintext",
+    "markdown",
+    "vue",
+    "liquid",
+    "erb",
+    "lang-cfml",
+    "cfml",
+    "HTML (EEx)",
+    "HTML (Eex)",
+    "plist"
+  ]
 }
