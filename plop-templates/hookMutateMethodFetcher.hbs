@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookMutateMethodFetcher.hbs
 "use client"
 
-import { {{indexTypeName}} {{#if methodParamsColumns}}, {{methodParamsTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
+import { {{indexTypeName}} {{#if methodParamsColumns}}, {{methodParamsTypeName}}, {{methodTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
 import { {{methodCamelName}}Atom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 import useSWR from "swr"
@@ -11,7 +11,9 @@ export function useMutate{{methodPascalName}}({{#if methodParamsColumns}} params
   const { mutate } = useSWR(`{{apiPathParams}}`)
   const set{{methodPascalName}} = useSetAtom({{methodCamelName}}Atom)
   {{#if mutationMergeOldData}}const {{methodCamelName}} = useAtomValue({{methodCamelName}}Atom){{/if}}
-  function mutate{{methodPascalName}}(optimisticParams: Partial<Record<string, Partial<{{indexTypeName}}[string]>>>) {
+
+  function mutate{{methodPascalName}}(optimisticParams: Partial<{{methodTypeName}}> | Partial<{{methodTypeName}}>[]) {
+    const params = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     const defaultValues = {
     {{#each methodColumns}}
@@ -19,8 +21,7 @@ export function useMutate{{methodPascalName}}({{#if methodParamsColumns}} params
     {{/each}}
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const dataWithDefaults = Object.entries(optimisticParams).map(([key, val]) => ({
+    const dataWithDefaults = Object.values(params).map((val) => ({
       ...defaultValues,
       ...val,
     }))

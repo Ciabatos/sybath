@@ -1,7 +1,7 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
-import { TGetPlayerMovementParams, TGetPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerMovement"
+import { TGetPlayerMovementParams, TGetPlayerMovementRecordByXY,TGetPlayerMovement } from "@/db/postgresMainDatabase/schemas/world/getPlayerMovement"
 import { getPlayerMovementAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import useSWR from "swr"
@@ -12,7 +12,7 @@ export function useMutateGetPlayerMovement(params: TGetPlayerMovementParams) {
   const setGetPlayerMovement = useSetAtom(getPlayerMovementAtom)
   const getPlayerMovement = useAtomValue(getPlayerMovementAtom)
 
-  function mutateGetPlayerMovement(optimisticParams: Partial<Record<string, Partial<TGetPlayerMovementRecordByXY[string]>>>) {
+  function mutateGetPlayerMovement(optimisticParams: Partial<TGetPlayerMovement> | Partial<TGetPlayerMovement>[]) {
 
     const defaultValues = {
       scheduledAt: '',
@@ -20,8 +20,7 @@ export function useMutateGetPlayerMovement(params: TGetPlayerMovementParams) {
       y: '',
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const dataWithDefaults = Object.entries(optimisticParams).map(([key, val]) => ({
+    const dataWithDefaults = Object.values(optimisticParams).map((val) => ({
       ...defaultValues,
       ...val,
     }))

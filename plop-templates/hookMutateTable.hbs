@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookMutateTable.hbs
 "use client"
 
-import { {{indexTypeName}} {{#if methodParamsColumns}}, {{methodParamsTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
+import { {{indexTypeName}} {{#if methodParamsColumns}}, {{methodParamsTypeName}}, {{methodTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 import { {{tableCamelName}}Atom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 import useSWR from "swr"
@@ -11,7 +11,9 @@ export function useMutate{{schemaTablePascalName}}({{#if methodParamsColumns}} p
   const { mutate } = useSWR(`{{apiPathParams}}`)
   const set{{schemaTablePascalName}} = useSetAtom({{tableCamelName}}Atom)
   {{#if mutationMergeOldData}}const {{tableCamelName}} = useAtomValue({{tableCamelName}}Atom){{/if}}
-  function mutate{{schemaTablePascalName}}(optimisticParams: Partial<Record<string, Partial<{{indexTypeName}}[string]>>>) {
+
+  function mutate{{schemaTablePascalName}}(optimisticParams: Partial<{{methodTypeName}}> | Partial<{{methodTypeName}}>[]) {
+    const params = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     const defaultValues = {
     {{#each methodColumns}}
@@ -19,8 +21,7 @@ export function useMutate{{schemaTablePascalName}}({{#if methodParamsColumns}} p
     {{/each}}
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const dataWithDefaults = Object.entries(optimisticParams).map(([key, val]) => ({
+    const dataWithDefaults = Object.values(params).map((val) => ({
       ...defaultValues,
       ...val,
     }))
