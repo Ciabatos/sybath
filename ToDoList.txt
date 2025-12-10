@@ -36,7 +36,8 @@ przerobic Mutate - one sa uzywane tylko w akcjach, w PLOP.JS dodac pytanie czy M
 Zajac sie hookami dla paneli
 
 
-
+Panele odpowiadaja za render
+Forms to akcje, buttony renderowane w panelach, pobieraja one dane z hooków?
 
 
 
