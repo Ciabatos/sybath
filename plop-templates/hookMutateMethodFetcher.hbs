@@ -10,13 +10,12 @@ import { arrayToObjectKey } from "@/methods/functions/util/converters"
 export function useMutate{{methodPascalName}}({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}) {
   const { mutate } = useSWR(`{{apiPathParams}}`)
   const set{{methodPascalName}} = useSetAtom({{methodCamelName}}Atom)
-  const {{methodCamelName}} = useAtomValue({{methodCamelName}}Atom)
-
+  {{#if mutationMergeOldData}}const {{methodCamelName}} = useAtomValue({{methodCamelName}}Atom){{/if}}
   function mutate{{methodPascalName}}(optimisticParams: Partial<Record<string, Partial<{{indexTypeName}}[string]>>>) {
 
     const defaultValues = {
     {{#each methodColumns}}
-      {{camelName}}: ''
+      {{camelName}}: '',
     {{/each}}
     }
 
@@ -29,7 +28,7 @@ export function useMutate{{methodPascalName}}({{#if methodParamsColumns}} params
     const newObj = {{{indexMethodName}}}({{{indexMethodParams}}}, dataWithDefaults) as {{indexTypeName}}
     
     const optimisticData: {{indexTypeName}} = {
-      ...{{methodCamelName}}, 
+      {{#if mutationMergeOldData}}...{{methodCamelName}},{{/if}} 
       ...newObj,      
     }
     

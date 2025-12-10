@@ -108,7 +108,6 @@ export default function getMethodFetcher(plop) {
       const apiPath = `app/api/${schema}/rpc/${methodKebabName}${apiParamPathSquareBrackets}/route.ts`
       const apiPathParams = `/api/${schema}/rpc/${methodKebabName}${apiParamPath}`
 
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { generateMutation } = await inquirer.prompt([
         {
           type: "list",
@@ -118,6 +117,19 @@ export default function getMethodFetcher(plop) {
             { name: "Nie", value: false },
             { name: "Tak", value: true },
           ],
+        },
+      ])
+
+      const { mutationMergeOldData } = await inquirer.prompt([
+        {
+          type: "list",
+          name: "mutationMergeOldData",
+          message: "Czy zmergować stare dane z atomu do nowych danych przy użyciu Mutate ?",
+          choices: [
+            { name: "Nie", value: false },
+            { name: "Tak", value: true },
+          ],
+          when: () => generateMutation === true, 
         },
       ])
 
@@ -142,6 +154,7 @@ export default function getMethodFetcher(plop) {
         apiPath,
         apiPathParams,
         generateMutation,
+        mutationMergeOldData,
       })
 
       return {
@@ -165,6 +178,7 @@ export default function getMethodFetcher(plop) {
         apiPath,
         apiPathParams,
         generateMutation,
+        mutationMergeOldData,
       }
     },
 
