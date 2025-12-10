@@ -5,6 +5,7 @@ import { TGetPlayerMovementParams, TGetPlayerMovementRecordByXY } from "@/db/pos
 import { getPlayerMovementAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import useSWR from "swr"
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateGetPlayerMovement(params: TGetPlayerMovementParams) {
   const { mutate } = useSWR(`/api/world/rpc/get-player-movement/${params.playerId}`)
@@ -12,17 +13,28 @@ export function useMutateGetPlayerMovement(params: TGetPlayerMovementParams) {
   const getPlayerMovement = useAtomValue(getPlayerMovementAtom)
 
   function mutateGetPlayerMovement(optimisticParams: Partial<Record<string, Partial<TGetPlayerMovementRecordByXY[string]>>>) {
+
+    const defaultValues = {
+      scheduledAt: '',
+      x: '',
+      y: '',
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const dataWithDefaults = Object.entries(optimisticParams).map(([key, val]) => ({
+      ...defaultValues,
+      ...val,
+    }))
+
+    const newObj = arrayToObjectKey(["x", "y"], dataWithDefaults) as TGetPlayerMovementRecordByXY
+
     const optimisticData: TGetPlayerMovementRecordByXY = {
-      ...getPlayerMovement,
-      ...Object.fromEntries(
-        Object.entries(optimisticParams).map(([key, val]) => [
-          key,
-          { ...(getPlayerMovement[key] ?? {}), ...val }, // <-- tutaj domyślny obiekt
-        ]),
-      ),
+      ...getPlayerMovement, 
+      ...newObj,      
     }
 
     setGetPlayerMovement(optimisticData)
+
     mutate(undefined, {
       optimisticData,
       rollbackOnError: true,

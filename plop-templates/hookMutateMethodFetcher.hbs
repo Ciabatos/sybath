@@ -5,20 +5,36 @@ import { {{indexTypeName}} {{#if methodParamsColumns}}, {{methodParamsTypeName}}
 import { {{methodCamelName}}Atom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 import useSWR from "swr"
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutate{{methodPascalName}}({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}) {
   const { mutate } = useSWR(`{{apiPathParams}}`)
   const set{{methodPascalName}} = useSetAtom({{methodCamelName}}Atom)
-
+  const {{methodCamelName}} = useAtomValue({{methodCamelName}}Atom)
 
   function mutate{{methodPascalName}}(optimisticParams: Partial<Record<string, Partial<{{indexTypeName}}[string]>>>) {
 
+    const defaultValues = {
+    {{#each methodColumns}}
+      {{camelName}}: ''
+    {{/each}}
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const dataWithDefaults = Object.entries(optimisticParams).map(([key, val]) => ({
+      ...defaultValues,
+      ...val,
+    }))
+
+    const newObj = {{{indexMethodName}}}({{{indexMethodParams}}}, dataWithDefaults) as {{indexTypeName}}
+    
     const optimisticData: {{indexTypeName}} = {
-        ...optimisticParams,
+      ...{{methodCamelName}}, 
+      ...newObj,      
     }
     
-
     set{{methodPascalName}}(optimisticData)
+
     mutate(undefined, {
       optimisticData,
       rollbackOnError: true,
