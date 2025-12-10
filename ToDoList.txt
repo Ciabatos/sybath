@@ -30,7 +30,7 @@ UI i flow dla „systemu informacji”
 rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmianie URL
 
 
-
+zrobic plik .vscode/settings.json
 
 przerobic Mutate - one sa uzywane tylko w akcjach, w PLOP.JS dodac pytanie czy MUTATE ma występować i dorobić generator MUTATE z ACTION
 Zajac sie hookami dla paneli
