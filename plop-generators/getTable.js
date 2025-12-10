@@ -147,6 +147,31 @@ export default function getTable(plop) {
       const apiPathParams = `/api/${schema}/${tableKebabName}`
       const apiPathParamsByKey = `/api/${schema}/${tableKebabName}${apiParamPath}`
 
+      const { generateMutation } = await inquirer.prompt([
+        {
+          type: "list",
+          name: "generateMutation",
+          message: "Czy chcesz wygenerować także hook useMutate ? Służy do szybkiego odświeżania UI po użyciu akcji, ale należy dokonać ręcznej konfiguracji",
+          choices: [
+            { name: "Nie", value: false },
+            { name: "Tak", value: true },
+          ],
+        },
+      ])
+
+      const { mutationMergeOldData } = await inquirer.prompt([
+        {
+          type: "list",
+          name: "mutationMergeOldData",
+          message: "Czy zmergować stare dane z atomu do nowych danych przy użyciu Mutate ?",
+          choices: [
+            { name: "Nie", value: false },
+            { name: "Tak", value: true },
+          ],
+          when: () => generateMutation === true, 
+        },
+      ])
+
       console.log({
         schema,
         table,
@@ -173,6 +198,8 @@ export default function getTable(plop) {
         apiPathParams,
         apiPathByKey,
         apiPathParamsByKey,
+        generateMutation,
+        mutationMergeOldData,
       })
 
       return {
@@ -201,6 +228,8 @@ export default function getTable(plop) {
         apiPathParams,
         apiPathByKey,
         apiPathParamsByKey,
+        generateMutation,
+        mutationMergeOldData,
       }
     },
 
@@ -258,6 +287,15 @@ export default function getTable(plop) {
         path: "store/atoms.ts",
         pattern: /(\/\/Tables\s*\n)/,
         template: `$1export const {{tableCamelName}}Atom = atom<{{indexTypeName}}>({})\n`,
+      },
+      {
+        type: "add",
+        path: "methods/hooks/{{schema}}/core/useMutate{{schemaTablePascalName}}.ts",
+        templateFile: "plop-templates/hookMutateTable.hbs",
+        force: true,
+        skip(answers) {
+          return answers.generateMutation ? false : "Pomijam generowanie useMutate..."
+        },
       },
       {
         type: "PrettierFormat",
