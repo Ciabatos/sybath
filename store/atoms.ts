@@ -2,6 +2,9 @@
 
 import { TActionTaskInProcess } from "@/app/api/deprecated/map-tiles/action-task-in-process/route"
 import { TAttributesAbilitiesRecordById } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
+import { TGetPlayerAbilitiesRecordByAbilityId } from "@/db/postgresMainDatabase/schemas/attributes/getPlayerAbilities"
+import { TGetPlayerSkillsRecordBySkillId } from "@/db/postgresMainDatabase/schemas/attributes/getPlayerSkills"
+import { TGetPlayerStatsRecordByStatId } from "@/db/postgresMainDatabase/schemas/attributes/getPlayerStats"
 import { TAttributesPlayerAbilitiesRecordByPlayerId } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
 import { TAttributesPlayerSkillsRecordByPlayerId } from "@/db/postgresMainDatabase/schemas/attributes/playerSkills"
 import { TAttributesPlayerStatsRecordByPlayerId } from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
@@ -17,6 +20,7 @@ import { TGetPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/sch
 import { TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/items"
 import { TGetActivePlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerPosition"
 import { TGetActivePlayerVisionPlayersPositionsRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerVisionPlayersPositions"
+import { TGetPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerMovement"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
 import { TWorldMapTilesPlayersPositionsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/world/mapTilesPlayersPositions"
@@ -28,30 +32,11 @@ import { TJoinMapByXY } from "@/methods/functions/map/joinMap"
 import { TClickeCityTile } from "@/methods/hooks/cities/composite/useCityTilesActions"
 import { TMapTilesGuardAreaSet } from "@/methods/hooks/world/composite/useActionMapTilesGuardArea"
 import { TClickedTile } from "@/methods/hooks/world/composite/useMapTileActions"
-import { TMapTilesMovementPathSet } from "@/methods/hooks/world/composite/useMapTilesMovement"
+import { TMapTilesMovementPathRecordByXY } from "@/methods/hooks/world/composite/useMapTilesPathFromPointToPoint"
 import { EPanels } from "@/types/enumeration/EPanels"
 import { atom } from "jotai"
-import { TGetPlayerAbilitiesRecordByAbilityId } from "@/db/postgresMainDatabase/schemas/attributes/getPlayerAbilities"
-import { TGetActivePlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerPosition"
-import { TGetActivePlayerVisionPlayersPositionsRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerVisionPlayersPositions"
-import { TGetPlayerAbilitiesRecordByAbilityId } from "@/db/postgresMainDatabase/schemas/attributes/getPlayerAbilities"
-import { TGetPlayerAbilitiesRecordByAbilityId } from "@/db/postgresMainDatabase/schemas/attributes/getPlayerAbilities"
-import { TGetActivePlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerPosition"
-import { TGetActivePlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerPosition"
-import { TGetActivePlayerVisionPlayersPositionsRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerVisionPlayersPositions"
-import { TGetPlayerAbilitiesRecordByAbilityId } from "@/db/postgresMainDatabase/schemas/attributes/getPlayerAbilities"
-import { TGetPlayerSkillsRecordBySkillId } from "@/db/postgresMainDatabase/schemas/attributes/getPlayerSkills"
-import { TGetPlayerStatsRecordByStatId } from "@/db/postgresMainDatabase/schemas/attributes/getPlayerStats"
-import { TGetActivePlayerVisionPlayersPositionsRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerVisionPlayersPositions"
-import { TGetPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerMovement"
-import { TGetPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerMovement"
-import { TGetPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerMovement"
-import { TGetPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerMovement"
-import { TGetPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerMovement"
-import { TGetPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerMovement"
-import { TGetPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerMovement"
-import { TGetPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerMovement"
-import { TGetPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerMovement"
+import { TGetPlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerPosition"
+import { TGetPlayerVisionPlayersPositionsRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerVisionPlayersPositions"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanels>(EPanels.Inactive)
@@ -65,7 +50,6 @@ export const joinedMapAtom = atom<TJoinMapByXY>({})
 
 //Map Set
 export const mapTilesGuardAreaSetAtom = atom<TMapTilesGuardAreaSet>(new Set<string>())
-export const mapTilesMovementPathSetAtom = atom<TMapTilesMovementPathSet>(new Set<string>())
 
 //City
 export const clickedCityTileAtom = atom<TClickeCityTile>()
@@ -85,6 +69,11 @@ export const districtInventorySlotsAtom = atom<TInventorySlots[]>([])
 
 //Buildings
 export const buildingInventorySlotsAtom = atom<TInventorySlots[]>([])
+
+//REFACTORED
+
+//Player
+export const playerMapTilesMovementPathAtom = atom<TMapTilesMovementPathRecordByXY>({})
 
 //Tasks
 export const actionTaskInProcessAtom = atom<TActionTaskInProcess>()
@@ -110,6 +99,8 @@ export const playerSkillsAtom = atom<TAttributesPlayerSkillsRecordByPlayerId>({}
 export const playerAbilitiesAtom = atom<TAttributesPlayerAbilitiesRecordByPlayerId>({})
 
 //Functions
+export const getPlayerVisionPlayersPositionsAtom = atom<TGetPlayerVisionPlayersPositionsRecordByXY>({})
+export const getPlayerPositionAtom = atom<TGetPlayerPositionRecordByXY>({})
 export const getPlayerMovementAtom = atom<TGetPlayerMovementRecordByXY>({})
 export const getPlayerMovementAtom = atom<TGetPlayerMovementRecordByXY>({})
 export const getPlayerMovementAtom = atom<TGetPlayerMovementRecordByXY>({})

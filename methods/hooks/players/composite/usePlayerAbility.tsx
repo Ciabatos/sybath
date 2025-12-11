@@ -1,6 +1,5 @@
 "use client"
 
-import { TJoinMap } from "@/methods/functions/map/joinMap"
 import { useFetchAttributesPlayerAbilitiesByKey } from "@/methods/hooks/attributes/core/useFetchAttributesPlayerAbilitiesByKey"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { selectedAbilityIdAtom } from "@/store/atoms"
@@ -15,9 +14,5 @@ export function usePlayerAbility() {
     setSelectedAbilityId(abilityId)
   }
 
-  function doPlayerAbility(abilityId: number | undefined, clickedTile: TJoinMap | undefined) {
-    console.log("doPlayerAbility", abilityId, clickedTile)
-  }
-
-  return { playerAbilities, selectedAbilityId, selectAbility, doPlayerAbility }
+  return { playerAbilities, selectedAbilityId, selectAbility }
 }

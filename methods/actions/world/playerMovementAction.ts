@@ -6,7 +6,7 @@ import { TPlayerMovementParams, playerMovement } from "@/db/postgresMainDatabase
 import { pathFromPointToPoint } from "@/methods/functions/map/pathFromPointToPoint"
 import { getJoinedMap } from "@/methods/server-fetchers/world/composite/getJoinedMap"
 
-type TPlayerMovementActionParams = {
+export type TPlayerMovementActionParams = {
   mapId: number
   startX: number
   startY: number

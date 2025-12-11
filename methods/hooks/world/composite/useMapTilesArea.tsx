@@ -1,15 +1,22 @@
 "use client"
 
-import { areaFromPoint } from "@/methods/functions/map/areaFromPoint"
-import { joinedMapAtom } from "@/store/atoms"
-import { useAtomValue } from "jotai"
+import { calculateAreaFromPoint, TCalculateAreaFromPoint } from "@/methods/functions/map/areaFromPoint"
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
+
+type TGetAreaFromPointParams = {
+  startX: number
+  startY: number
+  range: number
+}
+
+export type TAreaRecordByXY = Record<string, TCalculateAreaFromPoint>
 
 export function useMapTilesArea() {
-  const joinedMap = useAtomValue(joinedMapAtom)
-
-  function calculateArea(startX: number, startY: number, objectProperties: number) {
-    return areaFromPoint(startX, startY, objectProperties, joinedMap)
+  function getAreaFromPoint(params: TGetAreaFromPointParams) {
+    const area = calculateAreaFromPoint({ startX: params.startX, startY: params.startY, range: params.range })
+    const areaRecordByXY = arrayToObjectKey(["x", "y"], area) as TAreaRecordByXY
+    return areaRecordByXY
   }
 
-  return { areaFromPoint: calculateArea }
+  return { getAreaFromPoint }
 }

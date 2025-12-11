@@ -7,14 +7,15 @@ import { usePlayerAbility } from "@/methods/hooks/players/composite/usePlayerAbi
 import { usePlayerAbilityRequirements } from "@/methods/hooks/players/composite/usePlayerAbilityRequirements"
 import { useMutateActionTaskInProcess } from "@/methods/hooks/tasks/core/useMutateActionTaskInProcess"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
-import { useMapTilesMovement } from "@/methods/hooks/world/composite/useMapTilesMovement"
+import { useMapTilesPathFromPointToPoint } from "@/methods/hooks/world/composite/useMapTilesPathFromPointToPoint"
 import { EPanels } from "@/types/enumeration/EPanels"
 import { useEffect } from "react"
 
 export default function PanelActionAbility() {
   const { getClickedMapTile } = useMapTileActions()
   const { playerMapTile } = usePlayerPositionMapTile()
-  const { selectMapTilesMovementPath, mapTilesMovementPathSet, doPlayerMovementAction } = useMapTilesMovement()
+  const { selectMapTilesMovementPath, mapTilesMovementPathSet, doPlayerMovementAction } =
+    useMapTilesPathFromPointToPoint()
   const { mutateActionTaskInProcess } = useMutateActionTaskInProcess()
   const { selectedAbilityId, doPlayerAbility } = usePlayerAbility()
   const { setStatus } = useModalBottomCenterBar()

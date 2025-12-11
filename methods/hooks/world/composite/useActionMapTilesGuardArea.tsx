@@ -8,12 +8,12 @@ import { useAtom } from "jotai"
 export type TMapTilesGuardAreaSet = Set<string>
 
 export function useActionMapTilesGuardArea() {
-  const { areaFromPoint } = useMapTilesArea()
+  const { calculateAreaFromPoint } = useMapTilesArea()
   const [mapTilesGuardAreaSet, setMapTilesGuardAreaSet] = useAtom(mapTilesGuardAreaSetAtom)
 
   function selectMapTilesGuardArea(startingPoint: TJoinMap | undefined, clickedTile: TJoinMap | undefined) {
     if (startingPoint && clickedTile) {
-      const guardArea = areaFromPoint(clickedTile.tiles.x, clickedTile.tiles.y, 1)
+      const guardArea = calculateAreaFromPoint(clickedTile.tiles.x, clickedTile.tiles.y, 1)
       const guardAreaSet = new Set(guardArea.map((tile) => `${tile.tiles.x},${tile.tiles.y}`))
       setMapTilesGuardAreaSet(guardAreaSet)
     }

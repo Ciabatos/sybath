@@ -40,7 +40,7 @@ export function useMutateGetPlayerMovement(params: TGetPlayerMovementParams) {
     mutate(undefined, {
       optimisticData,
       rollbackOnError: true,
-      revalidate: true,
+      revalidate: false,
       populateCache: true,
     })
   }

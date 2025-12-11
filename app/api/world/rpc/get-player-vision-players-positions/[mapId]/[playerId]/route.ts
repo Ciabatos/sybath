@@ -2,9 +2,9 @@
 
 import { auth } from "@/auth"
 import {
-  getActivePlayerPosition,
-  TGetActivePlayerPositionParams,
-} from "@/db/postgresMainDatabase/schemas/world/getActivePlayerPosition"
+  getPlayerVisionPlayersPositions,
+  TGetPlayerVisionPlayersPositionsParams,
+} from "@/db/postgresMainDatabase/schemas/world/getPlayerVisionPlayersPositions"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
@@ -14,7 +14,7 @@ type TApiParams = Record<string, string>
 const typeParamsSchema = z.object({
   mapId: z.coerce.number(),
   playerId: z.coerce.number(),
-}) satisfies z.ZodType<TGetActivePlayerPositionParams>
+}) satisfies z.ZodType<TGetPlayerVisionPlayersPositionsParams>
 
 export async function GET(request: NextRequest, { params }: { params: TApiParams }): Promise<NextResponse> {
   const session = await auth()
@@ -27,7 +27,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
   const parsedParams = typeParamsSchema.parse(paramsFromPromise)
 
   try {
-    const result = await getActivePlayerPosition(parsedParams)
+    const result = await getPlayerVisionPlayersPositions(parsedParams)
 
     const etag = crypto.createHash("sha1").update(JSON.stringify(result)).digest("hex")
     const clientEtag = request.headers.get("if-none-match")

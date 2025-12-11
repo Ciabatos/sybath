@@ -13,13 +13,6 @@ type GridNode = {
   visited: boolean // Whether the node has been visited in the search process
 }
 
-type TPathFromPointToPoint = {
-  x: number
-  y: number
-  moveCost: number
-  totalMovementCost: number
-}
-
 type TPathFromPointToPointParams = {
   startX: number
   startY: number
@@ -28,8 +21,15 @@ type TPathFromPointToPointParams = {
   mapTiles: TJoinMapByXY
 }
 
+export type TPathFromPointToPoint = {
+  x: number
+  y: number
+  moveCost: number
+  totalMovementCost: number
+}
+
 export function pathFromPointToPoint(params: TPathFromPointToPointParams): TPathFromPointToPoint[] {
-  if (!params.startX || !params.startY || !params.endX || !params.endY) {
+  if (!params) {
     return []
   }
 

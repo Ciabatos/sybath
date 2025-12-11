@@ -2,7 +2,7 @@
 
 import { TJoinMap } from "@/methods/functions/map/joinMap"
 import { useActionMapTilesGuardArea } from "@/methods/hooks/world/composite/useActionMapTilesGuardArea"
-import { useMapTilesMovement } from "@/methods/hooks/world/composite/useMapTilesMovement"
+import { useMapTilesPathFromPointToPoint } from "@/methods/hooks/world/composite/useMapTilesPathFromPointToPoint"
 
 interface Props {
   tile: TJoinMap
@@ -10,7 +10,7 @@ interface Props {
 
 export default function HandlingActionLayer({ tile }: Props) {
   // const { loadPanel } = useLazyPanelLoader()
-  const { mapTilesMovementPathSet } = useMapTilesMovement()
+  const { mapTilesMovementPathSet } = useMapTilesPathFromPointToPoint()
   const { mapTilesGuardAreaSet } = useActionMapTilesGuardArea()
 
   const isTileInMovementPath = mapTilesMovementPathSet.has(`${tile.tiles.x},${tile.tiles.y}`)
