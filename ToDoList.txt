@@ -29,10 +29,8 @@ UI i flow dla „systemu informacji”
 
 rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmianie URL
 
-Funkcje przyjmuja tylko parametry które są im potrzebne, koniec kropka (actions, przesylanie calych obiektow na serwer)
-Funkcje sa wywolywane poprzez named parameters przez obiekt {nameParam : valueParam}
 
-Zajac sie hookami dla paneli
+Zajac sie hookami dla paneli - przepisac je od nowa
 
 Panele odpowiadaja za render
 Forms to akcje, buttony renderowane w panelach, pobieraja one dane z hooków?

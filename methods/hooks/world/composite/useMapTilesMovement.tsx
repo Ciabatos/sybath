@@ -6,19 +6,22 @@ import { pathFromPointToPoint } from "@/methods/functions/map/pathFromPointToPoi
 import { joinedMapAtom, mapTilesMovementPathSetAtom } from "@/store/atoms"
 import { useAtom, useAtomValue } from "jotai"
 
-export type TMapTilesMovementPathSet = Set<string>
+type TSelectMapTilesMovementPathParams = {
+  startingTile: TJoinMap
+  endingTile: TJoinMap
+}
 
 export function useMapTilesMovement() {
   const [mapTilesMovementPathSet, setMapTilesMovementPathSet] = useAtom(mapTilesMovementPathSetAtom)
   const joinedMap = useAtomValue(joinedMapAtom)
 
-  function selectMapTilesMovementPath(startingPoint: TJoinMap | undefined, clickedTile: TJoinMap | undefined) {
+  function selectMapTilesMovementPath(params: TSelectMapTilesMovementPathParams) {
     if (startingPoint && clickedTile) {
       const movementPath = pathFromPointToPoint({
-        startX: startingPoint.tiles.x,
-        startY: startingPoint.tiles.y,
-        endX: clickedTile.tiles.x,
-        endY: clickedTile.tiles.y,
+        startX: params.startingTile.tiles.x,
+        startY: params.startingTile.tiles.y,
+        endX: params.endingTile.tiles.x,
+        endY: params.endingTile.tiles.y,
         mapTiles: joinedMap,
       })
       const movementPathSet = new Set(movementPath.map((tile) => `${tile.tiles.x},${tile.tiles.y}`))
