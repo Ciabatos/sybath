@@ -31,7 +31,6 @@ rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmiani
 
 Funkcje przyjmuja tylko parametry które są im potrzebne, koniec kropka (actions, przesylanie calych obiektow na serwer)
 Funkcje sa wywolywane poprzez named parameters przez obiekt {nameParam : valueParam}
-zmiana w action playerMovmenet SQL parametru jsonb na konkretne argumenty 
 
 Zajac sie hookami dla paneli
 

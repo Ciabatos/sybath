@@ -24,7 +24,7 @@ export async function playerMovementAction(startingPoint: TJoinMap, clickedTile:
   }
 
   try {
-    const result = await playerMovement(data) //tutaj wysłać tylko to co potrzeba z path
+    const result = await playerMovement(data)
     return result
   } catch (error) {
     console.error("Error playerMovementAction :", error)
