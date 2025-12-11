@@ -1,8 +1,6 @@
 "use client"
 
 import { TJoinMap } from "@/methods/functions/map/joinMap"
-import { useGetJoinedMapTileByKey } from "@/methods/hooks/world/composite/useGetMapTileByCoordinates"
-
 import { clickedTileAtom } from "@/store/atoms"
 import { useAtom } from "jotai"
 
@@ -11,7 +9,6 @@ export type TClickedTile = { x: number; y: number } | undefined
 export function useMapTileActions() {
   const [clickedTile, setClickedTile] = useAtom(clickedTileAtom)
   const { actualMapTilesActionStatus, newMapTilesActionStatus, resetMapTilesActionStatus } = useModal()
-  const { getTileByCoordinates } = useGetJoinedMapTileByKey()
 
   function handleClickOnMapTile(tile: TJoinMap) {
     if (
@@ -32,12 +29,6 @@ export function useMapTileActions() {
     } else {
       setClickedTile({ x: tile.tiles.x, y: tile.tiles.y })
       resetMapTilesActionStatus()
-    }
-  }
-
-  function getClickedMapTile() {
-    if (clickedTile) {
-      return getTileByCoordinates(clickedTile.x, clickedTile.y)
     }
   }
 
@@ -81,5 +72,5 @@ export function useMapTileActions() {
 	}
   }
 
-  return { getClickedMapTile, handleClickOnMapTile, handleOpenPlayerActionList, handleClosePlayerActionList }
+  return { clickedTile, handleClickOnMapTile, handleOpenPlayerActionList, handleClosePlayerActionList }
 }

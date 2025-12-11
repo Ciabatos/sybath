@@ -1,4 +1,4 @@
-import { useFetchGetActivePlayerPosition } from "@/methods/hooks/world/core/useFetchGetActivePlayerPosition"
+import { useFetchGetPlayerPosition } from "@/methods/hooks/world/core/useFetchGetPlayerPosition"
 
 type Props = {
   mapId: number
@@ -6,7 +6,7 @@ type Props = {
 }
 
 export function usePlayerPosition({ mapId, playerId }: Props) {
-  const { getPlayerPosition } = useFetchGetActivePlayerPosition({ mapId, playerId })
+  const { getPlayerPosition } = useFetchGetPlayerPosition({ mapId, playerId })
 
   return { getPlayerPosition }
 }
