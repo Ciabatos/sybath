@@ -5,6 +5,7 @@ import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 
 export type TPlayerMovementParams = {
   playerId: number
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   path: any
 }
 

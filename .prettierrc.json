@@ -1,9 +1,20 @@
 {
   "tabWidth": 2,
   "useTabs": false,
-  "printWidth": 200,
-  "bracketSameLine": true,
+  "printWidth": 120,
+  "bracketSameLine": false,
   "semi": false,
   "singleAttributePerLine": true,
-  "plugins": ["prettier-plugin-css-order", "prettier-plugin-tailwindcss"]
+  "singleQuote": true,
+  "plugins": ["prettier-plugin-css-order", "prettier-plugin-tailwindcss"],
+  "arrowParens": "always",
+  "bracketSpacing": true,
+  "htmlWhitespaceSensitivity": "css",
+  "insertPragma": false,
+  "jsxBracketSameLine": false,
+  "jsxSingleQuote": true,
+  "proseWrap": "always",
+  "quoteProps": "as-needed",
+  "requirePragma": false,
+  "trailingComma": "all"
 }

@@ -1,10 +1,10 @@
-"use client"
+'use client'
 
-import { playerMovementAction } from "@/methods/actions/world/playerMovementAction"
-import { TJoinMap } from "@/methods/functions/map/joinMap"
-import { pathFromPointToPoint } from "@/methods/functions/map/pathFromPointToPoint"
-import { joinedMapAtom, mapTilesMovementPathSetAtom } from "@/store/atoms"
-import { useAtom, useAtomValue } from "jotai"
+import { playerMovementAction } from '@/methods/actions/world/playerMovementAction'
+import { TJoinMap } from '@/methods/functions/map/joinMap'
+import { pathFromPointToPoint } from '@/methods/functions/map/pathFromPointToPoint'
+import { joinedMapAtom, mapTilesMovementPathSetAtom } from '@/store/atoms'
+import { useAtom, useAtomValue } from 'jotai'
 
 export type TMapTilesMovementPathSet = Set<string>
 
@@ -14,7 +14,13 @@ export function useMapTilesMovement() {
 
   function selectMapTilesMovementPath(startingPoint: TJoinMap | undefined, clickedTile: TJoinMap | undefined) {
     if (startingPoint && clickedTile) {
-      const movementPath = pathFromPointToPoint(startingPoint.tiles.x, startingPoint.tiles.y, clickedTile.tiles.x, clickedTile.tiles.y, 0, joinedMap)
+      const movementPath = pathFromPointToPoint({
+        startX: startingPoint.tiles.x,
+        startY: startingPoint.tiles.y,
+        endX: clickedTile.tiles.x,
+        endY: clickedTile.tiles.y,
+        mapTiles: joinedMap,
+      })
       const movementPathSet = new Set(movementPath.map((tile) => `${tile.tiles.x},${tile.tiles.y}`))
       setMapTilesMovementPathSet(movementPathSet)
     }
@@ -26,5 +32,9 @@ export function useMapTilesMovement() {
     }
   }
 
-  return { selectMapTilesMovementPath, mapTilesMovementPathSet, doPlayerMovementAction }
+  return {
+    selectMapTilesMovementPath,
+    mapTilesMovementPathSet,
+    doPlayerMovementAction,
+  }
 }

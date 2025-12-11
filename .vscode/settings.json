@@ -39,8 +39,8 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "prettier.printWidth": 233,
-  "prettier.bracketSameLine": true,
+  "prettier.printWidth": 80,
+  "prettier.bracketSameLine": false,
   "prettier.semi": false,
   "prettier.singleAttributePerLine": true,
   "git.openRepositoryInParentFolders": "always",
@@ -69,7 +69,11 @@
     "snippet": "const ${1:fnName} = (${2:params}) => {\n\t$TM_SELECTED_TEXT\n}$0"
   },
   "surround.custom": {
-    "singleQuotes": { "label": "single quotes", "description": "Single Quotes", "snippet": "'$TM_SELECTED_TEXT'" }
+    "singleQuotes": {
+      "label": "single quotes",
+      "description": "Single Quotes",
+      "snippet": "'$TM_SELECTED_TEXT'"
+    }
   },
   "hediet.vscode-drawio.resizeImages": null,
   "git.enableSmartCommit": true,

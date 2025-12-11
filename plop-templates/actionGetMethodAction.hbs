@@ -4,7 +4,11 @@
 import { auth } from "@/auth"
 import { {{methodParamsTypeName}}, {{methodCamelName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
 
-export async function {{methodName}}() {
+type T{{methodPascalName}}Params = {
+
+}
+
+export async function {{methodName}}(params: T{{methodPascalName}}Params) {
   const session = await auth()
   const playerId = session?.user?.playerId
 
