@@ -19,7 +19,20 @@ export async function getMapData(mapId: number) {
     return
   }
 
-  const [terrainTypes, mapTiles, landscapeTypes, cities, districts, districtTypes, playerVisibleMapData, skills, abilities, playerSkills, playerAbilities, playerIventory] = await Promise.all([
+  const [
+    terrainTypes,
+    mapTiles,
+    landscapeTypes,
+    cities,
+    districts,
+    districtTypes,
+    playerVisibleMapData,
+    skills,
+    abilities,
+    playerSkills,
+    playerAbilities,
+    playerIventory,
+  ] = await Promise.all([
     getWorldTerrainTypesServer(),
     getWorldMapTilesByKeyServer({ mapId }),
     getWorldLandscapeTypesServer(),
@@ -34,7 +47,15 @@ export async function getMapData(mapId: number) {
     getGetPlayerInventoryServer({ playerId }),
   ])
 
-  const joinedMap = joinMap(mapTiles.byKey, terrainTypes.byKey, landscapeTypes.byKey, cities.byKey, districts.byKey, districtTypes.byKey, playerVisibleMapData.byKey)
+  const joinedMap = joinMap(
+    mapTiles.byKey,
+    terrainTypes.byKey,
+    landscapeTypes.byKey,
+    cities.byKey,
+    districts.byKey,
+    districtTypes.byKey,
+    playerVisibleMapData.byKey,
+  )
 
   const fallbackData = createSwrFallback(
     mapTiles,
@@ -51,5 +72,20 @@ export async function getMapData(mapId: number) {
     landscapeTypes,
   )
 
-  return { terrainTypes, mapTiles, landscapeTypes, cities, districts, districtTypes, skills, abilities, playerVisibleMapData, playerSkills, playerAbilities, playerIventory, joinedMap, fallbackData }
+  return {
+    terrainTypes,
+    mapTiles,
+    landscapeTypes,
+    cities,
+    districts,
+    districtTypes,
+    skills,
+    abilities,
+    playerVisibleMapData,
+    playerSkills,
+    playerAbilities,
+    playerIventory,
+    joinedMap,
+    fallbackData,
+  }
 }

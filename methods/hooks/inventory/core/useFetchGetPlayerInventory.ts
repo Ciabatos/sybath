@@ -1,7 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcher.hbs
 
 "use client"
-import { TGetPlayerInventoryRecordBySlotId, TGetPlayerInventoryParams } from "@/db/postgresMainDatabase/schemas/inventory/getPlayerInventory"
+import {
+  TGetPlayerInventoryRecordBySlotId,
+  TGetPlayerInventoryParams,
+} from "@/db/postgresMainDatabase/schemas/inventory/getPlayerInventory"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { getPlayerInventoryAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"

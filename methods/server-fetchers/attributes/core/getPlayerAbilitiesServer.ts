@@ -14,7 +14,13 @@ export async function getPlayerAbilitiesServer(params: TGetPlayerAbilitiesParams
 }> {
   const getPlayerAbilitiesData = await getPlayerAbilities(params)
 
-  const data = getPlayerAbilitiesData ? (arrayToObjectKey(["abilityId"], getPlayerAbilitiesData) as TGetPlayerAbilitiesRecordByAbilityId) : {}
+  const data = getPlayerAbilitiesData
+    ? (arrayToObjectKey(["abilityId"], getPlayerAbilitiesData) as TGetPlayerAbilitiesRecordByAbilityId)
+    : {}
 
-  return { raw: getPlayerAbilitiesData, byKey: data, apiPath: `/api/attributes/rpc/get-player-abilities/${params.playerId}` }
+  return {
+    raw: getPlayerAbilitiesData,
+    byKey: data,
+    apiPath: `/api/attributes/rpc/get-player-abilities/${params.playerId}`,
+  }
 }

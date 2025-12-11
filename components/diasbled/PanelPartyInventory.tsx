@@ -10,7 +10,7 @@ export default function PanelPartyInventory() {
 
   return (
     <div
-      className="inventory-grid"
+      className='inventory-grid'
       style={{
         display: "grid",
         gridTemplateRows: `repeat(${maxRow}, 1fr)`,
@@ -18,7 +18,8 @@ export default function PanelPartyInventory() {
         gap: "8px",
         width: "100%",
         aspectRatio: `${maxCol} / ${maxRow}`,
-      }}>
+      }}
+    >
       {playerInventorySlots.map((slot) => (
         <div
           key={`${slot.row}-${slot.col}`}
@@ -31,7 +32,8 @@ export default function PanelPartyInventory() {
             border: "1px solid #ccc",
             borderRadius: "4px",
             minHeight: "50px",
-          }}>
+          }}
+        >
           {slot.item_id ? `Item ID: ${slot.item_id}` : "Empty"}
         </div>
       ))}

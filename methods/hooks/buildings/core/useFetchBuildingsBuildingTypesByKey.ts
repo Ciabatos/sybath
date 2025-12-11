@@ -1,7 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableByKey.hbs
 
 "use client"
-import { TBuildingsBuildingTypesRecordById, TBuildingsBuildingTypesParams } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
+import {
+  TBuildingsBuildingTypesRecordById,
+  TBuildingsBuildingTypesParams,
+} from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { buildingTypesAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"

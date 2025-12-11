@@ -7,14 +7,25 @@ import type { TGetActivePlayerVisionPlayersPositions } from "@/db/postgresMainDa
 import type { TGetActivePlayerVisionPlayersPositionsParams } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerVisionPlayersPositions"
 import type { TGetActivePlayerVisionPlayersPositionsRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerVisionPlayersPositions"
 
-export async function getActivePlayerVisionPlayersPositionsServer(params: TGetActivePlayerVisionPlayersPositionsParams): Promise<{
+export async function getActivePlayerVisionPlayersPositionsServer(
+  params: TGetActivePlayerVisionPlayersPositionsParams,
+): Promise<{
   raw: TGetActivePlayerVisionPlayersPositions[]
   byKey: TGetActivePlayerVisionPlayersPositionsRecordByXY
   apiPath: string
 }> {
   const getActivePlayerVisionPlayersPositionsData = await getActivePlayerVisionPlayersPositions(params)
 
-  const data = getActivePlayerVisionPlayersPositionsData ? (arrayToObjectKey(["x", "y"], getActivePlayerVisionPlayersPositionsData) as TGetActivePlayerVisionPlayersPositionsRecordByXY) : {}
+  const data = getActivePlayerVisionPlayersPositionsData
+    ? (arrayToObjectKey(
+        ["x", "y"],
+        getActivePlayerVisionPlayersPositionsData,
+      ) as TGetActivePlayerVisionPlayersPositionsRecordByXY)
+    : {}
 
-  return { raw: getActivePlayerVisionPlayersPositionsData, byKey: data, apiPath: `/api/world/rpc/get-active-player-vision-players-positions/${params.mapId}/${params.playerId}` }
+  return {
+    raw: getActivePlayerVisionPlayersPositionsData,
+    byKey: data,
+    apiPath: `/api/world/rpc/get-active-player-vision-players-positions/${params.mapId}/${params.playerId}`,
+  }
 }

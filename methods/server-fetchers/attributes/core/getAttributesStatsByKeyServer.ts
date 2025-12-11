@@ -13,7 +13,9 @@ export async function getAttributesStatsByKeyServer(params: TAttributesStatsPara
 }> {
   const getAttributesStatsByKeyData = await getAttributesStatsByKey(params)
 
-  const data = getAttributesStatsByKeyData ? (arrayToObjectKey(["id"], getAttributesStatsByKeyData) as TAttributesStatsRecordById) : {}
+  const data = getAttributesStatsByKeyData
+    ? (arrayToObjectKey(["id"], getAttributesStatsByKeyData) as TAttributesStatsRecordById)
+    : {}
 
   return { raw: getAttributesStatsByKeyData, byKey: data, apiPath: `/api/attributes/stats/${params.id}` }
 }

@@ -1,15 +1,15 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookMutateMethodFetcher.hbs
-'use client'
+"use client"
 
 import {
   TGetPlayerMovement,
   TGetPlayerMovementParams,
   TGetPlayerMovementRecordByXY,
-} from '@/db/postgresMainDatabase/schemas/world/getPlayerMovement'
-import { arrayToObjectKey } from '@/methods/functions/util/converters'
-import { getPlayerMovementAtom } from '@/store/atoms'
-import { useSetAtom } from 'jotai'
-import useSWR from 'swr'
+} from "@/db/postgresMainDatabase/schemas/world/getPlayerMovement"
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
+import { getPlayerMovementAtom } from "@/store/atoms"
+import { useSetAtom } from "jotai"
+import useSWR from "swr"
 
 export function useMutateGetPlayerMovement(params: TGetPlayerMovementParams) {
   const { mutate } = useSWR(`/api/world/rpc/get-player-movement/${params.playerId}`)
@@ -29,7 +29,7 @@ export function useMutateGetPlayerMovement(params: TGetPlayerMovementParams) {
       ...val,
     }))
 
-    const newObj = arrayToObjectKey(['x', 'y'], dataWithDefaults) as TGetPlayerMovementRecordByXY
+    const newObj = arrayToObjectKey(["x", "y"], dataWithDefaults) as TGetPlayerMovementRecordByXY
 
     const optimisticData: TGetPlayerMovementRecordByXY = {
       ...newObj,

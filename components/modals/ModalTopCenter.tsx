@@ -6,7 +6,7 @@ import styles from "@/components/modals/styles/ModalTopCenter.module.css"
 export default function ModalTopCenter() {
   const { ActivePanel } = useModalTopCenter()
 
- if (!ActivePanel) return null
+  if (!ActivePanel) return null
 
   return (
     <div className={styles.modalOverlay}>

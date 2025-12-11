@@ -46,12 +46,14 @@ export default function PanelActionGuardArea() {
         <div className={styles.actionGrid}>
           <button
             className={styles.actionButton}
-            onClick={handleGuardArea}>
+            onClick={handleGuardArea}
+          >
             Guard Area
           </button>
           <button
             className={styles.actionButton}
-            onClick={resetGuardArea}>
+            onClick={resetGuardArea}
+          >
             Cancel
           </button>
         </div>

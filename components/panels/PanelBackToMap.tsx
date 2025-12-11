@@ -6,9 +6,9 @@ import Link from "next/link"
 export default function PanelBackToMap() {
   return (
     <div className={styles.container}>
-      <Link href="/map">
+      <Link href='/map'>
         <Button size={"lg"}>
-          <ArrowLeft className="mr-2 h-4 w-4" />
+          <ArrowLeft className='mr-2 h-4 w-4' />
           Back to Map
         </Button>
       </Link>

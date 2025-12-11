@@ -16,7 +16,13 @@ interface Props {
 }
 
 export default function CityHandling({ cityId, joinedCity, terrainTypes, landscapeTypes, buildingsTypes }: Props) {
-  const { refreshedJoinedCity } = useRefreshCityHandling({ cityId, joinedCity, terrainTypes, landscapeTypes, buildingsTypes })
+  const { refreshedJoinedCity } = useRefreshCityHandling({
+    cityId,
+    joinedCity,
+    terrainTypes,
+    landscapeTypes,
+    buildingsTypes,
+  })
 
   return (
     <>

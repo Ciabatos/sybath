@@ -12,7 +12,9 @@ export async function getWorldMapTilesServer(): Promise<{
 }> {
   const getWorldMapTilesData = await getWorldMapTiles()
 
-  const data = getWorldMapTilesData ? (arrayToObjectKey(["x", "y"], getWorldMapTilesData) as TWorldMapTilesRecordByXY) : {}
+  const data = getWorldMapTilesData
+    ? (arrayToObjectKey(["x", "y"], getWorldMapTilesData) as TWorldMapTilesRecordByXY)
+    : {}
 
   return { raw: getWorldMapTilesData, byKey: data, apiPath: `/api/world/map-tiles` }
 }

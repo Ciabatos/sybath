@@ -1,7 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableByKey.hbs
 
 "use client"
-import { TAttributesPlayerStatsRecordByPlayerId, TAttributesPlayerStatsParams } from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
+import {
+  TAttributesPlayerStatsRecordByPlayerId,
+  TAttributesPlayerStatsParams,
+} from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { playerStatsAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"

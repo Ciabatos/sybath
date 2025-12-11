@@ -1,10 +1,10 @@
-'use client'
+"use client"
 
-import { playerMovementAction } from '@/methods/actions/world/playerMovementAction'
-import { TJoinMap } from '@/methods/functions/map/joinMap'
-import { pathFromPointToPoint } from '@/methods/functions/map/pathFromPointToPoint'
-import { joinedMapAtom, mapTilesMovementPathSetAtom } from '@/store/atoms'
-import { useAtom, useAtomValue } from 'jotai'
+import { playerMovementAction } from "@/methods/actions/world/playerMovementAction"
+import { TJoinMap } from "@/methods/functions/map/joinMap"
+import { pathFromPointToPoint } from "@/methods/functions/map/pathFromPointToPoint"
+import { joinedMapAtom, mapTilesMovementPathSetAtom } from "@/store/atoms"
+import { useAtom, useAtomValue } from "jotai"
 
 export type TMapTilesMovementPathSet = Set<string>
 

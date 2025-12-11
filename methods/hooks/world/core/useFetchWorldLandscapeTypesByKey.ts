@@ -1,7 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableByKey.hbs
 
 "use client"
-import { TWorldLandscapeTypesRecordById, TWorldLandscapeTypesParams } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
+import {
+  TWorldLandscapeTypesRecordById,
+  TWorldLandscapeTypesParams,
+} from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { landscapeTypesAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"

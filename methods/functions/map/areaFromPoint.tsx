@@ -1,6 +1,11 @@
 import { TJoinedMapTileByCoordinates, TJoinMap } from "@/methods/functions/map/joinMap"
 
-export function areaFromPoint(startX: number, startY: number, objectProperties: number, mapTiles: TJoinedMapTileByCoordinates): TJoinMap[] {
+export function areaFromPoint(
+  startX: number,
+  startY: number,
+  objectProperties: number,
+  mapTiles: TJoinedMapTileByCoordinates,
+): TJoinMap[] {
   if (!startX || !startY) {
     return []
   }

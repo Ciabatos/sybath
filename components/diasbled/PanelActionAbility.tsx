@@ -48,12 +48,14 @@ export default function PanelActionAbility() {
         <div className={styles.actionGrid}>
           <button
             className={styles.actionButton}
-            onClick={handleButtonUseAbility}>
+            onClick={handleButtonUseAbility}
+          >
             Use Ability
           </button>
           <button
             className={styles.actionButton}
-            onClick={handleButtonCancel}>
+            onClick={handleButtonCancel}
+          >
             Cancel
           </button>
         </div>

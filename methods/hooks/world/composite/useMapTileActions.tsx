@@ -14,7 +14,11 @@ export function useMapTileActions() {
   const { getTileByCoordinates } = useGetJoinedMapTileByKey()
 
   function handleClickOnMapTile(tile: TJoinMap) {
-    if (actualMapTilesActionStatus.MovementAction || actualMapTilesActionStatus.GuardAreaAction || actualMapTilesActionStatus.UseAbilityAction) {
+    if (
+      actualMapTilesActionStatus.MovementAction ||
+      actualMapTilesActionStatus.GuardAreaAction ||
+      actualMapTilesActionStatus.UseAbilityAction
+    ) {
       setClickedTile({ x: tile.tiles.x, y: tile.tiles.y })
     } else if (tile.cities?.name) {
       showCityActionList()

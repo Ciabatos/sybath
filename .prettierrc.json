@@ -5,7 +5,7 @@
   "bracketSameLine": false,
   "semi": false,
   "singleAttributePerLine": true,
-  "singleQuote": true,
+  "singleQuote": false,
   "plugins": ["prettier-plugin-css-order", "prettier-plugin-tailwindcss"],
   "arrowParens": "always",
   "bracketSpacing": true,

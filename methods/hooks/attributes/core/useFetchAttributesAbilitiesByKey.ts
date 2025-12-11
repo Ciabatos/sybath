@@ -1,7 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableByKey.hbs
 
 "use client"
-import { TAttributesAbilitiesRecordById, TAttributesAbilitiesParams } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
+import {
+  TAttributesAbilitiesRecordById,
+  TAttributesAbilitiesParams,
+} from "@/db/postgresMainDatabase/schemas/attributes/abilities"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { abilitiesAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"

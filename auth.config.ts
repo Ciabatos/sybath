@@ -1,19 +1,19 @@
-import { getUser } from '@/db/postgresMainDatabase/schemas/auth/users'
-import bcrypt from 'bcrypt'
-import type { NextAuthConfig } from 'next-auth'
-import Credentials from 'next-auth/providers/credentials'
+import { getUser } from "@/db/postgresMainDatabase/schemas/auth/users"
+import bcrypt from "bcrypt"
+import type { NextAuthConfig } from "next-auth"
+import Credentials from "next-auth/providers/credentials"
 
 export default {
   providers: [
     Credentials({
-      name: 'Sign in',
+      name: "Sign in",
       credentials: {
         email: {
-          label: 'Email',
-          type: 'email',
-          placeholder: 'example@example.com',
+          label: "Email",
+          type: "email",
+          placeholder: "example@example.com",
         },
-        password: { label: 'Password', type: 'password' },
+        password: { label: "Password", type: "password" },
       },
 
       async authorize(credentials) {
@@ -37,8 +37,8 @@ export default {
 
           return returnedData
         } catch (error) {
-          console.error('Error during authentication:', error)
-          throw new Error('Authentication failed.')
+          console.error("Error during authentication:", error)
+          throw new Error("Authentication failed.")
         }
       },
     }),

@@ -25,7 +25,9 @@ export function useRefreshCityHandling({ cityId, joinedCity, terrainTypes, lands
 
   useEffect(() => {
     if (cityTiles) {
-      const refreshedData = joinCity(cityTiles, terrainTypes, landscapeTypes, buildings, buildingsTypes, { oldDataToUpdate: joinedCity })
+      const refreshedData = joinCity(cityTiles, terrainTypes, landscapeTypes, buildings, buildingsTypes, {
+        oldDataToUpdate: joinedCity,
+      })
       setJoinedCity(refreshedData)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

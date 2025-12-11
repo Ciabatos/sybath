@@ -1,7 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcher.hbs
 
 "use client"
-import { TGetPlayerStatsRecordByStatId, TGetPlayerStatsParams } from "@/db/postgresMainDatabase/schemas/attributes/getPlayerStats"
+import {
+  TGetPlayerStatsRecordByStatId,
+  TGetPlayerStatsParams,
+} from "@/db/postgresMainDatabase/schemas/attributes/getPlayerStats"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { getPlayerStatsAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"

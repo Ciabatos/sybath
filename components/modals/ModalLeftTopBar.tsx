@@ -6,7 +6,7 @@ import styles from "@/components/modals/styles/ModalLeftTopBar.module.css"
 export default function ModalLeftTopBar() {
   const { ActivePanel } = useModalLeftTopBar()
 
- if (!ActivePanel) return null
+  if (!ActivePanel) return null
 
   return (
     <div className={styles.modalOverlay}>

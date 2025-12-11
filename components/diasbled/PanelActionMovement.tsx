@@ -36,18 +36,21 @@ export default function PanelActionMovement() {
         <div className={styles.modalTitle}>
           <p>Select Tile to move to from tiles</p>
           <p>
-            Movement path : {playerMapTile?.mapTile.x}, {playerMapTile?.mapTile.y} to {getClickedMapTile()?.tiles.x}, {getClickedMapTile()?.tiles.y}
+            Movement path : {playerMapTile?.mapTile.x}, {playerMapTile?.mapTile.y} to {getClickedMapTile()?.tiles.x},{" "}
+            {getClickedMapTile()?.tiles.y}
           </p>
         </div>
         <div className={styles.actionGrid}>
           <button
             className={styles.actionButton}
-            onClick={handleMove}>
+            onClick={handleMove}
+          >
             Move
           </button>
           <button
             className={styles.actionButton}
-            onClick={resetMove}>
+            onClick={resetMove}
+          >
             Cancel
           </button>
         </div>

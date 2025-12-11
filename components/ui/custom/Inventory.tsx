@@ -6,7 +6,7 @@ interface Props {
 
 export default function Inventory({ inventorySlots }: Props) {
   if (!inventorySlots || inventorySlots.length === 0) {
-    return <div className="inventory-grid">You dont have permission to see this inventory</div>
+    return <div className='inventory-grid'>You dont have permission to see this inventory</div>
   }
 
   const maxRow = Math.max(...inventorySlots?.map((slot) => slot.row), 0)
@@ -14,7 +14,7 @@ export default function Inventory({ inventorySlots }: Props) {
 
   return (
     <div
-      className="inventory-grid"
+      className='inventory-grid'
       style={{
         display: "grid",
         gridTemplateRows: `repeat(${maxRow}, 1fr)`,
@@ -22,7 +22,8 @@ export default function Inventory({ inventorySlots }: Props) {
         gap: "8px",
         width: "100%",
         aspectRatio: `${maxCol} / ${maxRow}`,
-      }}>
+      }}
+    >
       {inventorySlots?.map((slot) => (
         <div
           key={`${slot.row}-${slot.col}`}
@@ -35,7 +36,8 @@ export default function Inventory({ inventorySlots }: Props) {
             border: "1px solid #ccc",
             borderRadius: "4px",
             minHeight: "50px",
-          }}>
+          }}
+        >
           {slot.item_id ? `${slot.name}: ${slot.quantity}` : "Empty"}
         </div>
       ))}

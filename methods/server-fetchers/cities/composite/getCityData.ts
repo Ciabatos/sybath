@@ -18,7 +18,18 @@ export async function getCityData(cityId: number) {
     return
   }
 
-  const [cityTiles, terrainTypes, landscapeTypes, buildings, skills, abilities, playerIventory, playerSkills, playerAbilities, buildingTypes] = await Promise.all([
+  const [
+    cityTiles,
+    terrainTypes,
+    landscapeTypes,
+    buildings,
+    skills,
+    abilities,
+    playerIventory,
+    playerSkills,
+    playerAbilities,
+    buildingTypes,
+  ] = await Promise.all([
     getCitiesCityTilesByKeyServer({ cityId }),
     getWorldTerrainTypesServer(),
     getWorldLandscapeTypesServer(),
@@ -31,9 +42,39 @@ export async function getCityData(cityId: number) {
     getBuildingsBuildingTypesServer(),
   ])
 
-  const joinedCity = joinCity(cityTiles.byKey, terrainTypes.byKey, landscapeTypes.byKey, buildings.byKey, buildingTypes.byKey)
+  const joinedCity = joinCity(
+    cityTiles.byKey,
+    terrainTypes.byKey,
+    landscapeTypes.byKey,
+    buildings.byKey,
+    buildingTypes.byKey,
+  )
 
-  const fallbackData = createSwrFallback(cityTiles, terrainTypes, landscapeTypes, buildings, skills, abilities, playerIventory, playerSkills, playerAbilities, buildingTypes)
+  const fallbackData = createSwrFallback(
+    cityTiles,
+    terrainTypes,
+    landscapeTypes,
+    buildings,
+    skills,
+    abilities,
+    playerIventory,
+    playerSkills,
+    playerAbilities,
+    buildingTypes,
+  )
 
-  return { cityTiles, terrainTypes, landscapeTypes, buildings, skills, abilities, playerIventory, playerSkills, playerAbilities, buildingTypes, joinedCity, fallbackData }
+  return {
+    cityTiles,
+    terrainTypes,
+    landscapeTypes,
+    buildings,
+    skills,
+    abilities,
+    playerIventory,
+    playerSkills,
+    playerAbilities,
+    buildingTypes,
+    joinedCity,
+    fallbackData,
+  }
 }

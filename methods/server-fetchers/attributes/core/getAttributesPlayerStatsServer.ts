@@ -3,7 +3,10 @@
 
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { getAttributesPlayerStats } from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
-import type { TAttributesPlayerStats, TAttributesPlayerStatsRecordByPlayerId } from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
+import type {
+  TAttributesPlayerStats,
+  TAttributesPlayerStatsRecordByPlayerId,
+} from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
 
 export async function getAttributesPlayerStatsServer(): Promise<{
   raw: TAttributesPlayerStats[]
@@ -12,7 +15,9 @@ export async function getAttributesPlayerStatsServer(): Promise<{
 }> {
   const getAttributesPlayerStatsData = await getAttributesPlayerStats()
 
-  const data = getAttributesPlayerStatsData ? (arrayToObjectKey(["playerId"], getAttributesPlayerStatsData) as TAttributesPlayerStatsRecordByPlayerId) : {}
+  const data = getAttributesPlayerStatsData
+    ? (arrayToObjectKey(["playerId"], getAttributesPlayerStatsData) as TAttributesPlayerStatsRecordByPlayerId)
+    : {}
 
   return { raw: getAttributesPlayerStatsData, byKey: data, apiPath: `/api/attributes/player-stats` }
 }

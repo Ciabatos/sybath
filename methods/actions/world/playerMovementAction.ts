@@ -1,10 +1,10 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - actionGetMethodAction.hbs
-'use server'
+"use server"
 
-import { auth } from '@/auth'
-import { TPlayerMovementParams, playerMovement } from '@/db/postgresMainDatabase/schemas/world/playerMovement'
-import { pathFromPointToPoint } from '@/methods/functions/map/pathFromPointToPoint'
-import { getJoinedMap } from '@/methods/server-fetchers/world/composite/getJoinedMap'
+import { auth } from "@/auth"
+import { TPlayerMovementParams, playerMovement } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
+import { pathFromPointToPoint } from "@/methods/functions/map/pathFromPointToPoint"
+import { getJoinedMap } from "@/methods/server-fetchers/world/composite/getJoinedMap"
 
 type TPlayerMovementActionParams = {
   mapId: number
@@ -44,7 +44,7 @@ export async function playerMovementAction(params: TPlayerMovementActionParams) 
     const result = await playerMovement(data)
     return result
   } catch (error) {
-    console.error('Error playerMovementAction :', error)
-    return 'Failed to playerMovementAction'
+    console.error("Error playerMovementAction :", error)
+    return "Failed to playerMovementAction"
   }
 }

@@ -1,7 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetMethodFetcher.hbs
 
 import { auth } from "@/auth"
-import { getActivePlayerVisionPlayersPositions, TGetActivePlayerVisionPlayersPositionsParams } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerVisionPlayersPositions"
+import {
+  getActivePlayerVisionPlayersPositions,
+  TGetActivePlayerVisionPlayersPositionsParams,
+} from "@/db/postgresMainDatabase/schemas/world/getActivePlayerVisionPlayersPositions"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"

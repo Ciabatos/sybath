@@ -3,7 +3,10 @@
 
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { getWorldLandscapeTypes } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
-import type { TWorldLandscapeTypes, TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
+import type {
+  TWorldLandscapeTypes,
+  TWorldLandscapeTypesRecordById,
+} from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 
 export async function getWorldLandscapeTypesServer(): Promise<{
   raw: TWorldLandscapeTypes[]
@@ -12,7 +15,9 @@ export async function getWorldLandscapeTypesServer(): Promise<{
 }> {
   const getWorldLandscapeTypesData = await getWorldLandscapeTypes()
 
-  const data = getWorldLandscapeTypesData ? (arrayToObjectKey(["id"], getWorldLandscapeTypesData) as TWorldLandscapeTypesRecordById) : {}
+  const data = getWorldLandscapeTypesData
+    ? (arrayToObjectKey(["id"], getWorldLandscapeTypesData) as TWorldLandscapeTypesRecordById)
+    : {}
 
   return { raw: getWorldLandscapeTypesData, byKey: data, apiPath: `/api/world/landscape-types` }
 }

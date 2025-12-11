@@ -6,7 +6,7 @@ import { useModalBottomCenterBar } from "@/methods/hooks/modals/useModalBottomCe
 export default function ModalBottomCenterBar() {
   const { ActivePanel } = useModalBottomCenterBar()
 
- if (!ActivePanel) return null
+  if (!ActivePanel) return null
 
   return (
     <div className={styles.modalOverlay}>

@@ -1,7 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetTableByKey.hbs
 
 import { auth } from "@/auth"
-import { getWorldTerrainTypesByKey, TWorldTerrainTypesParams } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
+import {
+  getWorldTerrainTypesByKey,
+  TWorldTerrainTypesParams,
+} from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"

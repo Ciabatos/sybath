@@ -1,7 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableByKey.hbs
 
 "use client"
-import { TDistrictsDistrictsRecordByMapTileXMapTileY, TDistrictsDistrictsParams } from "@/db/postgresMainDatabase/schemas/districts/districts"
+import {
+  TDistrictsDistrictsRecordByMapTileXMapTileY,
+  TDistrictsDistrictsParams,
+} from "@/db/postgresMainDatabase/schemas/districts/districts"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { districtsAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
@@ -19,7 +22,9 @@ export function useFetchDistrictsDistrictsByKey(params: TDistrictsDistrictsParam
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const index = data ? (arrayToObjectKey(["mapTileX", "mapTileY"], data) as TDistrictsDistrictsRecordByMapTileXMapTileY) : {}
+      const index = data
+        ? (arrayToObjectKey(["mapTileX", "mapTileY"], data) as TDistrictsDistrictsRecordByMapTileXMapTileY)
+        : {}
       setDistrictsDistricts(index)
       prevDataRef.current = data
     }

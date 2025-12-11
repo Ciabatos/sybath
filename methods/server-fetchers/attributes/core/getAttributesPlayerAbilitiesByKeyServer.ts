@@ -4,7 +4,10 @@
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { getAttributesPlayerAbilitiesByKey } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
 import { TAttributesPlayerAbilitiesParams } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
-import type { TAttributesPlayerAbilities, TAttributesPlayerAbilitiesRecordByPlayerId } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
+import type {
+  TAttributesPlayerAbilities,
+  TAttributesPlayerAbilitiesRecordByPlayerId,
+} from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
 
 export async function getAttributesPlayerAbilitiesByKeyServer(params: TAttributesPlayerAbilitiesParams): Promise<{
   raw: TAttributesPlayerAbilities[]
@@ -13,7 +16,16 @@ export async function getAttributesPlayerAbilitiesByKeyServer(params: TAttribute
 }> {
   const getAttributesPlayerAbilitiesByKeyData = await getAttributesPlayerAbilitiesByKey(params)
 
-  const data = getAttributesPlayerAbilitiesByKeyData ? (arrayToObjectKey(["playerId"], getAttributesPlayerAbilitiesByKeyData) as TAttributesPlayerAbilitiesRecordByPlayerId) : {}
+  const data = getAttributesPlayerAbilitiesByKeyData
+    ? (arrayToObjectKey(
+        ["playerId"],
+        getAttributesPlayerAbilitiesByKeyData,
+      ) as TAttributesPlayerAbilitiesRecordByPlayerId)
+    : {}
 
-  return { raw: getAttributesPlayerAbilitiesByKeyData, byKey: data, apiPath: `/api/attributes/player-abilities/${params.playerId}` }
+  return {
+    raw: getAttributesPlayerAbilitiesByKeyData,
+    byKey: data,
+    apiPath: `/api/attributes/player-abilities/${params.playerId}`,
+  }
 }

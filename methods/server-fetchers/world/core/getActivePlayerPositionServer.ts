@@ -14,7 +14,13 @@ export async function getActivePlayerPositionServer(params: TGetActivePlayerPosi
 }> {
   const getActivePlayerPositionData = await getActivePlayerPosition(params)
 
-  const data = getActivePlayerPositionData ? (arrayToObjectKey(["x", "y"], getActivePlayerPositionData) as TGetActivePlayerPositionRecordByXY) : {}
+  const data = getActivePlayerPositionData
+    ? (arrayToObjectKey(["x", "y"], getActivePlayerPositionData) as TGetActivePlayerPositionRecordByXY)
+    : {}
 
-  return { raw: getActivePlayerPositionData, byKey: data, apiPath: `/api/world/rpc/get-active-player-position/${params.mapId}/${params.playerId}` }
+  return {
+    raw: getActivePlayerPositionData,
+    byKey: data,
+    apiPath: `/api/world/rpc/get-active-player-position/${params.mapId}/${params.playerId}`,
+  }
 }

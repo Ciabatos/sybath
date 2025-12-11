@@ -38,13 +38,15 @@ export default function City({ tile }: Props) {
         gridColumnStart: tile.tiles.x,
         gridRowStart: tile.tiles.y,
         backgroundImage: combinedImages,
-      }}>
+      }}
+    >
       {buildingsImage && (
         <div
           className={style.BuildingsImage}
           style={{
             backgroundImage: buildingsImage,
-          }}></div>
+          }}
+        ></div>
       )}
       <div>
         {tile.tiles.x}, {tile.tiles.y}

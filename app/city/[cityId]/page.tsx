@@ -35,7 +35,8 @@ export default async function CityPage({ params }: { params: TParams }) {
       <SWRProvider
         value={{
           fallback: fallbackData,
-        }}>
+        }}
+      >
         <CityWrapper
           cityId={cityId}
           terrainTypes={terrainTypes.byKey}

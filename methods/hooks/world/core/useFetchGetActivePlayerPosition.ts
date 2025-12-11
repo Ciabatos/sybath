@@ -1,7 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcher.hbs
 
 "use client"
-import { TGetActivePlayerPositionRecordByXY, TGetActivePlayerPositionParams } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerPosition"
+import {
+  TGetActivePlayerPositionRecordByXY,
+  TGetActivePlayerPositionParams,
+} from "@/db/postgresMainDatabase/schemas/world/getActivePlayerPosition"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { getActivePlayerPositionAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
@@ -12,7 +15,9 @@ export function useFetchGetActivePlayerPosition(params: TGetActivePlayerPosition
   const getActivePlayerPosition = useAtomValue(getActivePlayerPositionAtom)
   const setGetActivePlayerPosition = useSetAtom(getActivePlayerPositionAtom)
 
-  const { data } = useSWR(`/api/world/rpc/get-active-player-position/${params.mapId}/${params.playerId}`, { refreshInterval: 3000 })
+  const { data } = useSWR(`/api/world/rpc/get-active-player-position/${params.mapId}/${params.playerId}`, {
+    refreshInterval: 3000,
+  })
 
   const prevDataRef = useRef<unknown>(null)
 

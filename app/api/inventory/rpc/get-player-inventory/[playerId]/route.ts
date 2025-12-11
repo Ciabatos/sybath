@@ -1,7 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetMethodFetcher.hbs
 
 import { auth } from "@/auth"
-import { getGetPlayerInventory, TGetPlayerInventoryParams } from "@/db/postgresMainDatabase/schemas/inventory/getPlayerInventory"
+import {
+  getGetPlayerInventory,
+  TGetPlayerInventoryParams,
+} from "@/db/postgresMainDatabase/schemas/inventory/getPlayerInventory"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"

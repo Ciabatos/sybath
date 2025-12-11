@@ -26,7 +26,8 @@ export const SWRProvider = ({ children, value }: { children: React.ReactNode; va
       value={{
         fetcher: fetchWithETag,
         ...value,
-      }}>
+      }}
+    >
       {children}
     </SWRConfig>
   )

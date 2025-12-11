@@ -28,7 +28,8 @@ export default function PanelCityActionBar() {
           <Link href={`/city/${getClickedMapTile()?.cities?.id}`}>
             <Button
               className={styles.actionButton}
-              onClick={handleButtonEnter}>
+              onClick={handleButtonEnter}
+            >
               Enter
             </Button>
           </Link>

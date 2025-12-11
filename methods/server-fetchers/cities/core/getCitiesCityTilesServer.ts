@@ -12,7 +12,9 @@ export async function getCitiesCityTilesServer(): Promise<{
 }> {
   const getCitiesCityTilesData = await getCitiesCityTiles()
 
-  const data = getCitiesCityTilesData ? (arrayToObjectKey(["x", "y"], getCitiesCityTilesData) as TCitiesCityTilesRecordByXY) : {}
+  const data = getCitiesCityTilesData
+    ? (arrayToObjectKey(["x", "y"], getCitiesCityTilesData) as TCitiesCityTilesRecordByXY)
+    : {}
 
   return { raw: getCitiesCityTilesData, byKey: data, apiPath: `/api/cities/city-tiles` }
 }

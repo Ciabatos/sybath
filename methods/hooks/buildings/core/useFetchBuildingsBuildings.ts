@@ -19,7 +19,9 @@ export function useFetchBuildingsBuildings() {
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const index = data ? (arrayToObjectKey(["cityTileX", "cityTileY"], data) as TBuildingsBuildingsRecordByCityTileXCityTileY) : {}
+      const index = data
+        ? (arrayToObjectKey(["cityTileX", "cityTileY"], data) as TBuildingsBuildingsRecordByCityTileXCityTileY)
+        : {}
       setBuildingsBuildings(index)
       prevDataRef.current = data
     }

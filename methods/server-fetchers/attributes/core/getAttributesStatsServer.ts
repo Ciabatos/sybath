@@ -12,7 +12,9 @@ export async function getAttributesStatsServer(): Promise<{
 }> {
   const getAttributesStatsData = await getAttributesStats()
 
-  const data = getAttributesStatsData ? (arrayToObjectKey(["id"], getAttributesStatsData) as TAttributesStatsRecordById) : {}
+  const data = getAttributesStatsData
+    ? (arrayToObjectKey(["id"], getAttributesStatsData) as TAttributesStatsRecordById)
+    : {}
 
   return { raw: getAttributesStatsData, byKey: data, apiPath: `/api/attributes/stats` }
 }

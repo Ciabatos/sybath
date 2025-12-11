@@ -14,7 +14,13 @@ export async function getGetPlayerInventoryServer(params: TGetPlayerInventoryPar
 }> {
   const getGetPlayerInventoryData = await getGetPlayerInventory(params)
 
-  const data = getGetPlayerInventoryData ? (arrayToObjectKey(["slotId"], getGetPlayerInventoryData) as TGetPlayerInventoryRecordBySlotId) : {}
+  const data = getGetPlayerInventoryData
+    ? (arrayToObjectKey(["slotId"], getGetPlayerInventoryData) as TGetPlayerInventoryRecordBySlotId)
+    : {}
 
-  return { raw: getGetPlayerInventoryData, byKey: data, apiPath: `/api/inventory/rpc/get-player-inventory/${params.playerId}` }
+  return {
+    raw: getGetPlayerInventoryData,
+    byKey: data,
+    apiPath: `/api/inventory/rpc/get-player-inventory/${params.playerId}`,
+  }
 }

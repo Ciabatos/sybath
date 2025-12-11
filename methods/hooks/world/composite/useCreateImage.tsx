@@ -11,8 +11,8 @@ export function useCreateImage() {
     const imageComponent = (
       <Image
         src={imageSrc}
-        layout="fill"
-        objectFit="contain"
+        layout='fill'
+        objectFit='contain'
         quality={100}
         alt={imageUrl || ""}
         priority
@@ -49,5 +49,13 @@ export function useCreateImage() {
     return images.filter(Boolean).join(", ")
   }
 
-  return { createPlayerImage, createLandscapeImage, createBackgroundImage, createCitiesImage, creatDistrictsImage, creatBuildingsImage, combineImages }
+  return {
+    createPlayerImage,
+    createLandscapeImage,
+    createBackgroundImage,
+    createCitiesImage,
+    creatDistrictsImage,
+    creatBuildingsImage,
+    combineImages,
+  }
 }

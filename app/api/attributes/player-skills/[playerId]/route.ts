@@ -1,7 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetTableByKey.hbs
 
 import { auth } from "@/auth"
-import { getAttributesPlayerSkillsByKey, TAttributesPlayerSkillsParams } from "@/db/postgresMainDatabase/schemas/attributes/playerSkills"
+import {
+  getAttributesPlayerSkillsByKey,
+  TAttributesPlayerSkillsParams,
+} from "@/db/postgresMainDatabase/schemas/attributes/playerSkills"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"

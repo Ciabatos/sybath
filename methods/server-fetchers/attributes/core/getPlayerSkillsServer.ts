@@ -14,7 +14,9 @@ export async function getPlayerSkillsServer(params: TGetPlayerSkillsParams): Pro
 }> {
   const getPlayerSkillsData = await getPlayerSkills(params)
 
-  const data = getPlayerSkillsData ? (arrayToObjectKey(["skillId"], getPlayerSkillsData) as TGetPlayerSkillsRecordBySkillId) : {}
+  const data = getPlayerSkillsData
+    ? (arrayToObjectKey(["skillId"], getPlayerSkillsData) as TGetPlayerSkillsRecordBySkillId)
+    : {}
 
   return { raw: getPlayerSkillsData, byKey: data, apiPath: `/api/attributes/rpc/get-player-skills/${params.playerId}` }
 }

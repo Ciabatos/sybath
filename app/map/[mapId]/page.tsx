@@ -36,7 +36,8 @@ export default async function WorldPage({ params }: { params: TParams }) {
       <SWRProvider
         value={{
           fallback: fallbackData,
-        }}>
+        }}
+      >
         <MapWrapper
           terrainTypes={terrainTypes.byKey}
           landscapeTypes={landscapeTypes.byKey}

@@ -1,7 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetTableByKey.hbs
 
 import { auth } from "@/auth"
-import { getDistrictsDistrictsByKey, TDistrictsDistrictsParams } from "@/db/postgresMainDatabase/schemas/districts/districts"
+import {
+  getDistrictsDistrictsByKey,
+  TDistrictsDistrictsParams,
+} from "@/db/postgresMainDatabase/schemas/districts/districts"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"

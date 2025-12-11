@@ -1,7 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcher.hbs
 
 "use client"
-import { TGetPlayerAbilitiesRecordByAbilityId, TGetPlayerAbilitiesParams } from "@/db/postgresMainDatabase/schemas/attributes/getPlayerAbilities"
+import {
+  TGetPlayerAbilitiesRecordByAbilityId,
+  TGetPlayerAbilitiesParams,
+} from "@/db/postgresMainDatabase/schemas/attributes/getPlayerAbilities"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { getPlayerAbilitiesAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"

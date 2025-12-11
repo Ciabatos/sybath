@@ -18,17 +18,26 @@ export async function getJoinedMap(mapId: number) {
     return
   }
 
-  const [terrainTypes, mapTiles, landscapeTypes, cities, districts, districtTypes, playerVisibleMapData] = await Promise.all([
-    getWorldTerrainTypesServer(),
-    getWorldMapTilesByKeyServer({ mapId }),
-    getWorldLandscapeTypesServer(),
-    getCitiesCitiesByKeyServer({ mapId }),
-    getDistrictsDistrictsByKeyServer({ mapId }),
-    getDistrictsDistrictTypesServer(),
-    getPlayerVisibleMapDataServer({ playerId }),
-  ])
+  const [terrainTypes, mapTiles, landscapeTypes, cities, districts, districtTypes, playerVisibleMapData] =
+    await Promise.all([
+      getWorldTerrainTypesServer(),
+      getWorldMapTilesByKeyServer({ mapId }),
+      getWorldLandscapeTypesServer(),
+      getCitiesCitiesByKeyServer({ mapId }),
+      getDistrictsDistrictsByKeyServer({ mapId }),
+      getDistrictsDistrictTypesServer(),
+      getPlayerVisibleMapDataServer({ playerId }),
+    ])
 
-  const joinedMap = joinMap(mapTiles.byKey, terrainTypes.byKey, landscapeTypes.byKey, cities.byKey, districts.byKey, districtTypes.byKey, playerVisibleMapData.byKey)
+  const joinedMap = joinMap(
+    mapTiles.byKey,
+    terrainTypes.byKey,
+    landscapeTypes.byKey,
+    cities.byKey,
+    districts.byKey,
+    districtTypes.byKey,
+    playerVisibleMapData.byKey,
+  )
 
   return { terrainTypes, mapTiles, landscapeTypes, cities, districts, districtTypes, playerVisibleMapData, joinedMap }
 }

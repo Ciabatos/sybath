@@ -19,7 +19,9 @@ export function useFetchCitiesCities() {
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const index = data ? (arrayToObjectKey(["mapTileX", "mapTileY"], data) as TCitiesCitiesRecordByMapTileXMapTileY) : {}
+      const index = data
+        ? (arrayToObjectKey(["mapTileX", "mapTileY"], data) as TCitiesCitiesRecordByMapTileXMapTileY)
+        : {}
       setCitiesCities(index)
       prevDataRef.current = data
     }

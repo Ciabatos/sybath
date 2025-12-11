@@ -1,7 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableByKey.hbs
 
 "use client"
-import { TWorldMapTilesPlayersPositionsRecordByMapTileXMapTileY, TWorldMapTilesPlayersPositionsParams } from "@/db/postgresMainDatabase/schemas/world/mapTilesPlayersPositions"
+import {
+  TWorldMapTilesPlayersPositionsRecordByMapTileXMapTileY,
+  TWorldMapTilesPlayersPositionsParams,
+} from "@/db/postgresMainDatabase/schemas/world/mapTilesPlayersPositions"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { mapTilesPlayersPositionsAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
@@ -19,7 +22,9 @@ export function useFetchWorldMapTilesPlayersPositionsByKey(params: TWorldMapTile
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const index = data ? (arrayToObjectKey(["mapTileX", "mapTileY"], data) as TWorldMapTilesPlayersPositionsRecordByMapTileXMapTileY) : {}
+      const index = data
+        ? (arrayToObjectKey(["mapTileX", "mapTileY"], data) as TWorldMapTilesPlayersPositionsRecordByMapTileXMapTileY)
+        : {}
       setWorldMapTilesPlayersPositions(index)
       prevDataRef.current = data
     }

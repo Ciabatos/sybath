@@ -1,7 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetMethodFetcher.hbs
 
 import { auth } from "@/auth"
-import { getPlayerAbilities, TGetPlayerAbilitiesParams } from "@/db/postgresMainDatabase/schemas/attributes/getPlayerAbilities"
+import {
+  getPlayerAbilities,
+  TGetPlayerAbilitiesParams,
+} from "@/db/postgresMainDatabase/schemas/attributes/getPlayerAbilities"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"

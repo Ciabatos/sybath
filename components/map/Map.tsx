@@ -10,7 +10,14 @@ interface Props {
 }
 
 export default function Map({ tile }: Props) {
-  const { createPlayerImage, createLandscapeImage, createBackgroundImage, createCitiesImage, creatDistrictsImage, combineImages } = useCreateImage()
+  const {
+    createPlayerImage,
+    createLandscapeImage,
+    createBackgroundImage,
+    createCitiesImage,
+    creatDistrictsImage,
+    combineImages,
+  } = useCreateImage()
   // const { handleClickOnMapTile } = useMapTileActions()
   const backgroundImage = createBackgroundImage(tile.terrainTypes.imageUrl)
   const landscapeImage = createLandscapeImage(tile.landscapeTypes?.imageUrl)
@@ -26,27 +33,31 @@ export default function Map({ tile }: Props) {
         gridColumnStart: tile.tiles.x,
         gridRowStart: tile.tiles.y,
         backgroundImage: combinedImages,
-      }}>
+      }}
+    >
       {citiesImage && (
         <div
           className={style.CitiesImage}
           style={{
             backgroundImage: citiesImage,
-          }}></div>
+          }}
+        ></div>
       )}
       {districtsImage && (
         <div
           className={style.DistrictsImage}
           style={{
             backgroundImage: districtsImage,
-          }}></div>
+          }}
+        ></div>
       )}
       {playerImage && (
         <div
           className={style.PlayerImage}
           style={{
             backgroundImage: playerImage,
-          }}></div>
+          }}
+        ></div>
       )}
       <div>
         {tile.tiles.x}, {tile.tiles.y}, {tile.cities?.name}, {tile.districts?.name}

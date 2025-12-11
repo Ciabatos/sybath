@@ -14,7 +14,9 @@ export async function getPlayerStatsServer(params: TGetPlayerStatsParams): Promi
 }> {
   const getPlayerStatsData = await getPlayerStats(params)
 
-  const data = getPlayerStatsData ? (arrayToObjectKey(["statId"], getPlayerStatsData) as TGetPlayerStatsRecordByStatId) : {}
+  const data = getPlayerStatsData
+    ? (arrayToObjectKey(["statId"], getPlayerStatsData) as TGetPlayerStatsRecordByStatId)
+    : {}
 
   return { raw: getPlayerStatsData, byKey: data, apiPath: `/api/attributes/rpc/get-player-stats/${params.playerId}` }
 }

@@ -32,11 +32,12 @@ export default function PanelPlayerPanel() {
         <Button
           onClick={handleOpenPanel}
           className={cn(styles.button, isOpen ? styles.panelClosed : styles.button, "h-auto w-auto p-1")}
-          size="icon">
-          <Avatar className="h-12 w-12">
+          size='icon'
+        >
+          <Avatar className='h-12 w-12'>
             <AvatarImage
-              src="https://github.com/shadcn.png"
-              alt="@shadcn"
+              src='https://github.com/shadcn.png'
+              alt='@shadcn'
             />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
@@ -47,90 +48,101 @@ export default function PanelPlayerPanel() {
         <div className={styles.panelContent}>
           <Button
             onClick={handleClosePanel}
-            className={styles.closeButton}>
+            className={styles.closeButton}
+          >
             Close Panel
           </Button>
 
-          <div className="text-large h-20 w-20">
+          <div className='text-large h-20 w-20'>
             <Avatar>
               <AvatarImage
-                src="https://github.com/shadcn.png"
-                alt="@shadcn"
+                src='https://github.com/shadcn.png'
+                alt='@shadcn'
               />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
           </div>
 
-          <div className="flex flex-1 flex-col justify-between">
+          <div className='flex flex-1 flex-col justify-between'>
             <div className={`flex min-h-0 flex-1 flex-col ${!isPartyVisible ? "h-full" : ""}`}>
               <Tabs
-                defaultValue="Stats"
-                className="flex w-[400px] flex-1 flex-col">
-                <TabsList className="grid w-full grid-cols-5">
-                  <TabsTrigger value="Stats">Stats</TabsTrigger>
-                  <TabsTrigger value="Inventory">Inventory</TabsTrigger>
-                  <TabsTrigger value="Skills">Skills</TabsTrigger>
-                  <TabsTrigger value="Abilities">Abilities</TabsTrigger>
-                  <TabsTrigger value="Knowledge">Knowledge</TabsTrigger>
+                defaultValue='Stats'
+                className='flex w-[400px] flex-1 flex-col'
+              >
+                <TabsList className='grid w-full grid-cols-5'>
+                  <TabsTrigger value='Stats'>Stats</TabsTrigger>
+                  <TabsTrigger value='Inventory'>Inventory</TabsTrigger>
+                  <TabsTrigger value='Skills'>Skills</TabsTrigger>
+                  <TabsTrigger value='Abilities'>Abilities</TabsTrigger>
+                  <TabsTrigger value='Knowledge'>Knowledge</TabsTrigger>
                 </TabsList>
                 <TabsContent
-                  value="Stats"
-                  className="flex-1 overflow-auto">
+                  value='Stats'
+                  className='flex-1 overflow-auto'
+                >
                   Stats
                 </TabsContent>
                 <TabsContent
-                  value="Inventory"
-                  className="flex-1 overflow-auto">
+                  value='Inventory'
+                  className='flex-1 overflow-auto'
+                >
                   <PanelPlayerInventory />
                 </TabsContent>
                 <TabsContent
-                  value="Skills"
-                  className="flex-1 overflow-auto">
-                  Skills slużą do pokazania jakie umiejętności posiada postać. Można je przekazywać innym postaciom ale nie są to aktywne abilities
+                  value='Skills'
+                  className='flex-1 overflow-auto'
+                >
+                  Skills slużą do pokazania jakie umiejętności posiada postać. Można je przekazywać innym postaciom ale
+                  nie są to aktywne abilities
                   <PanelPlayerSkills />
                 </TabsContent>
                 <TabsContent
-                  value="Abilities"
-                  className="flex-1 overflow-auto">
-                  Abilities służą do używania, są to aktywne umiejętności, które można używać w walce lub produkcji i innych sytuacjach, ability powstaja jeżeli masz różne kombinacje skills, stats i
-                  knowledge.
+                  value='Abilities'
+                  className='flex-1 overflow-auto'
+                >
+                  Abilities służą do używania, są to aktywne umiejętności, które można używać w walce lub produkcji i
+                  innych sytuacjach, ability powstaja jeżeli masz różne kombinacje skills, stats i knowledge.
                   <PanelPlayerAbilities />
                 </TabsContent>
                 <TabsContent
-                  value="Knowledge"
-                  className="flex-1 overflow-auto">
+                  value='Knowledge'
+                  className='flex-1 overflow-auto'
+                >
                   Knowledge jest to wiedza danego herosa najczęsciej o innych postaciach, lokalizacjach z Mapy Świata
                 </TabsContent>
               </Tabs>
             </div>
 
             <Button
-              variant="ghost"
-              size="lg"
+              variant='ghost'
+              size='lg'
               onClick={() => setIsPartyVisible(!isPartyVisible)}
-              className="my-2 self-center">
+              className='my-2 self-center'
+            >
               Party
             </Button>
 
             {isPartyVisible && (
-              <div className="flex min-h-0 flex-1 flex-col">
+              <div className='flex min-h-0 flex-1 flex-col'>
                 <Tabs
-                  defaultValue="Units"
-                  className="flex w-[400px] flex-1 flex-col">
-                  <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="Units">Units</TabsTrigger>
-                    <TabsTrigger value="Party Inventory">Party Inventory</TabsTrigger>
+                  defaultValue='Units'
+                  className='flex w-[400px] flex-1 flex-col'
+                >
+                  <TabsList className='grid w-full grid-cols-2'>
+                    <TabsTrigger value='Units'>Units</TabsTrigger>
+                    <TabsTrigger value='Party Inventory'>Party Inventory</TabsTrigger>
                   </TabsList>
 
                   <TabsContent
-                    value="Units"
-                    className="flex-1 overflow-auto">
+                    value='Units'
+                    className='flex-1 overflow-auto'
+                  >
                     Party Leader
-                    <div className="text-large h-20 w-20">
+                    <div className='text-large h-20 w-20'>
                       <Avatar>
                         <AvatarImage
-                          src="https://github.com/shadcn.png"
-                          alt="@shadcn"
+                          src='https://github.com/shadcn.png'
+                          alt='@shadcn'
                         />
                         <AvatarFallback>CN</AvatarFallback>
                       </Avatar>
@@ -139,8 +151,9 @@ export default function PanelPlayerPanel() {
                     </div>
                   </TabsContent>
                   <TabsContent
-                    value="Party Inventory"
-                    className="flex-1 overflow-auto">
+                    value='Party Inventory'
+                    className='flex-1 overflow-auto'
+                  >
                     <PartyInventory />
                   </TabsContent>
                 </Tabs>

@@ -1,7 +1,14 @@
 import dotenv from "dotenv"
 import path from "path"
 import { camelToKebab, getArgsArray, mapSQLTypeToTS, snakeToCamel, snakeToPascal } from "./helpers/helpers.js"
-import { createMethodGetRecords, createMethodGetRecordsByKey, fetchColumns, fetchMethodArgs, fetchSchemas, fetchTables } from "./helpers/queries.js"
+import {
+  createMethodGetRecords,
+  createMethodGetRecordsByKey,
+  fetchColumns,
+  fetchMethodArgs,
+  fetchSchemas,
+  fetchTables,
+} from "./helpers/queries.js"
 dotenv.config({ path: path.resolve(process.cwd(), ".env.development") })
 
 // Konwersja typów SQL → TypeScript
@@ -138,8 +145,12 @@ export default function getTable(plop) {
       const argsArray = getArgsArray(argsStr)
       const sqlParamsPlaceholders = argsArray.map((_, i) => `$${i + 1}`).join(", ")
 
-      const apiParamPathSquareBrackets = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `[${f.camelName}]`).join("/") : ""
-      const apiParamPath = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `\${params.${f.camelName}}`).join("/") : ""
+      const apiParamPathSquareBrackets = methodParamsColumns.length
+        ? "/" + methodParamsColumns.map((f) => `[${f.camelName}]`).join("/")
+        : ""
+      const apiParamPath = methodParamsColumns.length
+        ? "/" + methodParamsColumns.map((f) => `\${params.${f.camelName}}`).join("/")
+        : ""
 
       const tableKebabName = camelToKebab(tableCamelName)
       const apiPath = `app/api/${schema}/${tableKebabName}/route.ts`
@@ -151,7 +162,8 @@ export default function getTable(plop) {
         {
           type: "list",
           name: "generateMutation",
-          message: "Czy chcesz wygenerować także hook useMutate ? Służy do szybkiego odświeżania UI po użyciu akcji, ale należy dokonać ręcznej konfiguracji",
+          message:
+            "Czy chcesz wygenerować także hook useMutate ? Służy do szybkiego odświeżania UI po użyciu akcji, ale należy dokonać ręcznej konfiguracji",
           choices: [
             { name: "Nie", value: false },
             { name: "Tak", value: true },
@@ -168,7 +180,7 @@ export default function getTable(plop) {
             { name: "Nie", value: false },
             { name: "Tak", value: true },
           ],
-          when: () => generateMutation === true, 
+          when: () => generateMutation === true,
         },
       ])
 

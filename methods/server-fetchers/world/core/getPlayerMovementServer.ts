@@ -14,7 +14,9 @@ export async function getPlayerMovementServer(params: TGetPlayerMovementParams):
 }> {
   const getPlayerMovementData = await getPlayerMovement(params)
 
-  const data = getPlayerMovementData ? (arrayToObjectKey(["x", "y"], getPlayerMovementData) as TGetPlayerMovementRecordByXY) : {}
+  const data = getPlayerMovementData
+    ? (arrayToObjectKey(["x", "y"], getPlayerMovementData) as TGetPlayerMovementRecordByXY)
+    : {}
 
   return { raw: getPlayerMovementData, byKey: data, apiPath: `/api/world/rpc/get-player-movement/${params.playerId}` }
 }

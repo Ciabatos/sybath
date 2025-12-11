@@ -1,7 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetTableByKey.hbs
 
 import { auth } from "@/auth"
-import { getBuildingsBuildingsByKey, TBuildingsBuildingsParams } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
+import {
+  getBuildingsBuildingsByKey,
+  TBuildingsBuildingsParams,
+} from "@/db/postgresMainDatabase/schemas/buildings/buildings"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"

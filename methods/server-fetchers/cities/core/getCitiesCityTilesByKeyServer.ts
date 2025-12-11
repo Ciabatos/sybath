@@ -13,7 +13,9 @@ export async function getCitiesCityTilesByKeyServer(params: TCitiesCityTilesPara
 }> {
   const getCitiesCityTilesByKeyData = await getCitiesCityTilesByKey(params)
 
-  const data = getCitiesCityTilesByKeyData ? (arrayToObjectKey(["x", "y"], getCitiesCityTilesByKeyData) as TCitiesCityTilesRecordByXY) : {}
+  const data = getCitiesCityTilesByKeyData
+    ? (arrayToObjectKey(["x", "y"], getCitiesCityTilesByKeyData) as TCitiesCityTilesRecordByXY)
+    : {}
 
   return { raw: getCitiesCityTilesByKeyData, byKey: data, apiPath: `/api/cities/city-tiles/${params.cityId}` }
 }

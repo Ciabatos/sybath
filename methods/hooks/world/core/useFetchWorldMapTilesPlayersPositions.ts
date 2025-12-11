@@ -19,7 +19,9 @@ export function useFetchWorldMapTilesPlayersPositions() {
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const index = data ? (arrayToObjectKey(["mapTileX", "mapTileY"], data) as TWorldMapTilesPlayersPositionsRecordByMapTileXMapTileY) : {}
+      const index = data
+        ? (arrayToObjectKey(["mapTileX", "mapTileY"], data) as TWorldMapTilesPlayersPositionsRecordByMapTileXMapTileY)
+        : {}
       setWorldMapTilesPlayersPositions(index)
       prevDataRef.current = data
     }

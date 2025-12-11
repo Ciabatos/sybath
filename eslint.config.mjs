@@ -22,15 +22,10 @@ const eslintConfig = [
           patterns: [
             {
               group: ["@/methods/hooks/*/core", "@/methods/hooks/*/core/*"],
-              message:
-                "Importy z methods/hooks/*/core są dozwolone tylko wewnątrz odpowiadających folderów composite.",
+              message: "Importy z methods/hooks/*/core są dozwolone tylko wewnątrz odpowiadających folderów composite.",
             },
             {
-              group: [
-                "@/methods/actions",
-                "@/methods/actions/*",
-                "@/methods/actions/**/*",
-              ],
+              group: ["@/methods/actions", "@/methods/actions/*", "@/methods/actions/**/*"],
               message:
                 "Importy z methods/actions są dozwolone tylko wewnątrz odpowiadających folderów composite hooków.",
             },

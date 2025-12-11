@@ -42,8 +42,9 @@ export default function CityWrapper({ cityId, joinedCity, terrainTypes, landscap
   return (
     <>
       <div
-        id="City"
-        className={style.map}>
+        id='City'
+        className={style.map}
+      >
         <TransformWrapper
           ref={transformRef}
           initialScale={savedTransform.scale}
@@ -61,11 +62,13 @@ export default function CityWrapper({ cityId, joinedCity, terrainTypes, landscap
           }}
           minScale={0.4}
           limitToBounds={false}
-          doubleClick={{ disabled: true }}>
+          doubleClick={{ disabled: true }}
+        >
           <TransformComponent wrapperStyle={{ width: "100%", height: "100%" }}>
             <div
-              id="CityTiles"
-              className={style.Tiles}>
+              id='CityTiles'
+              className={style.Tiles}
+            >
               <CityHandling
                 cityId={cityId}
                 joinedCity={joinedCity}

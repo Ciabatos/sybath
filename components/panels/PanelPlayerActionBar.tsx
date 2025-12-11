@@ -30,13 +30,15 @@ export default function PanelPlayerActionBar() {
         <div className={styles.actionGrid}>
           <Button
             className={styles.actionButton}
-            onClick={handleButtonMove}>
+            onClick={handleButtonMove}
+          >
             Move
           </Button>
 
           <Button
             className={styles.actionButton}
-            onClick={handleButtonGuardArea}>
+            onClick={handleButtonGuardArea}
+          >
             Guar Area
           </Button>
         </div>

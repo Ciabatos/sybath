@@ -100,8 +100,12 @@ export default function getMethodFetcher(plop) {
       const indexTypeName = methodTypeName + "RecordBy" + indexTypeMethodName
       const indexMethodName = "arrayToObjectKey"
 
-      const apiParamPathSquareBrackets = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `[${f.camelName}]`).join("/") : ""
-      const apiParamPath = methodParamsColumns.length ? "/" + methodParamsColumns.map((f) => `\${params.${f.camelName}}`).join("/") : ""
+      const apiParamPathSquareBrackets = methodParamsColumns.length
+        ? "/" + methodParamsColumns.map((f) => `[${f.camelName}]`).join("/")
+        : ""
+      const apiParamPath = methodParamsColumns.length
+        ? "/" + methodParamsColumns.map((f) => `\${params.${f.camelName}}`).join("/")
+        : ""
 
       //rpc jednoznacznie oznacza “remote procedure call”
       const methodKebabName = camelToKebab(methodCamelName)
@@ -112,7 +116,8 @@ export default function getMethodFetcher(plop) {
         {
           type: "list",
           name: "generateMutation",
-          message: "Czy chcesz wygenerować także hook useMutate ? Służy do szybkiego odświeżania UI po użyciu akcji, ale należy dokonać ręcznej konfiguracji",
+          message:
+            "Czy chcesz wygenerować także hook useMutate ? Służy do szybkiego odświeżania UI po użyciu akcji, ale należy dokonać ręcznej konfiguracji",
           choices: [
             { name: "Nie", value: false },
             { name: "Tak", value: true },
@@ -129,7 +134,7 @@ export default function getMethodFetcher(plop) {
             { name: "Nie", value: false },
             { name: "Tak", value: true },
           ],
-          when: () => generateMutation === true, 
+          when: () => generateMutation === true,
         },
       ])
 

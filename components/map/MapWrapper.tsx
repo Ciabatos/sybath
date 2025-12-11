@@ -42,8 +42,9 @@ export default function MapWrapper({ joinedMap, terrainTypes, landscapeTypes, di
   return (
     <>
       <div
-        id="Map"
-        className={style.map}>
+        id='Map'
+        className={style.map}
+      >
         <TransformWrapper
           ref={transformRef}
           initialScale={savedTransform.scale}
@@ -61,11 +62,13 @@ export default function MapWrapper({ joinedMap, terrainTypes, landscapeTypes, di
           }}
           minScale={0.4}
           limitToBounds={false}
-          doubleClick={{ disabled: true }}>
+          doubleClick={{ disabled: true }}
+        >
           <TransformComponent wrapperStyle={{ width: "100%", height: "100%" }}>
             <div
-              id="MapTiles"
-              className={style.Tiles}>
+              id='MapTiles'
+              className={style.Tiles}
+            >
               <MapHandling
                 joinedMap={joinedMap}
                 terrainTypes={terrainTypes}

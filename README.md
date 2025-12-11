@@ -1,6 +1,7 @@
 # 🎮 Sybath - Masywnie Multiplayer Online RPG
 
-Projekt zaawansowanej gry online (MMO) napisanej w **Next.js** z architekturą **database-driven** i automatycznym generowaniem backendu za pomocą **PlopJS**.
+Projekt zaawansowanej gry online (MMO) napisanej w **Next.js** z architekturą **database-driven** i automatycznym
+generowaniem backendu za pomocą **PlopJS**.
 
 ## 🎯 O Projekcie
 
@@ -36,7 +37,7 @@ src/
 │      ├── players/      (gracze, umiejętności)
 │      ├── items/        (inwentarz, przedmioty)
 │      └── attributes/   (atrybuty, zdolności)
-│   
+│
 │
 ├── app/api/
 │   ├── [schema]/[table]/          (GET - wszystkie rekordy)
@@ -63,55 +64,60 @@ src/
 
 ### Frontend Stack
 
-| Technologia | Wersja | Użycie |
-|-------------|--------|--------|
-| **Next.js** | 14+ | Framework, App Router |
-| **React** | 18+ | Component model |
-| **TypeScript** | Latest | Type safety |
-| **Jotai** | Latest | State management |
-| **SWR** | Latest | Data fetching |
-| **TailwindCSS** | Latest | Styling |
-| **shadcn/ui** | Latest | UI Components |
+| Technologia     | Wersja | Użycie                |
+| --------------- | ------ | --------------------- |
+| **Next.js**     | 14+    | Framework, App Router |
+| **React**       | 18+    | Component model       |
+| **TypeScript**  | Latest | Type safety           |
+| **Jotai**       | Latest | State management      |
+| **SWR**         | Latest | Data fetching         |
+| **TailwindCSS** | Latest | Styling               |
+| **shadcn/ui**   | Latest | UI Components         |
 
 ### Backend Stack
 
-| Technologia | Wersja | Użycie |
-|-------------|--------|--------|
-| **Next.js API Routes** | 14+ | Serverless backend |
-| **PostgreSQL** | 17 | Relacyjna baza |
-| **PlopJS** | Latest | Code generation |
-| **Auth.js** | Latest | Authentication |
-| **Zod** | Latest | Schema validation |
+| Technologia            | Wersja | Użycie             |
+| ---------------------- | ------ | ------------------ |
+| **Next.js API Routes** | 14+    | Serverless backend |
+| **PostgreSQL**         | 17     | Relacyjna baza     |
+| **PlopJS**             | Latest | Code generation    |
+| **Auth.js**            | Latest | Authentication     |
+| **Zod**                | Latest | Schema validation  |
 
 ---
 
 ## ✨ Kluczowe Funkcjonalności
 
 ### 🗺️ System Mapy
+
 - Proceduralne generowanie terenu
 - Dynamiczne załadowanie danych
 - Real-time pozycja gracza
 - Eksploracja świata
 
 ### 🏘️ Miasta i Dystrykt
+
 - Sub-mapy dla miast
 - Zarządzanie budynkami
 - Strefa produkcji (dystrykt)
 - System ról (Owner, Worker)
 
 ### 📦 System Inwentarza
+
 - Wielowarstwowy system magazynowania
 - Inwentarz gracza, budynku, dystryku
 - Slot-based storage (grid)
 - Automatyczne sortowanie
 
 ### 👤 System Postaci
+
 - Umiejętności (Skills)
 - Zdolności (Abilities)
 - System progresji
 - Atrybuty charakteru
 
 ### ⚔️ Walka (w trakcie)
+
 - Inspiracja: Slay the Spire
 - System akcji turowych
 - Karty akcji (Attack, Parry, Riposte)
@@ -130,36 +136,36 @@ plop "Get Data From Table"
   ↓
 ```
 
-| Plik | Typ | Opis |
-|------|-----|------|
-| `db/postgresMainDatabase/schemas/[schema]/[table].ts` | TypeScript | Typ i fetch funkcja |
-| `app/api/[schema]/[table]/route.ts` | API Route | GET wszystkie |
-| `app/api/[schema]/[table]/[id]/route.ts` | API Route | GET po ID |
-| `methods/hooks/[schema]/useFetch[Table].ts` | React Hook | Client-side fetch |
-| `methods/hooks/[schema]/useFetch[Table]ByKey.ts` | React Hook | Fetch z cache |
-| `methods/server-fetchers/[schema]/get[Table]Server.ts` | Server Function | Server-side fetch |
-| `methods/server-fetchers/[schema]/get[Table]ByKeyServer.ts` | Server Function | By Key server |
-| `store/atoms.ts` | Atom Store | State management |
+| Plik                                                        | Typ             | Opis                |
+| ----------------------------------------------------------- | --------------- | ------------------- |
+| `db/postgresMainDatabase/schemas/[schema]/[table].ts`       | TypeScript      | Typ i fetch funkcja |
+| `app/api/[schema]/[table]/route.ts`                         | API Route       | GET wszystkie       |
+| `app/api/[schema]/[table]/[id]/route.ts`                    | API Route       | GET po ID           |
+| `methods/hooks/[schema]/useFetch[Table].ts`                 | React Hook      | Client-side fetch   |
+| `methods/hooks/[schema]/useFetch[Table]ByKey.ts`            | React Hook      | Fetch z cache       |
+| `methods/server-fetchers/[schema]/get[Table]Server.ts`      | Server Function | Server-side fetch   |
+| `methods/server-fetchers/[schema]/get[Table]ByKeyServer.ts` | Server Function | By Key server       |
+| `store/atoms.ts`                                            | Atom Store      | State management    |
 
 ### Redukcja Boilerplate
 
-| Metoda | Ilość Kodu | Redukcja |
-|--------|-----------|----------|
-| Tradycyjny | ~500 linii | - |
-| Z PlopJS | ~50 linii | **90%** |
-| **Zysk** | **450 linii** | **Per funkcja** |
+| Metoda     | Ilość Kodu    | Redukcja        |
+| ---------- | ------------- | --------------- |
+| Tradycyjny | ~500 linii    | -               |
+| Z PlopJS   | ~50 linii     | **90%**         |
+| **Zysk**   | **450 linii** | **Per funkcja** |
 
 ---
 
 ## 🔐 Bezpieczeństwo
 
-| Warstwa | Mechanizm | Status |
-|---------|-----------|--------|
-| Database | PostgreSQL RLS | ✅ |
-| Auth | Auth.js sessions | ✅ |
-| Validation | Zod schemas | ✅ |
-| Types | TypeScript end-to-end | ✅ |
-| API | CSRF protection | ✅ |
+| Warstwa    | Mechanizm             | Status |
+| ---------- | --------------------- | ------ |
+| Database   | PostgreSQL RLS        | ✅     |
+| Auth       | Auth.js sessions      | ✅     |
+| Validation | Zod schemas           | ✅     |
+| Types      | TypeScript end-to-end | ✅     |
+| API        | CSRF protection       | ✅     |
 
 ---
 
@@ -168,11 +174,7 @@ plop "Get Data From Table"
 ### 1️⃣ Server Actions z Type Safety
 
 ```typescript
-export async function addItemToInventoryAction({ 
-  playerId, 
-  item_id, 
-  quantity 
-}: TAddItemToInventory) {
+export async function addItemToInventoryAction({ playerId, item_id, quantity }: TAddItemToInventory) {
   // Direct database mutation
 }
 ```
@@ -181,11 +183,7 @@ export async function addItemToInventoryAction({
 
 ```typescript
 // Jawnie pokazuje używane pola, zachowując elastyczność typu
-function addItemToInventory({ 
-  playerId, 
-  item_id, 
-  quantity 
-}: TAddItemToInventory)
+function addItemToInventory({ playerId, item_id, quantity }: TAddItemToInventory)
 ```
 
 ### 3️⃣ Atom-based State Management
@@ -201,15 +199,15 @@ export const selectedHeroAtom = atom<number | null>(null)
 
 ### Demonstrowane Umiejętności
 
-| Umiejętność | Level | Opis |
-|------------|-------|------|
-| **Full-Stack TypeScript** | Expert | End-to-end type safety |
-| **Database Design** | Advanced | PostgreSQL, RLS, procedures |
-| **Code Generation** | Advanced | PlopJS automation |
-| **Architecture** | Senior | Scalable, maintainable |
-| **Performance** | Advanced | ETag caching, SWR |
-| **Security** | Advanced | RLS, validation, auth |
-| **MMO Architecture** | Intermediate | Game systems design |
+| Umiejętność               | Level        | Opis                        |
+| ------------------------- | ------------ | --------------------------- |
+| **Full-Stack TypeScript** | Expert       | End-to-end type safety      |
+| **Database Design**       | Advanced     | PostgreSQL, RLS, procedures |
+| **Code Generation**       | Advanced     | PlopJS automation           |
+| **Architecture**          | Senior       | Scalable, maintainable      |
+| **Performance**           | Advanced     | ETag caching, SWR           |
+| **Security**              | Advanced     | RLS, validation, auth       |
+| **MMO Architecture**      | Intermediate | Game systems design         |
 
 ---
 
@@ -238,13 +236,13 @@ export const selectedHeroAtom = atom<number | null>(null)
 
 ## 🎓 Kluczowe Learningi
 
-| Temat | Insight |
-|-------|---------|
-| Database-driven dev | Zmniejsza boilerplate o 90% |
-| Code generation | Zmienia produktywność |
-| Type safety | Od bazy do UI - game-changer |
-| PostgreSQL logic | Lepsze niż client-side |
-| Atom state mgmt | Elegancki i efektywny |
+| Temat               | Insight                      |
+| ------------------- | ---------------------------- |
+| Database-driven dev | Zmniejsza boilerplate o 90%  |
+| Code generation     | Zmienia produktywność        |
+| Type safety         | Od bazy do UI - game-changer |
+| PostgreSQL logic    | Lepsze niż client-side       |
+| Atom state mgmt     | Elegancki i efektywny        |
 
 ---
 
@@ -272,5 +270,3 @@ Projekt demonstruje zaawansowaną wiedzę z zakresu:
 - ✅ Production-Ready Code Quality
 - ✅ Performance Optimization
 - ✅ Security Best Practices
-
-

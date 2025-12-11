@@ -3,7 +3,10 @@
 
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { getAttributesAbilities } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
-import type { TAttributesAbilities, TAttributesAbilitiesRecordById } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
+import type {
+  TAttributesAbilities,
+  TAttributesAbilitiesRecordById,
+} from "@/db/postgresMainDatabase/schemas/attributes/abilities"
 
 export async function getAttributesAbilitiesServer(): Promise<{
   raw: TAttributesAbilities[]
@@ -12,7 +15,9 @@ export async function getAttributesAbilitiesServer(): Promise<{
 }> {
   const getAttributesAbilitiesData = await getAttributesAbilities()
 
-  const data = getAttributesAbilitiesData ? (arrayToObjectKey(["id"], getAttributesAbilitiesData) as TAttributesAbilitiesRecordById) : {}
+  const data = getAttributesAbilitiesData
+    ? (arrayToObjectKey(["id"], getAttributesAbilitiesData) as TAttributesAbilitiesRecordById)
+    : {}
 
   return { raw: getAttributesAbilitiesData, byKey: data, apiPath: `/api/attributes/abilities` }
 }
