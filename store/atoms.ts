@@ -32,7 +32,7 @@ import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/
 import { TJoinCityByXY } from "@/methods/functions/city/joinCity"
 import { TJoinMap, TJoinMapByXY } from "@/methods/functions/map/joinMap"
 import { TClickeCityTile } from "@/methods/hooks/cities/composite/useCityTilesActions"
-import { TMapTilesGuardAreaSet } from "@/methods/hooks/players/composite/useActionMapTilesGuardArea"
+import { TAreaRecordByXY } from "@/methods/hooks/world/composite/useMapTilesArea"
 import { TMapTilesMovementPathRecordByXY } from "@/methods/hooks/world/composite/useMapTilesPathFromPointToPoint"
 import { EPanels } from "@/types/enumeration/EPanels"
 import { atom } from "jotai"
@@ -48,7 +48,6 @@ export const modalTopCenterAtom = atom<EPanels>(EPanels.Inactive)
 export const joinedMapAtom = atom<TJoinMapByXY>({})
 
 //Map Set
-export const mapTilesGuardAreaSetAtom = atom<TMapTilesGuardAreaSet>(new Set<string>())
 
 //City
 export const clickedCityTileAtom = atom<TClickeCityTile>()
@@ -58,10 +57,6 @@ export const joinedCityAtom = atom<TJoinCityByXY>({})
 export const playerIdAtom = atom<number>(0)
 export const playerPositionMapTilesAtom = atom<TPlayerVisibleMapData>()
 export const playerInventorySlotsAtom = atom<TInventorySlots[]>([])
-
-//Attributes
-export const selectedAbilityIdAtom = atom<number>()
-export const abilityRequirementsAtom = atom<TAbilityRequirements[]>([])
 
 //Districts
 export const districtInventorySlotsAtom = atom<TInventorySlots[]>([])
@@ -76,7 +71,7 @@ export const clickedTileAtom = atom<TJoinMap>()
 
 //Player
 export const playerMapTilesMovementPathAtom = atom<TMapTilesMovementPathRecordByXY>({})
-
+export const playerMapTilesGuardAreaAtom = atom<TAreaRecordByXY>({})
 //Tasks
 export const actionTaskInProcessAtom = atom<TActionTaskInProcess>()
 

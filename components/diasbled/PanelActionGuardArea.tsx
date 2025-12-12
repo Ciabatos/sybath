@@ -3,7 +3,7 @@
 import styles from "@/components/panels/styles/PanelActionGuardArea.module.css"
 import { usePlayerPositionMapTile } from "@/methods/hooks/mapTiles/composite/usePlayerPositionMapTile"
 import { useModalBottomCenterBar } from "@/methods/hooks/modals/useModalBottomCenterBar"
-import { useActionMapTilesGuardArea } from "@/methods/hooks/players/composite/useActionMapTilesGuardArea"
+import { useActionMapTilesGuardArea } from "@/methods/hooks/players/composite/usePlayerGuardArea"
 import { useMutateActionTaskInProcess } from "@/methods/hooks/tasks/core/useMutateActionTaskInProcess"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { useMapTilesPathFromPointToPoint } from "@/methods/hooks/world/composite/useMapTilesPathFromPointToPoint"

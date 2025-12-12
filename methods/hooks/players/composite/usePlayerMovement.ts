@@ -5,6 +5,13 @@ import { useMapTilesPathFromPointToPoint } from "@/methods/hooks/world/composite
 import { playerMapTilesMovementPathAtom } from "@/store/atoms"
 import { useAtom } from "jotai"
 
+export type TSelectPlayerPathParams = {
+  startX: number
+  startY: number
+  endX: number
+  endY: number
+}
+
 export type TSelectAndMovePlayerParams = {
   startX: number
   startY: number
@@ -17,7 +24,7 @@ export function usePlayerMovement() {
   const { getPathFromPointToPoint } = useMapTilesPathFromPointToPoint()
   const [playerMapTilesMovementPath, setPlayerMapTilesMovementPath] = useAtom(playerMapTilesMovementPathAtom)
 
-  function selectPlayerPath(params: TSelectAndMovePlayerParams) {
+  function selectPlayerPath(params: TSelectPlayerPathParams) {
     const path = getPathFromPointToPoint(params)
     setPlayerMapTilesMovementPath(path)
   }
