@@ -5,6 +5,16 @@ import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schema
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { produce } from "immer"
 
+type TJoinCityParams = {
+  tiles: TCitiesCityTilesRecordByXY
+  terrainTypes: TWorldTerrainTypesRecordById
+  landscapeTypes: TWorldLandscapeTypesRecordById
+  buildings: TBuildingsBuildingsRecordByCityTileXCityTileY
+  buildingsTypes: TBuildingsBuildingTypesRecordById
+  options: {
+    oldDataToUpdate?: TJoinCityByXY
+  }
+}
 export interface TJoinCity {
   tiles: TCitiesCityTilesRecordByXY[keyof TCitiesCityTilesRecordByXY]
   terrainTypes: TWorldTerrainTypesRecordById[keyof TWorldTerrainTypesRecordById]
@@ -15,16 +25,14 @@ export interface TJoinCity {
 
 export type TJoinCityByXY = Record<string, TJoinCity>
 
-export function joinCity(
-  tiles: TCitiesCityTilesRecordByXY,
-  terrainTypes: TWorldTerrainTypesRecordById,
-  landscapeTypes: TWorldLandscapeTypesRecordById,
-  buildings: TBuildingsBuildingsRecordByCityTileXCityTileY,
-  buildingsTypes: TBuildingsBuildingTypesRecordById,
-  options: {
-    oldDataToUpdate?: TJoinCityByXY
-  } = {},
-): TJoinCityByXY {
+export function joinCity({
+  tiles,
+  terrainTypes,
+  landscapeTypes,
+  buildings,
+  buildingsTypes,
+  options = {},
+}: TJoinCityParams): TJoinCityByXY {
   const { oldDataToUpdate } = options
 
   // to jest funkcja pomocnicza dla bloku poniżej

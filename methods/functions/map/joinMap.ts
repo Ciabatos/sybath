@@ -7,6 +7,18 @@ import { TPlayerVisibleMapDataRecordByMapTileXMapTileY } from "@/db/postgresMain
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { produce } from "immer"
 
+type TJoinMapParams = {
+  tiles: TWorldMapTilesRecordByXY
+  terrainTypes: TWorldTerrainTypesRecordById
+  landscapeTypes: TWorldLandscapeTypesRecordById
+  cities: TCitiesCitiesRecordByMapTileXMapTileY
+  districts: TDistrictsDistrictsRecordByMapTileXMapTileY
+  districtTypes: TDistrictsDistrictTypesRecordById
+  playerVisibleMapData: TPlayerVisibleMapDataRecordByMapTileXMapTileY
+  options: {
+    oldDataToUpdate?: TJoinMapByXY
+  }
+}
 export interface TJoinMap {
   tiles: TWorldMapTilesRecordByXY[keyof TWorldMapTilesRecordByXY]
   terrainTypes: TWorldTerrainTypesRecordById[keyof TWorldTerrainTypesRecordById]
@@ -20,18 +32,16 @@ export interface TJoinMap {
 
 export type TJoinMapByXY = Record<string, TJoinMap>
 
-export function joinMap(
-  tiles: TWorldMapTilesRecordByXY,
-  terrainTypes: TWorldTerrainTypesRecordById,
-  landscapeTypes: TWorldLandscapeTypesRecordById,
-  cities: TCitiesCitiesRecordByMapTileXMapTileY,
-  districts: TDistrictsDistrictsRecordByMapTileXMapTileY,
-  districtTypes: TDistrictsDistrictTypesRecordById,
-  playerVisibleMapData: TPlayerVisibleMapDataRecordByMapTileXMapTileY,
-  options: {
-    oldDataToUpdate?: TJoinMapByXY
-  } = {},
-): TJoinMapByXY {
+export function joinMap({
+  tiles,
+  terrainTypes,
+  landscapeTypes,
+  cities,
+  districts,
+  districtTypes,
+  playerVisibleMapData,
+  options = {},
+}: TJoinMapParams): TJoinMapByXY {
   const { oldDataToUpdate } = options
 
   function createOrUpdate(mainData: TWorldMapTilesRecordByXY[keyof TWorldMapTilesRecordByXY]): TJoinMap {

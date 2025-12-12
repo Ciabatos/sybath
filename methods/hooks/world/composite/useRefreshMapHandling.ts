@@ -30,16 +30,16 @@ export function useRefreshMapHandling({ joinedMap, terrainTypes, landscapeTypes,
 
   useEffect(() => {
     if (mapTiles) {
-      const refreshedData = joinMap(
-        mapTiles,
-        terrainTypes,
-        landscapeTypes,
-        cities,
-        districts,
-        districtTypes,
-        playerVisibleMapData,
-        { oldDataToUpdate: joinedMap },
-      )
+      const refreshedData = joinMap({
+        tiles: mapTiles,
+        terrainTypes: terrainTypes,
+        landscapeTypes: landscapeTypes,
+        cities: cities,
+        districts: districts,
+        districtTypes: districtTypes,
+        playerVisibleMapData: playerVisibleMapData,
+        options: { oldDataToUpdate: joinedMap },
+      })
       setJoinedMap(refreshedData)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -25,8 +25,15 @@ export function useRefreshCityHandling({ cityId, joinedCity, terrainTypes, lands
 
   useEffect(() => {
     if (cityTiles) {
-      const refreshedData = joinCity(cityTiles, terrainTypes, landscapeTypes, buildings, buildingsTypes, {
-        oldDataToUpdate: joinedCity,
+      const refreshedData = joinCity({
+        tiles: cityTiles,
+        terrainTypes: terrainTypes,
+        landscapeTypes: landscapeTypes,
+        buildings: buildings,
+        buildingsTypes: buildingsTypes,
+        options: {
+          oldDataToUpdate: joinedCity,
+        },
       })
       setJoinedCity(refreshedData)
     }
