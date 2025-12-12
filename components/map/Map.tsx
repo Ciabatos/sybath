@@ -2,8 +2,8 @@
 
 import LayersHandling from "@/components/map/layers/LayersHandling"
 import style from "@/components/map/styles/Tile.module.css"
+import { createImage } from "@/methods/functions/map/createImage"
 import { TJoinMap } from "@/methods/functions/map/joinMap"
-import { useCreateImage } from "@/methods/hooks/world/composite/useCreateImage"
 
 interface Props {
   tile: TJoinMap
@@ -17,7 +17,7 @@ export default function Map({ tile }: Props) {
     createCitiesImage,
     creatDistrictsImage,
     combineImages,
-  } = useCreateImage()
+  } = createImage()
   // const { handleClickOnMapTile } = useMapTileActions()
   const backgroundImage = createBackgroundImage(tile.terrainTypes.imageUrl)
   const landscapeImage = createLandscapeImage(tile.landscapeTypes?.imageUrl)

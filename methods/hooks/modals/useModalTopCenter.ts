@@ -1,25 +1,25 @@
-import { useAtom } from "jotai"
+import { modalTopCenterAtom } from "@/store/atoms"
 import { EPanels } from "@/types/enumeration/EPanels"
-import { modalTopCenterAtom as modalTopCenterAtom } from "@/store/atoms"
-import { useLazyPanelLoader } from "./useLazyPanelLoader"
+import { useAtom } from "jotai"
 import { FC, useEffect, useState } from "react"
+import { useLazyPanelLoader } from "./useLazyPanelLoader"
 
 export function useModalTopCenter() {
-  const [status, setStatus] = useAtom(modalTopCenterAtom)
+  const [modalTopCenter, setModalTopCenter] = useAtom(modalTopCenterAtom)
   const { loadPanel } = useLazyPanelLoader()
 
-  const [ActivePanel, setActivePanel] = useState<FC | null>(null)
+  const [ModalTopCenterPanel, setActivePanel] = useState<FC | null>(null)
 
   useEffect(() => {
-    if (status === EPanels.Inactive) {
+    if (modalTopCenter === EPanels.Inactive) {
       setActivePanel(null)
       return
     }
 
-    loadPanel(status).then((panel) => {
+    loadPanel(modalTopCenter).then((panel) => {
       setActivePanel(panel)
     })
-  }, [status, loadPanel])
+  }, [modalTopCenter, loadPanel])
 
-  return { ActivePanel, setStatus }
+  return { ModalTopCenterPanel, setModalTopCenter }
 }

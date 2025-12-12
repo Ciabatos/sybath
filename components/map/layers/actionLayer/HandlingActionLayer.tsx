@@ -1,7 +1,7 @@
 "use client"
 
 import { TJoinMap } from "@/methods/functions/map/joinMap"
-import { useActionMapTilesGuardArea } from "@/methods/hooks/world/composite/useActionMapTilesGuardArea"
+import { useActionMapTilesGuardArea } from "@/methods/hooks/players/composite/useActionMapTilesGuardArea"
 import { useMapTilesPathFromPointToPoint } from "@/methods/hooks/world/composite/useMapTilesPathFromPointToPoint"
 
 interface Props {

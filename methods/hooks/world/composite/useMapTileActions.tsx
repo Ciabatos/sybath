@@ -1,33 +1,32 @@
 "use client"
 
 import { TJoinMap } from "@/methods/functions/map/joinMap"
+import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
 import { clickedTileAtom } from "@/store/atoms"
 import { useAtom } from "jotai"
 
-export type TClickedTile = { x: number; y: number } | undefined
-
 export function useMapTileActions() {
   const [clickedTile, setClickedTile] = useAtom(clickedTileAtom)
-  const { actualMapTilesActionStatus, newMapTilesActionStatus, resetMapTilesActionStatus } = useModal()
+  const { setModalTopCenter } = useModalTopCenter
 
-  function handleClickOnMapTile(tile: TJoinMap) {
+  function handleClickOnMapTile(params: TJoinMap) {
     if (
       actualMapTilesActionStatus.MovementAction ||
       actualMapTilesActionStatus.GuardAreaAction ||
       actualMapTilesActionStatus.UseAbilityAction
     ) {
-      setClickedTile({ x: tile.tiles.x, y: tile.tiles.y })
-    } else if (tile.cities?.name) {
+      setClickedTile(params)
+    } else if (params.cities?.name) {
       showCityActionList()
-      setClickedTile({ x: tile.tiles.x, y: tile.tiles.y })
-    } else if (tile.districts?.name) {
+      setClickedTile(params)
+    } else if (params.districts?.name) {
       showDistrictActionList()
-      setClickedTile({ x: tile.tiles.x, y: tile.tiles.y })
-    } else if (!tile.cities?.name && !tile.districts?.name && actualMapTilesActionStatus.Inactive) {
+      setClickedTile(params)
+    } else if (!params.cities?.name && !params.districts?.name && actualMapTilesActionStatus.Inactive) {
       showEmptyTileActionList()
-      setClickedTile({ x: tile.tiles.x, y: tile.tiles.y })
+      setClickedTile(params)
     } else {
-      setClickedTile({ x: tile.tiles.x, y: tile.tiles.y })
+      setClickedTile(params)
       resetMapTilesActionStatus()
     }
   }

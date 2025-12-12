@@ -21,6 +21,8 @@ import { TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/i
 import { TGetActivePlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerPosition"
 import { TGetActivePlayerVisionPlayersPositionsRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getActivePlayerVisionPlayersPositions"
 import { TGetPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerMovement"
+import { TGetPlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerPosition"
+import { TGetPlayerVisionPlayersPositionsRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerVisionPlayersPositions"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
 import { TWorldMapTilesPlayersPositionsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/world/mapTilesPlayersPositions"
@@ -28,15 +30,12 @@ import { TWorldMapsRecordById } from "@/db/postgresMainDatabase/schemas/world/ma
 import { TPlayerVisibleMapData } from "@/db/postgresMainDatabase/schemas/world/playerVisibleMapData"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { TJoinCityByXY } from "@/methods/functions/city/joinCity"
-import { TJoinMapByXY } from "@/methods/functions/map/joinMap"
+import { TJoinMap, TJoinMapByXY } from "@/methods/functions/map/joinMap"
 import { TClickeCityTile } from "@/methods/hooks/cities/composite/useCityTilesActions"
-import { TMapTilesGuardAreaSet } from "@/methods/hooks/world/composite/useActionMapTilesGuardArea"
-import { TClickedTile } from "@/methods/hooks/world/composite/useMapTileActions"
+import { TMapTilesGuardAreaSet } from "@/methods/hooks/players/composite/useActionMapTilesGuardArea"
 import { TMapTilesMovementPathRecordByXY } from "@/methods/hooks/world/composite/useMapTilesPathFromPointToPoint"
 import { EPanels } from "@/types/enumeration/EPanels"
 import { atom } from "jotai"
-import { TGetPlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerPosition"
-import { TGetPlayerVisionPlayersPositionsRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerVisionPlayersPositions"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanels>(EPanels.Inactive)
@@ -45,7 +44,7 @@ export const modalRightCenterAtom = atom<EPanels>(EPanels.Inactive)
 export const modalTopCenterAtom = atom<EPanels>(EPanels.Inactive)
 
 //Map
-export const clickedTileAtom = atom<TClickedTile>()
+
 export const joinedMapAtom = atom<TJoinMapByXY>({})
 
 //Map Set
@@ -71,6 +70,9 @@ export const districtInventorySlotsAtom = atom<TInventorySlots[]>([])
 export const buildingInventorySlotsAtom = atom<TInventorySlots[]>([])
 
 //REFACTORED
+
+//Map
+export const clickedTileAtom = atom<TJoinMap>()
 
 //Player
 export const playerMapTilesMovementPathAtom = atom<TMapTilesMovementPathRecordByXY>({})

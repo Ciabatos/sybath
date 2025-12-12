@@ -5,21 +5,21 @@ import { FC, useEffect, useState } from "react"
 import { useLazyPanelLoader } from "./useLazyPanelLoader"
 
 export function useModalLeftTopBar() {
-  const [status, setStatus] = useAtom(modalLeftTopBarAtom)
+  const [modalLeftTopBar, setModalLeftTopBar] = useAtom(modalLeftTopBarAtom)
   const { loadPanel } = useLazyPanelLoader()
 
-  const [ActivePanel, setActivePanel] = useState<FC | null>(null)
+  const [ModalLeftTopBar, setActivePanel] = useState<FC | null>(null)
 
   useEffect(() => {
-    if (status === EPanels.Inactive) {
+    if (modalLeftTopBar === EPanels.Inactive) {
       setActivePanel(null)
       return
     }
 
-    loadPanel(status).then((panel) => {
+    loadPanel(modalLeftTopBar).then((panel) => {
       setActivePanel(panel)
     })
-  }, [status, loadPanel])
+  }, [modalLeftTopBar, loadPanel])
 
-  return { ActivePanel, setStatus }
+  return { ModalLeftTopBar, setModalLeftTopBar }
 }

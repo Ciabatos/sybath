@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image"
 
-export function useCreateImage() {
+export function createImage() {
   function createImageFromUrl(imageUrl: string | undefined, type: string) {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
     if (!imageUrl) {

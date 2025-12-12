@@ -2,14 +2,14 @@
 
 import style from "@/components/city/styles/Tile.module.css"
 import { TJoinCity } from "@/methods/functions/city/joinCity"
-import { useCreateImage } from "@/methods/hooks/world/composite/useCreateImage"
+import { createImage } from "@/methods/functions/map/createImage"
 
 interface Props {
   tile: TJoinCity
 }
 
 export default function City({ tile }: Props) {
-  const { createLandscapeImage, createBackgroundImage, creatBuildingsImage, combineImages } = useCreateImage()
+  const { createLandscapeImage, createBackgroundImage, creatBuildingsImage, combineImages } = createImage()
   // const { actualCityTileStatus, newCityTilesActionStatus } = useCityTilesActionStatus()
   // const { setClickedCityTile } = useCityTilesActions()
   const backgroundImage = createBackgroundImage(tile.terrainTypes.imageUrl)
