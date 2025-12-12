@@ -1,75 +1,33 @@
 "use client"
 
 import { TJoinMap } from "@/methods/functions/map/joinMap"
+import { useModalBottomCenterBar } from "@/methods/hooks/modals/useModalBottomCenterBar"
+import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
+import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
+import { useResetModals } from "@/methods/hooks/modals/useResetModals"
 import { clickedTileAtom } from "@/store/atoms"
+import { EPanels } from "@/types/enumeration/EPanels"
 import { useAtom } from "jotai"
 
 export function useMapTileActions() {
   const [clickedTile, setClickedTile] = useAtom(clickedTileAtom)
-  const { setModalTopCenter } = useModalTopCenter
+  const { setModalBottomCenterBarAtom } = useModalBottomCenterBar()
+  const { setModalLeftTopBar } = useModalLeftTopBar()
+  const { setModalRightCenter } = useModalRightCenter()
+  const { setModalTopCenter } = useModalTopCenter()
+  const { resetModals } = useResetModals()
 
   function handleClickOnMapTile(params: TJoinMap) {
-    if (
-      actualMapTilesActionStatus.MovementAction ||
-      actualMapTilesActionStatus.GuardAreaAction ||
-      actualMapTilesActionStatus.UseAbilityAction
-    ) {
-      setClickedTile(params)
-    } else if (params.cities?.name) {
-      showCityActionList()
-      setClickedTile(params)
+    setClickedTile(params)
+    if (params.cities?.name) {
+      setModalRightCenter(EPanels.PanelCityActionBar)
     } else if (params.districts?.name) {
-      showDistrictActionList()
-      setClickedTile(params)
-    } else if (!params.cities?.name && !params.districts?.name && actualMapTilesActionStatus.Inactive) {
-      showEmptyTileActionList()
-      setClickedTile(params)
+      setModalRightCenter(EPanels.PanelDistrict)
     } else {
-      setClickedTile(params)
-      resetMapTilesActionStatus()
+      resetModals()
     }
   }
 
-  function handleOpenPlayerActionList() {
-    if (actualMapTilesActionStatus.Inactive) {
-      showPlayerActionList()
-    }
-  }
-
-  function handleClosePlayerActionList() {
-    if (actualMapTilesActionStatus.PlayerActionList) {
-      resetMapTilesActionStatus()
-    }
-  }
-
-  function showPlayerActionList() {
-    //prettier-ignore
-    if (actualMapTilesActionStatus.Inactive) {
-	  newMapTilesActionStatus.PlayerActionList()
-	}
-  }
-
-  function showCityActionList() {
-    //prettier-ignore
-    if (actualMapTilesActionStatus.Inactive) {
-	  newMapTilesActionStatus.CityActionList()
-	}
-  }
-
-  function showDistrictActionList() {
-    //prettier-ignore
-    if (actualMapTilesActionStatus.Inactive) {
-	  newMapTilesActionStatus.DistrictActionList()
-	}
-  }
-
-  function showEmptyTileActionList() {
-    //prettier-ignore
-    if (actualMapTilesActionStatus.Inactive) {
-	  newMapTilesActionStatus.EmptyTileActionList()
-	}
-  }
-
-  return { clickedTile, handleClickOnMapTile, handleOpenPlayerActionList, handleClosePlayerActionList }
+  return { clickedTile, handleClickOnMapTile }
 }

@@ -5,20 +5,19 @@ import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
 import { EPanels } from "@/types/enumeration/EPanels"
-import { usePathname } from "next/navigation"
-import { useEffect } from "react"
 
-export function useResetModalsOnRouteChange() {
-  const pathname = usePathname()
+export function useResetModals() {
   const { setModalBottomCenterBarAtom } = useModalBottomCenterBar()
   const { setModalLeftTopBar } = useModalLeftTopBar()
   const { setModalRightCenter } = useModalRightCenter()
   const { setModalTopCenter } = useModalTopCenter()
 
-  useEffect(() => {
-    setModalRightCenter(EPanels.Inactive)
-    setModalLeftTopBar(EPanels.Inactive)
+  function resetModals() {
     setModalBottomCenterBarAtom(EPanels.Inactive)
+    setModalLeftTopBar(EPanels.Inactive)
+    setModalRightCenter(EPanels.Inactive)
     setModalTopCenter(EPanels.Inactive)
-  }, [pathname])
+  }
+
+  return { resetModals }
 }
