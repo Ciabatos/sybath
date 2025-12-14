@@ -1,24 +1,14 @@
 "use client"
 
-import { useModalBottomCenterBar } from "@/methods/hooks/modals/useModalBottomCenterBar"
-import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
-import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
-import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
-import { EPanels } from "@/types/enumeration/EPanels"
+import { useResetModals } from "@/methods/hooks/modals/useResetModals"
 import { usePathname } from "next/navigation"
 import { useEffect } from "react"
 
 export function useResetModalsOnRouteChange() {
   const pathname = usePathname()
-  const { setModalBottomCenterBarAtom } = useModalBottomCenterBar()
-  const { setModalLeftTopBar } = useModalLeftTopBar()
-  const { setModalRightCenter } = useModalRightCenter()
-  const { setModalTopCenter } = useModalTopCenter()
+  const { resetModals } = useResetModals()
 
   useEffect(() => {
-    setModalRightCenter(EPanels.Inactive)
-    setModalLeftTopBar(EPanels.Inactive)
-    setModalBottomCenterBarAtom(EPanels.Inactive)
-    setModalTopCenter(EPanels.Inactive)
-  }, [pathname])
+    resetModals()
+  }, [pathname, resetModals])
 }
