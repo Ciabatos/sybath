@@ -1,17 +1,17 @@
 "use client"
 
-import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import styles from "@/components/modals/styles/ModalLeftTopBar.module.css"
+import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 
 export default function ModalLeftTopBar() {
-  const { ActivePanel } = useModalLeftTopBar()
+  const { ModalLeftTopBar } = useModalLeftTopBar()
 
-  if (!ActivePanel) return null
+  if (!ModalLeftTopBar) return null
 
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContainer}>
-        <ActivePanel />
+        <ModalLeftTopBar />
       </div>
     </div>
   )

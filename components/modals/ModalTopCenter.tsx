@@ -1,17 +1,17 @@
 "use client"
 
-import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
 import styles from "@/components/modals/styles/ModalTopCenter.module.css"
+import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
 
 export default function ModalTopCenter() {
-  const { ActivePanel } = useModalTopCenter()
+  const { ModalTopCenterPanel } = useModalTopCenter()
 
-  if (!ActivePanel) return null
+  if (!ModalTopCenterPanel) return null
 
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContainer}>
-        <ActivePanel />
+        <ModalTopCenterPanel />
       </div>
     </div>
   )

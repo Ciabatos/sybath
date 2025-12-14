@@ -4,14 +4,14 @@ import styles from "@/components/modals/styles/ModalBottomCenterBar.module.css"
 import { useModalBottomCenterBar } from "@/methods/hooks/modals/useModalBottomCenterBar"
 
 export default function ModalBottomCenterBar() {
-  const { ActivePanel } = useModalBottomCenterBar()
+  const { ModalBottomCenterBar } = useModalBottomCenterBar()
 
-  if (!ActivePanel) return null
+  if (!ModalBottomCenterBar) return null
 
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContainer}>
-        <ActivePanel />
+        <ModalBottomCenterBar />
       </div>
     </div>
   )
