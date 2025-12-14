@@ -5,7 +5,7 @@ import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { usePlayerAbility } from "@/methods/hooks/players/composite/usePlayerAbility"
 import { EPanels } from "@/types/enumeration/EPanels"
 
-export default function PanelPlayerAbilities() {
+export default function PanelPlayerAbilities({ closePanel }: TParams) {
   const { playerAbilities, selectAbility } = usePlayerAbility()
   const { setStatus } = useModalLeftTopBar()
 

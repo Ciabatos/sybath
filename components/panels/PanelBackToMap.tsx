@@ -3,7 +3,12 @@ import styles from "@/components/panels/styles/PanelBackToMap.module.css"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
-export default function PanelBackToMap({ closePanel }) {
+
+type TParams = {
+  closePanel: () => void
+}
+
+export default function PanelBackToMap({ closePanel }: TParams) {
   return (
     <div className={styles.container}>
       <Link href='/map'>

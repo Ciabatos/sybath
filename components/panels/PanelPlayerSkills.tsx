@@ -2,7 +2,11 @@
 
 import { usePlayerSkills } from "@/methods/hooks/players/composite/usePlayerSkills"
 
-export default function PanelPlayerSkills() {
+type TParams = {
+  closePanel: () => void
+}
+
+export default function PanelPlayerSkills({ closePanel }: TParams) {
   const { playerSkills } = usePlayerSkills()
 
   return (

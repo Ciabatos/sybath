@@ -14,7 +14,11 @@ import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { EPanels } from "@/types/enumeration/EPanels"
 
-export function PanelEmptyTilePanel() {
+type TParams = {
+  closePanel: () => void
+}
+
+export function PanelEmptyTilePanel({ closePanel }: TParams) {
   // const { actualMapTilesActionStatus, resetMapTilesActionStatus } = useModal()
   const { ActivePanel, setStatus } = useModalLeftTopBar()
   const { getClickedMapTile } = useMapTileActions()

@@ -3,7 +3,11 @@ import { Button } from "@/components/ui/button"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import Link from "next/link"
 
-export default function PanelCityActionBar({ closePanel }) {
+type TParams = {
+  closePanel: () => void
+}
+
+export default function PanelCityActionBar({ closePanel }: TParams) {
   const { getClickedMapTile } = useMapTileActions()
 
   const handleButtonEnter = () => {
