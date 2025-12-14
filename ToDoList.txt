@@ -29,6 +29,7 @@ UI i flow dla „systemu informacji”
 
 rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmianie URL
 
+pozycje graczy ustaw poprawnie
 
 Zajac sie hookami dla paneli - przepisac je od nowa
 

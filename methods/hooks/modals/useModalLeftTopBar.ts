@@ -1,3 +1,5 @@
+"use client"
+
 import { modalLeftTopBarAtom } from "@/store/atoms"
 import { EPanels } from "@/types/enumeration/EPanels"
 import { useAtom } from "jotai"
@@ -8,7 +10,7 @@ export function useModalLeftTopBar() {
   const [modalLeftTopBar, setModalLeftTopBar] = useAtom(modalLeftTopBarAtom)
   const { loadPanel } = useLazyPanelLoader()
 
-  const [ModalLeftTopBar, setActivePanel] = useState<FC | null>(null)
+  const [ModalLeftTopBar, setActivePanel] = useState<FC<{ closePanel: () => void }> | null>(null)
 
   useEffect(() => {
     if (modalLeftTopBar === EPanels.Inactive) {
@@ -21,5 +23,9 @@ export function useModalLeftTopBar() {
     })
   }, [modalLeftTopBar, loadPanel])
 
-  return { ModalLeftTopBar, setModalLeftTopBar }
+  function resetModalLeftTopBar() {
+    setModalLeftTopBar(EPanels.Inactive)
+  }
+
+  return { ModalLeftTopBar, setModalLeftTopBar, resetModalLeftTopBar }
 }

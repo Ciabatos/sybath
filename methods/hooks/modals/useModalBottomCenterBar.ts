@@ -1,4 +1,5 @@
-// hooks/
+"use client"
+
 import { modalBottomCenterBarAtom } from "@/store/atoms"
 import { EPanels } from "@/types/enumeration/EPanels"
 import { useAtom } from "jotai"
@@ -6,10 +7,10 @@ import { FC, useEffect, useState } from "react"
 import { useLazyPanelLoader } from "./useLazyPanelLoader"
 
 export function useModalBottomCenterBar() {
-  const [modalBottomCenterBar, setModalBottomCenterBarAtom] = useAtom(modalBottomCenterBarAtom)
+  const [modalBottomCenterBar, setModalBottomCenterBar] = useAtom(modalBottomCenterBarAtom)
   const { loadPanel } = useLazyPanelLoader()
 
-  const [ModalBottomCenterBar, setActivePanel] = useState<FC | null>(null)
+  const [ModalBottomCenterBar, setActivePanel] = useState<FC<{ closePanel: () => void }> | null>(null)
 
   useEffect(() => {
     if (modalBottomCenterBar === EPanels.Inactive) {
@@ -22,5 +23,9 @@ export function useModalBottomCenterBar() {
     })
   }, [modalBottomCenterBar, loadPanel])
 
-  return { ModalBottomCenterBar, setModalBottomCenterBarAtom }
+  function resetModalBottomCenterBar() {
+    setModalBottomCenterBar(EPanels.Inactive)
+  }
+
+  return { ModalBottomCenterBar, setModalBottomCenterBar, resetModalBottomCenterBar }
 }

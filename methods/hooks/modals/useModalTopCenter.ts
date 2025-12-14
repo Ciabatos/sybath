@@ -1,3 +1,5 @@
+"use client"
+
 import { modalTopCenterAtom } from "@/store/atoms"
 import { EPanels } from "@/types/enumeration/EPanels"
 import { useAtom } from "jotai"
@@ -8,7 +10,7 @@ export function useModalTopCenter() {
   const [modalTopCenter, setModalTopCenter] = useAtom(modalTopCenterAtom)
   const { loadPanel } = useLazyPanelLoader()
 
-  const [ModalTopCenterPanel, setActivePanel] = useState<FC | null>(null)
+  const [ModalTopCenterPanel, setActivePanel] = useState<FC<{ closePanel: () => void }> | null>(null)
 
   useEffect(() => {
     if (modalTopCenter === EPanels.Inactive) {
@@ -21,5 +23,9 @@ export function useModalTopCenter() {
     })
   }, [modalTopCenter, loadPanel])
 
-  return { ModalTopCenterPanel, setModalTopCenter }
+  function resetModalTopCeneter() {
+    setModalTopCenter(EPanels.Inactive)
+  }
+
+  return { ModalTopCenterPanel, setModalTopCenter, resetModalTopCeneter }
 }

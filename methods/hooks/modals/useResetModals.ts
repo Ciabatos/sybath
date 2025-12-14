@@ -7,13 +7,13 @@ import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
 import { EPanels } from "@/types/enumeration/EPanels"
 
 export function useResetModals() {
-  const { setModalBottomCenterBarAtom } = useModalBottomCenterBar()
+  const { setModalBottomCenterBar } = useModalBottomCenterBar()
   const { setModalLeftTopBar } = useModalLeftTopBar()
   const { setModalRightCenter } = useModalRightCenter()
   const { setModalTopCenter } = useModalTopCenter()
 
   function resetModals() {
-    setModalBottomCenterBarAtom(EPanels.Inactive)
+    setModalBottomCenterBar(EPanels.Inactive)
     setModalLeftTopBar(EPanels.Inactive)
     setModalRightCenter(EPanels.Inactive)
     setModalTopCenter(EPanels.Inactive)

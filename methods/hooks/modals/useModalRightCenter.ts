@@ -1,4 +1,5 @@
-// hooks/useModalRightCenter.ts
+"use client"
+
 import { modalRightCenterAtom } from "@/store/atoms"
 import { EPanels } from "@/types/enumeration/EPanels"
 import { useAtom } from "jotai"
@@ -9,7 +10,7 @@ export function useModalRightCenter() {
   const [modalRightCenter, setModalRightCenter] = useAtom(modalRightCenterAtom)
   const { loadPanel } = useLazyPanelLoader()
 
-  const [ModalRightCenter, setActivePanel] = useState<FC | null>(null)
+  const [ModalRightCenter, setActivePanel] = useState<FC<{ closePanel: () => void }> | null>(null)
 
   useEffect(() => {
     if (modalRightCenter === EPanels.Inactive) {
@@ -22,5 +23,9 @@ export function useModalRightCenter() {
     })
   }, [modalRightCenter, loadPanel])
 
-  return { ModalRightCenter, setModalRightCenter }
+  function resetModalRightCenter() {
+    setModalRightCenter(EPanels.Inactive)
+  }
+
+  return { ModalRightCenter, setModalRightCenter, resetModalRightCenter }
 }

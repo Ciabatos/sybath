@@ -1,3 +1,5 @@
+"use client"
+
 import { FC, useCallback } from "react"
 
 export function useLazyPanelLoader() {
