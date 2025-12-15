@@ -3,6 +3,8 @@ import { joinMap } from "@/methods/functions/map/joinMap"
 import { createSwrFallback } from "@/methods/functions/util/createSwrFallback"
 import { getAttributesAbilitiesServer } from "@/methods/server-fetchers/attributes/core/getAttributesAbilitiesServer"
 import { getAttributesSkillsServer } from "@/methods/server-fetchers/attributes/core/getAttributesSkillsServer"
+import { getPlayerAbilitiesServer } from "@/methods/server-fetchers/attributes/core/getPlayerAbilitiesServer"
+import { getPlayerSkillsServer } from "@/methods/server-fetchers/attributes/core/getPlayerSkillsServer"
 import { getCitiesCitiesByKeyServer } from "@/methods/server-fetchers/cities/core/getCitiesCitiesByKeyServer"
 import { getDistrictsDistrictsByKeyServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictsByKeyServer"
 import { getDistrictsDistrictTypesServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictTypesServer"
@@ -47,15 +49,15 @@ export async function getMapData(mapId: number) {
     getGetPlayerInventoryServer({ playerId }),
   ])
 
-  const joinedMap = joinMap(
-    mapTiles.byKey,
-    terrainTypes.byKey,
-    landscapeTypes.byKey,
-    cities.byKey,
-    districts.byKey,
-    districtTypes.byKey,
-    playerVisibleMapData.byKey,
-  )
+  const joinedMap = joinMap({
+    tiles: mapTiles.byKey,
+    terrainTypes: terrainTypes.byKey,
+    landscapeTypes: landscapeTypes.byKey,
+    cities: cities.byKey,
+    districts: districts.byKey,
+    districtTypes: districtTypes.byKey,
+    playerVisibleMapData: playerVisibleMapData.byKey,
+  })
 
   const fallbackData = createSwrFallback(
     mapTiles,

@@ -29,15 +29,15 @@ export async function getJoinedMap(mapId: number) {
       getPlayerVisibleMapDataServer({ playerId }),
     ])
 
-  const joinedMap = joinMap(
-    mapTiles.byKey,
-    terrainTypes.byKey,
-    landscapeTypes.byKey,
-    cities.byKey,
-    districts.byKey,
-    districtTypes.byKey,
-    playerVisibleMapData.byKey,
-  )
+  const joinedMap = joinMap({
+    tiles: mapTiles.byKey,
+    terrainTypes: terrainTypes.byKey,
+    landscapeTypes: landscapeTypes.byKey,
+    cities: cities.byKey,
+    districts: districts.byKey,
+    districtTypes: districtTypes.byKey,
+    playerVisibleMapData: playerVisibleMapData.byKey,
+  })
 
   return { terrainTypes, mapTiles, landscapeTypes, cities, districts, districtTypes, playerVisibleMapData, joinedMap }
 }

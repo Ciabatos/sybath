@@ -11,7 +11,7 @@ type TJoinCityParams = {
   landscapeTypes: TWorldLandscapeTypesRecordById
   buildings: TBuildingsBuildingsRecordByCityTileXCityTileY
   buildingsTypes: TBuildingsBuildingTypesRecordById
-  options: {
+  options?: {
     oldDataToUpdate?: TJoinCityByXY
   }
 }

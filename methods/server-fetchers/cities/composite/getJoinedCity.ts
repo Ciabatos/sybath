@@ -24,13 +24,13 @@ export async function getJoinedCity(cityId: number) {
     getBuildingsBuildingTypesServer(),
   ])
 
-  const joinedCity = joinCity(
-    cityTiles.byKey,
-    terrainTypes.byKey,
-    landscapeTypes.byKey,
-    buildings.byKey,
-    buildingTypes.byKey,
-  )
+  const joinedCity = joinCity({
+    tiles: cityTiles.byKey,
+    terrainTypes: terrainTypes.byKey,
+    landscapeTypes: landscapeTypes.byKey,
+    buildings: buildings.byKey,
+    buildingsTypes: buildingTypes.byKey,
+  })
 
   return { cityTiles, terrainTypes, landscapeTypes, buildings, buildingTypes, joinedCity }
 }

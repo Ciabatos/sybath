@@ -15,7 +15,7 @@ type TJoinMapParams = {
   districts: TDistrictsDistrictsRecordByMapTileXMapTileY
   districtTypes: TDistrictsDistrictTypesRecordById
   playerVisibleMapData: TPlayerVisibleMapDataRecordByMapTileXMapTileY
-  options: {
+  options?: {
     oldDataToUpdate?: TJoinMapByXY
   }
 }
