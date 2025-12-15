@@ -29,7 +29,8 @@ UI i flow dla „systemu informacji”
 
 rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmianie URL
 
-pozycje graczy ustaw poprawnie
+pozycje graczy ustaw poprawnie - chyba wywalic z renderowania, dodac panel z graczami i tam mozna wyswietlac gdzie sa
+- dodac jedynie moja pozyccje ?
 
 Zajac sie hookami dla paneli - przepisac je od nowa
 
