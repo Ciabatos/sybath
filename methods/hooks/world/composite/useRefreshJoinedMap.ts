@@ -20,7 +20,7 @@ interface Props {
   districtTypes: TDistrictsDistrictTypesRecordById
 }
 
-export function useRefreshMapHandling({ joinedMap, terrainTypes, landscapeTypes, districtTypes }: Props) {
+export function useRefreshJoinedMap({ joinedMap, terrainTypes, landscapeTypes, districtTypes }: Props) {
   const { playerId } = usePlayerId()
   const [refreshedJoinedMap, setJoinedMap] = useAtom(joinedMapAtom)
   const { mapTiles } = useFetchWorldMapTiles()
@@ -29,19 +29,18 @@ export function useRefreshMapHandling({ joinedMap, terrainTypes, landscapeTypes,
   const { districts } = useFetchDistrictsDistricts()
 
   useEffect(() => {
-    if (mapTiles) {
-      const refreshedData = joinMap({
-        tiles: mapTiles,
-        terrainTypes: terrainTypes,
-        landscapeTypes: landscapeTypes,
-        cities: cities,
-        districts: districts,
-        districtTypes: districtTypes,
-        playerVisibleMapData: playerVisibleMapData,
-        options: { oldDataToUpdate: joinedMap },
-      })
-      setJoinedMap(refreshedData)
-    }
+    const refreshedData = joinMap({
+      tiles: mapTiles,
+      terrainTypes: terrainTypes,
+      landscapeTypes: landscapeTypes,
+      cities: cities,
+      districts: districts,
+      districtTypes: districtTypes,
+      playerVisibleMapData: playerVisibleMapData,
+      options: { oldDataToUpdate: joinedMap },
+    })
+    setJoinedMap(refreshedData)
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mapTiles, cities, districts, playerVisibleMapData])
 

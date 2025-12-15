@@ -22,7 +22,7 @@ export default async function CityPage({ params }: { params: TParams }) {
   if (!cityId || isNaN(cityId)) {
     return null
   }
-  const cityData = await getCityData(cityId)
+  const cityData = await getCityData(cityId, playerId)
 
   if (!cityData) {
     return null

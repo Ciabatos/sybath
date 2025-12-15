@@ -5,7 +5,7 @@ import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/sch
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { TJoinMapByXY } from "@/methods/functions/map/joinMap"
-import { useRefreshMapHandling } from "@/methods/hooks/world/composite/useRefreshMapHandling"
+import { useRefreshJoinedMap } from "@/methods/hooks/world/composite/useRefreshJoinedMap"
 
 interface Props {
   joinedMap: TJoinMapByXY
@@ -15,7 +15,7 @@ interface Props {
 }
 
 export default function MapHandling({ joinedMap, terrainTypes, landscapeTypes, districtTypes }: Props) {
-  const { refreshedJoinedMap } = useRefreshMapHandling({ joinedMap, terrainTypes, landscapeTypes, districtTypes })
+  const { refreshedJoinedMap } = useRefreshJoinedMap({ joinedMap, terrainTypes, landscapeTypes, districtTypes })
 
   return (
     <>

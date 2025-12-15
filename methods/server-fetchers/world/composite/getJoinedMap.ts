@@ -1,6 +1,5 @@
 "use server"
 
-import { auth } from "@/auth"
 import { joinMap } from "@/methods/functions/map/joinMap"
 import { getCitiesCitiesByKeyServer } from "@/methods/server-fetchers/cities/core/getCitiesCitiesByKeyServer"
 import { getDistrictsDistrictsByKeyServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictsByKeyServer"
@@ -10,14 +9,7 @@ import { getWorldMapTilesByKeyServer } from "@/methods/server-fetchers/world/cor
 import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
 import { getPlayerVisibleMapDataServer } from "@/methods/server-fetchers/world/getPlayerVisibleMapDataServer"
 
-export async function getJoinedMap(mapId: number) {
-  const session = await auth()
-  const playerId = session?.user?.playerId
-
-  if (!playerId || isNaN(playerId)) {
-    return
-  }
-
+export async function getJoinedMap(mapId: number, playerId: number) {
   const [terrainTypes, mapTiles, landscapeTypes, cities, districts, districtTypes, playerVisibleMapData] =
     await Promise.all([
       getWorldTerrainTypesServer(),

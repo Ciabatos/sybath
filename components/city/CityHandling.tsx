@@ -5,7 +5,7 @@ import { TBuildingsBuildingTypesRecordById } from "@/db/postgresMainDatabase/sch
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { TJoinCityByXY } from "@/methods/functions/city/joinCity"
-import { useRefreshCityHandling } from "@/methods/hooks/cities/composite/useRefreshCityHandling"
+import { useRefreshJoinedCity } from "@/methods/hooks/cities/composite/useRefreshJoinedCity"
 
 interface Props {
   cityId: number
@@ -16,7 +16,7 @@ interface Props {
 }
 
 export default function CityHandling({ cityId, joinedCity, terrainTypes, landscapeTypes, buildingsTypes }: Props) {
-  const { refreshedJoinedCity } = useRefreshCityHandling({
+  const { refreshedJoinedCity } = useRefreshJoinedCity({
     cityId,
     joinedCity,
     terrainTypes,

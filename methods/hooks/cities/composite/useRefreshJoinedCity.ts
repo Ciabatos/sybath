@@ -18,25 +18,24 @@ interface Props {
   buildingsTypes: TBuildingsBuildingTypesRecordById
 }
 
-export function useRefreshCityHandling({ cityId, joinedCity, terrainTypes, landscapeTypes, buildingsTypes }: Props) {
+export function useRefreshJoinedCity({ cityId, joinedCity, terrainTypes, landscapeTypes, buildingsTypes }: Props) {
   const [refreshedJoinedCity, setJoinedCity] = useAtom(joinedCityAtom)
   const { cityTiles } = useFetchCitiesCityTilesByKey({ cityId })
   const { buildings } = useFetchBuildingsBuildingsByKey({ cityId })
 
   useEffect(() => {
-    if (cityTiles) {
-      const refreshedData = joinCity({
-        tiles: cityTiles,
-        terrainTypes: terrainTypes,
-        landscapeTypes: landscapeTypes,
-        buildings: buildings,
-        buildingsTypes: buildingsTypes,
-        options: {
-          oldDataToUpdate: joinedCity,
-        },
-      })
-      setJoinedCity(refreshedData)
-    }
+    const refreshedData = joinCity({
+      tiles: cityTiles,
+      terrainTypes: terrainTypes,
+      landscapeTypes: landscapeTypes,
+      buildings: buildings,
+      buildingsTypes: buildingsTypes,
+      options: {
+        oldDataToUpdate: joinedCity,
+      },
+    })
+    setJoinedCity(refreshedData)
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cityTiles, buildings])
 

@@ -1,4 +1,3 @@
-import { auth } from "@/auth"
 import { joinCity } from "@/methods/functions/city/joinCity"
 import { createSwrFallback } from "@/methods/functions/util/createSwrFallback"
 import { getAttributesAbilitiesServer } from "@/methods/server-fetchers/attributes/core/getAttributesAbilitiesServer"
@@ -12,14 +11,7 @@ import { getGetPlayerInventoryServer } from "@/methods/server-fetchers/inventory
 import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
 import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
 
-export async function getCityData(cityId: number) {
-  const session = await auth()
-  const playerId = session?.user?.playerId
-
-  if (!playerId || isNaN(playerId)) {
-    return
-  }
-
+export async function getCityData(cityId: number, playerId: number) {
   const [
     cityTiles,
     terrainTypes,

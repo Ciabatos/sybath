@@ -1,4 +1,3 @@
-import { auth } from "@/auth"
 import { joinMap } from "@/methods/functions/map/joinMap"
 import { createSwrFallback } from "@/methods/functions/util/createSwrFallback"
 import { getAttributesAbilitiesServer } from "@/methods/server-fetchers/attributes/core/getAttributesAbilitiesServer"
@@ -13,14 +12,7 @@ import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/co
 import { getWorldMapTilesByKeyServer } from "@/methods/server-fetchers/world/core/getWorldMapTilesByKeyServer"
 import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
 
-export async function getMapData(mapId: number) {
-  const session = await auth()
-  const playerId = session?.user?.playerId
-
-  if (!playerId || isNaN(playerId)) {
-    return
-  }
-
+export async function getMapData(mapId: number, playerId: number) {
   const [
     terrainTypes,
     mapTiles,

@@ -17,11 +17,12 @@ export type TPlayerMovementActionParams = {
 export async function playerMovementAction(params: TPlayerMovementActionParams) {
   const session = await auth()
   const playerId = session?.user?.playerId
-  const joinedMap = await getJoinedMap(params.mapId)
 
   if (!playerId || isNaN(playerId)) {
     return
   }
+
+  const joinedMap = await getJoinedMap(params.mapId, playerId)
 
   if (!joinedMap) {
     return
