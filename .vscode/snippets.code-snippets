@@ -1,0 +1,9 @@
+{
+  "Destructure useFetchCitiesCityTilesByKey": {
+    "prefix": "hook-useFetchCitiesCityTilesByKey",
+    "body": [
+      "const { cityTiles } = useFetchCitiesCityTilesByKey({ cityId })"
+    ],
+    "description": "Destructuring cityTiles from useFetchCitiesCityTilesByKey hook"
+  }
+}
