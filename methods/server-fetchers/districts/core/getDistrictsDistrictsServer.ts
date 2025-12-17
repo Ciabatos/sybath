@@ -12,6 +12,7 @@ export async function getDistrictsDistrictsServer(): Promise<{
   raw: TDistrictsDistricts[]
   byKey: TDistrictsDistrictsRecordByMapTileXMapTileY
   apiPath: string
+  atomName: string
 }> {
   const getDistrictsDistrictsData = await getDistrictsDistricts()
 
@@ -22,5 +23,5 @@ export async function getDistrictsDistrictsServer(): Promise<{
       ) as TDistrictsDistrictsRecordByMapTileXMapTileY)
     : {}
 
-  return { raw: getDistrictsDistrictsData, byKey: data, apiPath: `/api/districts/districts` }
+  return { raw: getDistrictsDistrictsData, byKey: data, apiPath: `/api/districts/districts`, atomName: `districtsAtom` }
 }

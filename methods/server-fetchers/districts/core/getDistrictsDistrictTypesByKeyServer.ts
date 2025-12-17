@@ -13,6 +13,7 @@ export async function getDistrictsDistrictTypesByKeyServer(params: TDistrictsDis
   raw: TDistrictsDistrictTypes[]
   byKey: TDistrictsDistrictTypesRecordById
   apiPath: string
+  atomName: string
 }> {
   const getDistrictsDistrictTypesByKeyData = await getDistrictsDistrictTypesByKey(params)
 
@@ -20,5 +21,10 @@ export async function getDistrictsDistrictTypesByKeyServer(params: TDistrictsDis
     ? (arrayToObjectKey(["id"], getDistrictsDistrictTypesByKeyData) as TDistrictsDistrictTypesRecordById)
     : {}
 
-  return { raw: getDistrictsDistrictTypesByKeyData, byKey: data, apiPath: `/api/districts/district-types/${params.id}` }
+  return {
+    raw: getDistrictsDistrictTypesByKeyData,
+    byKey: data,
+    apiPath: `/api/districts/district-types/${params.id}`,
+    atomName: `districtTypesAtom`,
+  }
 }

@@ -48,6 +48,8 @@ import { TPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/wor
 import { TPlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 import { TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/items"
 import { TPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
+import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
+import { TDistrictsDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/districts/districts"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanels>(EPanels.Inactive)
@@ -91,6 +93,8 @@ export const playerMapTilesGuardAreaAtom = atom<TAreaRecordByXY>({})
 export const actionTaskInProcessAtom = atom<TActionTaskInProcess>()
 
 //Tables
+export const districtsAtom = atom<TDistrictsDistrictsRecordByMapTileXMapTileY>({})
+export const districtTypesAtom = atom<TDistrictsDistrictTypesRecordById>({})
 export const itemsAtom = atom<TItemsItemsRecordById>({})
 export const abilitiesAtom = atom<TAttributesAbilitiesRecordById>({})
 export const terrainTypesAtom = atom<TWorldTerrainTypesRecordById>({})

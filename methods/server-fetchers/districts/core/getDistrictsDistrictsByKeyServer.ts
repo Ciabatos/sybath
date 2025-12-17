@@ -13,6 +13,7 @@ export async function getDistrictsDistrictsByKeyServer(params: TDistrictsDistric
   raw: TDistrictsDistricts[]
   byKey: TDistrictsDistrictsRecordByMapTileXMapTileY
   apiPath: string
+  atomName: string
 }> {
   const getDistrictsDistrictsByKeyData = await getDistrictsDistrictsByKey(params)
 
@@ -23,5 +24,10 @@ export async function getDistrictsDistrictsByKeyServer(params: TDistrictsDistric
       ) as TDistrictsDistrictsRecordByMapTileXMapTileY)
     : {}
 
-  return { raw: getDistrictsDistrictsByKeyData, byKey: data, apiPath: `/api/districts/districts/${params.mapId}` }
+  return {
+    raw: getDistrictsDistrictsByKeyData,
+    byKey: data,
+    apiPath: `/api/districts/districts/${params.mapId}`,
+    atomName: `districtsAtom`,
+  }
 }

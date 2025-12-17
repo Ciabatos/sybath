@@ -12,6 +12,7 @@ export async function getDistrictsDistrictTypesServer(): Promise<{
   raw: TDistrictsDistrictTypes[]
   byKey: TDistrictsDistrictTypesRecordById
   apiPath: string
+  atomName: string
 }> {
   const getDistrictsDistrictTypesData = await getDistrictsDistrictTypes()
 
@@ -19,5 +20,10 @@ export async function getDistrictsDistrictTypesServer(): Promise<{
     ? (arrayToObjectKey(["id"], getDistrictsDistrictTypesData) as TDistrictsDistrictTypesRecordById)
     : {}
 
-  return { raw: getDistrictsDistrictTypesData, byKey: data, apiPath: `/api/districts/district-types` }
+  return {
+    raw: getDistrictsDistrictTypesData,
+    byKey: data,
+    apiPath: `/api/districts/district-types`,
+    atomName: `districtTypesAtom`,
+  }
 }

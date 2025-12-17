@@ -136,6 +136,34 @@
       "const { playerInventory } = useFetchPlayerInventory({$1})"
     ],
     "description": "Destructuring usePlayerInventory hook"
+  },
+  "Destructure useDistrictsDistrictTypes": {
+    "prefix": "hook_districts_core_useDistrictsDistrictTypes",
+    "body": [
+      "const { districtTypes } = useFetchDistrictsDistrictTypes()"
+    ],
+    "description": "Destructuring useDistrictsDistrictTypes hook"
+  },
+  "Destructure useDistrictsDistrictTypesByKey": {
+    "prefix": "hook_districts_core_useDistrictsDistrictTypesByKey",
+    "body": [
+      "const { districtTypes } = useFetchDistrictsDistrictTypesByKey({$1})"
+    ],
+    "description": "Destructuring useDistrictsDistrictTypesByKey hook"
+  },
+  "Destructure useDistrictsDistricts": {
+    "prefix": "hook_districts_core_useDistrictsDistricts",
+    "body": [
+      "const { districts } = useFetchDistrictsDistricts()"
+    ],
+    "description": "Destructuring useDistrictsDistricts hook"
+  },
+  "Destructure useDistrictsDistrictsByKey": {
+    "prefix": "hook_districts_core_useDistrictsDistrictsByKey",
+    "body": [
+      "const { districts } = useFetchDistrictsDistrictsByKey({$1})"
+    ],
+    "description": "Destructuring useDistrictsDistrictsByKey hook"
   },//Automatic Snippets
 
 }
