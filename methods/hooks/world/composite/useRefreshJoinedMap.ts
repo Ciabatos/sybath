@@ -33,9 +33,9 @@ export function useRefreshJoinedMap({ joinedMap, landscapeTypes, districtTypes }
 
   useHydrateAtoms([[joinedMapAtom, joinedMap]])
 
-  useEffect(() => {
-    setJoinedMap(joinedMap)
-  }, [])
+  // useEffect(() => {
+  //   setJoinedMap(joinedMap)
+  // }, [])
 
   useEffect(() => {
     const refreshedData = joinMap({
@@ -46,7 +46,7 @@ export function useRefreshJoinedMap({ joinedMap, landscapeTypes, districtTypes }
       districts: districts,
       districtTypes: districtTypes,
       getPlayerPosition: getPlayerPosition,
-      options: { oldDataToUpdate: { ...joinedMap, ...refreshedJoinedMap } },
+      options: { oldDataToUpdate: refreshedJoinedMap },
     })
     setJoinedMap(refreshedData)
 
