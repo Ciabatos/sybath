@@ -37,6 +37,7 @@ dodac mapId do atomu
 dodac cityId do atomu
 wszystkie stałe propsy dodać do atomu landtypes, terrainTypes itp fallback swr uaktualnia atom -- to powoduje ze render incialny jest migoczacy w milisekunde
 pytanie czy renderowac incjalnie z propsow czy z atomow useRefreshJoinedMap przerobic albo w old data tiles atom albo props ale wtedy odwoluje sie do poczatkowych danych
+DODAC useHydrateAtoms PROVIDERA jak createSwrFallback !! bardzo latwe !!
 
 pozycje graczy ustaw poprawnie - chyba wywalic z renderowania, dodac panel z graczami i tam mozna wyswietlac gdzie sa
 - dodac jedynie moja pozyccje
