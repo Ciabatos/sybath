@@ -80,6 +80,27 @@
       "const { abilities } = useFetchAttributesAbilitiesByKey({$1})"
     ],
     "description": "Destructuring useAttributesAbilitiesByKey hook"
+  },  
+  "Destructure usePlayerAbilities": {
+    "prefix": "hook_attributes_core_usePlayerAbilities",
+    "body": [
+      "const { playerAbilities } = useFetchPlayerAbilities({$1})"
+    ],
+    "description": "Destructuring usePlayerAbilities hook"
+  },  
+  "Destructure usePlayerSkills": {
+    "prefix": "hook_attributes_core_usePlayerSkills",
+    "body": [
+      "const { playerSkills } = useFetchPlayerSkills({$1})"
+    ],
+    "description": "Destructuring usePlayerSkills hook"
+  },  
+  "Destructure usePlayerStats": {
+    "prefix": "hook_attributes_core_usePlayerStats",
+    "body": [
+      "const { playerStats } = useFetchPlayerStats({$1})"
+    ],
+    "description": "Destructuring usePlayerStats hook"
   },//Automatic Snippets
 
 }

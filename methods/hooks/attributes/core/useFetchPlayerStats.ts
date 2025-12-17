@@ -2,18 +2,18 @@
 
 "use client"
 import {
-  TGetPlayerStatsRecordByStatId,
-  TGetPlayerStatsParams,
-} from "@/db/postgresMainDatabase/schemas/attributes/getPlayerStats"
+  TPlayerStatsRecordByStatId,
+  TPlayerStatsParams,
+} from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
-import { getPlayerStatsAtom } from "@/store/atoms"
+import { playerStatsAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useRef } from "react"
 import useSWR from "swr"
 
-export function useFetchGetPlayerStats(params: TGetPlayerStatsParams) {
-  const getPlayerStats = useAtomValue(getPlayerStatsAtom)
-  const setGetPlayerStats = useSetAtom(getPlayerStatsAtom)
+export function useFetchPlayerStats(params: TPlayerStatsParams) {
+  const playerStats = useAtomValue(playerStatsAtom)
+  const setPlayerStats = useSetAtom(playerStatsAtom)
 
   const { data } = useSWR(`/api/attributes/rpc/get-player-stats/${params.playerId}`, { refreshInterval: 3000 })
 
@@ -22,11 +22,11 @@ export function useFetchGetPlayerStats(params: TGetPlayerStatsParams) {
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const index = data ? (arrayToObjectKey(["statId"], data) as TGetPlayerStatsRecordByStatId) : {}
-      setGetPlayerStats(index)
+      const index = data ? (arrayToObjectKey(["statId"], data) as TPlayerStatsRecordByStatId) : {}
+      setPlayerStats(index)
       prevDataRef.current = data
     }
-  }, [data, setGetPlayerStats])
+  }, [data, setPlayerStats])
 
-  return { getPlayerStats }
+  return { playerStats }
 }

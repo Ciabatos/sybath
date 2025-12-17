@@ -1,43 +1,30 @@
-// GENERATED CODE - DO NOT EDIT MANUALLY - dbGetTable.hbs
+// GENERATED CODE - DO NOT EDIT MANUALLY - dbGetMethodFetcher.hbs
 
 "use server"
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 import { snakeToCamelRows } from "@/methods/functions/util/snakeToCamel"
 
-export type TAttributesPlayerSkillsParams = {
+export type TPlayerSkillsParams = {
   playerId: number
 }
 
-export type TAttributesPlayerSkills = {
-  id: number
-  playerId: number
+export type TPlayerSkills = {
   skillId: number
   value: number
+  name: string
 }
 
-export type TAttributesPlayerSkillsRecordByPlayerId = Record<string, TAttributesPlayerSkills>
+export type TPlayerSkillsRecordBySkillId = Record<string, TPlayerSkills>
 
-export async function getAttributesPlayerSkills() {
-  try {
-    const sql = `SELECT * FROM attributes.get_player_skills();`
-
-    const result = await query(sql)
-    return snakeToCamelRows(result.rows) as TAttributesPlayerSkills[]
-  } catch (error) {
-    console.error("Error fetching getAttributesPlayerSkills:", error)
-    throw new Error("Failed to fetch getAttributesPlayerSkills")
-  }
-}
-
-export async function getAttributesPlayerSkillsByKey(params: TAttributesPlayerSkillsParams) {
+export async function getPlayerSkills(params: TPlayerSkillsParams) {
   try {
     const sqlParams = Object.values(params)
-    const sql = `SELECT * FROM attributes.get_player_skills_by_key($1);`
+    const sql = `SELECT * FROM attributes.get_player_skills($1);`
 
     const result = await query(sql, sqlParams)
-    return snakeToCamelRows(result.rows) as TAttributesPlayerSkills[]
+    return snakeToCamelRows(result.rows) as TPlayerSkills[]
   } catch (error) {
-    console.error("Error fetching getAttributesPlayerSkillsByKey:", error)
-    throw new Error("Failed to fetch getAttributesPlayerSkillsByKey")
+    console.error("Error fetching getPlayerSkills:", error)
+    throw new Error("Failed to fetch getPlayerSkills")
   }
 }

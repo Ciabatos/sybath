@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetMethodFetcher.hbs
 
 import { auth } from "@/auth"
-import { getPlayerSkills, TGetPlayerSkillsParams } from "@/db/postgresMainDatabase/schemas/attributes/getPlayerSkills"
+import { getPlayerSkills, TPlayerSkillsParams } from "@/db/postgresMainDatabase/schemas/attributes/playerSkills"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
@@ -10,7 +10,7 @@ type TApiParams = Record<string, string>
 
 const typeParamsSchema = z.object({
   playerId: z.coerce.number(),
-}) satisfies z.ZodType<TGetPlayerSkillsParams>
+}) satisfies z.ZodType<TPlayerSkillsParams>
 
 export async function GET(request: NextRequest, { params }: { params: TApiParams }): Promise<NextResponse> {
   const session = await auth()

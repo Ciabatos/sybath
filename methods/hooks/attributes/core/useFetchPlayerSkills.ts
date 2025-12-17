@@ -2,18 +2,18 @@
 
 "use client"
 import {
-  TGetPlayerSkillsRecordBySkillId,
-  TGetPlayerSkillsParams,
-} from "@/db/postgresMainDatabase/schemas/attributes/getPlayerSkills"
+  TPlayerSkillsRecordBySkillId,
+  TPlayerSkillsParams,
+} from "@/db/postgresMainDatabase/schemas/attributes/playerSkills"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
-import { getPlayerSkillsAtom } from "@/store/atoms"
+import { playerSkillsAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useRef } from "react"
 import useSWR from "swr"
 
-export function useFetchGetPlayerSkills(params: TGetPlayerSkillsParams) {
-  const getPlayerSkills = useAtomValue(getPlayerSkillsAtom)
-  const setGetPlayerSkills = useSetAtom(getPlayerSkillsAtom)
+export function useFetchPlayerSkills(params: TPlayerSkillsParams) {
+  const playerSkills = useAtomValue(playerSkillsAtom)
+  const setPlayerSkills = useSetAtom(playerSkillsAtom)
 
   const { data } = useSWR(`/api/attributes/rpc/get-player-skills/${params.playerId}`, { refreshInterval: 3000 })
 
@@ -22,11 +22,11 @@ export function useFetchGetPlayerSkills(params: TGetPlayerSkillsParams) {
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const index = data ? (arrayToObjectKey(["skillId"], data) as TGetPlayerSkillsRecordBySkillId) : {}
-      setGetPlayerSkills(index)
+      const index = data ? (arrayToObjectKey(["skillId"], data) as TPlayerSkillsRecordBySkillId) : {}
+      setPlayerSkills(index)
       prevDataRef.current = data
     }
-  }, [data, setGetPlayerSkills])
+  }, [data, setPlayerSkills])
 
-  return { getPlayerSkills }
+  return { playerSkills }
 }

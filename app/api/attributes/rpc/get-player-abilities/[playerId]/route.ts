@@ -3,8 +3,8 @@
 import { auth } from "@/auth"
 import {
   getPlayerAbilities,
-  TGetPlayerAbilitiesParams,
-} from "@/db/postgresMainDatabase/schemas/attributes/getPlayerAbilities"
+  TPlayerAbilitiesParams,
+} from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
@@ -13,7 +13,7 @@ type TApiParams = Record<string, string>
 
 const typeParamsSchema = z.object({
   playerId: z.coerce.number(),
-}) satisfies z.ZodType<TGetPlayerAbilitiesParams>
+}) satisfies z.ZodType<TPlayerAbilitiesParams>
 
 export async function GET(request: NextRequest, { params }: { params: TApiParams }): Promise<NextResponse> {
   const session = await auth()

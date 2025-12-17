@@ -41,6 +41,9 @@ import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/worl
 import { TWorldMapsRecordById } from "@/db/postgresMainDatabase/schemas/world/maps"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { TAttributesAbilitiesRecordById } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
+import { TPlayerAbilitiesRecordByAbilityId } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
+import { TPlayerSkillsRecordBySkillId } from "@/db/postgresMainDatabase/schemas/attributes/playerSkills"
+import { TPlayerStatsRecordByStatId } from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanels>(EPanels.Inactive)
@@ -109,6 +112,9 @@ export const playerSkillsAtom = atom<TAttributesPlayerSkillsRecordByPlayerId>({}
 export const playerAbilitiesAtom = atom<TAttributesPlayerAbilitiesRecordByPlayerId>({})
 
 //Functions
+export const playerStatsAtom = atom<TPlayerStatsRecordByStatId>({})
+export const playerSkillsAtom = atom<TPlayerSkillsRecordBySkillId>({})
+export const playerAbilitiesAtom = atom<TPlayerAbilitiesRecordByAbilityId>({})
 export const getPlayerVisionPlayersPositionsAtom = atom<TGetPlayerVisionPlayersPositionsRecordByXY>({})
 export const getPlayerPositionAtom = atom<TGetPlayerPositionRecordByXY>({})
 export const getPlayerMovementAtom = atom<TGetPlayerMovementRecordByXY>({})

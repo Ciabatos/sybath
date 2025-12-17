@@ -1,43 +1,30 @@
-// GENERATED CODE - DO NOT EDIT MANUALLY - dbGetTable.hbs
+// GENERATED CODE - DO NOT EDIT MANUALLY - dbGetMethodFetcher.hbs
 
 "use server"
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 import { snakeToCamelRows } from "@/methods/functions/util/snakeToCamel"
 
-export type TAttributesPlayerAbilitiesParams = {
+export type TPlayerAbilitiesParams = {
   playerId: number
 }
 
-export type TAttributesPlayerAbilities = {
-  id: number
-  playerId: number
+export type TPlayerAbilities = {
   abilityId: number
   value: number
+  name: string
 }
 
-export type TAttributesPlayerAbilitiesRecordByPlayerId = Record<string, TAttributesPlayerAbilities>
+export type TPlayerAbilitiesRecordByAbilityId = Record<string, TPlayerAbilities>
 
-export async function getAttributesPlayerAbilities() {
-  try {
-    const sql = `SELECT * FROM attributes.get_player_abilities();`
-
-    const result = await query(sql)
-    return snakeToCamelRows(result.rows) as TAttributesPlayerAbilities[]
-  } catch (error) {
-    console.error("Error fetching getAttributesPlayerAbilities:", error)
-    throw new Error("Failed to fetch getAttributesPlayerAbilities")
-  }
-}
-
-export async function getAttributesPlayerAbilitiesByKey(params: TAttributesPlayerAbilitiesParams) {
+export async function getPlayerAbilities(params: TPlayerAbilitiesParams) {
   try {
     const sqlParams = Object.values(params)
-    const sql = `SELECT * FROM attributes.get_player_abilities_by_key($1);`
+    const sql = `SELECT * FROM attributes.get_player_abilities($1);`
 
     const result = await query(sql, sqlParams)
-    return snakeToCamelRows(result.rows) as TAttributesPlayerAbilities[]
+    return snakeToCamelRows(result.rows) as TPlayerAbilities[]
   } catch (error) {
-    console.error("Error fetching getAttributesPlayerAbilitiesByKey:", error)
-    throw new Error("Failed to fetch getAttributesPlayerAbilitiesByKey")
+    console.error("Error fetching getPlayerAbilities:", error)
+    throw new Error("Failed to fetch getPlayerAbilities")
   }
 }
