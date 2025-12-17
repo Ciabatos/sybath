@@ -32,7 +32,6 @@ rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmiani
 
 wywalilem immera i dodalem equal, trzeba sie zastanowic nad undefined
 
-dodac mapId do atomu
 dodac cityId do atomu
 
 
