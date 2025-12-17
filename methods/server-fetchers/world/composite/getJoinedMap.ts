@@ -10,16 +10,15 @@ import { getWorldMapTilesByKeyServer } from "@/methods/server-fetchers/world/cor
 import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
 
 export async function getJoinedMap(mapId: number, playerId: number) {
-  const [terrainTypes, mapTiles, landscapeTypes, cities, districts, districtTypes, getPlayerPosition] =
-    await Promise.all([
-      getWorldTerrainTypesServer(),
-      getWorldMapTilesByKeyServer({ mapId }),
-      getWorldLandscapeTypesServer(),
-      getCitiesCitiesByKeyServer({ mapId }),
-      getDistrictsDistrictsByKeyServer({ mapId }),
-      getDistrictsDistrictTypesServer(),
-      getPlayerPositionServer({ mapId, playerId }),
-    ])
+  const [terrainTypes, mapTiles, landscapeTypes, cities, districts, districtTypes, playerPosition] = await Promise.all([
+    getWorldTerrainTypesServer(),
+    getWorldMapTilesByKeyServer({ mapId }),
+    getWorldLandscapeTypesServer(),
+    getCitiesCitiesByKeyServer({ mapId }),
+    getDistrictsDistrictsByKeyServer({ mapId }),
+    getDistrictsDistrictTypesServer(),
+    getPlayerPositionServer({ mapId, playerId }),
+  ])
 
   const joinedMap = joinMap({
     tiles: mapTiles.byKey,
@@ -28,8 +27,8 @@ export async function getJoinedMap(mapId: number, playerId: number) {
     cities: cities.byKey,
     districts: districts.byKey,
     districtTypes: districtTypes.byKey,
-    getPlayerPosition: getPlayerPosition.byKey,
+    playerPosition: playerPosition.byKey,
   })
 
-  return { terrainTypes, mapTiles, landscapeTypes, cities, districts, districtTypes, getPlayerPosition, joinedMap }
+  return { terrainTypes, mapTiles, landscapeTypes, cities, districts, districtTypes, playerPosition, joinedMap }
 }
