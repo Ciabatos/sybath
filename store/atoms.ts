@@ -16,7 +16,6 @@ import { TPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schema
 import { TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/items"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
-import { TWorldMapTilesPlayersPositionsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/world/mapTilesPlayersPositions"
 import { TWorldMapsRecordById } from "@/db/postgresMainDatabase/schemas/world/maps"
 import { TPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
 import { TPlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
@@ -27,7 +26,6 @@ import { TAreaRecordByXY } from "@/methods/hooks/world/composite/useMapTilesArea
 import { TMapTilesMovementPathRecordByXY } from "@/methods/hooks/world/composite/useMapTilesPathFromPointToPoint"
 import { EPanels } from "@/types/enumeration/EPanels"
 import { atom } from "jotai"
-import { TAttributesSkillsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/skills"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanels>(EPanels.Inactive)
@@ -51,7 +49,6 @@ export const playerMapTilesMovementPathAtom = atom<TMapTilesMovementPathRecordBy
 export const playerMapTilesGuardAreaAtom = atom<TAreaRecordByXY>({})
 
 //Tables
-export const skillsAtom = atom<TAttributesSkillsRecordById>({})
 export const buildingsAtom = atom<TBuildingsBuildingsRecordByCityTileXCityTileY>({})
 export const buildingTypesAtom = atom<TBuildingsBuildingTypesRecordById>({})
 export const cityTilesAtom = atom<TCitiesCityTilesRecordByXY>({})
@@ -64,7 +61,6 @@ export const terrainTypesAtom = atom<TWorldTerrainTypesRecordById>({})
 export const mapsAtom = atom<TWorldMapsRecordById>({})
 export const mapTilesAtom = atom<TWorldMapTilesRecordByXY>({})
 export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
-export const mapTilesPlayersPositionsAtom = atom<TWorldMapTilesPlayersPositionsRecordByMapTileXMapTileY>({})
 export const statsAtom = atom<TAttributesStatsRecordById>({})
 export const skillsAtom = atom<TAttributesSkillsRecordById>({})
 
