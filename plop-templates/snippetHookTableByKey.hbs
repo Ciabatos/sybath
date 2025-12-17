@@ -2,7 +2,7 @@
   "Destructure use{{schemaTablePascalName}}ByKey": {
     "prefix": "hook_{{schema}}_core_use{{schemaTablePascalName}}ByKey",
     "body": [
-      "const { {{tableCamelName}} } = useFetch{{schemaTablePascalName}}ByKey({$1})"
+      "const { {{tableCamelName}} } = useFetch{{schemaTablePascalName}}ByKey({{#if methodParamsColumns}}{$1}{{/if}})"
     ],
     "description": "Destructuring use{{schemaTablePascalName}}ByKey hook"
   },
