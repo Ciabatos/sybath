@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as Atoms from "@/store/atoms" // import wszystkich atomów
 import { WritableAtom } from "jotai"
 
@@ -11,7 +12,7 @@ export function createAtomHydration(...entities: TServerEntity[]): [WritableAtom
 
   for (const entity of entities) {
     const atomKey = `${entity.atomName}`
-    console.log(atomKey)
+    console.log("automatic hydration:", atomKey)
     // @ts-expect-error dynamiczny dostęp do atomów
     const atom = Atoms[atomKey] as WritableAtom<any, [any], void> | undefined
 

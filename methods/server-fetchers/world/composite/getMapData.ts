@@ -1,4 +1,3 @@
-import { getPlayerPosition } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 import { joinMap } from "@/methods/functions/map/joinMap"
 import { createAtomHydration } from "@/methods/functions/util/createAtomHydration"
 import { createSwrFallback } from "@/methods/functions/util/createSwrFallback"
@@ -14,8 +13,6 @@ import { getPlayerPositionServer } from "@/methods/server-fetchers/world/core/ge
 import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
 import { getWorldMapTilesByKeyServer } from "@/methods/server-fetchers/world/core/getWorldMapTilesByKeyServer"
 import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
-import { mapIdAtom, playerIdAtom } from "@/store/atoms"
-import { WritableAtom } from "jotai"
 
 export async function getMapData(mapId: number, playerId: number) {
   const [
@@ -71,7 +68,7 @@ export async function getMapData(mapId: number, playerId: number) {
     landscapeTypes,
   )
 
-  const automaticHydrationData = createAtomHydration(
+  const atomHydrationData = createAtomHydration(
     mapTiles,
     skills,
     abilities,
@@ -84,15 +81,10 @@ export async function getMapData(mapId: number, playerId: number) {
     playerIventory,
     terrainTypes,
     landscapeTypes,
+    { atomName: "mapIdAtom", byKey: mapId },
+    { atomName: "playerIdAtom", byKey: playerId },
+    { atomName: "joinedMapAtom", byKey: joinedMap },
   )
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const manualHydrationData: [WritableAtom<any, [any], void>, any][] = [
-    [mapIdAtom, mapId],
-    [playerIdAtom, playerId],
-  ]
-
-  const atomHydrationData = [...automaticHydrationData, ...manualHydrationData]
 
   return {
     terrainTypes,
@@ -103,7 +95,7 @@ export async function getMapData(mapId: number, playerId: number) {
     districtTypes,
     skills,
     abilities,
-    getPlayerPosition,
+    playerPosition,
     playerSkills,
     playerAbilities,
     playerIventory,
