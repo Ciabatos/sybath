@@ -164,6 +164,34 @@
       "const { districts } = useFetchDistrictsDistrictsByKey({$1})"
     ],
     "description": "Destructuring useDistrictsDistrictsByKey hook"
+  },
+  "Destructure useCitiesCities": {
+    "prefix": "hook_cities_core_useCitiesCities",
+    "body": [
+      "const { cities } = useFetchCitiesCities()"
+    ],
+    "description": "Destructuring useCitiesCities hook"
+  },
+  "Destructure useCitiesCitiesByKey": {
+    "prefix": "hook_cities_core_useCitiesCitiesByKey",
+    "body": [
+      "const { cities } = useFetchCitiesCitiesByKey({$1})"
+    ],
+    "description": "Destructuring useCitiesCitiesByKey hook"
+  },
+  "Destructure useCitiesCityTiles": {
+    "prefix": "hook_cities_core_useCitiesCityTiles",
+    "body": [
+      "const { cityTiles } = useFetchCitiesCityTiles()"
+    ],
+    "description": "Destructuring useCitiesCityTiles hook"
+  },
+  "Destructure useCitiesCityTilesByKey": {
+    "prefix": "hook_cities_core_useCitiesCityTilesByKey",
+    "body": [
+      "const { cityTiles } = useFetchCitiesCityTilesByKey({$1})"
+    ],
+    "description": "Destructuring useCitiesCityTilesByKey hook"
   },//Automatic Snippets
 
 }

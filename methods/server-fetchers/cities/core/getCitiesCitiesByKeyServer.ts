@@ -13,6 +13,7 @@ export async function getCitiesCitiesByKeyServer(params: TCitiesCitiesParams): P
   raw: TCitiesCities[]
   byKey: TCitiesCitiesRecordByMapTileXMapTileY
   apiPath: string
+  atomName: string
 }> {
   const getCitiesCitiesByKeyData = await getCitiesCitiesByKey(params)
 
@@ -20,5 +21,10 @@ export async function getCitiesCitiesByKeyServer(params: TCitiesCitiesParams): P
     ? (arrayToObjectKey(["mapTileX", "mapTileY"], getCitiesCitiesByKeyData) as TCitiesCitiesRecordByMapTileXMapTileY)
     : {}
 
-  return { raw: getCitiesCitiesByKeyData, byKey: data, apiPath: `/api/cities/cities/${params.mapId}` }
+  return {
+    raw: getCitiesCitiesByKeyData,
+    byKey: data,
+    apiPath: `/api/cities/cities/${params.mapId}`,
+    atomName: `citiesAtom`,
+  }
 }

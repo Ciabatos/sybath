@@ -12,6 +12,7 @@ export async function getCitiesCitiesServer(): Promise<{
   raw: TCitiesCities[]
   byKey: TCitiesCitiesRecordByMapTileXMapTileY
   apiPath: string
+  atomName: string
 }> {
   const getCitiesCitiesData = await getCitiesCities()
 
@@ -19,5 +20,5 @@ export async function getCitiesCitiesServer(): Promise<{
     ? (arrayToObjectKey(["mapTileX", "mapTileY"], getCitiesCitiesData) as TCitiesCitiesRecordByMapTileXMapTileY)
     : {}
 
-  return { raw: getCitiesCitiesData, byKey: data, apiPath: `/api/cities/cities` }
+  return { raw: getCitiesCitiesData, byKey: data, apiPath: `/api/cities/cities`, atomName: `citiesAtom` }
 }
