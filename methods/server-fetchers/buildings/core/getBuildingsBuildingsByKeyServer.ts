@@ -13,6 +13,7 @@ export async function getBuildingsBuildingsByKeyServer(params: TBuildingsBuildin
   raw: TBuildingsBuildings[]
   byKey: TBuildingsBuildingsRecordByCityTileXCityTileY
   apiPath: string
+  atomName: string
 }> {
   const getBuildingsBuildingsByKeyData = await getBuildingsBuildingsByKey(params)
 
@@ -23,5 +24,10 @@ export async function getBuildingsBuildingsByKeyServer(params: TBuildingsBuildin
       ) as TBuildingsBuildingsRecordByCityTileXCityTileY)
     : {}
 
-  return { raw: getBuildingsBuildingsByKeyData, byKey: data, apiPath: `/api/buildings/buildings/${params.cityId}` }
+  return {
+    raw: getBuildingsBuildingsByKeyData,
+    byKey: data,
+    apiPath: `/api/buildings/buildings/${params.cityId}`,
+    atomName: `buildingsAtom`,
+  }
 }

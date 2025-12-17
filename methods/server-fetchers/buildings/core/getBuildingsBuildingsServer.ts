@@ -12,6 +12,7 @@ export async function getBuildingsBuildingsServer(): Promise<{
   raw: TBuildingsBuildings[]
   byKey: TBuildingsBuildingsRecordByCityTileXCityTileY
   apiPath: string
+  atomName: string
 }> {
   const getBuildingsBuildingsData = await getBuildingsBuildings()
 
@@ -22,5 +23,5 @@ export async function getBuildingsBuildingsServer(): Promise<{
       ) as TBuildingsBuildingsRecordByCityTileXCityTileY)
     : {}
 
-  return { raw: getBuildingsBuildingsData, byKey: data, apiPath: `/api/buildings/buildings` }
+  return { raw: getBuildingsBuildingsData, byKey: data, apiPath: `/api/buildings/buildings`, atomName: `buildingsAtom` }
 }

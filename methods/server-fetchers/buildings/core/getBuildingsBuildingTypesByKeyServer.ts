@@ -13,6 +13,7 @@ export async function getBuildingsBuildingTypesByKeyServer(params: TBuildingsBui
   raw: TBuildingsBuildingTypes[]
   byKey: TBuildingsBuildingTypesRecordById
   apiPath: string
+  atomName: string
 }> {
   const getBuildingsBuildingTypesByKeyData = await getBuildingsBuildingTypesByKey(params)
 
@@ -20,5 +21,10 @@ export async function getBuildingsBuildingTypesByKeyServer(params: TBuildingsBui
     ? (arrayToObjectKey(["id"], getBuildingsBuildingTypesByKeyData) as TBuildingsBuildingTypesRecordById)
     : {}
 
-  return { raw: getBuildingsBuildingTypesByKeyData, byKey: data, apiPath: `/api/buildings/building-types/${params.id}` }
+  return {
+    raw: getBuildingsBuildingTypesByKeyData,
+    byKey: data,
+    apiPath: `/api/buildings/building-types/${params.id}`,
+    atomName: `buildingTypesAtom`,
+  }
 }

@@ -192,6 +192,34 @@
       "const { cityTiles } = useFetchCitiesCityTilesByKey({$1})"
     ],
     "description": "Destructuring useCitiesCityTilesByKey hook"
+  },
+  "Destructure useBuildingsBuildingTypes": {
+    "prefix": "hook_buildings_core_useBuildingsBuildingTypes",
+    "body": [
+      "const { buildingTypes } = useFetchBuildingsBuildingTypes()"
+    ],
+    "description": "Destructuring useBuildingsBuildingTypes hook"
+  },
+  "Destructure useBuildingsBuildingTypesByKey": {
+    "prefix": "hook_buildings_core_useBuildingsBuildingTypesByKey",
+    "body": [
+      "const { buildingTypes } = useFetchBuildingsBuildingTypesByKey({$1})"
+    ],
+    "description": "Destructuring useBuildingsBuildingTypesByKey hook"
+  },
+  "Destructure useBuildingsBuildings": {
+    "prefix": "hook_buildings_core_useBuildingsBuildings",
+    "body": [
+      "const { buildings } = useFetchBuildingsBuildings()"
+    ],
+    "description": "Destructuring useBuildingsBuildings hook"
+  },
+  "Destructure useBuildingsBuildingsByKey": {
+    "prefix": "hook_buildings_core_useBuildingsBuildingsByKey",
+    "body": [
+      "const { buildings } = useFetchBuildingsBuildingsByKey({$1})"
+    ],
+    "description": "Destructuring useBuildingsBuildingsByKey hook"
   },//Automatic Snippets
 
 }

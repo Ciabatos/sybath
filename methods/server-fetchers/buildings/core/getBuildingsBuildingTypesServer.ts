@@ -12,6 +12,7 @@ export async function getBuildingsBuildingTypesServer(): Promise<{
   raw: TBuildingsBuildingTypes[]
   byKey: TBuildingsBuildingTypesRecordById
   apiPath: string
+  atomName: string
 }> {
   const getBuildingsBuildingTypesData = await getBuildingsBuildingTypes()
 
@@ -19,5 +20,10 @@ export async function getBuildingsBuildingTypesServer(): Promise<{
     ? (arrayToObjectKey(["id"], getBuildingsBuildingTypesData) as TBuildingsBuildingTypesRecordById)
     : {}
 
-  return { raw: getBuildingsBuildingTypesData, byKey: data, apiPath: `/api/buildings/building-types` }
+  return {
+    raw: getBuildingsBuildingTypesData,
+    byKey: data,
+    apiPath: `/api/buildings/building-types`,
+    atomName: `buildingTypesAtom`,
+  }
 }
