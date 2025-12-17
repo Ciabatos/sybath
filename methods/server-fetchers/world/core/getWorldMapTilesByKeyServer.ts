@@ -10,6 +10,7 @@ export async function getWorldMapTilesByKeyServer(params: TWorldMapTilesParams):
   raw: TWorldMapTiles[]
   byKey: TWorldMapTilesRecordByXY
   apiPath: string
+  atomName: string
 }> {
   const getWorldMapTilesByKeyData = await getWorldMapTilesByKey(params)
 
@@ -17,5 +18,10 @@ export async function getWorldMapTilesByKeyServer(params: TWorldMapTilesParams):
     ? (arrayToObjectKey(["x", "y"], getWorldMapTilesByKeyData) as TWorldMapTilesRecordByXY)
     : {}
 
-  return { raw: getWorldMapTilesByKeyData, byKey: data, apiPath: `/api/world/map-tiles/${params.mapId}` }
+  return {
+    raw: getWorldMapTilesByKeyData,
+    byKey: data,
+    apiPath: `/api/world/map-tiles/${params.mapId}`,
+    atomName: `mapTilesAtom`,
+  }
 }
