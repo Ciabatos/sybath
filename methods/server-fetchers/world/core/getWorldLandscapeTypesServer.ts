@@ -12,6 +12,7 @@ export async function getWorldLandscapeTypesServer(): Promise<{
   raw: TWorldLandscapeTypes[]
   byKey: TWorldLandscapeTypesRecordById
   apiPath: string
+  atomName: string
 }> {
   const getWorldLandscapeTypesData = await getWorldLandscapeTypes()
 
@@ -19,5 +20,10 @@ export async function getWorldLandscapeTypesServer(): Promise<{
     ? (arrayToObjectKey(["id"], getWorldLandscapeTypesData) as TWorldLandscapeTypesRecordById)
     : {}
 
-  return { raw: getWorldLandscapeTypesData, byKey: data, apiPath: `/api/world/landscape-types` }
+  return {
+    raw: getWorldLandscapeTypesData,
+    byKey: data,
+    apiPath: `/api/world/landscape-types`,
+    atomName: `landscapeTypesAtom`,
+  }
 }

@@ -36,6 +36,7 @@ import { TAreaRecordByXY } from "@/methods/hooks/world/composite/useMapTilesArea
 import { TMapTilesMovementPathRecordByXY } from "@/methods/hooks/world/composite/useMapTilesPathFromPointToPoint"
 import { EPanels } from "@/types/enumeration/EPanels"
 import { atom } from "jotai"
+import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanels>(EPanels.Inactive)
@@ -79,6 +80,7 @@ export const playerMapTilesGuardAreaAtom = atom<TAreaRecordByXY>({})
 export const actionTaskInProcessAtom = atom<TActionTaskInProcess>()
 
 //Tables
+export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
 export const mapTilesPlayersPositionsAtom = atom<TWorldMapTilesPlayersPositionsRecordByMapTileXMapTileY>({})
 export const terrainTypesAtom = atom<TWorldTerrainTypesRecordById>({})
 export const mapsAtom = atom<TWorldMapsRecordById>({})
