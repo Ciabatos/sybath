@@ -10,10 +10,11 @@ export async function getWorldMapsByKeyServer(params: TWorldMapsParams): Promise
   raw: TWorldMaps[]
   byKey: TWorldMapsRecordById
   apiPath: string
+  atomName: string
 }> {
   const getWorldMapsByKeyData = await getWorldMapsByKey(params)
 
   const data = getWorldMapsByKeyData ? (arrayToObjectKey(["id"], getWorldMapsByKeyData) as TWorldMapsRecordById) : {}
 
-  return { raw: getWorldMapsByKeyData, byKey: data, apiPath: `/api/world/maps/${params.id}` }
+  return { raw: getWorldMapsByKeyData, byKey: data, apiPath: `/api/world/maps/${params.id}`, atomName: `mapsAtom` }
 }

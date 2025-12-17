@@ -38,6 +38,20 @@
       "const { mapTiles } = useFetchWorldMapTilesByKey({$1})"
     ],
     "description": "Destructuring useWorldMapTilesByKey hook"
+  },
+  "Destructure useWorldMaps": {
+    "prefix": "hook_world_core_useWorldMaps",
+    "body": [
+      "const { maps } = useFetchWorldMaps()"
+    ],
+    "description": "Destructuring useWorldMaps hook"
+  },
+  "Destructure useWorldMapsByKey": {
+    "prefix": "hook_world_core_useWorldMapsByKey",
+    "body": [
+      "const { maps } = useFetchWorldMapsByKey({$1})"
+    ],
+    "description": "Destructuring useWorldMapsByKey hook"
   },//Automatic Snippets
 
 }

@@ -9,10 +9,11 @@ export async function getWorldMapsServer(): Promise<{
   raw: TWorldMaps[]
   byKey: TWorldMapsRecordById
   apiPath: string
+  atomName: string
 }> {
   const getWorldMapsData = await getWorldMaps()
 
   const data = getWorldMapsData ? (arrayToObjectKey(["id"], getWorldMapsData) as TWorldMapsRecordById) : {}
 
-  return { raw: getWorldMapsData, byKey: data, apiPath: `/api/world/maps` }
+  return { raw: getWorldMapsData, byKey: data, apiPath: `/api/world/maps`, atomName: `mapsAtom` }
 }
