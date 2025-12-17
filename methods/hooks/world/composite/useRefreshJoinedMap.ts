@@ -12,6 +12,7 @@ import { useFetchWorldMapTiles } from "@/methods/hooks/world/core/useFetchWorldM
 import { useFetchWorldTerrainTypes } from "@/methods/hooks/world/core/useFetchWorldTerrainTypes"
 import { joinedMapAtom } from "@/store/atoms"
 import { useAtom } from "jotai"
+import { useHydrateAtoms } from "jotai/utils"
 import { useEffect } from "react"
 
 interface Props {
@@ -29,6 +30,8 @@ export function useRefreshJoinedMap({ joinedMap, landscapeTypes, districtTypes }
   const { getPlayerPosition } = useFetchGetPlayerPosition({ mapId: 1, playerId: playerId })
   const { districts } = useFetchDistrictsDistricts()
   const { terrainTypes } = useFetchWorldTerrainTypes()
+
+  useHydrateAtoms([[joinedMapAtom, joinedMap]])
 
   useEffect(() => {
     setJoinedMap(joinedMap)
