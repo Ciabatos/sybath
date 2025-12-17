@@ -1,4 +1,5 @@
 import { joinMap } from "@/methods/functions/map/joinMap"
+import { createAtomHydration } from "@/methods/functions/util/createAtomHydration"
 import { createSwrFallback } from "@/methods/functions/util/createSwrFallback"
 import { getAttributesAbilitiesServer } from "@/methods/server-fetchers/attributes/core/getAttributesAbilitiesServer"
 import { getAttributesSkillsServer } from "@/methods/server-fetchers/attributes/core/getAttributesSkillsServer"
@@ -67,6 +68,21 @@ export async function getMapData(mapId: number, playerId: number) {
     landscapeTypes,
   )
 
+  const atomHydrationData = createAtomHydration(
+    mapTiles,
+    skills,
+    abilities,
+    cities,
+    districts,
+    districtTypes,
+    getPlayerPosition,
+    playerSkills,
+    playerAbilities,
+    playerIventory,
+    terrainTypes,
+    landscapeTypes,
+  )
+
   return {
     terrainTypes,
     mapTiles,
@@ -81,6 +97,7 @@ export async function getMapData(mapId: number, playerId: number) {
     playerAbilities,
     playerIventory,
     joinedMap,
+    atomHydrationData,
     fallbackData,
   }
 }

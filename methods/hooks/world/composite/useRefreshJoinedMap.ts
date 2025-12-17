@@ -1,28 +1,19 @@
 "use client"
 
-import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
-import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
-import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
-import { joinMap, TJoinMapByXY } from "@/methods/functions/map/joinMap"
+import { joinMap } from "@/methods/functions/map/joinMap"
 import { useFetchCitiesCities } from "@/methods/hooks/cities/core/useFetchCitiesCities"
 import { useFetchDistrictsDistricts } from "@/methods/hooks/districts/core/useFetchDistrictsDistricts"
+import { useFetchDistrictsDistrictTypes } from "@/methods/hooks/districts/core/useFetchDistrictsDistrictTypes"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { useFetchGetPlayerPosition } from "@/methods/hooks/world/core/useFetchGetPlayerPosition"
+import { useFetchWorldLandscapeTypes } from "@/methods/hooks/world/core/useFetchWorldLandscapeTypes"
 import { useFetchWorldMapTiles } from "@/methods/hooks/world/core/useFetchWorldMapTiles"
 import { useFetchWorldTerrainTypes } from "@/methods/hooks/world/core/useFetchWorldTerrainTypes"
 import { joinedMapAtom } from "@/store/atoms"
 import { useAtom } from "jotai"
-import { useHydrateAtoms } from "jotai/utils"
 import { useEffect } from "react"
 
-interface Props {
-  joinedMap: TJoinMapByXY
-  terrainTypes: TWorldTerrainTypesRecordById
-  landscapeTypes: TWorldLandscapeTypesRecordById
-  districtTypes: TDistrictsDistrictTypesRecordById
-}
-
-export function useRefreshJoinedMap({ joinedMap, landscapeTypes, districtTypes }: Props) {
+export function useRefreshJoinedMap() {
   const { playerId } = usePlayerId()
   const [refreshedJoinedMap, setJoinedMap] = useAtom(joinedMapAtom)
   const { mapTiles } = useFetchWorldMapTiles()
@@ -30,12 +21,8 @@ export function useRefreshJoinedMap({ joinedMap, landscapeTypes, districtTypes }
   const { getPlayerPosition } = useFetchGetPlayerPosition({ mapId: 1, playerId: playerId })
   const { districts } = useFetchDistrictsDistricts()
   const { terrainTypes } = useFetchWorldTerrainTypes()
-
-  useHydrateAtoms([[joinedMapAtom, joinedMap]])
-
-  // useEffect(() => {
-  //   setJoinedMap(joinedMap)
-  // }, [])
+  const { landscapeTypes } = useFetchWorldLandscapeTypes()
+  const { districtTypes } = useFetchDistrictsDistrictTypes()
 
   useEffect(() => {
     const refreshedData = joinMap({

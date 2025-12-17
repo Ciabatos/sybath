@@ -1,23 +1,14 @@
 "use client"
 
 import MapHandling from "@/components/map/MapHandling"
-import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
-import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
-import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
-import { TJoinMapByXY } from "@/methods/functions/map/joinMap"
+import { useRefreshJoinedMap } from "@/methods/hooks/world/composite/useRefreshJoinedMap"
 import { useRef, useState } from "react"
 import type { ReactZoomPanPinchContentRef } from "react-zoom-pan-pinch"
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
 import style from "./styles/Map.module.css"
 
-interface Props {
-  joinedMap: TJoinMapByXY
-  terrainTypes: TWorldTerrainTypesRecordById
-  landscapeTypes: TWorldLandscapeTypesRecordById
-  districtTypes: TDistrictsDistrictTypesRecordById
-}
-
-export default function MapWrapper({ joinedMap, terrainTypes, landscapeTypes, districtTypes }: Props) {
+export default function MapWrapper() {
+  const { refreshedJoinedMap } = useRefreshJoinedMap()
   const transformRef = useRef<ReactZoomPanPinchContentRef | null>(null)
 
   const [savedTransform] = useState(() => {
@@ -33,7 +24,7 @@ export default function MapWrapper({ joinedMap, terrainTypes, landscapeTypes, di
   // Lepszy sposób na wyliczenie maxX i maxY
   let maxX = 0
   let maxY = 0
-  Object.keys(joinedMap).forEach((key) => {
+  Object.keys(refreshedJoinedMap).forEach((key) => {
     const [x, y] = key.split(",").map(Number)
     if (x > maxX) maxX = x
     if (y > maxY) maxY = y
@@ -69,12 +60,7 @@ export default function MapWrapper({ joinedMap, terrainTypes, landscapeTypes, di
               id='MapTiles'
               className={style.Tiles}
             >
-              <MapHandling
-                joinedMap={joinedMap}
-                terrainTypes={terrainTypes}
-                landscapeTypes={landscapeTypes}
-                districtTypes={districtTypes}
-              />
+              <MapHandling />
             </div>
           </TransformComponent>
         </TransformWrapper>

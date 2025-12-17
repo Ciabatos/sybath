@@ -10,10 +10,11 @@ export async function {{methodNameByKey}}Server({{#if methodParamsColumns}} para
   raw: {{methodTypeName}}[]
   byKey: {{indexTypeName}}
   apiPath: string
+  atomName: string
 }> {
   const {{methodNameByKey}}Data = await {{methodNameByKey}}({{#if methodParamsColumns}}params{{/if}})
 
   const data = {{methodNameByKey}}Data ? ({{{indexMethodName}}}({{{indexMethodParams}}}, {{methodNameByKey}}Data) as {{indexTypeName}}) : {}
 
-  return { raw: {{methodNameByKey}}Data, byKey: data, apiPath: `{{apiPathParamsByKey}}` }
+  return { raw: {{methodNameByKey}}Data, byKey: data, apiPath: `{{apiPathParamsByKey}}`, atomName: `{{tableCamelName}}Atom`  }
 }

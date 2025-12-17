@@ -10,10 +10,11 @@ export async function {{methodName}}Server(): Promise<{
   raw: {{methodTypeName}}[]
   byKey: {{indexTypeName}}
   apiPath: string
+  atomName: string
 }> {
   const {{methodName}}Data = await {{methodName}}()
 
   const data = {{methodName}}Data ? ({{{indexMethodName}}}({{{indexMethodParams}}}, {{methodName}}Data) as {{indexTypeName}}) : {}
 
-  return { raw: {{methodName}}Data, byKey: data, apiPath: `{{apiPathParams}}` }
+  return { raw: {{methodName}}Data, byKey: data, apiPath: `{{apiPathParams}}`, atomName: `{{tableCamelName}}Atom` }
 }

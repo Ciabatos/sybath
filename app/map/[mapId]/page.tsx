@@ -2,6 +2,7 @@
 import { auth } from "@/auth"
 import MapWrapper from "@/components/map/MapWrapper"
 import { getMapData } from "@/methods/server-fetchers/world/composite/getMapData"
+import { AtomsHydrator } from "@/providers/jotai-hydrator-provider"
 import { SWRProvider } from "@/providers/swr-provider"
 import styles from "./page.module.css"
 
@@ -29,22 +30,19 @@ export default async function WorldPage({ params }: { params: TParams }) {
     return null
   }
 
-  const { terrainTypes, landscapeTypes, districtTypes, joinedMap, fallbackData } = mapData
+  const { atomHydrationData, fallbackData } = mapData
 
   return (
     <div className={styles.main}>
-      <SWRProvider
-        value={{
-          fallback: fallbackData,
-        }}
-      >
-        <MapWrapper
-          terrainTypes={terrainTypes.byKey}
-          landscapeTypes={landscapeTypes.byKey}
-          joinedMap={joinedMap}
-          districtTypes={districtTypes.byKey}
-        />
-      </SWRProvider>
+      <AtomsHydrator atomValues={atomHydrationData}>
+        <SWRProvider
+          value={{
+            fallback: fallbackData,
+          }}
+        >
+          <MapWrapper />
+        </SWRProvider>
+      </AtomsHydrator>
     </div>
   )
 }
