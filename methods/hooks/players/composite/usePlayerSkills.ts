@@ -1,11 +1,11 @@
 "use client"
 
-import { useFetchAttributesPlayerSkillsByKey } from "@/methods/hooks/attributes/core/useFetchAttributesPlayerSkillsByKey"
+import { useFetchPlayerSkills } from "@/methods/hooks/attributes/core/useFetchPlayerSkills"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 
 export function usePlayerSkills() {
   const { playerId } = usePlayerId()
-  const { playerSkills } = useFetchAttributesPlayerSkillsByKey({ playerId })
+  const { playerSkills } = useFetchPlayerSkills({ playerId })
 
   return { playerSkills }
 }
