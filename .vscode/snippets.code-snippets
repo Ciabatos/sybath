@@ -66,6 +66,20 @@
       "const { terrainTypes } = useFetchWorldTerrainTypesByKey({$1})"
     ],
     "description": "Destructuring useWorldTerrainTypesByKey hook"
+  },
+  "Destructure useAttributesAbilities": {
+    "prefix": "hook_attributes_core_useAttributesAbilities",
+    "body": [
+      "const { abilities } = useFetchAttributesAbilities()"
+    ],
+    "description": "Destructuring useAttributesAbilities hook"
+  },
+  "Destructure useAttributesAbilitiesByKey": {
+    "prefix": "hook_attributes_core_useAttributesAbilitiesByKey",
+    "body": [
+      "const { abilities } = useFetchAttributesAbilitiesByKey({$1})"
+    ],
+    "description": "Destructuring useAttributesAbilitiesByKey hook"
   },//Automatic Snippets
 
 }

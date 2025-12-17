@@ -13,6 +13,7 @@ export async function getAttributesAbilitiesByKeyServer(params: TAttributesAbili
   raw: TAttributesAbilities[]
   byKey: TAttributesAbilitiesRecordById
   apiPath: string
+  atomName: string
 }> {
   const getAttributesAbilitiesByKeyData = await getAttributesAbilitiesByKey(params)
 
@@ -20,5 +21,10 @@ export async function getAttributesAbilitiesByKeyServer(params: TAttributesAbili
     ? (arrayToObjectKey(["id"], getAttributesAbilitiesByKeyData) as TAttributesAbilitiesRecordById)
     : {}
 
-  return { raw: getAttributesAbilitiesByKeyData, byKey: data, apiPath: `/api/attributes/abilities/${params.id}` }
+  return {
+    raw: getAttributesAbilitiesByKeyData,
+    byKey: data,
+    apiPath: `/api/attributes/abilities/${params.id}`,
+    atomName: `abilitiesAtom`,
+  }
 }
