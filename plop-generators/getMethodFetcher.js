@@ -64,7 +64,7 @@ export default function getMethodFetcher(plop) {
       }))
 
       // nazwa wrappera (funkcja generowanego get...)
-      const methodName = `${methodCamelName}`
+      const methodName = snakeToCamel(method)
 
       const methodParamsColumns = parseParamsFields(argsStr) // DRY, helpers version
       const argsArray = getArgsArray(argsStr)
@@ -216,7 +216,7 @@ export default function getMethodFetcher(plop) {
       },
       {
         type: "add",
-        path: "methods/server-fetchers/{{schema}}/core/{{methodCamelName}}Server.ts",
+        path: "methods/server-fetchers/{{schema}}/core/{{methodName}}Server.ts",
         templateFile: "plop-templates/hookGetMethodFetcherServer.hbs",
         force: true,
       },
@@ -241,9 +241,9 @@ export default function getMethodFetcher(plop) {
           return answers.generateMutation ? false : "Pomijam generowanie useMutate..."
         },
       },
-      {
-        type: "PrettierFormat",
-      },
+      // {
+      //   type: "PrettierFormat",
+      // },
     ],
   })
 }
