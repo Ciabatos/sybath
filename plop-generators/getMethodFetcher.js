@@ -1,4 +1,11 @@
-import { camelToKebab, getArgsArray, parseParamsFields, snakeToCamel, snakeToPascal } from "./helpers/helpers.js"
+import {
+  getArgsArray,
+  parseParamsFields,
+  snakeToCamel,
+  snakeToKebab,
+  snakeToPascal,
+  stripPrefix,
+} from "./helpers/helpers.js"
 import { fetchFunction, fetchMethodArgs, fetchMethodResultColumns, fetchSchemas } from "./helpers/queries.js"
 // Generator plop
 export default function getMethodFetcher(plop) {
@@ -37,8 +44,9 @@ export default function getMethodFetcher(plop) {
       ])
 
       // Ustal nazwy po wyborze metody
-      const methodCamelName = snakeToCamel(method)
-      const methodPascalName = snakeToPascal(method)
+      const methodWithoutPrefix = stripPrefix(method)
+      const methodCamelName = snakeToCamel(methodWithoutPrefix)
+      const methodPascalName = snakeToPascal(methodWithoutPrefix)
       const methodTypeName = `T${methodPascalName}`
       const methodParamsTypeName = `${methodTypeName}Params`
 
@@ -108,7 +116,7 @@ export default function getMethodFetcher(plop) {
         : ""
 
       //rpc jednoznacznie oznacza “remote procedure call”
-      const methodKebabName = camelToKebab(methodCamelName)
+      const methodKebabName = snakeToKebab(method)
       const apiPath = `app/api/${schema}/rpc/${methodKebabName}${apiParamPathSquareBrackets}/route.ts`
       const apiPathParams = `/api/${schema}/rpc/${methodKebabName}${apiParamPath}`
 

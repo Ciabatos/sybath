@@ -37,6 +37,10 @@ export function camelToKebab(str) {
   return str.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase()
 }
 
+export function snakeToKebab(snake) {
+  return snake.replace(/_/g, "-")
+}
+
 export function mapSQLTypeToTS(sqlType) {
   if (!sqlType) return "any"
   let cleanType = sqlType.trim().toLowerCase()
@@ -77,4 +81,10 @@ export function parseParamsFields(argsStr) {
       }
     })
     .filter(Boolean)
+}
+
+export function stripPrefix(methodName) {
+  const index = methodName.indexOf("_")
+  if (index === -1) return methodName // brak podkreślenia, zwróć cały string
+  return methodName.slice(index + 1) // zwróć wszystko po pierwszym '_'
 }
