@@ -10,10 +10,11 @@ export async function getItemsItemsByKeyServer(params: TItemsItemsParams): Promi
   raw: TItemsItems[]
   byKey: TItemsItemsRecordById
   apiPath: string
+  atomName: string
 }> {
   const getItemsItemsByKeyData = await getItemsItemsByKey(params)
 
   const data = getItemsItemsByKeyData ? (arrayToObjectKey(["id"], getItemsItemsByKeyData) as TItemsItemsRecordById) : {}
 
-  return { raw: getItemsItemsByKeyData, byKey: data, apiPath: `/api/items/items/${params.id}` }
+  return { raw: getItemsItemsByKeyData, byKey: data, apiPath: `/api/items/items/${params.id}`, atomName: `itemsAtom` }
 }

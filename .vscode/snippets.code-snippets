@@ -115,6 +115,27 @@
       "const { playerPosition } = useFetchPlayerPosition({$1})"
     ],
     "description": "Destructuring usePlayerPosition hook"
+  },
+  "Destructure useItemsItems": {
+    "prefix": "hook_items_core_useItemsItems",
+    "body": [
+      "const { items } = useFetchItemsItems()"
+    ],
+    "description": "Destructuring useItemsItems hook"
+  },
+  "Destructure useItemsItemsByKey": {
+    "prefix": "hook_items_core_useItemsItemsByKey",
+    "body": [
+      "const { items } = useFetchItemsItemsByKey({$1})"
+    ],
+    "description": "Destructuring useItemsItemsByKey hook"
+  },  
+  "Destructure usePlayerInventory": {
+    "prefix": "hook_inventory_core_usePlayerInventory",
+    "body": [
+      "const { playerInventory } = useFetchPlayerInventory({$1})"
+    ],
+    "description": "Destructuring usePlayerInventory hook"
   },//Automatic Snippets
 
 }

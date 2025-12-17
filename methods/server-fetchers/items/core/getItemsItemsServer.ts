@@ -9,10 +9,11 @@ export async function getItemsItemsServer(): Promise<{
   raw: TItemsItems[]
   byKey: TItemsItemsRecordById
   apiPath: string
+  atomName: string
 }> {
   const getItemsItemsData = await getItemsItems()
 
   const data = getItemsItemsData ? (arrayToObjectKey(["id"], getItemsItemsData) as TItemsItemsRecordById) : {}
 
-  return { raw: getItemsItemsData, byKey: data, apiPath: `/api/items/items` }
+  return { raw: getItemsItemsData, byKey: data, apiPath: `/api/items/items`, atomName: `itemsAtom` }
 }

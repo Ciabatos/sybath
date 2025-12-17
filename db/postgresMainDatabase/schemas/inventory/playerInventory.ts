@@ -4,11 +4,11 @@
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 import { snakeToCamelRows } from "@/methods/functions/util/snakeToCamel"
 
-export type TGetPlayerInventoryParams = {
+export type TPlayerInventoryParams = {
   playerId: number
 }
 
-export type TGetPlayerInventory = {
+export type TPlayerInventory = {
   slotId: number
   containerId: number
   itemId: number
@@ -16,17 +16,17 @@ export type TGetPlayerInventory = {
   quantity: number
 }
 
-export type TGetPlayerInventoryRecordBySlotId = Record<string, TGetPlayerInventory>
+export type TPlayerInventoryRecordBySlotId = Record<string, TPlayerInventory>
 
-export async function getGetPlayerInventory(params: TGetPlayerInventoryParams) {
+export async function getPlayerInventory(params: TPlayerInventoryParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM inventory.get_player_inventory($1);`
 
     const result = await query(sql, sqlParams)
-    return snakeToCamelRows(result.rows) as TGetPlayerInventory[]
+    return snakeToCamelRows(result.rows) as TPlayerInventory[]
   } catch (error) {
-    console.error("Error fetching getGetPlayerInventory:", error)
-    throw new Error("Failed to fetch getGetPlayerInventory")
+    console.error("Error fetching getPlayerInventory:", error)
+    throw new Error("Failed to fetch getPlayerInventory")
   }
 }
