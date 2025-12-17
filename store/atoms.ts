@@ -66,8 +66,11 @@ export const buildingInventorySlotsAtom = atom<TInventorySlots[]>([])
 
 //REFACTORED
 
+//City
+export const cityIdAtom = atom<number>()
 //Map
 export const clickedTileAtom = atom<TJoinMap>()
+export const mapIdAtom = atom<number>()
 
 //Player
 export const playerMapTilesMovementPathAtom = atom<TMapTilesMovementPathRecordByXY>({})

@@ -29,7 +29,6 @@ UI i flow dla „systemu informacji”
 
 rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmianie URL
 
-dodac do plopjs vscode snippets do useHook
 
 wywalilem immera i dodalem equal, trzeba sie zastanowic nad undefined
 
