@@ -1,3 +1,4 @@
+import { getPlayerPosition } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 import { joinMap } from "@/methods/functions/map/joinMap"
 import { createAtomHydration } from "@/methods/functions/util/createAtomHydration"
 import { createSwrFallback } from "@/methods/functions/util/createSwrFallback"
@@ -8,7 +9,7 @@ import { getPlayerSkillsServer } from "@/methods/server-fetchers/attributes/core
 import { getCitiesCitiesByKeyServer } from "@/methods/server-fetchers/cities/core/getCitiesCitiesByKeyServer"
 import { getDistrictsDistrictsByKeyServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictsByKeyServer"
 import { getDistrictsDistrictTypesServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictTypesServer"
-import { getGetPlayerInventoryServer } from "@/methods/server-fetchers/inventory/core/getGetPlayerInventoryServer"
+import { getPlayerInventoryServer } from "@/methods/server-fetchers/inventory/core/getPlayerInventoryServer"
 import { getPlayerPositionServer } from "@/methods/server-fetchers/world/core/getPlayerPositionServer"
 import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
 import { getWorldMapTilesByKeyServer } from "@/methods/server-fetchers/world/core/getWorldMapTilesByKeyServer"
@@ -24,7 +25,7 @@ export async function getMapData(mapId: number, playerId: number) {
     cities,
     districts,
     districtTypes,
-    getPlayerPosition,
+    playerPosition,
     skills,
     abilities,
     playerSkills,
@@ -42,7 +43,7 @@ export async function getMapData(mapId: number, playerId: number) {
     getAttributesAbilitiesServer(),
     getPlayerSkillsServer({ playerId }),
     getPlayerAbilitiesServer({ playerId }),
-    getGetPlayerInventoryServer({ playerId }),
+    getPlayerInventoryServer({ playerId }),
   ])
 
   const joinedMap = joinMap({
@@ -52,7 +53,7 @@ export async function getMapData(mapId: number, playerId: number) {
     cities: cities.byKey,
     districts: districts.byKey,
     districtTypes: districtTypes.byKey,
-    getPlayerPosition: getPlayerPosition.byKey,
+    playerPosition: playerPosition.byKey,
   })
 
   const fallbackData = createSwrFallback(
@@ -62,7 +63,7 @@ export async function getMapData(mapId: number, playerId: number) {
     cities,
     districts,
     districtTypes,
-    getPlayerPosition,
+    playerPosition,
     playerSkills,
     playerAbilities,
     playerIventory,
@@ -77,7 +78,7 @@ export async function getMapData(mapId: number, playerId: number) {
     cities,
     districts,
     districtTypes,
-    getPlayerPosition,
+    playerPosition,
     playerSkills,
     playerAbilities,
     playerIventory,

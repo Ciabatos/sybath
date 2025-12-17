@@ -27,6 +27,7 @@ import { TAreaRecordByXY } from "@/methods/hooks/world/composite/useMapTilesArea
 import { TMapTilesMovementPathRecordByXY } from "@/methods/hooks/world/composite/useMapTilesPathFromPointToPoint"
 import { EPanels } from "@/types/enumeration/EPanels"
 import { atom } from "jotai"
+import { TAttributesSkillsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/skills"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanels>(EPanels.Inactive)
@@ -50,6 +51,7 @@ export const playerMapTilesMovementPathAtom = atom<TMapTilesMovementPathRecordBy
 export const playerMapTilesGuardAreaAtom = atom<TAreaRecordByXY>({})
 
 //Tables
+export const skillsAtom = atom<TAttributesSkillsRecordById>({})
 export const buildingsAtom = atom<TBuildingsBuildingsRecordByCityTileXCityTileY>({})
 export const buildingTypesAtom = atom<TBuildingsBuildingTypesRecordById>({})
 export const cityTilesAtom = atom<TCitiesCityTilesRecordByXY>({})

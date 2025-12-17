@@ -1,9 +1,9 @@
 import { TCitiesCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
 import { TDistrictsDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/districts/districts"
 import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
-import { TGetPlayerVisionPlayersPositionsRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerVisionPlayersPositions"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
+import { TPlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import equal from "fast-deep-equal"
 
@@ -14,7 +14,7 @@ type TJoinMapParams = {
   cities: TCitiesCitiesRecordByMapTileXMapTileY
   districts: TDistrictsDistrictsRecordByMapTileXMapTileY
   districtTypes: TDistrictsDistrictTypesRecordById
-  getPlayerPosition: TGetPlayerVisionPlayersPositionsRecordByXY
+  playerPosition: TPlayerPositionRecordByXY
   options?: {
     oldDataToUpdate?: TJoinMapByXY
   }
@@ -26,7 +26,7 @@ export interface TJoinMap {
   cities?: TCitiesCitiesRecordByMapTileXMapTileY[keyof TCitiesCitiesRecordByMapTileXMapTileY]
   districts?: TDistrictsDistrictsRecordByMapTileXMapTileY[keyof TDistrictsDistrictsRecordByMapTileXMapTileY]
   districtTypes?: TDistrictsDistrictTypesRecordById[keyof TDistrictsDistrictTypesRecordById]
-  getPlayerPosition?: TGetPlayerVisionPlayersPositionsRecordByXY[keyof TGetPlayerVisionPlayersPositionsRecordByXY]
+  playerPosition?: TPlayerPositionRecordByXY[keyof TPlayerPositionRecordByXY]
   moveCost?: number
 }
 
@@ -39,7 +39,7 @@ export function joinMap({
   cities,
   districts,
   districtTypes,
-  getPlayerPosition,
+  playerPosition,
   options = {},
 }: TJoinMapParams): TJoinMapByXY {
   const { oldDataToUpdate } = options
@@ -50,7 +50,7 @@ export function joinMap({
     const citiesData = cities[`${mainData.x},${mainData.y}`]
     const districtsData = districts[`${mainData.x},${mainData.y}`]
     const districtTypesData = districtsData ? districtTypes[districtsData.districtTypeId] : undefined
-    const getPlayerPositionData = getPlayerPosition[`${mainData.x},${mainData.y}`]
+    const playerPositionData = playerPosition[`${mainData.x},${mainData.y}`]
 
     return {
       tiles: mainData,
@@ -59,7 +59,7 @@ export function joinMap({
       ...(citiesData && { cities: citiesData }),
       ...(districtsData && { districts: districtsData }),
       ...(districtTypesData && { districtTypes: districtTypesData }),
-      ...(getPlayerPositionData && { getPlayerPosition: getPlayerPositionData }),
+      ...(playerPositionData && { playerPosition: playerPositionData }),
       moveCost: terrainTypesData?.moveCost + (landscapeTypesData?.moveCost ?? 0) + (citiesData?.moveCost ?? 0),
     }
   }

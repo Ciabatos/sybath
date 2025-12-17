@@ -13,6 +13,7 @@ export async function getAttributesSkillsByKeyServer(params: TAttributesSkillsPa
   raw: TAttributesSkills[]
   byKey: TAttributesSkillsRecordById
   apiPath: string
+  atomName: string
 }> {
   const getAttributesSkillsByKeyData = await getAttributesSkillsByKey(params)
 
@@ -20,5 +21,10 @@ export async function getAttributesSkillsByKeyServer(params: TAttributesSkillsPa
     ? (arrayToObjectKey(["id"], getAttributesSkillsByKeyData) as TAttributesSkillsRecordById)
     : {}
 
-  return { raw: getAttributesSkillsByKeyData, byKey: data, apiPath: `/api/attributes/skills/${params.id}` }
+  return {
+    raw: getAttributesSkillsByKeyData,
+    byKey: data,
+    apiPath: `/api/attributes/skills/${params.id}`,
+    atomName: `skillsAtom`,
+  }
 }

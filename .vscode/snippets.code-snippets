@@ -220,6 +220,20 @@
       "const { buildings } = useFetchBuildingsBuildingsByKey({$1})"
     ],
     "description": "Destructuring useBuildingsBuildingsByKey hook"
+  },
+  "Destructure useAttributesSkills": {
+    "prefix": "hook_attributes_core_useAttributesSkills",
+    "body": [
+      "const { skills } = useFetchAttributesSkills()"
+    ],
+    "description": "Destructuring useAttributesSkills hook"
+  },
+  "Destructure useAttributesSkillsByKey": {
+    "prefix": "hook_attributes_core_useAttributesSkillsByKey",
+    "body": [
+      "const { skills } = useFetchAttributesSkillsByKey({$1})"
+    ],
+    "description": "Destructuring useAttributesSkillsByKey hook"
   },//Automatic Snippets
 
 }

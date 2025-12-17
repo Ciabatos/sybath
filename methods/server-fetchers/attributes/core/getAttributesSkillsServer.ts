@@ -12,6 +12,7 @@ export async function getAttributesSkillsServer(): Promise<{
   raw: TAttributesSkills[]
   byKey: TAttributesSkillsRecordById
   apiPath: string
+  atomName: string
 }> {
   const getAttributesSkillsData = await getAttributesSkills()
 
@@ -19,5 +20,5 @@ export async function getAttributesSkillsServer(): Promise<{
     ? (arrayToObjectKey(["id"], getAttributesSkillsData) as TAttributesSkillsRecordById)
     : {}
 
-  return { raw: getAttributesSkillsData, byKey: data, apiPath: `/api/attributes/skills` }
+  return { raw: getAttributesSkillsData, byKey: data, apiPath: `/api/attributes/skills`, atomName: `skillsAtom` }
 }

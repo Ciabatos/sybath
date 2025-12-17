@@ -5,7 +5,7 @@ import { useFetchCitiesCities } from "@/methods/hooks/cities/core/useFetchCities
 import { useFetchDistrictsDistricts } from "@/methods/hooks/districts/core/useFetchDistrictsDistricts"
 import { useFetchDistrictsDistrictTypes } from "@/methods/hooks/districts/core/useFetchDistrictsDistrictTypes"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
-import { useFetchGetPlayerPosition } from "@/methods/hooks/world/core/useFetchGetPlayerPosition"
+import { useFetchPlayerPosition } from "@/methods/hooks/world/core/useFetchPlayerPosition"
 import { useFetchWorldLandscapeTypes } from "@/methods/hooks/world/core/useFetchWorldLandscapeTypes"
 import { useFetchWorldMapTiles } from "@/methods/hooks/world/core/useFetchWorldMapTiles"
 import { useFetchWorldTerrainTypes } from "@/methods/hooks/world/core/useFetchWorldTerrainTypes"
@@ -18,7 +18,7 @@ export function useRefreshJoinedMap() {
   const [refreshedJoinedMap, setJoinedMap] = useAtom(joinedMapAtom)
   const { mapTiles } = useFetchWorldMapTiles()
   const { cities } = useFetchCitiesCities()
-  const { getPlayerPosition } = useFetchGetPlayerPosition({ mapId: 1, playerId: playerId })
+  const { playerPosition } = useFetchPlayerPosition({ mapId: 1, playerId })
   const { districts } = useFetchDistrictsDistricts()
   const { terrainTypes } = useFetchWorldTerrainTypes()
   const { landscapeTypes } = useFetchWorldLandscapeTypes()
@@ -32,13 +32,13 @@ export function useRefreshJoinedMap() {
       cities: cities,
       districts: districts,
       districtTypes: districtTypes,
-      getPlayerPosition: getPlayerPosition,
+      playerPosition: playerPosition,
       options: { oldDataToUpdate: refreshedJoinedMap },
     })
     setJoinedMap(refreshedData)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mapTiles, cities, districts, getPlayerPosition])
+  }, [mapTiles, cities, districts, playerPosition])
 
   return { refreshedJoinedMap }
 }
