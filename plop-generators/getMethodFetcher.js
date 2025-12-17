@@ -233,6 +233,12 @@ export default function getMethodFetcher(plop) {
         template: `$1export const {{methodCamelName}}Atom = atom<{{indexTypeName}}>({})\n`,
       },
       {
+        type: "modify",
+        path: ".vscode/snippets.code-snippets",
+        pattern: /(?=\/\/Automatic Snippets\s*\n)/,
+        templateFile: "plop-templates/snippetHookMethod.hbs",
+      },
+      {
         type: "add",
         path: "methods/hooks/{{schema}}/core/useMutate{{methodPascalName}}.ts",
         templateFile: "plop-templates/hookMutateMethodFetcher.hbs",
@@ -241,9 +247,9 @@ export default function getMethodFetcher(plop) {
           return answers.generateMutation ? false : "Pomijam generowanie useMutate..."
         },
       },
-      {
-        type: "PrettierFormat",
-      },
+      // {
+      //   type: "PrettierFormat",
+      // },
     ],
   })
 }

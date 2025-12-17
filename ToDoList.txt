@@ -32,7 +32,6 @@ rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmiani
 dodac do plopjs vscode snippets do useHook
 
 wywalilem immera i dodalem equal, trzeba sie zastanowic nad undefined
-w hookGetMethodFetcher.hbs usunąć get przedrostek z atomu i z returna
 
 dodac mapId do atomu
 dodac cityId do atomu
@@ -43,7 +42,6 @@ pozycje graczy ustaw poprawnie - chyba wywalic z renderowania, dodac panel z gra
 - dodac ikone ludzi znajdujacych sie na polu ktora otwiera panel graczy na tilesie
 - dodac w panelu liste graczy i mozliwosc zaznaczenia go na mapie np kolorem
 
-Zajac sie hookami dla paneli - przepisac je od nowa
 
 Panele odpowiadaja za render
 Forms to akcje, buttony renderowane w panelach, pobieraja one dane z hooków?

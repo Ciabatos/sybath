@@ -301,6 +301,18 @@ export default function getTable(plop) {
         template: `$1export const {{tableCamelName}}Atom = atom<{{indexTypeName}}>({})\n`,
       },
       {
+        type: "modify",
+        path: ".vscode/snippets.code-snippets",
+        pattern: /(?=\/\/Automatic Snippets\s*\n)/,
+        templateFile: "plop-templates/snippetHookTable.hbs",
+      },
+      {
+        type: "modify",
+        path: ".vscode/snippets.code-snippets",
+        pattern: /(?=\/\/Automatic Snippets\s*\n)/,
+        templateFile: "plop-templates/snippetHookTableByKey.hbs",
+      },
+      {
         type: "add",
         path: "methods/hooks/{{schema}}/core/useMutate{{schemaTablePascalName}}.ts",
         templateFile: "plop-templates/hookMutateTable.hbs",

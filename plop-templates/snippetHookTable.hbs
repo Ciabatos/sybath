@@ -1,0 +1,8 @@
+{{{match}}}
+  "Destructure use{{schemaTablePascalName}}": {
+    "prefix": "hook_{{schema}}_core_use{{schemaTablePascalName}}",
+    "body": [
+      "const { {{tableCamelName}} } = useFetch{{schemaTablePascalName}}({$1})"
+    ],
+    "description": "Destructuring use{{schemaTablePascalName}} hook"
+  },

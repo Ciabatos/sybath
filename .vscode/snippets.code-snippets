@@ -10,11 +10,6 @@
     "body": ["const [${1}, set${1/(.*)/${1:/capitalize}/}] = useAtom($1Atom)"],
     "description": "useAtom with proper camel casing for setter function name."
 },
-  "Destructure useFetchCitiesCityTilesByKey": {
-    "prefix": "hook_city_core_useFetchCitiesCityTilesByKey",
-    "body": [
-      "const { cityTiles } = useFetchCitiesCityTilesByKey({ cityId })"
-    ],
-    "description": "Destructuring useFetchCitiesCityTilesByKey hook"
-  }
+//Automatic Snippets
+
 }
