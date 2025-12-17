@@ -1,9 +1,20 @@
 {
+
+  "useState": {
+    "prefix": "use_State",
+    "body": ["const [${1}, set${1/(.*)/${1:/capitalize}/}] = useState($2)"],
+    "description": "useState with proper camel casing for setter function name."
+},
+  "useAtom": {
+    "prefix": "use_Atom",
+    "body": ["const [${1}, set${1/(.*)/${1:/capitalize}/}] = useAtom($1Atom)"],
+    "description": "useAtom with proper camel casing for setter function name."
+},
   "Destructure useFetchCitiesCityTilesByKey": {
-    "prefix": "hook-useFetchCitiesCityTilesByKey",
+    "prefix": "hook_city_core_useFetchCitiesCityTilesByKey",
     "body": [
       "const { cityTiles } = useFetchCitiesCityTilesByKey({ cityId })"
     ],
-    "description": "Destructuring cityTiles from useFetchCitiesCityTilesByKey hook"
+    "description": "Destructuring useFetchCitiesCityTilesByKey hook"
   }
 }

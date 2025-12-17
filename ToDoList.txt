@@ -31,6 +31,13 @@ rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmiani
 
 dodac do plopjs vscode snippets do useHook
 
+wywalilem immera i dodalem equal, trzeba sie zastanowic nad undefined
+w hookGetMethodFetcher.hbs usunąć get przedrostek z atomu i z returna
+dodac mapId do atomu
+dodac cityId do atomu
+wszystkie stałe propsy dodać do atomu landtypes, terrainTypes itp fallback swr uaktualnia atom -- to powoduje ze render incialny jest migoczacy w milisekunde
+pytanie czy renderowac incjalnie z propsow czy z atomow useRefreshJoinedMap przerobic albo w old data tiles atom albo props ale wtedy odwoluje sie do poczatkowych danych
+
 pozycje graczy ustaw poprawnie - chyba wywalic z renderowania, dodac panel z graczami i tam mozna wyswietlac gdzie sa
 - dodac jedynie moja pozyccje
 - dodac ikone ludzi znajdujacych sie na polu ktora otwiera panel graczy na tilesie

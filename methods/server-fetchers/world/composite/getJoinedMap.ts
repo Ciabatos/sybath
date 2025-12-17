@@ -4,13 +4,13 @@ import { joinMap } from "@/methods/functions/map/joinMap"
 import { getCitiesCitiesByKeyServer } from "@/methods/server-fetchers/cities/core/getCitiesCitiesByKeyServer"
 import { getDistrictsDistrictsByKeyServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictsByKeyServer"
 import { getDistrictsDistrictTypesServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictTypesServer"
+import { getPlayerPositionServer } from "@/methods/server-fetchers/world/core/getPlayerPositionServer"
 import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
 import { getWorldMapTilesByKeyServer } from "@/methods/server-fetchers/world/core/getWorldMapTilesByKeyServer"
 import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
-import { getPlayerVisibleMapDataServer } from "@/methods/server-fetchers/world/getPlayerVisibleMapDataServer"
 
 export async function getJoinedMap(mapId: number, playerId: number) {
-  const [terrainTypes, mapTiles, landscapeTypes, cities, districts, districtTypes, playerVisibleMapData] =
+  const [terrainTypes, mapTiles, landscapeTypes, cities, districts, districtTypes, getPlayerPosition] =
     await Promise.all([
       getWorldTerrainTypesServer(),
       getWorldMapTilesByKeyServer({ mapId }),
@@ -18,7 +18,7 @@ export async function getJoinedMap(mapId: number, playerId: number) {
       getCitiesCitiesByKeyServer({ mapId }),
       getDistrictsDistrictsByKeyServer({ mapId }),
       getDistrictsDistrictTypesServer(),
-      getPlayerVisibleMapDataServer({ playerId }),
+      getPlayerPositionServer({ mapId, playerId }),
     ])
 
   const joinedMap = joinMap({
@@ -28,8 +28,8 @@ export async function getJoinedMap(mapId: number, playerId: number) {
     cities: cities.byKey,
     districts: districts.byKey,
     districtTypes: districtTypes.byKey,
-    playerVisibleMapData: playerVisibleMapData.byKey,
+    getPlayerPosition: getPlayerPosition.byKey,
   })
 
-  return { terrainTypes, mapTiles, landscapeTypes, cities, districts, districtTypes, playerVisibleMapData, joinedMap }
+  return { terrainTypes, mapTiles, landscapeTypes, cities, districts, districtTypes, getPlayerPosition, joinedMap }
 }

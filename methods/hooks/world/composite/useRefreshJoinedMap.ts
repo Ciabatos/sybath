@@ -7,8 +7,9 @@ import { joinMap, TJoinMapByXY } from "@/methods/functions/map/joinMap"
 import { useFetchCitiesCities } from "@/methods/hooks/cities/core/useFetchCitiesCities"
 import { useFetchDistrictsDistricts } from "@/methods/hooks/districts/core/useFetchDistrictsDistricts"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
-import { useFetchPlayerVisibleMapData } from "@/methods/hooks/world/core/useFetchPlayerVisibleMapData"
+import { useFetchGetPlayerPosition } from "@/methods/hooks/world/core/useFetchGetPlayerPosition"
 import { useFetchWorldMapTiles } from "@/methods/hooks/world/core/useFetchWorldMapTiles"
+import { useFetchWorldTerrainTypes } from "@/methods/hooks/world/core/useFetchWorldTerrainTypes"
 import { joinedMapAtom } from "@/store/atoms"
 import { useAtom } from "jotai"
 import { useEffect } from "react"
@@ -20,13 +21,18 @@ interface Props {
   districtTypes: TDistrictsDistrictTypesRecordById
 }
 
-export function useRefreshJoinedMap({ joinedMap, terrainTypes, landscapeTypes, districtTypes }: Props) {
+export function useRefreshJoinedMap({ joinedMap, landscapeTypes, districtTypes }: Props) {
   const { playerId } = usePlayerId()
   const [refreshedJoinedMap, setJoinedMap] = useAtom(joinedMapAtom)
   const { mapTiles } = useFetchWorldMapTiles()
   const { cities } = useFetchCitiesCities()
-  const { playerVisibleMapData } = useFetchPlayerVisibleMapData({ playerId: playerId })
+  const { getPlayerPosition } = useFetchGetPlayerPosition({ mapId: 1, playerId: playerId })
   const { districts } = useFetchDistrictsDistricts()
+  const { terrainTypes } = useFetchWorldTerrainTypes()
+
+  useEffect(() => {
+    setJoinedMap(joinedMap)
+  }, [joinedMap])
 
   useEffect(() => {
     const refreshedData = joinMap({
@@ -36,13 +42,13 @@ export function useRefreshJoinedMap({ joinedMap, terrainTypes, landscapeTypes, d
       cities: cities,
       districts: districts,
       districtTypes: districtTypes,
-      playerVisibleMapData: playerVisibleMapData,
-      options: { oldDataToUpdate: joinedMap },
+      getPlayerPosition: getPlayerPosition,
+      options: { oldDataToUpdate: refreshedJoinedMap },
     })
     setJoinedMap(refreshedData)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mapTiles, cities, districts, playerVisibleMapData])
+  }, [mapTiles, cities, districts, getPlayerPosition])
 
   return { refreshedJoinedMap }
 }

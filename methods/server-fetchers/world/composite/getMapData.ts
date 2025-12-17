@@ -8,6 +8,7 @@ import { getCitiesCitiesByKeyServer } from "@/methods/server-fetchers/cities/cor
 import { getDistrictsDistrictsByKeyServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictsByKeyServer"
 import { getDistrictsDistrictTypesServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictTypesServer"
 import { getGetPlayerInventoryServer } from "@/methods/server-fetchers/inventory/core/getGetPlayerInventoryServer"
+import { getPlayerPositionServer } from "@/methods/server-fetchers/world/core/getPlayerPositionServer"
 import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
 import { getWorldMapTilesByKeyServer } from "@/methods/server-fetchers/world/core/getWorldMapTilesByKeyServer"
 import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
@@ -20,7 +21,7 @@ export async function getMapData(mapId: number, playerId: number) {
     cities,
     districts,
     districtTypes,
-    playerVisibleMapData,
+    getPlayerPosition,
     skills,
     abilities,
     playerSkills,
@@ -33,7 +34,7 @@ export async function getMapData(mapId: number, playerId: number) {
     getCitiesCitiesByKeyServer({ mapId }),
     getDistrictsDistrictsByKeyServer({ mapId }),
     getDistrictsDistrictTypesServer(),
-    getPlayerVisibleMapDataServer({ playerId }),
+    getPlayerPositionServer({ mapId, playerId }),
     getAttributesSkillsServer(),
     getAttributesAbilitiesServer(),
     getPlayerSkillsServer({ playerId }),
@@ -48,7 +49,7 @@ export async function getMapData(mapId: number, playerId: number) {
     cities: cities.byKey,
     districts: districts.byKey,
     districtTypes: districtTypes.byKey,
-    playerVisibleMapData: playerVisibleMapData.byKey,
+    getPlayerPosition: getPlayerPosition.byKey,
   })
 
   const fallbackData = createSwrFallback(
@@ -58,7 +59,7 @@ export async function getMapData(mapId: number, playerId: number) {
     cities,
     districts,
     districtTypes,
-    playerVisibleMapData,
+    getPlayerPosition,
     playerSkills,
     playerAbilities,
     playerIventory,
@@ -75,7 +76,7 @@ export async function getMapData(mapId: number, playerId: number) {
     districtTypes,
     skills,
     abilities,
-    playerVisibleMapData,
+    getPlayerPosition,
     playerSkills,
     playerAbilities,
     playerIventory,

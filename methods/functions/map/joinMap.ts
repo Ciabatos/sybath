@@ -1,11 +1,11 @@
 import { TCitiesCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
 import { TDistrictsDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/districts/districts"
 import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
+import { TGetPlayerVisionPlayersPositionsRecordByXY } from "@/db/postgresMainDatabase/schemas/world/getPlayerVisionPlayersPositions"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
-import { TPlayerVisibleMapDataRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/world/playerVisibleMapData"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
-import { produce } from "immer"
+import equal from "fast-deep-equal"
 
 type TJoinMapParams = {
   tiles: TWorldMapTilesRecordByXY
@@ -14,7 +14,7 @@ type TJoinMapParams = {
   cities: TCitiesCitiesRecordByMapTileXMapTileY
   districts: TDistrictsDistrictsRecordByMapTileXMapTileY
   districtTypes: TDistrictsDistrictTypesRecordById
-  playerVisibleMapData: TPlayerVisibleMapDataRecordByMapTileXMapTileY
+  getPlayerPosition: TGetPlayerVisionPlayersPositionsRecordByXY
   options?: {
     oldDataToUpdate?: TJoinMapByXY
   }
@@ -26,7 +26,7 @@ export interface TJoinMap {
   cities?: TCitiesCitiesRecordByMapTileXMapTileY[keyof TCitiesCitiesRecordByMapTileXMapTileY]
   districts?: TDistrictsDistrictsRecordByMapTileXMapTileY[keyof TDistrictsDistrictsRecordByMapTileXMapTileY]
   districtTypes?: TDistrictsDistrictTypesRecordById[keyof TDistrictsDistrictTypesRecordById]
-  playerVisibleMapData?: TPlayerVisibleMapDataRecordByMapTileXMapTileY[keyof TPlayerVisibleMapDataRecordByMapTileXMapTileY]
+  getPlayerPosition?: TGetPlayerVisionPlayersPositionsRecordByXY[keyof TGetPlayerVisionPlayersPositionsRecordByXY]
   moveCost?: number
 }
 
@@ -39,7 +39,7 @@ export function joinMap({
   cities,
   districts,
   districtTypes,
-  playerVisibleMapData,
+  getPlayerPosition,
   options = {},
 }: TJoinMapParams): TJoinMapByXY {
   const { oldDataToUpdate } = options
@@ -50,17 +50,17 @@ export function joinMap({
     const citiesData = cities[`${mainData.x},${mainData.y}`]
     const districtsData = districts[`${mainData.x},${mainData.y}`]
     const districtTypesData = districtsData ? districtTypes[districtsData.districtTypeId] : undefined
-    const playerVisibleMapDataData = playerVisibleMapData[`${mainData.x},${mainData.y}`]
+    const getPlayerPositionData = getPlayerPosition[`${mainData.x},${mainData.y}`]
 
     return {
       tiles: mainData,
       terrainTypes: terrainTypesData,
-      landscapeTypes: landscapeTypesData,
-      cities: citiesData,
-      districts: districtsData,
-      districtTypes: districtTypesData,
-      playerVisibleMapData: playerVisibleMapDataData,
-      moveCost: terrainTypesData?.moveCost + (landscapeTypesData?.moveCost ?? 0) + (citiesData?.moveCost ?? 0), //+ (districtsData?.moveCost ?? 0),
+      ...(landscapeTypesData && { landscapeTypes: landscapeTypesData }),
+      ...(citiesData && { cities: citiesData }),
+      ...(districtsData && { districts: districtsData }),
+      ...(districtTypesData && { districtTypes: districtTypesData }),
+      ...(getPlayerPositionData && { getPlayerPosition: getPlayerPositionData }),
+      moveCost: terrainTypesData?.moveCost + (landscapeTypesData?.moveCost ?? 0) + (citiesData?.moveCost ?? 0),
     }
   }
 
@@ -69,14 +69,17 @@ export function joinMap({
   // To jest render block
   // (client-side behavior)
   if (oldDataToUpdate) {
-    return produce(oldDataToUpdate, (draft) => {
-      dataEntries.forEach(([key, data]) => {
-        if (draft[key]) {
-          draft[key] = createOrUpdate(data)
-          console.log("updating tile at", createOrUpdate(data))
-        }
-      })
+    const newMap = { ...oldDataToUpdate }
+
+    dataEntries.forEach(([key, data]) => {
+      const newValue = createOrUpdate(data)
+      if (!equal(oldDataToUpdate[key], newValue)) {
+        console.log("Updating tile at", key)
+        newMap[key] = newValue
+      }
     })
+
+    return newMap
   } else {
     // (server-side behavior)
     return Object.fromEntries(dataEntries.map(([key, data]) => [key, createOrUpdate(data)]))
