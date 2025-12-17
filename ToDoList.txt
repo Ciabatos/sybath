@@ -11,7 +11,6 @@ transport
 +Mechaniki produkcji
 +Mechaniki budowania budynkow
 
-
 Walka:
 Gry: 
 -Slay the spire
@@ -27,19 +26,15 @@ Mapa
 
 UI i flow dla „systemu informacji”
 
-rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmianie URL
 
+w joinMapTiles dodac po kluczu hooki !
 
 wywalilem immera i dodalem equal, trzeba sie zastanowic nad undefined
-
-dodac cityId do atomu
-
 
 pozycje graczy ustaw poprawnie - chyba wywalic z renderowania, dodac panel z graczami i tam mozna wyswietlac gdzie sa
 - dodac jedynie moja pozyccje
 - dodac ikone ludzi znajdujacych sie na polu ktora otwiera panel graczy na tilesie
 - dodac w panelu liste graczy i mozliwosc zaznaczenia go na mapie np kolorem
-
 
 Panele odpowiadaja za render
 Forms to akcje, buttony renderowane w panelach, pobieraja one dane z hooków?
@@ -59,6 +54,7 @@ Middleware zamienia to na:
 
 
 
+rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmianie URL
 
 
 
