@@ -44,6 +44,8 @@ import { TAttributesAbilitiesRecordById } from "@/db/postgresMainDatabase/schema
 import { TPlayerAbilitiesRecordByAbilityId } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
 import { TPlayerSkillsRecordBySkillId } from "@/db/postgresMainDatabase/schemas/attributes/playerSkills"
 import { TPlayerStatsRecordByStatId } from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
+import { TPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
+import { TPlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanels>(EPanels.Inactive)
@@ -112,6 +114,8 @@ export const playerSkillsAtom = atom<TAttributesPlayerSkillsRecordByPlayerId>({}
 export const playerAbilitiesAtom = atom<TAttributesPlayerAbilitiesRecordByPlayerId>({})
 
 //Functions
+export const playerPositionAtom = atom<TPlayerPositionRecordByXY>({})
+export const playerMovementAtom = atom<TPlayerMovementRecordByXY>({})
 export const playerStatsAtom = atom<TPlayerStatsRecordByStatId>({})
 export const playerSkillsAtom = atom<TPlayerSkillsRecordBySkillId>({})
 export const playerAbilitiesAtom = atom<TPlayerAbilitiesRecordByAbilityId>({})

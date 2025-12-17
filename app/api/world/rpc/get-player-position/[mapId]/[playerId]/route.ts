@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetMethodFetcher.hbs
 
 import { auth } from "@/auth"
-import { getPlayerPosition, TGetPlayerPositionParams } from "@/db/postgresMainDatabase/schemas/world/getPlayerPosition"
+import { getPlayerPosition, TPlayerPositionParams } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
@@ -11,7 +11,7 @@ type TApiParams = Record<string, string>
 const typeParamsSchema = z.object({
   mapId: z.coerce.number(),
   playerId: z.coerce.number(),
-}) satisfies z.ZodType<TGetPlayerPositionParams>
+}) satisfies z.ZodType<TPlayerPositionParams>
 
 export async function GET(request: NextRequest, { params }: { params: TApiParams }): Promise<NextResponse> {
   const session = await auth()

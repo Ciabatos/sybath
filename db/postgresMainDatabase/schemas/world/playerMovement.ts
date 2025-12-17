@@ -1,28 +1,30 @@
-// GENERATED CODE - DO NOT EDIT MANUALLY - dbGetMethodAction.hbs
+// GENERATED CODE - DO NOT EDIT MANUALLY - dbGetMethodFetcher.hbs
 
 "use server"
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
+import { snakeToCamelRows } from "@/methods/functions/util/snakeToCamel"
 
 export type TPlayerMovementParams = {
   playerId: number
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  path: any
 }
 
 export type TPlayerMovement = {
-  status: string
-  message: string
+  scheduledAt: string
+  x: number
+  y: number
 }
 
-export async function playerMovement(params: TPlayerMovementParams) {
+export type TPlayerMovementRecordByXY = Record<string, TPlayerMovement>
+
+export async function getPlayerMovement(params: TPlayerMovementParams) {
   try {
     const sqlParams = Object.values(params)
-    const sql = `SELECT * FROM world.player_movement($1, $2);`
-    const result = await query(sql, sqlParams)
+    const sql = `SELECT * FROM world.get_player_movement($1);`
 
-    return result.rows[0] as TPlayerMovement
+    const result = await query(sql, sqlParams)
+    return snakeToCamelRows(result.rows) as TPlayerMovement[]
   } catch (error) {
-    console.error("Error executing playerMovement:", error)
-    throw new Error("Failed to execute playerMovement")
+    console.error("Error fetching getPlayerMovement:", error)
+    throw new Error("Failed to fetch getPlayerMovement")
   }
 }

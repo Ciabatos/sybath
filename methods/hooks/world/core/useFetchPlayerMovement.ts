@@ -2,18 +2,18 @@
 
 "use client"
 import {
-  TGetPlayerMovementRecordByXY,
-  TGetPlayerMovementParams,
-} from "@/db/postgresMainDatabase/schemas/world/getPlayerMovement"
+  TPlayerMovementRecordByXY,
+  TPlayerMovementParams,
+} from "@/db/postgresMainDatabase/schemas/world/playerMovement"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
-import { getPlayerMovementAtom } from "@/store/atoms"
+import { playerMovementAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useRef } from "react"
 import useSWR from "swr"
 
-export function useFetchGetPlayerMovement(params: TGetPlayerMovementParams) {
-  const getPlayerMovement = useAtomValue(getPlayerMovementAtom)
-  const setGetPlayerMovement = useSetAtom(getPlayerMovementAtom)
+export function useFetchPlayerMovement(params: TPlayerMovementParams) {
+  const playerMovement = useAtomValue(playerMovementAtom)
+  const setPlayerMovement = useSetAtom(playerMovementAtom)
 
   const { data } = useSWR(`/api/world/rpc/get-player-movement/${params.playerId}`, { refreshInterval: 3000 })
 
@@ -22,11 +22,11 @@ export function useFetchGetPlayerMovement(params: TGetPlayerMovementParams) {
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const index = data ? (arrayToObjectKey(["x", "y"], data) as TGetPlayerMovementRecordByXY) : {}
-      setGetPlayerMovement(index)
+      const index = data ? (arrayToObjectKey(["x", "y"], data) as TPlayerMovementRecordByXY) : {}
+      setPlayerMovement(index)
       prevDataRef.current = data
     }
-  }, [data, setGetPlayerMovement])
+  }, [data, setPlayerMovement])
 
-  return { getPlayerMovement }
+  return { playerMovement }
 }

@@ -2,18 +2,18 @@
 
 "use client"
 import {
-  TGetPlayerPositionRecordByXY,
-  TGetPlayerPositionParams,
-} from "@/db/postgresMainDatabase/schemas/world/getPlayerPosition"
+  TPlayerPositionRecordByXY,
+  TPlayerPositionParams,
+} from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
-import { getPlayerPositionAtom } from "@/store/atoms"
+import { playerPositionAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect, useRef } from "react"
 import useSWR from "swr"
 
-export function useFetchGetPlayerPosition(params: TGetPlayerPositionParams) {
-  const getPlayerPosition = useAtomValue(getPlayerPositionAtom)
-  const setGetPlayerPosition = useSetAtom(getPlayerPositionAtom)
+export function useFetchPlayerPosition(params: TPlayerPositionParams) {
+  const playerPosition = useAtomValue(playerPositionAtom)
+  const setPlayerPosition = useSetAtom(playerPositionAtom)
 
   const { data } = useSWR(`/api/world/rpc/get-player-position/${params.mapId}/${params.playerId}`, {
     refreshInterval: 3000,
@@ -24,11 +24,11 @@ export function useFetchGetPlayerPosition(params: TGetPlayerPositionParams) {
   useEffect(() => {
     if (data === undefined) return
     if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const index = data ? (arrayToObjectKey(["x", "y"], data) as TGetPlayerPositionRecordByXY) : {}
-      setGetPlayerPosition(index)
+      const index = data ? (arrayToObjectKey(["x", "y"], data) as TPlayerPositionRecordByXY) : {}
+      setPlayerPosition(index)
       prevDataRef.current = data
     }
-  }, [data, setGetPlayerPosition])
+  }, [data, setPlayerPosition])
 
-  return { getPlayerPosition }
+  return { playerPosition }
 }
