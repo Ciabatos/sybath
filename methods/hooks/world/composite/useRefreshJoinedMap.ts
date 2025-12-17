@@ -43,7 +43,7 @@ export function useRefreshJoinedMap({ joinedMap, landscapeTypes, districtTypes }
       districts: districts,
       districtTypes: districtTypes,
       getPlayerPosition: getPlayerPosition,
-      options: { oldDataToUpdate: refreshedJoinedMap },
+      options: { oldDataToUpdate: { ...joinedMap, ...refreshedJoinedMap } },
     })
     setJoinedMap(refreshedData)
 
