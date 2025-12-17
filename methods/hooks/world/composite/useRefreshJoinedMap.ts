@@ -32,7 +32,7 @@ export function useRefreshJoinedMap({ joinedMap, landscapeTypes, districtTypes }
 
   useEffect(() => {
     setJoinedMap(joinedMap)
-  }, [joinedMap])
+  }, [])
 
   useEffect(() => {
     const refreshedData = joinMap({
