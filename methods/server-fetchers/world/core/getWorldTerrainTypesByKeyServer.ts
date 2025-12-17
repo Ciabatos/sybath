@@ -13,6 +13,7 @@ export async function getWorldTerrainTypesByKeyServer(params: TWorldTerrainTypes
   raw: TWorldTerrainTypes[]
   byKey: TWorldTerrainTypesRecordById
   apiPath: string
+  atomName: string
 }> {
   const getWorldTerrainTypesByKeyData = await getWorldTerrainTypesByKey(params)
 
@@ -20,5 +21,10 @@ export async function getWorldTerrainTypesByKeyServer(params: TWorldTerrainTypes
     ? (arrayToObjectKey(["id"], getWorldTerrainTypesByKeyData) as TWorldTerrainTypesRecordById)
     : {}
 
-  return { raw: getWorldTerrainTypesByKeyData, byKey: data, apiPath: `/api/world/terrain-types/${params.id}` }
+  return {
+    raw: getWorldTerrainTypesByKeyData,
+    byKey: data,
+    apiPath: `/api/world/terrain-types/${params.id}`,
+    atomName: `terrainTypesAtom`,
+  }
 }

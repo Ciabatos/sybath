@@ -39,6 +39,7 @@ import { atom } from "jotai"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
 import { TWorldMapsRecordById } from "@/db/postgresMainDatabase/schemas/world/maps"
+import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanels>(EPanels.Inactive)
@@ -82,6 +83,7 @@ export const playerMapTilesGuardAreaAtom = atom<TAreaRecordByXY>({})
 export const actionTaskInProcessAtom = atom<TActionTaskInProcess>()
 
 //Tables
+export const terrainTypesAtom = atom<TWorldTerrainTypesRecordById>({})
 export const mapsAtom = atom<TWorldMapsRecordById>({})
 export const mapTilesAtom = atom<TWorldMapTilesRecordByXY>({})
 export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
