@@ -5,9 +5,10 @@ import { useFetchCitiesCities } from "@/methods/hooks/cities/core/useFetchCities
 import { useFetchDistrictsDistricts } from "@/methods/hooks/districts/core/useFetchDistrictsDistricts"
 import { useFetchDistrictsDistrictTypes } from "@/methods/hooks/districts/core/useFetchDistrictsDistrictTypes"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
+import { useMapId } from "@/methods/hooks/world/composite/useMapId"
 import { useFetchPlayerPosition } from "@/methods/hooks/world/core/useFetchPlayerPosition"
 import { useFetchWorldLandscapeTypes } from "@/methods/hooks/world/core/useFetchWorldLandscapeTypes"
-import { useFetchWorldMapTiles } from "@/methods/hooks/world/core/useFetchWorldMapTiles"
+import { useFetchWorldMapTilesByKey } from "@/methods/hooks/world/core/useFetchWorldMapTilesByKey"
 import { useFetchWorldTerrainTypes } from "@/methods/hooks/world/core/useFetchWorldTerrainTypes"
 import { joinedMapAtom } from "@/store/atoms"
 import { useAtom } from "jotai"
@@ -15,10 +16,11 @@ import { useEffect } from "react"
 
 export function useRefreshJoinedMap() {
   const { playerId } = usePlayerId()
+  const { mapId } = useMapId()
   const [refreshedJoinedMap, setJoinedMap] = useAtom(joinedMapAtom)
-  const { mapTiles } = useFetchWorldMapTiles()
+  const { mapTiles } = useFetchWorldMapTilesByKey({ mapId })
   const { cities } = useFetchCitiesCities()
-  const { playerPosition } = useFetchPlayerPosition({ mapId: 1, playerId })
+  const { playerPosition } = useFetchPlayerPosition({ mapId, playerId })
   const { districts } = useFetchDistrictsDistricts()
   const { terrainTypes } = useFetchWorldTerrainTypes()
   const { landscapeTypes } = useFetchWorldLandscapeTypes()

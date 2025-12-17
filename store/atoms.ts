@@ -34,14 +34,14 @@ export const modalRightCenterAtom = atom<EPanels>(EPanels.Inactive)
 export const modalTopCenterAtom = atom<EPanels>(EPanels.Inactive)
 
 //City
-export const cityIdAtom = atom<number>()
+export const cityIdAtom = atom<number>(0)
 export const clickedCityTileAtom = atom<TJoinCity>()
 export const joinedCityAtom = atom<TJoinCityByXY>({})
 
 //Map
 export const clickedTileAtom = atom<TJoinMap>()
 export const joinedMapAtom = atom<TJoinMapByXY>({})
-export const mapIdAtom = atom<number>()
+export const mapIdAtom = atom<number>(0)
 
 //Player
 export const playerIdAtom = atom<number>(0)
