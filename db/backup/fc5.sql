@@ -15,9 +15,15 @@ PERFORM inventory.add_item_to_inventory_free_slot(p_inventory_container_id, p_it
         
         
     RETURN QUERY SELECT 'ok', 'Item added successfully';
-EXCEPTION
-    WHEN OTHERS THEN
-        RETURN QUERY SELECT 'fail', SQLERRM;
+    
+	EXCEPTION
+        WHEN OTHERS THEN
+            IF SQLSTATE = 'P0001' THEN
+                RETURN QUERY SELECT 'fail', SQLERRM;
+            ELSE
+                RETURN QUERY SELECT 'fail', 'Operation failed';
+            END IF;
+    END;
 
 END;
 $function$

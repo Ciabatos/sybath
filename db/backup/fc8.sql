@@ -4,7 +4,7 @@ LANGUAGE plpgsql
 AS $$
 BEGIN
     IF NOT EXISTS (SELECT 1 FROM inventory.inventory_containers WHERE id = p_inventory_container_id) THEN
-        PERFORM util.raise_error('P0001', 'Inventory container does not exist');
+        PERFORM util.raise_error('Inventory container does not exist');
     END IF;
 END;
 $$;

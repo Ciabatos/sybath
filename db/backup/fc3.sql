@@ -1,11 +1,11 @@
-CREATE OR REPLACE FUNCTION utils.raise_error(p_code text, p_message text)
+CREATE OR REPLACE FUNCTION utils.raise_error(p_message text)
 RETURNS void
 LANGUAGE plpgsql
 AS $$
 BEGIN
     RAISE EXCEPTION
         USING
-            ERRCODE = p_code,
+            ERRCODE = 'P0001',
             MESSAGE = p_message;
 END;
 $$;
