@@ -11,6 +11,7 @@ function configurePlop(plop) {
     "methods/hooks",
     "methods/server-fetchers",
   ]
+
   plop.setHelper("eq", (a, b) => a === b)
 
   plop.setActionType("PrettierFormat", async function () {
@@ -25,7 +26,9 @@ function configurePlop(plop) {
   })
 
   getMethodAction(plop)
+
   getMethodFetcher(plop)
+
   getTable(plop)
 }
 
