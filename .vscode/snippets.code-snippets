@@ -7,9 +7,12 @@
 },
   "useAtom": {
     "prefix": "use_Atom",
-    "body": ["const [${1}, set${1/(.*)/${1:/capitalize}/}] = useAtom($1Atom)"],
-    "description": "useAtom with proper camel casing for setter function name."
-},
+    "body": [
+      "const ${1} = useAtomValue(${1}Atom)",
+      "const set${1/(.*)/${1:/capitalize}/} = useSetAtom(${1}Atom)"
+    ],
+    "description": "Separate useAtomValue and useSetAtom with proper setter name"
+  },
 
   "Destructure useWorldLandscapeTypes": {
     "prefix": "hook_world_core_useWorldLandscapeTypes",

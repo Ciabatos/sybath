@@ -14,14 +14,10 @@ export function useFetch{{schemaTablePascalName}}ByKey({{#if methodParamsColumns
   
   const { data } = useSWR(`{{apiPathParamsByKey}}`, { refreshInterval: 3000 })
 
-  const prevDataRef = useRef<unknown>(null)
-
   useEffect(() => {
-    if (data === undefined) return
-    if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const index = data ? ({{{indexMethodName}}}({{{indexMethodParams}}}, data) as {{indexTypeName}}) : {}
+    if (data) {
+      const index = ({{{indexMethodName}}}({{{indexMethodParams}}}, data) as {{indexTypeName}})
       set{{schemaTablePascalName}}(index)
-      prevDataRef.current = data
     }
   }, [data, set{{schemaTablePascalName}}])
 
