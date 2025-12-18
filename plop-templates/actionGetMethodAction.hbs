@@ -1,27 +1,36 @@
-// GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - actionGetMethodAction.hbs "use server" import {
-auth } from "@/auth" import {
-{{methodParamsTypeName}},
-{{methodCamelName}}
-} from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}" type T{{methodPascalName}}Params = { } export
-async function
-{{methodName}}(params: T{{methodPascalName}}Params) { const session = await auth() const playerId =
-session?.user?.playerId if (!playerId || isNaN(playerId)) { return }
+// GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - actionGetMethodAction.hbs
+"use server"
 
-{{#each methodParamsColumns}}
-  const
-  {{camelName}}
-  =
-{{/each}}
+import { auth } from "@/auth"
+import { {{methodParamsTypeName}}, {{methodCamelName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
 
-const data:
-{{methodParamsTypeName}}
-= {
-{{#each methodParamsColumns}}
-  {{camelName}}:
-  {{camelName}},
-{{/each}}
-} try { const result = await
-{{methodCamelName}}(data) return result } catch (error) { console.error("Error
-{{methodName}}
-:", error) return "Failed to
-{{methodName}}" } }
+type T{{methodPascalName}}Params = {
+
+}
+
+export async function {{methodName}}(params: T{{methodPascalName}}Params) {
+  const session = await auth()
+  const playerId = session?.user?.playerId
+
+  if (!playerId || isNaN(playerId)) {
+    return
+  }
+
+  {{#each methodParamsColumns}}
+  const {{camelName}} =
+  {{/each}}
+
+  const data: {{methodParamsTypeName}} = {
+    {{#each methodParamsColumns}}
+    {{camelName}}: {{camelName}},
+    {{/each}}
+  }
+
+  try {
+    const result = await {{methodCamelName}}(data)
+    return result
+  } catch (error) {
+    console.error("Error {{methodName}} :", error)
+    return "Failed to {{methodName}}"
+  }
+}
