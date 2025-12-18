@@ -4,11 +4,15 @@
 import { auth } from "@/auth"
 import { {{methodParamsTypeName}}, {{methodCamelName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
 
-type T{{methodPascalName}}Params = {
+//MANUAL CODE - START
+
+type T{{methodPascalName}}ActionParams = {
 
 }
 
-export async function {{methodName}}(params: T{{methodPascalName}}Params) {
+//MANUAL CODE - END
+
+export async function {{methodName}}(params: T{{methodPascalName}}ActionParams) {
   const session = await auth()
   const playerId = session?.user?.playerId
 
@@ -16,9 +20,13 @@ export async function {{methodName}}(params: T{{methodPascalName}}Params) {
     return
   }
 
+  //MANUAL CODE - START
+
   {{#each methodParamsColumns}}
   const {{camelName}} =
   {{/each}}
+
+  //MANUAL CODE - END
 
   const data: {{methodParamsTypeName}} = {
     {{#each methodParamsColumns}}
