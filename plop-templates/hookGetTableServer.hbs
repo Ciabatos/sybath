@@ -5,6 +5,10 @@ import { {{indexMethodName}} } from "@/methods/functions/util/converters"
 import { {{methodName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 import type { {{methodTypeName}}, {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let cachedData: any = null
+const CACHE_TTL = 3_000
+let lastUpdated = 0
 
 export async function {{methodName}}Server(): Promise<{
   raw: {{methodTypeName}}[]
@@ -12,9 +16,18 @@ export async function {{methodName}}Server(): Promise<{
   apiPath: string
   atomName: string
 }> {
+  if (cachedData && Date.now() - lastUpdated < CACHE_TTL) {
+    return cachedData
+  }
+
   const {{methodName}}Data = await {{methodName}}()
 
   const data = {{methodName}}Data ? ({{{indexMethodName}}}({{{indexMethodParams}}}, {{methodName}}Data) as {{indexTypeName}}) : {}
 
-  return { raw: {{methodName}}Data, byKey: data, apiPath: `{{apiPathParams}}`, atomName: `{{tableCamelName}}Atom` }
+  const result = { raw: {{methodName}}Data, byKey: data, apiPath: `{{apiPathParams}}`, atomName: `{{tableCamelName}}Atom` }
+  
+  cachedData = result
+  lastUpdated = Date.now()
+
+  return result
 }

@@ -7,6 +7,10 @@ import type { {{methodTypeName}} } from "@/db/postgresMainDatabase/schemas/{{sch
 {{#if methodParamsColumns}}import type { {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}" {{/if}}
 import type { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let cachedData: any = null
+const CACHE_TTL = 3_000
+let lastUpdated = 0
 
 export async function {{methodName}}Server({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}): Promise<{
   raw: {{methodTypeName}}[]
@@ -14,10 +18,19 @@ export async function {{methodName}}Server({{#if methodParamsColumns}} params: {
   apiPath: string
   atomName: string
 }> {
+  if (cachedData && Date.now() - lastUpdated < CACHE_TTL) {
+    return cachedData
+  }
+  
   const {{methodName}}Data = await {{methodName}}({{#if methodParamsColumns}}params{{/if}})
 
   const data = {{methodName}}Data ? ({{{indexMethodName}}}({{{indexMethodParams}}}, {{methodName}}Data) as {{indexTypeName}}) : {}
 
-  return { raw: {{methodName}}Data, byKey: data, apiPath: `{{apiPathParams}}`, atomName: `{{methodCamelName}}Atom`  }
+  const result = { raw: {{methodName}}Data, byKey: data, apiPath: `{{apiPathParams}}`, atomName: `{{methodCamelName}}Atom`  }
+
+  cachedData = result
+  lastUpdated = Date.now()
+
+  return result
 }
 
