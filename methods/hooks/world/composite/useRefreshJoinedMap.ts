@@ -1,8 +1,8 @@
 "use client"
 
 import { joinMap } from "@/methods/functions/map/joinMap"
-import { useFetchCitiesCities } from "@/methods/hooks/cities/core/useFetchCitiesCities"
-import { useFetchDistrictsDistricts } from "@/methods/hooks/districts/core/useFetchDistrictsDistricts"
+import { useFetchCitiesCitiesByKey } from "@/methods/hooks/cities/core/useFetchCitiesCitiesByKey"
+import { useFetchDistrictsDistrictsByKey } from "@/methods/hooks/districts/core/useFetchDistrictsDistrictsByKey"
 import { useFetchDistrictsDistrictTypes } from "@/methods/hooks/districts/core/useFetchDistrictsDistrictTypes"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { useMapId } from "@/methods/hooks/world/composite/useMapId"
@@ -19,9 +19,9 @@ export function useRefreshJoinedMap() {
   const { mapId } = useMapId()
   const [refreshedJoinedMap, setJoinedMap] = useAtom(joinedMapAtom)
   const { mapTiles } = useFetchWorldMapTilesByKey({ mapId })
-  const { cities } = useFetchCitiesCities()
+  const { cities } = useFetchCitiesCitiesByKey({ mapId })
   const { playerPosition } = useFetchPlayerPosition({ mapId, playerId })
-  const { districts } = useFetchDistrictsDistricts()
+  const { districts } = useFetchDistrictsDistrictsByKey({ mapId })
   const { terrainTypes } = useFetchWorldTerrainTypes()
   const { landscapeTypes } = useFetchWorldLandscapeTypes()
   const { districtTypes } = useFetchDistrictsDistrictTypes()
