@@ -323,6 +323,15 @@ export default function getTable(plop) {
           return answers.generateMutation ? false : "Pomijam generowanie useMutate..."
         },
       },
+      {
+        type: "add",
+        path: "methods/hooks/{{schema}}/core/useMutate{{schemaTablePascalName}}ByKey.ts",
+        templateFile: "plop-templates/hookMutateTableByKey.hbs",
+        force: true,
+        skip(answers) {
+          return answers.generateMutation ? false : "Pomijam generowanie useMutate..."
+        },
+      },
       // {
       //   type: "PrettierFormat",
       // },

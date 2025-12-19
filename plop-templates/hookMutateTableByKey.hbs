@@ -7,8 +7,8 @@ import { useSetAtom{{#if mutationMergeOldData}}, useAtomValue{{/if}} } from "jot
 import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutate{{schemaTablePascalName}}() {
-  const { mutate } = useSWR<{{methodTypeName}}[]>(`{{apiPathParams}}`)
+export function useMutate{{schemaTablePascalName}}({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}) {
+  const { mutate } = useSWR<{{methodTypeName}}[]>(`{{apiPathParamsByKey}}`)
   const set{{schemaTablePascalName}} = useSetAtom({{tableCamelName}}Atom)
   {{#if mutationMergeOldData}}const {{tableCamelName}} = useAtomValue({{tableCamelName}}Atom){{/if}}
 

@@ -240,7 +240,6 @@ export async function createMethodGetRecordsByKey(schema, table, indexParamsColu
     // Zbuduj definicję parametrów i klauzulę WHERE (p_<col>)
     const paramsDef = dbCols.map((c) => `p_${c} ${typeMap[c]}`).join(", ")
     const whereClause = dbCols.map((c) => `"${c}" = p_${c}`).join(" AND ")
-    console.log(paramsDef, whereClause)
     const sql = `
       CREATE OR REPLACE FUNCTION ${schema}.get_${table}_by_key(${paramsDef})
       RETURNS SETOF ${schema}.${table}

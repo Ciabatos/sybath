@@ -13,7 +13,7 @@ export function useMutate{{methodPascalName}}({{#if methodParamsColumns}} params
   {{#if mutationMergeOldData}}const {{methodCamelName}} = useAtomValue({{methodCamelName}}Atom){{/if}}
 
   function mutate{{methodPascalName}}(optimisticParams: Partial<{{methodTypeName}}> | Partial<{{methodTypeName}}>[]) {
-    const params = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
+    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START
 
@@ -25,7 +25,7 @@ export function useMutate{{methodPascalName}}({{#if methodParamsColumns}} params
 
     //MANUAL CODE - END
 
-    const dataWithDefaults = Object.values(params).map((val) => ({
+    const dataWithDefaults = paramsArray.map((val) => ({
       ...defaultValues,
       ...val,
     }))

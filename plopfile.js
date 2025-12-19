@@ -17,7 +17,6 @@ function configurePlop(plop) {
   plop.setActionType("PrettierFormat", async function () {
     try {
       const result = await formatWithPrettier(pathsToFormat)
-      console.log("Prettier finished:", result)
       return result
     } catch (err) {
       console.error("Prettier failed:", err)
