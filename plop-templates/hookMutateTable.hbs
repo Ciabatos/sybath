@@ -1,7 +1,7 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTable.hbs
 "use client"
 
-import { {{indexTypeName}} {{#if methodParamsColumns}}, {{methodParamsTypeName}}, {{methodTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
+import { {{indexTypeName}}, {{methodTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 import { {{tableCamelName}}Atom } from "@/store/atoms"
 import { useSetAtom{{#if mutationMergeOldData}}, useAtomValue{{/if}} } from "jotai"
 import useSWR from "swr"
