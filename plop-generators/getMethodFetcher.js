@@ -75,7 +75,7 @@ export default function getMethodFetcher(plop) {
         {
           type: "checkbox",
           name: "selectedColumnsIndex",
-          message: "Wybierz kolumny dla indexu do szybkiego wyszukiwania krotki:",
+          message: "Wybierz kolumny dla indexu do szybkiego wyszukiwania krotki po stronie Aplikacji:",
           choices: resultColumns.map((f) => ({
             name: `${f.camelName} (${f.type})`,
             value: f.camelName,
@@ -137,7 +137,8 @@ export default function getMethodFetcher(plop) {
         {
           type: "list",
           name: "mutationMergeOldData",
-          message: "Czy zmergować stare dane z atomu do nowych danych przy użyciu Mutate ?",
+          message:
+            "Czy zmergować stare dane z atomu do nowych danych przy użyciu Mutate ? (przykład to stare mapTiles podmieniaja się na nowe mapTiles) ",
           choices: [
             { name: "Nie", value: false },
             { name: "Tak", value: true },

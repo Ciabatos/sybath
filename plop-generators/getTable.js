@@ -71,7 +71,7 @@ export default function getTable(plop) {
         {
           type: "checkbox",
           name: "selectedColumnsIndex",
-          message: "Wybierz kolumny dla indexu do szybkiego wyszukiwania krotki:",
+          message: "Wybierz kolumny dla indexu do szybkiego wyszukiwania krotki po stronie Aplikacji:",
           choices: methodColumns.map((f) => ({
             name: `${f.name} (${f.tsType})`,
             value: f.name,
@@ -99,7 +99,8 @@ export default function getTable(plop) {
         {
           type: "checkbox",
           name: "paramsColumns",
-          message: "Wybierz kolumny jako parametry WHERE dla jednego rekordu:",
+          message:
+            "Wybierz parametry dla zbieranych rekordów po stronie SERWERA (przykład dla parametru mapId zbierz wszystkie mapTiles):",
           choices: methodColumns.map((f) => ({
             name: `${f.name} (${f.tsType})`,
             value: f.name,
@@ -175,7 +176,8 @@ export default function getTable(plop) {
         {
           type: "list",
           name: "mutationMergeOldData",
-          message: "Czy zmergować stare dane z atomu do nowych danych przy użyciu Mutate ?",
+          message:
+            "Czy zmergować stare dane z atomu do nowych danych przy użyciu Mutate ? (przykład to stare mapTiles podmieniaja się na nowe mapTiles) ",
           choices: [
             { name: "Nie", value: false },
             { name: "Tak", value: true },
