@@ -1,23 +1,21 @@
-// GENERATED CODE - DO NOT EDIT MANUALLY - hookMutateMethodFetcher.hbs
+// GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
-import {
-  TPlayerSkillsRecordBySkillId,
-  TPlayerSkillsParams,
-  TPlayerSkills,
-} from "@/db/postgresMainDatabase/schemas/attributes/playerSkills"
+import { TPlayerSkillsRecordBySkillId , TPlayerSkillsParams, TPlayerSkills  } from "@/db/postgresMainDatabase/schemas/attributes/playerSkills"
 import { playerSkillsAtom } from "@/store/atoms"
 import { useSetAtom, useAtomValue } from "jotai"
 import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutatePlayerSkills(params: TPlayerSkillsParams) {
-  const { mutate } = useSWR(`/api/attributes/rpc/get-player-skills/${params.playerId}`)
+export function useMutatePlayerSkills( params: TPlayerSkillsParams) {
+  const { mutate } = useSWR<TPlayerSkills[]>(`/api/attributes/rpc/get-player-skills/${params.playerId}`)
   const setPlayerSkills = useSetAtom(playerSkillsAtom)
   const playerSkills = useAtomValue(playerSkillsAtom)
 
   function mutatePlayerSkills(optimisticParams: Partial<TPlayerSkills> | Partial<TPlayerSkills>[]) {
-    const params = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
+    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
+
+    //MANUAL CODE - START
 
     const defaultValues = {
       skillId: ``,
@@ -25,22 +23,24 @@ export function useMutatePlayerSkills(params: TPlayerSkillsParams) {
       name: ``,
     }
 
-    const dataWithDefaults = Object.values(params).map((val) => ({
+    //MANUAL CODE - END
+
+    const dataWithDefaults = paramsArray.map((val) => ({
       ...defaultValues,
       ...val,
     }))
 
     const newObj = arrayToObjectKey(["skillId"], dataWithDefaults) as TPlayerSkillsRecordBySkillId
-
-    const optimisticData: TPlayerSkillsRecordBySkillId = {
-      ...playerSkills,
-      ...newObj,
+    
+    const optimisticDataMergeWithOldData: TPlayerSkillsRecordBySkillId = {
+      ...playerSkills, 
+      ...newObj,      
     }
+    
+    setPlayerSkills(optimisticDataMergeWithOldData)
 
-    setPlayerSkills(optimisticData)
-
-    mutate(undefined, {
-      optimisticData,
+    mutate(dataWithDefaults, {
+      optimisticData: dataWithDefaults,
       rollbackOnError: true,
       revalidate: true,
       populateCache: true,

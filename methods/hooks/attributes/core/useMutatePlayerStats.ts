@@ -1,23 +1,21 @@
-// GENERATED CODE - DO NOT EDIT MANUALLY - hookMutateMethodFetcher.hbs
+// GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
-import {
-  TPlayerStatsRecordByStatId,
-  TPlayerStatsParams,
-  TPlayerStats,
-} from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
+import { TPlayerStatsRecordByStatId , TPlayerStatsParams, TPlayerStats  } from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
 import { playerStatsAtom } from "@/store/atoms"
 import { useSetAtom, useAtomValue } from "jotai"
 import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutatePlayerStats(params: TPlayerStatsParams) {
-  const { mutate } = useSWR(`/api/attributes/rpc/get-player-stats/${params.playerId}`)
+export function useMutatePlayerStats( params: TPlayerStatsParams) {
+  const { mutate } = useSWR<TPlayerStats[]>(`/api/attributes/rpc/get-player-stats/${params.playerId}`)
   const setPlayerStats = useSetAtom(playerStatsAtom)
   const playerStats = useAtomValue(playerStatsAtom)
 
   function mutatePlayerStats(optimisticParams: Partial<TPlayerStats> | Partial<TPlayerStats>[]) {
-    const params = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
+    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
+
+    //MANUAL CODE - START
 
     const defaultValues = {
       statId: ``,
@@ -25,22 +23,24 @@ export function useMutatePlayerStats(params: TPlayerStatsParams) {
       name: ``,
     }
 
-    const dataWithDefaults = Object.values(params).map((val) => ({
+    //MANUAL CODE - END
+
+    const dataWithDefaults = paramsArray.map((val) => ({
       ...defaultValues,
       ...val,
     }))
 
     const newObj = arrayToObjectKey(["statId"], dataWithDefaults) as TPlayerStatsRecordByStatId
-
-    const optimisticData: TPlayerStatsRecordByStatId = {
-      ...playerStats,
-      ...newObj,
+    
+    const optimisticDataMergeWithOldData: TPlayerStatsRecordByStatId = {
+      ...playerStats, 
+      ...newObj,      
     }
+    
+    setPlayerStats(optimisticDataMergeWithOldData)
 
-    setPlayerStats(optimisticData)
-
-    mutate(undefined, {
-      optimisticData,
+    mutate(dataWithDefaults, {
+      optimisticData: dataWithDefaults,
       rollbackOnError: true,
       revalidate: true,
       populateCache: true,

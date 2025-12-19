@@ -18,7 +18,7 @@ export type TItemsItemsRecordById = Record<string, TItemsItems>
 export async function getItemsItems() {
   try {
     const sql = `SELECT * FROM items.get_items();`
-
+    
     const result = await query(sql)
     return snakeToCamelRows(result.rows) as TItemsItems[]
   } catch (error) {
@@ -31,7 +31,7 @@ export async function getItemsItemsByKey(params: TItemsItemsParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM items.get_items_by_key($1);`
-
+    
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TItemsItems[]
   } catch (error) {

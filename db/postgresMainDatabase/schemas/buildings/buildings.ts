@@ -22,7 +22,7 @@ export type TBuildingsBuildingsRecordByCityTileXCityTileY = Record<string, TBuil
 export async function getBuildingsBuildings() {
   try {
     const sql = `SELECT * FROM buildings.get_buildings();`
-
+    
     const result = await query(sql)
     return snakeToCamelRows(result.rows) as TBuildingsBuildings[]
   } catch (error) {
@@ -35,7 +35,7 @@ export async function getBuildingsBuildingsByKey(params: TBuildingsBuildingsPara
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM buildings.get_buildings_by_key($1);`
-
+    
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TBuildingsBuildings[]
   } catch (error) {

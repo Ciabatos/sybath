@@ -1,30 +1,23 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableByKey.hbs
 
 "use client"
-import {
-  TAttributesSkillsRecordById,
-  TAttributesSkillsParams,
-} from "@/db/postgresMainDatabase/schemas/attributes/skills"
+import { TAttributesSkillsRecordById, TAttributesSkills, TAttributesSkillsParams } from "@/db/postgresMainDatabase/schemas/attributes/skills"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { skillsAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
-import { useEffect, useRef } from "react"
+import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchAttributesSkillsByKey(params: TAttributesSkillsParams) {
+export function useFetchAttributesSkillsByKey( params: TAttributesSkillsParams ) {
   const skills = useAtomValue(skillsAtom)
   const setAttributesSkills = useSetAtom(skillsAtom)
-
-  const { data } = useSWR(`/api/attributes/skills/${params.id}`, { refreshInterval: 3000 })
-
-  const prevDataRef = useRef<unknown>(null)
+  
+  const { data } = useSWR<TAttributesSkills[]>(`/api/attributes/skills/${params.id}`, { refreshInterval: 3000 })
 
   useEffect(() => {
-    if (data === undefined) return
-    if (JSON.stringify(prevDataRef.current) !== JSON.stringify(data)) {
-      const index = data ? (arrayToObjectKey(["id"], data) as TAttributesSkillsRecordById) : {}
+    if (data) {
+      const index = (arrayToObjectKey(["id"], data) as TAttributesSkillsRecordById)
       setAttributesSkills(index)
-      prevDataRef.current = data
     }
   }, [data, setAttributesSkills])
 

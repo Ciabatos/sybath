@@ -22,7 +22,7 @@ export type TDistrictsDistrictsRecordByMapTileXMapTileY = Record<string, TDistri
 export async function getDistrictsDistricts() {
   try {
     const sql = `SELECT * FROM districts.get_districts();`
-
+    
     const result = await query(sql)
     return snakeToCamelRows(result.rows) as TDistrictsDistricts[]
   } catch (error) {
@@ -35,7 +35,7 @@ export async function getDistrictsDistrictsByKey(params: TDistrictsDistrictsPara
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM districts.get_districts_by_key($1);`
-
+    
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TDistrictsDistricts[]
   } catch (error) {

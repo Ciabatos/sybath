@@ -20,7 +20,7 @@ export async function getPlayerAbilities(params: TPlayerAbilitiesParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM attributes.get_player_abilities($1);`
-
+    
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TPlayerAbilities[]
   } catch (error) {

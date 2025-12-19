@@ -177,7 +177,7 @@ export default function getTable(plop) {
           type: "list",
           name: "mutationMergeOldData",
           message:
-            "Czy zmergować stare dane z atomu do nowych danych przy użyciu Mutate ? (przykład to stare mapTiles podmieniaja się na nowe mapTiles) ",
+            "Czy zmergować stare dane z atomu do nowych danych przy użyciu Mutate ? (pytanie: czy nowy rekord, ZAWSZE posiada wszystkie stare rekordy ?) ",
           choices: [
             { name: "Nie", value: false },
             { name: "Tak", value: true },

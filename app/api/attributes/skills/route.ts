@@ -5,25 +5,36 @@ import { getAttributesSkills } from "@/db/postgresMainDatabase/schemas/attribute
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let cachedData: any = null
+let cachedETag: string | null = null
+const CACHE_TTL = 3_000
+let lastUpdated = 0
+
 export async function GET(request: NextRequest): Promise<NextResponse> {
   const session = await auth()
   const sessionUserId = session?.user?.userId
+
   if (!sessionUserId || isNaN(sessionUserId)) {
-    return NextResponse.json({ success: false })
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
   }
 
   try {
-    const result = await getAttributesSkills()
-
-    const etag = crypto.createHash("sha1").update(JSON.stringify(result)).digest("hex")
-    const clientEtag = request.headers.get("if-none-match")
-
-    if (clientEtag === etag) {
-      return new NextResponse(null, { status: 304, headers: { ETag: etag } })
+    if (!cachedData || Date.now() - lastUpdated > CACHE_TTL) {
+      cachedData = await getAttributesSkills()
+      cachedETag = crypto.createHash("sha1").update(JSON.stringify(cachedData)).digest("hex")
+      lastUpdated = Date.now()
     }
 
-    return NextResponse.json(result, { headers: { ETag: etag } })
+    const clientEtag = request.headers.get("if-none-match")
+
+    if (clientEtag === cachedETag) {
+      return new NextResponse(null, { status: 304, headers: { ETag: cachedETag! } })
+    }
+
+    return NextResponse.json(cachedData, { headers: { ETag: cachedETag! } })
   } catch (error) {
-    return NextResponse.json({ success: false, error: error })
+    console.log(error)
+    return NextResponse.json({ message: "Internal Server Error" }, { status: 500 })
   }
 }

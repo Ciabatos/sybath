@@ -1,22 +1,21 @@
-// GENERATED CODE - DO NOT EDIT MANUALLY - hookMutateMethodFetcher.hbs
+// GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
-import {
-  TPlayerMovementRecordByXY,
-  TPlayerMovementParams,
-  TPlayerMovement,
-} from "@/db/postgresMainDatabase/schemas/world/playerMovement"
+import { TPlayerMovementRecordByXY , TPlayerMovementParams, TPlayerMovement  } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
 import { playerMovementAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutatePlayerMovement(params: TPlayerMovementParams) {
-  const { mutate } = useSWR(`/api/world/rpc/get-player-movement/${params.playerId}`)
+export function useMutatePlayerMovement( params: TPlayerMovementParams) {
+  const { mutate } = useSWR<TPlayerMovement[]>(`/api/world/rpc/get-player-movement/${params.playerId}`)
   const setPlayerMovement = useSetAtom(playerMovementAtom)
+  
 
   function mutatePlayerMovement(optimisticParams: Partial<TPlayerMovement> | Partial<TPlayerMovement>[]) {
-    const params = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
+    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
+
+    //MANUAL CODE - START
 
     const defaultValues = {
       scheduledAt: ``,
@@ -24,21 +23,24 @@ export function useMutatePlayerMovement(params: TPlayerMovementParams) {
       y: ``,
     }
 
-    const dataWithDefaults = Object.values(params).map((val) => ({
+    //MANUAL CODE - END
+
+    const dataWithDefaults = paramsArray.map((val) => ({
       ...defaultValues,
       ...val,
     }))
 
     const newObj = arrayToObjectKey(["x", "y"], dataWithDefaults) as TPlayerMovementRecordByXY
-
-    const optimisticData: TPlayerMovementRecordByXY = {
-      ...newObj,
+    
+    const optimisticDataMergeWithOldData: TPlayerMovementRecordByXY = {
+       
+      ...newObj,      
     }
+    
+    setPlayerMovement(optimisticDataMergeWithOldData)
 
-    setPlayerMovement(optimisticData)
-
-    mutate(undefined, {
-      optimisticData,
+    mutate(dataWithDefaults, {
+      optimisticData: dataWithDefaults,
       rollbackOnError: true,
       revalidate: true,
       populateCache: true,

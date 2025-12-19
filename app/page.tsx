@@ -19,7 +19,7 @@ export default async function HomePage() {
         <Link href={"/api/auth/signout"}>SignOut</Link>
       </Button>
       <SignUp />
-      <Link href='/map'>Map</Link>
+      <Link href='/map/1'>Map</Link>
     </div>
   )
 }

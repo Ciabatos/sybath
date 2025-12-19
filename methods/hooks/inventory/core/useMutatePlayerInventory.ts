@@ -1,23 +1,21 @@
-// GENERATED CODE - DO NOT EDIT MANUALLY - hookMutateMethodFetcher.hbs
+// GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
-import {
-  TPlayerInventoryRecordBySlotId,
-  TPlayerInventoryParams,
-  TPlayerInventory,
-} from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
+import { TPlayerInventoryRecordBySlotId , TPlayerInventoryParams, TPlayerInventory  } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
 import { playerInventoryAtom } from "@/store/atoms"
-import { useSetAtom, useAtomValue } from "jotai"
+import { useSetAtom } from "jotai"
 import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutatePlayerInventory(params: TPlayerInventoryParams) {
-  const { mutate } = useSWR(`/api/inventory/rpc/get-player-inventory/${params.playerId}`)
+export function useMutatePlayerInventory( params: TPlayerInventoryParams) {
+  const { mutate } = useSWR<TPlayerInventory[]>(`/api/inventory/rpc/get-player-inventory/${params.playerId}`)
   const setPlayerInventory = useSetAtom(playerInventoryAtom)
-  const playerInventory = useAtomValue(playerInventoryAtom)
+  
 
   function mutatePlayerInventory(optimisticParams: Partial<TPlayerInventory> | Partial<TPlayerInventory>[]) {
-    const params = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
+    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
+
+    //MANUAL CODE - START
 
     const defaultValues = {
       slotId: ``,
@@ -27,22 +25,24 @@ export function useMutatePlayerInventory(params: TPlayerInventoryParams) {
       quantity: ``,
     }
 
-    const dataWithDefaults = Object.values(params).map((val) => ({
+    //MANUAL CODE - END
+
+    const dataWithDefaults = paramsArray.map((val) => ({
       ...defaultValues,
       ...val,
     }))
 
     const newObj = arrayToObjectKey(["slotId"], dataWithDefaults) as TPlayerInventoryRecordBySlotId
-
-    const optimisticData: TPlayerInventoryRecordBySlotId = {
-      ...playerInventory,
-      ...newObj,
+    
+    const optimisticDataMergeWithOldData: TPlayerInventoryRecordBySlotId = {
+       
+      ...newObj,      
     }
+    
+    setPlayerInventory(optimisticDataMergeWithOldData)
 
-    setPlayerInventory(optimisticData)
-
-    mutate(undefined, {
-      optimisticData,
+    mutate(dataWithDefaults, {
+      optimisticData: dataWithDefaults,
       rollbackOnError: true,
       revalidate: true,
       populateCache: true,
