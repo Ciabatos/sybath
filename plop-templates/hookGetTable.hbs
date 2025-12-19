@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTable.hbs
 
 "use client"
-import { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
+import { {{indexTypeName}}, {{methodTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 import { {{indexMethodName}} } from "@/methods/functions/util/converters"
 import { {{tableCamelName}}Atom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
@@ -12,7 +12,7 @@ export function useFetch{{schemaTablePascalName}}() {
   const {{tableCamelName}} = useAtomValue({{tableCamelName}}Atom)
   const set{{schemaTablePascalName}} = useSetAtom({{tableCamelName}}Atom)
   
-  const { data } = useSWR(`{{apiPathParams}}`, { refreshInterval: 3000 })
+  const { data } = useSWR<{{methodTypeName}}[]>(`{{apiPathParams}}`, { refreshInterval: 3000 })
 
   useEffect(() => {
     if (data) {

@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcher.hbs
 
 "use client"
-import { {{indexTypeName}} {{#if methodParamsColumns}}, {{methodParamsTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
+import { {{indexTypeName}}, {{methodTypeName}} {{#if methodParamsColumns}}, {{methodParamsTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
 import { {{indexMethodName}} } from "@/methods/functions/util/converters"
 import { {{methodCamelName}}Atom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
@@ -12,7 +12,7 @@ export function useFetch{{methodPascalName}}({{#if methodParamsColumns}} params:
   const {{methodCamelName}} = useAtomValue({{methodCamelName}}Atom)
   const set{{methodPascalName}} = useSetAtom({{methodCamelName}}Atom)
 
-  const { data } = useSWR(`{{apiPathParams}}`, { refreshInterval: 3000 })
+  const { data } = useSWR<{{methodTypeName}}[]>(`{{apiPathParams}}`, { refreshInterval: 3000 })
 
   useEffect(() => {
     if (data) {

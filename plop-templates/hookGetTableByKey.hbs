@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableByKey.hbs
 
 "use client"
-import { {{indexTypeName}}{{#if methodParamsColumns}}, {{methodParamsTypeName}}{{/if}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
+import { {{indexTypeName}}, {{methodTypeName}}{{#if methodParamsColumns}}, {{methodParamsTypeName}}{{/if}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 import { {{indexMethodName}} } from "@/methods/functions/util/converters"
 import { {{tableCamelName}}Atom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
@@ -12,7 +12,7 @@ export function useFetch{{schemaTablePascalName}}ByKey({{#if methodParamsColumns
   const {{tableCamelName}} = useAtomValue({{tableCamelName}}Atom)
   const set{{schemaTablePascalName}} = useSetAtom({{tableCamelName}}Atom)
   
-  const { data } = useSWR(`{{apiPathParamsByKey}}`, { refreshInterval: 3000 })
+  const { data } = useSWR<{{methodTypeName}}[]>(`{{apiPathParamsByKey}}`, { refreshInterval: 3000 })
 
   useEffect(() => {
     if (data) {
