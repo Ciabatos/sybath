@@ -5,7 +5,7 @@ import { {{indexTypeName}}, {{methodTypeName}} {{#if methodParamsColumns}}, {{me
 import { {{indexMethodName}} } from "@/methods/functions/util/converters"
 import { {{methodCamelName}}Atom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
-import { useEffect, useRef } from "react"
+import { useEffect } from "react"
 import useSWR from "swr"
 
 export function useFetch{{methodPascalName}}({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}) {

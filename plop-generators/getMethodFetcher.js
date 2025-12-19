@@ -247,9 +247,9 @@ export default function getMethodFetcher(plop) {
           return answers.generateMutation ? false : "Pomijam generowanie useMutate..."
         },
       },
-      {
-        type: "PrettierFormat",
-      },
+      // {
+      //   type: "PrettierFormat",
+      // },
     ],
   })
 }

@@ -8,8 +8,7 @@ export type {{methodParamsTypeName}} = {
 {{#each methodParamsColumns}}
   {{camelName}}: {{tsType}}
 {{/each}}
-}
-{{/if}}
+}{{/if}}
 
 export type {{methodTypeName}} = {
 {{#each methodColumns}}
@@ -25,8 +24,7 @@ export async function {{methodCamelName}}({{#if methodParamsColumns}}params: {{m
     const result = await query(sql, sqlParams)
     {{else}}
     const sql = `SELECT * FROM {{schema}}.{{method}}();`
-    const result = await query(sql)
-    {{/if}}
+    const result = await query(sql){{/if}}
 
     return result.rows[0] as {{methodTypeName}}
   } catch (error) {

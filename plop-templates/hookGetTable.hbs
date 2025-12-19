@@ -5,7 +5,7 @@ import { {{indexTypeName}}, {{methodTypeName}} } from "@/db/postgresMainDatabase
 import { {{indexMethodName}} } from "@/methods/functions/util/converters"
 import { {{tableCamelName}}Atom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
-import { useEffect, useRef } from "react"
+import { useEffect } from "react"
 import useSWR from "swr"
 
 export function useFetch{{schemaTablePascalName}}() {

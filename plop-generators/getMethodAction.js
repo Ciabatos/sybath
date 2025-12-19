@@ -102,9 +102,9 @@ export default function getMethodAction(plop) {
         templateFile: "plop-templates/dbGetMethodAction.hbs",
         force: true,
       },
-      {
-        type: "PrettierFormat",
-      },
+      // {
+      //   type: "PrettierFormat",
+      // },
     ],
   })
 }

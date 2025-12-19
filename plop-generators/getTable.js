@@ -321,9 +321,9 @@ export default function getTable(plop) {
           return answers.generateMutation ? false : "Pomijam generowanie useMutate..."
         },
       },
-      {
-        type: "PrettierFormat",
-      },
+      // {
+      //   type: "PrettierFormat",
+      // },
     ],
   })
 }
