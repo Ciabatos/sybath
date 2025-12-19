@@ -1,4 +1,4 @@
-// GENERATED CODE - DO NOT EDIT MANUALLY - hookMutateTable.hbs
+// GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTable.hbs
 "use client"
 
 import { {{indexTypeName}} {{#if methodParamsColumns}}, {{methodParamsTypeName}}, {{methodTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
@@ -8,18 +8,22 @@ import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutate{{schemaTablePascalName}}({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}) {
-  const { mutate } = useSWR(`{{apiPathParams}}`)
+  const { mutate } = useSWR<{{methodTypeName}}[]>(`{{apiPathParams}}`)
   const set{{schemaTablePascalName}} = useSetAtom({{tableCamelName}}Atom)
   {{#if mutationMergeOldData}}const {{tableCamelName}} = useAtomValue({{tableCamelName}}Atom){{/if}}
 
   function mutate{{schemaTablePascalName}}(optimisticParams: Partial<{{methodTypeName}}> | Partial<{{methodTypeName}}>[]) {
     const params = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
+    
+    //MANUAL CODE - START
 
     const defaultValues = {
     {{#each methodColumns}}
       {{camelName}}: ``,
     {{/each}}
     }
+
+    //MANUAL CODE - END
 
     const dataWithDefaults = Object.values(params).map((val) => ({
       ...defaultValues,
@@ -28,15 +32,15 @@ export function useMutate{{schemaTablePascalName}}({{#if methodParamsColumns}} p
 
     const newObj = {{{indexMethodName}}}({{{indexMethodParams}}}, dataWithDefaults) as {{indexTypeName}}
     
-    const optimisticData: {{indexTypeName}} = {
+    const optimisticDataMergeWithOldData: {{indexTypeName}} = {
       {{#if mutationMergeOldData}}...{{tableCamelName}},{{/if}} 
       ...newObj,      
     }
     
-    set{{schemaTablePascalName}}(optimisticData)
+    set{{schemaTablePascalName}}(optimisticDataMergeWithOldData)
 
-    mutate(undefined, {
-      optimisticData,
+    mutate(dataWithDefaults, {
+      optimisticData: dataWithDefaults,
       rollbackOnError: true,
       revalidate: true,
       populateCache: true,
