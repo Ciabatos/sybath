@@ -21,7 +21,7 @@ export default function Map({ tile }: Props) {
   // const { handleClickOnMapTile } = useMapTileActions()
   const backgroundImage = createBackgroundImage(tile.terrainTypes.imageUrl)
   const landscapeImage = createLandscapeImage(tile.landscapeTypes?.imageUrl)
-  const playerImage = createPlayerImage(tile.playerVisibleMapData?.playerImageUrl)
+  const playerImage = createPlayerImage(tile.playerPosition?.imageUrl)
   const citiesImage = createCitiesImage(tile.cities?.imageUrl)
   const districtsImage = creatDistrictsImage(tile.districtTypes?.imageUrl)
   const combinedImages = combineImages(landscapeImage, backgroundImage)
