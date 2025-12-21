@@ -26,6 +26,10 @@ Mapa
 
 UI i flow dla „systemu informacji”
 
+.hbs cache
+.hbs remember last answear
+joinMap
+
 Aktualizacja NEXT JS i reszty dependencies wraz z UI renderem biblioteka 
 
 wywalilem immera i dodalem equal, trzeba sie zastanowic nad undefined
