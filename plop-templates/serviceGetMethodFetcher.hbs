@@ -48,7 +48,7 @@ export async function fetch{{methodPascalName}}(
     }
   }
 
-  const raw = await {{methodName}}()
+  const raw = await {{methodName}}({{#if methodParamsColumns}}params{{/if}})
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
   if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
