@@ -1,7 +1,7 @@
-import getMethodAction from "./plop-generators/getMethodAction.js"
-import getMethodFetcher from "./plop-generators/getMethodFetcher.js"
-import getTable from "./plop-generators/getTable.js"
-import { formatWithPrettier } from "./plop-generators/helpers/prettier.js"
+import getMethodAction from "./getMethodAction.js"
+import getMethodFetcher from "./getMethodFetcher.js"
+import getTable from "./getTable.js"
+import { formatWithPrettier } from "./helpers/prettier.js"
 
 function configurePlop(plop) {
   const pathsToFormat = [

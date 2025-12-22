@@ -117,8 +117,8 @@ export default function getMethodFetcher(plop) {
 
       //rpc jednoznacznie oznacza “remote procedure call”
       const methodKebabName = snakeToKebab(method)
-      const apiPath = `app/api/${schema}/rpc/${methodKebabName}${apiParamPathSquareBrackets}/route.ts`
-      const apiPathParams = `/api/${schema}/rpc/${methodKebabName}${apiParamPath}`
+      const apiPath = `../app/api/${schema}/rpc/${methodKebabName}${apiParamPathSquareBrackets}/route.ts`
+      const apiPathParams = `../api/${schema}/rpc/${methodKebabName}${apiParamPath}`
 
       const { generateMutation } = await inquirer.prompt([
         {
@@ -199,7 +199,7 @@ export default function getMethodFetcher(plop) {
     actions: [
       {
         type: "add",
-        path: "db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}.ts",
+        path: "../db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}.ts",
         templateFile: "plop-templates/methodFetcher/dbGetMethodFetcher.hbs",
         force: true,
       },
@@ -211,43 +211,43 @@ export default function getMethodFetcher(plop) {
       },
       {
         type: "add",
-        path: "methods/hooks/{{schema}}/core/useFetch{{methodPascalName}}.ts",
+        path: "../methods/hooks/{{schema}}/core/useFetch{{methodPascalName}}.ts",
         templateFile: "plop-templates/methodFetcher/hookGetMethodFetcher.hbs",
         force: true,
       },
       {
         type: "add",
-        path: "methods/server-fetchers/{{schema}}/core/{{methodName}}Server.ts",
+        path: "../methods/server-fetchers/{{schema}}/core/{{methodName}}Server.ts",
         templateFile: "plop-templates/methodFetcher/hookGetMethodFetcherServer.hbs",
         force: true,
       },
       {
         type: "add",
-        path: "methods/services/{{schema}}/fetch{{methodPascalName}}.ts",
+        path: "../methods/services/{{schema}}/fetch{{methodPascalName}}.ts",
         templateFile: "plop-templates/methodFetcher/serviceGetMethodFetcher.hbs",
         force: true,
       },
       {
         type: "modify",
-        path: "store/atoms.ts",
+        path: "../store/atoms.ts",
         pattern: /((?:^"use client"\n)?(?:import[\s\S]*?\n))(?!import)/m,
         template: `$&import { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"\n`,
       },
       {
         type: "modify",
-        path: "store/atoms.ts",
+        path: "../store/atoms.ts",
         pattern: /(\/\/Functions\s*\n)/,
         template: `$1export const {{methodCamelName}}Atom = atom<{{indexTypeName}}>({})\n`,
       },
       {
         type: "modify",
-        path: ".vscode/snippets.code-snippets",
+        path: "../.vscode/snippets.code-snippets",
         pattern: /(?=\/\/Automatic Snippets\s*\n)/,
         templateFile: "plop-templates/methodFetcher/snippetHookMethod.hbs",
       },
       {
         type: "add",
-        path: "methods/hooks/{{schema}}/core/useMutate{{methodPascalName}}.ts",
+        path: "../methods/hooks/{{schema}}/core/useMutate{{methodPascalName}}.ts",
         templateFile: "plop-templates/methodFetcher/hookMutateMethodFetcher.hbs",
         force: true,
         skip(answers) {

@@ -256,7 +256,7 @@ export default function getTable(plop) {
     actions: [
       {
         type: "add",
-        path: "db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}.ts",
+        path: "../db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}.ts",
         templateFile: "plop-templates/getTable/dbGetTable.hbs",
         force: true,
       },
@@ -274,67 +274,67 @@ export default function getTable(plop) {
       },
       {
         type: "add",
-        path: "methods/hooks/{{schema}}/core/useFetch{{schemaTablePascalName}}.ts",
+        path: "../methods/hooks/{{schema}}/core/useFetch{{schemaTablePascalName}}.ts",
         templateFile: "plop-templates/getTable/hookGetTable.hbs",
         force: true,
       },
       {
         type: "add",
-        path: "methods/hooks/{{schema}}/core/useFetch{{schemaTablePascalName}}ByKey.ts",
+        path: "../methods/hooks/{{schema}}/core/useFetch{{schemaTablePascalName}}ByKey.ts",
         templateFile: "plop-templates/getTable/hookGetTableByKey.hbs",
         force: true,
       },
       {
         type: "add",
-        path: "methods/server-fetchers/{{schema}}/core/get{{schemaTablePascalName}}Server.ts",
+        path: "../methods/server-fetchers/{{schema}}/core/get{{schemaTablePascalName}}Server.ts",
         templateFile: "plop-templates/getTable/hookGetTableServer.hbs",
         force: true,
       },
       {
         type: "add",
-        path: "methods/server-fetchers/{{schema}}/core/get{{schemaTablePascalName}}ByKeyServer.ts",
+        path: "../methods/server-fetchers/{{schema}}/core/get{{schemaTablePascalName}}ByKeyServer.ts",
         templateFile: "plop-templates/getTable/hookGetTableByKeyServer.hbs",
         force: true,
       },
       {
         type: "add",
-        path: "methods/services/{{schema}}/{{fetcherName}}.ts",
+        path: "../methods/services/{{schema}}/{{fetcherName}}.ts",
         templateFile: "plop-templates/getTable/serviceGetTable.hbs",
         force: true,
       },
       {
         type: "add",
-        path: "methods/services/{{schema}}/{{fetcherNameByKey}}.ts",
+        path: "../methods/services/{{schema}}/{{fetcherNameByKey}}.ts",
         templateFile: "plop-templates/getTable/serviceGetTableByKey.hbs",
         force: true,
       },
       {
         type: "modify",
-        path: "store/atoms.ts",
+        path: "../store/atoms.ts",
         pattern: /((?:^"use client"\n)?(?:import[\s\S]*?\n))(?!import)/m,
         template: `$&import { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"\n`,
       },
       {
         type: "modify",
-        path: "store/atoms.ts",
+        path: "../store/atoms.ts",
         pattern: /(\/\/Tables\s*\n)/,
         template: `$1export const {{tableCamelName}}Atom = atom<{{indexTypeName}}>({})\n`,
       },
       {
         type: "modify",
-        path: ".vscode/snippets.code-snippets",
+        path: "../.vscode/snippets.code-snippets",
         pattern: /(?=\/\/Automatic Snippets\s*\n)/,
         templateFile: "plop-templates/getTable/snippetHookTable.hbs",
       },
       {
         type: "modify",
-        path: ".vscode/snippets.code-snippets",
+        path: "../.vscode/snippets.code-snippets",
         pattern: /(?=\/\/Automatic Snippets\s*\n)/,
         templateFile: "plop-templates/getTable/snippetHookTableByKey.hbs",
       },
       {
         type: "add",
-        path: "methods/hooks/{{schema}}/core/useMutate{{schemaTablePascalName}}.ts",
+        path: "../methods/hooks/{{schema}}/core/useMutate{{schemaTablePascalName}}.ts",
         templateFile: "plop-templates/getTable/hookMutateTable.hbs",
         force: true,
         skip(answers) {
@@ -343,7 +343,7 @@ export default function getTable(plop) {
       },
       {
         type: "add",
-        path: "methods/hooks/{{schema}}/core/useMutate{{schemaTablePascalName}}ByKey.ts",
+        path: "../methods/hooks/{{schema}}/core/useMutate{{schemaTablePascalName}}ByKey.ts",
         templateFile: "plop-templates/getTable/hookMutateTableByKey.hbs",
         force: true,
         skip(answers) {
