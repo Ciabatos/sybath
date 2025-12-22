@@ -93,13 +93,13 @@ export default function getMethodAction(plop) {
       {
         type: "add",
         path: "methods/actions/{{schema}}/{{methodName}}.ts",
-        templateFile: "plop-templates/actionGetMethodAction.hbs",
+        templateFile: "plop-templates/methodAction/actionGetMethodAction.hbs",
         force: true,
       },
       {
         type: "add",
         path: "db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}.ts",
-        templateFile: "plop-templates/dbGetMethodAction.hbs",
+        templateFile: "plop-templates/methodAction/dbGetMethodAction.hbs",
         force: true,
       },
       // {

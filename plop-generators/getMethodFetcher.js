@@ -200,31 +200,31 @@ export default function getMethodFetcher(plop) {
       {
         type: "add",
         path: "db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}.ts",
-        templateFile: "plop-templates/dbGetMethodFetcher.hbs",
+        templateFile: "plop-templates/methodFetcher/dbGetMethodFetcher.hbs",
         force: true,
       },
       {
         type: "add",
         path: "{{apiPath}}",
-        templateFile: "plop-templates/apiGetMethodFetcher.hbs",
+        templateFile: "plop-templates/methodFetcher/apiGetMethodFetcher.hbs",
         force: true,
       },
       {
         type: "add",
         path: "methods/hooks/{{schema}}/core/useFetch{{methodPascalName}}.ts",
-        templateFile: "plop-templates/hookGetMethodFetcher.hbs",
+        templateFile: "plop-templates/methodFetcher/hookGetMethodFetcher.hbs",
         force: true,
       },
       {
         type: "add",
         path: "methods/server-fetchers/{{schema}}/core/{{methodName}}Server.ts",
-        templateFile: "plop-templates/hookGetMethodFetcherServer.hbs",
+        templateFile: "plop-templates/methodFetcher/hookGetMethodFetcherServer.hbs",
         force: true,
       },
       {
         type: "add",
         path: "methods/services/{{schema}}/fetch{{methodPascalName}}.ts",
-        templateFile: "plop-templates/serviceGetMethodFetcher.hbs",
+        templateFile: "plop-templates/methodFetcher/serviceGetMethodFetcher.hbs",
         force: true,
       },
       {
@@ -243,12 +243,12 @@ export default function getMethodFetcher(plop) {
         type: "modify",
         path: ".vscode/snippets.code-snippets",
         pattern: /(?=\/\/Automatic Snippets\s*\n)/,
-        templateFile: "plop-templates/snippetHookMethod.hbs",
+        templateFile: "plop-templates/methodFetcher/snippetHookMethod.hbs",
       },
       {
         type: "add",
         path: "methods/hooks/{{schema}}/core/useMutate{{methodPascalName}}.ts",
-        templateFile: "plop-templates/hookMutateMethodFetcher.hbs",
+        templateFile: "plop-templates/methodFetcher/hookMutateMethodFetcher.hbs",
         force: true,
         skip(answers) {
           return answers.generateMutation ? false : "Pomijam generowanie useMutate..."
