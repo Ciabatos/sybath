@@ -324,13 +324,13 @@ export default function getTable(plop) {
         type: "modify",
         path: ".vscode/snippets.code-snippets",
         pattern: /(?=\/\/Automatic Snippets\s*\n)/,
-        templateFile: "plop-templates/snippetHookTable.hbs",
+        templateFile: "plop-templates/getTable/snippetHookTable.hbs",
       },
       {
         type: "modify",
         path: ".vscode/snippets.code-snippets",
         pattern: /(?=\/\/Automatic Snippets\s*\n)/,
-        templateFile: "plop-templates/snippetHookTableByKey.hbs",
+        templateFile: "plop-templates/getTable/snippetHookTableByKey.hbs",
       },
       {
         type: "add",
