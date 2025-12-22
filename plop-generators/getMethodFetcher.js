@@ -117,8 +117,8 @@ export default function getMethodFetcher(plop) {
 
       //rpc jednoznacznie oznacza “remote procedure call”
       const methodKebabName = snakeToKebab(method)
-      const apiPath = `../app/api/${schema}/rpc/${methodKebabName}${apiParamPathSquareBrackets}/route.ts`
-      const apiPathParams = `../api/${schema}/rpc/${methodKebabName}${apiParamPath}`
+      const apiPath = `app/api/${schema}/rpc/${methodKebabName}${apiParamPathSquareBrackets}/route.ts`
+      const apiPathParams = `api/${schema}/rpc/${methodKebabName}${apiParamPath}`
 
       const { generateMutation } = await inquirer.prompt([
         {
@@ -205,7 +205,7 @@ export default function getMethodFetcher(plop) {
       },
       {
         type: "add",
-        path: "{{apiPath}}",
+        path: "../{{apiPath}}",
         templateFile: "plop-templates/methodFetcher/apiGetMethodFetcher.hbs",
         force: true,
       },

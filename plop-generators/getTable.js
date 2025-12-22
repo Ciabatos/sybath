@@ -262,13 +262,13 @@ export default function getTable(plop) {
       },
       {
         type: "add",
-        path: "{{apiPath}}",
+        path: "../{{apiPath}}",
         templateFile: "plop-templates/getTable/apiGetTable.hbs",
         force: true,
       },
       {
         type: "add",
-        path: "{{apiPathByKey}}",
+        path: "../{{apiPathByKey}}",
         templateFile: "plop-templates/getTable/apiGetTableByKey.hbs",
         force: true,
       },
