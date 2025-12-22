@@ -222,6 +222,12 @@ export default function getMethodFetcher(plop) {
         force: true,
       },
       {
+        type: "add",
+        path: "methods/services/{{schema}}/fetch{{methodPascalName}}.ts",
+        templateFile: "plop-templates/serviceGetMethodFetcher.hbs",
+        force: true,
+      },
+      {
         type: "modify",
         path: "store/atoms.ts",
         pattern: /((?:^"use client"\n)?(?:import[\s\S]*?\n))(?!import)/m,

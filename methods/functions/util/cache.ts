@@ -5,7 +5,7 @@ type CacheEntry<T> = {
   lastUpdated: number
 }
 
-export function createSimpleServerCache<T>(ttl: number) {
+export function createServerCache<T>(ttl: number) {
   const cache = new Map<string, CacheEntry<T>>()
   const etags = new Map<string, string>()
 
@@ -19,15 +19,17 @@ export function createSimpleServerCache<T>(ttl: number) {
     return entry.value
   }
 
-  function setCache({ cacheKey, value, etag = "" }: { cacheKey: string; value: T; etag?: string }) {
+  function setCache({ cacheKey, value, etag }: { cacheKey: string; value: T; etag: string }) {
     cache.set(cacheKey, {
       value,
       lastUpdated: Date.now(),
     })
-    if (etag) {
-      etags.delete(cacheKey)
-      etags.set(cacheKey, etag)
-    }
+    setEtag(cacheKey, etag)
+  }
+
+  function setEtag(cacheKey: string, etag: string) {
+    etags.delete(cacheKey)
+    etags.set(cacheKey, etag)
   }
 
   function getEtag(cacheKey: string): string | null {

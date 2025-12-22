@@ -129,6 +129,8 @@ export default function getTable(plop) {
       const methodParamsTypeName = methodTypeName + "Params"
       const methodName = "get" + schemaTablePascalName
       const methodNameByKey = "get" + schemaTablePascalName + "ByKey"
+      const fetcherName = "fetch" + schemaTablePascalName
+      const fetcherNameByKey = "fetch" + schemaTablePascalName + "ByKey"
 
       const indexTypeMethodName = indexColumns.map((f) => f.pascalName).join("")
       const indexMethodName = "arrayToObjectKey"
@@ -214,6 +216,8 @@ export default function getTable(plop) {
         apiPathParamsByKey,
         generateMutation,
         mutationMergeOldData,
+        fetcherName,
+        fetcherNameByKey,
       })
 
       return {
@@ -244,6 +248,8 @@ export default function getTable(plop) {
         apiPathParamsByKey,
         generateMutation,
         mutationMergeOldData,
+        fetcherName,
+        fetcherNameByKey,
       }
     },
 
@@ -288,6 +294,18 @@ export default function getTable(plop) {
         type: "add",
         path: "methods/server-fetchers/{{schema}}/core/get{{schemaTablePascalName}}ByKeyServer.ts",
         templateFile: "plop-templates/hookGetTableByKeyServer.hbs",
+        force: true,
+      },
+      {
+        type: "add",
+        path: "methods/services/{{schema}}/{{fetcherName}}.ts",
+        templateFile: "plop-templates/serviceGetTable.hbs",
+        force: true,
+      },
+      {
+        type: "add",
+        path: "methods/services/{{schema}}/{{fetcherNameByKey}}.ts",
+        templateFile: "plop-templates/serviceGetTableByKey.hbs",
         force: true,
       },
       {

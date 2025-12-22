@@ -12,7 +12,7 @@ export function createAtomHydration(...entities: TServerEntity[]): [WritableAtom
 
   for (const entity of entities) {
     const atomKey = `${entity.atomName}`
-    console.log("automatic hydration:", atomKey)
+    // console.log("automatic hydration:", atomKey)
     // @ts-expect-error dynamiczny dostęp do atomów
     const atom = Atoms[atomKey] as WritableAtom<any, [any], void> | undefined
 

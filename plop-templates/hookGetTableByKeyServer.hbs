@@ -1,34 +1,24 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableByKeyServer.hbs
 "use server"
 
-import { {{indexMethodName}} } from "@/methods/functions/util/converters"
-import { {{methodNameByKey}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
-{{#if methodParamsColumns}}import { {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}" {{/if}}
 import type { {{methodTypeName}}, {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
+{{#if methodParamsColumns}}import type{ {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}" {{/if}}
+import { {{fetcherNameByKey}} } from "@/methods/services/{{schema}}/{{fetcherNameByKey}}"
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let cachedData: any = null
-const CACHE_TTL = 3_000
-let lastUpdated = 0
-
-export async function {{methodNameByKey}}Server({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}): Promise<{
+type TResult = {
   raw: {{methodTypeName}}[]
   byKey: {{indexTypeName}}
   apiPath: string
   atomName: string
-}> {
-  if (cachedData && Date.now() - lastUpdated < CACHE_TTL) {
-    return cachedData
+}
+
+export async function {{methodNameByKey}}Server({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}): Promise<TResult> {
+  const { record } = await {{fetcherNameByKey}}({{#if methodParamsColumns}}params{{/if}})
+
+  return {
+    raw: record!.raw,
+    byKey: record!.byKey,
+    apiPath: `{{apiPathParamsByKey}}`,
+    atomName: `{{tableCamelName}}Atom`,
   }
-
-  const {{methodNameByKey}}Data = await {{methodNameByKey}}({{#if methodParamsColumns}}params{{/if}})
-
-  const data = {{methodNameByKey}}Data ? ({{{indexMethodName}}}({{{indexMethodParams}}}, {{methodNameByKey}}Data) as {{indexTypeName}}) : {}
-
-  const result = { raw: {{methodNameByKey}}Data, byKey: data, apiPath: `{{apiPathParamsByKey}}`, atomName: `{{tableCamelName}}Atom`  }
-
-  cachedData = result
-  lastUpdated = Date.now()
-
-  return result
 }
