@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type { {{methodTypeName}}, {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
+import type { {{methodTypeName}}, {{indexTypeName}}{{#if methodParamsColumns}},{{methodParamsTypeName}}{{/if}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
 import { {{methodName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { {{indexMethodName}} } from "@/methods/functions/util/converters"

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTableByKey.hbs
 
-import type { {{methodTypeName}}, {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
+import type { {{methodTypeName}}, {{indexTypeName}}{{#if methodParamsColumns}},{{methodParamsTypeName}}{{/if}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 import { {{methodNameByKey}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { {{indexMethodName}} } from "@/methods/functions/util/converters"
