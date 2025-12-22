@@ -26,6 +26,7 @@ Mapa
 
 UI i flow dla „systemu informacji”
 
+dodac action do service
 .hbs remember last answear
 joinMap
 
