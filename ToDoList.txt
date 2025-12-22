@@ -26,7 +26,6 @@ Mapa
 
 UI i flow dla „systemu informacji”
 
-.hbs cache
 .hbs remember last answear
 joinMap
 
