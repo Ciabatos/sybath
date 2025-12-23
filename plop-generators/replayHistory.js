@@ -4,7 +4,7 @@ import path from "path"
 const HISTORY_ROOT = path.resolve("plop-generators/answerHistory")
 
 export default function replayHistory(plop) {
-  plop.setGenerator("Replay History", {
+  plop.setGenerator("replayHistory", {
     description: "Replay saved generator answers",
 
     prompts: [
@@ -13,6 +13,12 @@ export default function replayHistory(plop) {
         name: "selectedGenerators",
         message: "Select generators to replay",
         choices: fs.readdirSync(HISTORY_ROOT).filter((f) => fs.statSync(path.join(HISTORY_ROOT, f)).isDirectory()),
+        validate: (answer) => {
+          if (answer.length < 1) {
+            return "Musisz wybrać przynajmniej jeden generator."
+          }
+          return true
+        },
       },
     ],
 
