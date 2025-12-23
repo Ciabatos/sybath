@@ -27,7 +27,6 @@ Mapa
 UI i flow dla „systemu informacji”
 
 dodac action do service
-.hbs remember last answear
 joinMap
 
 Aktualizacja NEXT JS i reszty dependencies wraz z UI renderem biblioteka 
