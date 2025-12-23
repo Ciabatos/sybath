@@ -355,6 +355,18 @@ export default function getTable(plop) {
         path: "./answerHistory/{{schema}}_{{table}}_answers.json",
         templateFile: "plop-templates/answerHistory.hbs",
         force: true,
+        transform(templateContent) {
+          // templateContent to string z {{json this}} - powinna być już JSON
+          try {
+            // parsujemy, żeby upewnić się, że to prawidłowy JSON
+            const parsed = JSON.parse(templateContent)
+
+            // zapisujemy ponownie z 2 spacjami, aby mieć ładny format
+            return JSON.stringify(parsed, null, 2)
+          } catch (err) {
+            throw new Error(`Niepoprawny JSON w szablonie: ${err.message}`)
+          }
+        },
       },
       // {
       //   type: "PrettierFormat",
