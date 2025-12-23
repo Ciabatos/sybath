@@ -2,6 +2,7 @@ import getMethodAction from "./getMethodAction.js"
 import getMethodFetcher from "./getMethodFetcher.js"
 import getTable from "./getTable.js"
 import { formatWithPrettier } from "./helpers/prettier.js"
+import replayHistory from "./replayHistory.js"
 
 function configurePlop(plop) {
   const pathsToFormat = [
@@ -31,6 +32,8 @@ function configurePlop(plop) {
   getMethodFetcher(plop)
 
   getTable(plop)
+
+  replayHistory(plop)
 }
 
 export default configurePlop
