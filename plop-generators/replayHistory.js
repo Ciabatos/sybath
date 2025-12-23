@@ -1,85 +1,83 @@
 import fs from "fs"
 import path from "path"
-import { fileURLToPath } from "url"
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-
-const HISTORY_ROOT = path.resolve(__dirname, "answerHistory")
+const HISTORY_ROOT = path.resolve("plop-generators/answerHistory")
 
 export default function replayHistory(plop) {
-  plop.setGenerator("Replay Answer History", {
-    description: "Masowe odtworzenie wszystkich zapisanych generatorów",
+  plop.setGenerator("Replay History", {
+    description: "Replay saved generator answers",
 
-    prompts: async (inquirer) => {
-      const generators = fs
-        .readdirSync(HISTORY_ROOT)
-        .filter((dir) => fs.statSync(path.join(HISTORY_ROOT, dir)).isDirectory())
+    prompts: [
+      {
+        type: "checkbox",
+        name: "selectedGenerators",
+        message: "Select generators to replay",
+        choices: fs.readdirSync(HISTORY_ROOT).filter((f) => fs.statSync(path.join(HISTORY_ROOT, f)).isDirectory()),
+      },
+    ],
 
-      if (!generators.length) {
-        throw new Error("Brak zapisanej historii")
-      }
-
-      const { selectedGenerators } = await inquirer.prompt([
-        {
-          type: "checkbox",
-          name: "selectedGenerators",
-          message: "Które generatory odtworzyć?",
-          choices: generators,
-          validate: (v) => v.length > 0 || "Wybierz przynajmniej jeden generator",
-        },
-      ])
-
-      return { selectedGenerators }
-    },
-
-    actions: function (answers) {
+    actions: (answers) => {
       const actions = []
 
       for (const generatorName of answers.selectedGenerators) {
         const dir = path.join(HISTORY_ROOT, generatorName)
-
         const files = fs.readdirSync(dir).filter((f) => f.endsWith(".json"))
 
         for (const file of files) {
-          const fullPath = path.join(dir, file)
-          const historyAnswers = JSON.parse(fs.readFileSync(fullPath, "utf-8"))
+          const historyAnswers = JSON.parse(fs.readFileSync(path.join(dir, file), "utf-8"))
 
-          actions.push({
-            type: "replayGenerator",
-            generatorName,
-            historyAnswers,
+          // Pobierz generator
+          const generator = plop.getGenerator(generatorName)
+
+          if (!generator) {
+            console.warn(`⚠ Generator "${generatorName}" not found, skipping...`)
+            continue
+          }
+
+          // Pobierz akcje z generatora
+          const generatorActions =
+            typeof generator.actions === "function" ? generator.actions(historyAnswers) : generator.actions
+
+          // Dodaj log przed akcjami
+          actions.push(() => {
+            console.log(`▶ Replaying ${generatorName} - ${file}`)
+            return `Starting replay of ${generatorName} - ${file}`
           })
+
+          // Dodaj każdą akcję z historii do listy akcji
+          for (const action of generatorActions) {
+            // Jeśli akcja ma skip, sprawdź czy należy ją pominąć
+            if (typeof action.skip === "function") {
+              const skipReason = action.skip(historyAnswers)
+              if (skipReason) {
+                actions.push(() => `⊘ Skipped: ${skipReason}`)
+                continue
+              }
+            } else if (action.skip === true) {
+              actions.push(() => `⊘ Skipped`)
+              continue
+            }
+
+            // Jeśli to string (komentarz), dodaj go
+            if (typeof action === "string") {
+              actions.push(() => action)
+              continue
+            }
+
+            // Dodaj akcję z nadpisanymi danymi z historii
+            actions.push({
+              ...action,
+              // Nadpisz lub dodaj data z historyAnswers
+              data: typeof action.data === "function" ? action.data : { ...historyAnswers, ...action.data },
+            })
+          }
+
+          // Dodaj log po akcjach
+          actions.push(() => `✔ ${generatorName} - ${file} completed successfully`)
         }
       }
 
       return actions
     },
-  })
-
-  /**
-   * Custom action: replay generator
-   */
-  plop.setActionType("replayGenerator", async (answers, config, plopApi) => {
-    const generator = plopApi.getGenerator(config.generatorName)
-
-    if (!generator) {
-      throw new Error(`Generator "${config.generatorName}" nie istnieje`)
-    }
-
-    console.log(
-      `\n▶ Replay: ${config.generatorName} (${config.historyAnswers.schema ?? ""} ${
-        config.historyAnswers.table ?? config.historyAnswers.method ?? ""
-      })`,
-    )
-
-    const actions =
-      typeof generator.actions === "function" ? generator.actions(config.historyAnswers) : generator.actions
-
-    for (const action of actions) {
-      await plopApi.executeAction(action, config.historyAnswers)
-    }
-
-    return `✔ ${config.generatorName} OK`
   })
 }

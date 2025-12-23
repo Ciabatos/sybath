@@ -12,7 +12,7 @@ import { fetchFunction, fetchMethodArgs, fetchMethodResultColumns, fetchSchemas 
 
 // Generator plop
 export default function getMethodFetcher(plop) {
-  plop.setGenerator("Get Data From Function", {
+  plop.setGenerator("getMethodFetcher", {
     description: "Generate fetcher from Postgres method",
 
     prompts: async (inquirer) => {

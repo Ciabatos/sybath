@@ -5,7 +5,7 @@ import { fetchFucntionForAction, fetchMethodArgs, fetchMethodResultColumns, fetc
 
 // Generator plop
 export default function getMethodAction(plop) {
-  plop.setGenerator("Get Action", {
+  plop.setGenerator("getMethodAction", {
     description: "Generate action from Postgres method",
 
     prompts: async (inquirer) => {
