@@ -1,3 +1,5 @@
+import fs from "fs"
+import path from "path"
 import {
   getArgsArray,
   parseParamsFields,
@@ -7,6 +9,7 @@ import {
   stripPrefix,
 } from "./helpers/helpers.js"
 import { fetchFunction, fetchMethodArgs, fetchMethodResultColumns, fetchSchemas } from "./helpers/queries.js"
+
 // Generator plop
 export default function getMethodFetcher(plop) {
   plop.setGenerator("Get Data From Function", {
@@ -42,6 +45,30 @@ export default function getMethodFetcher(plop) {
           choices: methods,
         },
       ])
+
+      const historyDir = path.resolve(process.cwd(), "plop-generators/answerHistory/getMethodFetcher")
+      if (!fs.existsSync(historyDir)) fs.mkdirSync(historyDir, { recursive: true })
+      const historyFile = path.join(historyDir, `${schema}_${method}_answers.json`)
+
+      if (fs.existsSync(historyFile)) {
+        const { usePrevious } = await inquirer.prompt([
+          {
+            type: "list",
+            name: "usePrevious",
+            message: `Znaleziono zapisane ustawienia plop.js dla ${schema}.${method}. Czy wczytać poprzednie ustawienia?`,
+            choices: [
+              { name: "Tak", value: true },
+              { name: "Nie", value: false },
+            ],
+          },
+        ])
+
+        if (usePrevious) {
+          const previousAnswers = JSON.parse(fs.readFileSync(historyFile, "utf-8"))
+          console.log("Wczytano poprzednie ustawienia:", previousAnswers)
+          return previousAnswers
+        }
+      }
 
       // Ustal nazwy po wyborze metody
       const methodWithoutPrefix = stripPrefix(method)
@@ -253,6 +280,12 @@ export default function getMethodFetcher(plop) {
         skip(answers) {
           return answers.generateMutation ? false : "Pomijam generowanie useMutate..."
         },
+      },
+      {
+        type: "add",
+        path: "./answerHistory/getMethodFetcher/{{schema}}_{{method}}_answers.json",
+        templateFile: "plop-templates/answerHistory.hbs",
+        force: true,
       },
       // {
       //   type: "PrettierFormat",

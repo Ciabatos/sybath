@@ -1,4 +1,5 @@
 import dotenv from "dotenv"
+import fs from "fs"
 import path from "path"
 import { camelToKebab, getArgsArray, mapSQLTypeToTS, snakeToCamel, snakeToPascal } from "./helpers/helpers.js"
 import {
@@ -51,6 +52,30 @@ export default function getTable(plop) {
           choices: tables,
         },
       ])
+
+      const historyDir = path.resolve(process.cwd(), "plop-generators/answerHistory/getTable")
+      if (!fs.existsSync(historyDir)) fs.mkdirSync(historyDir, { recursive: true })
+      const historyFile = path.join(historyDir, `${schema}_${table}_answers.json`)
+
+      if (fs.existsSync(historyFile)) {
+        const { usePrevious } = await inquirer.prompt([
+          {
+            type: "list",
+            name: "usePrevious",
+            message: `Znaleziono zapisane ustawienia plop.js dla ${schema}.${table}. Czy wczytać poprzednie ustawienia?`,
+            choices: [
+              { name: "Tak", value: true },
+              { name: "Nie", value: false },
+            ],
+          },
+        ])
+
+        if (usePrevious) {
+          const previousAnswers = JSON.parse(fs.readFileSync(historyFile, "utf-8"))
+          console.log("Wczytano poprzednie ustawienia:", previousAnswers)
+          return previousAnswers
+        }
+      }
 
       // Pobierz kolumny z bazy
       const rows = await fetchColumns(schema, table)
@@ -352,21 +377,9 @@ export default function getTable(plop) {
       },
       {
         type: "add",
-        path: "./answerHistory/{{schema}}_{{table}}_answers.json",
+        path: "./answerHistory/getTable/{{schema}}_{{table}}_answers.json",
         templateFile: "plop-templates/answerHistory.hbs",
         force: true,
-        transform(templateContent) {
-          // templateContent to string z {{json this}} - powinna być już JSON
-          try {
-            // parsujemy, żeby upewnić się, że to prawidłowy JSON
-            const parsed = JSON.parse(templateContent)
-
-            // zapisujemy ponownie z 2 spacjami, aby mieć ładny format
-            return JSON.stringify(parsed, null, 2)
-          } catch (err) {
-            throw new Error(`Niepoprawny JSON w szablonie: ${err.message}`)
-          }
-        },
       },
       // {
       //   type: "PrettierFormat",

@@ -1,5 +1,8 @@
+import fs from "fs"
+import path from "path"
 import { getArgsArray, parseParamsFields, snakeToCamel, snakeToPascal } from "./helpers/helpers.js"
 import { fetchFucntionForAction, fetchMethodArgs, fetchMethodResultColumns, fetchSchemas } from "./helpers/queries.js"
+
 // Generator plop
 export default function getMethodAction(plop) {
   plop.setGenerator("Get Action", {
@@ -35,6 +38,30 @@ export default function getMethodAction(plop) {
           choices: methods,
         },
       ])
+
+      const historyDir = path.resolve(process.cwd(), "plop-generators/answerHistory/getMethodAction")
+      if (!fs.existsSync(historyDir)) fs.mkdirSync(historyDir, { recursive: true })
+      const historyFile = path.join(historyDir, `${schema}_${method}_answers.json`)
+
+      if (fs.existsSync(historyFile)) {
+        const { usePrevious } = await inquirer.prompt([
+          {
+            type: "list",
+            name: "usePrevious",
+            message: `Znaleziono zapisane ustawienia plop.js dla ${schema}.${method}. Czy wczytać poprzednie ustawienia?`,
+            choices: [
+              { name: "Tak", value: true },
+              { name: "Nie", value: false },
+            ],
+          },
+        ])
+
+        if (usePrevious) {
+          const previousAnswers = JSON.parse(fs.readFileSync(historyFile, "utf-8"))
+          console.log("Wczytano poprzednie ustawienia:", previousAnswers)
+          return previousAnswers
+        }
+      }
 
       // Ustal nazwy po wyborze metody
       const methodCamelName = snakeToCamel(method)
@@ -100,6 +127,12 @@ export default function getMethodAction(plop) {
         type: "add",
         path: "../db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}.ts",
         templateFile: "plop-templates/methodAction/dbGetMethodAction.hbs",
+        force: true,
+      },
+      {
+        type: "add",
+        path: "./answerHistory/getMethodAction/{{schema}}_{{method}}_answers.json",
+        templateFile: "plop-templates/answerHistory.hbs",
         force: true,
       },
       // {
