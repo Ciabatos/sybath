@@ -14,6 +14,8 @@ function configurePlop(plop) {
 
   plop.setHelper("eq", (a, b) => a === b)
 
+  plop.setHelper("json", (context) => JSON.stringify(context, null, 2))
+
   plop.setActionType("PrettierFormat", async function () {
     try {
       const result = await formatWithPrettier(pathsToFormat)

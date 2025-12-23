@@ -350,6 +350,12 @@ export default function getTable(plop) {
           return answers.generateMutation ? false : "Pomijam generowanie useMutate..."
         },
       },
+      {
+        type: "add",
+        path: "./answerHistory/{{schema}}_{{table}}_answers.json",
+        templateFile: "plop-templates/answerHistory.hbs",
+        force: true,
+      },
       // {
       //   type: "PrettierFormat",
       // },
