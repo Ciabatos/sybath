@@ -1,0 +1,91 @@
+{
+  "schema": "buildings",
+  "table": "buildings",
+  "tableCamelName": "buildings",
+  "tablePascalName": "Buildings",
+  "tableKebabName": "buildings",
+  "schemaTablePascalName": "BuildingsBuildings",
+  "methodTypeName": "TBuildingsBuildings",
+  "methodParamsTypeName": "TBuildingsBuildingsParams",
+  "methodParamsColumns": [
+    {
+      "name": "city_id",
+      "camelName": "cityId",
+      "tsType": "number"
+    }
+  ],
+  "methodName": "getBuildingsBuildings",
+  "methodNameByKey": "getBuildingsBuildingsByKey",
+  "methodRecords": "get_buildings",
+  "methodRecordsByKey": "get_buildings_by_key",
+  "sqlParamsPlaceholders": "$1",
+  "methodColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "city_id",
+      "camelName": "cityId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "city_tile_x",
+      "camelName": "cityTileX",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "CityTileX"
+    },
+    {
+      "name": "city_tile_y",
+      "camelName": "cityTileY",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "CityTileY"
+    },
+    {
+      "name": "building_type_id",
+      "camelName": "buildingTypeId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"cityTileX\", \"cityTileY\"]",
+  "indexParamsColumns": "cityId",
+  "indexTypeMethodName": "CityTileXCityTileY",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TBuildingsBuildingsRecordByCityTileXCityTileY",
+  "indexColumns": [
+    {
+      "name": "city_tile_x",
+      "camelName": "cityTileX",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "CityTileX"
+    },
+    {
+      "name": "city_tile_y",
+      "camelName": "cityTileY",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "CityTileY"
+    }
+  ],
+  "apiPath": "app/api/buildings/buildings/route.ts",
+  "apiPathParams": "/api/buildings/buildings",
+  "apiPathByKey": "app/api/buildings/buildings/[cityId]/route.ts",
+  "apiPathParamsByKey": "/api/buildings/buildings/${params.cityId}",
+  "generateMutation": true,
+  "mutationMergeOldData": false,
+  "fetcherName": "fetchBuildingsBuildings",
+  "fetcherNameByKey": "fetchBuildingsBuildingsByKey"
+}

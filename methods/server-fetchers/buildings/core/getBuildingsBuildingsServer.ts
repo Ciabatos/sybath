@@ -1,33 +1,23 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableServer.hbs
 "use server"
 
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
-import { getBuildingsBuildings } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
 import type { TBuildingsBuildings, TBuildingsBuildingsRecordByCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
+import { fetchBuildingsBuildings } from "@/methods/services/buildings/fetchBuildingsBuildings"
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let cachedData: any = null
-const CACHE_TTL = 3_000
-let lastUpdated = 0
-
-export async function getBuildingsBuildingsServer(): Promise<{
+type TResult = {
   raw: TBuildingsBuildings[]
   byKey: TBuildingsBuildingsRecordByCityTileXCityTileY
   apiPath: string
   atomName: string
-}> {
-  if (cachedData && Date.now() - lastUpdated < CACHE_TTL) {
-    return cachedData
+}
+
+export async function getBuildingsBuildingsServer(): Promise<TResult> {
+  const { record } = await fetchBuildingsBuildings()
+
+  return {
+    raw: record!.raw,
+    byKey: record!.byKey,
+    apiPath: `/api/buildings/buildings`,
+    atomName: `buildingsAtom`,
   }
-
-  const getBuildingsBuildingsData = await getBuildingsBuildings()
-
-  const data = getBuildingsBuildingsData ? (arrayToObjectKey(["cityTileX", "cityTileY"], getBuildingsBuildingsData) as TBuildingsBuildingsRecordByCityTileXCityTileY) : {}
-
-  const result = { raw: getBuildingsBuildingsData, byKey: data, apiPath: `/api/buildings/buildings`, atomName: `buildingsAtom` }
-  
-  cachedData = result
-  lastUpdated = Date.now()
-
-  return result
 }

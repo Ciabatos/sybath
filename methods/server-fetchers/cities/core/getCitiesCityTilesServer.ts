@@ -1,33 +1,23 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableServer.hbs
 "use server"
 
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
-import { getCitiesCityTiles } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
 import type { TCitiesCityTiles, TCitiesCityTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
+import { fetchCitiesCityTiles } from "@/methods/services/cities/fetchCitiesCityTiles"
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let cachedData: any = null
-const CACHE_TTL = 3_000
-let lastUpdated = 0
-
-export async function getCitiesCityTilesServer(): Promise<{
+type TResult = {
   raw: TCitiesCityTiles[]
   byKey: TCitiesCityTilesRecordByXY
   apiPath: string
   atomName: string
-}> {
-  if (cachedData && Date.now() - lastUpdated < CACHE_TTL) {
-    return cachedData
+}
+
+export async function getCitiesCityTilesServer(): Promise<TResult> {
+  const { record } = await fetchCitiesCityTiles()
+
+  return {
+    raw: record!.raw,
+    byKey: record!.byKey,
+    apiPath: `/api/cities/city-tiles`,
+    atomName: `cityTilesAtom`,
   }
-
-  const getCitiesCityTilesData = await getCitiesCityTiles()
-
-  const data = getCitiesCityTilesData ? (arrayToObjectKey(["x", "y"], getCitiesCityTilesData) as TCitiesCityTilesRecordByXY) : {}
-
-  const result = { raw: getCitiesCityTilesData, byKey: data, apiPath: `/api/cities/city-tiles`, atomName: `cityTilesAtom` }
-  
-  cachedData = result
-  lastUpdated = Date.now()
-
-  return result
 }

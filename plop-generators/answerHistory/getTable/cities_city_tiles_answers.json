@@ -1,0 +1,85 @@
+{
+  "schema": "cities",
+  "table": "city_tiles",
+  "tableCamelName": "cityTiles",
+  "tablePascalName": "CityTiles",
+  "tableKebabName": "city-tiles",
+  "schemaTablePascalName": "CitiesCityTiles",
+  "methodTypeName": "TCitiesCityTiles",
+  "methodParamsTypeName": "TCitiesCityTilesParams",
+  "methodParamsColumns": [
+    {
+      "name": "city_id",
+      "camelName": "cityId",
+      "tsType": "number"
+    }
+  ],
+  "methodName": "getCitiesCityTiles",
+  "methodNameByKey": "getCitiesCityTilesByKey",
+  "methodRecords": "get_city_tiles",
+  "methodRecordsByKey": "get_city_tiles_by_key",
+  "sqlParamsPlaceholders": "$1",
+  "methodColumns": [
+    {
+      "name": "city_id",
+      "camelName": "cityId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "x",
+      "camelName": "x",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "X"
+    },
+    {
+      "name": "y",
+      "camelName": "y",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Y"
+    },
+    {
+      "name": "terrain_type_id",
+      "camelName": "terrainTypeId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "landscape_type_id",
+      "camelName": "landscapeTypeId",
+      "tsType": "number",
+      "optional": "?"
+    }
+  ],
+  "indexMethodParams": "[\"x\", \"y\"]",
+  "indexParamsColumns": "cityId",
+  "indexTypeMethodName": "XY",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TCitiesCityTilesRecordByXY",
+  "indexColumns": [
+    {
+      "name": "x",
+      "camelName": "x",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "X"
+    },
+    {
+      "name": "y",
+      "camelName": "y",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Y"
+    }
+  ],
+  "apiPath": "app/api/cities/city-tiles/route.ts",
+  "apiPathParams": "/api/cities/city-tiles",
+  "apiPathByKey": "app/api/cities/city-tiles/[cityId]/route.ts",
+  "apiPathParamsByKey": "/api/cities/city-tiles/${params.cityId}",
+  "generateMutation": true,
+  "mutationMergeOldData": false,
+  "fetcherName": "fetchCitiesCityTiles",
+  "fetcherNameByKey": "fetchCitiesCityTilesByKey"
+}

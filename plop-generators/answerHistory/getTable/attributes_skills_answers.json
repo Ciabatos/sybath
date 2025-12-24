@@ -1,0 +1,58 @@
+{
+  "schema": "attributes",
+  "table": "skills",
+  "tableCamelName": "skills",
+  "tablePascalName": "Skills",
+  "tableKebabName": "skills",
+  "schemaTablePascalName": "AttributesSkills",
+  "methodTypeName": "TAttributesSkills",
+  "methodParamsTypeName": "TAttributesSkillsParams",
+  "methodParamsColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number"
+    }
+  ],
+  "methodName": "getAttributesSkills",
+  "methodNameByKey": "getAttributesSkillsByKey",
+  "methodRecords": "get_skills",
+  "methodRecordsByKey": "get_skills_by_key",
+  "sqlParamsPlaceholders": "$1",
+  "methodColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Id"
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "tsType": "string",
+      "optional": "?"
+    }
+  ],
+  "indexMethodParams": "[\"id\"]",
+  "indexParamsColumns": "id",
+  "indexTypeMethodName": "Id",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TAttributesSkillsRecordById",
+  "indexColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Id"
+    }
+  ],
+  "apiPath": "app/api/attributes/skills/route.ts",
+  "apiPathParams": "/api/attributes/skills",
+  "apiPathByKey": "app/api/attributes/skills/[id]/route.ts",
+  "apiPathParamsByKey": "/api/attributes/skills/${params.id}",
+  "generateMutation": false,
+  "fetcherName": "fetchAttributesSkills",
+  "fetcherNameByKey": "fetchAttributesSkillsByKey"
+}

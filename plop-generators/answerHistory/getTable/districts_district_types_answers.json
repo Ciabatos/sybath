@@ -1,0 +1,70 @@
+{
+  "schema": "districts",
+  "table": "district_types",
+  "tableCamelName": "districtTypes",
+  "tablePascalName": "DistrictTypes",
+  "tableKebabName": "district-types",
+  "schemaTablePascalName": "DistrictsDistrictTypes",
+  "methodTypeName": "TDistrictsDistrictTypes",
+  "methodParamsTypeName": "TDistrictsDistrictTypesParams",
+  "methodParamsColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number"
+    }
+  ],
+  "methodName": "getDistrictsDistrictTypes",
+  "methodNameByKey": "getDistrictsDistrictTypesByKey",
+  "methodRecords": "get_district_types",
+  "methodRecordsByKey": "get_district_types_by_key",
+  "sqlParamsPlaceholders": "$1",
+  "methodColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Id"
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "move_cost",
+      "camelName": "moveCost",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "image_url",
+      "camelName": "imageUrl",
+      "tsType": "string",
+      "optional": "?"
+    }
+  ],
+  "indexMethodParams": "[\"id\"]",
+  "indexParamsColumns": "id",
+  "indexTypeMethodName": "Id",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TDistrictsDistrictTypesRecordById",
+  "indexColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Id"
+    }
+  ],
+  "apiPath": "app/api/districts/district-types/route.ts",
+  "apiPathParams": "/api/districts/district-types",
+  "apiPathByKey": "app/api/districts/district-types/[id]/route.ts",
+  "apiPathParamsByKey": "/api/districts/district-types/${params.id}",
+  "generateMutation": false,
+  "fetcherName": "fetchDistrictsDistrictTypes",
+  "fetcherNameByKey": "fetchDistrictsDistrictTypesByKey"
+}

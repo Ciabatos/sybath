@@ -1,34 +1,24 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableByKeyServer.hbs
 "use server"
 
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
-import { getAttributesStatsByKey } from "@/db/postgresMainDatabase/schemas/attributes/stats"
-import { TAttributesStatsParams } from "@/db/postgresMainDatabase/schemas/attributes/stats" 
 import type { TAttributesStats, TAttributesStatsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/stats"
+import type{ TAttributesStatsParams } from "@/db/postgresMainDatabase/schemas/attributes/stats" 
+import { fetchAttributesStatsByKey } from "@/methods/services/attributes/fetchAttributesStatsByKey"
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let cachedData: any = null
-const CACHE_TTL = 3_000
-let lastUpdated = 0
-
-export async function getAttributesStatsByKeyServer( params: TAttributesStatsParams): Promise<{
+type TResult = {
   raw: TAttributesStats[]
   byKey: TAttributesStatsRecordById
   apiPath: string
   atomName: string
-}> {
-  if (cachedData && Date.now() - lastUpdated < CACHE_TTL) {
-    return cachedData
+}
+
+export async function getAttributesStatsByKeyServer( params: TAttributesStatsParams): Promise<TResult> {
+  const { record } = await fetchAttributesStatsByKey(params)
+
+  return {
+    raw: record!.raw,
+    byKey: record!.byKey,
+    apiPath: `/api/attributes/stats/${params.id}`,
+    atomName: `statsAtom`,
   }
-
-  const getAttributesStatsByKeyData = await getAttributesStatsByKey(params)
-
-  const data = getAttributesStatsByKeyData ? (arrayToObjectKey(["id"], getAttributesStatsByKeyData) as TAttributesStatsRecordById) : {}
-
-  const result = { raw: getAttributesStatsByKeyData, byKey: data, apiPath: `/api/attributes/stats/${params.id}`, atomName: `statsAtom`  }
-
-  cachedData = result
-  lastUpdated = Date.now()
-
-  return result
 }

@@ -1,34 +1,24 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableByKeyServer.hbs
 "use server"
 
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
-import { getBuildingsBuildingTypesByKey } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
-import { TBuildingsBuildingTypesParams } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes" 
 import type { TBuildingsBuildingTypes, TBuildingsBuildingTypesRecordById } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
+import type{ TBuildingsBuildingTypesParams } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes" 
+import { fetchBuildingsBuildingTypesByKey } from "@/methods/services/buildings/fetchBuildingsBuildingTypesByKey"
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let cachedData: any = null
-const CACHE_TTL = 3_000
-let lastUpdated = 0
-
-export async function getBuildingsBuildingTypesByKeyServer( params: TBuildingsBuildingTypesParams): Promise<{
+type TResult = {
   raw: TBuildingsBuildingTypes[]
   byKey: TBuildingsBuildingTypesRecordById
   apiPath: string
   atomName: string
-}> {
-  if (cachedData && Date.now() - lastUpdated < CACHE_TTL) {
-    return cachedData
+}
+
+export async function getBuildingsBuildingTypesByKeyServer( params: TBuildingsBuildingTypesParams): Promise<TResult> {
+  const { record } = await fetchBuildingsBuildingTypesByKey(params)
+
+  return {
+    raw: record!.raw,
+    byKey: record!.byKey,
+    apiPath: `/api/buildings/building-types/${params.id}`,
+    atomName: `buildingTypesAtom`,
   }
-
-  const getBuildingsBuildingTypesByKeyData = await getBuildingsBuildingTypesByKey(params)
-
-  const data = getBuildingsBuildingTypesByKeyData ? (arrayToObjectKey(["id"], getBuildingsBuildingTypesByKeyData) as TBuildingsBuildingTypesRecordById) : {}
-
-  const result = { raw: getBuildingsBuildingTypesByKeyData, byKey: data, apiPath: `/api/buildings/building-types/${params.id}`, atomName: `buildingTypesAtom`  }
-
-  cachedData = result
-  lastUpdated = Date.now()
-
-  return result
 }

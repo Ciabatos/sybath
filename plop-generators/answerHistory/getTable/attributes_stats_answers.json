@@ -1,0 +1,58 @@
+{
+  "schema": "attributes",
+  "table": "stats",
+  "tableCamelName": "stats",
+  "tablePascalName": "Stats",
+  "tableKebabName": "stats",
+  "schemaTablePascalName": "AttributesStats",
+  "methodTypeName": "TAttributesStats",
+  "methodParamsTypeName": "TAttributesStatsParams",
+  "methodParamsColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number"
+    }
+  ],
+  "methodName": "getAttributesStats",
+  "methodNameByKey": "getAttributesStatsByKey",
+  "methodRecords": "get_stats",
+  "methodRecordsByKey": "get_stats_by_key",
+  "sqlParamsPlaceholders": "$1",
+  "methodColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Id"
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "tsType": "string",
+      "optional": "?"
+    }
+  ],
+  "indexMethodParams": "[\"id\"]",
+  "indexParamsColumns": "id",
+  "indexTypeMethodName": "Id",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TAttributesStatsRecordById",
+  "indexColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Id"
+    }
+  ],
+  "apiPath": "app/api/attributes/stats/route.ts",
+  "apiPathParams": "/api/attributes/stats",
+  "apiPathByKey": "app/api/attributes/stats/[id]/route.ts",
+  "apiPathParamsByKey": "/api/attributes/stats/${params.id}",
+  "generateMutation": false,
+  "fetcherName": "fetchAttributesStats",
+  "fetcherNameByKey": "fetchAttributesStatsByKey"
+}

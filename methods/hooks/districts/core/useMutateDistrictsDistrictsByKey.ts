@@ -3,14 +3,14 @@
 
 import { TDistrictsDistrictsRecordByMapTileXMapTileY , TDistrictsDistrictsParams, TDistrictsDistricts  } from "@/db/postgresMainDatabase/schemas/districts/districts"
 import { districtsAtom } from "@/store/atoms"
-import { useSetAtom, useAtomValue } from "jotai"
+import { useSetAtom } from "jotai"
 import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateDistrictsDistricts( params: TDistrictsDistrictsParams) {
   const { mutate } = useSWR<TDistrictsDistricts[]>(`/api/districts/districts/${params.mapId}`)
   const setDistrictsDistricts = useSetAtom(districtsAtom)
-  const districts = useAtomValue(districtsAtom)
+  
 
   function mutateDistrictsDistricts(optimisticParams: Partial<TDistrictsDistricts> | Partial<TDistrictsDistricts>[]) {
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
@@ -36,7 +36,7 @@ export function useMutateDistrictsDistricts( params: TDistrictsDistrictsParams) 
     const newObj = arrayToObjectKey(["mapTileX", "mapTileY"], dataWithDefaults) as TDistrictsDistrictsRecordByMapTileXMapTileY
     
     const optimisticDataMergeWithOldData: TDistrictsDistrictsRecordByMapTileXMapTileY = {
-      ...districts, 
+       
       ...newObj,      
     }
     

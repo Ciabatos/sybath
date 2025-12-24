@@ -1,34 +1,24 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableByKeyServer.hbs
 "use server"
 
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
-import { getCitiesCitiesByKey } from "@/db/postgresMainDatabase/schemas/cities/cities"
-import { TCitiesCitiesParams } from "@/db/postgresMainDatabase/schemas/cities/cities" 
 import type { TCitiesCities, TCitiesCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
+import type{ TCitiesCitiesParams } from "@/db/postgresMainDatabase/schemas/cities/cities" 
+import { fetchCitiesCitiesByKey } from "@/methods/services/cities/fetchCitiesCitiesByKey"
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let cachedData: any = null
-const CACHE_TTL = 3_000
-let lastUpdated = 0
-
-export async function getCitiesCitiesByKeyServer( params: TCitiesCitiesParams): Promise<{
+type TResult = {
   raw: TCitiesCities[]
   byKey: TCitiesCitiesRecordByMapTileXMapTileY
   apiPath: string
   atomName: string
-}> {
-  if (cachedData && Date.now() - lastUpdated < CACHE_TTL) {
-    return cachedData
+}
+
+export async function getCitiesCitiesByKeyServer( params: TCitiesCitiesParams): Promise<TResult> {
+  const { record } = await fetchCitiesCitiesByKey(params)
+
+  return {
+    raw: record!.raw,
+    byKey: record!.byKey,
+    apiPath: `/api/cities/cities/${params.mapId}`,
+    atomName: `citiesAtom`,
   }
-
-  const getCitiesCitiesByKeyData = await getCitiesCitiesByKey(params)
-
-  const data = getCitiesCitiesByKeyData ? (arrayToObjectKey(["mapTileX", "mapTileY"], getCitiesCitiesByKeyData) as TCitiesCitiesRecordByMapTileXMapTileY) : {}
-
-  const result = { raw: getCitiesCitiesByKeyData, byKey: data, apiPath: `/api/cities/cities/${params.mapId}`, atomName: `citiesAtom`  }
-
-  cachedData = result
-  lastUpdated = Date.now()
-
-  return result
 }

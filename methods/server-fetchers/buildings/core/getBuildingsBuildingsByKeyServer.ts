@@ -1,34 +1,24 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableByKeyServer.hbs
 "use server"
 
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
-import { getBuildingsBuildingsByKey } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
-import { TBuildingsBuildingsParams } from "@/db/postgresMainDatabase/schemas/buildings/buildings" 
 import type { TBuildingsBuildings, TBuildingsBuildingsRecordByCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
+import type{ TBuildingsBuildingsParams } from "@/db/postgresMainDatabase/schemas/buildings/buildings" 
+import { fetchBuildingsBuildingsByKey } from "@/methods/services/buildings/fetchBuildingsBuildingsByKey"
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let cachedData: any = null
-const CACHE_TTL = 3_000
-let lastUpdated = 0
-
-export async function getBuildingsBuildingsByKeyServer( params: TBuildingsBuildingsParams): Promise<{
+type TResult = {
   raw: TBuildingsBuildings[]
   byKey: TBuildingsBuildingsRecordByCityTileXCityTileY
   apiPath: string
   atomName: string
-}> {
-  if (cachedData && Date.now() - lastUpdated < CACHE_TTL) {
-    return cachedData
+}
+
+export async function getBuildingsBuildingsByKeyServer( params: TBuildingsBuildingsParams): Promise<TResult> {
+  const { record } = await fetchBuildingsBuildingsByKey(params)
+
+  return {
+    raw: record!.raw,
+    byKey: record!.byKey,
+    apiPath: `/api/buildings/buildings/${params.cityId}`,
+    atomName: `buildingsAtom`,
   }
-
-  const getBuildingsBuildingsByKeyData = await getBuildingsBuildingsByKey(params)
-
-  const data = getBuildingsBuildingsByKeyData ? (arrayToObjectKey(["cityTileX", "cityTileY"], getBuildingsBuildingsByKeyData) as TBuildingsBuildingsRecordByCityTileXCityTileY) : {}
-
-  const result = { raw: getBuildingsBuildingsByKeyData, byKey: data, apiPath: `/api/buildings/buildings/${params.cityId}`, atomName: `buildingsAtom`  }
-
-  cachedData = result
-  lastUpdated = Date.now()
-
-  return result
 }
