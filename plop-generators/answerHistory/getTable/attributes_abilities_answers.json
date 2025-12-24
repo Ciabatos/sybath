@@ -1,0 +1,58 @@
+{
+  "schema": "attributes",
+  "table": "abilities",
+  "tableCamelName": "abilities",
+  "tablePascalName": "Abilities",
+  "tableKebabName": "abilities",
+  "schemaTablePascalName": "AttributesAbilities",
+  "methodTypeName": "TAttributesAbilities",
+  "methodParamsTypeName": "TAttributesAbilitiesParams",
+  "methodParamsColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number"
+    }
+  ],
+  "methodName": "getAttributesAbilities",
+  "methodNameByKey": "getAttributesAbilitiesByKey",
+  "methodRecords": "get_abilities",
+  "methodRecordsByKey": "get_abilities_by_key",
+  "sqlParamsPlaceholders": "$1",
+  "methodColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Id"
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "tsType": "string",
+      "optional": "?"
+    }
+  ],
+  "indexMethodParams": "[\"id\"]",
+  "indexParamsColumns": "id",
+  "indexTypeMethodName": "Id",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TAttributesAbilitiesRecordById",
+  "indexColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Id"
+    }
+  ],
+  "apiPath": "app/api/attributes/abilities/route.ts",
+  "apiPathParams": "/api/attributes/abilities",
+  "apiPathByKey": "app/api/attributes/abilities/[id]/route.ts",
+  "apiPathParamsByKey": "/api/attributes/abilities/${params.id}",
+  "generateMutation": false,
+  "fetcherName": "fetchAttributesAbilities",
+  "fetcherNameByKey": "fetchAttributesAbilitiesByKey"
+}
