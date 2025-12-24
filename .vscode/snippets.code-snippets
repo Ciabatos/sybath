@@ -553,5 +553,12 @@
       "const { playerMovement } = useFetchPlayerMovement({$1})"
     ],
     "description": "Destructuring usePlayerMovement hook"
+  },  
+  "Destructure usePlayerInventory": {
+    "prefix": "hook_inventory_core_usePlayerInventory",
+    "body": [
+      "const { playerInventory } = useFetchPlayerInventory({$1})"
+    ],
+    "description": "Destructuring usePlayerInventory hook"
   },//Automatic Snippets
 }

@@ -12,7 +12,7 @@ export function useFetchPlayerInventory( params: TPlayerInventoryParams) {
   const playerInventory = useAtomValue(playerInventoryAtom)
   const setPlayerInventory = useSetAtom(playerInventoryAtom)
 
-  const { data } = useSWR<TPlayerInventory[]>(`/api/inventory/rpc/get-player-inventory/${params.playerId}`, { refreshInterval: 3000 })
+  const { data } = useSWR<TPlayerInventory[]>(`api/inventory/rpc/get-player-inventory/${params.playerId}`, { refreshInterval: 3000 })
 
   useEffect(() => {
     if (data) {
