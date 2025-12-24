@@ -1,33 +1,23 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableServer.hbs
 "use server"
 
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
-import { getWorldLandscapeTypes } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import type { TWorldLandscapeTypes, TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
+import { fetchWorldLandscapeTypes } from "@/methods/services/world/fetchWorldLandscapeTypes"
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let cachedData: any = null
-const CACHE_TTL = 3_000
-let lastUpdated = 0
-
-export async function getWorldLandscapeTypesServer(): Promise<{
+type TResult = {
   raw: TWorldLandscapeTypes[]
   byKey: TWorldLandscapeTypesRecordById
   apiPath: string
   atomName: string
-}> {
-  if (cachedData && Date.now() - lastUpdated < CACHE_TTL) {
-    return cachedData
+}
+
+export async function getWorldLandscapeTypesServer(): Promise<TResult> {
+  const { record } = await fetchWorldLandscapeTypes()
+
+  return {
+    raw: record!.raw,
+    byKey: record!.byKey,
+    apiPath: `/api/world/landscape-types`,
+    atomName: `landscapeTypesAtom`,
   }
-
-  const getWorldLandscapeTypesData = await getWorldLandscapeTypes()
-
-  const data = getWorldLandscapeTypesData ? (arrayToObjectKey(["id"], getWorldLandscapeTypesData) as TWorldLandscapeTypesRecordById) : {}
-
-  const result = { raw: getWorldLandscapeTypesData, byKey: data, apiPath: `/api/world/landscape-types`, atomName: `landscapeTypesAtom` }
-  
-  cachedData = result
-  lastUpdated = Date.now()
-
-  return result
 }
