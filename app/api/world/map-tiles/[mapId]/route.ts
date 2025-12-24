@@ -2,7 +2,7 @@
 
 import { auth } from "@/auth"
 import { TWorldMapTilesParams } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
-import { fetchWorldMapTilesByKey } from "@/methods/functions/services/world/fetchWorldMapTilesByKey"
+import { fetchWorldMapTilesByKey } from "@/methods/services/world/fetchWorldMapTilesByKey"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
 
@@ -20,7 +20,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
     if (!sessionUserId || isNaN(sessionUserId)) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
     }
-
+  
     const paramsFromPromise = await params
     const parsedParams = typeParamsSchema.parse(paramsFromPromise)
 

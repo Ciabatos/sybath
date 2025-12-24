@@ -2,8 +2,8 @@
 "use server"
 
 import type { TWorldMapTiles, TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
-import { TWorldMapTilesParams } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
-import { fetchWorldMapTilesByKey } from "@/methods/functions/services/world/fetchWorldMapTilesByKey"
+import type{ TWorldMapTilesParams } from "@/db/postgresMainDatabase/schemas/world/mapTiles" 
+import { fetchWorldMapTilesByKey } from "@/methods/services/world/fetchWorldMapTilesByKey"
 
 type TResult = {
   raw: TWorldMapTiles[]
@@ -12,7 +12,7 @@ type TResult = {
   atomName: string
 }
 
-export async function getWorldMapTilesByKeyServer(params: TWorldMapTilesParams): Promise<TResult> {
+export async function getWorldMapTilesByKeyServer( params: TWorldMapTilesParams): Promise<TResult> {
   const { record } = await fetchWorldMapTilesByKey(params)
 
   return {
