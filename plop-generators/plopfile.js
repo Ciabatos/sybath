@@ -11,6 +11,8 @@ function configurePlop(plop) {
     "app/api",
     "methods/hooks",
     "methods/server-fetchers",
+    "methods/services",
+    "methods/actions",
   ]
 
   plop.setHelper("eq", (a, b) => a === b)
