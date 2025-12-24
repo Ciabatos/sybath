@@ -546,5 +546,12 @@
       "const { items } = useFetchItemsItemsByKey({$1})"
     ],
     "description": "Destructuring useItemsItemsByKey hook"
+  },  
+  "Destructure usePlayerMovement": {
+    "prefix": "hook_world_core_usePlayerMovement",
+    "body": [
+      "const { playerMovement } = useFetchPlayerMovement({$1})"
+    ],
+    "description": "Destructuring usePlayerMovement hook"
   },//Automatic Snippets
 }

@@ -8,7 +8,7 @@ import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutatePlayerMovement( params: TPlayerMovementParams) {
-  const { mutate } = useSWR<TPlayerMovement[]>(`/api/world/rpc/get-player-movement/${params.playerId}`)
+  const { mutate } = useSWR<TPlayerMovement[]>(`api/world/rpc/get-player-movement/${params.playerId}`)
   const setPlayerMovement = useSetAtom(playerMovementAtom)
   
 
