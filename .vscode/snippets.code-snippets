@@ -532,5 +532,19 @@
       "const { districts } = useFetchDistrictsDistrictsByKey({$1})"
     ],
     "description": "Destructuring useDistrictsDistrictsByKey hook"
+  },
+  "Destructure useItemsItems": {
+    "prefix": "hook_items_core_useItemsItems",
+    "body": [
+      "const { items } = useFetchItemsItems()"
+    ],
+    "description": "Destructuring useItemsItems hook"
+  },
+  "Destructure useItemsItemsByKey": {
+    "prefix": "hook_items_core_useItemsItemsByKey",
+    "body": [
+      "const { items } = useFetchItemsItemsByKey({$1})"
+    ],
+    "description": "Destructuring useItemsItemsByKey hook"
   },//Automatic Snippets
 }

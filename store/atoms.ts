@@ -40,6 +40,7 @@ import { TCitiesCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase
 import { TCitiesCityTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
 import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
 import { TDistrictsDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/districts/districts"
+import { TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/items"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanels>(EPanels.Inactive)
@@ -63,6 +64,7 @@ export const playerMapTilesMovementPathAtom = atom<TMapTilesMovementPathRecordBy
 export const playerMapTilesGuardAreaAtom = atom<TAreaRecordByXY>({})
 
 //Tables
+export const itemsAtom = atom<TItemsItemsRecordById>({})
 export const districtsAtom = atom<TDistrictsDistrictsRecordByMapTileXMapTileY>({})
 export const districtTypesAtom = atom<TDistrictsDistrictTypesRecordById>({})
 export const cityTilesAtom = atom<TCitiesCityTilesRecordByXY>({})

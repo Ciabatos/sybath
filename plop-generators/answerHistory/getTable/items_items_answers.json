@@ -1,0 +1,58 @@
+{
+  "schema": "items",
+  "table": "items",
+  "tableCamelName": "items",
+  "tablePascalName": "Items",
+  "tableKebabName": "items",
+  "schemaTablePascalName": "ItemsItems",
+  "methodTypeName": "TItemsItems",
+  "methodParamsTypeName": "TItemsItemsParams",
+  "methodParamsColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number"
+    }
+  ],
+  "methodName": "getItemsItems",
+  "methodNameByKey": "getItemsItemsByKey",
+  "methodRecords": "get_items",
+  "methodRecordsByKey": "get_items_by_key",
+  "sqlParamsPlaceholders": "$1",
+  "methodColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Id"
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "tsType": "string",
+      "optional": "?"
+    }
+  ],
+  "indexMethodParams": "[\"id\"]",
+  "indexParamsColumns": "id",
+  "indexTypeMethodName": "Id",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TItemsItemsRecordById",
+  "indexColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Id"
+    }
+  ],
+  "apiPath": "app/api/items/items/route.ts",
+  "apiPathParams": "/api/items/items",
+  "apiPathByKey": "app/api/items/items/[id]/route.ts",
+  "apiPathParamsByKey": "/api/items/items/${params.id}",
+  "generateMutation": false,
+  "fetcherName": "fetchItemsItems",
+  "fetcherNameByKey": "fetchItemsItemsByKey"
+}
