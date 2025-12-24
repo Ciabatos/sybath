@@ -1,0 +1,70 @@
+{
+  "schema": "world",
+  "table": "terrain_types",
+  "tableCamelName": "terrainTypes",
+  "tablePascalName": "TerrainTypes",
+  "tableKebabName": "terrain-types",
+  "schemaTablePascalName": "WorldTerrainTypes",
+  "methodTypeName": "TWorldTerrainTypes",
+  "methodParamsTypeName": "TWorldTerrainTypesParams",
+  "methodParamsColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number"
+    }
+  ],
+  "methodName": "getWorldTerrainTypes",
+  "methodNameByKey": "getWorldTerrainTypesByKey",
+  "methodRecords": "get_terrain_types",
+  "methodRecordsByKey": "get_terrain_types_by_key",
+  "sqlParamsPlaceholders": "$1",
+  "methodColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Id"
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "move_cost",
+      "camelName": "moveCost",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "image_url",
+      "camelName": "imageUrl",
+      "tsType": "string",
+      "optional": "?"
+    }
+  ],
+  "indexMethodParams": "[\"id\"]",
+  "indexParamsColumns": "id",
+  "indexTypeMethodName": "Id",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TWorldTerrainTypesRecordById",
+  "indexColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Id"
+    }
+  ],
+  "apiPath": "app/api/world/terrain-types/route.ts",
+  "apiPathParams": "/api/world/terrain-types",
+  "apiPathByKey": "app/api/world/terrain-types/[id]/route.ts",
+  "apiPathParamsByKey": "/api/world/terrain-types/${params.id}",
+  "generateMutation": false,
+  "fetcherName": "fetchWorldTerrainTypes",
+  "fetcherNameByKey": "fetchWorldTerrainTypesByKey"
+}

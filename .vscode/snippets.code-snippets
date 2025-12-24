@@ -392,5 +392,19 @@
       "const { landscapeTypes } = useFetchWorldLandscapeTypesByKey({$1})"
     ],
     "description": "Destructuring useWorldLandscapeTypesByKey hook"
+  },
+  "Destructure useWorldTerrainTypes": {
+    "prefix": "hook_world_core_useWorldTerrainTypes",
+    "body": [
+      "const { terrainTypes } = useFetchWorldTerrainTypes()"
+    ],
+    "description": "Destructuring useWorldTerrainTypes hook"
+  },
+  "Destructure useWorldTerrainTypesByKey": {
+    "prefix": "hook_world_core_useWorldTerrainTypesByKey",
+    "body": [
+      "const { terrainTypes } = useFetchWorldTerrainTypesByKey({$1})"
+    ],
+    "description": "Destructuring useWorldTerrainTypesByKey hook"
   },//Automatic Snippets
 }
