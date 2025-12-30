@@ -1,0 +1,37 @@
+// GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - serviceGetMethodAction.hbs
+"use server"
+
+import { {{methodParamsTypeName}}, {{methodCamelName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
+
+//MANUAL CODE - START
+
+type T{{methodPascalName}}ServiceParams = {
+playerId: number
+}
+
+//MANUAL CODE - END
+
+export async function {{methodCamelName}}Service(params: T{{methodPascalName}}ActionParams) {
+
+  //MANUAL CODE - START
+
+  {{#each methodParamsColumns}}
+  const {{camelName}} =
+  {{/each}}
+
+  //MANUAL CODE - END
+
+  const data: {{methodParamsTypeName}} = {
+    {{#each methodParamsColumns}}
+    {{camelName}}: {{camelName}},
+    {{/each}}
+  }
+
+  try {
+    const result = await {{methodCamelName}}(data)
+    return result
+  } catch (error) {
+    console.error("Error {{methodCamelName}}Service :", error)
+    return "Failed to {{methodCamelName}}Service"
+  }
+}

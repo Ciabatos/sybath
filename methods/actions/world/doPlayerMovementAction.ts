@@ -2,15 +2,12 @@
 "use server"
 
 import { auth } from "@/auth"
-import { TDoPlayerMovementParams, doPlayerMovement } from "@/db/postgresMainDatabase/schemas/world/doPlayerMovement"
+import {
+  TDoPlayerMovementServiceParams,
+  doPlayerMovementService,
+} from "@/methods/services/world/doPlayerMovementService"
 
-//MANUAL CODE - START
-
-type TDoPlayerMovementActionParams = {
-
-}
-
-//MANUAL CODE - END
+type TDoPlayerMovementActionParams = Omit<TDoPlayerMovementServiceParams, "playerId">
 
 export async function doPlayerMovementAction(params: TDoPlayerMovementActionParams) {
   const session = await auth()
@@ -22,18 +19,15 @@ export async function doPlayerMovementAction(params: TDoPlayerMovementActionPara
 
   //MANUAL CODE - START
 
-  const playerId =
-  const path =
-
   //MANUAL CODE - END
 
-  const data: TDoPlayerMovementParams = {
+  const data: TDoPlayerMovementServiceParams = {
     playerId: playerId,
-    path: path,
+    ...params,
   }
 
   try {
-    const result = await doPlayerMovement(data)
+    const result = await doPlayerMovementService(data)
     return result
   } catch (error) {
     console.error("Error doPlayerMovementAction :", error)

@@ -131,6 +131,12 @@ export default function getMethodAction(plop) {
       },
       {
         type: "add",
+        path: "../methods/services/{{schema}}/{{methodCamelName}}Service.ts",
+        templateFile: "plop-templates/methodAction/serviceGetMethodAction.hbs",
+        force: true,
+      },
+      {
+        type: "add",
         path: "./answerHistory/getMethodAction/{{schema}}_{{method}}_answers.json",
         templateFile: "plop-templates/answerHistory.hbs",
         force: true,

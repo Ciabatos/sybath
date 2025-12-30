@@ -2,13 +2,11 @@
 "use server"
 
 import { auth } from "@/auth"
-import { {{methodParamsTypeName}}, {{methodCamelName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
+import { T{{methodPascalName}}ServiceParams, {{methodCamelName}}Service } from "@/methods/services/{{schema}}/{{methodCamelName}}Service"
 
 //MANUAL CODE - START
 
-type T{{methodPascalName}}ActionParams = {
-
-}
+type T{{methodPascalName}}ActionParams = Omit<T{{methodPascalName}}ServiceParams, "playerId">
 
 //MANUAL CODE - END
 
@@ -22,20 +20,15 @@ export async function {{methodName}}(params: T{{methodPascalName}}ActionParams) 
 
   //MANUAL CODE - START
 
-  {{#each methodParamsColumns}}
-  const {{camelName}} =
-  {{/each}}
-
   //MANUAL CODE - END
 
-  const data: {{methodParamsTypeName}} = {
-    {{#each methodParamsColumns}}
-    {{camelName}}: {{camelName}},
-    {{/each}}
+  const data: T{{methodPascalName}}ServiceParams = {
+    playerId: playerId,
+    ...params,
   }
 
   try {
-    const result = await {{methodCamelName}}(data)
+    const result = await {{methodCamelName}}Service(data)
     return result
   } catch (error) {
     console.error("Error {{methodName}} :", error)
