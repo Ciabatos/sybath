@@ -1,17 +1,28 @@
 "use client"
 
 import Map from "@/components/map/Map"
-import { useRefreshJoinedMap } from "@/methods/hooks/world/composite/useRefreshJoinedMap"
+import { useMapHandlingData } from "@/methods/hooks/world/composite/useMapHandlingData"
 
 export default function MapHandling() {
-  const { refreshedJoinedMap } = useRefreshJoinedMap()
+  const { mapTiles, cities, districts, districtTypes, playerPosition, terrainTypes, landscapeTypes } =
+    useMapHandlingData()
 
   return (
     <>
-      {Object.entries(refreshedJoinedMap).map(([key, tile]) => (
+      {Object.entries(mapTiles).map(([key, mapTiles]) => (
         <Map
           key={key}
-          tile={tile}
+          mapTiles={mapTiles}
+          terrainTypes={terrainTypes[mapTiles.terrainTypeId]}
+          landscapeTypes={mapTiles.landscapeTypeId ? landscapeTypes[mapTiles.landscapeTypeId] : undefined}
+          cities={cities[`${mapTiles.x},${mapTiles.y}`]}
+          districts={districts[`${mapTiles.x},${mapTiles.y}`]}
+          districtTypes={
+            districts[`${mapTiles.x},${mapTiles.y}`]
+              ? districtTypes[districts[`${mapTiles.x},${mapTiles.y}`].districtTypeId]
+              : undefined
+          }
+          playerPosition={playerPosition[`${mapTiles.x},${mapTiles.y}`]}
         />
       ))}
     </>

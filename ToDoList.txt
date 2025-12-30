@@ -59,6 +59,8 @@ Mapa
 UI i flow dla „systemu informacji”
 
 joinMap
+wyjebac joinMap i przesylac tylko raw data, w handlingu uzyc laczenia po kluczach i przesylac tylko wymagane dane
+wyjebac getjoinMap z server-fetchers i przeslac raw data w propsie poczatkowym za pomoca getMapData
 
 Aktualizacja NEXT JS i reszty dependencies wraz z UI renderem biblioteka 
 

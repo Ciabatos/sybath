@@ -1,15 +1,26 @@
 "use client"
 
-import LayersHandling from "@/components/map/layers/LayersHandling"
 import style from "@/components/map/styles/Tile.module.css"
+import { TCitiesCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
+import { TDistrictsDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/districts/districts"
+import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
+import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
+import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
+import { TPlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
+import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { createImage } from "@/methods/functions/map/createImage"
-import { TJoinMap } from "@/methods/functions/map/joinMap"
 
 interface Props {
-  tile: TJoinMap
+  mapTiles: TWorldMapTilesRecordByXY[keyof TWorldMapTilesRecordByXY]
+  terrainTypes: TWorldTerrainTypesRecordById[keyof TWorldTerrainTypesRecordById]
+  landscapeTypes?: TWorldLandscapeTypesRecordById[keyof TWorldLandscapeTypesRecordById]
+  cities?: TCitiesCitiesRecordByMapTileXMapTileY[keyof TCitiesCitiesRecordByMapTileXMapTileY]
+  districts?: TDistrictsDistrictsRecordByMapTileXMapTileY[keyof TDistrictsDistrictsRecordByMapTileXMapTileY]
+  districtTypes?: TDistrictsDistrictTypesRecordById[keyof TDistrictsDistrictTypesRecordById]
+  playerPosition?: TPlayerPositionRecordByXY[keyof TPlayerPositionRecordByXY]
 }
 
-export default function Map({ tile }: Props) {
+export default function Map(props: Props) {
   const {
     createPlayerImage,
     createLandscapeImage,
@@ -19,19 +30,19 @@ export default function Map({ tile }: Props) {
     combineImages,
   } = createImage()
   // const { handleClickOnMapTile } = useMapTileActions()
-  const backgroundImage = createBackgroundImage(tile.terrainTypes.imageUrl)
-  const landscapeImage = createLandscapeImage(tile.landscapeTypes?.imageUrl)
-  const playerImage = createPlayerImage(tile.playerPosition?.imageUrl)
-  const citiesImage = createCitiesImage(tile.cities?.imageUrl)
-  const districtsImage = creatDistrictsImage(tile.districtTypes?.imageUrl)
+  const backgroundImage = createBackgroundImage(props.terrainTypes.imageUrl)
+  const landscapeImage = createLandscapeImage(props.landscapeTypes?.imageUrl)
+  const playerImage = createPlayerImage(props.playerPosition?.imageUrl)
+  const citiesImage = createCitiesImage(props.cities?.imageUrl)
+  const districtsImage = creatDistrictsImage(props.districtTypes?.imageUrl)
   const combinedImages = combineImages(landscapeImage, backgroundImage)
   return (
     <div
       className={style.BackgroundImage}
-      // onDoubleClick={() => handleClickOnMapTile(tile)}
+      // onDoubleClick={() => handleClickOnMapTile(props)}
       style={{
-        gridColumnStart: tile.tiles.x,
-        gridRowStart: tile.tiles.y,
+        gridColumnStart: props.mapTiles.x,
+        gridRowStart: props.mapTiles.y,
         backgroundImage: combinedImages,
       }}
     >
@@ -60,8 +71,8 @@ export default function Map({ tile }: Props) {
         ></div>
       )}
       <div>
-        {tile.tiles.x}, {tile.tiles.y}, {tile.cities?.name}, {tile.districts?.name}
-        <LayersHandling tile={tile} />
+        {props.mapTiles.x}, {props.mapTiles.y}, {props.cities?.name}, {props.districts?.name}
+        {/* <LayersHandling props={props} /> */}
       </div>
     </div>
   )
