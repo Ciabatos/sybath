@@ -22,7 +22,7 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetch{{methodPascalName}}(
+export async function fetch{{methodPascalName}}Service(
  {{#if methodParamsColumns}}params: {{methodParamsTypeName}}{{/if}},
   options?: { clientEtag?: string },
 ): Promise<TFetchResult> {

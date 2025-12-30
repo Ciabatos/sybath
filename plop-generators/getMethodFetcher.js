@@ -250,7 +250,7 @@ export default function getMethodFetcher(plop) {
       },
       {
         type: "add",
-        path: "../methods/services/{{schema}}/fetch{{methodPascalName}}.ts",
+        path: "../methods/services/{{schema}}/fetch{{methodPascalName}}Service.ts",
         templateFile: "plop-templates/methodFetcher/serviceGetMethodFetcher.hbs",
         force: true,
       },

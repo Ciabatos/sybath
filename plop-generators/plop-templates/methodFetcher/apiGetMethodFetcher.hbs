@@ -2,7 +2,7 @@
 
 import { auth } from "@/auth"
 {{#if methodParamsColumns}}import { {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"{{/if}}
-import { fetch{{methodPascalName}} } from "@/methods/services/{{schema}}/fetch{{methodPascalName}}"
+import { fetch{{methodPascalName}}Service } from "@/methods/services/{{schema}}/fetch{{methodPascalName}}Service"
 import { NextRequest, NextResponse } from "next/server"
 {{#if methodParamsColumns}}
 import z from "zod"
@@ -32,7 +32,7 @@ export async function GET(request: NextRequest{{#if methodParamsColumns}}, { par
 
     const clientEtag = request.headers.get("if-none-match") ?? undefined
 
-    const { record, etag, cacheHit, etagMatched } = await fetch{{methodPascalName}}({{#if methodParamsColumns}}parsedParams,{{/if}} { clientEtag })
+    const { record, etag, cacheHit, etagMatched } = await fetch{{methodPascalName}}Service({{#if methodParamsColumns}}parsedParams,{{/if}} { clientEtag })
 
     if (cacheHit || etagMatched) {
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })

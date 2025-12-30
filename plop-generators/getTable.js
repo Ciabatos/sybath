@@ -323,13 +323,13 @@ export default function getTable(plop) {
       },
       {
         type: "add",
-        path: "../methods/services/{{schema}}/{{fetcherName}}.ts",
+        path: "../methods/services/{{schema}}/{{fetcherName}}Service.ts",
         templateFile: "plop-templates/getTable/serviceGetTable.hbs",
         force: true,
       },
       {
         type: "add",
-        path: "../methods/services/{{schema}}/{{fetcherNameByKey}}.ts",
+        path: "../methods/services/{{schema}}/{{fetcherNameByKey}}Service.ts",
         templateFile: "plop-templates/getTable/serviceGetTableByKey.hbs",
         force: true,
       },
