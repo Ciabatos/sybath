@@ -3,13 +3,17 @@ import { SWRConfig } from "swr"
 
 const storedEtagMap = new Map<string, string>()
 
-async function fetchWithETag<T>(url: string): Promise<T> {
+async function fetchWithETag<T>(url: string): Promise<T | undefined> {
   const headers: Record<string, string> = {}
   const storedEtag = storedEtagMap.get(url)
 
   if (storedEtag) headers["If-None-Match"] = storedEtag
 
   const res = await fetch(url, { headers })
+
+  if (res.status === 304) {
+    return undefined
+  }
 
   if (!res.ok && res.status !== 304) {
     throw new Error(`Fetch error: ${res.status}`)
