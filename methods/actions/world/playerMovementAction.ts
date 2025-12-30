@@ -2,7 +2,7 @@
 "use server"
 
 import { auth } from "@/auth"
-import { TPlayerMovementParams, playerMovement } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
+import { doPlayerMovement, TDoPlayerMovementParams } from "@/db/postgresMainDatabase/schemas/world/doPlayerMovement"
 import { pathFromPointToPoint } from "@/methods/functions/map/pathFromPointToPoint"
 import { getJoinedMap } from "@/methods/server-fetchers/world/composite/getJoinedMap"
 
@@ -36,13 +36,13 @@ export async function playerMovementAction(params: TPlayerMovementActionParams) 
     mapTiles: joinedMap.joinedMap,
   })
 
-  const data: TPlayerMovementParams = {
+  const data: TDoPlayerMovementParams = {
     playerId: playerId,
     path: path,
   }
 
   try {
-    const result = await playerMovement(data)
+    const result = await doPlayerMovement(data)
     return result
   } catch (error) {
     console.error("Error playerMovementAction :", error)
