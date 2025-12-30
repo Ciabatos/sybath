@@ -1,7 +1,6 @@
-// GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - actionGetMethodAction.hbs
+// GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - serviceGetMethodAction.hbs
 "use server"
 
-import { auth } from "@/auth"
 import { TDoPlayerMovementParams, doPlayerMovement } from "@/db/postgresMainDatabase/schemas/world/doPlayerMovement"
 
 //MANUAL CODE - START
@@ -22,15 +21,15 @@ export async function doPlayerMovementService(params: TDoPlayerMovementServicePa
   //MANUAL CODE - END
 
   const data: TDoPlayerMovementParams = {
-	playerId: playerId,
-	path: path,
+    playerId: playerId,
+    path: path,
   }
 
   try {
-	const result = await doPlayerMovement(data)
-	return result
+    const result = await doPlayerMovement(data)
+    return result
   } catch (error) {
-	console.error("Error doPlayerMovementService :", error)
-	return "Failed to doPlayerMovementService"
+    console.error("Error doPlayerMovementService :", error)
+    return "Failed to doPlayerMovementService"
   }
 }

@@ -5,13 +5,13 @@ import { {{methodParamsTypeName}}, {{methodCamelName}} } from "@/db/postgresMain
 
 //MANUAL CODE - START
 
-type T{{methodPascalName}}ServiceParams = {
+export type T{{methodPascalName}}ServiceParams = {
 playerId: number
 }
 
 //MANUAL CODE - END
 
-export async function {{methodCamelName}}Service(params: T{{methodPascalName}}ActionParams) {
+export async function {{methodCamelName}}Service(params: T{{methodPascalName}}ServiceParams) {
 
   //MANUAL CODE - START
 

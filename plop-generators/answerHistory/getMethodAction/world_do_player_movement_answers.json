@@ -1,0 +1,38 @@
+{
+  "schema": "world",
+  "method": "do_player_movement",
+  "methodCamelName": "doPlayerMovement",
+  "methodPascalName": "DoPlayerMovement",
+  "methodName": "doPlayerMovementAction",
+  "methodTypeName": "TDoPlayerMovement",
+  "methodParamsTypeName": "TDoPlayerMovementParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    },
+    {
+      "name": "p_path",
+      "camelName": "path",
+      "tsType": "any"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "status",
+      "camelName": "status",
+      "pascalName": "Status",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "message",
+      "camelName": "message",
+      "pascalName": "Message",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1, $2"
+}

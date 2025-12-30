@@ -4,11 +4,7 @@
 import { auth } from "@/auth"
 import { T{{methodPascalName}}ServiceParams, {{methodCamelName}}Service } from "@/methods/services/{{schema}}/{{methodCamelName}}Service"
 
-//MANUAL CODE - START
-
 type T{{methodPascalName}}ActionParams = Omit<T{{methodPascalName}}ServiceParams, "playerId">
-
-//MANUAL CODE - END
 
 export async function {{methodName}}(params: T{{methodPascalName}}ActionParams) {
   const session = await auth()
