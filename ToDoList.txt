@@ -11,18 +11,50 @@ transport
 +Mechaniki produkcji
 +Mechaniki budowania budynkow
 
+--Nomadic
+  Tylko trade for free for citiziens / trade dla obcych ustalony
+  Ludzie AI nie posiadaja golda
+  Ludzie AI automatycznie przydzieleni do zbierania fooda wszyscy
+  Mozna sprzedawac ludzi AI
+  Nie trzeba wyeksplorowac regionu do 100%, wystarczy hex
+--Wioska
+  decyduje sie na kingdome istniejacy lub zaklada nowy 
+  ma juz normalny targ
+  Ludzie AI posiadaja monete kingdoma
+  Ludzie AI automatycznie obsiadaja prace od najwyzej platynch do najmniej zgodnie ze statusem spolecznym
+--Miasto
+
+import/export
+--jezeli sie oplaca transport + cło z innego miasta to ludzie to wybieraja zamiast kupowac we wlasnym miescie
+
+-region
+  powstaje razem z province i kingdom lub przylacza sie do istniejacych
+-province
+  mozna przylaczyc regiony max 4
+-kingdome
+  Mozna wybic monety kingdoma lub przyjac inna monete istniejaca
+
+Statusy spoleczne
+  -Niewolnik
+  -Citizen
+  -Upper Class
+
 Walka:
 Gry: 
 -Slay the spire
 -Combo Card Clashers
 -Battle brothers
 -Dominions
+-Strategos
+-Imperator Rome
+-Shadow Empire
 Zagrywane są karty akcji co turę (5 minut) i odpalane w sekwencji - potem tylko ogladasz replay rundy
 na przyklad atak, parry/rest, riposte
 
 Mapa
 -na początek tylko miasta maja sub-mapy
 -stworzyc UI dla tilesow - modala z meta danymi o tilesie
+-stworzyc generowanie regionow
 
 UI i flow dla „systemu informacji”
 
@@ -30,8 +62,6 @@ dodac action do service
 joinMap
 
 Aktualizacja NEXT JS i reszty dependencies wraz z UI renderem biblioteka 
-
-wywalilem immera i dodalem equal, trzeba sie zastanowic nad undefined
 
 pozycje graczy ustaw poprawnie - chyba wywalic z renderowania, dodac panel z graczami i tam mozna wyswietlac gdzie sa
 - dodac jedynie moja pozyccje
