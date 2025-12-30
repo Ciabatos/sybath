@@ -3,7 +3,7 @@ import { SWRConfig } from "swr"
 
 const storedEtagMap = new Map<string, string>()
 
-async function fetchWithETag<T>(url: string): Promise<T | undefined> {
+async function fetchWithETag<T>(url: string): Promise<T> {
   const headers: Record<string, string> = {}
   const storedEtag = storedEtagMap.get(url)
 
@@ -11,9 +11,11 @@ async function fetchWithETag<T>(url: string): Promise<T | undefined> {
 
   const res = await fetch(url, { headers })
 
-  if (res.status === 304) {
-    return undefined
-  }
+  // Tego nie dajemy bo SWR sam sobie radzi z 304
+  // kiedy to dodamy to undefined sprawia,że SWR wraca poprzednie dane - te stare
+  // if (res.status === 304) {
+  //   return undefined
+  // }
 
   if (!res.ok && res.status !== 304) {
     throw new Error(`Fetch error: ${res.status}`)
