@@ -22,7 +22,9 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchWorldMapsService(options?: { clientEtag?: string }): Promise<TFetchResult> {
+export async function fetchWorldMapsService(
+  options?: { clientEtag?: string },
+): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getWorldMaps")
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
@@ -58,6 +60,7 @@ export async function fetchWorldMapsService(options?: { clientEtag?: string }): 
   }
 
   const byKey = arrayToObjectKey(["id"], raw) as TWorldMapsRecordById
+
 
   const record: TCacheRecord = {
     raw,

@@ -1,9 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTable.hbs
 
-import type {
-  TWorldLandscapeTypes,
-  TWorldLandscapeTypesRecordById,
-} from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
+import type { TWorldLandscapeTypes, TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { getWorldLandscapeTypes } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -25,7 +22,9 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchWorldLandscapeTypesService(options?: { clientEtag?: string }): Promise<TFetchResult> {
+export async function fetchWorldLandscapeTypesService(
+  options?: { clientEtag?: string },
+): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getWorldLandscapeTypes")
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
@@ -61,6 +60,7 @@ export async function fetchWorldLandscapeTypesService(options?: { clientEtag?: s
   }
 
   const byKey = arrayToObjectKey(["id"], raw) as TWorldLandscapeTypesRecordById
+
 
   const record: TCacheRecord = {
     raw,

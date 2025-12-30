@@ -12,7 +12,7 @@ const typeParamsSchema = z.object({
   playerId: z.coerce.number(),
 }) satisfies z.ZodType<TPlayerMovementParams>
 
-export async function GET(request: NextRequest, { params }: { params: TApiParams }): Promise<NextResponse> {
+export async function GET(request: NextRequest, { params }: { params: TApiParams } ): Promise<NextResponse> {
   try {
     const session = await auth()
     const sessionUserId = session?.user?.userId

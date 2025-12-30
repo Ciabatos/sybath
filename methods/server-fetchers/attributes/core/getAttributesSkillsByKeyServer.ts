@@ -1,11 +1,8 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableByKeyServer.hbs
 "use server"
 
-import type {
-  TAttributesSkills,
-  TAttributesSkillsRecordById,
-} from "@/db/postgresMainDatabase/schemas/attributes/skills"
-import type { TAttributesSkillsParams } from "@/db/postgresMainDatabase/schemas/attributes/skills"
+import type { TAttributesSkills, TAttributesSkillsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/skills"
+import type{ TAttributesSkillsParams } from "@/db/postgresMainDatabase/schemas/attributes/skills" 
 import { fetchAttributesSkillsByKeyService } from "@/methods/services/attributes/fetchAttributesSkillsByKeyService"
 
 type TResult = {
@@ -15,7 +12,7 @@ type TResult = {
   atomName: string
 }
 
-export async function getAttributesSkillsByKeyServer(params: TAttributesSkillsParams): Promise<TResult> {
+export async function getAttributesSkillsByKeyServer( params: TAttributesSkillsParams): Promise<TResult> {
   const { record } = await fetchAttributesSkillsByKeyService(params)
 
   return {

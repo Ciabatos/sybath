@@ -1,11 +1,8 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableByKeyServer.hbs
 "use server"
 
-import type {
-  TWorldTerrainTypes,
-  TWorldTerrainTypesRecordById,
-} from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
-import type { TWorldTerrainTypesParams } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
+import type { TWorldTerrainTypes, TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
+import type{ TWorldTerrainTypesParams } from "@/db/postgresMainDatabase/schemas/world/terrainTypes" 
 import { fetchWorldTerrainTypesByKeyService } from "@/methods/services/world/fetchWorldTerrainTypesByKeyService"
 
 type TResult = {
@@ -15,7 +12,7 @@ type TResult = {
   atomName: string
 }
 
-export async function getWorldTerrainTypesByKeyServer(params: TWorldTerrainTypesParams): Promise<TResult> {
+export async function getWorldTerrainTypesByKeyServer( params: TWorldTerrainTypesParams): Promise<TResult> {
   const { record } = await fetchWorldTerrainTypesByKeyService(params)
 
   return {

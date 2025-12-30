@@ -1,10 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableServer.hbs
 "use server"
 
-import type {
-  TAttributesSkills,
-  TAttributesSkillsRecordById,
-} from "@/db/postgresMainDatabase/schemas/attributes/skills"
+import type { TAttributesSkills, TAttributesSkillsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/skills"
 import { fetchAttributesSkillsService } from "@/methods/services/attributes/fetchAttributesSkillsService"
 
 type TResult = {

@@ -1,10 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableServer.hbs
 "use server"
 
-import type {
-  TCitiesCities,
-  TCitiesCitiesRecordByMapTileXMapTileY,
-} from "@/db/postgresMainDatabase/schemas/cities/cities"
+import type { TCitiesCities, TCitiesCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
 import { fetchCitiesCitiesService } from "@/methods/services/cities/fetchCitiesCitiesService"
 
 type TResult = {

@@ -1,19 +1,16 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
-import {
-  TPlayerInventoryRecordBySlotId,
-  TPlayerInventoryParams,
-  TPlayerInventory,
-} from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
+import { TPlayerInventoryRecordBySlotId , TPlayerInventoryParams, TPlayerInventory  } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
 import { playerInventoryAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutatePlayerInventory(params: TPlayerInventoryParams) {
+export function useMutatePlayerInventory( params: TPlayerInventoryParams) {
   const { mutate } = useSWR<TPlayerInventory[]>(`api/inventory/rpc/get-player-inventory/${params.playerId}`)
   const setPlayerInventory = useSetAtom(playerInventoryAtom)
+  
 
   function mutatePlayerInventory(optimisticParams: Partial<TPlayerInventory> | Partial<TPlayerInventory>[]) {
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
@@ -36,11 +33,12 @@ export function useMutatePlayerInventory(params: TPlayerInventoryParams) {
     }))
 
     const newObj = arrayToObjectKey(["slotId"], dataWithDefaults) as TPlayerInventoryRecordBySlotId
-
+    
     const optimisticDataMergeWithOldData: TPlayerInventoryRecordBySlotId = {
-      ...newObj,
+       
+      ...newObj,      
     }
-
+    
     setPlayerInventory(optimisticDataMergeWithOldData)
 
     mutate(dataWithDefaults, {

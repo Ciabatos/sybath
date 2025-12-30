@@ -18,7 +18,7 @@ export type TAttributesStatsRecordById = Record<string, TAttributesStats>
 export async function getAttributesStats() {
   try {
     const sql = `SELECT * FROM attributes.get_stats();`
-
+    
     const result = await query(sql)
     return snakeToCamelRows(result.rows) as TAttributesStats[]
   } catch (error) {
@@ -31,7 +31,7 @@ export async function getAttributesStatsByKey(params: TAttributesStatsParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM attributes.get_stats_by_key($1);`
-
+    
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TAttributesStats[]
   } catch (error) {

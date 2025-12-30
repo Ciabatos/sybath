@@ -1,9 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTable.hbs
 
-import type {
-  TCitiesCities,
-  TCitiesCitiesRecordByMapTileXMapTileY,
-} from "@/db/postgresMainDatabase/schemas/cities/cities"
+import type { TCitiesCities, TCitiesCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
 import { getCitiesCities } from "@/db/postgresMainDatabase/schemas/cities/cities"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -25,7 +22,9 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchCitiesCitiesService(options?: { clientEtag?: string }): Promise<TFetchResult> {
+export async function fetchCitiesCitiesService(
+  options?: { clientEtag?: string },
+): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getCitiesCities")
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
@@ -61,6 +60,7 @@ export async function fetchCitiesCitiesService(options?: { clientEtag?: string }
   }
 
   const byKey = arrayToObjectKey(["mapTileX", "mapTileY"], raw) as TCitiesCitiesRecordByMapTileXMapTileY
+
 
   const record: TCacheRecord = {
     raw,

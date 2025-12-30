@@ -1,11 +1,8 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableByKeyServer.hbs
 "use server"
 
-import type {
-  TBuildingsBuildings,
-  TBuildingsBuildingsRecordByCityTileXCityTileY,
-} from "@/db/postgresMainDatabase/schemas/buildings/buildings"
-import type { TBuildingsBuildingsParams } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
+import type { TBuildingsBuildings, TBuildingsBuildingsRecordByCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
+import type{ TBuildingsBuildingsParams } from "@/db/postgresMainDatabase/schemas/buildings/buildings" 
 import { fetchBuildingsBuildingsByKeyService } from "@/methods/services/buildings/fetchBuildingsBuildingsByKeyService"
 
 type TResult = {
@@ -15,7 +12,7 @@ type TResult = {
   atomName: string
 }
 
-export async function getBuildingsBuildingsByKeyServer(params: TBuildingsBuildingsParams): Promise<TResult> {
+export async function getBuildingsBuildingsByKeyServer( params: TBuildingsBuildingsParams): Promise<TResult> {
   const { record } = await fetchBuildingsBuildingsByKeyService(params)
 
   return {

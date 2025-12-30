@@ -1,10 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTableByKey.hbs
 
-import type {
-  TCitiesCityTiles,
-  TCitiesCityTilesRecordByXY,
-  TCitiesCityTilesParams,
-} from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
+import type { TCitiesCityTiles, TCitiesCityTilesRecordByXY,TCitiesCityTilesParams } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
 import { getCitiesCityTilesByKey } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -27,7 +23,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchCitiesCityTilesByKeyService(
-  params: TCitiesCityTilesParams,
+ params: TCitiesCityTilesParams,
   options?: { clientEtag?: string },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getCitiesCityTilesByKey", params)
@@ -65,6 +61,7 @@ export async function fetchCitiesCityTilesByKeyService(
   }
 
   const byKey = arrayToObjectKey(["x", "y"], raw) as TCitiesCityTilesRecordByXY
+
 
   const record: TCacheRecord = {
     raw,

@@ -4,22 +4,24 @@
 import { TCitiesCitiesRecordByMapTileXMapTileY, TCitiesCities } from "@/db/postgresMainDatabase/schemas/cities/cities"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { citiesAtom } from "@/store/atoms"
-import { useAtomValue, useSetAtom } from "jotai"
+import { useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
 export function useFetchCitiesCities() {
-  const cities = useAtomValue(citiesAtom)
   const setCitiesCities = useSetAtom(citiesAtom)
-
+  
   const { data } = useSWR<TCitiesCities[]>(`/api/cities/cities`, { refreshInterval: 3000 })
 
+  const cities = data
+  ? (arrayToObjectKey(["mapTileX", "mapTileY"], data) as TCitiesCitiesRecordByMapTileXMapTileY)
+  : undefined
+
   useEffect(() => {
-    if (data) {
-      const index = arrayToObjectKey(["mapTileX", "mapTileY"], data) as TCitiesCitiesRecordByMapTileXMapTileY
-      setCitiesCities(index)
+    if (cities) {
+      setCitiesCities(cities)
     }
-  }, [data, setCitiesCities])
+  }, [cities, setCitiesCities])
 
   return { cities }
 }

@@ -1,11 +1,8 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableByKeyServer.hbs
 "use server"
 
-import type {
-  TDistrictsDistrictTypes,
-  TDistrictsDistrictTypesRecordById,
-} from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
-import type { TDistrictsDistrictTypesParams } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
+import type { TDistrictsDistrictTypes, TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
+import type{ TDistrictsDistrictTypesParams } from "@/db/postgresMainDatabase/schemas/districts/districtTypes" 
 import { fetchDistrictsDistrictTypesByKeyService } from "@/methods/services/districts/fetchDistrictsDistrictTypesByKeyService"
 
 type TResult = {
@@ -15,7 +12,7 @@ type TResult = {
   atomName: string
 }
 
-export async function getDistrictsDistrictTypesByKeyServer(params: TDistrictsDistrictTypesParams): Promise<TResult> {
+export async function getDistrictsDistrictTypesByKeyServer( params: TDistrictsDistrictTypesParams): Promise<TResult> {
   const { record } = await fetchDistrictsDistrictTypesByKeyService(params)
 
   return {

@@ -1,9 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTable.hbs
 
-import type {
-  TDistrictsDistricts,
-  TDistrictsDistrictsRecordByMapTileXMapTileY,
-} from "@/db/postgresMainDatabase/schemas/districts/districts"
+import type { TDistrictsDistricts, TDistrictsDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/districts/districts"
 import { getDistrictsDistricts } from "@/db/postgresMainDatabase/schemas/districts/districts"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -25,7 +22,9 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchDistrictsDistrictsService(options?: { clientEtag?: string }): Promise<TFetchResult> {
+export async function fetchDistrictsDistrictsService(
+  options?: { clientEtag?: string },
+): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getDistrictsDistricts")
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
@@ -61,6 +60,7 @@ export async function fetchDistrictsDistrictsService(options?: { clientEtag?: st
   }
 
   const byKey = arrayToObjectKey(["mapTileX", "mapTileY"], raw) as TDistrictsDistrictsRecordByMapTileXMapTileY
+
 
   const record: TCacheRecord = {
     raw,

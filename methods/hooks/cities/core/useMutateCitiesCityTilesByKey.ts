@@ -1,23 +1,20 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTable.hbs
 "use client"
 
-import {
-  TCitiesCityTilesRecordByXY,
-  TCitiesCityTilesParams,
-  TCitiesCityTiles,
-} from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
+import { TCitiesCityTilesRecordByXY , TCitiesCityTilesParams, TCitiesCityTiles  } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
 import { cityTilesAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutateCitiesCityTiles(params: TCitiesCityTilesParams) {
+export function useMutateCitiesCityTiles( params: TCitiesCityTilesParams) {
   const { mutate } = useSWR<TCitiesCityTiles[]>(`/api/cities/city-tiles/${params.cityId}`)
   const setCitiesCityTiles = useSetAtom(cityTilesAtom)
+  
 
   function mutateCitiesCityTiles(optimisticParams: Partial<TCitiesCityTiles> | Partial<TCitiesCityTiles>[]) {
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
-
+    
     //MANUAL CODE - START
 
     const defaultValues = {
@@ -36,11 +33,12 @@ export function useMutateCitiesCityTiles(params: TCitiesCityTilesParams) {
     }))
 
     const newObj = arrayToObjectKey(["x", "y"], dataWithDefaults) as TCitiesCityTilesRecordByXY
-
+    
     const optimisticDataMergeWithOldData: TCitiesCityTilesRecordByXY = {
-      ...newObj,
+       
+      ...newObj,      
     }
-
+    
     setCitiesCityTiles(optimisticDataMergeWithOldData)
 
     mutate(dataWithDefaults, {

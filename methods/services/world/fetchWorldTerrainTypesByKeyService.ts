@@ -1,10 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTableByKey.hbs
 
-import type {
-  TWorldTerrainTypes,
-  TWorldTerrainTypesRecordById,
-  TWorldTerrainTypesParams,
-} from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
+import type { TWorldTerrainTypes, TWorldTerrainTypesRecordById,TWorldTerrainTypesParams } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { getWorldTerrainTypesByKey } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -27,7 +23,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchWorldTerrainTypesByKeyService(
-  params: TWorldTerrainTypesParams,
+ params: TWorldTerrainTypesParams,
   options?: { clientEtag?: string },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getWorldTerrainTypesByKey", params)
@@ -65,6 +61,7 @@ export async function fetchWorldTerrainTypesByKeyService(
   }
 
   const byKey = arrayToObjectKey(["id"], raw) as TWorldTerrainTypesRecordById
+
 
   const record: TCacheRecord = {
     raw,

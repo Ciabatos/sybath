@@ -1,29 +1,27 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableByKey.hbs
 
 "use client"
-import {
-  TWorldMapTilesRecordByXY,
-  TWorldMapTiles,
-  TWorldMapTilesParams,
-} from "@/db/postgresMainDatabase/schemas/world/mapTiles"
+import { TWorldMapTilesRecordByXY, TWorldMapTiles, TWorldMapTilesParams } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { mapTilesAtom } from "@/store/atoms"
-import { useAtomValue, useSetAtom } from "jotai"
+import { useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchWorldMapTilesByKey(params: TWorldMapTilesParams) {
-  const mapTiles = useAtomValue(mapTilesAtom)
+export function useFetchWorldMapTilesByKey( params: TWorldMapTilesParams ) {
   const setWorldMapTiles = useSetAtom(mapTilesAtom)
-
+  
   const { data } = useSWR<TWorldMapTiles[]>(`/api/world/map-tiles/${params.mapId}`, { refreshInterval: 3000 })
 
+  const mapTiles = data
+  ? (arrayToObjectKey(["x", "y"], data) as TWorldMapTilesRecordByXY)
+  : undefined
+
   useEffect(() => {
-    if (data) {
-      const index = arrayToObjectKey(["x", "y"], data) as TWorldMapTilesRecordByXY
-      setWorldMapTiles(index)
+    if (mapTiles) {
+      setWorldMapTiles(mapTiles)
     }
-  }, [data, setWorldMapTiles])
+  }, [mapTiles, setWorldMapTiles])
 
   return { mapTiles }
 }

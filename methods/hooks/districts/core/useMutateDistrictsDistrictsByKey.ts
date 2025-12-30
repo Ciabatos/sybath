@@ -1,23 +1,20 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTable.hbs
 "use client"
 
-import {
-  TDistrictsDistrictsRecordByMapTileXMapTileY,
-  TDistrictsDistrictsParams,
-  TDistrictsDistricts,
-} from "@/db/postgresMainDatabase/schemas/districts/districts"
+import { TDistrictsDistrictsRecordByMapTileXMapTileY , TDistrictsDistrictsParams, TDistrictsDistricts  } from "@/db/postgresMainDatabase/schemas/districts/districts"
 import { districtsAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutateDistrictsDistricts(params: TDistrictsDistrictsParams) {
+export function useMutateDistrictsDistricts( params: TDistrictsDistrictsParams) {
   const { mutate } = useSWR<TDistrictsDistricts[]>(`/api/districts/districts/${params.mapId}`)
   const setDistrictsDistricts = useSetAtom(districtsAtom)
+  
 
   function mutateDistrictsDistricts(optimisticParams: Partial<TDistrictsDistricts> | Partial<TDistrictsDistricts>[]) {
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
-
+    
     //MANUAL CODE - START
 
     const defaultValues = {
@@ -36,15 +33,13 @@ export function useMutateDistrictsDistricts(params: TDistrictsDistrictsParams) {
       ...val,
     }))
 
-    const newObj = arrayToObjectKey(
-      ["mapTileX", "mapTileY"],
-      dataWithDefaults,
-    ) as TDistrictsDistrictsRecordByMapTileXMapTileY
-
+    const newObj = arrayToObjectKey(["mapTileX", "mapTileY"], dataWithDefaults) as TDistrictsDistrictsRecordByMapTileXMapTileY
+    
     const optimisticDataMergeWithOldData: TDistrictsDistrictsRecordByMapTileXMapTileY = {
-      ...newObj,
+       
+      ...newObj,      
     }
-
+    
     setDistrictsDistricts(optimisticDataMergeWithOldData)
 
     mutate(dataWithDefaults, {

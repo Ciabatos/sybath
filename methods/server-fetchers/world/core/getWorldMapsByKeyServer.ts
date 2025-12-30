@@ -2,7 +2,7 @@
 "use server"
 
 import type { TWorldMaps, TWorldMapsRecordById } from "@/db/postgresMainDatabase/schemas/world/maps"
-import type { TWorldMapsParams } from "@/db/postgresMainDatabase/schemas/world/maps"
+import type{ TWorldMapsParams } from "@/db/postgresMainDatabase/schemas/world/maps" 
 import { fetchWorldMapsByKeyService } from "@/methods/services/world/fetchWorldMapsByKeyService"
 
 type TResult = {
@@ -12,7 +12,7 @@ type TResult = {
   atomName: string
 }
 
-export async function getWorldMapsByKeyServer(params: TWorldMapsParams): Promise<TResult> {
+export async function getWorldMapsByKeyServer( params: TWorldMapsParams): Promise<TResult> {
   const { record } = await fetchWorldMapsByKeyService(params)
 
   return {

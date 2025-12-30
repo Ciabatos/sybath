@@ -1,10 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type {
-  TPlayerMovement,
-  TPlayerMovementRecordByXY,
-  TPlayerMovementParams,
-} from "@/db/postgresMainDatabase/schemas/world/playerMovement"
+import type { TPlayerMovement, TPlayerMovementRecordByXY,TPlayerMovementParams } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
 import { getPlayerMovement } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -27,7 +23,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchPlayerMovementService(
-  params: TPlayerMovementParams,
+ params: TPlayerMovementParams,
   options?: { clientEtag?: string },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getPlayerMovement", params)
@@ -65,6 +61,7 @@ export async function fetchPlayerMovementService(
   }
 
   const byKey = arrayToObjectKey(["x", "y"], raw) as TPlayerMovementRecordByXY
+
 
   const record: TCacheRecord = {
     raw,

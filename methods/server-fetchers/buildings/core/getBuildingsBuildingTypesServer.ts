@@ -1,10 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableServer.hbs
 "use server"
 
-import type {
-  TBuildingsBuildingTypes,
-  TBuildingsBuildingTypesRecordById,
-} from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
+import type { TBuildingsBuildingTypes, TBuildingsBuildingTypesRecordById } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
 import { fetchBuildingsBuildingTypesService } from "@/methods/services/buildings/fetchBuildingsBuildingTypesService"
 
 type TResult = {

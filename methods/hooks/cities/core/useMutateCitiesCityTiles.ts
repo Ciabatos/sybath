@@ -10,10 +10,11 @@ import { arrayToObjectKey } from "@/methods/functions/util/converters"
 export function useMutateCitiesCityTiles() {
   const { mutate } = useSWR<TCitiesCityTiles[]>(`/api/cities/city-tiles`)
   const setCitiesCityTiles = useSetAtom(cityTilesAtom)
+  
 
   function mutateCitiesCityTiles(optimisticParams: Partial<TCitiesCityTiles> | Partial<TCitiesCityTiles>[]) {
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
-
+    
     //MANUAL CODE - START
 
     const defaultValues = {
@@ -32,11 +33,12 @@ export function useMutateCitiesCityTiles() {
     }))
 
     const newObj = arrayToObjectKey(["x", "y"], dataWithDefaults) as TCitiesCityTilesRecordByXY
-
+    
     const optimisticDataMergeWithOldData: TCitiesCityTilesRecordByXY = {
-      ...newObj,
+       
+      ...newObj,      
     }
-
+    
     setCitiesCityTiles(optimisticDataMergeWithOldData)
 
     mutate(dataWithDefaults, {

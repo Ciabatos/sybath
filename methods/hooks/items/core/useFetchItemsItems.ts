@@ -4,22 +4,24 @@
 import { TItemsItemsRecordById, TItemsItems } from "@/db/postgresMainDatabase/schemas/items/items"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { itemsAtom } from "@/store/atoms"
-import { useAtomValue, useSetAtom } from "jotai"
+import { useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
 export function useFetchItemsItems() {
-  const items = useAtomValue(itemsAtom)
   const setItemsItems = useSetAtom(itemsAtom)
-
+  
   const { data } = useSWR<TItemsItems[]>(`/api/items/items`, { refreshInterval: 3000 })
 
+  const items = data
+  ? (arrayToObjectKey(["id"], data) as TItemsItemsRecordById)
+  : undefined
+
   useEffect(() => {
-    if (data) {
-      const index = arrayToObjectKey(["id"], data) as TItemsItemsRecordById
-      setItemsItems(index)
+    if (items) {
+      setItemsItems(items)
     }
-  }, [data, setItemsItems])
+  }, [items, setItemsItems])
 
   return { items }
 }

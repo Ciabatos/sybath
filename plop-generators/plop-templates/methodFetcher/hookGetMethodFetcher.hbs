@@ -4,22 +4,24 @@
 import { {{indexTypeName}}, {{methodTypeName}} {{#if methodParamsColumns}}, {{methodParamsTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
 import { {{indexMethodName}} } from "@/methods/functions/util/converters"
 import { {{methodCamelName}}Atom } from "@/store/atoms"
-import { useAtomValue, useSetAtom } from "jotai"
+import { useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
 export function useFetch{{methodPascalName}}({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}) {
-  const {{methodCamelName}} = useAtomValue({{methodCamelName}}Atom)
   const set{{methodPascalName}} = useSetAtom({{methodCamelName}}Atom)
 
   const { data } = useSWR<{{methodTypeName}}[]>(`{{apiPathParams}}`, { refreshInterval: 3000 })
 
+  const {{methodCamelName}} = data
+  ? ({{{indexMethodName}}}({{{indexMethodParams}}}, data) as {{indexTypeName}})
+  : undefined
+
   useEffect(() => {
-    if (data) {
-      const index = ({{{indexMethodName}}}({{{indexMethodParams}}}, data) as {{indexTypeName}})
-      set{{methodPascalName}}(index)
+    if ({{methodCamelName}}) {
+      set{{methodPascalName}}({{methodCamelName}})
     }
-  }, [data, set{{methodPascalName}}])
-  
+  }, [{{methodCamelName}}, set{{methodPascalName}}])
+
   return { {{methodCamelName}} }
 }

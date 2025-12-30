@@ -4,22 +4,24 @@
 import { TWorldMapsRecordById, TWorldMaps, TWorldMapsParams } from "@/db/postgresMainDatabase/schemas/world/maps"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { mapsAtom } from "@/store/atoms"
-import { useAtomValue, useSetAtom } from "jotai"
+import { useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchWorldMapsByKey(params: TWorldMapsParams) {
-  const maps = useAtomValue(mapsAtom)
+export function useFetchWorldMapsByKey( params: TWorldMapsParams ) {
   const setWorldMaps = useSetAtom(mapsAtom)
-
+  
   const { data } = useSWR<TWorldMaps[]>(`/api/world/maps/${params.id}`, { refreshInterval: 3000 })
 
+  const maps = data
+  ? (arrayToObjectKey(["id"], data) as TWorldMapsRecordById)
+  : undefined
+
   useEffect(() => {
-    if (data) {
-      const index = arrayToObjectKey(["id"], data) as TWorldMapsRecordById
-      setWorldMaps(index)
+    if (maps) {
+      setWorldMaps(maps)
     }
-  }, [data, setWorldMaps])
+  }, [maps, setWorldMaps])
 
   return { maps }
 }
