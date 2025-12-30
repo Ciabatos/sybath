@@ -2,7 +2,7 @@
 "use server"
 
 import type { TBuildingsBuildings, TBuildingsBuildingsRecordByCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
-import { fetchBuildingsBuildings } from "@/methods/services/buildings/fetchBuildingsBuildings"
+import { fetchBuildingsBuildingsService } from "@/methods/services/buildings/fetchBuildingsBuildingsService"
 
 type TResult = {
   raw: TBuildingsBuildings[]
@@ -12,7 +12,7 @@ type TResult = {
 }
 
 export async function getBuildingsBuildingsServer(): Promise<TResult> {
-  const { record } = await fetchBuildingsBuildings()
+  const { record } = await fetchBuildingsBuildingsService()
 
   return {
     raw: record!.raw,

@@ -66,5 +66,9 @@
   "apiPathParamsByKey": "/api/world/terrain-types/${params.id}",
   "generateMutation": false,
   "fetcherName": "fetchWorldTerrainTypes",
-  "fetcherNameByKey": "fetchWorldTerrainTypesByKey"
+  "fetcherNameByKey": "fetchWorldTerrainTypesByKey",
+  "selectedGenerators": [
+    "getMethodFetcher",
+    "getTable"
+  ]
 }

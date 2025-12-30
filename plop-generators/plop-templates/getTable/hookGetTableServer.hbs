@@ -2,7 +2,7 @@
 "use server"
 
 import type { {{methodTypeName}}, {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
-import { {{fetcherName}} } from "@/methods/services/{{schema}}/{{fetcherName}}"
+import { {{fetcherName}}Service } from "@/methods/services/{{schema}}/{{fetcherName}}Service"
 
 type TResult = {
   raw: {{methodTypeName}}[]
@@ -12,7 +12,7 @@ type TResult = {
 }
 
 export async function {{methodName}}Server(): Promise<TResult> {
-  const { record } = await {{fetcherName}}()
+  const { record } = await {{fetcherName}}Service()
 
   return {
     raw: record!.raw,

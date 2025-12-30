@@ -1,12 +1,12 @@
 {
-  "schema": "items",
-  "table": "items",
-  "tableCamelName": "items",
-  "tablePascalName": "Items",
-  "tableKebabName": "items",
-  "schemaTablePascalName": "ItemsItems",
-  "methodTypeName": "TItemsItems",
-  "methodParamsTypeName": "TItemsItemsParams",
+  "schema": "world",
+  "table": "maps",
+  "tableCamelName": "maps",
+  "tablePascalName": "Maps",
+  "tableKebabName": "maps",
+  "schemaTablePascalName": "WorldMaps",
+  "methodTypeName": "TWorldMaps",
+  "methodParamsTypeName": "TWorldMapsParams",
   "methodParamsColumns": [
     {
       "name": "id",
@@ -14,10 +14,10 @@
       "tsType": "number"
     }
   ],
-  "methodName": "getItemsItems",
-  "methodNameByKey": "getItemsItemsByKey",
-  "methodRecords": "get_items",
-  "methodRecordsByKey": "get_items_by_key",
+  "methodName": "getWorldMaps",
+  "methodNameByKey": "getWorldMapsByKey",
+  "methodRecords": "get_maps",
+  "methodRecordsByKey": "get_maps_by_key",
   "sqlParamsPlaceholders": "$1",
   "methodColumns": [
     {
@@ -31,14 +31,14 @@
       "name": "name",
       "camelName": "name",
       "tsType": "string",
-      "optional": "?"
+      "optional": ""
     }
   ],
   "indexMethodParams": "[\"id\"]",
   "indexParamsColumns": "id",
   "indexTypeMethodName": "Id",
   "indexMethodName": "arrayToObjectKey",
-  "indexTypeName": "TItemsItemsRecordById",
+  "indexTypeName": "TWorldMapsRecordById",
   "indexColumns": [
     {
       "name": "id",
@@ -48,13 +48,13 @@
       "pascalName": "Id"
     }
   ],
-  "apiPath": "app/api/items/items/route.ts",
-  "apiPathParams": "/api/items/items",
-  "apiPathByKey": "app/api/items/items/[id]/route.ts",
-  "apiPathParamsByKey": "/api/items/items/${params.id}",
+  "apiPath": "app/api/world/maps/route.ts",
+  "apiPathParams": "/api/world/maps",
+  "apiPathByKey": "app/api/world/maps/[id]/route.ts",
+  "apiPathParamsByKey": "/api/world/maps/${params.id}",
   "generateMutation": false,
-  "fetcherName": "fetchItemsItems",
-  "fetcherNameByKey": "fetchItemsItemsByKey",
+  "fetcherName": "fetchWorldMaps",
+  "fetcherNameByKey": "fetchWorldMapsByKey",
   "selectedGenerators": [
     "getMethodFetcher",
     "getTable"

@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTable.hbs
 
-import type { TAttributesAbilities, TAttributesAbilitiesRecordById } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
-import { getAttributesAbilities } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
+import type { TBuildingsBuildings, TBuildingsBuildingsRecordByCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
+import { getBuildingsBuildings } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import crypto from "crypto"
 
 type TCacheRecord = {
-  raw: TAttributesAbilities[]
-  byKey: TAttributesAbilitiesRecordById
+  raw: TBuildingsBuildings[]
+  byKey: TBuildingsBuildingsRecordByCityTileXCityTileY
   etag: string
 }
 
@@ -22,10 +22,10 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchAttributesAbilities(
+export async function fetchBuildingsBuildingsService(
   options?: { clientEtag?: string },
 ): Promise<TFetchResult> {
-  const cacheKey = makeCacheKey("getAttributesAbilities")
+  const cacheKey = makeCacheKey("getBuildingsBuildings")
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
 
@@ -47,7 +47,7 @@ export async function fetchAttributesAbilities(
     }
   }
 
-  const raw = await getAttributesAbilities()
+  const raw = await getBuildingsBuildings()
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
   if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
@@ -59,7 +59,7 @@ export async function fetchAttributesAbilities(
     }
   }
 
-  const byKey = arrayToObjectKey(["id"], raw) as TAttributesAbilitiesRecordById
+  const byKey = arrayToObjectKey(["cityTileX", "cityTileY"], raw) as TBuildingsBuildingsRecordByCityTileXCityTileY
 
 
   const record: TCacheRecord = {

@@ -1,14 +1,14 @@
-// GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTableByKey.hbs
+// GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTable.hbs
 
-import type { TItemsItems, TItemsItemsRecordById,TItemsItemsParams } from "@/db/postgresMainDatabase/schemas/items/items"
-import { getItemsItemsByKey } from "@/db/postgresMainDatabase/schemas/items/items"
+import type { TWorldMaps, TWorldMapsRecordById } from "@/db/postgresMainDatabase/schemas/world/maps"
+import { getWorldMaps } from "@/db/postgresMainDatabase/schemas/world/maps"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import crypto from "crypto"
 
 type TCacheRecord = {
-  raw: TItemsItems[]
-  byKey: TItemsItemsRecordById
+  raw: TWorldMaps[]
+  byKey: TWorldMapsRecordById
   etag: string
 }
 
@@ -22,11 +22,10 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchItemsItemsByKey(
- params: TItemsItemsParams,
+export async function fetchWorldMapsService(
   options?: { clientEtag?: string },
 ): Promise<TFetchResult> {
-  const cacheKey = makeCacheKey("getItemsItemsByKey", params)
+  const cacheKey = makeCacheKey("getWorldMaps")
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
 
@@ -48,7 +47,7 @@ export async function fetchItemsItemsByKey(
     }
   }
 
-  const raw = await getItemsItemsByKey(params)
+  const raw = await getWorldMaps()
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
   if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
@@ -60,7 +59,7 @@ export async function fetchItemsItemsByKey(
     }
   }
 
-  const byKey = arrayToObjectKey(["id"], raw) as TItemsItemsRecordById
+  const byKey = arrayToObjectKey(["id"], raw) as TWorldMapsRecordById
 
 
   const record: TCacheRecord = {

@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTableByKey.hbs
 
-import type { TDistrictsDistrictTypes, TDistrictsDistrictTypesRecordById,TDistrictsDistrictTypesParams } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
-import { getDistrictsDistrictTypesByKey } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
+import type { TAttributesStats, TAttributesStatsRecordById,TAttributesStatsParams } from "@/db/postgresMainDatabase/schemas/attributes/stats"
+import { getAttributesStatsByKey } from "@/db/postgresMainDatabase/schemas/attributes/stats"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import crypto from "crypto"
 
 type TCacheRecord = {
-  raw: TDistrictsDistrictTypes[]
-  byKey: TDistrictsDistrictTypesRecordById
+  raw: TAttributesStats[]
+  byKey: TAttributesStatsRecordById
   etag: string
 }
 
@@ -22,11 +22,11 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchDistrictsDistrictTypesByKey(
- params: TDistrictsDistrictTypesParams,
+export async function fetchAttributesStatsByKeyService(
+ params: TAttributesStatsParams,
   options?: { clientEtag?: string },
 ): Promise<TFetchResult> {
-  const cacheKey = makeCacheKey("getDistrictsDistrictTypesByKey", params)
+  const cacheKey = makeCacheKey("getAttributesStatsByKey", params)
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
 
@@ -48,7 +48,7 @@ export async function fetchDistrictsDistrictTypesByKey(
     }
   }
 
-  const raw = await getDistrictsDistrictTypesByKey(params)
+  const raw = await getAttributesStatsByKey(params)
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
   if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
@@ -60,7 +60,7 @@ export async function fetchDistrictsDistrictTypesByKey(
     }
   }
 
-  const byKey = arrayToObjectKey(["id"], raw) as TDistrictsDistrictTypesRecordById
+  const byKey = arrayToObjectKey(["id"], raw) as TAttributesStatsRecordById
 
 
   const record: TCacheRecord = {

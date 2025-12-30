@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTableByKey.hbs
 
-import type { TAttributesSkills, TAttributesSkillsRecordById,TAttributesSkillsParams } from "@/db/postgresMainDatabase/schemas/attributes/skills"
-import { getAttributesSkillsByKey } from "@/db/postgresMainDatabase/schemas/attributes/skills"
+import type { TCitiesCities, TCitiesCitiesRecordByMapTileXMapTileY,TCitiesCitiesParams } from "@/db/postgresMainDatabase/schemas/cities/cities"
+import { getCitiesCitiesByKey } from "@/db/postgresMainDatabase/schemas/cities/cities"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import crypto from "crypto"
 
 type TCacheRecord = {
-  raw: TAttributesSkills[]
-  byKey: TAttributesSkillsRecordById
+  raw: TCitiesCities[]
+  byKey: TCitiesCitiesRecordByMapTileXMapTileY
   etag: string
 }
 
@@ -22,11 +22,11 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchAttributesSkillsByKey(
- params: TAttributesSkillsParams,
+export async function fetchCitiesCitiesByKeyService(
+ params: TCitiesCitiesParams,
   options?: { clientEtag?: string },
 ): Promise<TFetchResult> {
-  const cacheKey = makeCacheKey("getAttributesSkillsByKey", params)
+  const cacheKey = makeCacheKey("getCitiesCitiesByKey", params)
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
 
@@ -48,7 +48,7 @@ export async function fetchAttributesSkillsByKey(
     }
   }
 
-  const raw = await getAttributesSkillsByKey(params)
+  const raw = await getCitiesCitiesByKey(params)
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
   if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
@@ -60,7 +60,7 @@ export async function fetchAttributesSkillsByKey(
     }
   }
 
-  const byKey = arrayToObjectKey(["id"], raw) as TAttributesSkillsRecordById
+  const byKey = arrayToObjectKey(["mapTileX", "mapTileY"], raw) as TCitiesCitiesRecordByMapTileXMapTileY
 
 
   const record: TCacheRecord = {

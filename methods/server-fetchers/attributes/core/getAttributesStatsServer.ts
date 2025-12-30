@@ -2,7 +2,7 @@
 "use server"
 
 import type { TAttributesStats, TAttributesStatsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/stats"
-import { fetchAttributesStats } from "@/methods/services/attributes/fetchAttributesStats"
+import { fetchAttributesStatsService } from "@/methods/services/attributes/fetchAttributesStatsService"
 
 type TResult = {
   raw: TAttributesStats[]
@@ -12,7 +12,7 @@ type TResult = {
 }
 
 export async function getAttributesStatsServer(): Promise<TResult> {
-  const { record } = await fetchAttributesStats()
+  const { record } = await fetchAttributesStatsService()
 
   return {
     raw: record!.raw,

@@ -2,7 +2,7 @@
 
 import { auth } from "@/auth"
 import { TBuildingsBuildingTypesParams } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
-import { fetchBuildingsBuildingTypesByKey } from "@/methods/services/buildings/fetchBuildingsBuildingTypesByKey"
+import { fetchBuildingsBuildingTypesByKeyService } from "@/methods/services/buildings/fetchBuildingsBuildingTypesByKeyService"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
 
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
 
     const clientEtag = request.headers.get("if-none-match") ?? undefined
 
-    const { record, etag, cacheHit, etagMatched } = await fetchBuildingsBuildingTypesByKey(parsedParams, { clientEtag })
+    const { record, etag, cacheHit, etagMatched } = await fetchBuildingsBuildingTypesByKeyService(parsedParams, { clientEtag })
 
     if (cacheHit || etagMatched) {
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })

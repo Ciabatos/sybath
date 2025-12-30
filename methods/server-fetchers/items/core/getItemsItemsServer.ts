@@ -2,7 +2,7 @@
 "use server"
 
 import type { TItemsItems, TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/items"
-import { fetchItemsItems } from "@/methods/services/items/fetchItemsItems"
+import { fetchItemsItemsService } from "@/methods/services/items/fetchItemsItemsService"
 
 type TResult = {
   raw: TItemsItems[]
@@ -12,7 +12,7 @@ type TResult = {
 }
 
 export async function getItemsItemsServer(): Promise<TResult> {
-  const { record } = await fetchItemsItems()
+  const { record } = await fetchItemsItemsService()
 
   return {
     raw: record!.raw,

@@ -2,7 +2,7 @@
 
 import { auth } from "@/auth"
 import { TAttributesAbilitiesParams } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
-import { fetchAttributesAbilitiesByKey } from "@/methods/services/attributes/fetchAttributesAbilitiesByKey"
+import { fetchAttributesAbilitiesByKeyService } from "@/methods/services/attributes/fetchAttributesAbilitiesByKeyService"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
 
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
 
     const clientEtag = request.headers.get("if-none-match") ?? undefined
 
-    const { record, etag, cacheHit, etagMatched } = await fetchAttributesAbilitiesByKey(parsedParams, { clientEtag })
+    const { record, etag, cacheHit, etagMatched } = await fetchAttributesAbilitiesByKeyService(parsedParams, { clientEtag })
 
     if (cacheHit || etagMatched) {
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })

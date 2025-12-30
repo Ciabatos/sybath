@@ -3,7 +3,7 @@
 
 import type { TPlayerInventoryParams } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory" 
 import type { TPlayerInventoryRecordBySlotId,TPlayerInventory } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
-import { fetchPlayerInventory } from "@/methods/services/inventory/fetchPlayerInventory"
+import { fetchPlayerInventoryService } from "@/methods/services/inventory/fetchPlayerInventoryService"
 
 type TResult = {
   raw: TPlayerInventory[]
@@ -13,7 +13,7 @@ type TResult = {
 }
 
 export async function getPlayerInventoryServer( params: TPlayerInventoryParams): Promise<TResult> {
-  const { record } = await fetchPlayerInventory(params)
+  const { record } = await fetchPlayerInventoryService(params)
 
   return {
     raw: record!.raw,

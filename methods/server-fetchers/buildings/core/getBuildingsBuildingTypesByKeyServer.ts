@@ -3,7 +3,7 @@
 
 import type { TBuildingsBuildingTypes, TBuildingsBuildingTypesRecordById } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
 import type{ TBuildingsBuildingTypesParams } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes" 
-import { fetchBuildingsBuildingTypesByKey } from "@/methods/services/buildings/fetchBuildingsBuildingTypesByKey"
+import { fetchBuildingsBuildingTypesByKeyService } from "@/methods/services/buildings/fetchBuildingsBuildingTypesByKeyService"
 
 type TResult = {
   raw: TBuildingsBuildingTypes[]
@@ -13,7 +13,7 @@ type TResult = {
 }
 
 export async function getBuildingsBuildingTypesByKeyServer( params: TBuildingsBuildingTypesParams): Promise<TResult> {
-  const { record } = await fetchBuildingsBuildingTypesByKey(params)
+  const { record } = await fetchBuildingsBuildingTypesByKeyService(params)
 
   return {
     raw: record!.raw,

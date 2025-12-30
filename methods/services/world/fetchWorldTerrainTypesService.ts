@@ -1,14 +1,14 @@
-// GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
+// GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTable.hbs
 
-import type { TPlayerMovement, TPlayerMovementRecordByXY,TPlayerMovementParams } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
-import { getPlayerMovement } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
+import type { TWorldTerrainTypes, TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
+import { getWorldTerrainTypes } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import crypto from "crypto"
 
 type TCacheRecord = {
-  raw: TPlayerMovement[]
-  byKey: TPlayerMovementRecordByXY
+  raw: TWorldTerrainTypes[]
+  byKey: TWorldTerrainTypesRecordById
   etag: string
 }
 
@@ -22,11 +22,10 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchPlayerMovement(
- params: TPlayerMovementParams,
+export async function fetchWorldTerrainTypesService(
   options?: { clientEtag?: string },
 ): Promise<TFetchResult> {
-  const cacheKey = makeCacheKey("getPlayerMovement", params)
+  const cacheKey = makeCacheKey("getWorldTerrainTypes")
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
 
@@ -48,7 +47,7 @@ export async function fetchPlayerMovement(
     }
   }
 
-  const raw = await getPlayerMovement(params)
+  const raw = await getWorldTerrainTypes()
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
   if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
@@ -60,7 +59,7 @@ export async function fetchPlayerMovement(
     }
   }
 
-  const byKey = arrayToObjectKey(["x", "y"], raw) as TPlayerMovementRecordByXY
+  const byKey = arrayToObjectKey(["id"], raw) as TWorldTerrainTypesRecordById
 
 
   const record: TCacheRecord = {

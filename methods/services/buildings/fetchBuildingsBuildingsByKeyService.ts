@@ -22,7 +22,7 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchBuildingsBuildingsByKey(
+export async function fetchBuildingsBuildingsByKeyService(
  params: TBuildingsBuildingsParams,
   options?: { clientEtag?: string },
 ): Promise<TFetchResult> {

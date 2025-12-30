@@ -2,7 +2,7 @@
 
 import { auth } from "@/auth"
 import { TDistrictsDistrictTypesParams } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
-import { fetchDistrictsDistrictTypesByKey } from "@/methods/services/districts/fetchDistrictsDistrictTypesByKey"
+import { fetchDistrictsDistrictTypesByKeyService } from "@/methods/services/districts/fetchDistrictsDistrictTypesByKeyService"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
 
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
 
     const clientEtag = request.headers.get("if-none-match") ?? undefined
 
-    const { record, etag, cacheHit, etagMatched } = await fetchDistrictsDistrictTypesByKey(parsedParams, { clientEtag })
+    const { record, etag, cacheHit, etagMatched } = await fetchDistrictsDistrictTypesByKeyService(parsedParams, { clientEtag })
 
     if (cacheHit || etagMatched) {
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })

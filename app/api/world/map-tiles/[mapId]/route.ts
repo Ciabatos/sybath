@@ -2,7 +2,7 @@
 
 import { auth } from "@/auth"
 import { TWorldMapTilesParams } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
-import { fetchWorldMapTilesByKey } from "@/methods/services/world/fetchWorldMapTilesByKey"
+import { fetchWorldMapTilesByKeyService } from "@/methods/services/world/fetchWorldMapTilesByKeyService"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
 
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
 
     const clientEtag = request.headers.get("if-none-match") ?? undefined
 
-    const { record, etag, cacheHit, etagMatched } = await fetchWorldMapTilesByKey(parsedParams, { clientEtag })
+    const { record, etag, cacheHit, etagMatched } = await fetchWorldMapTilesByKeyService(parsedParams, { clientEtag })
 
     if (cacheHit || etagMatched) {
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })

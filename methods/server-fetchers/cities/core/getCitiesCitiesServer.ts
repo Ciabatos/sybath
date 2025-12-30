@@ -2,7 +2,7 @@
 "use server"
 
 import type { TCitiesCities, TCitiesCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
-import { fetchCitiesCities } from "@/methods/services/cities/fetchCitiesCities"
+import { fetchCitiesCitiesService } from "@/methods/services/cities/fetchCitiesCitiesService"
 
 type TResult = {
   raw: TCitiesCities[]
@@ -12,7 +12,7 @@ type TResult = {
 }
 
 export async function getCitiesCitiesServer(): Promise<TResult> {
-  const { record } = await fetchCitiesCities()
+  const { record } = await fetchCitiesCitiesService()
 
   return {
     raw: record!.raw,

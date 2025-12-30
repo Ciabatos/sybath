@@ -66,5 +66,9 @@
   "apiPathParamsByKey": "/api/world/landscape-types/${params.id}",
   "generateMutation": false,
   "fetcherName": "fetchWorldLandscapeTypes",
-  "fetcherNameByKey": "fetchWorldLandscapeTypesByKey"
+  "fetcherNameByKey": "fetchWorldLandscapeTypesByKey",
+  "selectedGenerators": [
+    "getMethodFetcher",
+    "getTable"
+  ]
 }

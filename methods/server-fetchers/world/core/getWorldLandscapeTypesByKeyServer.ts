@@ -3,7 +3,7 @@
 
 import type { TWorldLandscapeTypes, TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import type{ TWorldLandscapeTypesParams } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes" 
-import { fetchWorldLandscapeTypesByKey } from "@/methods/services/world/fetchWorldLandscapeTypesByKey"
+import { fetchWorldLandscapeTypesByKeyService } from "@/methods/services/world/fetchWorldLandscapeTypesByKeyService"
 
 type TResult = {
   raw: TWorldLandscapeTypes[]
@@ -13,7 +13,7 @@ type TResult = {
 }
 
 export async function getWorldLandscapeTypesByKeyServer( params: TWorldLandscapeTypesParams): Promise<TResult> {
-  const { record } = await fetchWorldLandscapeTypesByKey(params)
+  const { record } = await fetchWorldLandscapeTypesByKeyService(params)
 
   return {
     raw: record!.raw,

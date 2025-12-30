@@ -2,7 +2,7 @@
 
 import { auth } from "@/auth"
 import { TWorldTerrainTypesParams } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
-import { fetchWorldTerrainTypesByKey } from "@/methods/services/world/fetchWorldTerrainTypesByKey"
+import { fetchWorldTerrainTypesByKeyService } from "@/methods/services/world/fetchWorldTerrainTypesByKeyService"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
 
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
 
     const clientEtag = request.headers.get("if-none-match") ?? undefined
 
-    const { record, etag, cacheHit, etagMatched } = await fetchWorldTerrainTypesByKey(parsedParams, { clientEtag })
+    const { record, etag, cacheHit, etagMatched } = await fetchWorldTerrainTypesByKeyService(parsedParams, { clientEtag })
 
     if (cacheHit || etagMatched) {
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })

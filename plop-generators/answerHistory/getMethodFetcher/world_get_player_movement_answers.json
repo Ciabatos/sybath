@@ -62,5 +62,9 @@
   "apiPath": "app/api/world/rpc/get-player-movement/[playerId]/route.ts",
   "apiPathParams": "api/world/rpc/get-player-movement/${params.playerId}",
   "generateMutation": true,
-  "mutationMergeOldData": false
+  "mutationMergeOldData": false,
+  "selectedGenerators": [
+    "getMethodFetcher",
+    "getTable"
+  ]
 }

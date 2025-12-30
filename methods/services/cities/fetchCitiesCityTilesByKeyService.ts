@@ -1,14 +1,14 @@
-// GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTable.hbs
+// GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTableByKey.hbs
 
-import type { TAttributesStats, TAttributesStatsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/stats"
-import { getAttributesStats } from "@/db/postgresMainDatabase/schemas/attributes/stats"
+import type { TCitiesCityTiles, TCitiesCityTilesRecordByXY,TCitiesCityTilesParams } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
+import { getCitiesCityTilesByKey } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import crypto from "crypto"
 
 type TCacheRecord = {
-  raw: TAttributesStats[]
-  byKey: TAttributesStatsRecordById
+  raw: TCitiesCityTiles[]
+  byKey: TCitiesCityTilesRecordByXY
   etag: string
 }
 
@@ -22,10 +22,11 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchAttributesStats(
+export async function fetchCitiesCityTilesByKeyService(
+ params: TCitiesCityTilesParams,
   options?: { clientEtag?: string },
 ): Promise<TFetchResult> {
-  const cacheKey = makeCacheKey("getAttributesStats")
+  const cacheKey = makeCacheKey("getCitiesCityTilesByKey", params)
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
 
@@ -47,7 +48,7 @@ export async function fetchAttributesStats(
     }
   }
 
-  const raw = await getAttributesStats()
+  const raw = await getCitiesCityTilesByKey(params)
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
   if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
@@ -59,7 +60,7 @@ export async function fetchAttributesStats(
     }
   }
 
-  const byKey = arrayToObjectKey(["id"], raw) as TAttributesStatsRecordById
+  const byKey = arrayToObjectKey(["x", "y"], raw) as TCitiesCityTilesRecordByXY
 
 
   const record: TCacheRecord = {

@@ -1,14 +1,14 @@
-// GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTable.hbs
+// GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTableByKey.hbs
 
-import type { TCitiesCityTiles, TCitiesCityTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
-import { getCitiesCityTiles } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
+import type { TAttributesAbilities, TAttributesAbilitiesRecordById,TAttributesAbilitiesParams } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
+import { getAttributesAbilitiesByKey } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import crypto from "crypto"
 
 type TCacheRecord = {
-  raw: TCitiesCityTiles[]
-  byKey: TCitiesCityTilesRecordByXY
+  raw: TAttributesAbilities[]
+  byKey: TAttributesAbilitiesRecordById
   etag: string
 }
 
@@ -22,10 +22,11 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchCitiesCityTiles(
+export async function fetchAttributesAbilitiesByKeyService(
+ params: TAttributesAbilitiesParams,
   options?: { clientEtag?: string },
 ): Promise<TFetchResult> {
-  const cacheKey = makeCacheKey("getCitiesCityTiles")
+  const cacheKey = makeCacheKey("getAttributesAbilitiesByKey", params)
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
 
@@ -47,7 +48,7 @@ export async function fetchCitiesCityTiles(
     }
   }
 
-  const raw = await getCitiesCityTiles()
+  const raw = await getAttributesAbilitiesByKey(params)
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
   if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
@@ -59,7 +60,7 @@ export async function fetchCitiesCityTiles(
     }
   }
 
-  const byKey = arrayToObjectKey(["x", "y"], raw) as TCitiesCityTilesRecordByXY
+  const byKey = arrayToObjectKey(["id"], raw) as TAttributesAbilitiesRecordById
 
 
   const record: TCacheRecord = {

@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetTable.hbs
 
 import { auth } from "@/auth"
-import { fetchDistrictsDistricts } from "@/methods/services/districts/fetchDistrictsDistricts"
+import { fetchDistrictsDistrictsService } from "@/methods/services/districts/fetchDistrictsDistrictsService"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
@@ -15,7 +15,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
     const clientEtag = request.headers.get("if-none-match") ?? undefined
 
-    const { record, etag, cacheHit, etagMatched } = await fetchDistrictsDistricts({ clientEtag })
+    const { record, etag, cacheHit, etagMatched } = await fetchDistrictsDistrictsService({ clientEtag })
 
     if (cacheHit || etagMatched) {
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })

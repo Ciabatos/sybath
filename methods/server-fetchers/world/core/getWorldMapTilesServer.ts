@@ -2,7 +2,7 @@
 "use server"
 
 import type { TWorldMapTiles, TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
-import { fetchWorldMapTiles } from "@/methods/services/world/fetchWorldMapTiles"
+import { fetchWorldMapTilesService } from "@/methods/services/world/fetchWorldMapTilesService"
 
 type TResult = {
   raw: TWorldMapTiles[]
@@ -12,7 +12,7 @@ type TResult = {
 }
 
 export async function getWorldMapTilesServer(): Promise<TResult> {
-  const { record } = await fetchWorldMapTiles()
+  const { record } = await fetchWorldMapTilesService()
 
   return {
     raw: record!.raw,

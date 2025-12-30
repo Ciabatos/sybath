@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetTable.hbs
 
 import { auth } from "@/auth"
-import { fetchItemsItems } from "@/methods/services/items/fetchItemsItems"
+import { fetchItemsItemsService } from "@/methods/services/items/fetchItemsItemsService"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
@@ -15,7 +15,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
     const clientEtag = request.headers.get("if-none-match") ?? undefined
 
-    const { record, etag, cacheHit, etagMatched } = await fetchItemsItems({ clientEtag })
+    const { record, etag, cacheHit, etagMatched } = await fetchItemsItemsService({ clientEtag })
 
     if (cacheHit || etagMatched) {
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })

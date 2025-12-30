@@ -1,14 +1,14 @@
-// GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTable.hbs
+// GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTableByKey.hbs
 
-import type { TWorldLandscapeTypes, TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
-import { getWorldLandscapeTypes } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
+import type { TDistrictsDistrictTypes, TDistrictsDistrictTypesRecordById,TDistrictsDistrictTypesParams } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
+import { getDistrictsDistrictTypesByKey } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import crypto from "crypto"
 
 type TCacheRecord = {
-  raw: TWorldLandscapeTypes[]
-  byKey: TWorldLandscapeTypesRecordById
+  raw: TDistrictsDistrictTypes[]
+  byKey: TDistrictsDistrictTypesRecordById
   etag: string
 }
 
@@ -22,10 +22,11 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchWorldLandscapeTypes(
+export async function fetchDistrictsDistrictTypesByKeyService(
+ params: TDistrictsDistrictTypesParams,
   options?: { clientEtag?: string },
 ): Promise<TFetchResult> {
-  const cacheKey = makeCacheKey("getWorldLandscapeTypes")
+  const cacheKey = makeCacheKey("getDistrictsDistrictTypesByKey", params)
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
 
@@ -47,7 +48,7 @@ export async function fetchWorldLandscapeTypes(
     }
   }
 
-  const raw = await getWorldLandscapeTypes()
+  const raw = await getDistrictsDistrictTypesByKey(params)
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
   if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
@@ -59,7 +60,7 @@ export async function fetchWorldLandscapeTypes(
     }
   }
 
-  const byKey = arrayToObjectKey(["id"], raw) as TWorldLandscapeTypesRecordById
+  const byKey = arrayToObjectKey(["id"], raw) as TDistrictsDistrictTypesRecordById
 
 
   const record: TCacheRecord = {

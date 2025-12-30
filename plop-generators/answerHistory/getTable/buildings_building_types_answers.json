@@ -60,5 +60,9 @@
   "apiPathParamsByKey": "/api/buildings/building-types/${params.id}",
   "generateMutation": false,
   "fetcherName": "fetchBuildingsBuildingTypes",
-  "fetcherNameByKey": "fetchBuildingsBuildingTypesByKey"
+  "fetcherNameByKey": "fetchBuildingsBuildingTypesByKey",
+  "selectedGenerators": [
+    "getMethodFetcher",
+    "getTable"
+  ]
 }

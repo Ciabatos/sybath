@@ -2,7 +2,7 @@
 
 import { auth } from "@/auth"
 import { TPlayerInventoryParams } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
-import { fetchPlayerInventory } from "@/methods/services/inventory/fetchPlayerInventory"
+import { fetchPlayerInventoryService } from "@/methods/services/inventory/fetchPlayerInventoryService"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
 
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
 
     const clientEtag = request.headers.get("if-none-match") ?? undefined
 
-    const { record, etag, cacheHit, etagMatched } = await fetchPlayerInventory(parsedParams, { clientEtag })
+    const { record, etag, cacheHit, etagMatched } = await fetchPlayerInventoryService(parsedParams, { clientEtag })
 
     if (cacheHit || etagMatched) {
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })

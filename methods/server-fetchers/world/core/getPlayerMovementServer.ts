@@ -3,7 +3,7 @@
 
 import type { TPlayerMovementParams } from "@/db/postgresMainDatabase/schemas/world/playerMovement" 
 import type { TPlayerMovementRecordByXY,TPlayerMovement } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
-import { fetchPlayerMovement } from "@/methods/services/world/fetchPlayerMovement"
+import { fetchPlayerMovementService } from "@/methods/services/world/fetchPlayerMovementService"
 
 type TResult = {
   raw: TPlayerMovement[]
@@ -13,7 +13,7 @@ type TResult = {
 }
 
 export async function getPlayerMovementServer( params: TPlayerMovementParams): Promise<TResult> {
-  const { record } = await fetchPlayerMovement(params)
+  const { record } = await fetchPlayerMovementService(params)
 
   return {
     raw: record!.raw,

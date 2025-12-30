@@ -54,5 +54,9 @@
   "apiPathParamsByKey": "/api/attributes/abilities/${params.id}",
   "generateMutation": false,
   "fetcherName": "fetchAttributesAbilities",
-  "fetcherNameByKey": "fetchAttributesAbilitiesByKey"
+  "fetcherNameByKey": "fetchAttributesAbilitiesByKey",
+  "selectedGenerators": [
+    "getMethodFetcher",
+    "getTable"
+  ]
 }

@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTableByKey.hbs
 
-import type { TCitiesCities, TCitiesCitiesRecordByMapTileXMapTileY,TCitiesCitiesParams } from "@/db/postgresMainDatabase/schemas/cities/cities"
-import { getCitiesCitiesByKey } from "@/db/postgresMainDatabase/schemas/cities/cities"
+import type { TWorldMaps, TWorldMapsRecordById,TWorldMapsParams } from "@/db/postgresMainDatabase/schemas/world/maps"
+import { getWorldMapsByKey } from "@/db/postgresMainDatabase/schemas/world/maps"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import crypto from "crypto"
 
 type TCacheRecord = {
-  raw: TCitiesCities[]
-  byKey: TCitiesCitiesRecordByMapTileXMapTileY
+  raw: TWorldMaps[]
+  byKey: TWorldMapsRecordById
   etag: string
 }
 
@@ -22,11 +22,11 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchCitiesCitiesByKey(
- params: TCitiesCitiesParams,
+export async function fetchWorldMapsByKeyService(
+ params: TWorldMapsParams,
   options?: { clientEtag?: string },
 ): Promise<TFetchResult> {
-  const cacheKey = makeCacheKey("getCitiesCitiesByKey", params)
+  const cacheKey = makeCacheKey("getWorldMapsByKey", params)
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
 
@@ -48,7 +48,7 @@ export async function fetchCitiesCitiesByKey(
     }
   }
 
-  const raw = await getCitiesCitiesByKey(params)
+  const raw = await getWorldMapsByKey(params)
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
   if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
@@ -60,7 +60,7 @@ export async function fetchCitiesCitiesByKey(
     }
   }
 
-  const byKey = arrayToObjectKey(["mapTileX", "mapTileY"], raw) as TCitiesCitiesRecordByMapTileXMapTileY
+  const byKey = arrayToObjectKey(["id"], raw) as TWorldMapsRecordById
 
 
   const record: TCacheRecord = {

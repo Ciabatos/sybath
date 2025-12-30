@@ -3,7 +3,7 @@
 
 import type { TAttributesStats, TAttributesStatsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/stats"
 import type{ TAttributesStatsParams } from "@/db/postgresMainDatabase/schemas/attributes/stats" 
-import { fetchAttributesStatsByKey } from "@/methods/services/attributes/fetchAttributesStatsByKey"
+import { fetchAttributesStatsByKeyService } from "@/methods/services/attributes/fetchAttributesStatsByKeyService"
 
 type TResult = {
   raw: TAttributesStats[]
@@ -13,7 +13,7 @@ type TResult = {
 }
 
 export async function getAttributesStatsByKeyServer( params: TAttributesStatsParams): Promise<TResult> {
-  const { record } = await fetchAttributesStatsByKey(params)
+  const { record } = await fetchAttributesStatsByKeyService(params)
 
   return {
     raw: record!.raw,

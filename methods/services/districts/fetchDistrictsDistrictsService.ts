@@ -1,7 +1,7 @@
-// GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTableByKey.hbs
+// GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTable.hbs
 
-import type { TDistrictsDistricts, TDistrictsDistrictsRecordByMapTileXMapTileY,TDistrictsDistrictsParams } from "@/db/postgresMainDatabase/schemas/districts/districts"
-import { getDistrictsDistrictsByKey } from "@/db/postgresMainDatabase/schemas/districts/districts"
+import type { TDistrictsDistricts, TDistrictsDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/districts/districts"
+import { getDistrictsDistricts } from "@/db/postgresMainDatabase/schemas/districts/districts"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import crypto from "crypto"
@@ -22,11 +22,10 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchDistrictsDistrictsByKey(
- params: TDistrictsDistrictsParams,
+export async function fetchDistrictsDistrictsService(
   options?: { clientEtag?: string },
 ): Promise<TFetchResult> {
-  const cacheKey = makeCacheKey("getDistrictsDistrictsByKey", params)
+  const cacheKey = makeCacheKey("getDistrictsDistricts")
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
 
@@ -48,7 +47,7 @@ export async function fetchDistrictsDistrictsByKey(
     }
   }
 
-  const raw = await getDistrictsDistrictsByKey(params)
+  const raw = await getDistrictsDistricts()
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
   if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {

@@ -2,7 +2,7 @@
 
 import { auth } from "@/auth"
 import { TItemsItemsParams } from "@/db/postgresMainDatabase/schemas/items/items"
-import { fetchItemsItemsByKey } from "@/methods/services/items/fetchItemsItemsByKey"
+import { fetchItemsItemsByKeyService } from "@/methods/services/items/fetchItemsItemsByKeyService"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
 
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
 
     const clientEtag = request.headers.get("if-none-match") ?? undefined
 
-    const { record, etag, cacheHit, etagMatched } = await fetchItemsItemsByKey(parsedParams, { clientEtag })
+    const { record, etag, cacheHit, etagMatched } = await fetchItemsItemsByKeyService(parsedParams, { clientEtag })
 
     if (cacheHit || etagMatched) {
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })

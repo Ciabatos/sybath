@@ -1,14 +1,14 @@
-// GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTableByKey.hbs
+// GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type { TBuildingsBuildingTypes, TBuildingsBuildingTypesRecordById,TBuildingsBuildingTypesParams } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
-import { getBuildingsBuildingTypesByKey } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
+import type { TPlayerInventory, TPlayerInventoryRecordBySlotId,TPlayerInventoryParams } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
+import { getPlayerInventory } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import crypto from "crypto"
 
 type TCacheRecord = {
-  raw: TBuildingsBuildingTypes[]
-  byKey: TBuildingsBuildingTypesRecordById
+  raw: TPlayerInventory[]
+  byKey: TPlayerInventoryRecordBySlotId
   etag: string
 }
 
@@ -22,11 +22,11 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchBuildingsBuildingTypesByKey(
- params: TBuildingsBuildingTypesParams,
+export async function fetchPlayerInventoryService(
+ params: TPlayerInventoryParams,
   options?: { clientEtag?: string },
 ): Promise<TFetchResult> {
-  const cacheKey = makeCacheKey("getBuildingsBuildingTypesByKey", params)
+  const cacheKey = makeCacheKey("getPlayerInventory", params)
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
 
@@ -48,7 +48,7 @@ export async function fetchBuildingsBuildingTypesByKey(
     }
   }
 
-  const raw = await getBuildingsBuildingTypesByKey(params)
+  const raw = await getPlayerInventory(params)
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
   if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
@@ -60,7 +60,7 @@ export async function fetchBuildingsBuildingTypesByKey(
     }
   }
 
-  const byKey = arrayToObjectKey(["id"], raw) as TBuildingsBuildingTypesRecordById
+  const byKey = arrayToObjectKey(["slotId"], raw) as TPlayerInventoryRecordBySlotId
 
 
   const record: TCacheRecord = {

@@ -1,14 +1,14 @@
-// GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
+// GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTable.hbs
 
-import type { TPlayerInventory, TPlayerInventoryRecordBySlotId,TPlayerInventoryParams } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
-import { getPlayerInventory } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
+import type { TItemsItems, TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/items"
+import { getItemsItems } from "@/db/postgresMainDatabase/schemas/items/items"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import crypto from "crypto"
 
 type TCacheRecord = {
-  raw: TPlayerInventory[]
-  byKey: TPlayerInventoryRecordBySlotId
+  raw: TItemsItems[]
+  byKey: TItemsItemsRecordById
   etag: string
 }
 
@@ -22,11 +22,10 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchPlayerInventory(
- params: TPlayerInventoryParams,
+export async function fetchItemsItemsService(
   options?: { clientEtag?: string },
 ): Promise<TFetchResult> {
-  const cacheKey = makeCacheKey("getPlayerInventory", params)
+  const cacheKey = makeCacheKey("getItemsItems")
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
 
@@ -48,7 +47,7 @@ export async function fetchPlayerInventory(
     }
   }
 
-  const raw = await getPlayerInventory(params)
+  const raw = await getItemsItems()
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
   if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
@@ -60,7 +59,7 @@ export async function fetchPlayerInventory(
     }
   }
 
-  const byKey = arrayToObjectKey(["slotId"], raw) as TPlayerInventoryRecordBySlotId
+  const byKey = arrayToObjectKey(["id"], raw) as TItemsItemsRecordById
 
 
   const record: TCacheRecord = {

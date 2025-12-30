@@ -1,14 +1,14 @@
-// GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTable.hbs
+// GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTableByKey.hbs
 
-import type { TDistrictsDistrictTypes, TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
-import { getDistrictsDistrictTypes } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
+import type { TItemsItems, TItemsItemsRecordById,TItemsItemsParams } from "@/db/postgresMainDatabase/schemas/items/items"
+import { getItemsItemsByKey } from "@/db/postgresMainDatabase/schemas/items/items"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import crypto from "crypto"
 
 type TCacheRecord = {
-  raw: TDistrictsDistrictTypes[]
-  byKey: TDistrictsDistrictTypesRecordById
+  raw: TItemsItems[]
+  byKey: TItemsItemsRecordById
   etag: string
 }
 
@@ -22,10 +22,11 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchDistrictsDistrictTypes(
+export async function fetchItemsItemsByKeyService(
+ params: TItemsItemsParams,
   options?: { clientEtag?: string },
 ): Promise<TFetchResult> {
-  const cacheKey = makeCacheKey("getDistrictsDistrictTypes")
+  const cacheKey = makeCacheKey("getItemsItemsByKey", params)
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
 
@@ -47,7 +48,7 @@ export async function fetchDistrictsDistrictTypes(
     }
   }
 
-  const raw = await getDistrictsDistrictTypes()
+  const raw = await getItemsItemsByKey(params)
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
   if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
@@ -59,7 +60,7 @@ export async function fetchDistrictsDistrictTypes(
     }
   }
 
-  const byKey = arrayToObjectKey(["id"], raw) as TDistrictsDistrictTypesRecordById
+  const byKey = arrayToObjectKey(["id"], raw) as TItemsItemsRecordById
 
 
   const record: TCacheRecord = {

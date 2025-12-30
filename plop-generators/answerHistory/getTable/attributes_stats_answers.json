@@ -54,5 +54,9 @@
   "apiPathParamsByKey": "/api/attributes/stats/${params.id}",
   "generateMutation": false,
   "fetcherName": "fetchAttributesStats",
-  "fetcherNameByKey": "fetchAttributesStatsByKey"
+  "fetcherNameByKey": "fetchAttributesStatsByKey",
+  "selectedGenerators": [
+    "getMethodFetcher",
+    "getTable"
+  ]
 }

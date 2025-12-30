@@ -93,5 +93,9 @@
   "generateMutation": true,
   "mutationMergeOldData": false,
   "fetcherName": "fetchCitiesCities",
-  "fetcherNameByKey": "fetchCitiesCitiesByKey"
+  "fetcherNameByKey": "fetchCitiesCitiesByKey",
+  "selectedGenerators": [
+    "getMethodFetcher",
+    "getTable"
+  ]
 }

@@ -3,7 +3,7 @@
 
 import type { TDistrictsDistricts, TDistrictsDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/districts/districts"
 import type{ TDistrictsDistrictsParams } from "@/db/postgresMainDatabase/schemas/districts/districts" 
-import { fetchDistrictsDistrictsByKey } from "@/methods/services/districts/fetchDistrictsDistrictsByKey"
+import { fetchDistrictsDistrictsByKeyService } from "@/methods/services/districts/fetchDistrictsDistrictsByKeyService"
 
 type TResult = {
   raw: TDistrictsDistricts[]
@@ -13,7 +13,7 @@ type TResult = {
 }
 
 export async function getDistrictsDistrictsByKeyServer( params: TDistrictsDistrictsParams): Promise<TResult> {
-  const { record } = await fetchDistrictsDistrictsByKey(params)
+  const { record } = await fetchDistrictsDistrictsByKeyService(params)
 
   return {
     raw: record!.raw,

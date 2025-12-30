@@ -3,7 +3,7 @@
 
 import type { TWorldMapTiles, TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
 import type{ TWorldMapTilesParams } from "@/db/postgresMainDatabase/schemas/world/mapTiles" 
-import { fetchWorldMapTilesByKey } from "@/methods/services/world/fetchWorldMapTilesByKey"
+import { fetchWorldMapTilesByKeyService } from "@/methods/services/world/fetchWorldMapTilesByKeyService"
 
 type TResult = {
   raw: TWorldMapTiles[]
@@ -13,7 +13,7 @@ type TResult = {
 }
 
 export async function getWorldMapTilesByKeyServer( params: TWorldMapTilesParams): Promise<TResult> {
-  const { record } = await fetchWorldMapTilesByKey(params)
+  const { record } = await fetchWorldMapTilesByKeyService(params)
 
   return {
     raw: record!.raw,

@@ -3,7 +3,7 @@
 
 import type { TCitiesCityTiles, TCitiesCityTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
 import type{ TCitiesCityTilesParams } from "@/db/postgresMainDatabase/schemas/cities/cityTiles" 
-import { fetchCitiesCityTilesByKey } from "@/methods/services/cities/fetchCitiesCityTilesByKey"
+import { fetchCitiesCityTilesByKeyService } from "@/methods/services/cities/fetchCitiesCityTilesByKeyService"
 
 type TResult = {
   raw: TCitiesCityTiles[]
@@ -13,7 +13,7 @@ type TResult = {
 }
 
 export async function getCitiesCityTilesByKeyServer( params: TCitiesCityTilesParams): Promise<TResult> {
-  const { record } = await fetchCitiesCityTilesByKey(params)
+  const { record } = await fetchCitiesCityTilesByKeyService(params)
 
   return {
     raw: record!.raw,

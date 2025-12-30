@@ -2,7 +2,7 @@
 
 import { auth } from "@/auth"
 import { TPlayerMovementParams } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
-import { fetchPlayerMovement } from "@/methods/services/world/fetchPlayerMovement"
+import { fetchPlayerMovementService } from "@/methods/services/world/fetchPlayerMovementService"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
 
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
 
     const clientEtag = request.headers.get("if-none-match") ?? undefined
 
-    const { record, etag, cacheHit, etagMatched } = await fetchPlayerMovement(parsedParams, { clientEtag })
+    const { record, etag, cacheHit, etagMatched } = await fetchPlayerMovementService(parsedParams, { clientEtag })
 
     if (cacheHit || etagMatched) {
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })

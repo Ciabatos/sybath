@@ -69,5 +69,9 @@
   "apiPath": "app/api/inventory/rpc/get-player-inventory/[playerId]/route.ts",
   "apiPathParams": "api/inventory/rpc/get-player-inventory/${params.playerId}",
   "generateMutation": true,
-  "mutationMergeOldData": false
+  "mutationMergeOldData": false,
+  "selectedGenerators": [
+    "getMethodFetcher",
+    "getTable"
+  ]
 }

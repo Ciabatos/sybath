@@ -1,14 +1,14 @@
-// GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTable.hbs
+// GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTableByKey.hbs
 
-import type { TDistrictsDistricts, TDistrictsDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/districts/districts"
-import { getDistrictsDistricts } from "@/db/postgresMainDatabase/schemas/districts/districts"
+import type { TWorldMapTiles, TWorldMapTilesRecordByXY,TWorldMapTilesParams } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
+import { getWorldMapTilesByKey } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import crypto from "crypto"
 
 type TCacheRecord = {
-  raw: TDistrictsDistricts[]
-  byKey: TDistrictsDistrictsRecordByMapTileXMapTileY
+  raw: TWorldMapTiles[]
+  byKey: TWorldMapTilesRecordByXY
   etag: string
 }
 
@@ -22,10 +22,11 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchDistrictsDistricts(
+export async function fetchWorldMapTilesByKeyService(
+ params: TWorldMapTilesParams,
   options?: { clientEtag?: string },
 ): Promise<TFetchResult> {
-  const cacheKey = makeCacheKey("getDistrictsDistricts")
+  const cacheKey = makeCacheKey("getWorldMapTilesByKey", params)
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
 
@@ -47,7 +48,7 @@ export async function fetchDistrictsDistricts(
     }
   }
 
-  const raw = await getDistrictsDistricts()
+  const raw = await getWorldMapTilesByKey(params)
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
   if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
@@ -59,7 +60,7 @@ export async function fetchDistrictsDistricts(
     }
   }
 
-  const byKey = arrayToObjectKey(["mapTileX", "mapTileY"], raw) as TDistrictsDistrictsRecordByMapTileXMapTileY
+  const byKey = arrayToObjectKey(["x", "y"], raw) as TWorldMapTilesRecordByXY
 
 
   const record: TCacheRecord = {

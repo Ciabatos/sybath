@@ -1,7 +1,7 @@
-// GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTableByKey.hbs
+// GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTable.hbs
 
-import type { TAttributesStats, TAttributesStatsRecordById,TAttributesStatsParams } from "@/db/postgresMainDatabase/schemas/attributes/stats"
-import { getAttributesStatsByKey } from "@/db/postgresMainDatabase/schemas/attributes/stats"
+import type { TAttributesStats, TAttributesStatsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/stats"
+import { getAttributesStats } from "@/db/postgresMainDatabase/schemas/attributes/stats"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import crypto from "crypto"
@@ -22,11 +22,10 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchAttributesStatsByKey(
- params: TAttributesStatsParams,
+export async function fetchAttributesStatsService(
   options?: { clientEtag?: string },
 ): Promise<TFetchResult> {
-  const cacheKey = makeCacheKey("getAttributesStatsByKey", params)
+  const cacheKey = makeCacheKey("getAttributesStats")
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
 
@@ -48,7 +47,7 @@ export async function fetchAttributesStatsByKey(
     }
   }
 
-  const raw = await getAttributesStatsByKey(params)
+  const raw = await getAttributesStats()
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
   if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {

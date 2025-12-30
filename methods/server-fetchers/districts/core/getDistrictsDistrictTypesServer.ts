@@ -2,7 +2,7 @@
 "use server"
 
 import type { TDistrictsDistrictTypes, TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
-import { fetchDistrictsDistrictTypes } from "@/methods/services/districts/fetchDistrictsDistrictTypes"
+import { fetchDistrictsDistrictTypesService } from "@/methods/services/districts/fetchDistrictsDistrictTypesService"
 
 type TResult = {
   raw: TDistrictsDistrictTypes[]
@@ -12,7 +12,7 @@ type TResult = {
 }
 
 export async function getDistrictsDistrictTypesServer(): Promise<TResult> {
-  const { record } = await fetchDistrictsDistrictTypes()
+  const { record } = await fetchDistrictsDistrictTypesService()
 
   return {
     raw: record!.raw,

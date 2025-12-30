@@ -66,5 +66,9 @@
   "apiPathParamsByKey": "/api/districts/district-types/${params.id}",
   "generateMutation": false,
   "fetcherName": "fetchDistrictsDistrictTypes",
-  "fetcherNameByKey": "fetchDistrictsDistrictTypesByKey"
+  "fetcherNameByKey": "fetchDistrictsDistrictTypesByKey",
+  "selectedGenerators": [
+    "getMethodFetcher",
+    "getTable"
+  ]
 }

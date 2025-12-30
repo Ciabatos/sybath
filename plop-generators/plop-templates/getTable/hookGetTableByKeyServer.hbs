@@ -3,7 +3,7 @@
 
 import type { {{methodTypeName}}, {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 {{#if methodParamsColumns}}import type{ {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}" {{/if}}
-import { {{fetcherNameByKey}} } from "@/methods/services/{{schema}}/{{fetcherNameByKey}}"
+import { {{fetcherNameByKey}}Service } from "@/methods/services/{{schema}}/{{fetcherNameByKey}}Service"
 
 type TResult = {
   raw: {{methodTypeName}}[]
@@ -13,7 +13,7 @@ type TResult = {
 }
 
 export async function {{methodNameByKey}}Server({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}): Promise<TResult> {
-  const { record } = await {{fetcherNameByKey}}({{#if methodParamsColumns}}params{{/if}})
+  const { record } = await {{fetcherNameByKey}}Service({{#if methodParamsColumns}}params{{/if}})
 
   return {
     raw: record!.raw,

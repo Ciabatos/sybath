@@ -2,7 +2,7 @@
 
 import { auth } from "@/auth"
 import { TCitiesCityTilesParams } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
-import { fetchCitiesCityTilesByKey } from "@/methods/services/cities/fetchCitiesCityTilesByKey"
+import { fetchCitiesCityTilesByKeyService } from "@/methods/services/cities/fetchCitiesCityTilesByKeyService"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
 
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
 
     const clientEtag = request.headers.get("if-none-match") ?? undefined
 
-    const { record, etag, cacheHit, etagMatched } = await fetchCitiesCityTilesByKey(parsedParams, { clientEtag })
+    const { record, etag, cacheHit, etagMatched } = await fetchCitiesCityTilesByKeyService(parsedParams, { clientEtag })
 
     if (cacheHit || etagMatched) {
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })

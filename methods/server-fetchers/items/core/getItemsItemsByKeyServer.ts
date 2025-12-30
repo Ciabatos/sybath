@@ -3,7 +3,7 @@
 
 import type { TItemsItems, TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/items"
 import type{ TItemsItemsParams } from "@/db/postgresMainDatabase/schemas/items/items" 
-import { fetchItemsItemsByKey } from "@/methods/services/items/fetchItemsItemsByKey"
+import { fetchItemsItemsByKeyService } from "@/methods/services/items/fetchItemsItemsByKeyService"
 
 type TResult = {
   raw: TItemsItems[]
@@ -13,7 +13,7 @@ type TResult = {
 }
 
 export async function getItemsItemsByKeyServer( params: TItemsItemsParams): Promise<TResult> {
-  const { record } = await fetchItemsItemsByKey(params)
+  const { record } = await fetchItemsItemsByKeyService(params)
 
   return {
     raw: record!.raw,

@@ -2,7 +2,7 @@
 "use server"
 
 import type { TWorldTerrainTypes, TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
-import { fetchWorldTerrainTypes } from "@/methods/services/world/fetchWorldTerrainTypes"
+import { fetchWorldTerrainTypesService } from "@/methods/services/world/fetchWorldTerrainTypesService"
 
 type TResult = {
   raw: TWorldTerrainTypes[]
@@ -12,7 +12,7 @@ type TResult = {
 }
 
 export async function getWorldTerrainTypesServer(): Promise<TResult> {
-  const { record } = await fetchWorldTerrainTypes()
+  const { record } = await fetchWorldTerrainTypesService()
 
   return {
     raw: record!.raw,
