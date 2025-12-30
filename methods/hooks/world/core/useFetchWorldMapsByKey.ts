@@ -8,15 +8,15 @@ import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchWorldMapsByKey( params: TWorldMapsParams ) {
+export function useFetchWorldMapsByKey(params: TWorldMapsParams) {
   const maps = useAtomValue(mapsAtom)
   const setWorldMaps = useSetAtom(mapsAtom)
-  
+
   const { data } = useSWR<TWorldMaps[]>(`/api/world/maps/${params.id}`, { refreshInterval: 3000 })
 
   useEffect(() => {
     if (data) {
-      const index = (arrayToObjectKey(["id"], data) as TWorldMapsRecordById)
+      const index = arrayToObjectKey(["id"], data) as TWorldMapsRecordById
       setWorldMaps(index)
     }
   }, [data, setWorldMaps])

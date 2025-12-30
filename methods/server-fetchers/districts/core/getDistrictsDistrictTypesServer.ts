@@ -1,7 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableServer.hbs
 "use server"
 
-import type { TDistrictsDistrictTypes, TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
+import type {
+  TDistrictsDistrictTypes,
+  TDistrictsDistrictTypesRecordById,
+} from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
 import { fetchDistrictsDistrictTypesService } from "@/methods/services/districts/fetchDistrictsDistrictTypesService"
 
 type TResult = {

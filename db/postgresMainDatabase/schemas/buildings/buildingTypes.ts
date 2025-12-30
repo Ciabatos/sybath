@@ -19,7 +19,7 @@ export type TBuildingsBuildingTypesRecordById = Record<string, TBuildingsBuildin
 export async function getBuildingsBuildingTypes() {
   try {
     const sql = `SELECT * FROM buildings.get_building_types();`
-    
+
     const result = await query(sql)
     return snakeToCamelRows(result.rows) as TBuildingsBuildingTypes[]
   } catch (error) {
@@ -32,7 +32,7 @@ export async function getBuildingsBuildingTypesByKey(params: TBuildingsBuildingT
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM buildings.get_building_types_by_key($1);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TBuildingsBuildingTypes[]
   } catch (error) {

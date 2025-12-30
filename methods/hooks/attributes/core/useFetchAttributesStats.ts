@@ -11,12 +11,12 @@ import useSWR from "swr"
 export function useFetchAttributesStats() {
   const stats = useAtomValue(statsAtom)
   const setAttributesStats = useSetAtom(statsAtom)
-  
+
   const { data } = useSWR<TAttributesStats[]>(`/api/attributes/stats`, { refreshInterval: 3000 })
 
   useEffect(() => {
     if (data) {
-      const index = (arrayToObjectKey(["id"], data) as TAttributesStatsRecordById)
+      const index = arrayToObjectKey(["id"], data) as TAttributesStatsRecordById
       setAttributesStats(index)
     }
   }, [data, setAttributesStats])

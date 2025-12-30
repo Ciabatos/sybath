@@ -1,7 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetMethodFetcher.hbs
 
 import { auth } from "@/auth"
-import { getDistrictInventory, TDistrictInventoryParams } from "@/db/postgresMainDatabase/schemas/inventory/districtInventory"
+import {
+  getDistrictInventory,
+  TDistrictInventoryParams,
+} from "@/db/postgresMainDatabase/schemas/inventory/districtInventory"
 import crypto from "crypto"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
@@ -18,14 +21,14 @@ const typeParamsSchema = z.object({
   districtId: z.coerce.number(),
 }) satisfies z.ZodType<TDistrictInventoryParams>
 
-export async function GET(request: NextRequest, { params }: { params: TApiParams } ): Promise<NextResponse> {
+export async function GET(request: NextRequest, { params }: { params: TApiParams }): Promise<NextResponse> {
   const session = await auth()
   const sessionUserId = session?.user?.userId
-  
+
   if (!sessionUserId || isNaN(sessionUserId)) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
   }
-  
+
   const paramsFromPromise = await params
   const parsedParams = typeParamsSchema.parse(paramsFromPromise)
 

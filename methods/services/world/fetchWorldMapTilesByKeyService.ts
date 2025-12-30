@@ -1,6 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTableByKey.hbs
 
-import type { TWorldMapTiles, TWorldMapTilesRecordByXY,TWorldMapTilesParams } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
+import type {
+  TWorldMapTiles,
+  TWorldMapTilesRecordByXY,
+  TWorldMapTilesParams,
+} from "@/db/postgresMainDatabase/schemas/world/mapTiles"
 import { getWorldMapTilesByKey } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -23,7 +27,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchWorldMapTilesByKeyService(
- params: TWorldMapTilesParams,
+  params: TWorldMapTilesParams,
   options?: { clientEtag?: string },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getWorldMapTilesByKey", params)
@@ -61,7 +65,6 @@ export async function fetchWorldMapTilesByKeyService(
   }
 
   const byKey = arrayToObjectKey(["x", "y"], raw) as TWorldMapTilesRecordByXY
-
 
   const record: TCacheRecord = {
     raw,

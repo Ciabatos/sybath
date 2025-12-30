@@ -1,22 +1,26 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableByKey.hbs
 
 "use client"
-import { TAttributesStatsRecordById, TAttributesStats, TAttributesStatsParams } from "@/db/postgresMainDatabase/schemas/attributes/stats"
+import {
+  TAttributesStatsRecordById,
+  TAttributesStats,
+  TAttributesStatsParams,
+} from "@/db/postgresMainDatabase/schemas/attributes/stats"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { statsAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchAttributesStatsByKey( params: TAttributesStatsParams ) {
+export function useFetchAttributesStatsByKey(params: TAttributesStatsParams) {
   const stats = useAtomValue(statsAtom)
   const setAttributesStats = useSetAtom(statsAtom)
-  
+
   const { data } = useSWR<TAttributesStats[]>(`/api/attributes/stats/${params.id}`, { refreshInterval: 3000 })
 
   useEffect(() => {
     if (data) {
-      const index = (arrayToObjectKey(["id"], data) as TAttributesStatsRecordById)
+      const index = arrayToObjectKey(["id"], data) as TAttributesStatsRecordById
       setAttributesStats(index)
     }
   }, [data, setAttributesStats])

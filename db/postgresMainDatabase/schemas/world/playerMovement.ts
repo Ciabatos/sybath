@@ -20,7 +20,7 @@ export async function getPlayerMovement(params: TPlayerMovementParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM world.get_player_movement($1);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TPlayerMovement[]
   } catch (error) {

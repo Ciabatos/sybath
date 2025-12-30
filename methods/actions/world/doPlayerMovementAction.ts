@@ -2,7 +2,10 @@
 "use server"
 
 import { auth } from "@/auth"
-import { TDoPlayerMovementServiceParams, doPlayerMovementService } from "@/methods/services/world/doPlayerMovementService"
+import {
+  TDoPlayerMovementServiceParams,
+  doPlayerMovementService,
+} from "@/methods/services/world/doPlayerMovementService"
 
 type TDoPlayerMovementActionParams = Omit<TDoPlayerMovementServiceParams, "playerId">
 

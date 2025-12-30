@@ -21,7 +21,7 @@ export type TCitiesCityTilesRecordByXY = Record<string, TCitiesCityTiles>
 export async function getCitiesCityTiles() {
   try {
     const sql = `SELECT * FROM cities.get_city_tiles();`
-    
+
     const result = await query(sql)
     return snakeToCamelRows(result.rows) as TCitiesCityTiles[]
   } catch (error) {
@@ -34,7 +34,7 @@ export async function getCitiesCityTilesByKey(params: TCitiesCityTilesParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM cities.get_city_tiles_by_key($1);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TCitiesCityTiles[]
   } catch (error) {

@@ -18,14 +18,14 @@ const typeParamsSchema = z.object({
   playerId: z.coerce.number(),
 }) satisfies z.ZodType<TPlayerStatsParams>
 
-export async function GET(request: NextRequest, { params }: { params: TApiParams } ): Promise<NextResponse> {
+export async function GET(request: NextRequest, { params }: { params: TApiParams }): Promise<NextResponse> {
   const session = await auth()
   const sessionUserId = session?.user?.userId
-  
+
   if (!sessionUserId || isNaN(sessionUserId)) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
   }
-  
+
   const paramsFromPromise = await params
   const parsedParams = typeParamsSchema.parse(paramsFromPromise)
 

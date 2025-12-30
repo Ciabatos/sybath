@@ -11,12 +11,12 @@ import useSWR from "swr"
 export function useFetchWorldMapTiles() {
   const mapTiles = useAtomValue(mapTilesAtom)
   const setWorldMapTiles = useSetAtom(mapTilesAtom)
-  
+
   const { data } = useSWR<TWorldMapTiles[]>(`/api/world/map-tiles`, { refreshInterval: 3000 })
 
   useEffect(() => {
     if (data) {
-      const index = (arrayToObjectKey(["x", "y"], data) as TWorldMapTilesRecordByXY)
+      const index = arrayToObjectKey(["x", "y"], data) as TWorldMapTilesRecordByXY
       setWorldMapTiles(index)
     }
   }, [data, setWorldMapTiles])

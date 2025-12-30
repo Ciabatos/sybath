@@ -2,7 +2,7 @@
 "use server"
 
 import type { TCitiesCityTiles, TCitiesCityTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
-import type{ TCitiesCityTilesParams } from "@/db/postgresMainDatabase/schemas/cities/cityTiles" 
+import type { TCitiesCityTilesParams } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
 import { fetchCitiesCityTilesByKeyService } from "@/methods/services/cities/fetchCitiesCityTilesByKeyService"
 
 type TResult = {
@@ -12,7 +12,7 @@ type TResult = {
   atomName: string
 }
 
-export async function getCitiesCityTilesByKeyServer( params: TCitiesCityTilesParams): Promise<TResult> {
+export async function getCitiesCityTilesByKeyServer(params: TCitiesCityTilesParams): Promise<TResult> {
   const { record } = await fetchCitiesCityTilesByKeyService(params)
 
   return {

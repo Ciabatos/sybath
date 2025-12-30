@@ -1,13 +1,17 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
-import { TPlayerAbilitiesRecordByAbilityId , TPlayerAbilitiesParams, TPlayerAbilities  } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
+import {
+  TPlayerAbilitiesRecordByAbilityId,
+  TPlayerAbilitiesParams,
+  TPlayerAbilities,
+} from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
 import { playerAbilitiesAtom } from "@/store/atoms"
 import { useSetAtom, useAtomValue } from "jotai"
 import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutatePlayerAbilities( params: TPlayerAbilitiesParams) {
+export function useMutatePlayerAbilities(params: TPlayerAbilitiesParams) {
   const { mutate } = useSWR<TPlayerAbilities[]>(`/api/attributes/rpc/get-player-abilities/${params.playerId}`)
   const setPlayerAbilities = useSetAtom(playerAbilitiesAtom)
   const playerAbilities = useAtomValue(playerAbilitiesAtom)
@@ -31,12 +35,12 @@ export function useMutatePlayerAbilities( params: TPlayerAbilitiesParams) {
     }))
 
     const newObj = arrayToObjectKey(["abilityId"], dataWithDefaults) as TPlayerAbilitiesRecordByAbilityId
-    
+
     const optimisticDataMergeWithOldData: TPlayerAbilitiesRecordByAbilityId = {
-      ...playerAbilities, 
-      ...newObj,      
+      ...playerAbilities,
+      ...newObj,
     }
-    
+
     setPlayerAbilities(optimisticDataMergeWithOldData)
 
     mutate(dataWithDefaults, {

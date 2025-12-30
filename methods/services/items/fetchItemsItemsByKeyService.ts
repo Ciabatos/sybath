@@ -1,6 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTableByKey.hbs
 
-import type { TItemsItems, TItemsItemsRecordById,TItemsItemsParams } from "@/db/postgresMainDatabase/schemas/items/items"
+import type {
+  TItemsItems,
+  TItemsItemsRecordById,
+  TItemsItemsParams,
+} from "@/db/postgresMainDatabase/schemas/items/items"
 import { getItemsItemsByKey } from "@/db/postgresMainDatabase/schemas/items/items"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -23,7 +27,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchItemsItemsByKeyService(
- params: TItemsItemsParams,
+  params: TItemsItemsParams,
   options?: { clientEtag?: string },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getItemsItemsByKey", params)
@@ -61,7 +65,6 @@ export async function fetchItemsItemsByKeyService(
   }
 
   const byKey = arrayToObjectKey(["id"], raw) as TItemsItemsRecordById
-
 
   const record: TCacheRecord = {
     raw,

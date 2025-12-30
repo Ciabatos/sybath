@@ -20,13 +20,15 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
     if (!sessionUserId || isNaN(sessionUserId)) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
     }
-  
+
     const paramsFromPromise = await params
     const parsedParams = typeParamsSchema.parse(paramsFromPromise)
 
     const clientEtag = request.headers.get("if-none-match") ?? undefined
 
-    const { record, etag, cacheHit, etagMatched } = await fetchBuildingsBuildingsByKeyService(parsedParams, { clientEtag })
+    const { record, etag, cacheHit, etagMatched } = await fetchBuildingsBuildingsByKeyService(parsedParams, {
+      clientEtag,
+    })
 
     if (cacheHit || etagMatched) {
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })

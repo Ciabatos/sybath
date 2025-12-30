@@ -11,12 +11,12 @@ import useSWR from "swr"
 export function useFetchCitiesCities() {
   const cities = useAtomValue(citiesAtom)
   const setCitiesCities = useSetAtom(citiesAtom)
-  
+
   const { data } = useSWR<TCitiesCities[]>(`/api/cities/cities`, { refreshInterval: 3000 })
 
   useEffect(() => {
     if (data) {
-      const index = (arrayToObjectKey(["mapTileX", "mapTileY"], data) as TCitiesCitiesRecordByMapTileXMapTileY)
+      const index = arrayToObjectKey(["mapTileX", "mapTileY"], data) as TCitiesCitiesRecordByMapTileXMapTileY
       setCitiesCities(index)
     }
   }, [data, setCitiesCities])
