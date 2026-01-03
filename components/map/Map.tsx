@@ -37,7 +37,7 @@ export default function Map(props: Props) {
   const districtsImage = creatDistrictsImage(props.districtTypes?.imageUrl)
   const combinedImages = combineImages(landscapeImage, backgroundImage)
 
-  console.log("Map Tile Rendered:", props.mapTiles.x, props.mapTiles.y)
+  // console.log("Map Tile Rendered:", props.mapTiles.x, props.mapTiles.y)
   return (
     <div
       className={style.BackgroundImage}

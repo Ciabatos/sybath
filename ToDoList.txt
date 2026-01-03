@@ -24,6 +24,8 @@ transport
   Ludzie AI automatycznie obsiadaja prace od najwyzej platynch do najmniej zgodnie ze statusem spolecznym
 --Miasto
 
+Handel
+--Hanza !
 import/export
 --jezeli sie oplaca transport + cło z innego miasta to ludzie to wybieraja zamiast kupowac we wlasnym miescie
 
