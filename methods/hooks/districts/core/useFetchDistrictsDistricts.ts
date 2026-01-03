@@ -15,7 +15,7 @@ export function useFetchDistrictsDistricts() {
 
   const districts = data
   ? (arrayToObjectKey(["mapTileX", "mapTileY"], data) as TDistrictsDistrictsRecordByMapTileXMapTileY)
-  : undefined
+  : {}
 
   useEffect(() => {
     if (districts) {

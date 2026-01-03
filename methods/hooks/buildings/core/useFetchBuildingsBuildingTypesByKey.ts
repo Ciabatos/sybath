@@ -15,7 +15,7 @@ export function useFetchBuildingsBuildingTypesByKey( params: TBuildingsBuildingT
 
   const buildingTypes = data
   ? (arrayToObjectKey(["id"], data) as TBuildingsBuildingTypesRecordById)
-  : undefined
+  : {}
 
   useEffect(() => {
     if (buildingTypes) {

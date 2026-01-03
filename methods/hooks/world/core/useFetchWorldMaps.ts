@@ -15,7 +15,7 @@ export function useFetchWorldMaps() {
 
   const maps = data
   ? (arrayToObjectKey(["id"], data) as TWorldMapsRecordById)
-  : undefined
+  : {}
 
   useEffect(() => {
     if (maps) {

@@ -15,7 +15,7 @@ export function useFetchWorldMapTiles() {
 
   const mapTiles = data
   ? (arrayToObjectKey(["x", "y"], data) as TWorldMapTilesRecordByXY)
-  : undefined
+  : {}
 
   useEffect(() => {
     if (mapTiles) {

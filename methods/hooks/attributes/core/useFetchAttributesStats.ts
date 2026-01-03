@@ -15,7 +15,7 @@ export function useFetchAttributesStats() {
 
   const stats = data
   ? (arrayToObjectKey(["id"], data) as TAttributesStatsRecordById)
-  : undefined
+  : {}
 
   useEffect(() => {
     if (stats) {

@@ -34,5 +34,10 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2"
+  "sqlParamsPlaceholders": "$1, $2",
+  "selectedGenerators": [
+    "getMethodAction",
+    "getMethodFetcher",
+    "getTable"
+  ]
 }

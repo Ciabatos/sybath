@@ -95,6 +95,7 @@
   "fetcherName": "fetchCitiesCities",
   "fetcherNameByKey": "fetchCitiesCitiesByKey",
   "selectedGenerators": [
+    "getMethodAction",
     "getMethodFetcher",
     "getTable"
   ]

@@ -68,6 +68,7 @@
   "fetcherName": "fetchWorldTerrainTypes",
   "fetcherNameByKey": "fetchWorldTerrainTypesByKey",
   "selectedGenerators": [
+    "getMethodAction",
     "getMethodFetcher",
     "getTable"
   ]

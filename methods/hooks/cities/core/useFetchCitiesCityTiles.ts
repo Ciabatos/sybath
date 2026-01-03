@@ -15,7 +15,7 @@ export function useFetchCitiesCityTiles() {
 
   const cityTiles = data
   ? (arrayToObjectKey(["x", "y"], data) as TCitiesCityTilesRecordByXY)
-  : undefined
+  : {}
 
   useEffect(() => {
     if (cityTiles) {

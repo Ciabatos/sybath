@@ -15,7 +15,7 @@ export function useFetchBuildingsBuildings() {
 
   const buildings = data
   ? (arrayToObjectKey(["cityTileX", "cityTileY"], data) as TBuildingsBuildingsRecordByCityTileXCityTileY)
-  : undefined
+  : {}
 
   useEffect(() => {
     if (buildings) {

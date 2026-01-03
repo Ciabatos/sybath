@@ -15,7 +15,7 @@ export function useFetchAttributesAbilities() {
 
   const abilities = data
   ? (arrayToObjectKey(["id"], data) as TAttributesAbilitiesRecordById)
-  : undefined
+  : {}
 
   useEffect(() => {
     if (abilities) {

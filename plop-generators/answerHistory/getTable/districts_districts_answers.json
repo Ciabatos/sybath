@@ -89,6 +89,7 @@
   "fetcherName": "fetchDistrictsDistricts",
   "fetcherNameByKey": "fetchDistrictsDistrictsByKey",
   "selectedGenerators": [
+    "getMethodAction",
     "getMethodFetcher",
     "getTable"
   ]

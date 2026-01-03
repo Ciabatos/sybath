@@ -71,6 +71,7 @@
   "generateMutation": true,
   "mutationMergeOldData": false,
   "selectedGenerators": [
+    "getMethodAction",
     "getMethodFetcher",
     "getTable"
   ]

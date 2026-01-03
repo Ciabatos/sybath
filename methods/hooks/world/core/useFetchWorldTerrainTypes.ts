@@ -15,7 +15,7 @@ export function useFetchWorldTerrainTypes() {
 
   const terrainTypes = data
   ? (arrayToObjectKey(["id"], data) as TWorldTerrainTypesRecordById)
-  : undefined
+  : {}
 
   useEffect(() => {
     if (terrainTypes) {

@@ -56,6 +56,7 @@
   "fetcherName": "fetchItemsItems",
   "fetcherNameByKey": "fetchItemsItemsByKey",
   "selectedGenerators": [
+    "getMethodAction",
     "getMethodFetcher",
     "getTable"
   ]

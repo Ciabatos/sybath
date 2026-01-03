@@ -15,7 +15,7 @@ export function useFetchPlayerMovement( params: TPlayerMovementParams) {
 
   const playerMovement = data
   ? (arrayToObjectKey(["x", "y"], data) as TPlayerMovementRecordByXY)
-  : undefined
+  : {}
 
   useEffect(() => {
     if (playerMovement) {

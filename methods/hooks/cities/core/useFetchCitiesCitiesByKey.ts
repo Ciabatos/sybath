@@ -15,7 +15,7 @@ export function useFetchCitiesCitiesByKey( params: TCitiesCitiesParams ) {
 
   const cities = data
   ? (arrayToObjectKey(["mapTileX", "mapTileY"], data) as TCitiesCitiesRecordByMapTileXMapTileY)
-  : undefined
+  : {}
 
   useEffect(() => {
     if (cities) {

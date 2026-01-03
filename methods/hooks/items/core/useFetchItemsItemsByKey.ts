@@ -15,7 +15,7 @@ export function useFetchItemsItemsByKey( params: TItemsItemsParams ) {
 
   const items = data
   ? (arrayToObjectKey(["id"], data) as TItemsItemsRecordById)
-  : undefined
+  : {}
 
   useEffect(() => {
     if (items) {

@@ -89,6 +89,7 @@
   "fetcherName": "fetchBuildingsBuildings",
   "fetcherNameByKey": "fetchBuildingsBuildingsByKey",
   "selectedGenerators": [
+    "getMethodAction",
     "getMethodFetcher",
     "getTable"
   ]

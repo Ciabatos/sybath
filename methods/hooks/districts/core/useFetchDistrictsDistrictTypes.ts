@@ -15,7 +15,7 @@ export function useFetchDistrictsDistrictTypes() {
 
   const districtTypes = data
   ? (arrayToObjectKey(["id"], data) as TDistrictsDistrictTypesRecordById)
-  : undefined
+  : {}
 
   useEffect(() => {
     if (districtTypes) {

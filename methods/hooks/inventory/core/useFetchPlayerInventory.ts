@@ -15,7 +15,7 @@ export function useFetchPlayerInventory( params: TPlayerInventoryParams) {
 
   const playerInventory = data
   ? (arrayToObjectKey(["slotId"], data) as TPlayerInventoryRecordBySlotId)
-  : undefined
+  : {}
 
   useEffect(() => {
     if (playerInventory) {

@@ -56,6 +56,7 @@
   "fetcherName": "fetchAttributesAbilities",
   "fetcherNameByKey": "fetchAttributesAbilitiesByKey",
   "selectedGenerators": [
+    "getMethodAction",
     "getMethodFetcher",
     "getTable"
   ]

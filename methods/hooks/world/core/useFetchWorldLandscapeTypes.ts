@@ -15,7 +15,7 @@ export function useFetchWorldLandscapeTypes() {
 
   const landscapeTypes = data
   ? (arrayToObjectKey(["id"], data) as TWorldLandscapeTypesRecordById)
-  : undefined
+  : {}
 
   useEffect(() => {
     if (landscapeTypes) {
