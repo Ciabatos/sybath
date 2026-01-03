@@ -15,7 +15,7 @@ export function useFetch{{schemaTablePascalName}}ByKey({{#if methodParamsColumns
 
   const {{tableCamelName}} = data
   ? ({{{indexMethodName}}}({{{indexMethodParams}}}, data) as {{indexTypeName}})
-  : undefined
+  : {}
 
   useEffect(() => {
     if ({{tableCamelName}}) {

@@ -1,4 +1,4 @@
-import { joinMap } from "@/methods/functions/map/joinMap"
+import { joinMap } from "@/methods/functions/deprecated/joinMap"
 import { createAtomHydration } from "@/methods/functions/util/createAtomHydration"
 import { createSwrFallback } from "@/methods/functions/util/createSwrFallback"
 import { getAttributesAbilitiesServer } from "@/methods/server-fetchers/attributes/core/getAttributesAbilitiesServer"

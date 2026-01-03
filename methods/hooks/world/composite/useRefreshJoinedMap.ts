@@ -1,6 +1,6 @@
 "use client"
 
-import { joinMap } from "@/methods/functions/map/joinMap"
+import { joinMap } from "@/methods/functions/deprecated/joinMap"
 import { useFetchCitiesCitiesByKey } from "@/methods/hooks/cities/core/useFetchCitiesCitiesByKey"
 import { useFetchDistrictsDistrictsByKey } from "@/methods/hooks/districts/core/useFetchDistrictsDistrictsByKey"
 import { useFetchDistrictsDistrictTypes } from "@/methods/hooks/districts/core/useFetchDistrictsDistrictTypes"

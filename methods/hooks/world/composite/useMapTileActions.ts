@@ -1,6 +1,6 @@
 "use client"
 
-import { TJoinMap } from "@/methods/functions/map/joinMap"
+import { TJoinMap } from "@/methods/functions/deprecated/joinMap"
 import { useModalBottomCenterBar } from "@/methods/hooks/modals/useModalBottomCenterBar"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"

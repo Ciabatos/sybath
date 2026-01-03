@@ -15,7 +15,7 @@ export function useFetch{{methodPascalName}}({{#if methodParamsColumns}} params:
 
   const {{methodCamelName}} = data
   ? ({{{indexMethodName}}}({{{indexMethodParams}}}, data) as {{indexTypeName}})
-  : undefined
+  : {}
 
   useEffect(() => {
     if ({{methodCamelName}}) {

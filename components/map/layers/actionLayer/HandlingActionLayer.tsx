@@ -1,6 +1,6 @@
 "use client"
 
-import { TJoinMap } from "@/methods/functions/map/joinMap"
+import { TJoinMap } from "@/methods/functions/deprecated/joinMap"
 
 interface Props {
   tile: TJoinMap

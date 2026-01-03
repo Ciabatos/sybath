@@ -23,7 +23,7 @@ import { TPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/wor
 import { TPlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { TJoinCity, TJoinCityByXY } from "@/methods/functions/city/joinCity"
-import { TJoinMap, TJoinMapByXY } from "@/methods/functions/map/joinMap"
+import { TJoinMap, TJoinMapByXY } from "@/methods/functions/deprecated/joinMap"
 import { TAreaRecordByXY } from "@/methods/hooks/world/composite/useMapTilesArea"
 import { TMapTilesMovementPathRecordByXY } from "@/methods/hooks/world/composite/useMapTilesPathFromPointToPoint"
 import { EPanels } from "@/types/enumeration/EPanels"

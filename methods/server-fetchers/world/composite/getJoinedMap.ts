@@ -1,6 +1,6 @@
 "use server"
 
-import { joinMap } from "@/methods/functions/map/joinMap"
+import { joinMap } from "@/methods/functions/deprecated/joinMap"
 import { getCitiesCitiesByKeyServer } from "@/methods/server-fetchers/cities/core/getCitiesCitiesByKeyServer"
 import { getDistrictsDistrictsByKeyServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictsByKeyServer"
 import { getDistrictsDistrictTypesServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictTypesServer"

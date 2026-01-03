@@ -8,7 +8,7 @@ import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schema
 import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
 import { TPlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
-import { TJoinMap, TJoinMapByXY } from "@/methods/functions/map/joinMap"
+import { TJoinMap, TJoinMapByXY } from "@/methods/functions/deprecated/joinMap"
 
 // ----------------------------
 export function joinMap({

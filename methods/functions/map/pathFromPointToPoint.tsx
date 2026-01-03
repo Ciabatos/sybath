@@ -1,5 +1,5 @@
+import { TJoinMapByXY } from "@/methods/functions/deprecated/joinMap"
 import { astar, Graph } from "@/methods/functions/map/astar.cjs"
-import { TJoinMapByXY } from "@/methods/functions/map/joinMap"
 
 type GridNode = {
   x: number // The X coordinate of the node
