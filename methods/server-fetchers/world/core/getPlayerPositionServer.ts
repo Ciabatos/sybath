@@ -18,7 +18,7 @@ export async function getPlayerPositionServer( params: TPlayerPositionParams): P
   return {
     raw: record!.raw,
     byKey: record!.byKey,
-    apiPath: `api/world/rpc/get-player-position/${params.mapId}/${params.playerId}`,
+    apiPath: `/api/world/rpc/get-player-position/${params.mapId}/${params.playerId}`,
     atomName: `playerPositionAtom`,
   }
 }

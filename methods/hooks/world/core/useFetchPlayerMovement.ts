@@ -11,7 +11,7 @@ import useSWR from "swr"
 export function useFetchPlayerMovement( params: TPlayerMovementParams) {
   const setPlayerMovement = useSetAtom(playerMovementAtom)
 
-  const { data } = useSWR<TPlayerMovement[]>(`api/world/rpc/get-player-movement/${params.playerId}`, { refreshInterval: 3000 })
+  const { data } = useSWR<TPlayerMovement[]>(`/api/world/rpc/get-player-movement/${params.playerId}`, { refreshInterval: 3000 })
 
   const playerMovement = data
   ? (arrayToObjectKey(["x", "y"], data) as TPlayerMovementRecordByXY)

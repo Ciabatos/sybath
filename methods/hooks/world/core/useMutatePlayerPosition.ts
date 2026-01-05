@@ -8,7 +8,7 @@ import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutatePlayerPosition( params: TPlayerPositionParams) {
-  const { mutate } = useSWR<TPlayerPosition[]>(`api/world/rpc/get-player-position/${params.mapId}/${params.playerId}`)
+  const { mutate } = useSWR<TPlayerPosition[]>(`/api/world/rpc/get-player-position/${params.mapId}/${params.playerId}`)
   const setPlayerPosition = useSetAtom(playerPositionAtom)
   
 

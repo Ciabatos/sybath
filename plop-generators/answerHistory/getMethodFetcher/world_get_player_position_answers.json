@@ -65,7 +65,7 @@
   ],
   "sqlParamsPlaceholders": "$1, $2",
   "apiPath": "app/api/world/rpc/get-player-position/[mapId]/[playerId]/route.ts",
-  "apiPathParams": "api/world/rpc/get-player-position/${params.mapId}/${params.playerId}",
+  "apiPathParams": "/api/world/rpc/get-player-position/${params.mapId}/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": false
 }

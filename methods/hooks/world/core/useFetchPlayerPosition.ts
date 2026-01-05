@@ -11,7 +11,7 @@ import useSWR from "swr"
 export function useFetchPlayerPosition( params: TPlayerPositionParams) {
   const setPlayerPosition = useSetAtom(playerPositionAtom)
 
-  const { data } = useSWR<TPlayerPosition[]>(`api/world/rpc/get-player-position/${params.mapId}/${params.playerId}`, { refreshInterval: 3000 })
+  const { data } = useSWR<TPlayerPosition[]>(`/api/world/rpc/get-player-position/${params.mapId}/${params.playerId}`, { refreshInterval: 3000 })
 
   const playerPosition = data
   ? (arrayToObjectKey(["x", "y"], data) as TPlayerPositionRecordByXY)

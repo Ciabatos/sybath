@@ -18,7 +18,7 @@ export async function getPlayerMovementServer( params: TPlayerMovementParams): P
   return {
     raw: record!.raw,
     byKey: record!.byKey,
-    apiPath: `api/world/rpc/get-player-movement/${params.playerId}`,
+    apiPath: `/api/world/rpc/get-player-movement/${params.playerId}`,
     atomName: `playerMovementAtom`,
   }
 }

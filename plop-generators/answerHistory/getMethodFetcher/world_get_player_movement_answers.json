@@ -60,12 +60,6 @@
   ],
   "sqlParamsPlaceholders": "$1",
   "apiPath": "app/api/world/rpc/get-player-movement/[playerId]/route.ts",
-  "apiPathParams": "api/world/rpc/get-player-movement/${params.playerId}",
-  "generateMutation": true,
-  "mutationMergeOldData": false,
-  "selectedGenerators": [
-    "getMethodAction",
-    "getMethodFetcher",
-    "getTable"
-  ]
+  "apiPathParams": "/api/world/rpc/get-player-movement/${params.playerId}",
+  "generateMutation": false
 }
