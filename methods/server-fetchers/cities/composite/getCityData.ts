@@ -8,18 +8,17 @@ import { getBuildingsBuildingsByKeyServer } from "@/methods/server-fetchers/buil
 import { getBuildingsBuildingTypesServer } from "@/methods/server-fetchers/buildings/core/getBuildingsBuildingTypesServer"
 import { getCitiesCityTilesByKeyServer } from "@/methods/server-fetchers/cities/core/getCitiesCityTilesByKeyServer"
 import { getPlayerCityServer } from "@/methods/server-fetchers/cities/core/getPlayerCityServer"
-import { getGetPlayerInventoryServer } from "@/methods/server-fetchers/inventory/core/getGetPlayerInventoryServer"
 import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
 import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
 
 export async function getCityData(clientCityId: number, playerId: number) {
   const city = await getPlayerCityServer({ playerId })
 
-  const cityId = city.byKey[clientCityId].cityId
-
-  if (!cityId) {
+  if (!city || !city.byKey[clientCityId]) {
     return null
   }
+
+  const cityId = city.byKey[clientCityId].cityId
 
   const [
     cityTiles,
@@ -28,7 +27,7 @@ export async function getCityData(clientCityId: number, playerId: number) {
     buildings,
     skills,
     abilities,
-    playerIventory,
+    // playerIventory,
     playerSkills,
     playerAbilities,
     buildingTypes,
@@ -39,7 +38,7 @@ export async function getCityData(clientCityId: number, playerId: number) {
     getBuildingsBuildingsByKeyServer({ cityId }),
     getAttributesSkillsServer(),
     getAttributesAbilitiesServer(),
-    getGetPlayerInventoryServer({ playerId }),
+    // getGetPlayerInventoryServer({ playerId }),
     getPlayerSkillsServer({ playerId }),
     getPlayerAbilitiesServer({ playerId }),
     getBuildingsBuildingTypesServer(),
@@ -53,7 +52,7 @@ export async function getCityData(clientCityId: number, playerId: number) {
     buildings,
     skills,
     abilities,
-    playerIventory,
+    // playerIventory,
     playerSkills,
     playerAbilities,
     buildingTypes,
@@ -67,7 +66,7 @@ export async function getCityData(clientCityId: number, playerId: number) {
     buildings,
     skills,
     abilities,
-    playerIventory,
+    // playerIventory,
     playerSkills,
     playerAbilities,
     buildingTypes,
@@ -82,7 +81,7 @@ export async function getCityData(clientCityId: number, playerId: number) {
     buildings,
     skills,
     abilities,
-    playerIventory,
+    // playerIventory,
     playerSkills,
     playerAbilities,
     buildingTypes,

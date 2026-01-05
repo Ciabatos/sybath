@@ -8,12 +8,12 @@ import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
 import style from "./styles/Map.module.css"
 
 export default function MapWrapper() {
-  const { mapTiles } = useMapHandlingData()
+  const { mapId, mapTiles } = useMapHandlingData()
   const transformRef = useRef<ReactZoomPanPinchContentRef | null>(null)
 
   const [savedTransform] = useState(() => {
     if (typeof window !== "undefined") {
-      const stored = localStorage.getItem(`MapZoomState`)
+      const stored = localStorage.getItem(`Map${mapId}ZoomState`)
       if (stored) {
         return JSON.parse(stored)
       }
@@ -43,7 +43,7 @@ export default function MapWrapper() {
           initialPositionY={savedTransform.positionY}
           onTransformed={({ state }) => {
             localStorage.setItem(
-              "MapZoomState",
+              `Map${mapId}ZoomState`,
               JSON.stringify({
                 scale: state.scale,
                 positionX: state.positionX,

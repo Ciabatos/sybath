@@ -21,5 +21,5 @@ export function useMapHandlingData() {
   const { landscapeTypes } = useFetchWorldLandscapeTypes()
   const { districtTypes } = useFetchDistrictsDistrictTypes()
 
-  return { mapTiles, cities, districts, districtTypes, playerPosition, terrainTypes, landscapeTypes }
+  return { mapId, mapTiles, cities, districts, districtTypes, playerPosition, terrainTypes, landscapeTypes }
 }

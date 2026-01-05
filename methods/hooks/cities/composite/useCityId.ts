@@ -1,9 +1,11 @@
-import { cityIdAtom } from "@/store/atoms"
-import { useAtomValue, useSetAtom } from "jotai"
+import { useFetchPlayerCity } from "@/methods/hooks/cities/core/useFetchPlayerCity"
+import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 
 export function useCityId() {
-  const cityId = useAtomValue(cityIdAtom)
-  const setCityId = useSetAtom(cityIdAtom)
+  const { playerId } = usePlayerId()
+  const { playerCity } = useFetchPlayerCity({ playerId })
 
-  return { cityId, setCityId }
+  const cityId = Object.values(playerCity)[0].cityId
+
+  return { cityId }
 }

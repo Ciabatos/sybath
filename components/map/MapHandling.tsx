@@ -9,20 +9,20 @@ export default function MapHandling() {
 
   return (
     <>
-      {Object.entries(mapTiles).map(([key, mapTiles]) => (
+      {Object.entries(mapTiles).map(([key, tile]) => (
         <Map
           key={key}
-          mapTiles={mapTiles}
-          terrainTypes={terrainTypes[mapTiles.terrainTypeId]}
-          landscapeTypes={mapTiles.landscapeTypeId ? landscapeTypes[mapTiles.landscapeTypeId] : undefined}
-          cities={cities[`${mapTiles.x},${mapTiles.y}`]}
-          districts={districts[`${mapTiles.x},${mapTiles.y}`]}
+          mapTiles={tile}
+          terrainTypes={terrainTypes[tile.terrainTypeId]}
+          landscapeTypes={tile.landscapeTypeId ? landscapeTypes[tile.landscapeTypeId] : undefined}
+          cities={cities[`${tile.x},${tile.y}`]}
+          districts={districts[`${tile.x},${tile.y}`]}
           districtTypes={
-            districts[`${mapTiles.x},${mapTiles.y}`]
-              ? districtTypes[districts[`${mapTiles.x},${mapTiles.y}`].districtTypeId]
+            districts[`${tile.x},${tile.y}`]
+              ? districtTypes[districts[`${tile.x},${tile.y}`].districtTypeId]
               : undefined
           }
-          playerPosition={playerPosition[`${mapTiles.x},${mapTiles.y}`]}
+          playerPosition={playerPosition[`${tile.x},${tile.y}`]}
         />
       ))}
     </>

@@ -17,11 +17,11 @@ import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core
 export async function getMapData(clientMapId: number, playerId: number) {
   const map = await getPlayerMapServer({ playerId })
 
-  const mapId = map.byKey[clientMapId].mapId
-
-  if (!mapId) {
+  if (!map || !map.byKey[clientMapId]) {
     return null
   }
+
+  const mapId = map.byKey[clientMapId].mapId
 
   const [
     terrainTypes,

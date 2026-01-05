@@ -121,5 +121,29 @@
     "HTML (EEx)",
     "HTML (Eex)",
     "plist"
+  ],
+  "folder-color.pathColors": [
+    {
+      "folderPath": "sybath\\methods\\services\\",
+      "color": "foldercolorizer.color_0000cc"
+    },
+    {
+      "folderPath": "sybath\\methods\\services\\attributes\\",
+      "color": "foldercolorizer.color_000066"
+    }
+  ],
+  "folder-customization.folders": [
+    {
+      "path": "sybath\\methods\\services\\",
+      "badge": "💛"
+    },
+    {
+      "path": "sybath\\methods\\server-fetchers\\",
+      "badge": "💙"
+    },
+    {
+      "path": "sybath\\methods\\hooks\\",
+      "badge": "❤️"
+    }
   ]
 }

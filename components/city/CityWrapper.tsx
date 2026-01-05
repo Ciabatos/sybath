@@ -1,23 +1,13 @@
 "use client"
 
 import CityHandling from "@/components/city/CityHandling"
-import { TBuildingsBuildingTypesRecordById } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
-import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
-import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
-import { TJoinCityByXY } from "@/methods/functions/city/joinCity"
+import { useCityHandlingData } from "@/methods/hooks/cities/composite/useCityHandlingData"
 import { useRef, useState } from "react"
 import { ReactZoomPanPinchContentRef, TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
 import style from "./styles/Map.module.css"
 
-interface Props {
-  cityId: number
-  joinedCity: TJoinCityByXY
-  terrainTypes: TWorldTerrainTypesRecordById
-  landscapeTypes: TWorldLandscapeTypesRecordById
-  buildingsTypes: TBuildingsBuildingTypesRecordById
-}
-
-export default function CityWrapper({ cityId, joinedCity, terrainTypes, landscapeTypes, buildingsTypes }: Props) {
+export default function CityWrapper() {
+  const { cityId, cityTiles } = useCityHandlingData()
   const transformRef = useRef<ReactZoomPanPinchContentRef | null>(null)
 
   const [savedTransform] = useState(() => {
@@ -33,7 +23,7 @@ export default function CityWrapper({ cityId, joinedCity, terrainTypes, landscap
   // Lepszy sposób na wyliczenie maxX i maxY
   let maxX = 0
   let maxY = 0
-  Object.keys(joinedCity).forEach((key) => {
+  Object.keys(cityTiles).forEach((key) => {
     const [x, y] = key.split("_").map(Number)
     if (x > maxX) maxX = x
     if (y > maxY) maxY = y
@@ -69,13 +59,7 @@ export default function CityWrapper({ cityId, joinedCity, terrainTypes, landscap
               id='CityTiles'
               className={style.Tiles}
             >
-              <CityHandling
-                cityId={cityId}
-                joinedCity={joinedCity}
-                terrainTypes={terrainTypes}
-                landscapeTypes={landscapeTypes}
-                buildingsTypes={buildingsTypes}
-              />
+              <CityHandling />
             </div>
           </TransformComponent>
         </TransformWrapper>

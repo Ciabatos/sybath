@@ -1,23 +1,23 @@
 "use client"
 
 import style from "@/components/map/styles/Tile.module.css"
-import { TCitiesCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
-import { TDistrictsDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/districts/districts"
-import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
-import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
-import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
-import { TPlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
-import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
+import { TCitiesCities } from "@/db/postgresMainDatabase/schemas/cities/cities"
+import { TDistrictsDistricts } from "@/db/postgresMainDatabase/schemas/districts/districts"
+import { TDistrictsDistrictTypes } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
+import { TWorldLandscapeTypes } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
+import { TWorldMapTiles } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
+import { TPlayerPosition } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
+import { TWorldTerrainTypes } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { createImage } from "@/methods/functions/map/createImage"
 
 interface Props {
-  mapTiles: TWorldMapTilesRecordByXY[keyof TWorldMapTilesRecordByXY]
-  terrainTypes: TWorldTerrainTypesRecordById[keyof TWorldTerrainTypesRecordById]
-  landscapeTypes?: TWorldLandscapeTypesRecordById[keyof TWorldLandscapeTypesRecordById]
-  cities?: TCitiesCitiesRecordByMapTileXMapTileY[keyof TCitiesCitiesRecordByMapTileXMapTileY]
-  districts?: TDistrictsDistrictsRecordByMapTileXMapTileY[keyof TDistrictsDistrictsRecordByMapTileXMapTileY]
-  districtTypes?: TDistrictsDistrictTypesRecordById[keyof TDistrictsDistrictTypesRecordById]
-  playerPosition?: TPlayerPositionRecordByXY[keyof TPlayerPositionRecordByXY]
+  mapTiles: TWorldMapTiles
+  terrainTypes: TWorldTerrainTypes
+  landscapeTypes?: TWorldLandscapeTypes
+  cities?: TCitiesCities
+  districts?: TDistrictsDistricts
+  districtTypes?: TDistrictsDistrictTypes
+  playerPosition?: TPlayerPosition
 }
 
 export default function Map(props: Props) {

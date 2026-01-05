@@ -1,35 +1,25 @@
 "use client"
 
 import City from "@/components/city/City"
-import { TBuildingsBuildingTypesRecordById } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
-import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
-import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
-import { TJoinCityByXY } from "@/methods/functions/city/joinCity"
-import { useRefreshJoinedCity } from "@/methods/hooks/cities/composite/useRefreshJoinedCity"
+import { useCityHandlingData } from "@/methods/hooks/cities/composite/useCityHandlingData"
 
-interface Props {
-  cityId: number
-  joinedCity: TJoinCityByXY
-  terrainTypes: TWorldTerrainTypesRecordById
-  landscapeTypes: TWorldLandscapeTypesRecordById
-  buildingsTypes: TBuildingsBuildingTypesRecordById
-}
-
-export default function CityHandling({ cityId, joinedCity, terrainTypes, landscapeTypes, buildingsTypes }: Props) {
-  const { refreshedJoinedCity } = useRefreshJoinedCity({
-    cityId,
-    joinedCity,
-    terrainTypes,
-    landscapeTypes,
-    buildingsTypes,
-  })
+export default function CityHandling() {
+  const { cityTiles, terrainTypes, landscapeTypes, buildings, buildingTypes } = useCityHandlingData()
 
   return (
     <>
-      {Object.entries(refreshedJoinedCity).map(([key, tile]) => (
+      {Object.entries(cityTiles).map(([key, tile]) => (
         <City
           key={key}
-          tile={tile}
+          cityTiles={tile}
+          terrainTypes={terrainTypes[tile.terrainTypeId]}
+          landscapeTypes={tile.landscapeTypeId ? landscapeTypes[tile.landscapeTypeId] : undefined}
+          buildings={buildings[`${tile.x},${tile.y}`]}
+          buildingTypes={
+            buildings[`${tile.x},${tile.y}`]
+              ? buildingTypes[buildings[`${tile.x},${tile.y}`].buildingTypeId]
+              : undefined
+          }
         />
       ))}
     </>

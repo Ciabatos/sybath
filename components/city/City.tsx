@@ -1,20 +1,28 @@
 "use client"
 
 import style from "@/components/city/styles/Tile.module.css"
-import { TJoinCity } from "@/methods/functions/city/joinCity"
+import { TBuildingsBuildings } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
+import { TBuildingsBuildingTypes } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
+import { TCitiesCityTiles } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
+import { TWorldLandscapeTypes } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
+import { TWorldTerrainTypes } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { createImage } from "@/methods/functions/map/createImage"
 
 interface Props {
-  tile: TJoinCity
+  cityTiles: TCitiesCityTiles
+  terrainTypes: TWorldTerrainTypes
+  landscapeTypes?: TWorldLandscapeTypes
+  buildings?: TBuildingsBuildings
+  buildingTypes?: TBuildingsBuildingTypes
 }
 
-export default function City({ tile }: Props) {
+export default function City(props: Props) {
   const { createLandscapeImage, createBackgroundImage, creatBuildingsImage, combineImages } = createImage()
   // const { actualCityTileStatus, newCityTilesActionStatus } = useCityTilesActionStatus()
   // const { setClickedCityTile } = useCityTilesActions()
-  const backgroundImage = createBackgroundImage(tile.terrainTypes.imageUrl)
-  const landscapeImage = createLandscapeImage(tile.landscapeTypes?.imageUrl)
-  const buildingsImage = creatBuildingsImage(tile.buildingTypes?.imageUrl)
+  const backgroundImage = createBackgroundImage(props.terrainTypes.imageUrl)
+  const landscapeImage = createLandscapeImage(props.landscapeTypes?.imageUrl)
+  const buildingsImage = creatBuildingsImage(props.buildingTypes?.imageUrl)
   const combinedImages = combineImages(landscapeImage, backgroundImage, buildingsImage)
 
   // function handleClickOnCityTile(tile: TJoinCity) {
@@ -35,8 +43,8 @@ export default function City({ tile }: Props) {
       className={style.BackgroundImage}
       onDoubleClick={() => null} //handleClickOnCityTile(tile)}
       style={{
-        gridColumnStart: tile.tiles.x,
-        gridRowStart: tile.tiles.y,
+        gridColumnStart: props.cityTiles.x,
+        gridRowStart: props.cityTiles.y,
         backgroundImage: combinedImages,
       }}
     >
@@ -49,7 +57,7 @@ export default function City({ tile }: Props) {
         ></div>
       )}
       <div>
-        {tile.tiles.x}, {tile.tiles.y}
+        {props.cityTiles.x}, {props.cityTiles.y}
       </div>
     </div>
   )
