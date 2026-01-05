@@ -1,5 +1,6 @@
 "use client"
 
+import LayersHandling from "@/components/map/layers/LayersHandling"
 import style from "@/components/map/styles/Tile.module.css"
 import { TCitiesCities } from "@/db/postgresMainDatabase/schemas/cities/cities"
 import { TDistrictsDistricts } from "@/db/postgresMainDatabase/schemas/districts/districts"
@@ -74,7 +75,7 @@ export default function Map(props: Props) {
       )}
       <div>
         {props.mapTiles.x}, {props.mapTiles.y}, {props.cities?.name}, {props.districts?.name}
-        {/* <LayersHandling props={props} /> */}
+        <LayersHandling {...props} />
       </div>
     </div>
   )
