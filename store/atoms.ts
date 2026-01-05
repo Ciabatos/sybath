@@ -18,12 +18,10 @@ import { TPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schema
 import { TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/items"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
-import { TWorldMapsRecordById } from "@/db/postgresMainDatabase/schemas/world/maps"
 import { TPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
 import { TPlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { TJoinCity, TJoinCityByXY } from "@/methods/functions/city/joinCity"
-import { TJoinMap } from "@/methods/functions/deprecated/joinMap3"
 import { TAreaRecordByXY } from "@/methods/hooks/world/composite/useMapTilesArea"
 import { TMapTilesMovementPathRecordByXY } from "@/methods/hooks/world/composite/useMapTilesPathFromPointToPoint"
 import { EPanels } from "@/types/enumeration/EPanels"
@@ -41,7 +39,7 @@ export const clickedCityTileAtom = atom<TJoinCity>()
 export const joinedCityAtom = atom<TJoinCityByXY>({})
 
 //Map
-export const clickedTileAtom = atom<TJoinMap>()
+export const clickedTileAtom = atom<number>(0)
 
 //Player
 export const playerIdAtom = atom<number>(0)
@@ -60,7 +58,6 @@ export const statsAtom = atom<TAttributesStatsRecordById>({})
 export const abilitiesAtom = atom<TAttributesAbilitiesRecordById>({})
 export const skillsAtom = atom<TAttributesSkillsRecordById>({})
 export const terrainTypesAtom = atom<TWorldTerrainTypesRecordById>({})
-export const mapsAtom = atom<TWorldMapsRecordById>({})
 export const mapTilesAtom = atom<TWorldMapTilesRecordByXY>({})
 export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
 
