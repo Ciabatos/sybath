@@ -8,16 +8,18 @@ import { getCitiesCitiesByKeyServer } from "@/methods/server-fetchers/cities/cor
 import { getDistrictsDistrictsByKeyServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictsByKeyServer"
 import { getDistrictsDistrictTypesServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictTypesServer"
 import { getPlayerInventoryServer } from "@/methods/server-fetchers/inventory/core/getPlayerInventoryServer"
+import { getPlayerMapServer } from "@/methods/server-fetchers/world/core/getPlayerMapServer"
 import { getPlayerPositionServer } from "@/methods/server-fetchers/world/core/getPlayerPositionServer"
 import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
-import { getWorldMapsServer } from "@/methods/server-fetchers/world/core/getWorldMapsServer"
 import { getWorldMapTilesByKeyServer } from "@/methods/server-fetchers/world/core/getWorldMapTilesByKeyServer"
 import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
 
 export async function getMapData(clientMapId: number, playerId: number) {
-  const map = await getWorldMapsServer()
-  const mapId = map.raw[0].id
-  if (mapId !== clientMapId) {
+  const map = await getPlayerMapServer({ playerId })
+
+  const mapId = map.byKey[clientMapId].mapId
+
+  if (!mapId) {
     return null
   }
 

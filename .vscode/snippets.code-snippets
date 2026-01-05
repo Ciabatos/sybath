@@ -540,5 +540,12 @@
       "const { playerInventory } = useFetchPlayerInventory({$1})"
     ],
     "description": "Destructuring usePlayerInventory hook"
+  },  
+  "Destructure usePlayerMap": {
+    "prefix": "hook_world_core_usePlayerMap",
+    "body": [
+      "const { playerMap } = useFetchPlayerMap({$1})"
+    ],
+    "description": "Destructuring usePlayerMap hook"
   },//Automatic Snippets
 }

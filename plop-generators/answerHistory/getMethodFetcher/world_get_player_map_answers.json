@@ -1,0 +1,44 @@
+{
+  "schema": "world",
+  "method": "get_player_map",
+  "methodCamelName": "playerMap",
+  "methodPascalName": "PlayerMap",
+  "methodKebabName": "get-player-map",
+  "methodName": "getPlayerMap",
+  "methodTypeName": "TPlayerMap",
+  "methodParamsTypeName": "TPlayerMapParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "map_id",
+      "camelName": "mapId",
+      "pascalName": "MapId",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"mapId\"]",
+  "indexParamsColumns": "playerId",
+  "indexTypeMethodName": "MapId",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TPlayerMapRecordByMapId",
+  "indexColumns": [
+    {
+      "name": "map_id",
+      "camelName": "mapId",
+      "pascalName": "MapId",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1",
+  "apiPath": "app/api/world/rpc/get-player-map/[playerId]/route.ts",
+  "apiPathParams": "/api/world/rpc/get-player-map/${params.playerId}",
+  "generateMutation": false
+}
