@@ -1,0 +1,44 @@
+{
+  "schema": "cities",
+  "method": "get_player_city",
+  "methodCamelName": "playerCity",
+  "methodPascalName": "PlayerCity",
+  "methodKebabName": "get-player-city",
+  "methodName": "getPlayerCity",
+  "methodTypeName": "TPlayerCity",
+  "methodParamsTypeName": "TPlayerCityParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "city_id",
+      "camelName": "cityId",
+      "pascalName": "CityId",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"cityId\"]",
+  "indexParamsColumns": "playerId",
+  "indexTypeMethodName": "CityId",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TPlayerCityRecordByCityId",
+  "indexColumns": [
+    {
+      "name": "city_id",
+      "camelName": "cityId",
+      "pascalName": "CityId",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1",
+  "apiPath": "app/api/cities/rpc/get-player-city/[playerId]/route.ts",
+  "apiPathParams": "/api/cities/rpc/get-player-city/${params.playerId}",
+  "generateMutation": false
+}

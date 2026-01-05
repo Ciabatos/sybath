@@ -547,5 +547,12 @@
       "const { playerMap } = useFetchPlayerMap({$1})"
     ],
     "description": "Destructuring usePlayerMap hook"
+  },  
+  "Destructure usePlayerCity": {
+    "prefix": "hook_cities_core_usePlayerCity",
+    "body": [
+      "const { playerCity } = useFetchPlayerCity({$1})"
+    ],
+    "description": "Destructuring usePlayerCity hook"
   },//Automatic Snippets
 }

@@ -2,6 +2,7 @@
 import { auth } from "@/auth"
 import CityWrapper from "@/components/city/CityWrapper"
 import { getCityData } from "@/methods/server-fetchers/cities/composite/getCityData"
+import { AtomsHydrator } from "@/providers/jotai-hydrator-provider"
 import { SWRProvider } from "@/providers/swr-provider"
 import styles from "./page.module.css"
 
@@ -17,34 +18,30 @@ export default async function CityPage({ params }: { params: TParams }) {
     return null
   }
 
-  const cityId = (await params).cityId
+  const clientCityId = (await params).cityId
 
-  if (!cityId || isNaN(cityId)) {
+  if (!clientCityId || isNaN(clientCityId)) {
     return null
   }
-  const cityData = await getCityData(cityId, playerId)
+  const cityData = await getCityData(clientCityId, playerId)
 
   if (!cityData) {
     return null
   }
 
-  const { terrainTypes, landscapeTypes, buildingTypes, joinedCity, fallbackData } = cityData
+  const { atomHydrationData, fallbackData } = cityData
 
   return (
     <div className={styles.main}>
-      <SWRProvider
-        value={{
-          fallback: fallbackData,
-        }}
-      >
-        <CityWrapper
-          cityId={cityId}
-          terrainTypes={terrainTypes.byKey}
-          landscapeTypes={landscapeTypes.byKey}
-          buildingsTypes={buildingTypes.byKey}
-          joinedCity={joinedCity}
-        />
-      </SWRProvider>
+      <AtomsHydrator atomValues={[...atomHydrationData]}>
+        <SWRProvider
+          value={{
+            fallback: fallbackData,
+          }}
+        >
+          <CityWrapper />
+        </SWRProvider>
+      </AtomsHydrator>
     </div>
   )
 }
