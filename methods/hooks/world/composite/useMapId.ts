@@ -1,9 +1,9 @@
-import { mapIdAtom } from "@/store/atoms"
-import { useAtomValue, useSetAtom } from "jotai"
+import { useFetchWorldMaps } from "@/methods/hooks/world/core/useFetchWorldMaps"
 
 export function useMapId() {
-  const mapId = useAtomValue(mapIdAtom)
-  const setMapId = useSetAtom(mapIdAtom)
+  const { maps } = useFetchWorldMaps()
 
-  return { mapId, setMapId }
+  const mapId = maps[1]?.id
+
+  return { mapId }
 }

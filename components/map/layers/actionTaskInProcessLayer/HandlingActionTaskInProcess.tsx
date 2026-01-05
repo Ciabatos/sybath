@@ -1,7 +1,7 @@
 "use client"
 
 import MovementTaskInProcessLayer from "@/components/map/layers/actionTaskInProcessLayer/MovementTaskInProcessLayer"
-import { TJoinMap } from "@/methods/functions/deprecated/joinMap"
+import { TJoinMap } from "@/methods/functions/deprecated/joinMap3"
 import { useFetchActionTaskInProcess } from "@/methods/hooks/tasks/core/useFetchActionTaskInProcess"
 
 interface Props {

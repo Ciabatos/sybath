@@ -1,14 +1,14 @@
 "use client"
 
 import MapHandling from "@/components/map/MapHandling"
-import { useRefreshJoinedMap } from "@/methods/hooks/world/composite/useRefreshJoinedMap"
+import { useMapHandlingData } from "@/methods/hooks/world/composite/useMapHandlingData"
 import { useRef, useState } from "react"
 import type { ReactZoomPanPinchContentRef } from "react-zoom-pan-pinch"
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
 import style from "./styles/Map.module.css"
 
 export default function MapWrapper() {
-  const { refreshedJoinedMap } = useRefreshJoinedMap()
+  const { mapTiles } = useMapHandlingData()
   const transformRef = useRef<ReactZoomPanPinchContentRef | null>(null)
 
   const [savedTransform] = useState(() => {
@@ -24,7 +24,7 @@ export default function MapWrapper() {
   // Lepszy sposób na wyliczenie maxX i maxY
   let maxX = 0
   let maxY = 0
-  Object.keys(refreshedJoinedMap).forEach((key) => {
+  Object.keys(mapTiles).forEach((key) => {
     const [x, y] = key.split(",").map(Number)
     if (x > maxX) maxX = x
     if (y > maxY) maxY = y

@@ -23,7 +23,7 @@ import { TPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/wor
 import { TPlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { TJoinCity, TJoinCityByXY } from "@/methods/functions/city/joinCity"
-import { TJoinMap, TJoinMapByXY } from "@/methods/functions/deprecated/joinMap"
+import { TJoinMap } from "@/methods/functions/deprecated/joinMap3"
 import { TAreaRecordByXY } from "@/methods/hooks/world/composite/useMapTilesArea"
 import { TMapTilesMovementPathRecordByXY } from "@/methods/hooks/world/composite/useMapTilesPathFromPointToPoint"
 import { EPanels } from "@/types/enumeration/EPanels"
@@ -42,8 +42,6 @@ export const joinedCityAtom = atom<TJoinCityByXY>({})
 
 //Map
 export const clickedTileAtom = atom<TJoinMap>()
-export const joinedMapAtom = atom<TJoinMapByXY>({})
-export const mapIdAtom = atom<number>(0)
 
 //Player
 export const playerIdAtom = atom<number>(0)

@@ -18,13 +18,13 @@ export default async function WorldPage({ params }: { params: TParams }) {
     return null
   }
 
-  const mapId = (await params).mapId
+  const clientMapId = Number((await params).mapId)
 
-  if (!mapId || isNaN(mapId)) {
+  if (!clientMapId || isNaN(clientMapId)) {
     return null
   }
 
-  const mapData = await getMapData(mapId, playerId)
+  const mapData = await getMapData(clientMapId, playerId)
 
   if (!mapData) {
     return null

@@ -3,13 +3,16 @@
 
 import { TDoPlayerMovementParams, doPlayerMovement } from "@/db/postgresMainDatabase/schemas/world/doPlayerMovement"
 import { pathFromPointToPoint } from "@/methods/functions/map/pathFromPointToPoint"
-import { getJoinedMap } from "@/methods/server-fetchers/world/composite/getJoinedMap"
+import { getCitiesCitiesByKeyServer } from "@/methods/server-fetchers/cities/core/getCitiesCitiesByKeyServer"
+import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
+import { getWorldMapsServer } from "@/methods/server-fetchers/world/core/getWorldMapsServer"
+import { getWorldMapTilesByKeyServer } from "@/methods/server-fetchers/world/core/getWorldMapTilesByKeyServer"
+import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
 
 //MANUAL CODE - START
 
 export type TDoPlayerMovementServiceParams = {
   playerId: number
-  mapId: number
   startX: number
   startY: number
   endX: number
@@ -21,9 +24,13 @@ export type TDoPlayerMovementServiceParams = {
 export async function doPlayerMovementService(params: TDoPlayerMovementServiceParams) {
   //MANUAL CODE - START
 
-  const joinedMap = await getJoinedMap(params.mapId, params.playerId)
+  const mapId = await getWorldMapsServer()
+  const mapTiles = await getWorldMapTilesByKeyServer({ mapId: mapId.raw[0].id })
+  const terrainTypes = await getWorldTerrainTypesServer()
+  const landscapeTypes = await getWorldLandscapeTypesServer()
+  const cities = await getCitiesCitiesByKeyServer({ mapId: mapId.raw[0].id })
 
-  if (!joinedMap) {
+  if (!mapTiles) {
     return
   }
   const path = pathFromPointToPoint({
@@ -31,7 +38,10 @@ export async function doPlayerMovementService(params: TDoPlayerMovementServicePa
     startY: params.startY,
     endX: params.endX,
     endY: params.endY,
-    mapTiles: joinedMap.joinedMap,
+    mapTiles: mapTiles.byKey,
+    terrainTypes: terrainTypes.byKey,
+    landscapeTypes: landscapeTypes.byKey,
+    cities: cities.byKey,
   })
 
   //MANUAL CODE - END

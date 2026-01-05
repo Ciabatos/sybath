@@ -13,7 +13,6 @@ import { useFetchWorldTerrainTypes } from "@/methods/hooks/world/core/useFetchWo
 export function useMapHandlingData() {
   const { playerId } = usePlayerId()
   const { mapId } = useMapId()
-  //   const [refreshedJoinedMap, setJoinedMap] = useAtom(joinedMapAtom)
   const { mapTiles } = useFetchWorldMapTilesByKey({ mapId })
   const { cities } = useFetchCitiesCitiesByKey({ mapId })
   const { playerPosition } = useFetchPlayerPosition({ mapId, playerId })

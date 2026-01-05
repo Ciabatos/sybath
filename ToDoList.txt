@@ -12,11 +12,13 @@ transport
 +Mechaniki budowania budynkow
 
 --Nomadic
-  Tylko trade for free for citiziens / trade dla obcych ustalony
+  Trade normalny tylko ustawianie ceny dla citizens/obcy z czego AI zawsze bieze za darmo jedzenie, zakaz handlu foodem !
   Ludzie AI nie posiadaja golda
   Ludzie AI automatycznie przydzieleni do zbierania fooda wszyscy
+  Produkcja fooda ze zbieractwa zalezy od exploracji regionu w ktorym jest nomadic tribe
   Mozna sprzedawac ludzi AI
-  Nie trzeba wyeksplorowac regionu do 100%, wystarczy hex
+  Nie trzeba wyeksplorowac regionu do 100%, wystarczy hex na ktorym jest tribe
+  Sluzy do namnozenia ludzi, zachecenie do exploracji regionu, budowaniu najemnikow i stylu gry barbarzyncow pladrowania
 --Wioska
   decyduje sie na kingdome istniejacy lub zaklada nowy 
   ma juz normalny targ
@@ -61,7 +63,7 @@ Mapa
 UI i flow dla „systemu informacji”
 
 joinMap
-wyjebac joinMap i przesylac tylko raw data, w handlingu uzyc laczenia po kluczach i przesylac tylko wymagane dane
+wyjebac joinMap i przesylac tylko raw data, w handlingu uzyc laczenia po kluczach i przesylac tylko wymagane dane, po prostu wywalic na serwerze laczenie i przeslac tylko dane, laczenie zrobic na cliencie
 wyjebac getjoinMap z server-fetchers i przeslac raw data w propsie poczatkowym za pomoca getMapData
 jest git, rerendery maja istniec !
 

@@ -10,6 +10,7 @@ export type TSelectPlayerPathParams = {
   startY: number
   endX: number
   endY: number
+  mapId: number
 }
 
 export type TSelectAndMovePlayerParams = {

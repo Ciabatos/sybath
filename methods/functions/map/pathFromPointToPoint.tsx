@@ -1,4 +1,7 @@
-import { TJoinMapByXY } from "@/methods/functions/deprecated/joinMap"
+import { TCitiesCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
+import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
+import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
+import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { astar, Graph } from "@/methods/functions/map/astar.cjs"
 
 type GridNode = {
@@ -18,7 +21,10 @@ type TPathFromPointToPointParams = {
   startY: number
   endX: number
   endY: number
-  mapTiles: TJoinMapByXY
+  mapTiles: TWorldMapTilesRecordByXY
+  terrainTypes: TWorldTerrainTypesRecordById
+  landscapeTypes: TWorldLandscapeTypesRecordById
+  cities: TCitiesCitiesRecordByMapTileXMapTileY
 }
 
 export type TPathFromPointToPoint = {
@@ -40,7 +46,22 @@ export function pathFromPointToPoint(params: TPathFromPointToPointParams): TPath
   const grid = Array.from({ length: gridSize }, () => Array(gridSize).fill(0))
 
   mapTilesArray.forEach((tile) => {
-    grid[tile.tiles.x][tile.tiles.y] = tile.moveCost ?? 0
+    let cost = 0
+
+    if (params.terrainTypes[tile.terrainTypeId]) {
+      cost += params.terrainTypes[tile.terrainTypeId].moveCost
+    }
+
+    if (tile.landscapeTypeId !== undefined && params.landscapeTypes[tile.landscapeTypeId]) {
+      cost += params.landscapeTypes[tile.landscapeTypeId].moveCost
+    }
+
+    if (params.cities[`${tile.x},${tile.y}`]) {
+      cost += params.cities[`${tile.x},${tile.y}`].moveCost
+    }
+
+    grid[tile.x][tile.y] = cost
+
     // koszt ruchu tiles
     // 0 - wall
     // im wieksze tym wiekszy koszt
@@ -57,11 +78,11 @@ export function pathFromPointToPoint(params: TPathFromPointToPointParams): TPath
   const fullPath = [startNode, ...resultWithWeight]
 
   const filteredMapTiles = fullPath.map((node) => {
-    const tile = mapTilesArray.find((tile) => tile.tiles.x === node.x && tile.tiles.y === node.y)
+    const tile = mapTilesArray.find((tile) => tile.x === node.x && tile.y === node.y)
     return {
       x: node.x,
       y: node.y,
-      moveCost: tile?.moveCost ?? 0,
+      moveCost: grid[node.x][node.y],
       totalMovementCost: node.weight,
     }
   })
