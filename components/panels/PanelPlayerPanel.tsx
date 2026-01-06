@@ -1,5 +1,6 @@
-"use client"
+import { PanelPlayerAbilities } from "@/components/panels/PanelPlayerAbilities"
 import { PanelPlayerInventory } from "@/components/panels/PanelPlayerInventory"
+import { PanelPlayerSkills } from "@/components/panels/PanelPlayerSkills"
 import styles from "@/components/panels/styles/PanelPlayerPanel.module.css"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -20,7 +21,6 @@ export default function PanelPlayerPanel({ closePanel }: Props) {
   function handleClosePanel() {
     setModalLeftTopBar(EPanelsLeftTopBar.PlayerPortrait)
   }
-
   return (
     <div className={styles.overlay}>
       <div className={styles.panel}>
@@ -112,21 +112,14 @@ export default function PanelPlayerPanel({ closePanel }: Props) {
               value='Skills'
               className={styles.tabsContent}
             >
-              <p className={styles.textContent}>
-                Skills slużą do pokazania jakie umiejętności posiada postać. Można je przekazywać innym postaciom ale
-                nie są to aktywne abilities
-              </p>
+              <PanelPlayerSkills />
             </TabsContent>
 
             <TabsContent
               value='Abilities'
               className={styles.tabsContent}
             >
-              <p className={styles.textContent}>
-                Abilities służą do używania, są to aktywne umiejętności, które można używać w walce lub produkcji i
-                innych sytuacjach, ability powstaja jeżeli masz różne kombinacje skills, stats i knowledge.
-                {/* <PanelPlayerAbilities /> */}
-              </p>
+              <PanelPlayerAbilities />
             </TabsContent>
 
             <TabsContent
