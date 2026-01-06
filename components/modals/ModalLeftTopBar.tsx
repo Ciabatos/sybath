@@ -5,7 +5,7 @@ import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 
 export default function ModalLeftTopBar() {
   const { ModalLeftTopBar, resetModalLeftTopBar } = useModalLeftTopBar()
-  console.log("Rendering ModalLeftTopBar with component:", ModalLeftTopBar)
+
   if (!ModalLeftTopBar) return null
 
   return (

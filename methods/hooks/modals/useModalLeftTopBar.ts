@@ -7,7 +7,6 @@ import { useAtom } from "jotai"
 
 export function useModalLeftTopBar() {
   const [modalLeftTopBar, setModalLeftTopBar] = useAtom(modalLeftTopBarAtom)
-  console.log("Current modalLeftTopBar value:", modalLeftTopBar)
   const ModalLeftTopBar = panelComponentMap[modalLeftTopBar]
 
   function resetModalLeftTopBar() {

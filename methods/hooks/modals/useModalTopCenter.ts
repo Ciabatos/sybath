@@ -2,26 +2,12 @@
 
 import { modalTopCenterAtom } from "@/store/atoms"
 import { EPanels } from "@/types/enumeration/EPanels"
+import { panelComponentMap } from "@/types/panels/leftTopBarComponents"
 import { useAtom } from "jotai"
-import { FC, useEffect, useState } from "react"
-import { useLazyPanelLoader } from "./useLazyPanelLoader"
 
 export function useModalTopCenter() {
   const [modalTopCenter, setModalTopCenter] = useAtom(modalTopCenterAtom)
-  const { loadPanel } = useLazyPanelLoader()
-
-  const [ModalTopCenterPanel, setActivePanel] = useState<FC<{ closePanel: () => void }> | null>(null)
-
-  useEffect(() => {
-    if (modalTopCenter === EPanels.Inactive) {
-      setActivePanel(null)
-      return
-    }
-
-    loadPanel(modalTopCenter).then((panel) => {
-      setActivePanel(panel)
-    })
-  }, [modalTopCenter, loadPanel])
+  const ModalTopCenterPanel = panelComponentMap[modalTopCenter]
 
   function resetModalTopCeneter() {
     setModalTopCenter(EPanels.Inactive)

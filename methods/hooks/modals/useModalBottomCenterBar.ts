@@ -2,26 +2,12 @@
 
 import { modalBottomCenterBarAtom } from "@/store/atoms"
 import { EPanels } from "@/types/enumeration/EPanels"
+import { panelComponentMap } from "@/types/panels/leftTopBarComponents"
 import { useAtom } from "jotai"
-import { FC, useEffect, useState } from "react"
-import { useLazyPanelLoader } from "./useLazyPanelLoader"
 
 export function useModalBottomCenterBar() {
   const [modalBottomCenterBar, setModalBottomCenterBar] = useAtom(modalBottomCenterBarAtom)
-  const { loadPanel } = useLazyPanelLoader()
-
-  const [ModalBottomCenterBar, setActivePanel] = useState<FC<{ closePanel: () => void }> | null>(null)
-
-  useEffect(() => {
-    if (modalBottomCenterBar === EPanels.Inactive) {
-      setActivePanel(null)
-      return
-    }
-
-    loadPanel(modalBottomCenterBar).then((panel) => {
-      setActivePanel(panel)
-    })
-  }, [modalBottomCenterBar, loadPanel])
+  const ModalBottomCenterBar = panelComponentMap[modalBottomCenterBar]
 
   function resetModalBottomCenterBar() {
     setModalBottomCenterBar(EPanels.Inactive)
