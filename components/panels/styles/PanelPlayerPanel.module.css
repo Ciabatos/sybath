@@ -1,34 +1,221 @@
-.container {
-  position: relative;
-}
-
-.button {
-  top: 1.5rem; /* Adjust as needed */
-  left: 1.5rem; /* Adjust as needed */
-  z-index: 60;
-  cursor: pointer;
-  border: none;
-  border-radius: 50%;
-  padding: 10px;
+.overlay {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  backdrop-filter: blur(8px);
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .panel {
-  top: 0;
-  left: 0;
-  transform: translateX(0);
-  z-index: 50;
-  transition: transform 300ms ease-in-out;
-  max-width: 28rem; /* Adjust as needed */
-  height: 75vh;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  box-shadow:
+    inset 0 2px 12px rgba(0, 0, 0, 0.8),
+    0 8px 32px rgba(0, 0, 0, 0.9);
+  border: 4px solid rgba(120, 53, 15, 0.6);
+  border-radius: 0.5rem;
+  background: linear-gradient(to bottom, #0c0a09 0%, #1c1917 50%, #0c0a09 100%);
+  padding: 1.5rem;
+  width: 500px;
+  height: 90vh;
 }
 
-.panelClosed {
-  transform: translateX(-100%);
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  border: 1px solid rgba(120, 53, 15, 0.4);
+  border-radius: 0.375rem;
+  background-color: rgba(28, 25, 23, 0.6);
+  width: 2rem;
+  height: 2rem;
+  color: #c89a4a;
 }
 
-.panelContent {
+.closeButton:hover {
+  background-color: rgba(120, 53, 15, 0.4);
+  color: #d4a574;
+}
+
+.closeButtonIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(120, 53, 15, 0.3);
+  padding-bottom: 1rem;
+}
+
+.avatar {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  border: 4px solid rgba(120, 53, 15, 0.4);
+  border-radius: 9999px;
+  width: 5rem;
+  height: 5rem;
+}
+
+.avatarImage {
+  object-fit: cover;
+}
+
+.avatarFallback {
+  background-color: #292524;
+  color: #c89a4a;
+  font-size: 1.25rem;
+  font-family: "Cinzel", serif;
+}
+
+.headerInfo {
+  flex: 1;
+}
+
+.heroName {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+  color: #c89a4a;
+  font-weight: 700;
+  font-size: 1.5rem;
+  font-family: "Cinzel", serif;
+}
+
+.heroTitle {
+  color: rgba(180, 83, 9, 0.8);
+  font-size: 0.875rem;
+  font-family: "Cinzel", serif;
+}
+
+.mainContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.mainContentExpanded {
+  height: 100%;
+}
+
+.tabs {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+}
+
+.tabsList {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border: 1px solid rgba(120, 53, 15, 0.3);
+  background-color: rgba(28, 25, 23, 0.8);
+  width: 100%;
+}
+
+.tabsTrigger {
+  color: #d4a574;
+  font-family: "Cinzel", serif;
+}
+
+.tabsTrigger[data-state="active"] {
+  background-color: rgba(120, 53, 15, 0.6);
+  color: #e6c998;
+}
+
+.tabsContent {
+  flex: 1;
+  margin-top: 1rem;
+  overflow: auto;
+  color: rgba(200, 154, 74, 0.9);
+  font-family: "Lora", serif;
+}
+
+.tabsContentInventory {
+  flex: 1;
+  margin-top: 1rem;
+  overflow: hidden;
+}
+
+.statsContent {
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
-  height: 100%;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.textContent {
+  font-size: 0.875rem;
+}
+
+.toggleButton {
+  align-self: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(120, 53, 15, 0.4);
+  background-color: rgba(28, 25, 23, 0.6);
+  color: #c89a4a;
+}
+
+.toggleButton:hover {
+  background-color: rgba(120, 53, 15, 0.4);
+  color: #d4a574;
+}
+
+.partySection {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  border-top: 1px solid rgba(120, 53, 15, 0.3);
+  padding-top: 1rem;
+  min-height: 0;
+}
+
+.partyTabs {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+}
+
+.partyTabsList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid rgba(120, 53, 15, 0.3);
+  background-color: rgba(28, 25, 23, 0.8);
+  width: 100%;
+}
+
+.partyUnitsContent {
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.partyLeaderContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.partyAvatar {
+  border: 2px solid rgba(120, 53, 15, 0.4);
+  width: 4rem;
+  height: 4rem;
+}
+
+.formationButton {
+  border: 1px solid rgba(120, 53, 15, 0.4);
+  background-color: rgba(28, 25, 23, 0.6);
+  color: #c89a4a;
+}
+
+.formationButton:hover {
+  background-color: rgba(120, 53, 15, 0.4);
 }

@@ -7,4 +7,5 @@ export const componentMapLeftTopBar: Record<
 > = {
   [EPanelsLeftTopBar.Inactive]: null,
   [EPanelsLeftTopBar.PanelPlayerPanel]: React.lazy(() => import("@/components/panels/PanelPlayerPanel")),
+  [EPanelsLeftTopBar.PlayerPortrait]: React.lazy(() => import("@/components/panels/PlayerPortrait")),
 }
