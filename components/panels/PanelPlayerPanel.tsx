@@ -23,6 +23,7 @@ export default function PanelPlayerPanel() {
 
   return (
     <div className={styles.container}>
+      <p>dsadsadas</p>
       {!isOpen && (
         <Button
           onClick={handleOpenPanel}

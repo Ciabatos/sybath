@@ -9,6 +9,6 @@ export function useResetModalsOnRouteChange() {
   const { resetModals } = useResetModals()
 
   useEffect(() => {
-    resetModals()
+    // resetModals()
   }, [pathname, resetModals])
 }
