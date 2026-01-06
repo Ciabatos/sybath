@@ -143,3 +143,35 @@
     inset 0 -2px 4px rgba(0, 0, 0, 0.4),
     0 2px 8px rgba(0, 0, 0, 0.5);
 }
+
+/* Adding custom medieval scrollbar styles */
+* {
+  scrollbar-color: #8b6d3a #2b1810;
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  border: 1px solid #5a4022;
+  border-radius: 4px;
+  background: #2b1810;
+}
+
+*::-webkit-scrollbar-thumb {
+  border: 1px solid #5a4022;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #c89a4a 0%, #8b6d3a 100%);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  box-shadow: 0 0 6px rgba(200, 154, 74, 0.5);
+  background: linear-gradient(180deg, #d4a574 0%, #9a7a57 100%);
+}
+
+*::-webkit-scrollbar-corner {
+  background: #2b1810;
+}

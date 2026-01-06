@@ -1,25 +1,30 @@
 .container {
+  display: flex;
+  flex-direction: column;
   box-shadow:
     inset 0 2px 4px rgba(0, 0, 0, 0.5),
     0 4px 12px rgba(0, 0, 0, 0.6);
   border: 3px solid #c89a4a;
   border-radius: 8px;
   background: linear-gradient(135deg, #1a0f08 0%, #2b1810 100%);
-  padding: 1rem;
+  padding: 0.5rem; /* Removing padding to prevent overflow, updated to 0.5rem */
   width: 100%;
   height: 100%;
+  overflow: hidden; /* Adding overflow handling */
 }
 
 .grid {
   display: grid;
   position: relative;
+  flex: 1; /* Making grid flexible to fit container */
   gap: 4px;
   border: 2px solid #5a4022;
   border-radius: 4px;
   background: rgba(20, 10, 5, 0.8);
   padding: 8px;
   width: 100%;
-  height: 100%;
+  min-height: 0;
+  overflow: auto; /* Adding overflow auto for scrolling when needed */
 }
 
 .slot {
