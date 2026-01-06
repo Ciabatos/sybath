@@ -25,14 +25,17 @@ import { TPlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/wor
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { TAreaRecordByXY } from "@/methods/hooks/world/composite/useMapTilesArea"
 import { TMapTilesMovementPathRecordByXY } from "@/methods/hooks/world/composite/useMapTilesPathFromPointToPoint"
-import { EPanels } from "@/types/enumeration/EPanels"
+import { EPanelsBottomCenterBar } from "@/types/enumeration/EPanelsBottomCenterBar"
+import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
+import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
+import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { atom } from "jotai"
 
 //Modals
-export const modalBottomCenterBarAtom = atom<EPanels>(EPanels.Inactive)
-export const modalLeftTopBarAtom = atom<EPanels>(EPanels.PanelPlayerPanel)
-export const modalRightCenterAtom = atom<EPanels>(EPanels.Inactive)
-export const modalTopCenterAtom = atom<EPanels>(EPanels.Inactive)
+export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBottomCenterBar.Inactive)
+export const modalLeftTopBarAtom = atom<EPanelsLeftTopBar>(EPanelsLeftTopBar.PanelPlayerPanel)
+export const modalRightCenterAtom = atom<EPanelsRightCenter>(EPanelsRightCenter.Inactive)
+export const modalTopCenterAtom = atom<EPanelsTopCenter>(EPanelsTopCenter.Inactive)
 
 //City
 export const clickedCityTileAtom = atom<number>(0)

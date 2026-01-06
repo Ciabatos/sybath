@@ -1,20 +1,13 @@
-import PanelPlayerPanel from "@/components/panels/PanelPlayerPanel"
-import { EPanels } from "@/types/enumeration/EPanels"
+import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
+import React from "react"
 
-export const panelComponentMap: Record<EPanels, React.ComponentType<any> | null> = {
-  [EPanels.Inactive]: null,
-  //   [EPanels.PanelActionAbility]: PanelActionAbility,
-  //   [EPanels.PanelActionGuardArea]: PanelActionGuardArea,
-  //   [EPanels.PanelActionMovement]: PanelActionMovement,
-  //   [EPanels.PanelPlayerInventory]: PanelPlayerInventory,
-  //   [EPanels.PanelBackToMap]: PanelBackToMap,
-  //   [EPanels.PanelBuilding]: PanelBuilding,
-  //   [EPanels.PanelCityActionBar]: PanelCityActionBar,
-  //   [EPanels.PanelDistrict]: PanelDistrict,
-  //   [EPanels.PanelEmptyTilePanel]: PanelEmptyTilePanel,
-  //   [EPanels.PanelPartyInventory]: PanelPartyInventory,
-  //   [EPanels.PanelPlayerAbilities]: PanelPlayerAbilities,
-  //   [EPanels.PanelPlayerActionBar]: PanelPlayerActionBar,
-  [EPanels.PanelPlayerPanel]: PanelPlayerPanel,
-  //   [EPanels.PanelPlayerSkills]: PanelPlayerSkills,
-}
+export const panelComponentMap: Record<EPanelsLeftTopBar, React.LazyExoticComponent<React.ComponentType<any>> | null> =
+  {
+    [EPanelsLeftTopBar.Inactive]: null,
+    // lazy load tylko potrzebnych komponentów:
+    [EPanelsLeftTopBar.PanelPlayerPanel]: React.lazy(() => import("@/components/panels/PanelPlayerPanel")),
+    // [EPanelsLeftTopBar.PanelPlayerInventory]: React.lazy(() => import("@/components/panels/PanelPlayerInventory")),
+    // [EPanelsLeftTopBar.PanelPlayerSkills]: React.lazy(() => import("@/components/panels/PanelPlayerSkills")),
+    // [EPanelsLeftTopBar.PanelPlayerAbilities]: React.lazy(() => import("@/components/panels/PanelPlayerAbilities")),
+    // [EPanelsLeftTopBar.PanelPartyInventory]: React.lazy(() => import("@/components/panels/PanelPartyInventory")),
+  }

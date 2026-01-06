@@ -1,7 +1,7 @@
 "use client"
 
 import { modalTopCenterAtom } from "@/store/atoms"
-import { EPanels } from "@/types/enumeration/EPanels"
+import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { panelComponentMap } from "@/types/panels/leftTopBarComponents"
 import { useAtom } from "jotai"
 
@@ -10,7 +10,7 @@ export function useModalTopCenter() {
   const ModalTopCenterPanel = panelComponentMap[modalTopCenter]
 
   function resetModalTopCeneter() {
-    setModalTopCenter(EPanels.Inactive)
+    setModalTopCenter(EPanelsTopCenter.Inactive)
   }
 
   return { ModalTopCenterPanel, setModalTopCenter, resetModalTopCeneter }
