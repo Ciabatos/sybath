@@ -2,12 +2,12 @@
 
 import { modalLeftTopBarAtom } from "@/store/atoms"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
-import { panelComponentMap } from "@/types/panels/leftTopBarComponents"
+import { componentMapLeftTopBar } from "@/types/panels/componentMapLeftTopBar"
 import { useAtom } from "jotai"
 
 export function useModalLeftTopBar() {
   const [modalLeftTopBar, setModalLeftTopBar] = useAtom(modalLeftTopBarAtom)
-  const ModalLeftTopBar = panelComponentMap[modalLeftTopBar]
+  const ModalLeftTopBar = componentMapLeftTopBar[modalLeftTopBar]
 
   function resetModalLeftTopBar() {
     setModalLeftTopBar(EPanelsLeftTopBar.Inactive)

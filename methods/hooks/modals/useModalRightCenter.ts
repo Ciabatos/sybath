@@ -2,12 +2,12 @@
 
 import { modalRightCenterAtom } from "@/store/atoms"
 import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
-import { panelComponentMap } from "@/types/panels/leftTopBarComponents"
+import { componentMapRightCenter } from "@/types/panels/componentMapRightCenter"
 import { useAtom } from "jotai"
 
 export function useModalRightCenter() {
   const [modalRightCenter, setModalRightCenter] = useAtom(modalRightCenterAtom)
-  const ModalRightCenter = panelComponentMap[modalRightCenter]
+  const ModalRightCenter = componentMapRightCenter[modalRightCenter]
 
   function resetModalRightCenter() {
     setModalRightCenter(EPanelsRightCenter.Inactive)

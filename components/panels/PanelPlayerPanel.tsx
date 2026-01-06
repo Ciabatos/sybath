@@ -3,7 +3,8 @@ import styles from "@/components/panels/styles/PanelPlayerPanel.module.css" // I
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
-import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
+import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
+import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
 import { useState } from "react"
 
@@ -14,7 +15,7 @@ type PanelPlayerPanelProps = {
 export default function PanelPlayerPanel({ closePanel }: PanelPlayerPanelProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [isPartyVisible, setIsPartyVisible] = useState(false)
-  const { setModalLeftTopBar } = useModalLeftTopBar()
+  const { setModalTopCenter } = useModalTopCenter()
   // const { handleOpenPlayerActionList, handleClosePlayerActionList } = useMapTileActions()
 
   function handleOpenPanel() {
@@ -25,7 +26,7 @@ export default function PanelPlayerPanel({ closePanel }: PanelPlayerPanelProps) 
   function handleClosePanel() {
     setIsOpen(false)
     // closePanel()
-    // setModalLeftTopBar(EPanels.PanelBackToMap)
+    setModalTopCenter(EPanelsTopCenter.PanelBackToMap)
   }
 
   return (
