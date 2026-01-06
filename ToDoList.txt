@@ -62,11 +62,6 @@ Mapa
 
 UI i flow dla „systemu informacji”
 
-joinMap
-wyjebac joinMap i przesylac tylko raw data, w handlingu uzyc laczenia po kluczach i przesylac tylko wymagane dane, po prostu wywalic na serwerze laczenie i przeslac tylko dane, laczenie zrobic na cliencie
-wyjebac getjoinMap z server-fetchers i przeslac raw data w propsie poczatkowym za pomoca getMapData
-jest git, rerendery maja istniec !
-
 Aktualizacja NEXT JS i reszty dependencies wraz z UI renderem biblioteka 
 
 pozycje graczy ustaw poprawnie - chyba wywalic z renderowania, dodac panel z graczami i tam mozna wyswietlac gdzie sa
