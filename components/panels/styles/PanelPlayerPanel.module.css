@@ -3,7 +3,6 @@
 }
 
 .button {
-  position: fixed;
   top: 1.5rem; /* Adjust as needed */
   left: 1.5rem; /* Adjust as needed */
   z-index: 60;
@@ -20,7 +19,6 @@
 }
 
 .panel {
-  position: fixed;
   top: 0;
   left: 0;
   transform: translateX(0);

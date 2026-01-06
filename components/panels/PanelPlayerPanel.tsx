@@ -6,9 +6,13 @@ import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
 import { useState } from "react"
 
-export default function PanelPlayerPanel() {
-  const [isOpen, setIsOpen] = useState(true)
-  const [isPartyVisible, setIsPartyVisible] = useState(true)
+type PanelPlayerPanelProps = {
+  closePanel: () => void
+}
+
+export default function PanelPlayerPanel({ closePanel }: PanelPlayerPanelProps) {
+  const [isOpen, setIsOpen] = useState(false)
+  const [isPartyVisible, setIsPartyVisible] = useState(false)
   // const { handleOpenPlayerActionList, handleClosePlayerActionList } = useMapTileActions()
 
   function handleOpenPanel() {
@@ -18,12 +22,11 @@ export default function PanelPlayerPanel() {
 
   function handleClosePanel() {
     setIsOpen(false)
-    // handleClosePlayerActionList()
+    // closePanel()
   }
 
   return (
     <div className={styles.container}>
-      <p>dsadsadas</p>
       {!isOpen && (
         <Button
           onClick={handleOpenPanel}
