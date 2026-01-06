@@ -1,7 +1,9 @@
 import PanelParty from "@/components/panels/PanelParty"
 import { PanelPlayerAbilities } from "@/components/panels/PanelPlayerAbilities"
 import { PanelPlayerInventory } from "@/components/panels/PanelPlayerInventory"
+import { PanelPlayerKnowledge } from "@/components/panels/PanelPlayerKnowledge"
 import { PanelPlayerSkills } from "@/components/panels/PanelPlayerSkills"
+import { PanelPlayerStats } from "@/components/panels/PanelPlayerStats"
 import styles from "@/components/panels/styles/PanelPlayerPanel.module.css"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -19,15 +21,18 @@ export default function PanelPlayerPanel({ closePanel }: Props) {
   const [isPartyVisible, setIsPartyVisible] = useState(false)
   const { setModalLeftTopBar } = useModalLeftTopBar()
 
-  function handleClosePanel() {
+  function onClose() {
     setModalLeftTopBar(EPanelsLeftTopBar.PlayerPortrait)
   }
+  const avatarUrl = "https://github.com/shadcn.png"
+  const avatarFallback = "VB"
+
   return (
     <div className={styles.overlay}>
       <div className={styles.panelsContainer}>
         <div className={styles.panel}>
           <Button
-            onClick={handleClosePanel}
+            onClick={onClose}
             variant='ghost'
             size='icon'
             className={styles.closeButton}
@@ -38,14 +43,14 @@ export default function PanelPlayerPanel({ closePanel }: Props) {
           <div className={styles.header}>
             <Avatar className={styles.avatar}>
               <AvatarImage
-                src={"https://github.com/shadcn.png"}
+                src={avatarUrl || "/placeholder.svg"}
                 alt='Hero'
                 className={styles.avatarImage}
               />
-              <AvatarFallback className={styles.avatarFallback}></AvatarFallback>
+              <AvatarFallback className={styles.avatarFallback}>{avatarFallback}</AvatarFallback>
             </Avatar>
             <div className={styles.headerInfo}>
-              <h2 className={styles.heroName}>Pigeon Knight</h2>
+              <h2 className={styles.heroName}>Vet. Baldomar</h2>
               <p className={styles.heroTitle}>The Dog</p>
             </div>
           </div>
@@ -92,12 +97,7 @@ export default function PanelPlayerPanel({ closePanel }: Props) {
                 value='Stats'
                 className={styles.tabsContent}
               >
-                <div className={styles.statsContent}>
-                  <p>Health: 140/140</p>
-                  <p>Stamina: 110/110</p>
-                  <p>Resolve: 70/70</p>
-                  <p>Initiative: 81</p>
-                </div>
+                <PanelPlayerStats />
               </TabsContent>
 
               <TabsContent
@@ -128,9 +128,7 @@ export default function PanelPlayerPanel({ closePanel }: Props) {
                 value='Knowledge'
                 className={styles.tabsContent}
               >
-                <p className={styles.textContent}>
-                  Knowledge represents what the hero knows about other characters and locations from the World Map.
-                </p>
+                <PanelPlayerKnowledge />
               </TabsContent>
             </Tabs>
           </div>
@@ -145,7 +143,7 @@ export default function PanelPlayerPanel({ closePanel }: Props) {
           </Button>
         </div>
 
-        {isPartyVisible && <PanelParty avatarUrl={"https://github.com/shadcn.png"} />}
+        {isPartyVisible && <PanelParty avatarUrl={avatarUrl} />}
       </div>
     </div>
   )

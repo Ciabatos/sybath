@@ -1,0 +1,162 @@
+.container {
+  padding: 1.5rem;
+  overflow-y: auto;
+  max-height: 500px;
+}
+
+.header {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(43, 24, 16, 0.6), rgba(29, 15, 8, 0.8));
+  border: 1px solid rgba(200, 154, 74, 0.3);
+  border-radius: 8px;
+}
+
+.headerText {
+  font-family: "Lora", serif;
+  font-size: 0.9375rem;
+  color: #d4a574;
+  margin: 0;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.category {
+  margin-bottom: 2rem;
+}
+
+.category:last-child {
+  margin-bottom: 0;
+}
+
+.categoryTitle {
+  font-family: "Cinzel", serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #c89a4a;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid rgba(200, 154, 74, 0.3);
+  padding-bottom: 0.5rem;
+}
+
+.categoryItems {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.knowledgeItem {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(43, 24, 16, 0.6), rgba(29, 15, 8, 0.8));
+  border: 1px solid rgba(200, 154, 74, 0.3);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.knowledgeItem:hover {
+  background: linear-gradient(135deg, rgba(43, 24, 16, 0.8), rgba(29, 15, 8, 0.9));
+  border-color: rgba(200, 154, 74, 0.5);
+  transform: translateX(4px);
+}
+
+.knowledgeIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(61, 36, 21, 0.8);
+  border: 1px solid rgba(200, 154, 74, 0.3);
+  flex-shrink: 0;
+  color: #d4a574;
+}
+
+.knowledgeInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.knowledgeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.knowledgeTitle {
+  font-family: "Lora", serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e6c998;
+  margin: 0;
+}
+
+.knowledgeLevel {
+  font-family: "Lora", serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.levelKnown {
+  background: rgba(46, 204, 113, 0.2);
+  color: #2ecc71;
+  border: 1px solid rgba(46, 204, 113, 0.4);
+}
+
+.levelPartial {
+  background: rgba(243, 156, 18, 0.2);
+  color: #f39c12;
+  border: 1px solid rgba(243, 156, 18, 0.4);
+}
+
+.levelUnknown {
+  background: rgba(149, 165, 166, 0.2);
+  color: #95a5a6;
+  border: 1px solid rgba(149, 165, 166, 0.4);
+}
+
+.knowledgeDescription {
+  font-family: "Lora", serif;
+  font-size: 0.875rem;
+  color: rgba(212, 165, 116, 0.8);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .knowledgeItem {
+    padding: 0.75rem;
+  }
+
+  .knowledgeIcon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .categoryTitle {
+    font-size: 1.125rem;
+  }
+
+  .knowledgeHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
