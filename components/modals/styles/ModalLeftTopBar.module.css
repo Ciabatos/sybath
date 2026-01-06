@@ -13,6 +13,5 @@
 
 .modalContainer {
   z-index: 1000;
-  background-color: rgb(221, 192, 27);
   pointer-events: auto; /* Re-enable pointer events for the modal itself */
 }
