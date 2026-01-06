@@ -10,6 +10,7 @@ import { TBuildingsBuildingTypesRecordById } from "@/db/postgresMainDatabase/sch
 import { TBuildingsBuildingsRecordByCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
 import { TCitiesCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
 import { TCitiesCityTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
+import { TPlayerCityRecordByCityId } from "@/db/postgresMainDatabase/schemas/cities/playerCity"
 import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
 import { TDistrictsDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/districts/districts"
 import { TBuildingInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory"
@@ -18,27 +19,23 @@ import { TPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schema
 import { TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/items"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
+import { TPlayerMapRecordByMapId } from "@/db/postgresMainDatabase/schemas/world/playerMap"
 import { TPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
 import { TPlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
-import { TJoinCity, TJoinCityByXY } from "@/methods/functions/city/joinCity"
 import { TAreaRecordByXY } from "@/methods/hooks/world/composite/useMapTilesArea"
 import { TMapTilesMovementPathRecordByXY } from "@/methods/hooks/world/composite/useMapTilesPathFromPointToPoint"
 import { EPanels } from "@/types/enumeration/EPanels"
 import { atom } from "jotai"
-import { TPlayerMapRecordByMapId } from "@/db/postgresMainDatabase/schemas/world/playerMap"
-import { TPlayerCityRecordByCityId } from "@/db/postgresMainDatabase/schemas/cities/playerCity"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanels>(EPanels.Inactive)
-export const modalLeftTopBarAtom = atom<EPanels>(EPanels.Inactive)
+export const modalLeftTopBarAtom = atom<EPanels>(EPanels.PanelPlayerPanel)
 export const modalRightCenterAtom = atom<EPanels>(EPanels.Inactive)
 export const modalTopCenterAtom = atom<EPanels>(EPanels.Inactive)
 
 //City
-export const cityIdAtom = atom<number>(0)
-export const clickedCityTileAtom = atom<TJoinCity>()
-export const joinedCityAtom = atom<TJoinCityByXY>({})
+export const clickedCityTileAtom = atom<number>(0)
 
 //Map
 export const clickedTileAtom = atom<number>(0)

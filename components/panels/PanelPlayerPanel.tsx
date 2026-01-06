@@ -1,29 +1,24 @@
 "use client"
-import PartyInventory from "@/components/diasbled/PanelPartyInventory"
-import PanelPlayerInventory from "@/components/diasbled/PanelPlayerInventory"
-import PanelPlayerAbilities from "@/components/panels/PanelPlayerAbilities"
-import PanelPlayerSkills from "@/components/panels/PanelPlayerSkills"
 import styles from "@/components/panels/styles/PanelPlayerPanel.module.css" // Import the CSS module
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
-import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
 import { useState } from "react"
 
 export default function PanelPlayerPanel() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [isPartyVisible, setIsPartyVisible] = useState(false)
-  const { handleOpenPlayerActionList, handleClosePlayerActionList } = useMapTileActions()
+  const [isOpen, setIsOpen] = useState(true)
+  const [isPartyVisible, setIsPartyVisible] = useState(true)
+  // const { handleOpenPlayerActionList, handleClosePlayerActionList } = useMapTileActions()
 
   function handleOpenPanel() {
     setIsOpen(!isOpen)
-    handleOpenPlayerActionList()
+    // handleOpenPlayerActionList()
   }
 
   function handleClosePanel() {
     setIsOpen(false)
-    handleClosePlayerActionList()
+    // handleClosePlayerActionList()
   }
 
   return (
@@ -86,7 +81,7 @@ export default function PanelPlayerPanel() {
                   value='Inventory'
                   className='flex-1 overflow-auto'
                 >
-                  <PanelPlayerInventory />
+                  {/* <PanelPlayerInventory /> */}
                 </TabsContent>
                 <TabsContent
                   value='Skills'
@@ -94,7 +89,7 @@ export default function PanelPlayerPanel() {
                 >
                   Skills slużą do pokazania jakie umiejętności posiada postać. Można je przekazywać innym postaciom ale
                   nie są to aktywne abilities
-                  <PanelPlayerSkills />
+                  {/* <PanelPlayerSkills /> */}
                 </TabsContent>
                 <TabsContent
                   value='Abilities'
@@ -102,7 +97,7 @@ export default function PanelPlayerPanel() {
                 >
                   Abilities służą do używania, są to aktywne umiejętności, które można używać w walce lub produkcji i
                   innych sytuacjach, ability powstaja jeżeli masz różne kombinacje skills, stats i knowledge.
-                  <PanelPlayerAbilities />
+                  {/* <PanelPlayerAbilities /> */}
                 </TabsContent>
                 <TabsContent
                   value='Knowledge'
@@ -154,7 +149,7 @@ export default function PanelPlayerPanel() {
                     value='Party Inventory'
                     className='flex-1 overflow-auto'
                   >
-                    <PartyInventory />
+                    {/* <PartyInventory /> */}
                   </TabsContent>
                 </Tabs>
               </div>
