@@ -7,6 +7,7 @@ import { TWorldLandscapeTypes } from "@/db/postgresMainDatabase/schemas/world/la
 import { TWorldMapTiles } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
 import { TPlayerPosition } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 import { TWorldTerrainTypes } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
+import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 
 interface Props {
   mapTiles: TWorldMapTiles
@@ -19,6 +20,7 @@ interface Props {
 }
 
 export default function LayersHandling(props: Props) {
+  const { setModalRightCenter } = useModalRightCenter()
   return (
     <>
       {/* <HandlingActionLayer tile={props} /> */}

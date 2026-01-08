@@ -10,8 +10,9 @@ import { TWorldMapTiles } from "@/db/postgresMainDatabase/schemas/world/mapTiles
 import { TPlayerPosition } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 import { TWorldTerrainTypes } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { createImage } from "@/methods/functions/map/createImage"
+import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 
-interface Props {
+export type TMapTile = {
   mapTiles: TWorldMapTiles
   terrainTypes: TWorldTerrainTypes
   landscapeTypes?: TWorldLandscapeTypes
@@ -21,7 +22,7 @@ interface Props {
   playerPosition?: TPlayerPosition
 }
 
-export default function Map(props: Props) {
+export default function Map(props: TMapTile) {
   const {
     createPlayerImage,
     createLandscapeImage,
@@ -30,7 +31,7 @@ export default function Map(props: Props) {
     creatDistrictsImage,
     combineImages,
   } = createImage()
-  // const { handleClickOnMapTile } = useMapTileActions()
+
   const backgroundImage = createBackgroundImage(props.terrainTypes.imageUrl)
   const landscapeImage = createLandscapeImage(props.landscapeTypes?.imageUrl)
   const playerImage = createPlayerImage(props.playerPosition?.imageUrl)
@@ -38,11 +39,16 @@ export default function Map(props: Props) {
   const districtsImage = creatDistrictsImage(props.districtTypes?.imageUrl)
   const combinedImages = combineImages(landscapeImage, backgroundImage)
 
-  // console.log("Map Tile Rendered:", props.mapTiles.x, props.mapTiles.y)
+  const { handleClickOnMapTile } = useMapTileActions()
+
+  const handleClick = () => {
+    handleClickOnMapTile(props)
+  }
+
   return (
     <div
       className={style.BackgroundImage}
-      // onDoubleClick={() => handleClickOnMapTile(props)}
+      onClick={handleClick}
       style={{
         gridColumnStart: props.mapTiles.x,
         gridRowStart: props.mapTiles.y,

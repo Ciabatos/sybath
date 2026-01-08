@@ -5,4 +5,5 @@ export enum EPanelsRightCenter {
   PanelBuilding = "PanelBuilding",
   PanelDistrict = "PanelDistrict",
   PanelEmptyTilePanel = "PanelEmptyTilePanel",
+  PanelMapTileDetail = "PanelMapTileDetail",
 }

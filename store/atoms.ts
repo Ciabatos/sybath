@@ -1,5 +1,6 @@
 "use client"
 
+import { TMapTile } from "@/components/map/Map"
 import { TAttributesAbilitiesRecordById } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
 import { TPlayerAbilitiesRecordByAbilityId } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
 import { TPlayerSkillsRecordBySkillId } from "@/db/postgresMainDatabase/schemas/attributes/playerSkills"
@@ -41,7 +42,7 @@ export const modalTopCenterAtom = atom<EPanelsTopCenter>(EPanelsTopCenter.Inacti
 export const clickedCityTileAtom = atom<number>(0)
 
 //Map
-export const clickedTileAtom = atom<number>(0)
+export const clickedTileAtom = atom<TMapTile>()
 
 //Player
 export const playerIdAtom = atom<number>(0)
