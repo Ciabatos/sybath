@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image"
 
-export function createImage() {
+export function createBackgroundImage() {
   function createImageFromUrl(imageUrl: string | undefined, type: string) {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
     if (!imageUrl) {
@@ -30,7 +30,7 @@ export function createImage() {
     return createImageFromUrl(imageUrl, "landscapeTypePicture")
   }
 
-  function createBackgroundImage(imageUrl: string | undefined) {
+  function createTerrainImage(imageUrl: string | undefined) {
     return createImageFromUrl(imageUrl, "terrainTypePicture")
   }
 
@@ -45,6 +45,11 @@ export function createImage() {
   function creatBuildingsImage(imageUrl: string | undefined) {
     return createImageFromUrl(imageUrl, "buildingsPicture")
   }
+
+  function createHeroPortrait(imageUrl: string | undefined) {
+    return createImageFromUrl(imageUrl, "heroPortrait")
+  }
+
   const combineImages = (...images: string[]): string => {
     return images.filter(Boolean).join(", ")
   }
@@ -52,10 +57,11 @@ export function createImage() {
   return {
     createPlayerImage,
     createLandscapeImage,
-    createBackgroundImage,
+    createTerrainImage,
     createCitiesImage,
     creatDistrictsImage,
     creatBuildingsImage,
     combineImages,
+    createHeroPortrait,
   }
 }

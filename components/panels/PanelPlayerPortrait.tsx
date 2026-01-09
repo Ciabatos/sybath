@@ -5,6 +5,8 @@ import PlayerSwitchButton from "@/components/panels/PlayerSwitchButton"
 import styles from "@/components/panels/styles/PanelPlayerPortrait.module.css"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
+import { createHeroPortrait } from "@/methods/functions/panels/createHeroPortrait"
+
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
 
@@ -15,6 +17,7 @@ type Props = {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function PanelPlayerPortrait({ closePanel }: Props) {
   const { openModalLeftTopBar } = useModalLeftTopBar()
+  const { createPortrait } = createHeroPortrait()
 
   const handleClick = () => {
     openModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerPanel)
@@ -29,7 +32,7 @@ export default function PanelPlayerPortrait({ closePanel }: Props) {
       >
         <Avatar className={styles.avatar}>
           <AvatarImage
-            src={"https://github.com/shadcn.png"}
+            src={createPortrait("17.png")}
             alt='Hero avatar'
             className={styles.avatarImage}
           />
