@@ -9,9 +9,14 @@ export function useModalTopCenter() {
   const [modalTopCenter, setModalTopCenter] = useAtom(modalTopCenterAtom)
   const ModalTopCenterPanel = componentMapTopCenter[modalTopCenter]
 
+  function openModalTopCeneter(panel: EPanelsTopCeneter) {
+    // setModalTopCenter(EPanelsTopCenter.Inactive) // reset TopCenter
+    setModalTopCenter(panel)
+  }
+  
   function resetModalTopCeneter() {
     setModalTopCenter(EPanelsTopCenter.Inactive)
   }
 
-  return { ModalTopCenterPanel, setModalTopCenter, resetModalTopCeneter }
+  return { ModalTopCenterPanel, openModalTopCeneter, resetModalTopCeneter }
 }
