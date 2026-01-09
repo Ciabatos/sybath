@@ -198,7 +198,7 @@
   background: linear-gradient(to bottom, #b45309 0%, #78350f 100%);
 }
 
-.formationWrapper {
+.section {
   display: flex;
   justify-content: center;
 }

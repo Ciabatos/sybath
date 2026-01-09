@@ -7,7 +7,7 @@ import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
 import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
-import { LandPlot, X } from "lucide-react"
+import { Backpack, LandPlot, X } from "lucide-react"
 
 type SquadMember = {
   id: string
@@ -141,13 +141,24 @@ export default function PanelPlayerSquad() {
           </div>
 
           {/* Formation */}
-          <div className={styles.formationWrapper}>
+          <div className={styles.section}>
             <Button
               className={styles.actionButton}
               size='lg'
             >
               <LandPlot />
               Formation
+            </Button>
+          </div>
+
+          {/* Shared Inventory */}
+          <div className={styles.section}>
+            <Button
+              className={styles.actionButton}
+              size='lg'
+            >
+              <Backpack />
+              Squad Inventory
             </Button>
           </div>
 
