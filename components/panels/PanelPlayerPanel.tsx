@@ -1,9 +1,9 @@
-import PanelParty from "@/components/panels/PanelParty"
 import { PanelPlayerAbilities } from "@/components/panels/PanelPlayerAbilities"
 import { PanelPlayerInventory } from "@/components/panels/PanelPlayerInventory"
 import { PanelPlayerKnowledge } from "@/components/panels/PanelPlayerKnowledge"
 import { PanelPlayerSkills } from "@/components/panels/PanelPlayerSkills"
 import { PanelPlayerStats } from "@/components/panels/PanelPlayerStats"
+import PanelSquad from "@/components/panels/PanelSquad"
 import styles from "@/components/panels/styles/PanelPlayerPanel.module.css"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -142,7 +142,7 @@ export default function PanelPlayerPanel({ closePanel }: Props) {
         </Button>
       </div>
 
-      {isPartyVisible && <PanelParty avatarUrl={avatarUrl} />}
+      {isPartyVisible && <PanelSquad avatarUrl={avatarUrl} />}
     </div>
   )
 }
