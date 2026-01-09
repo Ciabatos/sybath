@@ -1,5 +1,6 @@
 "use client"
 
+import PanelPlayerSquadPortrait from "@/components/panels/PanelPlayerSquadPortrait"
 import PlayerSwitchButton from "@/components/panels/PlayerSwitchButton"
 import styles from "@/components/panels/styles/PanelPlayerPortrait.module.css"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -35,6 +36,7 @@ export default function PanelPlayerPortrait({ closePanel }: Props) {
         </Avatar>
       </Button>
       <PlayerSwitchButton></PlayerSwitchButton>
+      <PanelPlayerSquadPortrait></PanelPlayerSquadPortrait>
     </div>
   )
 }

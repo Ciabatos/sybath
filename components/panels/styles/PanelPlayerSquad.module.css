@@ -1,101 +1,247 @@
-.partyPanel {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  animation: slideInRight 0.3s ease-out;
-  box-shadow:
-    inset 0 2px 12px rgba(0, 0, 0, 0.8),
-    0 8px 32px rgba(0, 0, 0, 0.9);
-  border: 4px solid rgba(120, 53, 15, 0.6);
-  border-radius: 0.5rem;
-  background: linear-gradient(to bottom, #0c0a09 0%, #1c1917 50%, #0c0a09 100%);
-  padding: 1.5rem;
-  width: 400px;
-  height: 90vh;
-}
-
-@keyframes slideInRight {
+@keyframes fadeIn {
   from {
-    transform: translateX(-20px);
     opacity: 0;
   }
   to {
-    transform: translateX(0);
     opacity: 1;
   }
 }
 
-.partyTabs {
+.panel {
   display: flex;
-  flex: 1;
   flex-direction: column;
-  width: 100%;
+  animation: slideIn 0.3s ease-out;
+  box-shadow:
+    inset 0 2px 8px rgba(0, 0, 0, 0.6),
+    0 8px 32px rgba(0, 0, 0, 0.9);
+  border: 4px solid #78350f;
+  border-radius: 8px;
+  background: linear-gradient(to bottom, #1a0f08 0%, #2b1810 50%, #1a0f08 100%);
+  width: 90%;
+  max-width: 900px;
+  max-height: 85vh;
 }
 
-.partyTabsList {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  border: 1px solid rgba(120, 53, 15, 0.3);
-  background-color: rgba(28, 25, 23, 0.8);
-  width: 100%;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #451a03;
+  background: rgba(61, 36, 21, 0.4);
+  padding: 1.5rem;
 }
 
-.tabsTrigger {
+.title {
+  margin: 0;
   color: #d4a574;
+  font-weight: bold;
+  font-size: 1.875rem;
   font-family: "Cinzel", serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-.tabsTrigger[data-state="active"] {
-  background-color: rgba(120, 53, 15, 0.6);
+.closeButton {
+  transition: all 0.2s ease;
+  background: transparent;
+  color: #d4a574;
+}
+
+.closeButton:hover {
+  background: rgba(217, 119, 6, 0.2);
   color: #e6c998;
 }
 
-.tabsContent {
+.closeIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.content {
   flex: 1;
-  margin-top: 1rem;
-  overflow: auto;
-  color: rgba(200, 154, 74, 0.9);
-  font-family: "Lora", serif;
+  padding: 1.5rem;
+  overflow-y: auto;
 }
 
-.partyUnitsContent {
-  margin-bottom: 0.75rem;
-  font-size: 0.875rem;
+.squadGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-.partyLeaderContainer {
+.memberCard {
+  transition: all 0.2s ease;
+  box-shadow:
+    inset 0 1px 4px rgba(0, 0, 0, 0.6),
+    0 4px 12px rgba(0, 0, 0, 0.8);
+  border: 3px solid #78350f;
+  border-radius: 6px;
+  background: linear-gradient(to bottom, #2b1810 0%, #1a0f08 100%);
+  padding: 1rem;
+}
+
+.memberCard:hover {
+  box-shadow:
+    inset 0 1px 4px rgba(0, 0, 0, 0.6),
+    0 6px 16px rgba(200, 154, 74, 0.3);
+  border-color: #b45309;
+}
+
+.memberHeader {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
-.partyAvatar {
-  border: 2px solid rgba(120, 53, 15, 0.4);
-  width: 4rem;
-  height: 4rem;
-}
-
-.avatarImage {
-  object-fit: cover;
+.memberAvatar {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  border: 3px solid #78350f;
+  width: 3.5rem;
+  height: 3.5rem;
 }
 
 .avatarFallback {
   background-color: #292524;
   color: #c89a4a;
-  font-size: 1.25rem;
+  font-weight: bold;
   font-family: "Cinzel", serif;
 }
 
-.formationButton {
-  border: 1px solid rgba(120, 53, 15, 0.4);
-  background-color: rgba(28, 25, 23, 0.6);
-  color: #c89a4a;
+.memberInfo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
-.formationButton:hover {
-  background-color: rgba(120, 53, 15, 0.4);
+.memberName {
+  margin: 0;
+  color: #e6c998;
+  font-weight: bold;
+  font-size: 1rem;
+  font-family: "Cinzel", serif;
 }
 
-.textContent {
+.memberRole {
+  color: #a78bfa;
+  font-style: italic;
   font-size: 0.875rem;
+  font-family: "Lora", serif;
+}
+
+.memberLevel {
+  border: 1px solid #78350f;
+  border-radius: 4px;
+  background: rgba(180, 83, 9, 0.3);
+  padding: 0.25rem 0.5rem;
+  color: #fbbf24;
+  font-weight: bold;
+  font-size: 0.875rem;
+  font-family: "Cinzel", serif;
+}
+
+.healthSection {
+  margin-bottom: 1rem;
+}
+
+.healthLabel {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  color: #d4a574;
+  font-size: 0.875rem;
+  font-family: "Lora", serif;
+}
+
+.healthValue {
+  color: #e6c998;
+  font-weight: bold;
+}
+
+.healthBar {
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+  border: 2px solid #451a03;
+  border-radius: 4px;
+  background: rgba(28, 25, 23, 0.6);
+  width: 100%;
+  height: 0.75rem;
+  overflow: hidden;
+}
+
+.healthFill {
+  transition: width 0.3s ease;
+  box-shadow: 0 0 8px rgba(220, 38, 38, 0.6);
+  background: linear-gradient(to right, #dc2626 0%, #ef4444 50%, #f87171 100%);
+  height: 100%;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.actionButton {
+  flex: 1;
+  transition: all 0.2s ease;
+  border: 2px solid #b45309;
+  background: linear-gradient(to bottom, #78350f 0%, #451a03 100%);
+  color: #e6c998;
+  font-size: 0.875rem;
+  font-family: "Cinzel", serif;
+}
+
+.actionButton:hover {
+  box-shadow: 0 4px 12px rgba(200, 154, 74, 0.3);
+  border-color: #d97706;
+  background: linear-gradient(to bottom, #b45309 0%, #78350f 100%);
+}
+
+.statsSection {
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6);
+  border: 3px solid #78350f;
+  border-radius: 6px;
+  background: linear-gradient(to bottom, #3d2415 0%, #2b1810 100%);
+  padding: 1.5rem;
+}
+
+.statsTitle {
+  margin: 0 0 1rem 0;
+  color: #d4a574;
+  font-weight: bold;
+  font-size: 1.25rem;
+  font-family: "Cinzel", serif;
+  text-align: center;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  border: 2px solid #451a03;
+  border-radius: 4px;
+  background: rgba(28, 25, 23, 0.4);
+  padding: 1rem;
+}
+
+.statLabel {
+  color: #a8a29e;
+  font-size: 0.875rem;
+  font-family: "Lora", serif;
+  text-align: center;
+}
+
+.statValue {
+  color: #fbbf24;
+  font-weight: bold;
+  font-size: 1.5rem;
+  font-family: "Cinzel", serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }

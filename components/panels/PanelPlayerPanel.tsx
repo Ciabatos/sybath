@@ -2,7 +2,6 @@ import { PanelPlayerAbilities } from "@/components/panels/PanelPlayerAbilities"
 import { PanelPlayerInventory } from "@/components/panels/PanelPlayerInventory"
 import { PanelPlayerKnowledge } from "@/components/panels/PanelPlayerKnowledge"
 import { PanelPlayerSkills } from "@/components/panels/PanelPlayerSkills"
-import PanelPlayerSquad from "@/components/panels/PanelPlayerSquad"
 import { PanelPlayerStats } from "@/components/panels/PanelPlayerStats"
 import styles from "@/components/panels/styles/PanelPlayerPanel.module.css"
 import { Button } from "@/components/ui/button"
@@ -11,14 +10,12 @@ import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
 import { X } from "lucide-react"
-import { useState } from "react"
 
 type Props = {
   closePanel: () => void
 }
 
 export default function PanelPlayerPanel({ closePanel }: Props) {
-  const [isPartyVisible, setIsPartyVisible] = useState(false)
   const { setModalLeftTopBar } = useModalLeftTopBar()
 
   function onClose() {
@@ -131,18 +128,7 @@ export default function PanelPlayerPanel({ closePanel }: Props) {
             </TabsContent>
           </Tabs>
         </div>
-
-        <Button
-          variant='ghost'
-          size='lg'
-          onClick={() => setIsPartyVisible(!isPartyVisible)}
-          className={styles.toggleButton}
-        >
-          {isPartyVisible ? "Hide Party" : "Show Party"}
-        </Button>
       </div>
-
-      {isPartyVisible && <PanelPlayerSquad avatarUrl={avatarUrl} />}
     </div>
   )
 }

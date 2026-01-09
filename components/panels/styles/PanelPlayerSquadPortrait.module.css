@@ -1,0 +1,78 @@
+.squadPortraitWrapper {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.squadButton {
+  position: relative;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-shadow:
+    inset 0 2px 8px rgba(0, 0, 0, 0.6),
+    0 4px 12px rgba(0, 0, 0, 0.8);
+  border: 4px solid rgba(180, 83, 9, 0.6);
+  border-radius: 9999px;
+  background: linear-gradient(to bottom, rgba(120, 53, 15, 0.4) 0%, rgba(28, 25, 23, 0.6) 100%);
+  padding: 0;
+  width: 4rem;
+  height: 4rem;
+}
+
+.squadButton:hover {
+  transform: scale(1.05);
+  box-shadow:
+    inset 0 2px 8px rgba(0, 0, 0, 0.6),
+    0 6px 16px rgba(200, 154, 74, 0.4);
+  border-color: rgba(217, 119, 6, 0.8);
+}
+
+.squadButton:active {
+  transform: translateY(2px) scale(1.05);
+}
+
+.iconWrapper {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.squadIcon {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+  width: 2rem;
+  height: 2rem;
+  color: #c89a4a;
+}
+
+.squadBadge {
+  display: flex;
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+  border: 2px solid #451a03;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, #b45309 0%, #78350f 100%);
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #fef3c7;
+  font-weight: bold;
+  font-size: 0.75rem;
+  font-family: "Cinzel", serif;
+}
+
+.squadLabel {
+  color: #d4a574;
+  font-size: 0.875rem;
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  text-transform: uppercase;
+}

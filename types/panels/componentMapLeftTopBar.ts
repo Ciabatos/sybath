@@ -8,4 +8,5 @@ export const componentMapLeftTopBar: Record<
   [EPanelsLeftTopBar.Inactive]: null,
   [EPanelsLeftTopBar.PanelPlayerPanel]: React.lazy(() => import("@/components/panels/PanelPlayerPanel")),
   [EPanelsLeftTopBar.PanelPlayerPortrait]: React.lazy(() => import("@/components/panels/PanelPlayerPortrait")),
+  [EPanelsLeftTopBar.PanelPlayerSquad]: React.lazy(() => import("@/components/panels/PanelPlayerSquad")),
 }
