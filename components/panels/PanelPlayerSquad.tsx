@@ -4,8 +4,10 @@ import styles from "@/components/panels/styles/PanelPlayerSquad.module.css"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
+import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
-import { X } from "lucide-react"
+import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
+import { LandPlot, X } from "lucide-react"
 
 type SquadMember = {
   id: string
@@ -57,11 +59,18 @@ const mockSquadMembers: SquadMember[] = [
 ]
 
 export default function PanelPlayerSquad() {
+  const { openModalRightCenter, resetModalRightCenter } = useModalRightCenter()
   const { openModalLeftTopBar } = useModalLeftTopBar()
 
   function onClose() {
     openModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerPortrait)
   }
+
+  function handleClickDetails() {
+    resetModalRightCenter()
+    openModalRightCenter(EPanelsRightCenter.PanelOtherPlayerPanel)
+  }
+
   return (
     <div className={styles.overlay}>
       <div className={styles.panel}>
@@ -120,21 +129,26 @@ export default function PanelPlayerSquad() {
                 {/* Action Buttons */}
                 <div className={styles.actionButtons}>
                   <Button
+                    onClick={handleClickDetails}
                     className={styles.actionButton}
                     size='sm'
                   >
                     Details
                   </Button>
-                  <Button
-                    className={styles.actionButton}
-                    size='sm'
-                    variant='outline'
-                  >
-                    Equipment
-                  </Button>
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Formation */}
+          <div className={styles.formationWrapper}>
+            <Button
+              className={styles.actionButton}
+              size='lg'
+            >
+              <LandPlot />
+              Formation
+            </Button>
           </div>
 
           {/* Squad Stats */}

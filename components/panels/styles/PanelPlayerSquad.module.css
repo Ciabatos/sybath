@@ -198,6 +198,10 @@
   background: linear-gradient(to bottom, #b45309 0%, #78350f 100%);
 }
 
+.formationWrapper {
+  display: flex;
+  justify-content: center;
+}
 .statsSection {
   box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6);
   border: 3px solid #78350f;

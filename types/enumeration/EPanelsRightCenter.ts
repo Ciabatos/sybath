@@ -6,4 +6,5 @@ export enum EPanelsRightCenter {
   PanelDistrict = "PanelDistrict",
   PanelEmptyTilePanel = "PanelEmptyTilePanel",
   PanelMapTileDetail = "PanelMapTileDetail",
+  PanelOtherPlayerPanel = "PanelOtherPlayerPanel",
 }
