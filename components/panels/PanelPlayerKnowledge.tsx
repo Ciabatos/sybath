@@ -1,5 +1,5 @@
 import styles from "@/components/panels/styles/PanelPlayerKnowledge.module.css"
-import { Book, Crown, MapPin, Scroll, Skull, Users } from "lucide-react"
+import { Book, Crown, MapPin, Scroll, Skull, Users, UserSearch } from "lucide-react"
 import type React from "react"
 
 type KnowledgeItemProps = {
@@ -72,6 +72,27 @@ export function PanelPlayerKnowledge() {
     },
   ]
 
+  const heroesKnowledge = [
+    {
+      icon: <UserSearch />,
+      title: "Ciabat",
+      description: "A frozen wasteland inhabited by fierce barbarian tribes and ancient creatures.",
+      level: "Known" as const,
+    },
+    {
+      icon: <UserSearch />,
+      title: "Siabat",
+      description: "An abandoned fortress rumored to be haunted by the spirits of fallen knights.",
+      level: "Partial" as const,
+    },
+    {
+      icon: <UserSearch />,
+      title: "Ciabatos",
+      description: "A mysterious harbor town where smugglers and pirates conduct their business.",
+      level: "Unknown" as const,
+    },
+  ]
+
   const factionKnowledge = [
     {
       icon: <Crown />,
@@ -134,6 +155,10 @@ export function PanelPlayerKnowledge() {
       <KnowledgeCategory
         title='Locations'
         items={locationKnowledge}
+      />
+      <KnowledgeCategory
+        title='Heroes'
+        items={heroesKnowledge}
       />
       <KnowledgeCategory
         title='Factions'

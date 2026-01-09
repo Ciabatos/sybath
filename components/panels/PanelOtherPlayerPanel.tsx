@@ -3,7 +3,7 @@ import { PanelPlayerInventory } from "@/components/panels/PanelPlayerInventory"
 import { PanelPlayerKnowledge } from "@/components/panels/PanelPlayerKnowledge"
 import { PanelPlayerSkills } from "@/components/panels/PanelPlayerSkills"
 import { PanelPlayerStats } from "@/components/panels/PanelPlayerStats"
-import styles from "@/components/panels/styles/PanelPlayerPanel.module.css"
+import styles from "@/components/panels/styles/PanelOtherPlayerPanel.module.css"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
@@ -89,6 +89,7 @@ export default function PanelOtherPlayerPanel() {
               value='Stats'
               className={styles.tabsContent}
             >
+              <span className={`${styles.knowledgeLevel} ${styles[`levelKnown`]}`}>levelKnown</span>
               <PanelPlayerStats />
             </TabsContent>
 
