@@ -9,9 +9,14 @@ export function useModalLeftTopBar() {
   const [modalLeftTopBar, setModalLeftTopBar] = useAtom(modalLeftTopBarAtom)
   const ModalLeftTopBar = componentMapLeftTopBar[modalLeftTopBar]
 
+  function openModalLeftTopBar(panel: EPanelsLeftTopBar) {
+    // setModalTopCenter(EPanelsTopCenter.Inactive) // reset TopCenter
+    setModalLeftTopBar(panel)
+  }
+  
   function resetModalLeftTopBar() {
     setModalLeftTopBar(EPanelsLeftTopBar.Inactive)
   }
 
-  return { ModalLeftTopBar, setModalLeftTopBar, resetModalLeftTopBar }
+  return { ModalLeftTopBar, openModalLeftTopBar, resetModalLeftTopBar }
 }
