@@ -1,5 +1,6 @@
 "use client"
 
+import { PanelPlayerGear } from "@/components/panels/PanelPlayerGear"
 import styles from "@/components/panels/styles/PanelPlayerInventory.module.css"
 import { useState } from "react"
 
@@ -20,7 +21,7 @@ interface Props {
   items?: InventoryItem[]
 }
 
-export function PanelPlayerInventory({ columns = 8, rows = 6, items: initialItems = [] }: Props) {
+export function PanelPlayerInventory({ columns = 1, rows = 22, items: initialItems = [] }: Props) {
   const [items, setItems] = useState<InventoryItem[]>(initialItems)
   const [draggedItem, setDraggedItem] = useState<InventoryItem | null>(null)
   const [hoveredSlot, setHoveredSlot] = useState<{ x: number; y: number } | null>(null)
@@ -75,37 +76,40 @@ export function PanelPlayerInventory({ columns = 8, rows = 6, items: initialItem
   }
 
   return (
-    <div className={styles.container}>
-      <div
-        className={styles.grid}
-        style={{
-          gridTemplateColumns: `repeat(${columns}, 1fr)`,
-          gridTemplateRows: `repeat(${rows}, 1fr)`,
-        }}
-      >
-        {renderGrid()}
+    <div className={styles.wrapper}>
+      <PanelPlayerGear />
+      <div className={styles.container}>
+        <div
+          className={styles.grid}
+          style={{
+            gridTemplateColumns: `repeat(${4}, 1fr)`,
+            gridTemplateRows: `repeat(${rows}, 1fr)`,
+          }}
+        >
+          {renderGrid()}
 
-        {items.map((item) => (
-          <div
-            key={item.id}
-            className={styles.item}
-            draggable
-            onDragStart={() => handleDragStart(item)}
-            onDragEnd={handleDragEnd}
-            style={{
-              gridColumn: `${item.x + 1} / span ${item.width}`,
-              gridRow: `${item.y + 1} / span ${item.height}`,
-            }}
-            title={item.description}
-          >
-            <img
-              src={item.image || "/placeholder.svg"}
-              alt={item.name}
-              className={styles.itemImage}
-            />
-            <span className={styles.itemName}>{item.name}</span>
-          </div>
-        ))}
+          {items.map((item) => (
+            <div
+              key={item.id}
+              className={styles.item}
+              draggable
+              onDragStart={() => handleDragStart(item)}
+              onDragEnd={handleDragEnd}
+              style={{
+                gridColumn: `${item.x + 1} / span ${item.width}`,
+                gridRow: `${item.y + 1} / span ${item.height}`,
+              }}
+              title={item.description}
+            >
+              <img
+                src={item.image || "/placeholder.svg"}
+                alt={item.name}
+                className={styles.itemImage}
+              />
+              <span className={styles.itemName}>{item.name}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )

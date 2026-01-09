@@ -1,3 +1,11 @@
+.wrapper {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem;
+  width: 100%;
+  height: 100%;
+}
+
 .container {
   display: flex;
   flex-direction: row; /* Changed to horizontal layout for vertical scrolling */
@@ -25,7 +33,7 @@
   width: auto; /* Changed width to auto for vertical flow */
   min-width: 0;
   height: 100%;
-  overflow-x: hidden;
+  overflow-x: auto;
   overflow-y: auto; /* Changed overflow to auto for vertical scrolling */
 }
 
