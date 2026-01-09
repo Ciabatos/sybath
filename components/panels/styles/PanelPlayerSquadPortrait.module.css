@@ -17,8 +17,8 @@
   border-radius: 9999px;
   background: linear-gradient(to bottom, rgba(120, 53, 15, 0.4) 0%, rgba(28, 25, 23, 0.6) 100%);
   padding: 0;
-  width: 4rem;
-  height: 4rem;
+  width: 6rem;
+  height: 6rem;
 }
 
 .squadButton:hover {
@@ -69,6 +69,10 @@
 }
 
 .squadLabel {
+  position: absolute;
+  bottom: 20; /* przy dolnej krawędzi ikonki/buttona */
+  transform: translateY(50%); /* nachodzi na ikonę w górę */
+  pointer-events: none; /* żeby nie przeszkadzał w klikaniu */
   color: #d4a574;
   font-size: 0.875rem;
   font-family: "Cinzel", serif;

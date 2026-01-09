@@ -23,9 +23,9 @@ export default function PanelPlayerSquadPortrait() {
         <div className={styles.iconWrapper}>
           <Users className={styles.squadIcon} />
           <span className={styles.squadBadge}>{squadSize}</span>
+          <span className={styles.squadLabel}>Squad</span>
         </div>
       </Button>
-      <span className={styles.squadLabel}>Squad</span>
     </div>
   )
 }
