@@ -11,16 +11,13 @@ import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
 import { X } from "lucide-react"
 
-type Props = {
-  closePanel: () => void
-}
-
-export default function PanelPlayerPanel({ closePanel }: Props) {
-  const { setModalLeftTopBar } = useModalLeftTopBar()
+export default function PanelPlayerPanel() {
+  const { openModalLeftTopBar } = useModalLeftTopBar()
 
   function onClose() {
-    setModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerPortrait)
+    openModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerPortrait)
   }
+
   const avatarUrl = "https://github.com/shadcn.png"
   const avatarFallback = "VB"
 

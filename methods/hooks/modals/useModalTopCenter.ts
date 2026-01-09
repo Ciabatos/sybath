@@ -2,21 +2,20 @@
 
 import { modalTopCenterAtom } from "@/store/atoms"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
-import { componentMapTopCenter } from "@/types/panels/componentMapTopCenter"
+import { panelTopCenter } from "@/types/panels/panelTopCenter"
 import { useAtom } from "jotai"
 
 export function useModalTopCenter() {
   const [modalTopCenter, setModalTopCenter] = useAtom(modalTopCenterAtom)
-  const ModalTopCenterPanel = componentMapTopCenter[modalTopCenter]
+  const ModalTopCenter = panelTopCenter[modalTopCenter]
 
-  function openModalTopCeneter(panel: EPanelsTopCeneter) {
-    // setModalTopCenter(EPanelsTopCenter.Inactive) // reset TopCenter
+  function openModalTopCeneter(panel: EPanelsTopCenter) {
     setModalTopCenter(panel)
   }
-  
+
   function resetModalTopCeneter() {
     setModalTopCenter(EPanelsTopCenter.Inactive)
   }
 
-  return { ModalTopCenterPanel, openModalTopCeneter, resetModalTopCeneter }
+  return { ModalTopCenter, openModalTopCeneter, resetModalTopCeneter }
 }

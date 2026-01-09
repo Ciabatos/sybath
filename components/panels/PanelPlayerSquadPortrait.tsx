@@ -7,10 +7,10 @@ import { Users } from "lucide-react"
 
 export default function PanelPlayerSquadPortrait() {
   const squadSize = 4
-  const { setModalLeftTopBar } = useModalLeftTopBar()
+  const { openModalLeftTopBar } = useModalLeftTopBar()
 
   const handleClick = () => {
-    setModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerSquad)
+    openModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerSquad)
   }
 
   return (

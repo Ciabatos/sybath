@@ -57,10 +57,10 @@ const mockSquadMembers: SquadMember[] = [
 ]
 
 export default function PanelPlayerSquad() {
-  const { setModalLeftTopBar } = useModalLeftTopBar()
+  const { openModalLeftTopBar } = useModalLeftTopBar()
 
   function onClose() {
-    setModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerPortrait)
+    openModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerPortrait)
   }
   return (
     <div className={styles.overlay}>

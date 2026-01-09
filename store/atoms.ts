@@ -27,9 +27,11 @@ import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/
 import { TAreaRecordByXY } from "@/methods/hooks/world/composite/useMapTilesArea"
 import { TMapTilesMovementPathRecordByXY } from "@/methods/hooks/world/composite/useMapTilesPathFromPointToPoint"
 import { EPanelsBottomCenterBar } from "@/types/enumeration/EPanelsBottomCenterBar"
+import { EPanelsLeftCenter } from "@/types/enumeration/EPanelsLeftCenter"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
 import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
+import { EPanelsTopCenterBar } from "@/types/enumeration/EPanelsTopCenterBar"
 import { atom } from "jotai"
 
 //Modals
@@ -37,6 +39,8 @@ export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBott
 export const modalLeftTopBarAtom = atom<EPanelsLeftTopBar>(EPanelsLeftTopBar.PanelPlayerPortrait)
 export const modalRightCenterAtom = atom<EPanelsRightCenter>(EPanelsRightCenter.Inactive)
 export const modalTopCenterAtom = atom<EPanelsTopCenter>(EPanelsTopCenter.Inactive)
+export const modalTopCenterBarAtom = atom<EPanelsTopCenterBar>(EPanelsTopCenterBar.Inactive)
+export const modalLeftCenterAtom = atom<EPanelsLeftCenter>(EPanelsLeftCenter.Inactive)
 
 //City
 export const clickedCityTileAtom = atom<number>(0)

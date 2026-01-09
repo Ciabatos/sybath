@@ -2,15 +2,14 @@
 
 import { modalBottomCenterBarAtom } from "@/store/atoms"
 import { EPanelsBottomCenterBar } from "@/types/enumeration/EPanelsBottomCenterBar"
-import { componentMapBottomCenterBar } from "@/types/panels/componentMapBottomCenterBar"
+import { panelBottomCenterBar } from "@/types/panels/panelBottomCenterBar"
 import { useAtom } from "jotai"
 
 export function useModalBottomCenterBar() {
   const [modalBottomCenterBar, setModalBottomCenterBar] = useAtom(modalBottomCenterBarAtom)
-  const ModalBottomCenterBar = componentMapBottomCenterBar[modalBottomCenterBar]
+  const ModalBottomCenterBar = panelBottomCenterBar[modalBottomCenterBar]
 
   function openModalBottomCenterBar(panel: EPanelsBottomCenterBar) {
-    // setModalTopCenter(EPanelsTopCenter.Inactive) // reset TopCenter
     setModalBottomCenterBar(panel)
   }
 

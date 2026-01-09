@@ -4,14 +4,14 @@ import styles from "@/components/modals/styles/ModalTopCenter.module.css"
 import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
 
 export default function ModalTopCenter() {
-  const { ModalTopCenterPanel, resetModalTopCeneter } = useModalTopCenter()
+  const { ModalTopCenter, resetModalTopCeneter } = useModalTopCenter()
 
-  if (!ModalTopCenterPanel) return null
+  if (!ModalTopCenter) return null
 
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContainer}>
-        <ModalTopCenterPanel closePanel={resetModalTopCeneter} />
+        <ModalTopCenter closePanel={resetModalTopCeneter} />
       </div>
     </div>
   )

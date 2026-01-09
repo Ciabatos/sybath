@@ -11,8 +11,11 @@ type TParams = {
 export default function PanelBackToMap({ closePanel }: TParams) {
   return (
     <div className={styles.container}>
-      <Link href='/map'>
-        <Button size={"lg"}>
+      <Link href='/map/1'>
+        <Button
+          onClick={closePanel}
+          size={"lg"}
+        >
           <ArrowLeft className='mr-2 h-4 w-4' />
           Back to Map
         </Button>

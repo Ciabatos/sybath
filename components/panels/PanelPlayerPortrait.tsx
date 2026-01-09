@@ -12,11 +12,12 @@ type Props = {
   closePanel: () => void
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function PanelPlayerPortrait({ closePanel }: Props) {
-  const { setModalLeftTopBar } = useModalLeftTopBar()
+  const { openModalLeftTopBar } = useModalLeftTopBar()
 
   const handleClick = () => {
-    setModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerPanel)
+    openModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerPanel)
   }
 
   return (
