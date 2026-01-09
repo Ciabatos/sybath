@@ -8,8 +8,8 @@
   border-radius: 9999px;
   background: linear-gradient(to bottom, rgba(120, 53, 15, 0.4) 0%, rgba(28, 25, 23, 0.6) 100%);
   padding: 0;
-  width: 4rem;
-  height: 4rem;
+  width: 6rem;
+  height: 6rem;
 }
 
 .heroButton:hover {
@@ -24,8 +24,8 @@
 }
 
 .avatar {
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 5.5rem;
+  height: 5.5rem;
 }
 
 .avatarImage {

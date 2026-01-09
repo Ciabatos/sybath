@@ -28,123 +28,121 @@ export default function PanelPlayerPanel({ closePanel }: Props) {
   const avatarFallback = "VB"
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.panelsContainer}>
-        <div className={styles.panel}>
-          <Button
-            onClick={onClose}
-            variant='ghost'
-            size='icon'
-            className={styles.closeButton}
-          >
-            <X className={styles.closeButtonIcon} />
-          </Button>
+    <div className={styles.panelsContainer}>
+      <div className={styles.panel}>
+        <Button
+          onClick={onClose}
+          variant='ghost'
+          size='icon'
+          className={styles.closeButton}
+        >
+          <X className={styles.closeButtonIcon} />
+        </Button>
 
-          <div className={styles.header}>
-            <Avatar className={styles.avatar}>
-              <AvatarImage
-                src={avatarUrl || "/placeholder.svg"}
-                alt='Hero'
-                className={styles.avatarImage}
-              />
-              <AvatarFallback className={styles.avatarFallback}>{avatarFallback}</AvatarFallback>
-            </Avatar>
-            <div className={styles.headerInfo}>
-              <h2 className={styles.heroName}>Vet. Baldomar</h2>
-              <p className={styles.heroTitle}>The Dog</p>
-            </div>
+        <div className={styles.header}>
+          <Avatar className={styles.avatar}>
+            <AvatarImage
+              src={avatarUrl || "/placeholder.svg"}
+              alt='Hero'
+              className={styles.avatarImage}
+            />
+            <AvatarFallback className={styles.avatarFallback}>{avatarFallback}</AvatarFallback>
+          </Avatar>
+          <div className={styles.headerInfo}>
+            <h2 className={styles.heroName}>Vet. Baldomar</h2>
+            <p className={styles.heroTitle}>The Dog</p>
           </div>
-
-          <div className={styles.mainContent}>
-            <Tabs
-              defaultValue='Stats'
-              className={styles.tabs}
-            >
-              <TabsList className={styles.tabsList}>
-                <TabsTrigger
-                  value='Stats'
-                  className={styles.tabsTrigger}
-                >
-                  Stats
-                </TabsTrigger>
-                <TabsTrigger
-                  value='Inventory'
-                  className={styles.tabsTrigger}
-                >
-                  Inventory
-                </TabsTrigger>
-                <TabsTrigger
-                  value='Skills'
-                  className={styles.tabsTrigger}
-                >
-                  Skills
-                </TabsTrigger>
-                <TabsTrigger
-                  value='Abilities'
-                  className={styles.tabsTrigger}
-                >
-                  Abilities
-                </TabsTrigger>
-                <TabsTrigger
-                  value='Knowledge'
-                  className={styles.tabsTrigger}
-                >
-                  Knowledge
-                </TabsTrigger>
-              </TabsList>
-
-              <TabsContent
-                value='Stats'
-                className={styles.tabsContent}
-              >
-                <PanelPlayerStats />
-              </TabsContent>
-
-              <TabsContent
-                value='Inventory'
-                className={styles.tabsContentInventory}
-              >
-                <PanelPlayerInventory
-                  columns={8}
-                  rows={6}
-                />
-              </TabsContent>
-
-              <TabsContent
-                value='Skills'
-                className={styles.tabsContent}
-              >
-                <PanelPlayerSkills />
-              </TabsContent>
-
-              <TabsContent
-                value='Abilities'
-                className={styles.tabsContent}
-              >
-                <PanelPlayerAbilities />
-              </TabsContent>
-
-              <TabsContent
-                value='Knowledge'
-                className={styles.tabsContent}
-              >
-                <PanelPlayerKnowledge />
-              </TabsContent>
-            </Tabs>
-          </div>
-
-          <Button
-            variant='ghost'
-            size='lg'
-            onClick={() => setIsPartyVisible(!isPartyVisible)}
-            className={styles.toggleButton}
-          >
-            {isPartyVisible ? "Hide Party" : "Show Party"}
-          </Button>
         </div>
 
-        {isPartyVisible && <PanelParty avatarUrl={avatarUrl} />}
+        <div className={styles.mainContent}>
+          <Tabs
+            defaultValue='Stats'
+            className={styles.tabs}
+          >
+            <TabsList className={styles.tabsList}>
+              <TabsTrigger
+                value='Stats'
+                className={styles.tabsTrigger}
+              >
+                Stats
+              </TabsTrigger>
+              <TabsTrigger
+                value='Inventory'
+                className={styles.tabsTrigger}
+              >
+                Inventory
+              </TabsTrigger>
+              <TabsTrigger
+                value='Skills'
+                className={styles.tabsTrigger}
+              >
+                Skills
+              </TabsTrigger>
+              <TabsTrigger
+                value='Abilities'
+                className={styles.tabsTrigger}
+              >
+                Abilities
+              </TabsTrigger>
+              <TabsTrigger
+                value='Knowledge'
+                className={styles.tabsTrigger}
+              >
+                Knowledge
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent
+              value='Stats'
+              className={styles.tabsContent}
+            >
+              <PanelPlayerStats />
+            </TabsContent>
+
+            <TabsContent
+              value='Inventory'
+              className={styles.tabsContentInventory}
+            >
+              <PanelPlayerInventory
+                columns={8}
+                rows={6}
+              />
+            </TabsContent>
+
+            <TabsContent
+              value='Skills'
+              className={styles.tabsContent}
+            >
+              <PanelPlayerSkills />
+            </TabsContent>
+
+            <TabsContent
+              value='Abilities'
+              className={styles.tabsContent}
+            >
+              <PanelPlayerAbilities />
+            </TabsContent>
+
+            <TabsContent
+              value='Knowledge'
+              className={styles.tabsContent}
+            >
+              <PanelPlayerKnowledge />
+            </TabsContent>
+          </Tabs>
+        </div>
+
+        <Button
+          variant='ghost'
+          size='lg'
+          onClick={() => setIsPartyVisible(!isPartyVisible)}
+          className={styles.toggleButton}
+        >
+          {isPartyVisible ? "Hide Party" : "Show Party"}
+        </Button>
       </div>
+
+      {isPartyVisible && <PanelParty avatarUrl={avatarUrl} />}
     </div>
   )
 }

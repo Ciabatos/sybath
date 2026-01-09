@@ -1,5 +1,6 @@
 "use client"
 
+import PlayerSwitchButton from "@/components/panels/PlayerSwitchButton"
 import styles from "@/components/panels/styles/PlayerPortrait.module.css"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
@@ -18,19 +19,22 @@ export default function PlayerPortrait({ closePanel }: Props) {
   }
 
   return (
-    <Button
-      onClick={handleClick}
-      className={styles.heroButton}
-      size='icon'
-    >
-      <Avatar className={styles.avatar}>
-        <AvatarImage
-          src={"https://github.com/shadcn.png"}
-          alt='Hero avatar'
-          className={styles.avatarImage}
-        />
-        <AvatarFallback className={styles.avatarFallback}>{"https://github.com/shadcn.png"}</AvatarFallback>
-      </Avatar>
-    </Button>
+    <div>
+      <Button
+        onClick={handleClick}
+        className={styles.heroButton}
+        size='icon'
+      >
+        <Avatar className={styles.avatar}>
+          <AvatarImage
+            src={"https://github.com/shadcn.png"}
+            alt='Hero avatar'
+            className={styles.avatarImage}
+          />
+          <AvatarFallback className={styles.avatarFallback}>{"https://github.com/shadcn.png"}</AvatarFallback>
+        </Avatar>
+      </Button>
+      <PlayerSwitchButton></PlayerSwitchButton>
+    </div>
   )
 }
