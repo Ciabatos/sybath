@@ -9,6 +9,8 @@
 
 .panel {
   display: flex;
+  position: relative;
+  top: -10;
   flex-direction: column;
   animation: slideIn 0.3s ease-out;
   box-shadow:
@@ -17,9 +19,8 @@
   border: 4px solid #78350f;
   border-radius: 8px;
   background: linear-gradient(to bottom, #1a0f08 0%, #2b1810 50%, #1a0f08 100%);
-  width: 90%;
-  max-width: 900px;
-  max-height: 85vh;
+  width: 35vw;
+  height: 90vh;
 }
 
 .header {
