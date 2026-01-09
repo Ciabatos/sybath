@@ -2,10 +2,10 @@
 
 export enum EPanelsLeftTopBar {
   Inactive = "Inactive",
-  PanelSquadInventory = "PanelSquadInventory",
+  PanelPlayerSquadInventory = "PanelPlayerSquadInventory",
   PanelPlayerSkills = "PanelPlayerSkills",
   PanelPlayerAbilities = "PanelPlayerAbilities",
   PanelPlayerInventory = "PanelPlayerInventory",
   PanelPlayerPanel = "PanelPlayerPanel",
-  PlayerPortrait = "PlayerPortrait",
+  PanelPlayerPortrait = "PanelPlayerPortrait",
 }

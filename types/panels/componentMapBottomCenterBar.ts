@@ -6,5 +6,4 @@ export const componentMapBottomCenterBar: Record<
   React.LazyExoticComponent<React.ComponentType<any>> | null
 > = {
   [EPanelsBottomCenterBar.Inactive]: null,
-  [EPanelsBottomCenterBar.PanelPlayerPanel]: React.lazy(() => import("@/components/panels/PanelPlayerPanel")),
 }

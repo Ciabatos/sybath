@@ -2,7 +2,7 @@
 
 import { useFetchPlayerInventorySlots } from "@/methods/hooks/playerInventory/core/useFetchPlayerInventorySlots"
 
-export default function PanelSquadInventory() {
+export default function PanelPlayerSquadInventory() {
   const { playerInventorySlots } = useFetchPlayerInventorySlots()
 
   const maxRow = Math.max(...playerInventorySlots.map((slot) => slot.row), 0)

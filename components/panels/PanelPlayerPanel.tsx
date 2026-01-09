@@ -2,8 +2,8 @@ import { PanelPlayerAbilities } from "@/components/panels/PanelPlayerAbilities"
 import { PanelPlayerInventory } from "@/components/panels/PanelPlayerInventory"
 import { PanelPlayerKnowledge } from "@/components/panels/PanelPlayerKnowledge"
 import { PanelPlayerSkills } from "@/components/panels/PanelPlayerSkills"
+import PanelPlayerSquad from "@/components/panels/PanelPlayerSquad"
 import { PanelPlayerStats } from "@/components/panels/PanelPlayerStats"
-import PanelSquad from "@/components/panels/PanelSquad"
 import styles from "@/components/panels/styles/PanelPlayerPanel.module.css"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -22,7 +22,7 @@ export default function PanelPlayerPanel({ closePanel }: Props) {
   const { setModalLeftTopBar } = useModalLeftTopBar()
 
   function onClose() {
-    setModalLeftTopBar(EPanelsLeftTopBar.PlayerPortrait)
+    setModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerPortrait)
   }
   const avatarUrl = "https://github.com/shadcn.png"
   const avatarFallback = "VB"
@@ -142,7 +142,7 @@ export default function PanelPlayerPanel({ closePanel }: Props) {
         </Button>
       </div>
 
-      {isPartyVisible && <PanelSquad avatarUrl={avatarUrl} />}
+      {isPartyVisible && <PanelPlayerSquad avatarUrl={avatarUrl} />}
     </div>
   )
 }

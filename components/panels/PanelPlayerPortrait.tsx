@@ -1,7 +1,7 @@
 "use client"
 
 import PlayerSwitchButton from "@/components/panels/PlayerSwitchButton"
-import styles from "@/components/panels/styles/PlayerPortrait.module.css"
+import styles from "@/components/panels/styles/PanelPlayerPortrait.module.css"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
@@ -11,7 +11,7 @@ type Props = {
   closePanel: () => void
 }
 
-export default function PlayerPortrait({ closePanel }: Props) {
+export default function PanelPlayerPortrait({ closePanel }: Props) {
   const { setModalLeftTopBar } = useModalLeftTopBar()
 
   const handleClick = () => {

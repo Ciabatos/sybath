@@ -1,6 +1,6 @@
 "use client"
 
-import styles from "@/components/panels/styles/PanelSquad.module.css"
+import styles from "@/components/panels/styles/PanelPlayerSquad.module.css"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -9,7 +9,7 @@ type Props = {
   avatarUrl: string
 }
 
-export default function PanelSquad({ avatarUrl }: Props) {
+export default function PanelPlayerSquad({ avatarUrl }: Props) {
   return (
     <div className={styles.partyPanel}>
       <Tabs
