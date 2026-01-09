@@ -1,3 +1,15 @@
+--pobieranie playerStats
+--pobieranie playerSkills
+--pobieranie playerAbilites
+--pobieranie playerKnowledge
+--pobieranie playerInventory
+--chodzenie po mapie
+--wymiana inventory miedzy graczami, budynkami, squadami (ogolny panel trade na centrum ekranu ?)
+--pobieranie informacji o squad
+--Skill budowania nomadow
+...
+
+
 teraz zajac sie districtem
 dodac inventory
 produkowanie co interwal produktow
