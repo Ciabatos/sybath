@@ -4,8 +4,10 @@
 --pobieranie playerKnowledge
 --pobieranie playerInventory
 --chodzenie po mapie
+--widocznosc innych graczy na mapie
 --wymiana inventory miedzy graczami, budynkami, squadami (ogolny panel trade na centrum ekranu ?)
 --pobieranie informacji o squad
+--zaproszenia/anulacje do squad
 --Skill budowania nomadow
 ...
 
