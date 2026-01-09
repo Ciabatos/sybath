@@ -9,9 +9,14 @@ export function useModalRightCenter() {
   const [modalRightCenter, setModalRightCenter] = useAtom(modalRightCenterAtom)
   const ModalRightCenter = componentMapRightCenter[modalRightCenter]
 
+  function openModalRightCenter(panel: EPanelsRightCenter) {
+    // setModalTopCenter(EPanelsTopCenter.Inactive) // reset TopCenter
+    setModalRightCenter(panel)
+  }
+  
   function resetModalRightCenter() {
     setModalRightCenter(EPanelsRightCenter.Inactive)
   }
 
-  return { ModalRightCenter, setModalRightCenter, resetModalRightCenter }
+  return { ModalRightCenter, openModalRightCenter, resetModalRightCenter }
 }
