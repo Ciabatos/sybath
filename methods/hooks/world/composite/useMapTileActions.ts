@@ -13,18 +13,18 @@ export function useMapTileActions() {
   const [clickedTile, setClickedTile] = useAtom(clickedTileAtom)
   // const { setModalBottomCenterBarAtom } = useModalBottomCenterBar()
   const { setModalLeftTopBar } = useModalLeftTopBar()
-  const { setModalRightCenter } = useModalRightCenter()
+  const { openModalRightCenter } = useModalRightCenter()
   const { setModalTopCenter } = useModalTopCenter()
   const { resetModals } = useResetModals()
 
   function handleClickOnMapTile(params: TMapTile) {
     setClickedTile(params)
     if (params.cities?.name) {
-      setModalRightCenter(EPanelsRightCenter.PanelMapTileDetail)
+      openModalRightCenter(EPanelsRightCenter.PanelMapTileDetail)
     } else if (params.districts?.name) {
-      setModalRightCenter(EPanelsRightCenter.PanelMapTileDetail)
+      openModalRightCenter(EPanelsRightCenter.PanelMapTileDetail)
     } else {
-      setModalRightCenter(EPanelsRightCenter.PanelMapTileDetail)
+      openModalRightCenter(EPanelsRightCenter.PanelMapTileDetail)
       // resetModals()
     }
   }
