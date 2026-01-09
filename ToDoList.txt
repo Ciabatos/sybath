@@ -8,6 +8,7 @@
 --wymiana inventory miedzy graczami, budynkami, squadami (ogolny panel trade na centrum ekranu ?)
 --pobieranie informacji o squad
 --zaproszenia/anulacje do squad
+--jezeli w squadzie jest wiecej niz 1 hero to zmiana ikony na mapie
 --Skill budowania nomadow
 ...
 
