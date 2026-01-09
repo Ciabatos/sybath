@@ -1,6 +1,6 @@
-import type React from "react"
 import styles from "@/components/panels/styles/PanelPlayerKnowledge.module.css"
-import { Book, MapPin, Users, Scroll, Crown, Skull } from "lucide-react"
+import { Book, Crown, MapPin, Scroll, Skull, Users } from "lucide-react"
+import type React from "react"
 
 type KnowledgeItemProps = {
   icon: React.ReactNode
@@ -40,7 +40,10 @@ function KnowledgeCategory({ title, items }: KnowledgeCategoryProps) {
       <h3 className={styles.categoryTitle}>{title}</h3>
       <div className={styles.categoryItems}>
         {items.map((item, index) => (
-          <KnowledgeItem key={index} {...item} />
+          <KnowledgeItem
+            key={index}
+            {...item}
+          />
         ))}
       </div>
     </div>
@@ -105,6 +108,21 @@ export function PanelPlayerKnowledge() {
     },
   ]
 
+  const crimesKnowledge = [
+    {
+      icon: <Skull />,
+      title: "Murder",
+      description: "Murder of Serghios by Kako.",
+      level: "Known" as const,
+    },
+    {
+      icon: <Skull />,
+      title: "Murder",
+      description: "Murder of Pako by Kako.",
+      level: "Partial" as const,
+    },
+  ]
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -113,9 +131,22 @@ export function PanelPlayerKnowledge() {
         </p>
       </div>
 
-      <KnowledgeCategory title="Locations" items={locationKnowledge} />
-      <KnowledgeCategory title="Factions" items={factionKnowledge} />
-      <KnowledgeCategory title="Lore" items={loreKnowledge} />
+      <KnowledgeCategory
+        title='Locations'
+        items={locationKnowledge}
+      />
+      <KnowledgeCategory
+        title='Factions'
+        items={factionKnowledge}
+      />
+      <KnowledgeCategory
+        title='Lore'
+        items={loreKnowledge}
+      />
+      <KnowledgeCategory
+        title='Crimes'
+        items={crimesKnowledge}
+      />
     </div>
   )
 }
