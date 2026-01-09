@@ -73,98 +73,95 @@ export default function PanelMapTileDetail() {
     resetModalRightCenter()
   }
 
-  console.log("clickedTile in PanelMapTileDetail:", clickedTile?.terrainTypes.name)
   const terrain = terrainData[clickedTile?.terrainTypes.name as keyof typeof terrainData]
   // const terrain = terrainData["Plains"]
 
   const gridPosition = { x: 10, y: 20 } // Example position, replace with actual data
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.panel}>
-        <div className={styles.header}>
-          <div className={styles.titleSection}>
-            <h2 className={styles.title}>{terrain.name}</h2>
-            {gridPosition && (
-              <span className={styles.coordinates}>
-                [{gridPosition.x}, {gridPosition.y}]
-              </span>
-            )}
-          </div>
-          <Button
-            onClick={onClose}
-            variant='ghost'
-            size='icon'
-            className={styles.closeButton}
+    <div className={styles.panel}>
+      <div className={styles.header}>
+        <div className={styles.titleSection}>
+          <h2 className={styles.title}>{terrain.name}</h2>
+          {gridPosition && (
+            <span className={styles.coordinates}>
+              [{gridPosition.x}, {gridPosition.y}]
+            </span>
+          )}
+        </div>
+        <Button
+          onClick={onClose}
+          variant='ghost'
+          size='icon'
+          className={styles.closeButton}
+        >
+          <X className={styles.closeIcon} />
+        </Button>
+      </div>
+
+      <div className={styles.content}>
+        <section className={styles.section}>
+          <h3 className={styles.sectionTitle}>Description</h3>
+          <p className={styles.description}>{terrain.description}</p>
+        </section>
+
+        <section className={styles.section}>
+          <h3 className={styles.sectionTitle}>Difficulty</h3>
+          <div
+            className={styles.difficultyBadge}
+            data-difficulty={terrain.difficulty.toLowerCase()}
           >
-            <X className={styles.closeIcon} />
-          </Button>
-        </div>
+            {terrain.difficulty}
+          </div>
+        </section>
 
-        <div className={styles.content}>
-          <section className={styles.section}>
-            <h3 className={styles.sectionTitle}>Description</h3>
-            <p className={styles.description}>{terrain.description}</p>
-          </section>
+        <section className={styles.section}>
+          <h3 className={styles.sectionTitle}>Available Resources</h3>
+          <div className={styles.resourceList}>
+            {terrain.resources.map((resource) => (
+              <div
+                key={resource}
+                className={styles.resourceItem}
+              >
+                <span className={styles.resourceIcon}>📦</span>
+                <span className={styles.resourceName}>{resource}</span>
+              </div>
+            ))}
+          </div>
+        </section>
 
-          <section className={styles.section}>
-            <h3 className={styles.sectionTitle}>Difficulty</h3>
-            <div
-              className={styles.difficultyBadge}
-              data-difficulty={terrain.difficulty.toLowerCase()}
+        <section className={styles.section}>
+          <h3 className={styles.sectionTitle}>Possible Encounters</h3>
+          <div className={styles.encounterList}>
+            {terrain.encounters.map((encounter) => (
+              <div
+                key={encounter}
+                className={styles.encounterItem}
+              >
+                <span className={styles.encounterIcon}>⚔️</span>
+                <span className={styles.encounterName}>{encounter}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className={styles.section}>
+          <div className={styles.actionButtons}>
+            <Button className={styles.actionButton}>Explore</Button>
+            <Button
+              className={styles.actionButton}
+              variant='outline'
             >
-              {terrain.difficulty}
-            </div>
-          </section>
-
-          <section className={styles.section}>
-            <h3 className={styles.sectionTitle}>Available Resources</h3>
-            <div className={styles.resourceList}>
-              {terrain.resources.map((resource) => (
-                <div
-                  key={resource}
-                  className={styles.resourceItem}
-                >
-                  <span className={styles.resourceIcon}>📦</span>
-                  <span className={styles.resourceName}>{resource}</span>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section className={styles.section}>
-            <h3 className={styles.sectionTitle}>Possible Encounters</h3>
-            <div className={styles.encounterList}>
-              {terrain.encounters.map((encounter) => (
-                <div
-                  key={encounter}
-                  className={styles.encounterItem}
-                >
-                  <span className={styles.encounterIcon}>⚔️</span>
-                  <span className={styles.encounterName}>{encounter}</span>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section className={styles.section}>
-            <div className={styles.actionButtons}>
-              <Button className={styles.actionButton}>Explore</Button>
-              <Button
-                className={styles.actionButton}
-                variant='outline'
-              >
-                Set Camp
-              </Button>
-              <Button
-                className={styles.actionButton}
-                variant='outline'
-              >
-                Quick Travel
-              </Button>
-            </div>
-          </section>
-        </div>
+              Set Camp
+            </Button>
+            <Button
+              className={styles.actionButton}
+              variant='outline'
+            >
+              Quick Travel
+            </Button>
+          </div>
+        </section>
       </div>
     </div>
   )

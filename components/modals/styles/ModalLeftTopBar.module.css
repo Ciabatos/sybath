@@ -1,17 +1,10 @@
 .modalOverlay {
-  display: flex;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  justify-content: flex-start; /* left */
-  align-items: flex-start; /* top */
-  z-index: 1000;
-  pointer-events: none; /* This allows clicks to pass through to elements below */
+  z-index: 99;
 }
 
 .modalContainer {
-  z-index: 1000;
-  pointer-events: auto; /* Re-enable pointer events for the modal itself */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
 }

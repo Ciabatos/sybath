@@ -1,23 +1,12 @@
 .modalOverlay {
-  display: flex;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  justify-content: center;
-  z-index: 1000;
-  pointer-events: none; /* This allows clicks to pass through to elements below */
+  z-index: 99;
 }
 
 .modalContainer {
-  z-index: 1000;
-  animation: slideUp 0.3s ease-out forwards;
-  margin-bottom: 0;
-  width: 100%;
-  max-width: 500px;
-  max-height: 80vh;
-  overflow-y: auto;
-  pointer-events: auto; /* Re-enable pointer events for the modal itself */
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  z-index: 100;
 }
 
 @keyframes slideUp {
