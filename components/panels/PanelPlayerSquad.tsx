@@ -164,24 +164,21 @@ export default function PanelPlayerSquad() {
 
           {/* Squad Stats */}
           <div className={styles.statsSection}>
-            <h3 className={styles.statsTitle}>Squad Overview</h3>
+            <h3 className={styles.statsTitle}>Squad Logistics</h3>
             <div className={styles.statsGrid}>
               <div className={styles.statItem}>
-                <span className={styles.statLabel}>Total Members</span>
+                <span className={styles.statLabel}>Total Heroes</span>
                 <span className={styles.statValue}>{mockSquadMembers.length}</span>
               </div>
               <div className={styles.statItem}>
-                <span className={styles.statLabel}>Average Level</span>
+                <span className={styles.statLabel}>Mules</span>
                 <span className={styles.statValue}>
                   {Math.round(mockSquadMembers.reduce((acc, m) => acc + m.level, 0) / mockSquadMembers.length)}
                 </span>
               </div>
               <div className={styles.statItem}>
-                <span className={styles.statLabel}>Total Health</span>
-                <span className={styles.statValue}>
-                  {mockSquadMembers.reduce((acc, m) => acc + m.health, 0)}/
-                  {mockSquadMembers.reduce((acc, m) => acc + m.maxHealth, 0)}
-                </span>
+                <span className={styles.statLabel}>Total Capacity</span>
+                <span className={styles.statValue}>{mockSquadMembers.reduce((acc, m) => acc + m.health, 0)}</span>
               </div>
             </div>
           </div>
