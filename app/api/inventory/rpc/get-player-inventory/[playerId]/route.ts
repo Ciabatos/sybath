@@ -24,6 +24,10 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
     const paramsFromPromise = await params
     const parsedParams = typeParamsSchema.parse(paramsFromPromise)
 
+    if (session?.user?.playerId !== parsedParams.playerId) {
+      return NextResponse.json({ message: "Forbidden" }, { status: 403 })
+    }
+    
     const clientEtag = request.headers.get("if-none-match") ?? undefined
 
     const { record, etag, cacheHit, etagMatched } = await fetchPlayerInventoryService(parsedParams, { clientEtag })

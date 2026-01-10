@@ -40,5 +40,8 @@
   "sqlParamsPlaceholders": "$1",
   "apiPath": "app/api/world/rpc/get-player-map/[playerId]/route.ts",
   "apiPathParams": "/api/world/rpc/get-player-map/${params.playerId}",
-  "generateMutation": false
+  "generateMutation": false,
+  "selectedGenerators": [
+    "getMethodFetcher"
+  ]
 }

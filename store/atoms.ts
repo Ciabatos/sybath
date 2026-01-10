@@ -18,6 +18,7 @@ import { TBuildingInventoryRecordBySlotId } from "@/db/postgresMainDatabase/sche
 import { TDistrictInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/districtInventory"
 import { TPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
 import { TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/items"
+import { TActivePlayerRecordById } from "@/db/postgresMainDatabase/schemas/players/activePlayer"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
 import { TPlayerMapRecordByMapId } from "@/db/postgresMainDatabase/schemas/world/playerMap"
@@ -69,6 +70,7 @@ export const mapTilesAtom = atom<TWorldMapTilesRecordByXY>({})
 export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
 
 //Functions
+export const activePlayerAtom = atom<TActivePlayerRecordById>({})
 export const playerCityAtom = atom<TPlayerCityRecordByCityId>({})
 export const playerMapAtom = atom<TPlayerMapRecordByMapId>({})
 export const buildingInventoryAtom = atom<TBuildingInventoryRecordBySlotId>({})

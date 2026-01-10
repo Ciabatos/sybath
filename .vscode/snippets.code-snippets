@@ -554,5 +554,68 @@
       "const { playerCity } = useFetchPlayerCity({$1})"
     ],
     "description": "Destructuring usePlayerCity hook"
+  },  
+  "Destructure usePlayerPosition": {
+    "prefix": "hook_world_core_usePlayerPosition",
+    "body": [
+      "const { playerPosition } = useFetchPlayerPosition({$1})"
+    ],
+    "description": "Destructuring usePlayerPosition hook"
+  },  
+  "Destructure useActivePlayer": {
+    "prefix": "hook_players_core_useActivePlayer",
+    "body": [
+      "const { activePlayer } = useFetchActivePlayer({$1})"
+    ],
+    "description": "Destructuring useActivePlayer hook"
+  },  
+  "Destructure usePlayerCity": {
+    "prefix": "hook_cities_core_usePlayerCity",
+    "body": [
+      "const { playerCity } = useFetchPlayerCity({$1})"
+    ],
+    "description": "Destructuring usePlayerCity hook"
+  },  
+  "Destructure usePlayerInventory": {
+    "prefix": "hook_inventory_core_usePlayerInventory",
+    "body": [
+      "const { playerInventory } = useFetchPlayerInventory({$1})"
+    ],
+    "description": "Destructuring usePlayerInventory hook"
+  },  
+  "Destructure useActivePlayer": {
+    "prefix": "hook_players_core_useActivePlayer",
+    "body": [
+      "const { activePlayer } = useFetchActivePlayer({$1})"
+    ],
+    "description": "Destructuring useActivePlayer hook"
+  },  
+  "Destructure usePlayerMap": {
+    "prefix": "hook_world_core_usePlayerMap",
+    "body": [
+      "const { playerMap } = useFetchPlayerMap({$1})"
+    ],
+    "description": "Destructuring usePlayerMap hook"
+  },  
+  "Destructure usePlayerMovement": {
+    "prefix": "hook_world_core_usePlayerMovement",
+    "body": [
+      "const { playerMovement } = useFetchPlayerMovement({$1})"
+    ],
+    "description": "Destructuring usePlayerMovement hook"
+  },  
+  "Destructure usePlayerPosition": {
+    "prefix": "hook_world_core_usePlayerPosition",
+    "body": [
+      "const { playerPosition } = useFetchPlayerPosition({$1})"
+    ],
+    "description": "Destructuring usePlayerPosition hook"
+  },  
+  "Destructure useActivePlayer": {
+    "prefix": "hook_players_core_useActivePlayer",
+    "body": [
+      "const { activePlayer } = useFetchActivePlayer({$1})"
+    ],
+    "description": "Destructuring useActivePlayer hook"
   },//Automatic Snippets
 }

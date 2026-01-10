@@ -14,7 +14,7 @@ export async function getUser(email: string) {
        FROM auth.users T1
        JOIN players.players T2 ON T1.id = T2.user_id
        WHERE T1.email = $1
-       ORDER BY T2.is_default DESC, T2.id ASC`,
+       ORDER BY T2.is_active DESC, T2.id ASC`,
       [email],
     )
     const data = snakeToCamelRows(result.rows)

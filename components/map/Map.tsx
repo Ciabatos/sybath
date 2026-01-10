@@ -34,7 +34,7 @@ export default function Map(props: TMapTile) {
 
   const backgroundImage = createTerrainImage(props.terrainTypes.imageUrl)
   const landscapeImage = createLandscapeImage(props.landscapeTypes?.imageUrl)
-  const playerImage = createPlayerImage(props.playerPosition?.imageUrl)
+  const playerImage = createPlayerImage(props.playerPosition?.imageMap)
   const citiesImage = createCitiesImage(props.cities?.imageUrl)
   const districtsImage = creatDistrictsImage(props.districtTypes?.imageUrl)
   const combinedImages = combineImages(landscapeImage, backgroundImage)

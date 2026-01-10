@@ -13,7 +13,7 @@ const typeParamsSchema = z.object({
   playerId: z.coerce.number(),
 }) satisfies z.ZodType<TPlayerPositionParams>
 
-export async function GET(request: NextRequest, { params }: { params: TApiParams } ): Promise<NextResponse> {
+export async function GET(request: NextRequest, { params }: { params: TApiParams }): Promise<NextResponse> {
   try {
     const session = await auth()
     const sessionUserId = session?.user?.userId
@@ -24,6 +24,10 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
 
     const paramsFromPromise = await params
     const parsedParams = typeParamsSchema.parse(paramsFromPromise)
+
+    if (session?.user?.playerId !== parsedParams.playerId) {
+      return NextResponse.json({ message: "Forbidden" }, { status: 403 })
+    }
 
     const clientEtag = request.headers.get("if-none-match") ?? undefined
 

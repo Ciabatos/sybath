@@ -1,8 +1,8 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetMethodFetcher.hbs
 
 import { auth } from "@/auth"
-import { TPlayerMovementParams } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
-import { fetchPlayerMovementService } from "@/methods/services/world/fetchPlayerMovementService"
+import { TActivePlayerParams } from "@/db/postgresMainDatabase/schemas/players/activePlayer"
+import { fetchActivePlayerService } from "@/methods/services/players/fetchActivePlayerService"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
 
@@ -10,7 +10,7 @@ type TApiParams = Record<string, string>
 
 const typeParamsSchema = z.object({
   playerId: z.coerce.number(),
-}) satisfies z.ZodType<TPlayerMovementParams>
+}) satisfies z.ZodType<TActivePlayerParams>
 
 export async function GET(request: NextRequest, { params }: { params: TApiParams } ): Promise<NextResponse> {
   try {
@@ -30,7 +30,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
     
     const clientEtag = request.headers.get("if-none-match") ?? undefined
 
-    const { record, etag, cacheHit, etagMatched } = await fetchPlayerMovementService(parsedParams, { clientEtag })
+    const { record, etag, cacheHit, etagMatched } = await fetchActivePlayerService(parsedParams, { clientEtag })
 
     if (cacheHit || etagMatched) {
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })

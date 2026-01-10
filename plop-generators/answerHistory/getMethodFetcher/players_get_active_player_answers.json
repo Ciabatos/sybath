@@ -1,0 +1,66 @@
+{
+  "schema": "players",
+  "method": "get_active_player",
+  "methodCamelName": "activePlayer",
+  "methodPascalName": "ActivePlayer",
+  "methodKebabName": "get-active-player",
+  "methodName": "getActivePlayer",
+  "methodTypeName": "TActivePlayer",
+  "methodParamsTypeName": "TActivePlayerParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "pascalName": "Id",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "pascalName": "Name",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "image_map",
+      "camelName": "imageMap",
+      "pascalName": "ImageMap",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "image_portrait",
+      "camelName": "imagePortrait",
+      "pascalName": "ImagePortrait",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"id\"]",
+  "indexParamsColumns": "playerId",
+  "indexTypeMethodName": "Id",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TActivePlayerRecordById",
+  "indexColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "pascalName": "Id",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1",
+  "apiPath": "app/api/players/rpc/get-active-player/[playerId]/route.ts",
+  "apiPathParams": "/api/players/rpc/get-active-player/${params.playerId}",
+  "generateMutation": true,
+  "mutationMergeOldData": false
+}

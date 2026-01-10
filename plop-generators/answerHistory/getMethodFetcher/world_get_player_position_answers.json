@@ -35,9 +35,9 @@
       "optional": ""
     },
     {
-      "name": "image_url",
-      "camelName": "imageUrl",
-      "pascalName": "ImageUrl",
+      "name": "image_map",
+      "camelName": "imageMap",
+      "pascalName": "ImageMap",
       "tsType": "string",
       "optional": ""
     }
@@ -67,5 +67,8 @@
   "apiPath": "app/api/world/rpc/get-player-position/[mapId]/[playerId]/route.ts",
   "apiPathParams": "/api/world/rpc/get-player-position/${params.mapId}/${params.playerId}",
   "generateMutation": true,
-  "mutationMergeOldData": false
+  "mutationMergeOldData": false,
+  "selectedGenerators": [
+    "getMethodFetcher"
+  ]
 }

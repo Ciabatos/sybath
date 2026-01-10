@@ -12,7 +12,7 @@ export type TPlayerPositionParams = {
 export type TPlayerPosition = {
   x: number
   y: number
-  imageUrl: string
+  imageMap: string
 }
 
 export type TPlayerPositionRecordByXY = Record<string, TPlayerPosition>

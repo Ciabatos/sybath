@@ -20,7 +20,7 @@ export function useMutatePlayerPosition( params: TPlayerPositionParams) {
     const defaultValues = {
       x: ``,
       y: ``,
-      imageUrl: ``,
+      imageMap: ``,
     }
 
     //MANUAL CODE - END
