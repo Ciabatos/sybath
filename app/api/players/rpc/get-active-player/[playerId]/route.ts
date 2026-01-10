@@ -12,7 +12,8 @@ const typeParamsSchema = z.object({
   playerId: z.coerce.number(),
 }) satisfies z.ZodType<TActivePlayerParams>
 
-export async function GET(request: NextRequest, { params }: { params: TApiParams } ): Promise<NextResponse> {
+export async function GET(request: NextRequest, { params }: { params: TApiParams }): Promise<NextResponse> {
+  console.log("GET /api/players/rpc/get-active-player/[playerId] called")
   try {
     const session = await auth()
     const sessionUserId = session?.user?.userId
@@ -27,7 +28,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
     if (session?.user?.playerId !== parsedParams.playerId) {
       return NextResponse.json({ message: "Forbidden" }, { status: 403 })
     }
-    
+
     const clientEtag = request.headers.get("if-none-match") ?? undefined
 
     const { record, etag, cacheHit, etagMatched } = await fetchActivePlayerService(parsedParams, { clientEtag })
