@@ -6,19 +6,23 @@ import { PanelPlayerStats } from "@/components/panels/PanelPlayerStats"
 import styles from "@/components/panels/styles/PanelPlayerPanel.module.css"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { createHeroPortrait } from "@/methods/functions/panels/createHeroPortrait"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
+import { useActivePlayer } from "@/methods/hooks/players/composite/useActivePlayer"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
 import { X } from "lucide-react"
 
 export default function PanelPlayerPanel() {
   const { openModalLeftTopBar } = useModalLeftTopBar()
+  const { createPortrait } = createHeroPortrait()
+  const { activePlayer } = useActivePlayer()
 
   function onClose() {
     openModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerPortrait)
   }
 
-  const avatarUrl = "https://github.com/shadcn.png"
+  const avatarUrl = createPortrait(activePlayer.imagePortrait)
   const avatarFallback = "VB"
 
   return (
@@ -36,7 +40,7 @@ export default function PanelPlayerPanel() {
         <div className={styles.header}>
           <Avatar className={styles.avatar}>
             <AvatarImage
-              src={avatarUrl || "/placeholder.svg"}
+              src={avatarUrl}
               alt='Hero'
               className={styles.avatarImage}
             />

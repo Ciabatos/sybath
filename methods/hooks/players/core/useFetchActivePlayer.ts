@@ -14,7 +14,7 @@ import useSWR from "swr"
 
 export function useFetchActivePlayer(params: TActivePlayerParams) {
   const setActivePlayer = useSetAtom(activePlayerAtom)
-  console.log(`/api/players/rpc/get-active-player/${params.playerId}`)
+
   const { data } = useSWR<TActivePlayer[]>(`/api/players/rpc/get-active-player/${params.playerId}`, {
     refreshInterval: 3000,
   })
