@@ -1,4 +1,5 @@
 import Portal from "@/components/portals/Portal"
+import { SWRProvider } from "@/providers/swr-provider"
 import { Provider } from "jotai"
 import type { Metadata } from "next"
 import { SessionProvider } from "next-auth/react"
@@ -20,8 +21,10 @@ export default async function RootLayout({
       <body>
         <Provider>
           <SessionProvider>
-            {children}
-            <Portal />
+            <SWRProvider>
+              {children}
+              <Portal />
+            </SWRProvider>
           </SessionProvider>
         </Provider>
       </body>

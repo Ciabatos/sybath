@@ -21,7 +21,7 @@ export async function getActivePlayer(params: TActivePlayerParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM players.get_active_player($1);`
-
+    
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TActivePlayer[]
   } catch (error) {

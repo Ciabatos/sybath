@@ -8,12 +8,16 @@ import { Button } from "@/components/ui/button"
 import { createHeroPortrait } from "@/methods/functions/panels/createHeroPortrait"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { useActivePlayer } from "@/methods/hooks/players/composite/useActivePlayer"
+import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
 
 export default function PanelPlayerPortrait() {
   const { openModalLeftTopBar } = useModalLeftTopBar()
   const { createPortrait } = createHeroPortrait()
+  const { playerId } = usePlayerId()
   const { activePlayer } = useActivePlayer()
+  console.log("Player Portrait Rendered:", playerId)
+  // Czekaj TYLKO na playerValue
 
   const handleClick = () => {
     openModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerPanel)
@@ -28,11 +32,10 @@ export default function PanelPlayerPortrait() {
       >
         <Avatar className={styles.avatar}>
           <AvatarImage
-            src={createPortrait("17.png")}
+            src={createPortrait(activePlayer.imagePortrait)}
             alt='Hero avatar'
             className={styles.avatarImage}
           />
-          {activePlayer?.imagePortrait}
           <AvatarFallback className={styles.avatarFallback}>HV</AvatarFallback>
         </Avatar>
       </Button>
