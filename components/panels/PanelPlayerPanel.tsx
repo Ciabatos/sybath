@@ -22,6 +22,7 @@ export default function PanelPlayerPanel() {
     openModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerPortrait)
   }
 
+  const heroName = activePlayer.name
   const avatarUrl = createPortrait(activePlayer.imagePortrait)
   const avatarFallback = "VB"
 
@@ -47,7 +48,7 @@ export default function PanelPlayerPanel() {
             <AvatarFallback className={styles.avatarFallback}>{avatarFallback}</AvatarFallback>
           </Avatar>
           <div className={styles.headerInfo}>
-            <h2 className={styles.heroName}>Vet. Baldomar</h2>
+            <h2 className={styles.heroName}>{heroName}</h2>
             <p className={styles.heroTitle}>The Dog</p>
           </div>
         </div>
