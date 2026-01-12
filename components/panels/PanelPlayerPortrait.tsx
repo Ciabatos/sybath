@@ -28,7 +28,7 @@ export default function PanelPlayerPortrait() {
       >
         <Avatar className={styles.avatar}>
           <AvatarImage
-            src={createPortrait(activePlayer.imagePortrait)}
+            src={createPortrait(activePlayer?.imagePortrait)}
             alt='Hero avatar'
             className={styles.avatarImage}
           />
