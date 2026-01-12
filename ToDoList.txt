@@ -101,6 +101,7 @@ Middleware zamienia to na:
 
 
 stability.ai Craiyon
+stable diffusion + stable-diffusion-webui
 
 rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmianie URL
 
