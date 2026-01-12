@@ -101,7 +101,13 @@ Middleware zamienia to na:
 
 
 stability.ai Craiyon
-stable diffusion + stable-diffusion-webui
+https://civitai.com/
+stable diffusion XL + 1.5 + stable-diffusion-webui 1111
+https://civitai.com/models/151297/game-scenes
+https://civitai.com/models/212451/fantasy-game-assets-grimoires-potions-swords-and-more
+https://civitai.com/models/97079/gameiconresearchcj2lora
+https://civitai.com/models/143301/game-icon-instituteanfgv3
+https://civitai.com/models/1857872/mobile-game-isometric-building-xl
 
 rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmianie URL
 
