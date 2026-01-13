@@ -213,7 +213,17 @@ export default function getTable(plop) {
         },
       ])
 
+      const promptAnswers = {
+        schema,
+        table,
+        selectedColumnsIndex,
+        paramsColumns,
+        generateMutation,
+        mutationMergeOldData,
+      }
+
       console.log({
+        promptAnswers,
         schema,
         table,
         tableCamelName,
@@ -246,6 +256,7 @@ export default function getTable(plop) {
       })
 
       return {
+        promptAnswers,
         schema,
         table,
         tableCamelName,

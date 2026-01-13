@@ -1,4 +1,16 @@
 {
+  "promptAnswers": {
+    "schema": "attributes",
+    "table": "abilities",
+    "selectedColumnsIndex": [
+      "id"
+    ],
+    "paramsColumns": [
+      "id"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": false
+  },
   "schema": "attributes",
   "table": "abilities",
   "tableCamelName": "abilities",
@@ -52,12 +64,8 @@
   "apiPathParams": "/api/attributes/abilities",
   "apiPathByKey": "app/api/attributes/abilities/[id]/route.ts",
   "apiPathParamsByKey": "/api/attributes/abilities/${params.id}",
-  "generateMutation": false,
+  "generateMutation": true,
+  "mutationMergeOldData": false,
   "fetcherName": "fetchAttributesAbilities",
-  "fetcherNameByKey": "fetchAttributesAbilitiesByKey",
-  "selectedGenerators": [
-    "getMethodAction",
-    "getMethodFetcher",
-    "getTable"
-  ]
+  "fetcherNameByKey": "fetchAttributesAbilitiesByKey"
 }

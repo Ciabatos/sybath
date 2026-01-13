@@ -1,4 +1,16 @@
 {
+  "promptAnswers": {
+    "schema": "attributes",
+    "table": "stats",
+    "selectedColumnsIndex": [
+      "id"
+    ],
+    "paramsColumns": [
+      "id"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": false
+  },
   "schema": "attributes",
   "table": "stats",
   "tableCamelName": "stats",
@@ -52,12 +64,8 @@
   "apiPathParams": "/api/attributes/stats",
   "apiPathByKey": "app/api/attributes/stats/[id]/route.ts",
   "apiPathParamsByKey": "/api/attributes/stats/${params.id}",
-  "generateMutation": false,
+  "generateMutation": true,
+  "mutationMergeOldData": false,
   "fetcherName": "fetchAttributesStats",
-  "fetcherNameByKey": "fetchAttributesStatsByKey",
-  "selectedGenerators": [
-    "getMethodAction",
-    "getMethodFetcher",
-    "getTable"
-  ]
+  "fetcherNameByKey": "fetchAttributesStatsByKey"
 }
