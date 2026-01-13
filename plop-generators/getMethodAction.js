@@ -89,7 +89,14 @@ export default function getMethodAction(plop) {
       const argsArray = getArgsArray(argsStr)
       const sqlParamsPlaceholders = argsArray.map((_, i) => `$${i + 1}`).join(", ")
 
+      const promptAnswers = {
+        schema,
+        method,
+        usePrevious: false,
+      }
+
       console.log({
+        promptAnswers,
         schema,
         method,
         methodCamelName,
@@ -103,6 +110,7 @@ export default function getMethodAction(plop) {
       })
 
       return {
+        promptAnswers,
         schema,
         method,
         methodCamelName,

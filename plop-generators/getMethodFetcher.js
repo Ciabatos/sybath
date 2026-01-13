@@ -174,7 +174,17 @@ export default function getMethodFetcher(plop) {
         },
       ])
 
+      const promptAnswers = {
+        schema,
+        method,
+        usePrevious: false,
+        selectedColumnsIndex,
+        generateMutation,
+        mutationMergeOldData,
+      }
+
       console.log({
+        promptAnswers,
         schema,
         method,
         methodCamelName,
@@ -199,6 +209,7 @@ export default function getMethodFetcher(plop) {
       })
 
       return {
+        promptAnswers,
         schema,
         method,
         methodCamelName,
