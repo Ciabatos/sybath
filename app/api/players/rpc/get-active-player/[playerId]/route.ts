@@ -13,7 +13,6 @@ const typeParamsSchema = z.object({
 }) satisfies z.ZodType<TActivePlayerParams>
 
 export async function GET(request: NextRequest, { params }: { params: TApiParams }): Promise<NextResponse> {
-  console.log("GET /api/players/rpc/get-active-player/[playerId] called")
   try {
     const session = await auth()
     const sessionUserId = session?.user?.userId
