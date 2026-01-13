@@ -1,9 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTable.hbs
 
-import type {
-  TAttributesAbilities,
-  TAttributesAbilitiesRecordById,
-} from "@/db/postgresMainDatabase/schemas/attributes/abilities"
+import type { TAttributesAbilities, TAttributesAbilitiesRecordById } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
 import { getAttributesAbilities } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -25,7 +22,9 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchAttributesAbilitiesService(options?: { clientEtag?: string }): Promise<TFetchResult> {
+export async function fetchAttributesAbilitiesService(
+  options?: { clientEtag?: string },
+): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getAttributesAbilities")
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
@@ -61,6 +60,7 @@ export async function fetchAttributesAbilitiesService(options?: { clientEtag?: s
   }
 
   const byKey = arrayToObjectKey(["id"], raw) as TAttributesAbilitiesRecordById
+
 
   const record: TCacheRecord = {
     raw,
