@@ -1,0 +1,43 @@
+{
+  "promptAnswers": {
+    "schema": "players",
+    "method": "do_switch_active_player",
+    "usePrevious": false
+  },
+  "schema": "players",
+  "method": "do_switch_active_player",
+  "methodCamelName": "doSwitchActivePlayer",
+  "methodPascalName": "DoSwitchActivePlayer",
+  "methodName": "doSwitchActivePlayerAction",
+  "methodTypeName": "TDoSwitchActivePlayer",
+  "methodParamsTypeName": "TDoSwitchActivePlayerParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    },
+    {
+      "name": "p_switch_to_player_id",
+      "camelName": "switchToPlayerId",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "status",
+      "camelName": "status",
+      "pascalName": "Status",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "message",
+      "camelName": "message",
+      "pascalName": "Message",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1, $2"
+}
