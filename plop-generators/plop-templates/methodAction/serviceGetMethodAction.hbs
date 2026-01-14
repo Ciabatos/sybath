@@ -15,8 +15,9 @@ playerId: number
 
 export async function {{methodCamelName}}Service(params: T{{methodPascalName}}ServiceParams) {
   const sessionPlayerId = (await getActivePlayerServer({ userId: params.sessionUserId })).raw[0].id
+  const playerId = params.playerId
 
-  if (sessionPlayerId !== params.playerId) {
+  if (sessionPlayerId !== playerId) {
     throw new Error("Active player mismatch")
   }
 

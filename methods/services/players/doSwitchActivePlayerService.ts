@@ -19,14 +19,14 @@ export type TDoSwitchActivePlayerServiceParams = {
 
 export async function doSwitchActivePlayerService(params: TDoSwitchActivePlayerServiceParams) {
   const sessionPlayerId = (await getActivePlayerServer({ userId: params.sessionUserId })).raw[0].id
+  const playerId = params.playerId
 
-  if (sessionPlayerId !== params.playerId) {
+  if (sessionPlayerId !== playerId) {
     throw new Error("Active player mismatch")
   }
 
   //MANUAL CODE - START
 
-  const playerId = params.playerId
   const switchToPlayerId = params.switchToPlayerId
 
   if (playerId === switchToPlayerId) {

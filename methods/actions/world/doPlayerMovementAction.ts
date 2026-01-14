@@ -7,7 +7,9 @@ import {
   doPlayerMovementService,
 } from "@/methods/services/world/doPlayerMovementService"
 
-export async function doPlayerMovementAction(params: TDoPlayerMovementServiceParams) {
+type TDoPlayerMovementActionParams = Omit<TDoPlayerMovementServiceParams, "sessionUserId">
+
+export async function doPlayerMovementAction(params: TDoPlayerMovementActionParams) {
   const session = await auth()
   const sessionUserId = session?.user?.userId
 
@@ -20,6 +22,7 @@ export async function doPlayerMovementAction(params: TDoPlayerMovementServicePar
   //MANUAL CODE - END
 
   const data: TDoPlayerMovementServiceParams = {
+    sessionUserId: sessionUserId,
     ...params,
   }
 

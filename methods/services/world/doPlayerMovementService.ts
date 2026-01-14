@@ -4,14 +4,15 @@
 import { TDoPlayerMovementParams, doPlayerMovement } from "@/db/postgresMainDatabase/schemas/world/doPlayerMovement"
 import { pathFromPointToPoint } from "@/methods/functions/map/pathFromPointToPoint"
 import { getCitiesCitiesByKeyServer } from "@/methods/server-fetchers/cities/core/getCitiesCitiesByKeyServer"
+import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
 import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
-import { getWorldMapsServer } from "@/methods/server-fetchers/world/core/getWorldMapsServer"
 import { getWorldMapTilesByKeyServer } from "@/methods/server-fetchers/world/core/getWorldMapTilesByKeyServer"
 import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
 
 //MANUAL CODE - START
 
 export type TDoPlayerMovementServiceParams = {
+  sessionUserId: number
   playerId: number
   startX: number
   startY: number
@@ -22,6 +23,13 @@ export type TDoPlayerMovementServiceParams = {
 //MANUAL CODE - END
 
 export async function doPlayerMovementService(params: TDoPlayerMovementServiceParams) {
+  const sessionPlayerId = (await getActivePlayerServer({ userId: params.sessionUserId })).raw[0].id
+  const playerId = params.playerId
+
+  if (sessionPlayerId !== playerId) {
+    throw new Error("Active player mismatch")
+  }
+
   //MANUAL CODE - START
 
   const mapId = await getWorldMapsServer()
@@ -33,6 +41,7 @@ export async function doPlayerMovementService(params: TDoPlayerMovementServicePa
   if (!mapTiles) {
     return
   }
+
   const path = pathFromPointToPoint({
     startX: params.startX,
     startY: params.startY,
@@ -43,11 +52,10 @@ export async function doPlayerMovementService(params: TDoPlayerMovementServicePa
     landscapeTypes: landscapeTypes.byKey,
     cities: cities.byKey,
   })
-
   //MANUAL CODE - END
 
   const data: TDoPlayerMovementParams = {
-    playerId: params.playerId,
+    playerId: playerId,
     path: path,
   }
 

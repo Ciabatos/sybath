@@ -1,4 +1,9 @@
 {
+  "promptAnswers": {
+    "schema": "world",
+    "method": "do_player_movement",
+    "usePrevious": false
+  },
   "schema": "world",
   "method": "do_player_movement",
   "methodCamelName": "doPlayerMovement",
@@ -34,10 +39,5 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2",
-  "selectedGenerators": [
-    "getMethodAction",
-    "getMethodFetcher",
-    "getTable"
-  ]
+  "sqlParamsPlaceholders": "$1, $2"
 }
