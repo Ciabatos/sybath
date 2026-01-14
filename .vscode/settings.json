@@ -1,6 +1,7 @@
 {
+  "prettier.configPath": ".prettierrc.json",
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "editor.renderWhitespace": "none",
+  "editor.renderWhitespace": "trailing",
   "editor.useTabStops": false,
   "diffEditor.ignoreTrimWhitespace": false,
   "diffEditor.codeLens": true,
@@ -38,10 +39,6 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "prettier.printWidth": 80,
-  "prettier.bracketSameLine": false,
-  "prettier.semi": false,
-  "prettier.singleAttributePerLine": true,
   "git.openRepositoryInParentFolders": "always",
   "terminal.integrated.env.windows": {},
   "window.commandCenter": true,
@@ -61,7 +58,7 @@
   },
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
-  "prettier.configPath": ".prettierrc.json",
+
   "editor.codeActionsOnSave": {
     // "source.organizeImports": true,
     "source.addMissingImports.ts": "always",
