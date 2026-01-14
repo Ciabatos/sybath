@@ -12,9 +12,9 @@ type TParams = {
 
 export default async function CityPage({ params }: { params: TParams }) {
   const session = await auth()
-  const playerId = session?.user?.playerId
+  const sessionUserId = session?.user?.userId
 
-  if (!playerId || isNaN(playerId)) {
+  if (!sessionUserId || isNaN(sessionUserId)) {
     return null
   }
 

@@ -1,21 +1,17 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcher.hbs
 
 "use client"
-import {
-  TActivePlayer,
-  TActivePlayerParams,
-  TActivePlayerRecordById,
-} from "@/db/postgresMainDatabase/schemas/players/activePlayer"
+import { TActivePlayer, TActivePlayerRecordById } from "@/db/postgresMainDatabase/schemas/players/activePlayer"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { activePlayerAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchActivePlayer(params: TActivePlayerParams) {
+export function useFetchActivePlayer() {
   const setActivePlayer = useSetAtom(activePlayerAtom)
 
-  const { data } = useSWR<TActivePlayer[]>(`/api/players/rpc/get-active-player/${params.playerId}`, {
+  const { data } = useSWR<TActivePlayer[]>(`/api/players/rpc/get-active-player`, {
     refreshInterval: 3000,
   })
 

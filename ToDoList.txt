@@ -5,10 +5,10 @@ W cliencie należy ten parameter usunąć, nie przekazujemy go aż do route
 
 potem wszedzie sprawdzamy 
 
-    const activePlayerId = (await fetchActivePlayerService(parsedParams)).record?.raw[0]?.in-default:
+    const sessionPlayerId = (await getActivePlayerServer(parsedParams)).raw[0].id
 
-    if (activePlayerId !== parsedParams.playerId) {
-      return NextResponse.json({ message: "Forbidden" }, { status: 403 })
+    if (sessionPlayerId !== parsedParams.playerId) {
+      return NextResponse.json({ message: "Forbidden" }, { status: 404 })
     }
 
 --pobieranie playerStats

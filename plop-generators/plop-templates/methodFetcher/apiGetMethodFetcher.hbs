@@ -2,6 +2,7 @@
 
 import { auth } from "@/auth"
 {{#if methodParamsColumns}}import { {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"{{/if}}
+import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
 import { fetch{{methodPascalName}}Service } from "@/methods/services/{{schema}}/fetch{{methodPascalName}}Service"
 import { NextRequest, NextResponse } from "next/server"
 {{#if methodParamsColumns}}
@@ -30,8 +31,10 @@ export async function GET(request: NextRequest{{#if methodParamsColumns}}, { par
     const parsedParams = typeParamsSchema.parse(paramsFromPromise)
   {{/if}}
 
-    if (session?.user?.playerId !== parsedParams.playerId) {
-      return NextResponse.json({ message: "Forbidden" }, { status: 403 })
+    const sessionPlayerId = (await getActivePlayerServer({ userId: sessionUserId })).raw[0].id
+
+    if (sessionPlayerId !== parsedParams.playerId) {
+      return NextResponse.json({ message: "Not found" }, { status: 404 })
     }
     
     const clientEtag = request.headers.get("if-none-match") ?? undefined

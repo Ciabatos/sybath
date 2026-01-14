@@ -4,13 +4,13 @@
 import { auth } from "@/auth"
 import { T{{methodPascalName}}ServiceParams, {{methodCamelName}}Service } from "@/methods/services/{{schema}}/{{methodCamelName}}Service"
 
-type T{{methodPascalName}}ActionParams = Omit<T{{methodPascalName}}ServiceParams, "playerId">
+type T{{methodPascalName}}ActionParams = Omit<T{{methodPascalName}}ServiceParams, "sessionUserId">
 
 export async function {{methodName}}(params: T{{methodPascalName}}ActionParams) {
   const session = await auth()
-  const playerId = session?.user?.playerId
+  const sessionUserId = session?.user?.userId
 
-  if (!playerId || isNaN(playerId)) {
+  if (!sessionUserId || isNaN(sessionUserId)) {
     return
   }
 
@@ -19,7 +19,7 @@ export async function {{methodName}}(params: T{{methodPascalName}}ActionParams) 
   //MANUAL CODE - END
 
   const data: T{{methodPascalName}}ServiceParams = {
-    playerId: playerId,
+    sessionUserId: sessionUserId,
     ...params,
   }
 

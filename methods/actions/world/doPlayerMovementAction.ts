@@ -2,15 +2,16 @@
 "use server"
 
 import { auth } from "@/auth"
-import { TDoPlayerMovementServiceParams, doPlayerMovementService } from "@/methods/services/world/doPlayerMovementService"
+import {
+  TDoPlayerMovementServiceParams,
+  doPlayerMovementService,
+} from "@/methods/services/world/doPlayerMovementService"
 
-type TDoPlayerMovementActionParams = Omit<TDoPlayerMovementServiceParams, "playerId">
-
-export async function doPlayerMovementAction(params: TDoPlayerMovementActionParams) {
+export async function doPlayerMovementAction(params: TDoPlayerMovementServiceParams) {
   const session = await auth()
-  const playerId = session?.user?.playerId
+  const sessionUserId = session?.user?.userId
 
-  if (!playerId || isNaN(playerId)) {
+  if (!sessionUserId || isNaN(sessionUserId)) {
     return
   }
 
@@ -19,7 +20,6 @@ export async function doPlayerMovementAction(params: TDoPlayerMovementActionPara
   //MANUAL CODE - END
 
   const data: TDoPlayerMovementServiceParams = {
-    playerId: playerId,
     ...params,
   }
 

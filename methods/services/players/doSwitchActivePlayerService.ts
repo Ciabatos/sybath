@@ -1,15 +1,16 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - serviceGetMethodAction.hbs
 "use server"
 
-import { auth } from "@/auth"
 import {
   TDoSwitchActivePlayerParams,
   doSwitchActivePlayer,
 } from "@/db/postgresMainDatabase/schemas/players/doSwitchActivePlayer"
+import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
 
 //MANUAL CODE - START
 
 export type TDoSwitchActivePlayerServiceParams = {
+  sessionUserId: number
   playerId: number
   switchToPlayerId: number
 }
@@ -17,16 +18,17 @@ export type TDoSwitchActivePlayerServiceParams = {
 //MANUAL CODE - END
 
 export async function doSwitchActivePlayerService(params: TDoSwitchActivePlayerServiceParams) {
-  //MANUAL CODE - START
-  const session = await auth()
+  const sessionPlayerId = (await getActivePlayerServer({ userId: params.sessionUserId })).raw[0].id
 
-  if (!session?.user) {
-    throw new Error("User not authenticated")
+  if (sessionPlayerId !== params.playerId) {
+    throw new Error("Active player mismatch")
   }
 
-  const playerId = session.user.playerId
+  //MANUAL CODE - START
+
+  const playerId = params.playerId
   const switchToPlayerId = params.switchToPlayerId
-  console.log("switchToPlayerId:", switchToPlayerId, "playerId:", playerId)
+
   if (playerId === switchToPlayerId) {
     throw new Error("Cannot switch to the same player")
   }

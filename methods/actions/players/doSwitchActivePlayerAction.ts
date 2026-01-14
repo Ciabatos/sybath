@@ -7,13 +7,11 @@ import {
   doSwitchActivePlayerService,
 } from "@/methods/services/players/doSwitchActivePlayerService"
 
-type TDoSwitchActivePlayerActionParams = Omit<TDoSwitchActivePlayerServiceParams, "playerId">
-
-export async function doSwitchActivePlayerAction(params: TDoSwitchActivePlayerActionParams) {
+export async function doSwitchActivePlayerAction(params: TDoSwitchActivePlayerServiceParams) {
   const session = await auth()
-  const playerId = session?.user?.playerId
+  const sessionUserId = session?.user?.userId
 
-  if (!playerId || isNaN(playerId)) {
+  if (!sessionUserId || isNaN(sessionUserId)) {
     return
   }
 
@@ -22,7 +20,7 @@ export async function doSwitchActivePlayerAction(params: TDoSwitchActivePlayerAc
   //MANUAL CODE - END
 
   const data: TDoSwitchActivePlayerServiceParams = {
-    playerId: playerId,
+    sessionUserId: sessionUserId,
     ...params,
   }
 

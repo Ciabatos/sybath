@@ -6,12 +6,18 @@ import { {{methodParamsTypeName}}, {{methodCamelName}} } from "@/db/postgresMain
 //MANUAL CODE - START
 
 export type T{{methodPascalName}}ServiceParams = {
+sessionUserId: number
 playerId: number
 }
 
 //MANUAL CODE - END
 
 export async function {{methodCamelName}}Service(params: T{{methodPascalName}}ServiceParams) {
+  const sessionPlayerId = (await getActivePlayerServer({ userId: params.sessionUserId })).raw[0].id
+
+  if (sessionPlayerId !== params.playerId) {
+    throw new Error("Active player mismatch")
+  }
 
   //MANUAL CODE - START
 

@@ -12,6 +12,29 @@ export default async function HomePage() {
   return (
     <div className={styles.main}>
       <div>PlayerId: {userId}</div>
+      <div>PlayerId: {userId}</div>
+      <div>PlayerId: {userId}</div>
+      <div>PlayerId: {userId}</div>
+      <div>PlayerId: {userId}</div>
+      <div>PlayerId: {userId}</div>
+      <div>PlayerId: {userId}</div>
+      <div>PlayerId: {userId}</div>
+      <div>PlayerId: {userId}</div>
+      <div>PlayerId: {userId}</div>
+      <div>PlayerId: {userId}</div>
+      <div>PlayerId: {userId}</div>
+      <div>PlayerId: {userId}</div>
+      <div>PlayerId: {userId}</div>
+      <div>PlayerId: {userId}</div>
+      <div>PlayerId: {userId}</div>
+      <div>PlayerId: {userId}</div>
+      <div>PlayerId: {userId}</div>
+      <div>PlayerId: {userId}</div>
+      <div>PlayerId: {userId}</div>
+      <div>PlayerId: {userId}</div>
+      <div>PlayerId: {userId}</div>
+      <div>PlayerId: {userId}</div>
+      <div>PlayerId: {userId}</div>
       <Button>
         <Link href={"/api/auth/signin"}>SignIn</Link>
       </Button>

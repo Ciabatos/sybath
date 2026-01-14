@@ -5,7 +5,7 @@ import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 import { snakeToCamelRows } from "@/methods/functions/util/snakeToCamel"
 
 export type TActivePlayerParams = {
-  playerId: number
+  userId: number
 }
 
 export type TActivePlayer = {

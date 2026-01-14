@@ -1,4 +1,14 @@
 {
+  "promptAnswers": {
+    "schema": "players",
+    "method": "get_active_player",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "id"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": false
+  },
   "schema": "players",
   "method": "get_active_player",
   "methodCamelName": "activePlayer",
@@ -9,8 +19,8 @@
   "methodParamsTypeName": "TActivePlayerParams",
   "methodParamsColumns": [
     {
-      "name": "p_player_id",
-      "camelName": "playerId",
+      "name": "p_user_id",
+      "camelName": "userId",
       "tsType": "number"
     }
   ],
@@ -45,7 +55,7 @@
     }
   ],
   "indexMethodParams": "[\"id\"]",
-  "indexParamsColumns": "playerId",
+  "indexParamsColumns": "userId",
   "indexTypeMethodName": "Id",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TActivePlayerRecordById",
@@ -59,8 +69,8 @@
     }
   ],
   "sqlParamsPlaceholders": "$1",
-  "apiPath": "app/api/players/rpc/get-active-player/[playerId]/route.ts",
-  "apiPathParams": "/api/players/rpc/get-active-player/${params.playerId}",
+  "apiPath": "app/api/players/rpc/get-active-player/[userId]/route.ts",
+  "apiPathParams": "/api/players/rpc/get-active-player/${params.userId}",
   "generateMutation": true,
   "mutationMergeOldData": false
 }
