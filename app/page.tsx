@@ -7,11 +7,11 @@ import styles from "./page.module.css"
 
 export default async function HomePage() {
   const session = await auth()
-  const playerId = session?.user?.playerId
+  const userId = session?.user?.userId
 
   return (
     <div className={styles.main}>
-      <div>PlayerId: {playerId}</div>
+      <div>PlayerId: {userId}</div>
       <Button>
         <Link href={"/api/auth/signin"}>SignIn</Link>
       </Button>

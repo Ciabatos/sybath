@@ -11,16 +11,11 @@ declare module "next-auth" {
    */
   interface Session {
     user: {
-      /** The user's role. */
       userId: number
-      playerIds: number[]
-      playerId: number
     } & DefaultSession["user"]
   }
   interface User {
     userId: number
-    playerIds: number[]
-    playerId: number
   }
 }
 

@@ -31,8 +31,6 @@ export default {
             email: user.email,
             name: user.name,
             userId: user.userId,
-            playerIds: user.playerIds,
-            playerId: user.playerId,
           }
 
           return returnedData
@@ -48,15 +46,11 @@ export default {
       if (user) {
         // User is available during sign-in and this return token to session who take it and assign role
         token.userId = user.userId
-        token.playerIds = user.playerIds
-        token.playerId = user.playerId
       }
       return token
     },
     session({ session, token }) {
       session.user.userId = token.userId as number
-      session.user.playerIds = token.playerIds as number[]
-      session.user.playerId = token.playerId as number
       return session
     },
   },
