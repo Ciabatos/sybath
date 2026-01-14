@@ -6,7 +6,8 @@ import { useMutateActivePlayer } from "@/methods/hooks/players/core/useMutateAct
 export function usePlayerId() {
   const { mutateActivePlayer } = useMutateActivePlayer()
   const { activePlayer } = useFetchActivePlayer()
-  const playerId = Object.values(activePlayer)[0].id ?? null
+  const currentPlayer = Object.values(activePlayer)[0]
+  const playerId = currentPlayer?.id ?? null
 
   function switchPlayer(newPlayerId: number) {
     doSwitchActivePlayerAction({ playerId: playerId, switchToPlayerId: newPlayerId })

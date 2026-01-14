@@ -5,7 +5,8 @@ export function useMapId() {
   const { playerId } = usePlayerId()
   const { playerMap } = useFetchPlayerMap({ playerId })
 
-  const mapId = Object.values(playerMap)[0].mapId
+  const mapIdData = Object.values(playerMap)[0]
+  const mapId = mapIdData?.mapId ?? null
 
   return { mapId }
 }

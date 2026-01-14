@@ -24,7 +24,7 @@ export default async function WorldPage({ params }: { params: TParams }) {
     return null
   }
 
-  const mapData = await getMapData(clientMapId, playerId)
+  const mapData = await getMapData(clientMapId, sessionUserId)
 
   if (!mapData) {
     return null
