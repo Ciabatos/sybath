@@ -1,3 +1,5 @@
+"use server"
+
 import { createAtomHydration } from "@/methods/functions/util/createAtomHydration"
 import { createSwrFallback } from "@/methods/functions/util/createSwrFallback"
 import { getAttributesAbilitiesServer } from "@/methods/server-fetchers/attributes/core/getAttributesAbilitiesServer"
@@ -16,7 +18,8 @@ import { getWorldMapTilesByKeyServer } from "@/methods/server-fetchers/world/cor
 import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
 
 export async function getMapData(clientMapId: number, sessionUserId: number) {
-  const sessionPlayerId = (await getActivePlayerServer({ userId: sessionUserId })).raw[0].id
+  const sessionPlayerIdServer = await getActivePlayerServer({ userId: sessionUserId })
+  const sessionPlayerId = sessionPlayerIdServer.raw[0].id
   const playerId = sessionPlayerId
 
   const map = await getPlayerMapServer({ playerId })
@@ -56,6 +59,7 @@ export async function getMapData(clientMapId: number, sessionUserId: number) {
   ])
 
   const fallbackData = createSwrFallback(
+    sessionPlayerIdServer,
     map,
     mapTiles,
     skills,
@@ -72,6 +76,7 @@ export async function getMapData(clientMapId: number, sessionUserId: number) {
   )
 
   const atomHydrationData = createAtomHydration(
+    sessionPlayerIdServer,
     map,
     mapTiles,
     skills,
@@ -85,10 +90,10 @@ export async function getMapData(clientMapId: number, sessionUserId: number) {
     playerIventory,
     terrainTypes,
     landscapeTypes,
-    { atomName: "playerIdAtom", byKey: playerId },
   )
 
   return {
+    sessionPlayerIdServer,
     map,
     terrainTypes,
     mapTiles,

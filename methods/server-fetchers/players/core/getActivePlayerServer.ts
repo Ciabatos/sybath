@@ -21,7 +21,7 @@ export async function getActivePlayerServer(params: TActivePlayerParams): Promis
   return {
     raw: record!.raw,
     byKey: record!.byKey,
-    apiPath: `/api/players/rpc/get-active-player/${params.userId}`,
+    apiPath: `/api/players/rpc/get-active-player`,
     atomName: `activePlayerAtom`,
   }
 }

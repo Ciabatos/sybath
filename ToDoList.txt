@@ -1,15 +1,4 @@
-PLAYER ID Z NEXTGOWNO DO NORMALNEGO SERVICE
-Poprawa tylko route dla get_active_player_id
-Parameter z user_id w db
-W cliencie należy ten parameter usunąć, nie przekazujemy go aż do route
-
-potem wszedzie sprawdzamy 
-
-    const sessionPlayerId = (await getActivePlayerServer(parsedParams)).raw[0].id
-
-    if (sessionPlayerId !== parsedParams.playerId) {
-      return NextResponse.json({ message: "Forbidden" }, { status: 404 })
-    }
+cache useSWR - wstrzykiwanie
 
 --pobieranie playerStats
 --pobieranie playerSkills

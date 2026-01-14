@@ -1,8 +1,11 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcherServer.hbs
 "use server"
 
-import type { TPlayerMapParams } from "@/db/postgresMainDatabase/schemas/world/playerMap" 
-import type { TPlayerMapRecordByMapId,TPlayerMap } from "@/db/postgresMainDatabase/schemas/world/playerMap"
+import type {
+  TPlayerMap,
+  TPlayerMapParams,
+  TPlayerMapRecordByMapId,
+} from "@/db/postgresMainDatabase/schemas/world/playerMap"
 import { fetchPlayerMapService } from "@/methods/services/world/fetchPlayerMapService"
 
 type TResult = {
@@ -12,7 +15,7 @@ type TResult = {
   atomName: string
 }
 
-export async function getPlayerMapServer( params: TPlayerMapParams): Promise<TResult> {
+export async function getPlayerMapServer(params: TPlayerMapParams): Promise<TResult> {
   const { record } = await fetchPlayerMapService(params)
 
   return {
@@ -22,4 +25,3 @@ export async function getPlayerMapServer( params: TPlayerMapParams): Promise<TRe
     atomName: `playerMapAtom`,
   }
 }
-
