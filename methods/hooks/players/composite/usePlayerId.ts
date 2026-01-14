@@ -1,26 +1,16 @@
 "use client"
-import { playerIdAtom } from "@/store/atoms"
-import { useAtomValue, useSetAtom } from "jotai"
-import { useSession } from "next-auth/react"
-import { useEffect } from "react"
+import { doSwitchActivePlayerAction } from "@/methods/actions/players/doSwitchActivePlayerAction"
+import { useFetchActivePlayer } from "@/methods/hooks/players/core/useFetchActivePlayer"
+import { useMutateActivePlayer } from "@/methods/hooks/players/core/useMutateActivePlayer"
 
 export function usePlayerId() {
-  const playerId = useAtomValue(playerIdAtom)
-  const setPlayerId = useSetAtom(playerIdAtom)
+  const { mutateActivePlayer } = useMutateActivePlayer()
+  const { activePlayer } = useFetchActivePlayer()
+  const playerId = Object.values(activePlayer)[0].id ?? null
 
-  const session = useSession()
-  const sessionPlayerId = session.data?.user.playerId
-  const sessionPlayerIds = session.data?.user.playerIds
-
-  useEffect(() => {
-    if (sessionPlayerId && sessionPlayerId !== playerId) {
-      setPlayerId(sessionPlayerId)
-    }
-  }, [playerId, sessionPlayerId, setPlayerId])
-
-  const switchPlayer = (newPlayerId: number) => {
-    if (!sessionPlayerIds?.includes(newPlayerId)) return
-    setPlayerId(newPlayerId)
+  function switchPlayer(newPlayerId: number) {
+    doSwitchActivePlayerAction({ playerId: playerId, switchToPlayerId: newPlayerId })
+    mutateActivePlayer({ id: newPlayerId })
   }
 
   return { playerId, switchPlayer }
