@@ -28,7 +28,11 @@ export async function getMapData(clientMapId: number, sessionUserId: number) {
     return null
   }
 
-  const mapId = map.byKey[clientMapId].mapId
+  if (clientMapId != map.byKey[clientMapId].mapId) {
+    return null
+  }
+
+  const mapId = clientMapId
 
   const [
     terrainTypes,
