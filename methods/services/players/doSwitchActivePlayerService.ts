@@ -38,7 +38,6 @@ export async function doSwitchActivePlayerService(params: TDoSwitchActivePlayerS
   if (!playerIds.includes(playerId) || !playerIds.includes(switchToPlayerId)) {
     throw new Error("Cannot switch")
   }
-
   //MANUAL CODE - END
 
   const data: TDoSwitchActivePlayerParams = {

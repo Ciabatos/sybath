@@ -7,7 +7,9 @@ import {
   doSwitchActivePlayerService,
 } from "@/methods/services/players/doSwitchActivePlayerService"
 
-export async function doSwitchActivePlayerAction(params: TDoSwitchActivePlayerServiceParams) {
+type TDoSwitchActivePlayerActionParams = Omit<TDoSwitchActivePlayerServiceParams, "sessionUserId">
+
+export async function doSwitchActivePlayerAction(params: TDoSwitchActivePlayerActionParams) {
   const session = await auth()
   const sessionUserId = session?.user?.userId
 
