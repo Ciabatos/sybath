@@ -10,5 +10,45 @@
     "description": "Separate useAtomValue and useSetAtom with proper setter name",
   },
 
-//Automatic Snippets
+  
+  "Destructure usePlayerCity": {
+    "prefix": "hook_cities_core_usePlayerCity",
+    "body": [
+      "useFetchPlayerCity({$1})",
+      "const playerCity = useAtomValue(playerCityAtom)"
+    ],
+    "description": "Destructuring usePlayerCity hook"
+  },  
+  "Destructure usePlayerInventory": {
+    "prefix": "hook_inventory_core_usePlayerInventory",
+    "body": [
+      "useFetchPlayerInventory({$1})",
+      "const playerInventory = useAtomValue(playerInventoryAtom)"
+    ],
+    "description": "Destructuring usePlayerInventory hook"
+  },  
+  "Destructure usePlayerMap": {
+    "prefix": "hook_world_core_usePlayerMap",
+    "body": [
+      "useFetchPlayerMap({$1})",
+      "const playerMap = useAtomValue(playerMapAtom)"
+    ],
+    "description": "Destructuring usePlayerMap hook"
+  },  
+  "Destructure usePlayerMovement": {
+    "prefix": "hook_world_core_usePlayerMovement",
+    "body": [
+      "useFetchPlayerMovement({$1})",
+      "const playerMovement = useAtomValue(playerMovementAtom)"
+    ],
+    "description": "Destructuring usePlayerMovement hook"
+  },  
+  "Destructure usePlayerPosition": {
+    "prefix": "hook_world_core_usePlayerPosition",
+    "body": [
+      "useFetchPlayerPosition({$1})",
+      "const playerPosition = useAtomValue(playerPositionAtom)"
+    ],
+    "description": "Destructuring usePlayerPosition hook"
+  },//Automatic Snippets
 }

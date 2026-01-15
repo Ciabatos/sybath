@@ -13,15 +13,10 @@ export function useFetchPlayerPosition( params: TPlayerPositionParams) {
 
   const { data } = useSWR<TPlayerPosition[]>(`/api/world/rpc/get-player-position/${params.mapId}/${params.playerId}`, { refreshInterval: 3000 })
 
-  const playerPosition = data
-  ? (arrayToObjectKey(["x", "y"], data) as TPlayerPositionRecordByXY)
-  : {}
-
   useEffect(() => {
-    if (playerPosition) {
+    if (data) {
+      const playerPosition = arrayToObjectKey(["x", "y"], data) as TPlayerPositionRecordByXY
       setPlayerPosition(playerPosition)
     }
-  }, [playerPosition, setPlayerPosition])
-
-  return { playerPosition }
+  }, [data, setPlayerPosition])
 }

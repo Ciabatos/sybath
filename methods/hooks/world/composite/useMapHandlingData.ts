@@ -9,13 +9,18 @@ import { useFetchPlayerPosition } from "@/methods/hooks/world/core/useFetchPlaye
 import { useFetchWorldLandscapeTypes } from "@/methods/hooks/world/core/useFetchWorldLandscapeTypes"
 import { useFetchWorldMapTilesByKey } from "@/methods/hooks/world/core/useFetchWorldMapTilesByKey"
 import { useFetchWorldTerrainTypes } from "@/methods/hooks/world/core/useFetchWorldTerrainTypes"
+import { playerPositionAtom } from "@/store/atoms"
+import { useAtomValue } from "jotai"
 
 export function useMapHandlingData() {
   const { playerId } = usePlayerId()
   const { mapId } = useMapId()
   const { mapTiles } = useFetchWorldMapTilesByKey({ mapId })
   const { cities } = useFetchCitiesCitiesByKey({ mapId })
-  const { playerPosition } = useFetchPlayerPosition({ mapId, playerId })
+
+  useFetchPlayerPosition({ mapId, playerId })
+  const playerPosition = useAtomValue(playerPositionAtom)
+
   const { districts } = useFetchDistrictsDistrictsByKey({ mapId })
   const { terrainTypes } = useFetchWorldTerrainTypes()
   const { landscapeTypes } = useFetchWorldLandscapeTypes()

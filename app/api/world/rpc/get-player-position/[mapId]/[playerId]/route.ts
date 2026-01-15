@@ -14,7 +14,7 @@ const typeParamsSchema = z.object({
   playerId: z.coerce.number(),
 }) satisfies z.ZodType<TPlayerPositionParams>
 
-export async function GET(request: NextRequest, { params }: { params: TApiParams }): Promise<NextResponse> {
+export async function GET(request: NextRequest, { params }: { params: TApiParams } ): Promise<NextResponse> {
   try {
     const session = await auth()
     const sessionUserId = session?.user?.userId
@@ -31,7 +31,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
     if (sessionPlayerId !== parsedParams.playerId) {
       return NextResponse.json({ message: "Not found" }, { status: 404 })
     }
-
+    
     const clientEtag = request.headers.get("if-none-match") ?? undefined
 
     const { record, etag, cacheHit, etagMatched } = await fetchPlayerPositionService(parsedParams, { clientEtag })

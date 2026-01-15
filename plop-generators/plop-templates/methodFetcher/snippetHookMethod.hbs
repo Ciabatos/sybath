@@ -2,8 +2,8 @@
   "Destructure use{{methodPascalName}}": {
     "prefix": "hook_{{schema}}_core_use{{methodPascalName}}",
     "body": [
-      "useFetch{{methodPascalName}}({{#if methodParamsColumns}}{$1}{{/if}})"
-      "const { {{methodCamelName}} } = useAtomValue({{methodCamelName}}Atom)"
+      "useFetch{{methodPascalName}}({{#if methodParamsColumns}}{$1}{{/if}})",
+      "const {{methodCamelName}} = useAtomValue({{methodCamelName}}Atom)"
     ],
     "description": "Destructuring use{{methodPascalName}} hook"
   },

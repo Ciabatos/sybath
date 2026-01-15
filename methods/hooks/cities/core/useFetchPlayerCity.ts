@@ -13,15 +13,10 @@ export function useFetchPlayerCity( params: TPlayerCityParams) {
 
   const { data } = useSWR<TPlayerCity[]>(`/api/cities/rpc/get-player-city/${params.playerId}`, { refreshInterval: 3000 })
 
-  const playerCity = data
-  ? (arrayToObjectKey(["cityId"], data) as TPlayerCityRecordByCityId)
-  : {}
-
   useEffect(() => {
-    if (playerCity) {
+    if (data) {
+      const playerCity = arrayToObjectKey(["cityId"], data) as TPlayerCityRecordByCityId
       setPlayerCity(playerCity)
     }
-  }, [playerCity, setPlayerCity])
-
-  return { playerCity }
+  }, [data, setPlayerCity])
 }

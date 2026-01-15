@@ -2,8 +2,8 @@
   "Destructure use{{schemaTablePascalName}}": {
     "prefix": "hook_{{schema}}_core_use{{schemaTablePascalName}}",
     "body": [
-      "useFetch{{schemaTablePascalName}}()"
-      "const { {{tableCamelName}} } = useAtomValue({{tableCamelName}}Atom)"
+      "useFetch{{schemaTablePascalName}}()",
+      "const {{tableCamelName}} = useAtomValue({{tableCamelName}}Atom)"
     ],
     "description": "Destructuring use{{schemaTablePascalName}} hook"
   },

@@ -13,15 +13,10 @@ export function useFetchPlayerInventory( params: TPlayerInventoryParams) {
 
   const { data } = useSWR<TPlayerInventory[]>(`api/inventory/rpc/get-player-inventory/${params.playerId}`, { refreshInterval: 3000 })
 
-  const playerInventory = data
-  ? (arrayToObjectKey(["slotId"], data) as TPlayerInventoryRecordBySlotId)
-  : {}
-
   useEffect(() => {
-    if (playerInventory) {
+    if (data) {
+      const playerInventory = arrayToObjectKey(["slotId"], data) as TPlayerInventoryRecordBySlotId
       setPlayerInventory(playerInventory)
     }
-  }, [playerInventory, setPlayerInventory])
-
-  return { playerInventory }
+  }, [data, setPlayerInventory])
 }

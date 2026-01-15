@@ -13,15 +13,10 @@ export function useFetchPlayerMap( params: TPlayerMapParams) {
 
   const { data } = useSWR<TPlayerMap[]>(`/api/world/rpc/get-player-map/${params.playerId}`, { refreshInterval: 3000 })
 
-  const playerMap = data
-  ? (arrayToObjectKey(["mapId"], data) as TPlayerMapRecordByMapId)
-  : {}
-
   useEffect(() => {
-    if (playerMap) {
+    if (data) {
+      const playerMap = arrayToObjectKey(["mapId"], data) as TPlayerMapRecordByMapId
       setPlayerMap(playerMap)
     }
-  }, [playerMap, setPlayerMap])
-
-  return { playerMap }
+  }, [data, setPlayerMap])
 }
