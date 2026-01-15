@@ -13,6 +13,7 @@ async function fetchWithETag<T>(url: string): Promise<T> {
 
   // Tego nie dajemy bo SWR sam sobie radzi z 304 wraca poprzednie dane - te stare
   // kiedy to dodamy to undefined sprawia,że SWR nulluje cache
+  //przez ta linie dev tool jotai dostaje error
   // if (res.status === 304) {
   //   return undefined as unknown as T
   // }
