@@ -1,5 +1,5 @@
-cache useSWR - wstrzykiwanie
-eslint config
+swr-hydrator - wstrzykiwanie
+recalculacja tabel
 
 --pobieranie playerStats
 --pobieranie playerSkills
