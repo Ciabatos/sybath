@@ -2,7 +2,7 @@
 import { auth } from "@/auth"
 import CityWrapper from "@/components/city/CityWrapper"
 import { getCityData } from "@/methods/server-fetchers/cities/composite/getCityData"
-import { AtomsHydrator } from "@/providers/jotai-hydrator-provider"
+import { AtomsHydrator } from "@/providers/jotai-hydrator"
 import { SWRProvider } from "@/providers/swr-provider"
 import styles from "./page.module.css"
 

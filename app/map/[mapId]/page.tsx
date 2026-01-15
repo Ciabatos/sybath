@@ -2,7 +2,7 @@
 import { auth } from "@/auth"
 import MapWrapper from "@/components/map/MapWrapper"
 import { getMapData } from "@/methods/server-fetchers/world/composite/getMapData"
-import { AtomsHydrator } from "@/providers/jotai-hydrator-provider"
+import { AtomsHydrator } from "@/providers/jotai-hydrator"
 import { SWRHydrator } from "@/providers/swr-hydrator"
 import styles from "./page.module.css"
 
