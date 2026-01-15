@@ -18,8 +18,8 @@ import { getWorldMapTilesByKeyServer } from "@/methods/server-fetchers/world/cor
 import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
 
 export async function getMapData(clientMapId: number, sessionUserId: number) {
-  const sessionPlayerIdServer = await getActivePlayerServer({ userId: sessionUserId })
-  const sessionPlayerId = sessionPlayerIdServer.raw[0].id
+  const activePlayer = await getActivePlayerServer({ userId: sessionUserId })
+  const sessionPlayerId = activePlayer.raw[0].id
   const playerId = sessionPlayerId
 
   const map = await getPlayerMapServer({ playerId })
@@ -63,7 +63,7 @@ export async function getMapData(clientMapId: number, sessionUserId: number) {
   ])
 
   const fallbackData = createSwrFallback(
-    sessionPlayerIdServer,
+    activePlayer,
     map,
     mapTiles,
     skills,
@@ -80,7 +80,7 @@ export async function getMapData(clientMapId: number, sessionUserId: number) {
   )
 
   const atomHydrationData = createAtomHydration(
-    sessionPlayerIdServer,
+    activePlayer,
     map,
     mapTiles,
     skills,
@@ -97,7 +97,7 @@ export async function getMapData(clientMapId: number, sessionUserId: number) {
   )
 
   return {
-    sessionPlayerIdServer,
+    activePlayer,
     map,
     terrainTypes,
     mapTiles,
