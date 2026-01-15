@@ -11,6 +11,6 @@ export function AtomsHydrator({
   atomValues: Iterable<readonly [WritableAtom<unknown, [any], unknown>, unknown]>
   children: ReactNode
 }) {
-  useHydrateAtoms(new Map(atomValues))
+  useHydrateAtoms(new Map(atomValues), { dangerouslyForceHydrate: true })
   return children
 }
