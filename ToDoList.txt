@@ -80,16 +80,10 @@ Mapa
 
 UI i flow dla „systemu informacji”
 
-Aktualizacja NEXT JS i reszty dependencies wraz z UI renderem biblioteka 
-
 pozycje graczy ustaw poprawnie - chyba wywalic z renderowania, dodac panel z graczami i tam mozna wyswietlac gdzie sa
 - dodac jedynie moja pozyccje
 - dodac ikone ludzi znajdujacych sie na polu ktora otwiera panel graczy na tilesie
 - dodac w panelu liste graczy i mozliwosc zaznaczenia go na mapie np kolorem
-
-Panele odpowiadaja za render
-Forms to akcje, buttony renderowane w panelach, pobieraja one dane z hooków?
-
 
 
 Nie wiem czy to dodawac bo tak na serio to twarz czlowieka jest ta sama ? ale kaptur mozna zalozyc
@@ -112,16 +106,9 @@ https://civitai.com/models/97079/gameiconresearchcj2lora
 https://civitai.com/models/143301/game-icon-instituteanfgv3
 https://civitai.com/models/1857872/mobile-game-isometric-building-xl
 
-rozważenie wrzuceniu MapTiles w Layout w celu nie robienia unmounta przy zmianie URL
-
-
 
 
 JOTAI DEVTOOL
-
-
-
-
 
 
 
