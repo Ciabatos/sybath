@@ -11,10 +11,10 @@ async function fetchWithETag<T>(url: string): Promise<T> {
 
   const res = await fetch(url, { headers })
 
-  // Tego nie dajemy bo SWR sam sobie radzi z 304
-  // kiedy to dodamy to undefined sprawia,że SWR wraca poprzednie dane - te stare
+  // Tego nie dajemy bo SWR sam sobie radzi z 304 wraca poprzednie dane - te stare
+  // kiedy to dodamy to undefined sprawia,że SWR nulluje cache
   // if (res.status === 304) {
-  //   return undefined
+  //   return undefined as unknown as T
   // }
 
   if (!res.ok && res.status !== 304) {
