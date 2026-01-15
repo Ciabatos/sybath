@@ -1,4 +1,4 @@
-swr-hydrator - wstrzykiwanie
+Pobieranie id != pobieranie danych o playerze rozdzielic
 recalculacja tabel
 
 --pobieranie playerStats
