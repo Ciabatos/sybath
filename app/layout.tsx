@@ -1,4 +1,3 @@
-import Portal from "@/components/portals/Portal"
 import { SWRProvider } from "@/providers/swr-provider"
 import { Provider } from "jotai"
 import type { Metadata } from "next"
@@ -19,14 +18,11 @@ export default async function RootLayout({
   return (
     <html lang='en'>
       <body>
-        <Provider>
-          <SessionProvider>
-            <SWRProvider>
-              {children}
-              <Portal />
-            </SWRProvider>
-          </SessionProvider>
-        </Provider>
+        <SessionProvider>
+          <Provider>
+            <SWRProvider>{children}</SWRProvider>
+          </Provider>
+        </SessionProvider>
       </body>
     </html>
   )
