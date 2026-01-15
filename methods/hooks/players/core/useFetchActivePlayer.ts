@@ -15,13 +15,10 @@ export function useFetchActivePlayer() {
     refreshInterval: 3000,
   })
 
-  const activePlayer = data ? (arrayToObjectKey(["id"], data) as TActivePlayerRecordById) : {}
-
   useEffect(() => {
-    if (activePlayer) {
+    if (data) {
+      const activePlayer = arrayToObjectKey(["id"], data) as TActivePlayerRecordById
       setActivePlayer(activePlayer)
     }
-  }, [activePlayer, setActivePlayer])
-
-  return { activePlayer }
+  }, [data, setActivePlayer])
 }

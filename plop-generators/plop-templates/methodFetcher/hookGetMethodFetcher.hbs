@@ -13,15 +13,10 @@ export function useFetch{{methodPascalName}}({{#if methodParamsColumns}} params:
 
   const { data } = useSWR<{{methodTypeName}}[]>(`{{apiPathParams}}`, { refreshInterval: 3000 })
 
-  const {{methodCamelName}} = data
-  ? ({{{indexMethodName}}}({{{indexMethodParams}}}, data) as {{indexTypeName}})
-  : {}
-
   useEffect(() => {
-    if ({{methodCamelName}}) {
+    if (data) {
+      const {{methodCamelName}} = {{{indexMethodName}}}({{{indexMethodParams}}}, data) as {{indexTypeName}}
       set{{methodPascalName}}({{methodCamelName}})
     }
-  }, [{{methodCamelName}}, set{{methodPascalName}}])
-
-  return { {{methodCamelName}} }
+  }, [data, set{{methodPascalName}}])
 }
