@@ -82,7 +82,7 @@ export default function replayHistory(plop) {
           actions.push(() => `✔ ${generatorName} - ${file} completed successfully`)
         }
       }
-
+      console.dir(actions, { depth: null, maxArrayLength: null })
       return actions
     },
   })
