@@ -1,0 +1,1 @@
+COMMENT ON FUNCTION players.get_active_player (int4) IS '';

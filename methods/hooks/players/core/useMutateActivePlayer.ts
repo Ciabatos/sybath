@@ -18,9 +18,6 @@ export function useMutateActivePlayer() {
 
     const defaultValues = {
       id: 0,
-      name: ``,
-      imageMap: ``,
-      imagePortrait: ``,
     }
 
     //MANUAL CODE - END
