@@ -1,4 +1,18 @@
 {
+  "promptAnswers": {
+    "schema": "buildings",
+    "table": "buildings",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "city_tile_x",
+      "city_tile_y"
+    ],
+    "paramsColumns": [
+      "city_id"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": false
+  },
   "schema": "buildings",
   "table": "buildings",
   "tableCamelName": "buildings",
@@ -87,10 +101,5 @@
   "generateMutation": true,
   "mutationMergeOldData": false,
   "fetcherName": "fetchBuildingsBuildings",
-  "fetcherNameByKey": "fetchBuildingsBuildingsByKey",
-  "selectedGenerators": [
-    "getMethodAction",
-    "getMethodFetcher",
-    "getTable"
-  ]
+  "fetcherNameByKey": "fetchBuildingsBuildingsByKey"
 }

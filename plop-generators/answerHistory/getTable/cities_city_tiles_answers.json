@@ -1,4 +1,18 @@
 {
+  "promptAnswers": {
+    "schema": "cities",
+    "table": "city_tiles",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "x",
+      "y"
+    ],
+    "paramsColumns": [
+      "city_id"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
   "schema": "cities",
   "table": "city_tiles",
   "tableCamelName": "cityTiles",
@@ -79,12 +93,7 @@
   "apiPathByKey": "app/api/cities/city-tiles/[cityId]/route.ts",
   "apiPathParamsByKey": "/api/cities/city-tiles/${params.cityId}",
   "generateMutation": true,
-  "mutationMergeOldData": false,
+  "mutationMergeOldData": true,
   "fetcherName": "fetchCitiesCityTiles",
-  "fetcherNameByKey": "fetchCitiesCityTilesByKey",
-  "selectedGenerators": [
-    "getMethodAction",
-    "getMethodFetcher",
-    "getTable"
-  ]
+  "fetcherNameByKey": "fetchCitiesCityTilesByKey"
 }

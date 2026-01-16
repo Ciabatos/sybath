@@ -1,4 +1,17 @@
 {
+  "promptAnswers": {
+    "schema": "districts",
+    "table": "district_types",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "id"
+    ],
+    "paramsColumns": [
+      "id"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
   "schema": "districts",
   "table": "district_types",
   "tableCamelName": "districtTypes",
@@ -64,12 +77,8 @@
   "apiPathParams": "/api/districts/district-types",
   "apiPathByKey": "app/api/districts/district-types/[id]/route.ts",
   "apiPathParamsByKey": "/api/districts/district-types/${params.id}",
-  "generateMutation": false,
+  "generateMutation": true,
+  "mutationMergeOldData": true,
   "fetcherName": "fetchDistrictsDistrictTypes",
-  "fetcherNameByKey": "fetchDistrictsDistrictTypesByKey",
-  "selectedGenerators": [
-    "getMethodAction",
-    "getMethodFetcher",
-    "getTable"
-  ]
+  "fetcherNameByKey": "fetchDistrictsDistrictTypesByKey"
 }

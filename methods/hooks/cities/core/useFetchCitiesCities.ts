@@ -13,15 +13,10 @@ export function useFetchCitiesCities() {
   
   const { data } = useSWR<TCitiesCities[]>(`/api/cities/cities`, { refreshInterval: 3000 })
 
-  const cities = data
-  ? (arrayToObjectKey(["mapTileX", "mapTileY"], data) as TCitiesCitiesRecordByMapTileXMapTileY)
-  : {}
-
   useEffect(() => {
-    if (cities) {
+    if (data) {
+      const cities = arrayToObjectKey(["mapTileX", "mapTileY"], data) as TCitiesCitiesRecordByMapTileXMapTileY
       setCitiesCities(cities)
     }
-  }, [cities, setCitiesCities])
-
-  return { cities }
+  }, [data, setCitiesCities])
 }

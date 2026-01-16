@@ -13,15 +13,10 @@ export function useFetchAttributesSkillsByKey( params: TAttributesSkillsParams )
   
   const { data } = useSWR<TAttributesSkills[]>(`/api/attributes/skills/${params.id}`, { refreshInterval: 3000 })
 
-  const skills = data
-  ? (arrayToObjectKey(["id"], data) as TAttributesSkillsRecordById)
-  : {}
-
   useEffect(() => {
-    if (skills) {
+    if (data) {
+      const skills = arrayToObjectKey(["id"], data) as TAttributesSkillsRecordById
       setAttributesSkills(skills)
     }
-  }, [skills, setAttributesSkills])
-
-  return { skills }
+  }, [data, setAttributesSkills])
 }

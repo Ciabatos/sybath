@@ -1,4 +1,18 @@
 {
+  "promptAnswers": {
+    "schema": "districts",
+    "table": "districts",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "map_tile_x",
+      "map_tile_y"
+    ],
+    "paramsColumns": [
+      "map_id"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": false
+  },
   "schema": "districts",
   "table": "districts",
   "tableCamelName": "districts",
@@ -87,10 +101,5 @@
   "generateMutation": true,
   "mutationMergeOldData": false,
   "fetcherName": "fetchDistrictsDistricts",
-  "fetcherNameByKey": "fetchDistrictsDistrictsByKey",
-  "selectedGenerators": [
-    "getMethodAction",
-    "getMethodFetcher",
-    "getTable"
-  ]
+  "fetcherNameByKey": "fetchDistrictsDistrictsByKey"
 }

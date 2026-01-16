@@ -13,15 +13,10 @@ export function useFetchCitiesCityTilesByKey( params: TCitiesCityTilesParams ) {
   
   const { data } = useSWR<TCitiesCityTiles[]>(`/api/cities/city-tiles/${params.cityId}`, { refreshInterval: 3000 })
 
-  const cityTiles = data
-  ? (arrayToObjectKey(["x", "y"], data) as TCitiesCityTilesRecordByXY)
-  : {}
-
   useEffect(() => {
-    if (cityTiles) {
+    if (data) {
+      const cityTiles = arrayToObjectKey(["x", "y"], data) as TCitiesCityTilesRecordByXY
       setCitiesCityTiles(cityTiles)
     }
-  }, [cityTiles, setCitiesCityTiles])
-
-  return { cityTiles }
+  }, [data, setCitiesCityTiles])
 }

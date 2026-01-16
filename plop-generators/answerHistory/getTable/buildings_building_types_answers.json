@@ -1,4 +1,17 @@
 {
+  "promptAnswers": {
+    "schema": "buildings",
+    "table": "building_types",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "id"
+    ],
+    "paramsColumns": [
+      "id"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
   "schema": "buildings",
   "table": "building_types",
   "tableCamelName": "buildingTypes",
@@ -58,12 +71,8 @@
   "apiPathParams": "/api/buildings/building-types",
   "apiPathByKey": "app/api/buildings/building-types/[id]/route.ts",
   "apiPathParamsByKey": "/api/buildings/building-types/${params.id}",
-  "generateMutation": false,
+  "generateMutation": true,
+  "mutationMergeOldData": true,
   "fetcherName": "fetchBuildingsBuildingTypes",
-  "fetcherNameByKey": "fetchBuildingsBuildingTypesByKey",
-  "selectedGenerators": [
-    "getMethodAction",
-    "getMethodFetcher",
-    "getTable"
-  ]
+  "fetcherNameByKey": "fetchBuildingsBuildingTypesByKey"
 }

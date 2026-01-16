@@ -13,15 +13,10 @@ export function useFetchWorldLandscapeTypes() {
   
   const { data } = useSWR<TWorldLandscapeTypes[]>(`/api/world/landscape-types`, { refreshInterval: 3000 })
 
-  const landscapeTypes = data
-  ? (arrayToObjectKey(["id"], data) as TWorldLandscapeTypesRecordById)
-  : {}
-
   useEffect(() => {
-    if (landscapeTypes) {
+    if (data) {
+      const landscapeTypes = arrayToObjectKey(["id"], data) as TWorldLandscapeTypesRecordById
       setWorldLandscapeTypes(landscapeTypes)
     }
-  }, [landscapeTypes, setWorldLandscapeTypes])
-
-  return { landscapeTypes }
+  }, [data, setWorldLandscapeTypes])
 }

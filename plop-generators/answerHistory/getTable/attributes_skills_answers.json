@@ -1,4 +1,17 @@
 {
+  "promptAnswers": {
+    "schema": "attributes",
+    "table": "skills",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "id"
+    ],
+    "paramsColumns": [
+      "id"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": false
+  },
   "schema": "attributes",
   "table": "skills",
   "tableCamelName": "skills",
@@ -52,12 +65,8 @@
   "apiPathParams": "/api/attributes/skills",
   "apiPathByKey": "app/api/attributes/skills/[id]/route.ts",
   "apiPathParamsByKey": "/api/attributes/skills/${params.id}",
-  "generateMutation": false,
+  "generateMutation": true,
+  "mutationMergeOldData": false,
   "fetcherName": "fetchAttributesSkills",
-  "fetcherNameByKey": "fetchAttributesSkillsByKey",
-  "selectedGenerators": [
-    "getMethodAction",
-    "getMethodFetcher",
-    "getTable"
-  ]
+  "fetcherNameByKey": "fetchAttributesSkillsByKey"
 }

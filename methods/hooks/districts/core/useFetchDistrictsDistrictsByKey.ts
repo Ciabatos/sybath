@@ -13,15 +13,10 @@ export function useFetchDistrictsDistrictsByKey( params: TDistrictsDistrictsPara
   
   const { data } = useSWR<TDistrictsDistricts[]>(`/api/districts/districts/${params.mapId}`, { refreshInterval: 3000 })
 
-  const districts = data
-  ? (arrayToObjectKey(["mapTileX", "mapTileY"], data) as TDistrictsDistrictsRecordByMapTileXMapTileY)
-  : {}
-
   useEffect(() => {
-    if (districts) {
+    if (data) {
+      const districts = arrayToObjectKey(["mapTileX", "mapTileY"], data) as TDistrictsDistrictsRecordByMapTileXMapTileY
       setDistrictsDistricts(districts)
     }
-  }, [districts, setDistrictsDistricts])
-
-  return { districts }
+  }, [data, setDistrictsDistricts])
 }

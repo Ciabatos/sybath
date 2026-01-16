@@ -13,15 +13,10 @@ export function useFetchDistrictsDistrictTypes() {
   
   const { data } = useSWR<TDistrictsDistrictTypes[]>(`/api/districts/district-types`, { refreshInterval: 3000 })
 
-  const districtTypes = data
-  ? (arrayToObjectKey(["id"], data) as TDistrictsDistrictTypesRecordById)
-  : {}
-
   useEffect(() => {
-    if (districtTypes) {
+    if (data) {
+      const districtTypes = arrayToObjectKey(["id"], data) as TDistrictsDistrictTypesRecordById
       setDistrictsDistrictTypes(districtTypes)
     }
-  }, [districtTypes, setDistrictsDistrictTypes])
-
-  return { districtTypes }
+  }, [data, setDistrictsDistrictTypes])
 }

@@ -3,14 +3,14 @@
 
 import { TCitiesCityTilesRecordByXY, TCitiesCityTiles } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
 import { cityTilesAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useSetAtom, useAtomValue } from "jotai"
 import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateCitiesCityTiles() {
   const { mutate } = useSWR<TCitiesCityTiles[]>(`/api/cities/city-tiles`)
   const setCitiesCityTiles = useSetAtom(cityTilesAtom)
-  
+  const cityTiles = useAtomValue(cityTilesAtom)
 
   function mutateCitiesCityTiles(optimisticParams: Partial<TCitiesCityTiles> | Partial<TCitiesCityTiles>[]) {
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
@@ -35,7 +35,7 @@ export function useMutateCitiesCityTiles() {
     const newObj = arrayToObjectKey(["x", "y"], dataWithDefaults) as TCitiesCityTilesRecordByXY
     
     const optimisticDataMergeWithOldData: TCitiesCityTilesRecordByXY = {
-       
+      ...cityTiles, 
       ...newObj,      
     }
     

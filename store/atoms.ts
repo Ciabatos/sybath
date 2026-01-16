@@ -19,6 +19,7 @@ import { TDistrictInventoryRecordBySlotId } from "@/db/postgresMainDatabase/sche
 import { TPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
 import { TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/items"
 import { TActivePlayerRecordById } from "@/db/postgresMainDatabase/schemas/players/activePlayer"
+import { TActivePlayerProfileRecordByName } from "@/db/postgresMainDatabase/schemas/players/activePlayerProfile"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
 import { TPlayerMapRecordByMapId } from "@/db/postgresMainDatabase/schemas/world/playerMap"
@@ -34,7 +35,6 @@ import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { EPanelsTopCenterBar } from "@/types/enumeration/EPanelsTopCenterBar"
 import { atom } from "jotai"
-import { TActivePlayerProfileRecordByName } from "@/db/postgresMainDatabase/schemas/players/activePlayerProfile"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBottomCenterBar.Inactive)

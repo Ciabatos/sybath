@@ -1,4 +1,17 @@
 {
+  "promptAnswers": {
+    "schema": "world",
+    "table": "terrain_types",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "id"
+    ],
+    "paramsColumns": [
+      "id"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
   "schema": "world",
   "table": "terrain_types",
   "tableCamelName": "terrainTypes",
@@ -64,12 +77,8 @@
   "apiPathParams": "/api/world/terrain-types",
   "apiPathByKey": "app/api/world/terrain-types/[id]/route.ts",
   "apiPathParamsByKey": "/api/world/terrain-types/${params.id}",
-  "generateMutation": false,
+  "generateMutation": true,
+  "mutationMergeOldData": true,
   "fetcherName": "fetchWorldTerrainTypes",
-  "fetcherNameByKey": "fetchWorldTerrainTypesByKey",
-  "selectedGenerators": [
-    "getMethodAction",
-    "getMethodFetcher",
-    "getTable"
-  ]
+  "fetcherNameByKey": "fetchWorldTerrainTypesByKey"
 }

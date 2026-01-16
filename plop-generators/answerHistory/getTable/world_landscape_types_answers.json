@@ -1,4 +1,17 @@
 {
+  "promptAnswers": {
+    "schema": "world",
+    "table": "landscape_types",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "id"
+    ],
+    "paramsColumns": [
+      "id"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
   "schema": "world",
   "table": "landscape_types",
   "tableCamelName": "landscapeTypes",
@@ -64,12 +77,8 @@
   "apiPathParams": "/api/world/landscape-types",
   "apiPathByKey": "app/api/world/landscape-types/[id]/route.ts",
   "apiPathParamsByKey": "/api/world/landscape-types/${params.id}",
-  "generateMutation": false,
+  "generateMutation": true,
+  "mutationMergeOldData": true,
   "fetcherName": "fetchWorldLandscapeTypes",
-  "fetcherNameByKey": "fetchWorldLandscapeTypesByKey",
-  "selectedGenerators": [
-    "getMethodAction",
-    "getMethodFetcher",
-    "getTable"
-  ]
+  "fetcherNameByKey": "fetchWorldLandscapeTypesByKey"
 }

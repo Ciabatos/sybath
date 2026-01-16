@@ -2,6 +2,7 @@
   "promptAnswers": {
     "schema": "attributes",
     "table": "abilities",
+    "usePrevious": false,
     "selectedColumnsIndex": [
       "id"
     ],

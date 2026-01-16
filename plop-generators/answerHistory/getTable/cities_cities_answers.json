@@ -1,4 +1,18 @@
 {
+  "promptAnswers": {
+    "schema": "cities",
+    "table": "cities",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "map_tile_x",
+      "map_tile_y"
+    ],
+    "paramsColumns": [
+      "map_id"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": false
+  },
   "schema": "cities",
   "table": "cities",
   "tableCamelName": "cities",
@@ -93,10 +107,5 @@
   "generateMutation": true,
   "mutationMergeOldData": false,
   "fetcherName": "fetchCitiesCities",
-  "fetcherNameByKey": "fetchCitiesCitiesByKey",
-  "selectedGenerators": [
-    "getMethodAction",
-    "getMethodFetcher",
-    "getTable"
-  ]
+  "fetcherNameByKey": "fetchCitiesCitiesByKey"
 }

@@ -1,4 +1,18 @@
 {
+  "promptAnswers": {
+    "schema": "world",
+    "table": "map_tiles",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "x",
+      "y"
+    ],
+    "paramsColumns": [
+      "map_id"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
   "schema": "world",
   "table": "map_tiles",
   "tableCamelName": "mapTiles",
@@ -81,10 +95,5 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "fetcherName": "fetchWorldMapTiles",
-  "fetcherNameByKey": "fetchWorldMapTilesByKey",
-  "selectedGenerators": [
-    "getMethodAction",
-    "getMethodFetcher",
-    "getTable"
-  ]
+  "fetcherNameByKey": "fetchWorldMapTilesByKey"
 }

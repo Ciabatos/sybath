@@ -13,15 +13,10 @@ export function useFetchAttributesAbilities() {
   
   const { data } = useSWR<TAttributesAbilities[]>(`/api/attributes/abilities`, { refreshInterval: 3000 })
 
-  const abilities = data
-  ? (arrayToObjectKey(["id"], data) as TAttributesAbilitiesRecordById)
-  : {}
-
   useEffect(() => {
-    if (abilities) {
+    if (data) {
+      const abilities = arrayToObjectKey(["id"], data) as TAttributesAbilitiesRecordById
       setAttributesAbilities(abilities)
     }
-  }, [abilities, setAttributesAbilities])
-
-  return { abilities }
+  }, [data, setAttributesAbilities])
 }

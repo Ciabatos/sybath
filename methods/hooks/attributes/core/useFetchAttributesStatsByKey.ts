@@ -13,15 +13,10 @@ export function useFetchAttributesStatsByKey( params: TAttributesStatsParams ) {
   
   const { data } = useSWR<TAttributesStats[]>(`/api/attributes/stats/${params.id}`, { refreshInterval: 3000 })
 
-  const stats = data
-  ? (arrayToObjectKey(["id"], data) as TAttributesStatsRecordById)
-  : {}
-
   useEffect(() => {
-    if (stats) {
+    if (data) {
+      const stats = arrayToObjectKey(["id"], data) as TAttributesStatsRecordById
       setAttributesStats(stats)
     }
-  }, [stats, setAttributesStats])
-
-  return { stats }
+  }, [data, setAttributesStats])
 }

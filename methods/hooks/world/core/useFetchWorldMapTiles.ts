@@ -13,15 +13,10 @@ export function useFetchWorldMapTiles() {
   
   const { data } = useSWR<TWorldMapTiles[]>(`/api/world/map-tiles`, { refreshInterval: 3000 })
 
-  const mapTiles = data
-  ? (arrayToObjectKey(["x", "y"], data) as TWorldMapTilesRecordByXY)
-  : {}
-
   useEffect(() => {
-    if (mapTiles) {
+    if (data) {
+      const mapTiles = arrayToObjectKey(["x", "y"], data) as TWorldMapTilesRecordByXY
       setWorldMapTiles(mapTiles)
     }
-  }, [mapTiles, setWorldMapTiles])
-
-  return { mapTiles }
+  }, [data, setWorldMapTiles])
 }

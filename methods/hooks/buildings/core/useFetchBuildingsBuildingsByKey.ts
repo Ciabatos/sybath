@@ -13,15 +13,10 @@ export function useFetchBuildingsBuildingsByKey( params: TBuildingsBuildingsPara
   
   const { data } = useSWR<TBuildingsBuildings[]>(`/api/buildings/buildings/${params.cityId}`, { refreshInterval: 3000 })
 
-  const buildings = data
-  ? (arrayToObjectKey(["cityTileX", "cityTileY"], data) as TBuildingsBuildingsRecordByCityTileXCityTileY)
-  : {}
-
   useEffect(() => {
-    if (buildings) {
+    if (data) {
+      const buildings = arrayToObjectKey(["cityTileX", "cityTileY"], data) as TBuildingsBuildingsRecordByCityTileXCityTileY
       setBuildingsBuildings(buildings)
     }
-  }, [buildings, setBuildingsBuildings])
-
-  return { buildings }
+  }, [data, setBuildingsBuildings])
 }

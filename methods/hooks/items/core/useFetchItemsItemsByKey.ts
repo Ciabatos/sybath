@@ -13,15 +13,10 @@ export function useFetchItemsItemsByKey( params: TItemsItemsParams ) {
   
   const { data } = useSWR<TItemsItems[]>(`/api/items/items/${params.id}`, { refreshInterval: 3000 })
 
-  const items = data
-  ? (arrayToObjectKey(["id"], data) as TItemsItemsRecordById)
-  : {}
-
   useEffect(() => {
-    if (items) {
+    if (data) {
+      const items = arrayToObjectKey(["id"], data) as TItemsItemsRecordById
       setItemsItems(items)
     }
-  }, [items, setItemsItems])
-
-  return { items }
+  }, [data, setItemsItems])
 }
