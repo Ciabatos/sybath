@@ -52,5 +52,13 @@
       "const playerPosition = useAtomValue(playerPositionAtom)"
     ],
     "description": "Destructuring usePlayerPosition hook"
+  },  
+  "Destructure useActivePlayerProfile": {
+    "prefix": "hook_players_core_useActivePlayerProfile",
+    "body": [
+      "useFetchActivePlayerProfile({ playerId })",
+      "const activePlayerProfile = useAtomValue(activePlayerProfileAtom)"
+    ],
+    "description": "Destructuring useActivePlayerProfile hook"
   },//Automatic Snippets
 }

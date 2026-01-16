@@ -1,0 +1,69 @@
+{
+  "promptAnswers": {
+    "schema": "players",
+    "method": "get_active_player_profile",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "name"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "players",
+  "method": "get_active_player_profile",
+  "methodCamelName": "activePlayerProfile",
+  "methodPascalName": "ActivePlayerProfile",
+  "methodKebabName": "get-active-player-profile",
+  "methodName": "getActivePlayerProfile",
+  "methodTypeName": "TActivePlayerProfile",
+  "methodParamsTypeName": "TActivePlayerProfileParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "name",
+      "camelName": "name",
+      "pascalName": "Name",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "image_map",
+      "camelName": "imageMap",
+      "pascalName": "ImageMap",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "image_portrait",
+      "camelName": "imagePortrait",
+      "pascalName": "ImagePortrait",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"name\"]",
+  "indexParamsColumns": "playerId",
+  "indexTypeMethodName": "Name",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TActivePlayerProfileRecordByName",
+  "indexColumns": [
+    {
+      "name": "name",
+      "camelName": "name",
+      "pascalName": "Name",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1",
+  "apiPath": "app/api/players/rpc/get-active-player-profile/[playerId]/route.ts",
+  "apiPathParams": "/api/players/rpc/get-active-player-profile/${params.playerId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true
+}
