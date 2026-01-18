@@ -63,6 +63,7 @@ Statusy spoleczne
 
 Walka:
 Gry: 
+-Low Magic Age
 -Slay the spire
 -Combo Card Clashers
 -Battle brothers
