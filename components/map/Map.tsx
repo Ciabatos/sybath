@@ -48,7 +48,7 @@ export default function Map(props: TMapTile) {
   return (
     <div
       className={style.BackgroundImage}
-      onClick={handleClick}
+      onDoubleClick={handleClick}
       style={{
         gridColumnStart: props.mapTiles.x,
         gridRowStart: props.mapTiles.y,

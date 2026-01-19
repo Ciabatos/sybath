@@ -8,17 +8,26 @@ import { getBuildingsBuildingsByKeyServer } from "@/methods/server-fetchers/buil
 import { getBuildingsBuildingTypesServer } from "@/methods/server-fetchers/buildings/core/getBuildingsBuildingTypesServer"
 import { getCitiesCityTilesByKeyServer } from "@/methods/server-fetchers/cities/core/getCitiesCityTilesByKeyServer"
 import { getPlayerCityServer } from "@/methods/server-fetchers/cities/core/getPlayerCityServer"
+import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
 import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
 import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
 
-export async function getCityData(clientCityId: number, playerId: number) {
+export async function getCityData(clientCityId: number, sessionUserId: number) {
+  const activePlayer = await getActivePlayerServer({ userId: sessionUserId })
+  const sessionPlayerId = activePlayer.raw[0].id
+  const playerId = sessionPlayerId
+
   const city = await getPlayerCityServer({ playerId })
 
   if (!city || !city.byKey[clientCityId]) {
     return null
   }
 
-  const cityId = city.byKey[clientCityId].cityId
+  if (clientCityId != city.byKey[clientCityId].cityId) {
+    return null
+  }
+
+  const cityId = clientCityId
 
   const [
     cityTiles,
@@ -45,6 +54,7 @@ export async function getCityData(clientCityId: number, playerId: number) {
   ])
 
   const fallbackData = createSwrFallback(
+    activePlayer,
     city,
     cityTiles,
     terrainTypes,
@@ -59,6 +69,7 @@ export async function getCityData(clientCityId: number, playerId: number) {
   )
 
   const atomHydrationData = createAtomHydration(
+    activePlayer,
     city,
     cityTiles,
     terrainTypes,
@@ -70,10 +81,10 @@ export async function getCityData(clientCityId: number, playerId: number) {
     playerSkills,
     playerAbilities,
     buildingTypes,
-    { atomName: "playerIdAtom", byKey: playerId },
   )
 
   return {
+    activePlayer,
     city,
     cityTiles,
     terrainTypes,

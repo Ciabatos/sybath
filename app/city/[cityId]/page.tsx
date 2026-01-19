@@ -3,7 +3,7 @@ import { auth } from "@/auth"
 import CityWrapper from "@/components/city/CityWrapper"
 import { getCityData } from "@/methods/server-fetchers/cities/composite/getCityData"
 import { AtomsHydrator } from "@/providers/jotai-hydrator"
-import { SWRProvider } from "@/providers/swr-provider"
+import { SWRHydrator } from "@/providers/swr-hydrator"
 import styles from "./page.module.css"
 
 type TParams = {
@@ -18,12 +18,12 @@ export default async function CityPage({ params }: { params: TParams }) {
     return null
   }
 
-  const clientCityId = (await params).cityId
+  const clientCityId = Number((await params).cityId)
 
   if (!clientCityId || isNaN(clientCityId)) {
     return null
   }
-  const cityData = await getCityData(clientCityId, playerId)
+  const cityData = await getCityData(clientCityId, sessionUserId)
 
   if (!cityData) {
     return null
@@ -34,13 +34,9 @@ export default async function CityPage({ params }: { params: TParams }) {
   return (
     <div className={styles.main}>
       <AtomsHydrator atomValues={[...atomHydrationData]}>
-        <SWRProvider
-          value={{
-            fallback: fallbackData,
-          }}
-        >
+        <SWRHydrator fallback={fallbackData}>
           <CityWrapper />
-        </SWRProvider>
+        </SWRHydrator>
       </AtomsHydrator>
     </div>
   )
