@@ -9,22 +9,41 @@ import { useFetchPlayerPosition } from "@/methods/hooks/world/core/useFetchPlaye
 import { useFetchWorldLandscapeTypes } from "@/methods/hooks/world/core/useFetchWorldLandscapeTypes"
 import { useFetchWorldMapTilesByKey } from "@/methods/hooks/world/core/useFetchWorldMapTilesByKey"
 import { useFetchWorldTerrainTypes } from "@/methods/hooks/world/core/useFetchWorldTerrainTypes"
-import { playerPositionAtom } from "@/store/atoms"
+import {
+  citiesAtom,
+  districtsAtom,
+  districtTypesAtom,
+  landscapeTypesAtom,
+  mapTilesAtom,
+  playerPositionAtom,
+  terrainTypesAtom,
+} from "@/store/atoms"
 import { useAtomValue } from "jotai"
 
 export function useMapHandlingData() {
   const { playerId } = usePlayerId()
   const { mapId } = useMapId()
-  const { mapTiles } = useFetchWorldMapTilesByKey({ mapId })
-  const { cities } = useFetchCitiesCitiesByKey({ mapId })
+
+  useFetchWorldMapTilesByKey({ mapId })
+  const mapTiles = useAtomValue(mapTilesAtom)
+
+  useFetchCitiesCitiesByKey({ mapId })
+  const cities = useAtomValue(citiesAtom)
 
   useFetchPlayerPosition({ mapId, playerId })
   const playerPosition = useAtomValue(playerPositionAtom)
 
-  const { districts } = useFetchDistrictsDistrictsByKey({ mapId })
-  const { terrainTypes } = useFetchWorldTerrainTypes()
-  const { landscapeTypes } = useFetchWorldLandscapeTypes()
-  const { districtTypes } = useFetchDistrictsDistrictTypes()
+  useFetchDistrictsDistrictsByKey({ mapId })
+  const districts = useAtomValue(districtsAtom)
+
+  useFetchWorldTerrainTypes()
+  const terrainTypes = useAtomValue(terrainTypesAtom)
+
+  useFetchWorldLandscapeTypes()
+  const landscapeTypes = useAtomValue(landscapeTypesAtom)
+
+  useFetchDistrictsDistrictTypes()
+  const districtTypes = useAtomValue(districtTypesAtom)
 
   return { mapId, mapTiles, cities, districts, districtTypes, playerPosition, terrainTypes, landscapeTypes }
 }

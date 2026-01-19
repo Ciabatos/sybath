@@ -7,8 +7,10 @@ import { useAtomValue } from "jotai"
 
 export function usePlayerId() {
   const { mutateActivePlayer } = useMutateActivePlayer()
+
   useFetchActivePlayer()
   const activePlayerData = useAtomValue(activePlayerAtom)
+
   const activePlayer = Object.values(activePlayerData)[0] ?? null
   const playerId = activePlayer?.id
 

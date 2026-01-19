@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { createHeroPortrait } from "@/methods/functions/panels/createHeroPortrait"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
-import { useActivePlayer } from "@/methods/hooks/players/composite/useActivePlayer"
+import { useActivePlayerProfile } from "@/methods/hooks/players/composite/useActivePlayerProfile"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
 import { X } from "lucide-react"
@@ -16,14 +16,14 @@ import { X } from "lucide-react"
 export default function PanelPlayerPanel() {
   const { openModalLeftTopBar } = useModalLeftTopBar()
   const { createPortrait } = createHeroPortrait()
-  const { activePlayer } = useActivePlayer()
+  const { activePlayerProfile } = useActivePlayerProfile()
 
   function onClose() {
     openModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerPortrait)
   }
 
-  const heroName = activePlayer.name
-  const avatarUrl = createPortrait(activePlayer.imagePortrait)
+  const heroName = activePlayerProfile.name
+  const avatarUrl = createPortrait(activePlayerProfile.imagePortrait)
   const avatarFallback = "VB"
 
   return (
