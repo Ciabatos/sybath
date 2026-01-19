@@ -7,7 +7,7 @@ import {
   doPlayerMovementService,
 } from "@/methods/services/world/doPlayerMovementService"
 
-type TDoPlayerMovementActionParams = Omit<TDoPlayerMovementServiceParams, "sessionUserId">
+export type TDoPlayerMovementActionParams = Omit<TDoPlayerMovementServiceParams, "sessionUserId">
 
 export async function doPlayerMovementAction(params: TDoPlayerMovementActionParams) {
   const session = await auth()

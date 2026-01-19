@@ -1,24 +1,24 @@
 "use client"
 
-import { playerMovementAction, TPlayerMovementActionParams } from "@/methods/actions/world/playerMovementAction"
+import { doPlayerMovementAction } from "@/methods/actions/world/doPlayerMovementAction"
 import { useMapTilesPathFromPointToPoint } from "@/methods/hooks/world/composite/useMapTilesPathFromPointToPoint"
 import { playerMapTilesMovementPathAtom } from "@/store/atoms"
 import { useAtom } from "jotai"
 
 export type TSelectPlayerPathParams = {
+  playerId: number
   startX: number
   startY: number
   endX: number
   endY: number
-  mapId: number
 }
 
 export type TSelectAndMovePlayerParams = {
+  playerId: number
   startX: number
   startY: number
   endX: number
   endY: number
-  mapId: number
 }
 
 export function usePlayerMovement() {
@@ -34,12 +34,6 @@ export function usePlayerMovement() {
     const path = getPathFromPointToPoint(params)
     setPlayerMapTilesMovementPath(path)
     doPlayerMovementAction(params)
-  }
-
-  function doPlayerMovementAction(params: TPlayerMovementActionParams) {
-    if (params) {
-      playerMovementAction(params)
-    }
   }
 
   return { playerMapTilesMovementPath, selectPlayerPath, selectPlayerPathAndMovePlayer }

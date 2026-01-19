@@ -7,6 +7,8 @@ import { useMapId } from "@/methods/hooks/world/composite/useMapId"
 import { useFetchWorldLandscapeTypes } from "@/methods/hooks/world/core/useFetchWorldLandscapeTypes"
 import { useFetchWorldMapTilesByKey } from "@/methods/hooks/world/core/useFetchWorldMapTilesByKey"
 import { useFetchWorldTerrainTypes } from "@/methods/hooks/world/core/useFetchWorldTerrainTypes"
+import { citiesAtom, landscapeTypesAtom, mapTilesAtom, terrainTypesAtom } from "@/store/atoms"
+import { useAtomValue } from "jotai"
 
 type TGetPathFromPointToPointParams = {
   startX: number
@@ -20,10 +22,18 @@ export type TMapTilesMovementPathRecordByXY = Record<string, TPathFromPointToPoi
 export function useMapTilesPathFromPointToPoint() {
   function getPathFromPointToPoint(params: TGetPathFromPointToPointParams) {
     const { mapId } = useMapId()
-    const { mapTiles } = useFetchWorldMapTilesByKey({ mapId: mapId })
-    const { terrainTypes } = useFetchWorldTerrainTypes()
-    const { landscapeTypes } = useFetchWorldLandscapeTypes()
-    const { cities } = useFetchCitiesCitiesByKey({ mapId })
+
+    useFetchWorldMapTilesByKey({ mapId })
+    const mapTiles = useAtomValue(mapTilesAtom)
+
+    useFetchWorldTerrainTypes()
+    const terrainTypes = useAtomValue(terrainTypesAtom)
+
+    useFetchWorldLandscapeTypes()
+    const landscapeTypes = useAtomValue(landscapeTypesAtom)
+
+    useFetchCitiesCitiesByKey({ mapId })
+    const cities = useAtomValue(citiesAtom)
 
     const movementPath = pathFromPointToPoint({
       startX: params.startX,
