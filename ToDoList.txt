@@ -1,5 +1,6 @@
 error handling !
 plopjs history
+posegregowac panele
 
 --pobieranie playerStats
 --pobieranie playerSkills
