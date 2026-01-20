@@ -104,7 +104,7 @@ Użytkownik pisząc księge dostaje obrazki ładne z ai i odpowiada na pytania t
 --umiejetnosc nauczania religii
 --nowe miejsce na mapie/nowe regiony/nowa mape
 --nowe umiejetnosci
---ksiege nazwana jego imieniem
+--ksiege nazwana jego imieniem -- nie da sie jej zniszczyc a po przeczytaniu zna sie na 100% religie i mozna jej nauczac
 --historie z obrazkami co kazdy moze odtworzyc jak zna ta religie, musi byc fajna historia
 --artefakty, magie etc
 --wyprawy swiete ?
