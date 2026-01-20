@@ -1,5 +1,6 @@
 "use client"
 
+import PanelPlayerSwitchList from "@/components/panels/PanelPlayerSwitchList"
 import styles from "@/components/panels/styles/PlayerSwitchButton.module.css"
 import { ArrowLeftRight } from "lucide-react"
 
@@ -18,6 +19,7 @@ export default function PlayerSwitchButton() {
       >
         <ArrowLeftRight className={styles.icon} />
       </button>
+      <PanelPlayerSwitchList></PanelPlayerSwitchList>
     </div>
   )
 }
