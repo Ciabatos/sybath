@@ -96,6 +96,22 @@ Middleware zamienia to na:
 /api/playerInventory/123   <— prawdziwe ID
 
 
+--Religia
+--Promo konto - napisanie ksiegi coś jak księga z bibli
+Użytkownik pisząc księge dostaje obrazki ładne z ai i odpowiada na pytania tworząc:
+-nową religię, traity 
+-nowych bogow antagoniste i/lub dobrego
+--umiejetnosc nauczania religii
+--nowe miejsce na mapie/nowe regiony/nowa mape
+--nowe umiejetnosci
+--ksiege nazwana jego imieniem
+--historie z obrazkami co kazdy moze odtworzyc jak zna ta religie, musi byc fajna historia
+--artefakty, magie etc
+--wyprawy swiete ?
+
+
+
+
 stability.ai Craiyon
 https://civitai.com/
 stable diffusion XL + 1.5 + stable-diffusion-webui 1111
