@@ -108,6 +108,8 @@ Użytkownik pisząc księge dostaje obrazki ładne z ai i odpowiada na pytania t
 --historie z obrazkami co kazdy moze odtworzyc jak zna ta religie, musi byc fajna historia
 --artefakty, magie etc
 --wyprawy swiete ?
+--może dostęp do edytora nowej mapy i sam ja tworzy ? (tu duzo roboty)
+--dostep do edytora nowych surowcow ?
 
 
 
