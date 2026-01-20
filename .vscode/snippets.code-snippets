@@ -268,5 +268,13 @@
       "const terrainTypes = useAtomValue(terrainTypesAtom)"
     ],
     "description": "Destructuring useWorldTerrainTypesByKey hook"
+  },  
+  "Destructure useActivePlayerSwitchProfiles": {
+    "prefix": "hook_players_core_useActivePlayerSwitchProfiles",
+    "body": [
+      "useFetchActivePlayerSwitchProfiles({ playerId })",
+      "const activePlayerSwitchProfiles = useAtomValue(activePlayerSwitchProfilesAtom)"
+    ],
+    "description": "Destructuring useActivePlayerSwitchProfiles hook"
   },//Automatic Snippets
 }

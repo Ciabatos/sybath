@@ -4,12 +4,20 @@ import styles from "@/components/panels/styles/PlayerSwitchButton.module.css"
 import { ArrowLeftRight } from "lucide-react"
 
 export default function PlayerSwitchButton() {
+  const handleClick = () => {
+    // openModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerPanel)
+    //zadnych modali, uzyc tooltipa
+  }
+
   return (
-    <button
-      className={styles.switchButton}
-      aria-label='Switch hero'
-    >
-      <ArrowLeftRight className={styles.icon} />
-    </button>
+    <div>
+      <button
+        className={styles.switchButton}
+        aria-label='Switch hero'
+        onClick={() => handleClick()}
+      >
+        <ArrowLeftRight className={styles.icon} />
+      </button>
+    </div>
   )
 }

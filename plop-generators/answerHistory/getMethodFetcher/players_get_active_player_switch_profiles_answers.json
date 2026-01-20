@@ -1,0 +1,62 @@
+{
+  "promptAnswers": {
+    "schema": "players",
+    "method": "get_active_player_switch_profiles",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "name"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": false
+  },
+  "schema": "players",
+  "method": "get_active_player_switch_profiles",
+  "methodCamelName": "activePlayerSwitchProfiles",
+  "methodPascalName": "ActivePlayerSwitchProfiles",
+  "methodKebabName": "get-active-player-switch-profiles",
+  "methodName": "getActivePlayerSwitchProfiles",
+  "methodTypeName": "TActivePlayerSwitchProfiles",
+  "methodParamsTypeName": "TActivePlayerSwitchProfilesParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "name",
+      "camelName": "name",
+      "pascalName": "Name",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "image_portrait",
+      "camelName": "imagePortrait",
+      "pascalName": "ImagePortrait",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"name\"]",
+  "indexParamsColumns": "playerId",
+  "indexTypeMethodName": "Name",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TActivePlayerSwitchProfilesRecordByName",
+  "indexColumns": [
+    {
+      "name": "name",
+      "camelName": "name",
+      "pascalName": "Name",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1",
+  "apiPath": "app/api/players/rpc/get-active-player-switch-profiles/[playerId]/route.ts",
+  "apiPathParams": "/api/players/rpc/get-active-player-switch-profiles/${params.playerId}",
+  "generateMutation": true,
+  "mutationMergeOldData": false
+}
