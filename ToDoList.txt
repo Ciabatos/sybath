@@ -1,3 +1,5 @@
+error handling !
+plopjs history
 
 --pobieranie playerStats
 --pobieranie playerSkills
