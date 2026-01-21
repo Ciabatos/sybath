@@ -9,7 +9,7 @@ export type TDoPlayerMovementParams = {
 }
 
 export type TDoPlayerMovement = {
-  status: string
+  status: boolean
   message: string
 }
 
@@ -22,7 +22,12 @@ export async function doPlayerMovement(params: TDoPlayerMovementParams) {
 
     return result.rows[0] as TDoPlayerMovement
   } catch (error) {
-    console.error("Error executing doPlayerMovement:", error)
+    console.error("Error executing doPlayerMovement:", {
+      error,
+      params,
+      timestamp: new Date().toISOString(),
+    })
+    
     throw new Error("Failed to execute doPlayerMovement")
   }
 }

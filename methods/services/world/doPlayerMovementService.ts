@@ -23,47 +23,58 @@ export type TDoPlayerMovementServiceParams = {
 //MANUAL CODE - END
 
 export async function doPlayerMovementService(params: TDoPlayerMovementServiceParams) {
-  const sessionPlayerId = (await getActivePlayerServer({ userId: params.sessionUserId })).raw[0].id
-  const playerId = params.playerId
-
-  if (sessionPlayerId !== playerId) {
-    throw new Error("Active player mismatch")
-  }
-
-  //MANUAL CODE - START
-
-  const mapId = await getWorldMapsServer()
-  const mapTiles = await getWorldMapTilesByKeyServer({ mapId: mapId.raw[0].id })
-  const terrainTypes = await getWorldTerrainTypesServer()
-  const landscapeTypes = await getWorldLandscapeTypesServer()
-  const cities = await getCitiesCitiesByKeyServer({ mapId: mapId.raw[0].id })
-
-  if (!mapTiles) {
-    return
-  }
-
-  const path = pathFromPointToPoint({
-    startX: params.startX,
-    startY: params.startY,
-    endX: params.endX,
-    endY: params.endY,
-    mapTiles: mapTiles.byKey,
-    terrainTypes: terrainTypes.byKey,
-    landscapeTypes: landscapeTypes.byKey,
-    cities: cities.byKey,
-  })
-  //MANUAL CODE - END
-
-  const data: TDoPlayerMovementParams = {
-    playerId: playerId,
-    path: path,
-  }
-
   try {
+    const sessionPlayerId = (await getActivePlayerServer({ userId: params.sessionUserId })).raw[0].id
+    const playerId = params.playerId
+
+    if (sessionPlayerId !== playerId) {
+      return {
+        status: false,
+        message: "Active player mismatch",
+      }
+    }
+
+    //MANUAL CODE - START
+
+    const mapId = await getWorldMapsServer()
+    const mapTiles = await getWorldMapTilesByKeyServer({ mapId: mapId.raw[0].id })
+    const terrainTypes = await getWorldTerrainTypesServer()
+    const landscapeTypes = await getWorldLandscapeTypesServer()
+    const cities = await getCitiesCitiesByKeyServer({ mapId: mapId.raw[0].id })
+
+    if (!mapTiles) {
+      return
+    }
+
+    const path = pathFromPointToPoint({
+      startX: params.startX,
+      startY: params.startY,
+      endX: params.endX,
+      endY: params.endY,
+      mapTiles: mapTiles.byKey,
+      terrainTypes: terrainTypes.byKey,
+      landscapeTypes: landscapeTypes.byKey,
+      cities: cities.byKey,
+    })
+    //MANUAL CODE - END
+
+    const data: TDoPlayerMovementParams = {
+      playerId: playerId,
+      path: path,
+    }
+
     const result = await doPlayerMovement(data)
     return result
   } catch (error) {
-    console.error("Error doPlayerMovementService :", error)
-    return "Failed to doPlayerMovementService"
+    console.error("Error doPlayerMovementService :", {
+      error,
+      params,
+      timestamp: new Date().toISOString(),
+    })
+
+    return {
+      status: false,
+      message: "Unexpected error occurred. Please refresh the page.",
+    }
   }
 }
