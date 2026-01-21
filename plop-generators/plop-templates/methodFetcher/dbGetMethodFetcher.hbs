@@ -27,7 +27,12 @@ export async function {{methodName}}(params: {{methodParamsTypeName}}) {
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as {{methodTypeName}}[]
   } catch (error) {
-    console.error("Error fetching {{methodName}}:", error)
+    console.error("Error fetching {{methodName}}:", {
+      error,
+      params,
+      timestamp: new Date().toISOString(),
+    })
+    
     throw new Error("Failed to fetch {{methodName}}")
   }
 }
