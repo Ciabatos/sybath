@@ -28,7 +28,7 @@
       "name": "status",
       "camelName": "status",
       "pascalName": "Status",
-      "tsType": "string",
+      "tsType": "boolean",
       "optional": ""
     },
     {
