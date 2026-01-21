@@ -1,4 +1,4 @@
-error handling !
+error handling ! - toastError
 plopjs history
 posegregowac panele
 tooltipy
