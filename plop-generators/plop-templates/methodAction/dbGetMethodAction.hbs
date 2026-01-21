@@ -28,7 +28,12 @@ export async function {{methodCamelName}}({{#if methodParamsColumns}}params: {{m
 
     return result.rows[0] as {{methodTypeName}}
   } catch (error) {
-    console.error("Error executing {{methodCamelName}}:", error)
+    console.error("Error executing {{methodCamelName}}:", {
+      error,
+      params,
+      timestamp: new Date().toISOString(),
+    })
+    
     throw new Error("Failed to execute {{methodCamelName}}")
   }
 }

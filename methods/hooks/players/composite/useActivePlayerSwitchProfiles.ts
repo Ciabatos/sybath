@@ -14,9 +14,20 @@ export function useActivePlayerSwitchProfiles() {
   useFetchActivePlayerSwitchProfiles({ playerId })
   const activePlayerSwitchProfiles = useAtomValue(activePlayerSwitchProfilesAtom)
 
-  function switchPlayer(newPlayerId: number) {
-    doSwitchActivePlayerAction({ playerId: playerId, switchToPlayerId: newPlayerId })
-    mutateActivePlayer({ id: newPlayerId })
+  async function switchPlayer(newPlayerId: number) {
+    try {
+      const result = await doSwitchActivePlayerAction({ playerId: playerId, switchToPlayerId: newPlayerId })
+
+      if (!result.status) {
+        toastError(result.message)
+        return
+      }
+
+      mutateActivePlayer({ id: newPlayerId })
+    } catch (err) {
+      console.error("Unexpected error in switchPlayer:", err)
+      toastError("Unexpected error occurred. Please refresh the page.")
+    }
   }
 
   return { activePlayerSwitchProfiles, switchPlayer }

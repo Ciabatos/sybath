@@ -18,38 +18,47 @@ export type TDoSwitchActivePlayerServiceParams = {
 //MANUAL CODE - END
 
 export async function doSwitchActivePlayerService(params: TDoSwitchActivePlayerServiceParams) {
-  const sessionPlayerId = (await getActivePlayerServer({ userId: params.sessionUserId })).raw[0].id
-  const playerId = params.playerId
-
-  if (sessionPlayerId !== playerId) {
-    throw new Error("Active player mismatch")
-  }
-
-  //MANUAL CODE - START
-
-  const switchToPlayerId = params.switchToPlayerId
-
-  if (playerId === switchToPlayerId) {
-    throw new Error("Cannot switch to the same player")
-  }
-
-  const playerIds = session.user.playerIds || []
-
-  if (!playerIds.includes(playerId) || !playerIds.includes(switchToPlayerId)) {
-    throw new Error("Cannot switch")
-  }
-  //MANUAL CODE - END
-
-  const data: TDoSwitchActivePlayerParams = {
-    playerId: playerId,
-    switchToPlayerId: switchToPlayerId,
-  }
-
   try {
+    const sessionPlayerId = (await getActivePlayerServer({ userId: params.sessionUserId })).raw[0].id
+    const playerId = params.playerId
+
+    if (sessionPlayerId !== playerId) {
+      return {
+        status: false,
+        message: "Active player mismatch",
+      }
+    }
+
+    //MANUAL CODE - START
+
+    const switchToPlayerId = params.switchToPlayerId
+
+    if (playerId === switchToPlayerId) {
+      return {
+        status: false,
+        message: "Cannot switch to the same player",
+      }
+    }
+
+    //MANUAL CODE - END
+
+    const data: TDoSwitchActivePlayerParams = {
+      playerId: playerId,
+      switchToPlayerId: switchToPlayerId,
+    }
+
     const result = await doSwitchActivePlayer(data)
     return result
   } catch (error) {
-    console.error("Error doSwitchActivePlayerService :", error)
-    return "Failed to doSwitchActivePlayerService"
+    console.error("Error doSwitchActivePlayerService :", {
+      error,
+      params,
+      timestamp: new Date().toISOString(),
+    })
+
+    return {
+      status: false,
+      message: "Unexpected error occurred. Please refresh the page.",
+    }
   }
 }

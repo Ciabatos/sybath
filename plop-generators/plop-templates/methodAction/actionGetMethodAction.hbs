@@ -7,27 +7,38 @@ import { T{{methodPascalName}}ServiceParams, {{methodCamelName}}Service } from "
 type T{{methodPascalName}}ActionParams = Omit<T{{methodPascalName}}ServiceParams, "sessionUserId">
 
 export async function {{methodName}}(params: T{{methodPascalName}}ActionParams) {
-  const session = await auth()
-  const sessionUserId = session?.user?.userId
-
-  if (!sessionUserId || isNaN(sessionUserId)) {
-    return
-  }
-
-  //MANUAL CODE - START
-
-  //MANUAL CODE - END
-
-  const data: T{{methodPascalName}}ServiceParams = {
-    sessionUserId: sessionUserId,
-    ...params,
-  }
-
   try {
+    const session = await auth()
+    const sessionUserId = session?.user?.userId
+
+    if (!sessionUserId || isNaN(sessionUserId)) {
+      return {
+        status: false,
+        message: "Active player mismatch",
+      }
+    }
+
+    //MANUAL CODE - START
+
+    //MANUAL CODE - END
+
+    const data: T{{methodPascalName}}ServiceParams = {
+      sessionUserId: sessionUserId,
+      ...params,
+    }
+
     const result = await {{methodCamelName}}Service(data)
     return result
   } catch (error) {
-    console.error("Error {{methodName}} :", error)
-    return "Failed to {{methodName}}"
+    console.error("Error {{methodName}} :", {
+      error,
+      params,
+      timestamp: new Date().toISOString(),
+    })
+
+    return {
+      status: false,
+      message: "Unexpected error occurred. Please refresh the page.",
+    }
   }
 }
