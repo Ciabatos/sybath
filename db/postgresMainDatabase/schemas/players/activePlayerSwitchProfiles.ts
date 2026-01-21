@@ -9,11 +9,12 @@ export type TActivePlayerSwitchProfilesParams = {
 }
 
 export type TActivePlayerSwitchProfiles = {
+  id: number
   name: string
   imagePortrait: string
 }
 
-export type TActivePlayerSwitchProfilesRecordByName = Record<string, TActivePlayerSwitchProfiles>
+export type TActivePlayerSwitchProfilesRecordById = Record<string, TActivePlayerSwitchProfiles>
 
 export async function getActivePlayerSwitchProfiles(params: TActivePlayerSwitchProfilesParams) {
   try {

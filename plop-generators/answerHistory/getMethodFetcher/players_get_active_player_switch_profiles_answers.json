@@ -4,7 +4,7 @@
     "method": "get_active_player_switch_profiles",
     "usePrevious": false,
     "selectedColumnsIndex": [
-      "name"
+      "id"
     ],
     "generateMutation": true,
     "mutationMergeOldData": false
@@ -26,6 +26,13 @@
   ],
   "methodColumns": [
     {
+      "name": "id",
+      "camelName": "id",
+      "pascalName": "Id",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
       "name": "name",
       "camelName": "name",
       "pascalName": "Name",
@@ -40,17 +47,17 @@
       "optional": ""
     }
   ],
-  "indexMethodParams": "[\"name\"]",
+  "indexMethodParams": "[\"id\"]",
   "indexParamsColumns": "playerId",
-  "indexTypeMethodName": "Name",
+  "indexTypeMethodName": "Id",
   "indexMethodName": "arrayToObjectKey",
-  "indexTypeName": "TActivePlayerSwitchProfilesRecordByName",
+  "indexTypeName": "TActivePlayerSwitchProfilesRecordById",
   "indexColumns": [
     {
-      "name": "name",
-      "camelName": "name",
-      "pascalName": "Name",
-      "tsType": "string",
+      "name": "id",
+      "camelName": "id",
+      "pascalName": "Id",
+      "tsType": "number",
       "optional": ""
     }
   ],
@@ -58,8 +65,5 @@
   "apiPath": "app/api/players/rpc/get-active-player-switch-profiles/[playerId]/route.ts",
   "apiPathParams": "/api/players/rpc/get-active-player-switch-profiles/${params.playerId}",
   "generateMutation": true,
-  "mutationMergeOldData": false,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ]
+  "mutationMergeOldData": false
 }

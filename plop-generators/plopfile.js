@@ -2,7 +2,6 @@ import getMethodAction from "./getMethodAction.js"
 import getMethodFetcher from "./getMethodFetcher.js"
 import getTable from "./getTable.js"
 import { formatWithPrettier } from "./helpers/prettier.js"
-import recalculateHistory from "./recalculateHistory4.js"
 import replayHistory from "./replayHistory.js"
 
 async function configurePlop(plop) {
@@ -37,7 +36,7 @@ async function configurePlop(plop) {
   getTable(plop)
 
   replayHistory(plop)
-  recalculateHistory(plop)
+  // recalculateHistory(plop)
 }
 
 export default configurePlop

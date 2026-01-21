@@ -3,11 +3,13 @@
 import PanelPlayerSwitchList from "@/components/panels/PanelPlayerSwitchList"
 import styles from "@/components/panels/styles/PlayerSwitchButton.module.css"
 import { ArrowLeftRight } from "lucide-react"
+import { useState } from "react"
 
 export default function PlayerSwitchButton() {
+  const [open, setOpen] = useState(false)
+
   const handleClick = () => {
-    // openModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerPanel)
-    //zadnych modali, uzyc tooltipa
+    setOpen(!open)
   }
 
   return (
@@ -19,7 +21,7 @@ export default function PlayerSwitchButton() {
       >
         <ArrowLeftRight className={styles.icon} />
       </button>
-      <PanelPlayerSwitchList></PanelPlayerSwitchList>
+      {open && <PanelPlayerSwitchList />}
     </div>
   )
 }

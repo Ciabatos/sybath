@@ -1,7 +1,7 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
-import { TActivePlayerSwitchProfilesRecordByName , TActivePlayerSwitchProfilesParams, TActivePlayerSwitchProfiles  } from "@/db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles"
+import { TActivePlayerSwitchProfilesRecordById , TActivePlayerSwitchProfilesParams, TActivePlayerSwitchProfiles  } from "@/db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles"
 import { activePlayerSwitchProfilesAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 import useSWR from "swr"
@@ -18,6 +18,7 @@ export function useMutateActivePlayerSwitchProfiles( params: TActivePlayerSwitch
     //MANUAL CODE - START
 
     const defaultValues = {
+      id: ``,
       name: ``,
       imagePortrait: ``,
     }
@@ -29,9 +30,9 @@ export function useMutateActivePlayerSwitchProfiles( params: TActivePlayerSwitch
       ...val,
     }))
 
-    const newObj = arrayToObjectKey(["name"], dataWithDefaults) as TActivePlayerSwitchProfilesRecordByName
+    const newObj = arrayToObjectKey(["id"], dataWithDefaults) as TActivePlayerSwitchProfilesRecordById
     
-    const optimisticDataMergeWithOldData: TActivePlayerSwitchProfilesRecordByName = {
+    const optimisticDataMergeWithOldData: TActivePlayerSwitchProfilesRecordById = {
        
       ...newObj,      
     }

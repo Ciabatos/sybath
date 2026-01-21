@@ -2,12 +2,12 @@
 "use server"
 
 import type { TActivePlayerSwitchProfilesParams } from "@/db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles" 
-import type { TActivePlayerSwitchProfilesRecordByName,TActivePlayerSwitchProfiles } from "@/db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles"
+import type { TActivePlayerSwitchProfilesRecordById,TActivePlayerSwitchProfiles } from "@/db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles"
 import { fetchActivePlayerSwitchProfilesService } from "@/methods/services/players/fetchActivePlayerSwitchProfilesService"
 
 type TResult = {
   raw: TActivePlayerSwitchProfiles[]
-  byKey: TActivePlayerSwitchProfilesRecordByName
+  byKey: TActivePlayerSwitchProfilesRecordById
   apiPath: string
   atomName: string
 }

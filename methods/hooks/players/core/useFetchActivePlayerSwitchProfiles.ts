@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcher.hbs
 
 "use client"
-import { TActivePlayerSwitchProfilesRecordByName, TActivePlayerSwitchProfiles , TActivePlayerSwitchProfilesParams  } from "@/db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles"
+import { TActivePlayerSwitchProfilesRecordById, TActivePlayerSwitchProfiles , TActivePlayerSwitchProfilesParams  } from "@/db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { activePlayerSwitchProfilesAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
@@ -15,7 +15,7 @@ export function useFetchActivePlayerSwitchProfiles( params: TActivePlayerSwitchP
 
   useEffect(() => {
     if (data) {
-      const activePlayerSwitchProfiles = arrayToObjectKey(["name"], data) as TActivePlayerSwitchProfilesRecordByName
+      const activePlayerSwitchProfiles = arrayToObjectKey(["id"], data) as TActivePlayerSwitchProfilesRecordById
       setActivePlayerSwitchProfiles(activePlayerSwitchProfiles)
     }
   }, [data, setActivePlayerSwitchProfiles])

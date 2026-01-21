@@ -2,6 +2,7 @@ import { SWRProvider } from "@/providers/swr-provider"
 import { Provider } from "jotai"
 import type { Metadata } from "next"
 import { SessionProvider } from "next-auth/react"
+import { Toaster } from "sonner"
 // @ts-expect-error: missing type declarations for side-effect import of './globals.css'
 import "./globals.css"
 
@@ -20,7 +21,10 @@ export default async function RootLayout({
       <body>
         <SessionProvider>
           <Provider>
-            <SWRProvider>{children}</SWRProvider>
+            <SWRProvider>
+              {children}
+              <Toaster position='bottom-right' />
+            </SWRProvider>
           </Provider>
         </SessionProvider>
       </body>

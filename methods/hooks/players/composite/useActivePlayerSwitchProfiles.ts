@@ -17,16 +17,15 @@ export function useActivePlayerSwitchProfiles() {
   async function switchPlayer(newPlayerId: number) {
     try {
       const result = await doSwitchActivePlayerAction({ playerId: playerId, switchToPlayerId: newPlayerId })
-
+      console.log(result)
       if (!result.status) {
-        toastError(result.message)
-        return
+        return result.message
       }
 
       mutateActivePlayer({ id: newPlayerId })
     } catch (err) {
       console.error("Unexpected error in switchPlayer:", err)
-      toastError("Unexpected error occurred. Please refresh the page.")
+      return "Unexpected error occurred. Please refresh the page."
     }
   }
 
