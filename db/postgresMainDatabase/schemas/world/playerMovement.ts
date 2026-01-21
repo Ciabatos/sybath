@@ -24,7 +24,12 @@ export async function getPlayerMovement(params: TPlayerMovementParams) {
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TPlayerMovement[]
   } catch (error) {
-    console.error("Error fetching getPlayerMovement:", error)
+    console.error("Error fetching getPlayerMovement:", {
+      error,
+      params,
+      timestamp: new Date().toISOString(),
+    })
+    
     throw new Error("Failed to fetch getPlayerMovement")
   }
 }

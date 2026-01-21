@@ -24,7 +24,12 @@ export async function getActivePlayerProfile(params: TActivePlayerProfileParams)
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TActivePlayerProfile[]
   } catch (error) {
-    console.error("Error fetching getActivePlayerProfile:", error)
+    console.error("Error fetching getActivePlayerProfile:", {
+      error,
+      params,
+      timestamp: new Date().toISOString(),
+    })
+    
     throw new Error("Failed to fetch getActivePlayerProfile")
   }
 }

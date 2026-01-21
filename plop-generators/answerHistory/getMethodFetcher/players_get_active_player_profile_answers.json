@@ -65,5 +65,8 @@
   "apiPath": "app/api/players/rpc/get-active-player-profile/[playerId]/route.ts",
   "apiPathParams": "/api/players/rpc/get-active-player-profile/${params.playerId}",
   "generateMutation": true,
-  "mutationMergeOldData": true
+  "mutationMergeOldData": true,
+  "selectedGenerators": [
+    "getMethodFetcher"
+  ]
 }

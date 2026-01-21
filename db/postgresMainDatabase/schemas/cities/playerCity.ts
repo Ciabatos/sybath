@@ -22,7 +22,12 @@ export async function getPlayerCity(params: TPlayerCityParams) {
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TPlayerCity[]
   } catch (error) {
-    console.error("Error fetching getPlayerCity:", error)
+    console.error("Error fetching getPlayerCity:", {
+      error,
+      params,
+      timestamp: new Date().toISOString(),
+    })
+    
     throw new Error("Failed to fetch getPlayerCity")
   }
 }

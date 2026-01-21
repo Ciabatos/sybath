@@ -25,7 +25,12 @@ export async function getPlayerPosition(params: TPlayerPositionParams) {
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TPlayerPosition[]
   } catch (error) {
-    console.error("Error fetching getPlayerPosition:", error)
+    console.error("Error fetching getPlayerPosition:", {
+      error,
+      params,
+      timestamp: new Date().toISOString(),
+    })
+    
     throw new Error("Failed to fetch getPlayerPosition")
   }
 }

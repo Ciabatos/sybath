@@ -22,7 +22,12 @@ export async function getPlayerMap(params: TPlayerMapParams) {
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TPlayerMap[]
   } catch (error) {
-    console.error("Error fetching getPlayerMap:", error)
+    console.error("Error fetching getPlayerMap:", {
+      error,
+      params,
+      timestamp: new Date().toISOString(),
+    })
+    
     throw new Error("Failed to fetch getPlayerMap")
   }
 }

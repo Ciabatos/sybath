@@ -23,7 +23,12 @@ export async function getActivePlayerSwitchProfiles(params: TActivePlayerSwitchP
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TActivePlayerSwitchProfiles[]
   } catch (error) {
-    console.error("Error fetching getActivePlayerSwitchProfiles:", error)
+    console.error("Error fetching getActivePlayerSwitchProfiles:", {
+      error,
+      params,
+      timestamp: new Date().toISOString(),
+    })
+    
     throw new Error("Failed to fetch getActivePlayerSwitchProfiles")
   }
 }
