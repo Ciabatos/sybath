@@ -25,7 +25,11 @@ export async function getWorldMapTiles() {
     const result = await query(sql)
     return snakeToCamelRows(result.rows) as TWorldMapTiles[]
   } catch (error) {
-    console.error("Error fetching getWorldMapTiles:", error)
+    console.error("Error fetching getWorldMapTiles:", {
+      error,
+      timestamp: new Date().toISOString(),
+    })
+    
     throw new Error("Failed to fetch getWorldMapTiles")
   }
 }
@@ -38,7 +42,12 @@ export async function getWorldMapTilesByKey(params: TWorldMapTilesParams) {
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TWorldMapTiles[]
   } catch (error) {
-    console.error("Error fetching getWorldMapTilesByKey:", error)
+    console.error("Error fetching getWorldMapTilesByKey:", {
+      error,
+      params,
+      timestamp: new Date().toISOString(),
+    })
+
     throw new Error("Failed to fetch getWorldMapTilesByKey")
   }
 }

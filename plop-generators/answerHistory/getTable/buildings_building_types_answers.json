@@ -74,5 +74,8 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "fetcherName": "fetchBuildingsBuildingTypes",
-  "fetcherNameByKey": "fetchBuildingsBuildingTypesByKey"
+  "fetcherNameByKey": "fetchBuildingsBuildingTypesByKey",
+  "selectedGenerators": [
+    "getTable"
+  ]
 }

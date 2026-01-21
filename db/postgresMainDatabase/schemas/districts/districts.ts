@@ -26,7 +26,11 @@ export async function getDistrictsDistricts() {
     const result = await query(sql)
     return snakeToCamelRows(result.rows) as TDistrictsDistricts[]
   } catch (error) {
-    console.error("Error fetching getDistrictsDistricts:", error)
+    console.error("Error fetching getDistrictsDistricts:", {
+      error,
+      timestamp: new Date().toISOString(),
+    })
+    
     throw new Error("Failed to fetch getDistrictsDistricts")
   }
 }
@@ -39,7 +43,12 @@ export async function getDistrictsDistrictsByKey(params: TDistrictsDistrictsPara
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TDistrictsDistricts[]
   } catch (error) {
-    console.error("Error fetching getDistrictsDistrictsByKey:", error)
+    console.error("Error fetching getDistrictsDistrictsByKey:", {
+      error,
+      params,
+      timestamp: new Date().toISOString(),
+    })
+
     throw new Error("Failed to fetch getDistrictsDistrictsByKey")
   }
 }

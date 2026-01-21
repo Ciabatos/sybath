@@ -24,7 +24,11 @@ export async function getWorldLandscapeTypes() {
     const result = await query(sql)
     return snakeToCamelRows(result.rows) as TWorldLandscapeTypes[]
   } catch (error) {
-    console.error("Error fetching getWorldLandscapeTypes:", error)
+    console.error("Error fetching getWorldLandscapeTypes:", {
+      error,
+      timestamp: new Date().toISOString(),
+    })
+    
     throw new Error("Failed to fetch getWorldLandscapeTypes")
   }
 }
@@ -37,7 +41,12 @@ export async function getWorldLandscapeTypesByKey(params: TWorldLandscapeTypesPa
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TWorldLandscapeTypes[]
   } catch (error) {
-    console.error("Error fetching getWorldLandscapeTypesByKey:", error)
+    console.error("Error fetching getWorldLandscapeTypesByKey:", {
+      error,
+      params,
+      timestamp: new Date().toISOString(),
+    })
+
     throw new Error("Failed to fetch getWorldLandscapeTypesByKey")
   }
 }

@@ -25,7 +25,11 @@ export async function getCitiesCityTiles() {
     const result = await query(sql)
     return snakeToCamelRows(result.rows) as TCitiesCityTiles[]
   } catch (error) {
-    console.error("Error fetching getCitiesCityTiles:", error)
+    console.error("Error fetching getCitiesCityTiles:", {
+      error,
+      timestamp: new Date().toISOString(),
+    })
+    
     throw new Error("Failed to fetch getCitiesCityTiles")
   }
 }
@@ -38,7 +42,12 @@ export async function getCitiesCityTilesByKey(params: TCitiesCityTilesParams) {
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TCitiesCityTiles[]
   } catch (error) {
-    console.error("Error fetching getCitiesCityTilesByKey:", error)
+    console.error("Error fetching getCitiesCityTilesByKey:", {
+      error,
+      params,
+      timestamp: new Date().toISOString(),
+    })
+
     throw new Error("Failed to fetch getCitiesCityTilesByKey")
   }
 }

@@ -24,7 +24,11 @@ export async function getWorldTerrainTypes() {
     const result = await query(sql)
     return snakeToCamelRows(result.rows) as TWorldTerrainTypes[]
   } catch (error) {
-    console.error("Error fetching getWorldTerrainTypes:", error)
+    console.error("Error fetching getWorldTerrainTypes:", {
+      error,
+      timestamp: new Date().toISOString(),
+    })
+    
     throw new Error("Failed to fetch getWorldTerrainTypes")
   }
 }
@@ -37,7 +41,12 @@ export async function getWorldTerrainTypesByKey(params: TWorldTerrainTypesParams
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TWorldTerrainTypes[]
   } catch (error) {
-    console.error("Error fetching getWorldTerrainTypesByKey:", error)
+    console.error("Error fetching getWorldTerrainTypesByKey:", {
+      error,
+      params,
+      timestamp: new Date().toISOString(),
+    })
+
     throw new Error("Failed to fetch getWorldTerrainTypesByKey")
   }
 }

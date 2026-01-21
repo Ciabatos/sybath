@@ -95,5 +95,8 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "fetcherName": "fetchCitiesCityTiles",
-  "fetcherNameByKey": "fetchCitiesCityTilesByKey"
+  "fetcherNameByKey": "fetchCitiesCityTilesByKey",
+  "selectedGenerators": [
+    "getTable"
+  ]
 }

@@ -101,5 +101,8 @@
   "generateMutation": true,
   "mutationMergeOldData": false,
   "fetcherName": "fetchDistrictsDistricts",
-  "fetcherNameByKey": "fetchDistrictsDistrictsByKey"
+  "fetcherNameByKey": "fetchDistrictsDistrictsByKey",
+  "selectedGenerators": [
+    "getTable"
+  ]
 }

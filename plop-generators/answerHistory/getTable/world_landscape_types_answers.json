@@ -80,5 +80,8 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "fetcherName": "fetchWorldLandscapeTypes",
-  "fetcherNameByKey": "fetchWorldLandscapeTypesByKey"
+  "fetcherNameByKey": "fetchWorldLandscapeTypesByKey",
+  "selectedGenerators": [
+    "getTable"
+  ]
 }

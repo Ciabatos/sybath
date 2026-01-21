@@ -80,5 +80,8 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "fetcherName": "fetchWorldTerrainTypes",
-  "fetcherNameByKey": "fetchWorldTerrainTypesByKey"
+  "fetcherNameByKey": "fetchWorldTerrainTypesByKey",
+  "selectedGenerators": [
+    "getTable"
+  ]
 }

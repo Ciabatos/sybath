@@ -22,7 +22,11 @@ export async function getAttributesStats() {
     const result = await query(sql)
     return snakeToCamelRows(result.rows) as TAttributesStats[]
   } catch (error) {
-    console.error("Error fetching getAttributesStats:", error)
+    console.error("Error fetching getAttributesStats:", {
+      error,
+      timestamp: new Date().toISOString(),
+    })
+    
     throw new Error("Failed to fetch getAttributesStats")
   }
 }
@@ -35,7 +39,12 @@ export async function getAttributesStatsByKey(params: TAttributesStatsParams) {
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TAttributesStats[]
   } catch (error) {
-    console.error("Error fetching getAttributesStatsByKey:", error)
+    console.error("Error fetching getAttributesStatsByKey:", {
+      error,
+      params,
+      timestamp: new Date().toISOString(),
+    })
+
     throw new Error("Failed to fetch getAttributesStatsByKey")
   }
 }

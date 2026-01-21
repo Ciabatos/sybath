@@ -68,5 +68,8 @@
   "generateMutation": true,
   "mutationMergeOldData": false,
   "fetcherName": "fetchAttributesSkills",
-  "fetcherNameByKey": "fetchAttributesSkillsByKey"
+  "fetcherNameByKey": "fetchAttributesSkillsByKey",
+  "selectedGenerators": [
+    "getTable"
+  ]
 }

@@ -95,5 +95,8 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "fetcherName": "fetchWorldMapTiles",
-  "fetcherNameByKey": "fetchWorldMapTilesByKey"
+  "fetcherNameByKey": "fetchWorldMapTilesByKey",
+  "selectedGenerators": [
+    "getTable"
+  ]
 }

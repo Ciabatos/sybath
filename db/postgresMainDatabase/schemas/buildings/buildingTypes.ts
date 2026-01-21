@@ -23,7 +23,11 @@ export async function getBuildingsBuildingTypes() {
     const result = await query(sql)
     return snakeToCamelRows(result.rows) as TBuildingsBuildingTypes[]
   } catch (error) {
-    console.error("Error fetching getBuildingsBuildingTypes:", error)
+    console.error("Error fetching getBuildingsBuildingTypes:", {
+      error,
+      timestamp: new Date().toISOString(),
+    })
+    
     throw new Error("Failed to fetch getBuildingsBuildingTypes")
   }
 }
@@ -36,7 +40,12 @@ export async function getBuildingsBuildingTypesByKey(params: TBuildingsBuildingT
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TBuildingsBuildingTypes[]
   } catch (error) {
-    console.error("Error fetching getBuildingsBuildingTypesByKey:", error)
+    console.error("Error fetching getBuildingsBuildingTypesByKey:", {
+      error,
+      params,
+      timestamp: new Date().toISOString(),
+    })
+
     throw new Error("Failed to fetch getBuildingsBuildingTypesByKey")
   }
 }

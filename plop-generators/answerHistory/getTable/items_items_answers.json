@@ -68,5 +68,8 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "fetcherName": "fetchItemsItems",
-  "fetcherNameByKey": "fetchItemsItemsByKey"
+  "fetcherNameByKey": "fetchItemsItemsByKey",
+  "selectedGenerators": [
+    "getTable"
+  ]
 }

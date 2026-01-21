@@ -68,5 +68,8 @@
   "generateMutation": true,
   "mutationMergeOldData": false,
   "fetcherName": "fetchAttributesStats",
-  "fetcherNameByKey": "fetchAttributesStatsByKey"
+  "fetcherNameByKey": "fetchAttributesStatsByKey",
+  "selectedGenerators": [
+    "getTable"
+  ]
 }
