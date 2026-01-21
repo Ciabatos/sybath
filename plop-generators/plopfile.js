@@ -2,10 +2,10 @@ import getMethodAction from "./getMethodAction.js"
 import getMethodFetcher from "./getMethodFetcher.js"
 import getTable from "./getTable.js"
 import { formatWithPrettier } from "./helpers/prettier.js"
-import recalculateHistory from "./recalculateHistory.js"
+import recalculateHistory from "./recalculateHistory4.js"
 import replayHistory from "./replayHistory.js"
 
-function configurePlop(plop) {
+async function configurePlop(plop) {
   const pathsToFormat = [
     "store/atoms.ts",
     "db/postgresMainDatabase/schemas",
