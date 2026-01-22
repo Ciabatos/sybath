@@ -1,42 +1,25 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcherServer.hbs
 "use server"
 
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
-import { getBuildingInventory } from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory"
-import type { TBuildingInventory } from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory"
-import type { TBuildingInventoryParams } from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory"
-import type { TBuildingInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory"
+import type { TBuildingInventoryParams } from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory" 
+import type { TBuildingInventoryRecordBySlotId,TBuildingInventory } from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory"
+import { fetchBuildingInventoryService } from "@/methods/services/inventory/fetchBuildingInventoryService"
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let cachedData: any = null
-const CACHE_TTL = 3_000
-let lastUpdated = 0
-
-export async function getBuildingInventoryServer(params: TBuildingInventoryParams): Promise<{
+type TResult = {
   raw: TBuildingInventory[]
   byKey: TBuildingInventoryRecordBySlotId
   apiPath: string
   atomName: string
-}> {
-  if (cachedData && Date.now() - lastUpdated < CACHE_TTL) {
-    return cachedData
-  }
+}
 
-  const getBuildingInventoryData = await getBuildingInventory(params)
+export async function getBuildingInventoryServer( params: TBuildingInventoryParams, options?: { forceFresh?: boolean },): Promise<TResult> {
+  const { record } = await fetchBuildingInventoryService(params, { forceFresh: options?.forceFresh })
 
-  const data = getBuildingInventoryData
-    ? (arrayToObjectKey(["slotId"], getBuildingInventoryData) as TBuildingInventoryRecordBySlotId)
-    : {}
-
-  const result = {
-    raw: getBuildingInventoryData,
-    byKey: data,
+  return {
+    raw: record!.raw,
+    byKey: record!.byKey,
     apiPath: `/api/inventory/rpc/get-building-inventory/${params.buildingId}`,
     atomName: `buildingInventoryAtom`,
   }
-
-  cachedData = result
-  lastUpdated = Date.now()
-
-  return result
 }
+

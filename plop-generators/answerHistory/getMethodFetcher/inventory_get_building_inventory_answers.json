@@ -1,0 +1,83 @@
+{
+  "promptAnswers": {
+    "schema": "inventory",
+    "method": "get_building_inventory",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "slotId"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": false
+  },
+  "schema": "inventory",
+  "method": "get_building_inventory",
+  "methodCamelName": "buildingInventory",
+  "methodPascalName": "BuildingInventory",
+  "methodKebabName": "get-building-inventory",
+  "methodName": "getBuildingInventory",
+  "methodTypeName": "TBuildingInventory",
+  "methodParamsTypeName": "TBuildingInventoryParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_building_id",
+      "camelName": "buildingId",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "slot_id",
+      "camelName": "slotId",
+      "pascalName": "SlotId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "container_id",
+      "camelName": "containerId",
+      "pascalName": "ContainerId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "item_id",
+      "camelName": "itemId",
+      "pascalName": "ItemId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "pascalName": "Name",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "quantity",
+      "camelName": "quantity",
+      "pascalName": "Quantity",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"slotId\"]",
+  "indexParamsColumns": "buildingId",
+  "indexTypeMethodName": "SlotId",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TBuildingInventoryRecordBySlotId",
+  "indexColumns": [
+    {
+      "name": "slot_id",
+      "camelName": "slotId",
+      "pascalName": "SlotId",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1",
+  "apiPath": "app/api/inventory/rpc/get-building-inventory/[buildingId]/route.ts",
+  "apiPathParams": "/api/inventory/rpc/get-building-inventory/${params.buildingId}",
+  "generateMutation": true,
+  "mutationMergeOldData": false
+}

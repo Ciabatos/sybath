@@ -1,0 +1,69 @@
+{
+  "promptAnswers": {
+    "schema": "attributes",
+    "method": "get_player_skills",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "skillId"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "attributes",
+  "method": "get_player_skills",
+  "methodCamelName": "playerSkills",
+  "methodPascalName": "PlayerSkills",
+  "methodKebabName": "get-player-skills",
+  "methodName": "getPlayerSkills",
+  "methodTypeName": "TPlayerSkills",
+  "methodParamsTypeName": "TPlayerSkillsParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "skill_id",
+      "camelName": "skillId",
+      "pascalName": "SkillId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "value",
+      "camelName": "value",
+      "pascalName": "Value",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "pascalName": "Name",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"skillId\"]",
+  "indexParamsColumns": "playerId",
+  "indexTypeMethodName": "SkillId",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TPlayerSkillsRecordBySkillId",
+  "indexColumns": [
+    {
+      "name": "skill_id",
+      "camelName": "skillId",
+      "pascalName": "SkillId",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1",
+  "apiPath": "app/api/attributes/rpc/get-player-skills/[playerId]/route.ts",
+  "apiPathParams": "/api/attributes/rpc/get-player-skills/${params.playerId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true
+}

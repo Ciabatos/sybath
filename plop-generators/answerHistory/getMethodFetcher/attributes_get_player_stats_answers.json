@@ -1,0 +1,69 @@
+{
+  "promptAnswers": {
+    "schema": "attributes",
+    "method": "get_player_stats",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "statId"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "attributes",
+  "method": "get_player_stats",
+  "methodCamelName": "playerStats",
+  "methodPascalName": "PlayerStats",
+  "methodKebabName": "get-player-stats",
+  "methodName": "getPlayerStats",
+  "methodTypeName": "TPlayerStats",
+  "methodParamsTypeName": "TPlayerStatsParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "stat_id",
+      "camelName": "statId",
+      "pascalName": "StatId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "value",
+      "camelName": "value",
+      "pascalName": "Value",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "pascalName": "Name",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"statId\"]",
+  "indexParamsColumns": "playerId",
+  "indexTypeMethodName": "StatId",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TPlayerStatsRecordByStatId",
+  "indexColumns": [
+    {
+      "name": "stat_id",
+      "camelName": "statId",
+      "pascalName": "StatId",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1",
+  "apiPath": "app/api/attributes/rpc/get-player-stats/[playerId]/route.ts",
+  "apiPathParams": "/api/attributes/rpc/get-player-stats/${params.playerId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true
+}

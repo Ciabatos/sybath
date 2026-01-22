@@ -276,5 +276,37 @@
       "const activePlayerSwitchProfiles = useAtomValue(activePlayerSwitchProfilesAtom)"
     ],
     "description": "Destructuring useActivePlayerSwitchProfiles hook"
+  },  
+  "Destructure useDistrictInventory": {
+    "prefix": "hook_inventory_core_useDistrictInventory",
+    "body": [
+      "useFetchDistrictInventory({ districtId })",
+      "const districtInventory = useAtomValue(districtInventoryAtom)"
+    ],
+    "description": "Destructuring useDistrictInventory hook"
+  },  
+  "Destructure useBuildingInventory": {
+    "prefix": "hook_inventory_core_useBuildingInventory",
+    "body": [
+      "useFetchBuildingInventory({ buildingId })",
+      "const buildingInventory = useAtomValue(buildingInventoryAtom)"
+    ],
+    "description": "Destructuring useBuildingInventory hook"
+  },  
+  "Destructure usePlayerSkills": {
+    "prefix": "hook_attributes_core_usePlayerSkills",
+    "body": [
+      "useFetchPlayerSkills({ playerId })",
+      "const playerSkills = useAtomValue(playerSkillsAtom)"
+    ],
+    "description": "Destructuring usePlayerSkills hook"
+  },  
+  "Destructure usePlayerStats": {
+    "prefix": "hook_attributes_core_usePlayerStats",
+    "body": [
+      "useFetchPlayerStats({ playerId })",
+      "const playerStats = useAtomValue(playerStatsAtom)"
+    ],
+    "description": "Destructuring usePlayerStats hook"
   },//Automatic Snippets
 }

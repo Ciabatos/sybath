@@ -1,0 +1,83 @@
+{
+  "promptAnswers": {
+    "schema": "inventory",
+    "method": "get_district_inventory",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "slotId"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": false
+  },
+  "schema": "inventory",
+  "method": "get_district_inventory",
+  "methodCamelName": "districtInventory",
+  "methodPascalName": "DistrictInventory",
+  "methodKebabName": "get-district-inventory",
+  "methodName": "getDistrictInventory",
+  "methodTypeName": "TDistrictInventory",
+  "methodParamsTypeName": "TDistrictInventoryParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_district_id",
+      "camelName": "districtId",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "slot_id",
+      "camelName": "slotId",
+      "pascalName": "SlotId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "container_id",
+      "camelName": "containerId",
+      "pascalName": "ContainerId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "item_id",
+      "camelName": "itemId",
+      "pascalName": "ItemId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "pascalName": "Name",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "quantity",
+      "camelName": "quantity",
+      "pascalName": "Quantity",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"slotId\"]",
+  "indexParamsColumns": "districtId",
+  "indexTypeMethodName": "SlotId",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TDistrictInventoryRecordBySlotId",
+  "indexColumns": [
+    {
+      "name": "slot_id",
+      "camelName": "slotId",
+      "pascalName": "SlotId",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1",
+  "apiPath": "app/api/inventory/rpc/get-district-inventory/[districtId]/route.ts",
+  "apiPathParams": "/api/inventory/rpc/get-district-inventory/${params.districtId}",
+  "generateMutation": true,
+  "mutationMergeOldData": false
+}
