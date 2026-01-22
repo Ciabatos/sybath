@@ -12,8 +12,8 @@ type TResult = {
   atomName: string
 }
 
-export async function getPlayerPositionServer( params: TPlayerPositionParams): Promise<TResult> {
-  const { record } = await fetchPlayerPositionService(params)
+export async function getPlayerPositionServer( params: TPlayerPositionParams, options?: { forceFresh?: boolean },): Promise<TResult> {
+  const { record } = await fetchPlayerPositionService(params, { forceFresh: options?.forceFresh })
 
   return {
     raw: record!.raw,

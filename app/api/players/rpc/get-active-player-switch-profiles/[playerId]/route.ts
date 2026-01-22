@@ -25,7 +25,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
     const paramsFromPromise = await params
     const parsedParams = typeParamsSchema.parse(paramsFromPromise)
 
-    const sessionPlayerId = (await getActivePlayerServer({ userId: sessionUserId })).raw[0].id
+    const sessionPlayerId = (await getActivePlayerServer({ userId: sessionUserId }, { forceFresh: true })).raw[0].id
 
     if (sessionPlayerId !== parsedParams.playerId) {
       return NextResponse.json({ message: "Not found" }, { status: 404 })

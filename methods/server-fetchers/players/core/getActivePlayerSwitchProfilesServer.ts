@@ -12,8 +12,8 @@ type TResult = {
   atomName: string
 }
 
-export async function getActivePlayerSwitchProfilesServer( params: TActivePlayerSwitchProfilesParams): Promise<TResult> {
-  const { record } = await fetchActivePlayerSwitchProfilesService(params)
+export async function getActivePlayerSwitchProfilesServer( params: TActivePlayerSwitchProfilesParams, options?: { forceFresh?: boolean },): Promise<TResult> {
+  const { record } = await fetchActivePlayerSwitchProfilesService(params, { forceFresh: options?.forceFresh })
 
   return {
     raw: record!.raw,

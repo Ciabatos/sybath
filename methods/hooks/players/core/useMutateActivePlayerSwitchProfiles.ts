@@ -12,7 +12,12 @@ export function useMutateActivePlayerSwitchProfiles( params: TActivePlayerSwitch
   const setActivePlayerSwitchProfiles = useSetAtom(activePlayerSwitchProfilesAtom)
   
 
-  function mutateActivePlayerSwitchProfiles(optimisticParams: Partial<TActivePlayerSwitchProfiles> | Partial<TActivePlayerSwitchProfiles>[]) {
+  function mutateActivePlayerSwitchProfiles(optimisticParams?: Partial<TActivePlayerSwitchProfiles> | Partial<TActivePlayerSwitchProfiles>[]) {
+    if (!optimisticParams) {
+      mutate()
+      return
+    }
+
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START

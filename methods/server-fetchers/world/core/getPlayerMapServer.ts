@@ -12,8 +12,8 @@ type TResult = {
   atomName: string
 }
 
-export async function getPlayerMapServer( params: TPlayerMapParams): Promise<TResult> {
-  const { record } = await fetchPlayerMapService(params)
+export async function getPlayerMapServer( params: TPlayerMapParams, options?: { forceFresh?: boolean },): Promise<TResult> {
+  const { record } = await fetchPlayerMapService(params, { forceFresh: options?.forceFresh })
 
   return {
     raw: record!.raw,

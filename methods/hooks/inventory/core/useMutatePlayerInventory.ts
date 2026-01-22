@@ -12,7 +12,12 @@ export function useMutatePlayerInventory( params: TPlayerInventoryParams) {
   const setPlayerInventory = useSetAtom(playerInventoryAtom)
   
 
-  function mutatePlayerInventory(optimisticParams: Partial<TPlayerInventory> | Partial<TPlayerInventory>[]) {
+  function mutatePlayerInventory(optimisticParams?: Partial<TPlayerInventory> | Partial<TPlayerInventory>[]) {
+    if (!optimisticParams) {
+      mutate()
+      return
+    }
+
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START

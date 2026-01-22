@@ -12,8 +12,8 @@ type TResult = {
   atomName: string
 }
 
-export async function getPlayerInventoryServer( params: TPlayerInventoryParams): Promise<TResult> {
-  const { record } = await fetchPlayerInventoryService(params)
+export async function getPlayerInventoryServer( params: TPlayerInventoryParams, options?: { forceFresh?: boolean },): Promise<TResult> {
+  const { record } = await fetchPlayerInventoryService(params, { forceFresh: options?.forceFresh })
 
   return {
     raw: record!.raw,

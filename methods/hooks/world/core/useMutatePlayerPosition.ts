@@ -1,19 +1,16 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
-import {
-  TPlayerPosition,
-  TPlayerPositionParams,
-  TPlayerPositionRecordByXY,
-} from "@/db/postgresMainDatabase/schemas/world/playerPosition"
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
+import { TPlayerPositionRecordByXY , TPlayerPositionParams, TPlayerPosition  } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 import { playerPositionAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 import useSWR from "swr"
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutatePlayerPosition(params: TPlayerPositionParams) {
+export function useMutatePlayerPosition( params: TPlayerPositionParams) {
   const { mutate } = useSWR<TPlayerPosition[]>(`/api/world/rpc/get-player-position/${params.mapId}/${params.playerId}`)
   const setPlayerPosition = useSetAtom(playerPositionAtom)
+  
 
   function mutatePlayerPosition(optimisticParams?: Partial<TPlayerPosition> | Partial<TPlayerPosition>[]) {
     if (!optimisticParams) {
@@ -26,8 +23,8 @@ export function useMutatePlayerPosition(params: TPlayerPositionParams) {
     //MANUAL CODE - START
 
     const defaultValues = {
-      x: 1,
-      y: 1,
+      x: ``,
+      y: ``,
       imageMap: ``,
     }
 
@@ -39,11 +36,12 @@ export function useMutatePlayerPosition(params: TPlayerPositionParams) {
     }))
 
     const newObj = arrayToObjectKey(["x", "y"], dataWithDefaults) as TPlayerPositionRecordByXY
-
+    
     const optimisticDataMergeWithOldData: TPlayerPositionRecordByXY = {
-      ...newObj,
+       
+      ...newObj,      
     }
-
+    
     setPlayerPosition(optimisticDataMergeWithOldData)
 
     mutate(dataWithDefaults, {
