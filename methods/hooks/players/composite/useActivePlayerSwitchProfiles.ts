@@ -23,6 +23,8 @@ export function useActivePlayerSwitchProfiles() {
       }
 
       mutateActivePlayer({ id: newPlayerId })
+
+      return result.message
     } catch (err) {
       console.error("Unexpected error in switchPlayer:", err)
       return "Unexpected error occurred. Please refresh the page."
