@@ -26,6 +26,7 @@ export function useMutateAttributesStats() {
       id: ``,
       name: ``,
       description: ``,
+      image: ``,
     }
 
     //MANUAL CODE - END

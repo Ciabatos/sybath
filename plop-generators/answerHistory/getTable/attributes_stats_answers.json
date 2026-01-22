@@ -51,6 +51,12 @@
       "camelName": "description",
       "tsType": "string",
       "optional": "?"
+    },
+    {
+      "name": "image",
+      "camelName": "image",
+      "tsType": "string",
+      "optional": ""
     }
   ],
   "indexMethodParams": "[\"id\"]",

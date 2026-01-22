@@ -26,6 +26,7 @@ export function useMutateAttributesStats( params: TAttributesStatsParams) {
       id: ``,
       name: ``,
       description: ``,
+      image: ``,
     }
 
     //MANUAL CODE - END

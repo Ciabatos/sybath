@@ -12,6 +12,7 @@ export type TAttributesStats = {
   id: number
   name?: string
   description?: string
+  image: string
 }
 
 export type TAttributesStatsRecordById = Record<string, TAttributesStats>
