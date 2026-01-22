@@ -1,5 +1,5 @@
 import { usePlayerStats } from "@/methods/hooks/attributes/composite/usePlayerStats"
-import { Activity, Award, Heart, Shield, Swords, Target, TrendingUp, Zap } from "lucide-react"
+import getIcon from "@/types/icons/getIcon"
 import type React from "react"
 import styles from "./styles/PanelPlayerStats.module.css"
 
@@ -51,74 +51,18 @@ export function PanelPlayerStats() {
   return (
     <div className={styles.container}>
       <div className={styles.section}>
-        <h3 className={styles.sectionTitle}>Core Stats</h3>
+        <h3 className={styles.sectionTitle}>Stats</h3>
         <div className={styles.statsGrid}>
           {combinedPlayerStats.map((playerStats) => (
             <StatItem
-              icon={playerStats.image} //{<Heart className={styles.iconRed} />}
+              key={playerStats.id}
+              icon={getIcon(playerStats.image)}
               label={playerStats.name}
               value={playerStats.value}
-              maxValue={140}
+              maxValue={10}
               description={playerStats.description}
             />
           ))}
-          <StatItem
-            icon={<Heart className={styles.iconRed} />}
-            label='Health'
-            value={140}
-            maxValue={140}
-            description="Your character's life force"
-          />
-          <StatItem
-            icon={<Zap className={styles.iconYellow} />}
-            label='Stamina'
-            value={110}
-            maxValue={110}
-            description='Energy for physical actions'
-          />
-          <StatItem
-            icon={<Shield className={styles.iconBlue} />}
-            label='Resolve'
-            value={70}
-            maxValue={70}
-            description='Mental fortitude and morale'
-          />
-          <StatItem
-            icon={<TrendingUp className={styles.iconGreen} />}
-            label='Initiative'
-            value={81}
-            description='Turn order in combat'
-          />
-        </div>
-      </div>
-
-      <div className={styles.section}>
-        <h3 className={styles.sectionTitle}>Combat Stats</h3>
-        <div className={styles.statsGrid}>
-          <StatItem
-            icon={<Swords className={styles.iconOrange} />}
-            label='Melee Attack'
-            value={65}
-            description='Chance to hit with melee weapons'
-          />
-          <StatItem
-            icon={<Target className={styles.iconPurple} />}
-            label='Ranged Attack'
-            value={52}
-            description='Chance to hit with ranged weapons'
-          />
-          <StatItem
-            icon={<Activity className={styles.iconCyan} />}
-            label='Melee Defense'
-            value={44}
-            description='Chance to avoid melee attacks'
-          />
-          <StatItem
-            icon={<Award className={styles.iconGold} />}
-            label='Ranged Defense'
-            value={33}
-            description='Chance to avoid ranged attacks'
-          />
         </div>
       </div>
     </div>

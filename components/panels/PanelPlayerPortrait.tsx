@@ -38,8 +38,8 @@ export default function PanelPlayerPortrait() {
           <AvatarFallback className={styles.avatarFallback}>{avatarFallback}</AvatarFallback>
         </Avatar>
       </Button>
-      <PlayerSwitchButton></PlayerSwitchButton>
-      <PanelPlayerSquadPortrait></PanelPlayerSquadPortrait>
+      <PlayerSwitchButton />
+      <PanelPlayerSquadPortrait />
     </div>
   )
 }

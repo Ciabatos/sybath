@@ -3,6 +3,7 @@ import { PanelPlayerInventory } from "@/components/panels/PanelPlayerInventory"
 import { PanelPlayerKnowledge } from "@/components/panels/PanelPlayerKnowledge"
 import { PanelPlayerSkills } from "@/components/panels/PanelPlayerSkills"
 import { PanelPlayerStats } from "@/components/panels/PanelPlayerStats"
+import PlayerSwitchButton from "@/components/panels/PlayerSwitchButton"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { createHeroPortrait } from "@/methods/functions/panels/createHeroPortrait"
@@ -135,6 +136,7 @@ export default function PanelPlayerPanel() {
           </Tabs>
         </div>
       </div>
+      <PlayerSwitchButton />
     </div>
   )
 }
