@@ -1,8 +1,11 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcherServer.hbs
 "use server"
 
-import type { TActivePlayerProfileParams } from "@/db/postgresMainDatabase/schemas/players/activePlayerProfile" 
-import type { TActivePlayerProfileRecordByName,TActivePlayerProfile } from "@/db/postgresMainDatabase/schemas/players/activePlayerProfile"
+import type {
+  TActivePlayerProfile,
+  TActivePlayerProfileParams,
+  TActivePlayerProfileRecordByName,
+} from "@/db/postgresMainDatabase/schemas/players/activePlayerProfile"
 import { fetchActivePlayerProfileService } from "@/methods/services/players/fetchActivePlayerProfileService"
 
 type TResult = {
@@ -12,8 +15,11 @@ type TResult = {
   atomName: string
 }
 
-export async function getActivePlayerProfileServer( params: TActivePlayerProfileParams): Promise<TResult> {
-  const { record } = await fetchActivePlayerProfileService(params)
+export async function getActivePlayerProfileServer(
+  params: TActivePlayerProfileParams,
+  options?: { forceFresh?: boolean },
+): Promise<TResult> {
+  const { record } = await fetchActivePlayerProfileService(params, { forceFresh: options?.forceFresh })
 
   return {
     raw: record!.raw,
@@ -22,4 +28,3 @@ export async function getActivePlayerProfileServer( params: TActivePlayerProfile
     atomName: `activePlayerProfileAtom`,
   }
 }
-

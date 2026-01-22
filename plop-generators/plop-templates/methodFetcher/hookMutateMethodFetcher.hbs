@@ -12,7 +12,12 @@ export function useMutate{{methodPascalName}}({{#if methodParamsColumns}} params
   const set{{methodPascalName}} = useSetAtom({{methodCamelName}}Atom)
   {{#if mutationMergeOldData}}const {{methodCamelName}} = useAtomValue({{methodCamelName}}Atom){{/if}}
 
-  function mutate{{methodPascalName}}(optimisticParams: Partial<{{methodTypeName}}> | Partial<{{methodTypeName}}>[]) {
+  function mutate{{methodPascalName}}(optimisticParams?: Partial<{{methodTypeName}}> | Partial<{{methodTypeName}}>[]) {
+    if (!optimisticParams) {
+      mutate()
+      return
+    }
+
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START

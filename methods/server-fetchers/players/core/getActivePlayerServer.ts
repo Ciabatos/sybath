@@ -15,8 +15,11 @@ type TResult = {
   atomName: string
 }
 
-export async function getActivePlayerServer(params: TActivePlayerParams): Promise<TResult> {
-  const { record } = await fetchActivePlayerService(params)
+export async function getActivePlayerServer(
+  params: TActivePlayerParams,
+  options?: { forceFresh?: boolean },
+): Promise<TResult> {
+  const { record } = await fetchActivePlayerService(params, { forceFresh: options?.forceFresh })
 
   return {
     raw: record!.raw,

@@ -1,6 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type { TActivePlayer, TActivePlayerRecordById,TActivePlayerParams } from "@/db/postgresMainDatabase/schemas/players/activePlayer"
+import type {
+  TActivePlayer,
+  TActivePlayerParams,
+  TActivePlayerRecordById,
+} from "@/db/postgresMainDatabase/schemas/players/activePlayer"
 import { getActivePlayer } from "@/db/postgresMainDatabase/schemas/players/activePlayer"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -23,8 +27,8 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchActivePlayerService(
- params: TActivePlayerParams,
-  options?: { clientEtag?: string },
+  params: TActivePlayerParams,
+  options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getActivePlayer", params)
   const cached = getCache(cacheKey)
@@ -39,7 +43,7 @@ export async function fetchActivePlayerService(
     }
   }
 
-  if (cached) {
+  if (cached && !options?.forceFresh) {
     return {
       record: cached,
       etag: cachedEtag!,
@@ -61,7 +65,6 @@ export async function fetchActivePlayerService(
   }
 
   const byKey = arrayToObjectKey(["id"], raw) as TActivePlayerRecordById
-
 
   const record: TCacheRecord = {
     raw,
