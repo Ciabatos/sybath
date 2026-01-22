@@ -15,7 +15,7 @@ import {
 import { JSX } from "react"
 import styles from "./icons.module.css"
 
-const iconMap: Record<string, JSX.Element> = {
+const iconMap: Record<string, JSX.Element | string> = {
   Heart: <Heart className={styles.red} />,
   Zap: <Zap className={styles.yellow} />,
   Shield: <Shield className={styles.blue} />,
@@ -28,6 +28,26 @@ const iconMap: Record<string, JSX.Element> = {
   BookOpenText: <BookOpenText className={styles.orange} />,
   Brain: <Brain className={styles.purple} />,
   Speech: <Speech className={styles.blue} />,
+  SwordMastery: "🗡️",
+  HeavySword: "🗡",
+  DualSword: "⚔️",
+  HeavyArmor: "🛡️",
+  Tactics: "📋",
+  Endurance: "💚",
+  Leadership: "👑",
+  Intellect: "🧠",
+  Alchemy: "⚗️",
+  Blacksmithing: "🔨",
+  Anvil: "⚒️",
+  Stealth: "🕵️",
+  Archery: "🏹",
+  Magic: "🪄",
+  Cooking: "🍳",
+  Fishing: "🎣",
+  Mining: "⚒",
+  Pickaxe: "⛏️",
+  Herbalism: "🌿",
+  Axe: "🪓",
 }
 
 export default function getIcon(iconKey?: string) {
