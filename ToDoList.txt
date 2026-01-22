@@ -138,7 +138,9 @@ Inflacja i hiperinflacja(PROBLEM)
 
 Waluta(PROBLEM)
 --Waluta oficjalna tylko na danym terenie
---Stworzyc kantor NPC do przeliczania wagi waluty
+--Stworzyc kantor NPC do przeliczania wagi waluty, kupowanie i wymiana walut tylko kantorem
+--Podatek w walucie bazowej lub w innej walucie +15% różnica idzie do NPC (sink)
+--możliwośc niszczenia waluty
 
 stability.ai Craiyon
 https://civitai.com/
