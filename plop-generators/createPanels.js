@@ -9,18 +9,34 @@ export default function createPanels(plop) {
     prompts: [],
 
     actions: function () {
-      const panelsDir = path.join(ROOT, "/components/panels/LeftTopBar")
+      const panelsDir = path.join(ROOT, "/components/panels")
 
-      const panelFolders = fs
-        .readdirSync(panelsDir, { withFileTypes: true })
-        .filter((dirent) => dirent.isDirectory())
-        .map((dirent) => ({
-          folderName: dirent.name,
-          enumName: dirent.name, // To samo co folderName
-          componentName: dirent.name, // To samo co folderName
-        }))
+      const files = fs.readdirSync(panelsDir, { withFileTypes: true })
 
-      console.log(panelFolders.map((p) => p.folderName))
+      const panelFolders = files
+        .filter((dirent) => dirent.isDirectory() && dirent.name !== "styles")
+        .map((dirent) => {
+          return {
+            folderName: dirent.name,
+          }
+        })
+
+      for (let folder of panelFolders) {
+        const subFolderDir = path.join(panelsDir, `/${folder.folderName}`)
+        const files = fs.readdirSync(subFolderDir, { withFileTypes: true })
+
+        const panelFiles = files
+          .filter((dirent) => dirent.isFile() && (dirent.name.endsWith(".tsx") || dirent.name.endsWith(".jsx")))
+          .map((dirent) => {
+            const fileName = path.basename(dirent.name, path.extname(dirent.name))
+            return {
+              folderName: folder.folderName,
+              fileName: fileName,
+            }
+          })
+
+        console.log(`Folder ${folder.folderName}:`, panelFiles)
+      }
 
       return [
         // {
