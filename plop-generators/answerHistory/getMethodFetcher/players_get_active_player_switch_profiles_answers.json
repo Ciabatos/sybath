@@ -40,6 +40,20 @@
       "optional": ""
     },
     {
+      "name": "second_name",
+      "camelName": "secondName",
+      "pascalName": "SecondName",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "nickname",
+      "camelName": "nickname",
+      "pascalName": "Nickname",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
       "name": "image_portrait",
       "camelName": "imagePortrait",
       "pascalName": "ImagePortrait",
@@ -65,8 +79,5 @@
   "apiPath": "app/api/players/rpc/get-active-player-switch-profiles/[playerId]/route.ts",
   "apiPathParams": "/api/players/rpc/get-active-player-switch-profiles/${params.playerId}",
   "generateMutation": true,
-  "mutationMergeOldData": false,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ]
+  "mutationMergeOldData": false
 }

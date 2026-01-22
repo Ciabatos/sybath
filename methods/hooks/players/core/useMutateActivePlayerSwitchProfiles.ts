@@ -25,6 +25,8 @@ export function useMutateActivePlayerSwitchProfiles( params: TActivePlayerSwitch
     const defaultValues = {
       id: ``,
       name: ``,
+      secondName: ``,
+      nickname: ``,
       imagePortrait: ``,
     }
 

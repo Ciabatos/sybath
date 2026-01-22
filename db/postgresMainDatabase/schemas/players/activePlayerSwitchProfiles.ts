@@ -11,6 +11,8 @@ export type TActivePlayerSwitchProfilesParams = {
 export type TActivePlayerSwitchProfiles = {
   id: number
   name: string
+  secondName: string
+  nickname: string
   imagePortrait: string
 }
 
