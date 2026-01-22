@@ -11,7 +11,12 @@ export function useMutateActivePlayer() {
   const { mutate } = useSWR<TActivePlayer[]>(`/api/players/rpc/get-active-player`)
   const setActivePlayer = useSetAtom(activePlayerAtom)
 
-  function mutateActivePlayer(optimisticParams: Partial<TActivePlayer> | Partial<TActivePlayer>[]) {
+  function mutateActivePlayer(optimisticParams?: Partial<TActivePlayer> | Partial<TActivePlayer>[]) {
+    if (!optimisticParams) {
+      mutate()
+      return
+    }
+
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START
