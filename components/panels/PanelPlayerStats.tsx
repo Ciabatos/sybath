@@ -15,13 +15,6 @@ function StatItem({ icon, label, value, maxValue, description }: StatItemProps) 
   const hasMax = maxValue !== undefined
   const percentage = hasMax ? (value / maxValue) * 100 : 0
 
-  const { stats, playerStats } = usePlayerStats()
-
-  const combinedPlayerStats = Object.entries(playerStats).map(([key, playerStat]) => ({
-    ...playerStat,
-    ...stats[playerStat.statId],
-  }))
-
   return (
     <div className={styles.statItem}>
       <div className={styles.statIcon}>{icon}</div>
@@ -48,11 +41,27 @@ function StatItem({ icon, label, value, maxValue, description }: StatItemProps) 
 }
 
 export function PanelPlayerStats() {
+  const { stats, playerStats } = usePlayerStats()
+
+  const combinedPlayerStats = Object.entries(playerStats).map(([key, playerStat]) => ({
+    ...playerStat,
+    ...stats[playerStat.statId],
+  }))
+
   return (
     <div className={styles.container}>
       <div className={styles.section}>
         <h3 className={styles.sectionTitle}>Core Stats</h3>
         <div className={styles.statsGrid}>
+          {combinedPlayerStats.map((playerStats) => (
+            <StatItem
+              icon={playerStats.image} //{<Heart className={styles.iconRed} />}
+              label={playerStats.name}
+              value={playerStats.value}
+              maxValue={140}
+              description={playerStats.description}
+            />
+          ))}
           <StatItem
             icon={<Heart className={styles.iconRed} />}
             label='Health'
