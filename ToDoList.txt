@@ -30,7 +30,7 @@ transport
 +Mechaniki budowania budynkow
 
 --Nomadic
-  Trade normalny tylko ustawianie ceny dla citizens/obcy z czego AI zawsze bieze za darmo jedzenie, zakaz handlu foodem !
+  Trade normalny tylko ustawianie ceny dla citizens/obcy z czego AI zawsze bieze za darmo jedzenie jedyne ograniczenie to zakaz handlu foodem !
   Ludzie AI nie posiadaja golda
   Ludzie AI automatycznie przydzieleni do zbierania fooda wszyscy
   Produkcja fooda ze zbieractwa zalezy od exploracji regionu w ktorym jest nomadic tribe
@@ -127,6 +127,14 @@ Użytkownik pisząc księge dostaje obrazki ładne z ai i odpowiada na pytania t
 --Crafting itemów (Tworzenie marszrut i struktur IFS)
 --Kombinacja surowcow i/lub innych itemów w jeden następny
 
+
+--Manipulacja rynkiem przez graczy (PROBLEM)
+--Przynależność do nomadów gwarantuje żywność
+--Żywność samemu można zdobyć
+--Można niszczyć gospodarki miast takim czymś
+
+Inflacja i hiperinflacja(PROBLEM)
+--Waluty są wydawane przez państwa, ich podaż jest kontrolowana przez graczy wiec sami sa sobie winni
 
 stability.ai Craiyon
 https://civitai.com/
