@@ -12,7 +12,12 @@ export function useMutateAttributesStats() {
   const setAttributesStats = useSetAtom(statsAtom)
   
 
-  function mutateAttributesStats(optimisticParams: Partial<TAttributesStats> | Partial<TAttributesStats>[]) {
+  function mutateAttributesStats(optimisticParams?: Partial<TAttributesStats> | Partial<TAttributesStats>[]) {
+    if (!optimisticParams) {
+      mutate()
+      return
+    }
+    
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
     
     //MANUAL CODE - START

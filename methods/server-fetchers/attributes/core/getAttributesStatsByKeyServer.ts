@@ -12,8 +12,8 @@ type TResult = {
   atomName: string
 }
 
-export async function getAttributesStatsByKeyServer( params: TAttributesStatsParams): Promise<TResult> {
-  const { record } = await fetchAttributesStatsByKeyService(params)
+export async function getAttributesStatsByKeyServer( params: TAttributesStatsParams, options?: { forceFresh?: boolean },): Promise<TResult> {
+  const { record } = await fetchAttributesStatsByKeyService(params, { forceFresh: options?.forceFresh })
 
   return {
     raw: record!.raw,

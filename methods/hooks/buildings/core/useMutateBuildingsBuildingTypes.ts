@@ -12,7 +12,12 @@ export function useMutateBuildingsBuildingTypes() {
   const setBuildingsBuildingTypes = useSetAtom(buildingTypesAtom)
   const buildingTypes = useAtomValue(buildingTypesAtom)
 
-  function mutateBuildingsBuildingTypes(optimisticParams: Partial<TBuildingsBuildingTypes> | Partial<TBuildingsBuildingTypes>[]) {
+  function mutateBuildingsBuildingTypes(optimisticParams?: Partial<TBuildingsBuildingTypes> | Partial<TBuildingsBuildingTypes>[]) {
+    if (!optimisticParams) {
+      mutate()
+      return
+    }
+    
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
     
     //MANUAL CODE - START

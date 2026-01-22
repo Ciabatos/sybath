@@ -12,8 +12,8 @@ type TResult = {
   atomName: string
 }
 
-export async function getDistrictsDistrictTypesByKeyServer( params: TDistrictsDistrictTypesParams): Promise<TResult> {
-  const { record } = await fetchDistrictsDistrictTypesByKeyService(params)
+export async function getDistrictsDistrictTypesByKeyServer( params: TDistrictsDistrictTypesParams, options?: { forceFresh?: boolean },): Promise<TResult> {
+  const { record } = await fetchDistrictsDistrictTypesByKeyService(params, { forceFresh: options?.forceFresh })
 
   return {
     raw: record!.raw,

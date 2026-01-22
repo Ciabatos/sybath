@@ -12,8 +12,8 @@ type TResult = {
   atomName: string
 }
 
-export async function getItemsItemsByKeyServer( params: TItemsItemsParams): Promise<TResult> {
-  const { record } = await fetchItemsItemsByKeyService(params)
+export async function getItemsItemsByKeyServer( params: TItemsItemsParams, options?: { forceFresh?: boolean },): Promise<TResult> {
+  const { record } = await fetchItemsItemsByKeyService(params, { forceFresh: options?.forceFresh })
 
   return {
     raw: record!.raw,

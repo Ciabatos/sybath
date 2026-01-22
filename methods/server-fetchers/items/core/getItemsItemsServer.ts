@@ -11,8 +11,8 @@ type TResult = {
   atomName: string
 }
 
-export async function getItemsItemsServer(): Promise<TResult> {
-  const { record } = await fetchItemsItemsService()
+export async function getItemsItemsServer(options?: { forceFresh?: boolean }): Promise<TResult> {
+  const { record } = await fetchItemsItemsService({ forceFresh: options?.forceFresh })
 
   return {
     raw: record!.raw,

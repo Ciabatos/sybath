@@ -24,7 +24,7 @@ const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TT
 
 export async function fetchCitiesCityTilesByKeyService(
  params: TCitiesCityTilesParams,
-  options?: { clientEtag?: string },
+  options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getCitiesCityTilesByKey", params)
   const cached = getCache(cacheKey)
@@ -39,7 +39,7 @@ export async function fetchCitiesCityTilesByKeyService(
     }
   }
 
-  if (cached) {
+  if (cached && !options?.forceFresh) {
     return {
       record: cached,
       etag: cachedEtag!,

@@ -12,8 +12,8 @@ type TResult = {
   atomName: string
 }
 
-export async function getBuildingsBuildingTypesByKeyServer( params: TBuildingsBuildingTypesParams): Promise<TResult> {
-  const { record } = await fetchBuildingsBuildingTypesByKeyService(params)
+export async function getBuildingsBuildingTypesByKeyServer( params: TBuildingsBuildingTypesParams, options?: { forceFresh?: boolean },): Promise<TResult> {
+  const { record } = await fetchBuildingsBuildingTypesByKeyService(params, { forceFresh: options?.forceFresh })
 
   return {
     raw: record!.raw,

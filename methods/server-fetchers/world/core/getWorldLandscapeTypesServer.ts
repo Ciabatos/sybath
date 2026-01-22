@@ -11,8 +11,8 @@ type TResult = {
   atomName: string
 }
 
-export async function getWorldLandscapeTypesServer(): Promise<TResult> {
-  const { record } = await fetchWorldLandscapeTypesService()
+export async function getWorldLandscapeTypesServer(options?: { forceFresh?: boolean }): Promise<TResult> {
+  const { record } = await fetchWorldLandscapeTypesService({ forceFresh: options?.forceFresh })
 
   return {
     raw: record!.raw,

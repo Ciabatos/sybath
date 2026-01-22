@@ -24,7 +24,7 @@ const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TT
 
 export async function fetchWorldTerrainTypesByKeyService(
  params: TWorldTerrainTypesParams,
-  options?: { clientEtag?: string },
+  options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getWorldTerrainTypesByKey", params)
   const cached = getCache(cacheKey)
@@ -39,7 +39,7 @@ export async function fetchWorldTerrainTypesByKeyService(
     }
   }
 
-  if (cached) {
+  if (cached && !options?.forceFresh) {
     return {
       record: cached,
       etag: cachedEtag!,

@@ -12,7 +12,12 @@ export function useMutateDistrictsDistricts( params: TDistrictsDistrictsParams) 
   const setDistrictsDistricts = useSetAtom(districtsAtom)
   
 
-  function mutateDistrictsDistricts(optimisticParams: Partial<TDistrictsDistricts> | Partial<TDistrictsDistricts>[]) {
+  function mutateDistrictsDistricts(optimisticParams?: Partial<TDistrictsDistricts> | Partial<TDistrictsDistricts>[]) {
+    if (!optimisticParams) {
+      mutate()
+      return
+    }
+
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
     
     //MANUAL CODE - START

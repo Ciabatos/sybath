@@ -11,8 +11,8 @@ type TResult = {
   atomName: string
 }
 
-export async function getDistrictsDistrictTypesServer(): Promise<TResult> {
-  const { record } = await fetchDistrictsDistrictTypesService()
+export async function getDistrictsDistrictTypesServer(options?: { forceFresh?: boolean }): Promise<TResult> {
+  const { record } = await fetchDistrictsDistrictTypesService({ forceFresh: options?.forceFresh })
 
   return {
     raw: record!.raw,

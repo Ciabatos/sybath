@@ -12,8 +12,8 @@ type TResult = {
   atomName: string
 }
 
-export async function getWorldTerrainTypesByKeyServer( params: TWorldTerrainTypesParams): Promise<TResult> {
-  const { record } = await fetchWorldTerrainTypesByKeyService(params)
+export async function getWorldTerrainTypesByKeyServer( params: TWorldTerrainTypesParams, options?: { forceFresh?: boolean },): Promise<TResult> {
+  const { record } = await fetchWorldTerrainTypesByKeyService(params, { forceFresh: options?.forceFresh })
 
   return {
     raw: record!.raw,

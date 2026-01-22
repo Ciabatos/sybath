@@ -24,7 +24,7 @@ const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TT
 
 export async function fetchAttributesAbilitiesByKeyService(
  params: TAttributesAbilitiesParams,
-  options?: { clientEtag?: string },
+  options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getAttributesAbilitiesByKey", params)
   const cached = getCache(cacheKey)
@@ -39,7 +39,7 @@ export async function fetchAttributesAbilitiesByKeyService(
     }
   }
 
-  if (cached) {
+  if (cached && !options?.forceFresh) {
     return {
       record: cached,
       etag: cachedEtag!,

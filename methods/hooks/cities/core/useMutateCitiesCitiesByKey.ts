@@ -12,7 +12,12 @@ export function useMutateCitiesCities( params: TCitiesCitiesParams) {
   const setCitiesCities = useSetAtom(citiesAtom)
   
 
-  function mutateCitiesCities(optimisticParams: Partial<TCitiesCities> | Partial<TCitiesCities>[]) {
+  function mutateCitiesCities(optimisticParams?: Partial<TCitiesCities> | Partial<TCitiesCities>[]) {
+    if (!optimisticParams) {
+      mutate()
+      return
+    }
+
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
     
     //MANUAL CODE - START

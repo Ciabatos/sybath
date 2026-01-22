@@ -12,7 +12,7 @@ type TResult = {
   atomName: string
 }
 
-export async function {{methodNameByKey}}Server({{#if methodParamsColumns}} params: {{methodParamsTypeName}}, {{/if}}  options?: { forceFresh?: boolean },): Promise<TResult> {
+export async function {{methodNameByKey}}Server({{#if methodParamsColumns}} params: {{methodParamsTypeName}}, {{/if}}options?: { forceFresh?: boolean },): Promise<TResult> {
   const { record } = await {{fetcherNameByKey}}Service({{#if methodParamsColumns}}params, {{/if}}{ forceFresh: options?.forceFresh })
 
   return {

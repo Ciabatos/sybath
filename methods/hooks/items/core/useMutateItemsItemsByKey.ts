@@ -12,7 +12,12 @@ export function useMutateItemsItems( params: TItemsItemsParams) {
   const setItemsItems = useSetAtom(itemsAtom)
   const items = useAtomValue(itemsAtom)
 
-  function mutateItemsItems(optimisticParams: Partial<TItemsItems> | Partial<TItemsItems>[]) {
+  function mutateItemsItems(optimisticParams?: Partial<TItemsItems> | Partial<TItemsItems>[]) {
+    if (!optimisticParams) {
+      mutate()
+      return
+    }
+
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
     
     //MANUAL CODE - START

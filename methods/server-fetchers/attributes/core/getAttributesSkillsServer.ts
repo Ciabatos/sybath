@@ -11,8 +11,8 @@ type TResult = {
   atomName: string
 }
 
-export async function getAttributesSkillsServer(): Promise<TResult> {
-  const { record } = await fetchAttributesSkillsService()
+export async function getAttributesSkillsServer(options?: { forceFresh?: boolean }): Promise<TResult> {
+  const { record } = await fetchAttributesSkillsService({ forceFresh: options?.forceFresh })
 
   return {
     raw: record!.raw,

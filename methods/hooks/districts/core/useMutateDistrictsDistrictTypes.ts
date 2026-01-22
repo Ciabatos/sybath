@@ -12,7 +12,12 @@ export function useMutateDistrictsDistrictTypes() {
   const setDistrictsDistrictTypes = useSetAtom(districtTypesAtom)
   const districtTypes = useAtomValue(districtTypesAtom)
 
-  function mutateDistrictsDistrictTypes(optimisticParams: Partial<TDistrictsDistrictTypes> | Partial<TDistrictsDistrictTypes>[]) {
+  function mutateDistrictsDistrictTypes(optimisticParams?: Partial<TDistrictsDistrictTypes> | Partial<TDistrictsDistrictTypes>[]) {
+    if (!optimisticParams) {
+      mutate()
+      return
+    }
+    
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
     
     //MANUAL CODE - START

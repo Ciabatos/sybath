@@ -12,7 +12,12 @@ export function useMutateCitiesCityTiles( params: TCitiesCityTilesParams) {
   const setCitiesCityTiles = useSetAtom(cityTilesAtom)
   const cityTiles = useAtomValue(cityTilesAtom)
 
-  function mutateCitiesCityTiles(optimisticParams: Partial<TCitiesCityTiles> | Partial<TCitiesCityTiles>[]) {
+  function mutateCitiesCityTiles(optimisticParams?: Partial<TCitiesCityTiles> | Partial<TCitiesCityTiles>[]) {
+    if (!optimisticParams) {
+      mutate()
+      return
+    }
+
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
     
     //MANUAL CODE - START

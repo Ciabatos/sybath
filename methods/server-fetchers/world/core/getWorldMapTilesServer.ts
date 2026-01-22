@@ -11,8 +11,8 @@ type TResult = {
   atomName: string
 }
 
-export async function getWorldMapTilesServer(): Promise<TResult> {
-  const { record } = await fetchWorldMapTilesService()
+export async function getWorldMapTilesServer(options?: { forceFresh?: boolean }): Promise<TResult> {
+  const { record } = await fetchWorldMapTilesService({ forceFresh: options?.forceFresh })
 
   return {
     raw: record!.raw,

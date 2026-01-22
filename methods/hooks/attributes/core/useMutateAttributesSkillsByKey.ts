@@ -12,7 +12,12 @@ export function useMutateAttributesSkills( params: TAttributesSkillsParams) {
   const setAttributesSkills = useSetAtom(skillsAtom)
   
 
-  function mutateAttributesSkills(optimisticParams: Partial<TAttributesSkills> | Partial<TAttributesSkills>[]) {
+  function mutateAttributesSkills(optimisticParams?: Partial<TAttributesSkills> | Partial<TAttributesSkills>[]) {
+    if (!optimisticParams) {
+      mutate()
+      return
+    }
+
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
     
     //MANUAL CODE - START

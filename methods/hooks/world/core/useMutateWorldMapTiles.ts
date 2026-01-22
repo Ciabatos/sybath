@@ -12,7 +12,12 @@ export function useMutateWorldMapTiles() {
   const setWorldMapTiles = useSetAtom(mapTilesAtom)
   const mapTiles = useAtomValue(mapTilesAtom)
 
-  function mutateWorldMapTiles(optimisticParams: Partial<TWorldMapTiles> | Partial<TWorldMapTiles>[]) {
+  function mutateWorldMapTiles(optimisticParams?: Partial<TWorldMapTiles> | Partial<TWorldMapTiles>[]) {
+    if (!optimisticParams) {
+      mutate()
+      return
+    }
+    
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
     
     //MANUAL CODE - START

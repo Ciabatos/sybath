@@ -12,8 +12,8 @@ type TResult = {
   atomName: string
 }
 
-export async function getWorldMapTilesByKeyServer( params: TWorldMapTilesParams): Promise<TResult> {
-  const { record } = await fetchWorldMapTilesByKeyService(params)
+export async function getWorldMapTilesByKeyServer( params: TWorldMapTilesParams, options?: { forceFresh?: boolean },): Promise<TResult> {
+  const { record } = await fetchWorldMapTilesByKeyService(params, { forceFresh: options?.forceFresh })
 
   return {
     raw: record!.raw,

@@ -12,7 +12,12 @@ export function useMutateWorldLandscapeTypes( params: TWorldLandscapeTypesParams
   const setWorldLandscapeTypes = useSetAtom(landscapeTypesAtom)
   const landscapeTypes = useAtomValue(landscapeTypesAtom)
 
-  function mutateWorldLandscapeTypes(optimisticParams: Partial<TWorldLandscapeTypes> | Partial<TWorldLandscapeTypes>[]) {
+  function mutateWorldLandscapeTypes(optimisticParams?: Partial<TWorldLandscapeTypes> | Partial<TWorldLandscapeTypes>[]) {
+    if (!optimisticParams) {
+      mutate()
+      return
+    }
+
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
     
     //MANUAL CODE - START
