@@ -114,6 +114,18 @@ Użytkownik pisząc księge dostaje obrazki ładne z ai i odpowiada na pytania t
 --dostep do edytora nowych surowcow ?
 --mega paywall/grind -- custom całej hitorii i wszystkiego (moze na punkty ?) -prawdziwa kasa i robota dla mnie jako DLC
 
+--Kultura
+--podobnie do religii
+--Kulturowo dziedziczenie umiejetnosci ?
+--Kulturowo dziedziczenie wiedzy ?
+--Kulturowo dziedziczenie widoku mapy / wiedzy o lokacjach
+
+--Crafting nowych surowcow (tworzenie indeksów IFS)
+--Z puli właściwości wybieramy kombinacje np 3
+--Tworzy się nowy surowiec 
+
+--Crafting itemów (Tworzenie marszrut i struktur IFS)
+--Kombinacja surowcow i/lub innych itemów w jeden następny
 
 
 stability.ai Craiyon
