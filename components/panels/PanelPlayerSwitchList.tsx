@@ -39,8 +39,10 @@ export default function PanelPlayerSwitchList() {
               <AvatarFallback className={styles.heroFallback}>{profile.name.charAt(0)}</AvatarFallback>
             </Avatar>
             <div className={styles.heroInfo}>
-              <span className={styles.heroName}>{profile.name}</span>
-              <span className={styles.heroDetails}>{profile.name}</span>
+              <span className={styles.heroName}>
+                {profile.name} {profile.secondName}
+              </span>
+              <span className={styles.heroDetails}>{profile.nickname}</span>
             </div>
           </button>
         ))}
