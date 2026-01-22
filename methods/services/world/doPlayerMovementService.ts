@@ -24,7 +24,8 @@ export type TDoPlayerMovementServiceParams = {
 
 export async function doPlayerMovementService(params: TDoPlayerMovementServiceParams) {
   try {
-    const sessionPlayerId = (await getActivePlayerServer({ userId: params.sessionUserId })).raw[0].id
+    const sessionPlayerId = (await getActivePlayerServer({ userId: params.sessionUserId }, { forceFresh: true })).raw[0]
+      .id
     const playerId = params.playerId
 
     if (sessionPlayerId !== playerId) {
