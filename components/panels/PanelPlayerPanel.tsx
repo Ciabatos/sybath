@@ -1,5 +1,5 @@
-import { PanelPlayerAbilities } from "@/components/panels/leftTopBar/PanelPlayerAbilities"
-import { PanelPlayerInventory } from "@/components/panels/leftTopBar/PanelPlayerInventory"
+import { PanelPlayerAbilities } from "@/components/panels/PanelPlayerAbilities"
+import { PanelPlayerInventory } from "@/components/panels/PanelPlayerInventory"
 import { PanelPlayerKnowledge } from "@/components/panels/PanelPlayerKnowledge"
 import { PanelPlayerSkills } from "@/components/panels/PanelPlayerSkills"
 import { PanelPlayerStats } from "@/components/panels/PanelPlayerStats"

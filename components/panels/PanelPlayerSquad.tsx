@@ -7,7 +7,7 @@ import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
 import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { Backpack, LandPlot, X } from "lucide-react"
-import styles from "./styles/LeftTopBar/PanelPlayerSquad.module.css"
+import styles from "./styles/PanelPlayerSquad.module.css"
 
 type SquadMember = {
   id: string
