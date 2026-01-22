@@ -8,11 +8,16 @@ import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutatePlayerMovement( params: TPlayerMovementParams) {
-  const { mutate } = useSWR<TPlayerMovement[]>(`api/world/rpc/get-player-movement/${params.playerId}`)
+  const { mutate } = useSWR<TPlayerMovement[]>(`/api/world/rpc/get-player-movement/${params.playerId}`)
   const setPlayerMovement = useSetAtom(playerMovementAtom)
   
 
-  function mutatePlayerMovement(optimisticParams: Partial<TPlayerMovement> | Partial<TPlayerMovement>[]) {
+  function mutatePlayerMovement(optimisticParams?: Partial<TPlayerMovement> | Partial<TPlayerMovement>[]) {
+    if (!optimisticParams) {
+      mutate()
+      return
+    }
+
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START
