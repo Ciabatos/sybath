@@ -36,6 +36,7 @@ async function configurePlop(plop) {
   getTable(plop)
 
   replayHistory(plop)
+  
   // recalculateHistory(plop)
 }
 
