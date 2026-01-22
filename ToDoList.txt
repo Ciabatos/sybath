@@ -1,7 +1,5 @@
-error handling ! - toastError
-plopjs history
 posegregowac panele
-tooltipy
+plop panele ?
 
 --pobieranie playerStats
 --pobieranie playerSkills
