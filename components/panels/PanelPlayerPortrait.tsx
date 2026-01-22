@@ -19,6 +19,9 @@ export default function PanelPlayerPortrait() {
     openModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerPanel)
   }
 
+  const avatarUrl = createPortrait(activePlayerProfile?.imagePortrait)
+  const avatarFallback = "VB"
+
   return (
     <div>
       <Button
@@ -28,11 +31,11 @@ export default function PanelPlayerPortrait() {
       >
         <Avatar className={styles.avatar}>
           <AvatarImage
-            src={createPortrait(activePlayerProfile?.imagePortrait)}
+            src={avatarUrl}
             alt='Hero avatar'
             className={styles.avatarImage}
           />
-          <AvatarFallback className={styles.avatarFallback}>HV</AvatarFallback>
+          <AvatarFallback className={styles.avatarFallback}>{avatarFallback}</AvatarFallback>
         </Avatar>
       </Button>
       <PlayerSwitchButton></PlayerSwitchButton>

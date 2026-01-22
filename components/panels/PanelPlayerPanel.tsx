@@ -22,8 +22,10 @@ export default function PanelPlayerPanel() {
     openModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerPortrait)
   }
 
-  const heroName = activePlayerProfile.name
-  const avatarUrl = createPortrait(activePlayerProfile.imagePortrait)
+  const name = activePlayerProfile?.name
+  const secondName = activePlayerProfile?.secondName
+  const nickname = activePlayerProfile?.nickname
+  const avatarUrl = createPortrait(activePlayerProfile?.imagePortrait)
   const avatarFallback = "VB"
 
   return (
@@ -48,8 +50,10 @@ export default function PanelPlayerPanel() {
             <AvatarFallback className={styles.avatarFallback}>{avatarFallback}</AvatarFallback>
           </Avatar>
           <div className={styles.headerInfo}>
-            <h2 className={styles.heroName}>{heroName}</h2>
-            <p className={styles.heroTitle}>The Dog</p>
+            <h2 className={styles.heroName}>
+              {name} {secondName}
+            </h2>
+            <p className={styles.heroTitle}>{nickname}</p>
           </div>
         </div>
 
