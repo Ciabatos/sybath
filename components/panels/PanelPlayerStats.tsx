@@ -1,5 +1,5 @@
+import getIcon from "@/methods/functions/icons/getIcon"
 import { usePlayerStats } from "@/methods/hooks/attributes/composite/usePlayerStats"
-import getIcon from "@/types/icons/getIcon"
 import type React from "react"
 import styles from "./styles/PanelPlayerStats.module.css"
 
