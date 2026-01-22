@@ -24,6 +24,8 @@ export function useMutateActivePlayerProfile( params: TActivePlayerProfileParams
 
     const defaultValues = {
       name: ``,
+      secondName: ``,
+      nickname: ``,
       imageMap: ``,
       imagePortrait: ``,
     }

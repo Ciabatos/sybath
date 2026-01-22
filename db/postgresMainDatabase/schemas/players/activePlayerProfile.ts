@@ -10,6 +10,8 @@ export type TActivePlayerProfileParams = {
 
 export type TActivePlayerProfile = {
   name: string
+  secondName: string
+  nickname: string
   imageMap: string
   imagePortrait: string
 }
