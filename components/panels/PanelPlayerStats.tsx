@@ -1,3 +1,4 @@
+import { usePlayerStats } from "@/methods/hooks/attributes/composite/usePlayerStats"
 import { Activity, Award, Heart, Shield, Swords, Target, TrendingUp, Zap } from "lucide-react"
 import type React from "react"
 import styles from "./styles/PanelPlayerStats.module.css"
@@ -13,6 +14,13 @@ type StatItemProps = {
 function StatItem({ icon, label, value, maxValue, description }: StatItemProps) {
   const hasMax = maxValue !== undefined
   const percentage = hasMax ? (value / maxValue) * 100 : 0
+
+  const { stats, playerStats } = usePlayerStats()
+
+  const combinedPlayerStats = Object.entries(playerStats).map(([key, playerStat]) => ({
+    ...playerStat,
+    ...stats[playerStat.statId],
+  }))
 
   return (
     <div className={styles.statItem}>
