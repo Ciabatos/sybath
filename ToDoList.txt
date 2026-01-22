@@ -136,6 +136,10 @@ Użytkownik pisząc księge dostaje obrazki ładne z ai i odpowiada na pytania t
 Inflacja i hiperinflacja(PROBLEM)
 --Waluty są wydawane przez państwa, ich podaż jest kontrolowana przez graczy wiec sami sa sobie winni
 
+Waluta(PROBLEM)
+--Waluta oficjalna tylko na danym terenie
+--Stworzyc kantor NPC do przeliczania wagi waluty
+
 stability.ai Craiyon
 https://civitai.com/
 stable diffusion XL + 1.5 + stable-diffusion-webui 1111
