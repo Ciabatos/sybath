@@ -1,8 +1,8 @@
 "use client"
 
 import { PanelPlayerGear } from "@/components/panels/PanelPlayerGear"
-import styles from "@/components/panels/styles/PanelPlayerInventory.module.css"
 import { useState } from "react"
+import styles from "./styles/PanelPlayerInventory.module.css"
 
 interface InventoryItem {
   id: string

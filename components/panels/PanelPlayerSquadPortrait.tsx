@@ -1,9 +1,9 @@
 "use client"
-import styles from "@/components/panels/styles/PanelPlayerSquadPortrait.module.css"
 import { Button } from "@/components/ui/button"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
 import { Users } from "lucide-react"
+import styles from "./styles/PanelPlayerSquadPortrait.module.css"
 
 export default function PanelPlayerSquadPortrait() {
   const squadSize = 4

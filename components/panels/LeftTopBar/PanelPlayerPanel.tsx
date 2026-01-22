@@ -1,9 +1,8 @@
-import { PanelPlayerAbilities } from "@/components/panels/PanelPlayerAbilities"
-import { PanelPlayerInventory } from "@/components/panels/PanelPlayerInventory"
+import { PanelPlayerAbilities } from "@/components/panels/LeftTopBar/PanelPlayerAbilities"
+import { PanelPlayerInventory } from "@/components/panels/LeftTopBar/PanelPlayerInventory"
+import { PanelPlayerSkills } from "@/components/panels/LeftTopBar/PanelPlayerSkills"
 import { PanelPlayerKnowledge } from "@/components/panels/PanelPlayerKnowledge"
-import { PanelPlayerSkills } from "@/components/panels/PanelPlayerSkills"
 import { PanelPlayerStats } from "@/components/panels/PanelPlayerStats"
-import styles from "@/components/panels/styles/PanelPlayerPanel.module.css"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { createHeroPortrait } from "@/methods/functions/panels/createHeroPortrait"
@@ -12,6 +11,7 @@ import { useActivePlayerProfile } from "@/methods/hooks/players/composite/useAct
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
 import { X } from "lucide-react"
+import styles from "./styles/PanelPlayerPanel.module.css"
 
 export default function PanelPlayerPanel() {
   const { openModalLeftTopBar } = useModalLeftTopBar()

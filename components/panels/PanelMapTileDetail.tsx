@@ -1,10 +1,10 @@
 "use client"
 
-import styles from "@/components/panels/styles/PanelMapTileDetail.module.css"
 import { Button } from "@/components/ui/button"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { X } from "lucide-react"
+import styles from "./styles/PanelMapTileDetail.module.css"
 
 const terrainData = {
   Jungle: {

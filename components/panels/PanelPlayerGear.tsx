@@ -1,7 +1,7 @@
 "use client"
 
-import styles from "@/components/panels/styles/PanelPlayerGear.module.css"
 import { useState } from "react"
+import styles from "./styles/PanelPlayerGear.module.css"
 
 interface GearItem {
   id: string

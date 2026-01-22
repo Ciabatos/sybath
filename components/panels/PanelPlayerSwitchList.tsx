@@ -1,10 +1,10 @@
 "use client"
 
-import styles from "@/components/panels/styles/PanelPlayerSwitchList.module.css"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { createHeroPortrait } from "@/methods/functions/panels/createHeroPortrait"
 import { useActivePlayerSwitchProfiles } from "@/methods/hooks/players/composite/useActivePlayerSwitchProfiles"
 import { toast } from "sonner"
+import styles from "./styles/PanelPlayerSwitchList.module.css"
 
 export default function PanelPlayerSwitchList() {
   const { activePlayerSwitchProfiles } = useActivePlayerSwitchProfiles()

@@ -1,8 +1,8 @@
 "use client"
-import styles from "@/components/panels/styles/PanelBackToMap.module.css"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
+import styles from "./styles/PanelBackToMap.module.css"
 
 type TParams = {
   closePanel: () => void

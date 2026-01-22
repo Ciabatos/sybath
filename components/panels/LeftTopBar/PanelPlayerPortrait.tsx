@@ -2,13 +2,13 @@
 
 import PanelPlayerSquadPortrait from "@/components/panels/PanelPlayerSquadPortrait"
 import PlayerSwitchButton from "@/components/panels/PlayerSwitchButton"
-import styles from "@/components/panels/styles/PanelPlayerPortrait.module.css"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { createHeroPortrait } from "@/methods/functions/panels/createHeroPortrait"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { useActivePlayerProfile } from "@/methods/hooks/players/composite/useActivePlayerProfile"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
+import styles from "./styles/PanelPlayerPortrait.module.css"
 
 export default function PanelPlayerPortrait() {
   const { openModalLeftTopBar } = useModalLeftTopBar()

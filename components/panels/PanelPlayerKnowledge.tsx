@@ -1,6 +1,6 @@
-import styles from "@/components/panels/styles/PanelPlayerKnowledge.module.css"
 import { Book, Crown, MapPin, Scroll, Skull, Users, UserSearch } from "lucide-react"
 import type React from "react"
+import styles from "./styles/PanelPlayerKnowledge.module.css"
 
 type KnowledgeItemProps = {
   icon: React.ReactNode

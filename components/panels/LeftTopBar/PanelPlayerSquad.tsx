@@ -1,6 +1,5 @@
 "use client"
 
-import styles from "@/components/panels/styles/PanelPlayerSquad.module.css"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
@@ -8,6 +7,7 @@ import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
 import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { Backpack, LandPlot, X } from "lucide-react"
+import styles from "./styles/LeftTopBar/PanelPlayerSquad.module.css"
 
 type SquadMember = {
   id: string

@@ -1,6 +1,6 @@
-import styles from "@/components/panels/styles/PanelPlayerStats.module.css"
 import { Activity, Award, Heart, Shield, Swords, Target, TrendingUp, Zap } from "lucide-react"
 import type React from "react"
+import styles from "./styles/PanelPlayerStats.module.css"
 
 type StatItemProps = {
   icon: React.ReactNode

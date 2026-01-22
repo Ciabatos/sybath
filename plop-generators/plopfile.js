@@ -1,3 +1,4 @@
+import createPanels from "./createPanels.js"
 import getMethodAction from "./getMethodAction.js"
 import getMethodFetcher from "./getMethodFetcher.js"
 import getTable from "./getTable.js"
@@ -36,7 +37,9 @@ async function configurePlop(plop) {
   getTable(plop)
 
   replayHistory(plop)
-  
+
+  createPanels(plop)
+
   // recalculateHistory(plop)
 }
 
