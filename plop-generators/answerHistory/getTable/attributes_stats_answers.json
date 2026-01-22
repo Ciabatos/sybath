@@ -10,7 +10,7 @@
       "id"
     ],
     "generateMutation": true,
-    "mutationMergeOldData": false
+    "mutationMergeOldData": true
   },
   "schema": "attributes",
   "table": "stats",
@@ -45,6 +45,12 @@
       "camelName": "name",
       "tsType": "string",
       "optional": "?"
+    },
+    {
+      "name": "description",
+      "camelName": "description",
+      "tsType": "string",
+      "optional": "?"
     }
   ],
   "indexMethodParams": "[\"id\"]",
@@ -66,10 +72,7 @@
   "apiPathByKey": "app/api/attributes/stats/[id]/route.ts",
   "apiPathParamsByKey": "/api/attributes/stats/${params.id}",
   "generateMutation": true,
-  "mutationMergeOldData": false,
+  "mutationMergeOldData": true,
   "fetcherName": "fetchAttributesStats",
-  "fetcherNameByKey": "fetchAttributesStatsByKey",
-  "selectedGenerators": [
-    "getTable"
-  ]
+  "fetcherNameByKey": "fetchAttributesStatsByKey"
 }

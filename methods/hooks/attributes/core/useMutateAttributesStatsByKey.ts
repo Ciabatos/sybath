@@ -3,14 +3,14 @@
 
 import { TAttributesStatsRecordById , TAttributesStatsParams, TAttributesStats  } from "@/db/postgresMainDatabase/schemas/attributes/stats"
 import { statsAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useSetAtom, useAtomValue } from "jotai"
 import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateAttributesStats( params: TAttributesStatsParams) {
   const { mutate } = useSWR<TAttributesStats[]>(`/api/attributes/stats/${params.id}`)
   const setAttributesStats = useSetAtom(statsAtom)
-  
+  const stats = useAtomValue(statsAtom)
 
   function mutateAttributesStats(optimisticParams?: Partial<TAttributesStats> | Partial<TAttributesStats>[]) {
     if (!optimisticParams) {
@@ -25,6 +25,7 @@ export function useMutateAttributesStats( params: TAttributesStatsParams) {
     const defaultValues = {
       id: ``,
       name: ``,
+      description: ``,
     }
 
     //MANUAL CODE - END
@@ -37,7 +38,7 @@ export function useMutateAttributesStats( params: TAttributesStatsParams) {
     const newObj = arrayToObjectKey(["id"], dataWithDefaults) as TAttributesStatsRecordById
     
     const optimisticDataMergeWithOldData: TAttributesStatsRecordById = {
-       
+      ...stats, 
       ...newObj,      
     }
     

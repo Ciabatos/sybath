@@ -11,6 +11,7 @@ export type TAttributesStatsParams = {
 export type TAttributesStats = {
   id: number
   name?: string
+  description?: string
 }
 
 export type TAttributesStatsRecordById = Record<string, TAttributesStats>
