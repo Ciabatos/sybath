@@ -1,0 +1,69 @@
+{
+  "promptAnswers": {
+    "schema": "attributes",
+    "method": "get_player_abilities",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "abilityId"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "attributes",
+  "method": "get_player_abilities",
+  "methodCamelName": "playerAbilities",
+  "methodPascalName": "PlayerAbilities",
+  "methodKebabName": "get-player-abilities",
+  "methodName": "getPlayerAbilities",
+  "methodTypeName": "TPlayerAbilities",
+  "methodParamsTypeName": "TPlayerAbilitiesParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "ability_id",
+      "camelName": "abilityId",
+      "pascalName": "AbilityId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "value",
+      "camelName": "value",
+      "pascalName": "Value",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "pascalName": "Name",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"abilityId\"]",
+  "indexParamsColumns": "playerId",
+  "indexTypeMethodName": "AbilityId",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TPlayerAbilitiesRecordByAbilityId",
+  "indexColumns": [
+    {
+      "name": "ability_id",
+      "camelName": "abilityId",
+      "pascalName": "AbilityId",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1",
+  "apiPath": "app/api/attributes/rpc/get-player-abilities/[playerId]/route.ts",
+  "apiPathParams": "/api/attributes/rpc/get-player-abilities/${params.playerId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true
+}

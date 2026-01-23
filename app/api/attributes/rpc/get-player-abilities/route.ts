@@ -1,19 +1,11 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetMethodFetcher.hbs
 
 import { auth } from "@/auth"
-import { TPlayerAbilitiesParams } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
+
 import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
 import { fetchPlayerAbilitiesService } from "@/methods/services/attributes/fetchPlayerAbilitiesService"
 import { NextRequest, NextResponse } from "next/server"
-import z from "zod"
-
-type TApiParams = Record<string, string>
-
-const typeParamsSchema = z.object({
-  playerId: z.coerce.number(),
-}) satisfies z.ZodType<TPlayerAbilitiesParams>
-
-export async function GET(request: NextRequest, { params }: { params: TApiParams } ): Promise<NextResponse> {
+export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
     const session = await auth()
     const sessionUserId = session?.user?.userId
@@ -22,8 +14,6 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
     }
 
-    const paramsFromPromise = await params
-    const parsedParams = typeParamsSchema.parse(paramsFromPromise)
 
     const sessionPlayerId = (await getActivePlayerServer({ userId: sessionUserId }, { forceFresh: true })).raw[0].id
 
@@ -33,7 +23,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
     
     const clientEtag = request.headers.get("if-none-match") ?? undefined
 
-    const { record, etag, cacheHit, etagMatched } = await fetchPlayerAbilitiesService(parsedParams, { clientEtag })
+    const { record, etag, cacheHit, etagMatched } = await fetchPlayerAbilitiesService( { clientEtag })
 
     if (cacheHit || etagMatched) {
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })

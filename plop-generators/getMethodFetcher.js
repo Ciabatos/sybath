@@ -8,7 +8,7 @@ import {
   snakeToPascal,
   stripPrefix,
 } from "./helpers/helpers.js"
-import { fetchFunction, fetchMethodArgs, fetchMethodResultColumns, fetchSchemas } from "./helpers/queries.js"
+import { fetchFunction, fetchMethodFunctionArgs, fetchMethodResultColumns, fetchSchemas } from "./helpers/queries.js"
 
 // Generator plop
 export default function getMethodFetcher(plop) {
@@ -78,7 +78,7 @@ export default function getMethodFetcher(plop) {
       const methodParamsTypeName = `${methodTypeName}Params`
 
       // Zapewniamy że używamy parseParamsFields z helpers
-      const argsStr = await fetchMethodArgs(schema, method)
+      const argsStr = await fetchMethodFunctionArgs(schema, method)
       const resultColumns = await fetchMethodResultColumns(schema, method)
 
       // Ujednolicone pole methodColumns (tak jak w getTable)

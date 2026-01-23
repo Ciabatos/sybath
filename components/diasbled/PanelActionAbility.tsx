@@ -1,9 +1,9 @@
 "use client"
 
 import styles from "@/components/panels/styles/PanelActionBar.module.css"
+import { usePlayerAbility } from "@/methods/hooks/attributes/composite/usePlayerAbility"
 import { usePlayerPositionMapTile } from "@/methods/hooks/mapTiles/composite/usePlayerPositionMapTile"
 import { useModalBottomCenterBar } from "@/methods/hooks/modals/useModalBottomCenterBar"
-import { usePlayerAbility } from "@/methods/hooks/players/composite/usePlayerAbility"
 import { usePlayerAbilityRequirements } from "@/methods/hooks/players/composite/usePlayerAbilityRequirements"
 import { useMutateActionTaskInProcess } from "@/methods/hooks/tasks/core/useMutateActionTaskInProcess"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"

@@ -1,42 +1,25 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcherServer.hbs
 "use server"
 
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
-import { getPlayerAbilities } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
-import type { TPlayerAbilities } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
-import type { TPlayerAbilitiesParams } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
-import type { TPlayerAbilitiesRecordByAbilityId } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
+import type { TPlayerAbilitiesParams } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities" 
+import type { TPlayerAbilitiesRecordByAbilityId,TPlayerAbilities } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
+import { fetchPlayerAbilitiesService } from "@/methods/services/attributes/fetchPlayerAbilitiesService"
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let cachedData: any = null
-const CACHE_TTL = 3_000
-let lastUpdated = 0
-
-export async function getPlayerAbilitiesServer(params: TPlayerAbilitiesParams): Promise<{
+type TResult = {
   raw: TPlayerAbilities[]
   byKey: TPlayerAbilitiesRecordByAbilityId
   apiPath: string
   atomName: string
-}> {
-  if (cachedData && Date.now() - lastUpdated < CACHE_TTL) {
-    return cachedData
-  }
+}
 
-  const getPlayerAbilitiesData = await getPlayerAbilities(params)
+export async function getPlayerAbilitiesServer( params: TPlayerAbilitiesParams, options?: { forceFresh?: boolean },): Promise<TResult> {
+  const { record } = await fetchPlayerAbilitiesService(params, { forceFresh: options?.forceFresh })
 
-  const data = getPlayerAbilitiesData
-    ? (arrayToObjectKey(["abilityId"], getPlayerAbilitiesData) as TPlayerAbilitiesRecordByAbilityId)
-    : {}
-
-  const result = {
-    raw: getPlayerAbilitiesData,
-    byKey: data,
+  return {
+    raw: record!.raw,
+    byKey: record!.byKey,
     apiPath: `/api/attributes/rpc/get-player-abilities/${params.playerId}`,
     atomName: `playerAbilitiesAtom`,
   }
-
-  cachedData = result
-  lastUpdated = Date.now()
-
-  return result
 }
+

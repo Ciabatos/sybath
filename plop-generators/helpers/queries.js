@@ -122,6 +122,28 @@ export async function fetchMethodArgs(schema, method) {
   }
 }
 
+export async function fetchMethodFunctionArgs(schema, method) {
+  const client = createClient()
+  await client.connect()
+  try {
+    const res = await client.query(
+      `
+      SELECT pg_get_function_arguments(p.oid) AS args
+      FROM pg_proc p
+      JOIN pg_namespace n ON p.pronamespace = n.oid
+      JOIN pg_description d ON d.objoid = p.oid
+      WHERE n.nspname = $1 AND p.proname = $2
+      AND d.description = 'get_api'
+    `,
+      [schema, method],
+    )
+    if (!res.rows[0]) throw new Error(`Function ${schema}.${method} not found`)
+    return res.rows[0].args || ""
+  } finally {
+    await client.end()
+  }
+}
+
 export async function fetchMethodResultColumns(schema, method) {
   const client = createClient()
   await client.connect()
@@ -131,7 +153,9 @@ export async function fetchMethodResultColumns(schema, method) {
       SELECT pg_get_function_result(p.oid) AS result
       FROM pg_proc p
       JOIN pg_namespace n ON p.pronamespace = n.oid
+      JOIN pg_description d ON d.objoid = p.oid
       WHERE n.nspname = $1 AND p.proname = $2
+      AND d.description = 'get_api'
     `,
       [schema, method],
     )
