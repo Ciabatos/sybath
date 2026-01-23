@@ -3,6 +3,7 @@ import {
   BookOpenText,
   Brain,
   Flame,
+  HandCoinsIcon,
   HandFist,
   Heart,
   Rabbit,
@@ -10,6 +11,8 @@ import {
   Skull,
   Speech,
   Sword,
+  Tent,
+  TreePine,
   Zap,
 } from "lucide-react"
 import { JSX } from "react"
@@ -28,6 +31,9 @@ const iconMap: Record<string, JSX.Element | string> = {
   BookOpenText: <BookOpenText className={styles.orange} />,
   Brain: <Brain className={styles.purple} />,
   Speech: <Speech className={styles.blue} />,
+  TreePine: <TreePine className={styles.green} />,
+  Tent: <Tent className={styles.brown} />,
+  HandCoinsIcon: <HandCoinsIcon className={styles.gold} />,
   SwordMastery: "🗡️",
   HeavySword: "🗡",
   DualSword: "⚔️",
