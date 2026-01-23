@@ -76,6 +76,9 @@ export default function PanelMapTileDetail() {
   const terrainName = clickedTile?.terrainTypes.name
   const terrainMoveCost = clickedTile?.terrainTypes.moveCost
   const landscapeName = clickedTile?.landscapeTypes?.name
+  const cityName = clickedTile?.cities?.name
+  const districtName = clickedTile?.districts?.name
+  const districtTypeName = clickedTile?.districtTypes?.name
 
   return (
     <div className={styles.panel}>
@@ -109,7 +112,33 @@ export default function PanelMapTileDetail() {
         </section>
 
         <section className={styles.section}>
-          <h3 className={styles.sectionTitle}>Difficulty</h3>
+          <h3 className={styles.sectionTitle}>Settlements</h3>
+          <div className={styles.resourceList}>
+            <div
+              key={1}
+              className={styles.resourceItem}
+            >
+              <span className={styles.resourceIcon}>📦</span>
+              <span className={styles.resourceName}>{cityName}</span>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.section}>
+          <h3 className={styles.sectionTitle}>Districts</h3>
+          <div className={styles.resourceList}>
+            <div
+              key={1}
+              className={styles.resourceItem}
+            >
+              <span className={styles.resourceIcon}>📦</span>
+              <span className={styles.resourceName}>{districtName}</span>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.section}>
+          <h3 className={styles.sectionTitle}>Move cost</h3>
           <div
             className={styles.difficultyBadge}
             data-difficulty={terrainMoveCost}
