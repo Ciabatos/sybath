@@ -73,21 +73,20 @@ export default function PanelMapTileDetail() {
     resetModalRightCenter()
   }
 
-  const terrain = terrainData[clickedTile?.terrainTypes.name as keyof typeof terrainData]
-  // const terrain = terrainData["Plains"]
-
-  const gridPosition = { x: 10, y: 20 } // Example position, replace with actual data
+  const terrainName = clickedTile?.terrainTypes.name
+  const terrainMoveCost = clickedTile?.terrainTypes.moveCost
+  const landscapeName = clickedTile?.landscapeTypes?.name
 
   return (
     <div className={styles.panel}>
       <div className={styles.header}>
         <div className={styles.titleSection}>
-          <h2 className={styles.title}>{terrain.name}</h2>
-          {gridPosition && (
-            <span className={styles.coordinates}>
-              [{gridPosition.x}, {gridPosition.y}]
-            </span>
-          )}
+          <h2 className={styles.title}>{terrainName}</h2>
+          <p className={styles.description}>{landscapeName}</p>
+
+          <span className={styles.coordinates}>
+            [{clickedTile?.mapTiles.x}, {clickedTile?.mapTiles.y}]
+          </span>
         </div>
         <Button
           onClick={onClose}
@@ -102,49 +101,48 @@ export default function PanelMapTileDetail() {
       <div className={styles.content}>
         <section className={styles.section}>
           <h3 className={styles.sectionTitle}>Description</h3>
-          <p className={styles.description}>{terrain.description}</p>
+          <p className={styles.description}>
+            {
+              "A small village where travelers can rest, trade, and gather information. The locals are friendly but wary of strangers."
+            }
+          </p>
         </section>
 
         <section className={styles.section}>
           <h3 className={styles.sectionTitle}>Difficulty</h3>
           <div
             className={styles.difficultyBadge}
-            data-difficulty={terrain.difficulty.toLowerCase()}
+            data-difficulty={terrainMoveCost}
           >
-            {terrain.difficulty}
+            {terrainMoveCost}
           </div>
         </section>
 
         <section className={styles.section}>
           <h3 className={styles.sectionTitle}>Available Resources</h3>
           <div className={styles.resourceList}>
-            {terrain.resources.map((resource) => (
-              <div
-                key={resource}
-                className={styles.resourceItem}
-              >
-                <span className={styles.resourceIcon}>📦</span>
-                <span className={styles.resourceName}>{resource}</span>
-              </div>
-            ))}
+            <div
+              key={1}
+              className={styles.resourceItem}
+            >
+              <span className={styles.resourceIcon}>📦</span>
+              <span className={styles.resourceName}>{`resource`}</span>
+            </div>
           </div>
         </section>
 
         <section className={styles.section}>
           <h3 className={styles.sectionTitle}>Possible Encounters</h3>
           <div className={styles.encounterList}>
-            {terrain.encounters.map((encounter) => (
-              <div
-                key={encounter}
-                className={styles.encounterItem}
-              >
-                <span className={styles.encounterIcon}>⚔️</span>
-                <span className={styles.encounterName}>{encounter}</span>
-              </div>
-            ))}
+            <div
+              key={12}
+              className={styles.encounterItem}
+            >
+              <span className={styles.encounterIcon}>⚔️</span>
+              <span className={styles.encounterName}>{`encounter`}</span>
+            </div>
           </div>
         </section>
-
         <section className={styles.section}>
           <div className={styles.actionButtons}>
             <Button className={styles.actionButton}>Explore</Button>
