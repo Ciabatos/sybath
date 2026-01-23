@@ -45,7 +45,9 @@ export async function fetchColumns(schema, table) {
       `
       SELECT column_name, data_type, is_nullable
       FROM information_schema.columns
+      LEFT JOIN pg_description d ON d.objoid = p.oid
       WHERE table_schema = $1 AND table_name = $2
+      AND d.description != 'get_api'
       ORDER BY ordinal_position
     `,
       [schema, table],
