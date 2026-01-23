@@ -1,6 +1,5 @@
 .container {
   padding: 1.5rem;
-  max-height: 500px;
   overflow-y: auto;
 }
 

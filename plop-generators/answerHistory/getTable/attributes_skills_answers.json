@@ -10,7 +10,7 @@
       "id"
     ],
     "generateMutation": true,
-    "mutationMergeOldData": false
+    "mutationMergeOldData": true
   },
   "schema": "attributes",
   "table": "skills",
@@ -45,6 +45,18 @@
       "camelName": "name",
       "tsType": "string",
       "optional": "?"
+    },
+    {
+      "name": "description",
+      "camelName": "description",
+      "tsType": "string",
+      "optional": "?"
+    },
+    {
+      "name": "image",
+      "camelName": "image",
+      "tsType": "string",
+      "optional": ""
     }
   ],
   "indexMethodParams": "[\"id\"]",
@@ -66,10 +78,7 @@
   "apiPathByKey": "app/api/attributes/skills/[id]/route.ts",
   "apiPathParamsByKey": "/api/attributes/skills/${params.id}",
   "generateMutation": true,
-  "mutationMergeOldData": false,
+  "mutationMergeOldData": true,
   "fetcherName": "fetchAttributesSkills",
-  "fetcherNameByKey": "fetchAttributesSkillsByKey",
-  "selectedGenerators": [
-    "getTable"
-  ]
+  "fetcherNameByKey": "fetchAttributesSkillsByKey"
 }
