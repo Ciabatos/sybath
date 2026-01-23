@@ -3,15 +3,15 @@ import { usePlayerStats } from "@/methods/hooks/attributes/composite/usePlayerSt
 import type React from "react"
 import styles from "./styles/PanelPlayerStats.module.css"
 
-type StatItemProps = {
+type TStatProps = {
   icon: React.ReactNode
-  label: string
+  name: string
   value: number
   maxValue?: number
   description?: string
 }
 
-function StatItem({ icon, label, value, maxValue, description }: StatItemProps) {
+function Stat({ icon, name, value, maxValue, description }: TStatProps) {
   const hasMax = maxValue !== undefined
   const percentage = hasMax ? (value / maxValue) * 100 : 0
 
@@ -20,7 +20,7 @@ function StatItem({ icon, label, value, maxValue, description }: StatItemProps) 
       <div className={styles.statIcon}>{icon}</div>
       <div className={styles.statInfo}>
         <div className={styles.statHeader}>
-          <span className={styles.statLabel}>{label}</span>
+          <span className={styles.statLabel}>{name}</span>
           <span className={styles.statValue}>
             {value}
             {hasMax && <span className={styles.statMax}>/{maxValue}</span>}
@@ -53,14 +53,14 @@ export function PanelPlayerStats() {
       <div className={styles.section}>
         <h3 className={styles.sectionTitle}>Stats</h3>
         <div className={styles.statsGrid}>
-          {combinedPlayerStats.map((playerStats) => (
-            <StatItem
-              key={playerStats.id}
-              icon={getIcon(playerStats.image)}
-              label={playerStats.name}
-              value={playerStats.value}
+          {combinedPlayerStats.map((playerStat) => (
+            <Stat
+              key={playerStat.id}
+              icon={getIcon(playerStat.image)}
+              name={playerStat.name}
+              value={playerStat.value}
               maxValue={10}
-              description={playerStats.description}
+              description={playerStat.description}
             />
           ))}
         </div>
