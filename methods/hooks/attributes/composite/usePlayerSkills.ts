@@ -14,5 +14,10 @@ export function usePlayerSkills() {
   useFetchPlayerSkills({ playerId })
   const playerSkills = useAtomValue(playerSkillsAtom)
 
-  return { skills, playerSkills }
+  const combinedPlayerSkills = Object.entries(playerSkills).map(([key, playerSkill]) => ({
+    ...playerSkill,
+    ...skills[playerSkill.skillId],
+  }))
+
+  return { skills, playerSkills, combinedPlayerSkills }
 }

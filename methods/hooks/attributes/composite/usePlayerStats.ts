@@ -15,5 +15,10 @@ export function usePlayerStats() {
   useFetchPlayerStats({ playerId })
   const playerStats = useAtomValue(playerStatsAtom)
 
-  return { stats, playerStats }
+  const combinedPlayerStats = Object.entries(playerStats).map(([key, playerStat]) => ({
+    ...playerStat,
+    ...stats[playerStat.statId],
+  }))
+
+  return { stats, playerStats, combinedPlayerStats }
 }

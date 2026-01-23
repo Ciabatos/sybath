@@ -15,5 +15,10 @@ export function usePlayerAbilities() {
   useFetchPlayerAbilities({ playerId })
   const playerAbilities = useAtomValue(playerAbilitiesAtom)
 
-  return { abilities, playerAbilities }
+  const combinedPlayerAbilities = Object.entries(playerAbilities).map(([key, playerAbility]) => ({
+    ...playerAbility,
+    ...abilities[playerAbility.abilityId],
+  }))
+
+  return { abilities, playerAbilities, combinedPlayerAbilities }
 }

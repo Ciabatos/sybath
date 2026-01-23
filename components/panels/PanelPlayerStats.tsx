@@ -41,12 +41,7 @@ function Stat({ icon, name, value, maxValue, description }: TStatProps) {
 }
 
 export function PanelPlayerStats() {
-  const { stats, playerStats } = usePlayerStats()
-
-  const combinedPlayerStats = Object.entries(playerStats).map(([key, playerStat]) => ({
-    ...playerStat,
-    ...stats[playerStat.statId],
-  }))
+  const { combinedPlayerStats } = usePlayerStats()
 
   return (
     <div className={styles.container}>

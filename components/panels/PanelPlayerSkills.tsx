@@ -43,12 +43,7 @@ function Skill({ icon, name, value, maxValue, description }: TSkillProps) {
 }
 
 export function PanelPlayerSkills() {
-  const { skills, playerSkills } = usePlayerSkills()
-
-  const combinedPlayerSkills = Object.entries(playerSkills).map(([key, playerSkill]) => ({
-    ...playerSkill,
-    ...skills[playerSkill.skillId],
-  }))
+  const { combinedPlayerSkills } = usePlayerSkills()
 
   return (
     <div className={styles.skillsContainer}>

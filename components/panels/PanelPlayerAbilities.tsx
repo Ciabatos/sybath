@@ -42,12 +42,7 @@ function Ability({ icon, name, value, maxValue, description }: TAbilityProps) {
 }
 
 export function PanelPlayerAbilities() {
-  const { abilities, playerAbilities } = usePlayerAbilities()
-
-  const combinedPlayerAbilities = Object.entries(playerAbilities).map(([key, playerAbility]) => ({
-    ...playerAbility,
-    ...abilities[playerAbility.abilityId],
-  }))
+  const { combinedPlayerAbilities } = usePlayerAbilities()
 
   return (
     <div className={styles.abilitiesContainer}>
