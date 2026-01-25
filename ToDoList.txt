@@ -1,9 +1,4 @@
-posegregowac panele
-plop panele ?
 
---pobieranie playerStats
---pobieranie playerSkills
---pobieranie playerAbilites
 --pobieranie playerKnowledge
 --pobieranie playerInventory
 --chodzenie po mapie

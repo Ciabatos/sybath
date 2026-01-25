@@ -18,7 +18,7 @@ export async function getPlayerInventoryServer( params: TPlayerInventoryParams, 
   return {
     raw: record!.raw,
     byKey: record!.byKey,
-    apiPath: `api/inventory/rpc/get-player-inventory/${params.playerId}`,
+    apiPath: `/api/inventory/rpc/get-player-inventory/${params.playerId}`,
     atomName: `playerInventoryAtom`,
   }
 }

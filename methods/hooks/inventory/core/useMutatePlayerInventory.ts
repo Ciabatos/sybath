@@ -8,7 +8,7 @@ import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutatePlayerInventory( params: TPlayerInventoryParams) {
-  const { mutate } = useSWR<TPlayerInventory[]>(`api/inventory/rpc/get-player-inventory/${params.playerId}`)
+  const { mutate } = useSWR<TPlayerInventory[]>(`/api/inventory/rpc/get-player-inventory/${params.playerId}`)
   const setPlayerInventory = useSetAtom(playerInventoryAtom)
   
 

@@ -1,4 +1,14 @@
 {
+  "promptAnswers": {
+    "schema": "inventory",
+    "method": "get_player_inventory",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "slotId"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": false
+  },
   "schema": "inventory",
   "method": "get_player_inventory",
   "methodCamelName": "playerInventory",
@@ -67,10 +77,7 @@
   ],
   "sqlParamsPlaceholders": "$1",
   "apiPath": "app/api/inventory/rpc/get-player-inventory/[playerId]/route.ts",
-  "apiPathParams": "api/inventory/rpc/get-player-inventory/${params.playerId}",
+  "apiPathParams": "/api/inventory/rpc/get-player-inventory/${params.playerId}",
   "generateMutation": true,
-  "mutationMergeOldData": false,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ]
+  "mutationMergeOldData": false
 }
