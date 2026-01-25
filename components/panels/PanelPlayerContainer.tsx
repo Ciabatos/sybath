@@ -1,5 +1,6 @@
 "use client"
 
+import getIcon from "@/methods/functions/icons/getIcon"
 import { usePlayerInventory } from "@/methods/hooks/inventory/composite/usePlayerInventory"
 import styles from "./styles/PanelPlayerContainer.module.css"
 
@@ -20,12 +21,8 @@ export function PanelPlayerContainer() {
                 className={styles.item}
                 draggable
               >
-                <img
-                  className={styles.itemImage}
-                  src={playerInventory.image}
-                  alt={playerInventory.name}
-                />
-                <span className={styles.itemName}>{playerInventory.name}</span>
+                <span className={styles.itemImage}>{getIcon(playerInventory.image)}</span>
+                <span className={styles.itemName}> {playerInventory.name}</span>
               </div>
             ) : null}
           </div>
