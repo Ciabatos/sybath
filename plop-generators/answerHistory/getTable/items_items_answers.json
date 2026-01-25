@@ -45,6 +45,18 @@
       "camelName": "name",
       "tsType": "string",
       "optional": "?"
+    },
+    {
+      "name": "description",
+      "camelName": "description",
+      "tsType": "string",
+      "optional": "?"
+    },
+    {
+      "name": "image",
+      "camelName": "image",
+      "tsType": "string",
+      "optional": ""
     }
   ],
   "indexMethodParams": "[\"id\"]",
@@ -68,8 +80,5 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "fetcherName": "fetchItemsItems",
-  "fetcherNameByKey": "fetchItemsItemsByKey",
-  "selectedGenerators": [
-    "getTable"
-  ]
+  "fetcherNameByKey": "fetchItemsItemsByKey"
 }

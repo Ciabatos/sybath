@@ -25,6 +25,8 @@ export function useMutateItemsItems( params: TItemsItemsParams) {
     const defaultValues = {
       id: ``,
       name: ``,
+      description: ``,
+      image: ``,
     }
 
     //MANUAL CODE - END

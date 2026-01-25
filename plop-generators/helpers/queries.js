@@ -43,12 +43,24 @@ export async function fetchColumns(schema, table) {
     await client.connect()
     const res = await client.query(
       `
-      SELECT column_name, data_type, is_nullable
-      FROM information_schema.columns
-      LEFT JOIN pg_description d ON d.objoid = p.oid
-      WHERE table_schema = $1 AND table_name = $2
-      AND d.description != 'get_api'
-      ORDER BY ordinal_position
+      SELECT 
+          c.column_name,
+          c.data_type,
+          c.is_nullable,
+          d.description
+      FROM information_schema.columns c
+      LEFT JOIN pg_catalog.pg_class cl
+             ON cl.relname = c.table_name
+      LEFT JOIN pg_catalog.pg_attribute a
+             ON a.attrelid = cl.oid 
+            AND a.attname = c.column_name
+      LEFT JOIN pg_catalog.pg_description d
+             ON d.objoid = cl.oid 
+            AND d.objsubid = a.attnum
+      WHERE c.table_schema = $1
+        AND c.table_name = $2
+        AND (d.description IS NULL OR d.description != 'get_api')
+      ORDER BY c.ordinal_position;
     `,
       [schema, table],
     )

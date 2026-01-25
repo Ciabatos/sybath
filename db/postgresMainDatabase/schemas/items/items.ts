@@ -11,6 +11,8 @@ export type TItemsItemsParams = {
 export type TItemsItems = {
   id: number
   name?: string
+  description?: string
+  image: string
 }
 
 export type TItemsItemsRecordById = Record<string, TItemsItems>
