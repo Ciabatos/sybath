@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  flex-shrink: 0; /* Zapobiega zmniejszaniu się panelu */
   flex-direction: column;
   gap: 1rem;
   box-shadow:
@@ -11,12 +12,6 @@
   padding: 1rem;
   width: 48%;
   height: 100%;
-}
-
-.header {
-  border-bottom: 2px solid #5a4022;
-  padding-bottom: 0.5rem;
-  text-align: center;
 }
 
 .title {
@@ -35,6 +30,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   gap: 0.75rem;
+  height: 100%;
 }
 
 .rowTop,
@@ -130,6 +126,23 @@
 }
 
 /* Responsive adjustments */
+@media (max-width: 1024px) {
+  .wrapper {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .container {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .gearLayout .container {
+    width: 100%;
+    min-height: 400px;
+  }
+}
+
 @media (max-width: 768px) {
   .slot {
     width: 60px;
@@ -142,5 +155,9 @@
 
   .slotLabel {
     font-size: 0.55rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(4, 1fr); /* Mniej kolumn na mniejszych ekranach */
   }
 }
