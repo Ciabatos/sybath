@@ -67,6 +67,14 @@ export function PanelPlayerGear() {
         {/* Top row: Helm */}
         <div className={styles.rowTop}>{renderSlot("helm", "Helm", "⛑")}</div>
 
+        {/* Accessories row: Ring1, Trinket, Ring2 */}
+        <div className={styles.rowAccessories}>{renderSlot("trinket", "Trinket", "✦")}</div>
+
+        <div className={styles.rowAccessories}>
+          {renderSlot("ring1", "Gauntlet Right Hand", "💍")}
+          {renderSlot("ring2", "Gauntlet Left Hand", "💍")}
+        </div>
+
         {/* Middle row: Weapon, Armor, Shield */}
         <div className={styles.rowMiddle}>
           {renderSlot("weapon", "Weapon", "⚔")}
@@ -74,20 +82,10 @@ export function PanelPlayerGear() {
           {renderSlot("shield", "Shield", "🛡")}
         </div>
 
-        {/* Accessories row: Ring1, Trinket, Ring2 */}
-        <div className={styles.rowAccessories}>
-          {renderSlot("ring1", "Ring", "💍")}
-          {renderSlot("trinket", "Trinket", "✦")}
-          {renderSlot("ring2", "Ring", "💍")}
-        </div>
-
-        {/* Belt row */}
-        <div className={styles.rowBelt}>{renderSlot("belt", "Belt", "⚡")}</div>
-
-        {/* Belt slots row */}
-        <div className={styles.rowBeltSlots}>
-          {renderSlot("beltSlot1", "Belt Slot", "🎒")}
-          {renderSlot("beltSlot2", "Belt Slot", "🎒")}
+        <div className={styles.rowMiddle}>
+          <div className={styles.rowBelt}>{renderSlot("beltSlot1", "Belt Slot", "🎒")}</div>
+          <div className={styles.rowBelt}>{renderSlot("belt", "Belt", "⚡")}</div>
+          <div className={styles.rowBelt}>{renderSlot("beltSlot2", "Belt Slot", "🎒")}</div>
         </div>
 
         {/* Bottom row: Boots */}
