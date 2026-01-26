@@ -169,7 +169,7 @@ export async function fetchMethodResultColumns(schema, method) {
       JOIN pg_namespace n ON p.pronamespace = n.oid
       JOIN pg_description d ON d.objoid = p.oid
       WHERE n.nspname = $1 AND p.proname = $2
-      AND d.description = 'get_api'
+      AND d.description in ('get_api','action_api')
     `,
       [schema, method],
     )
