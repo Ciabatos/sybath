@@ -38,7 +38,18 @@ export function PanelPlayerContainer() {
     const targetItemId = targetData.itemId
     const targetQuantity = targetData.quantity
 
-    moveOrSwapItem({})
+    moveOrSwapItem({
+      fromSlotId: sourceSlotId,
+      toSlotId: targetSlotId,
+      fromInventoryContainerId: sourceContainerId,
+      toInventoryContainerId: targetContainerId,
+      fromItemId: sourceItemId,
+      toItemId: targetItemId,
+      fromName: sourceName,
+      toName: targetName,
+      fromQuantity: sourceQuantity,
+      toQuantity: targetQuantity,
+    })
   }
 
   const handleSortInventory = () => {

@@ -8,6 +8,19 @@ import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { itemsAtom, playerInventoryAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 
+type TmoveOrSwapItem = {
+  fromSlotId: number
+  toSlotId: number
+  fromInventoryContainerId: number
+  toInventoryContainerId: number
+  fromItemId: number
+  toItemId: number
+  fromName: string
+  toName: string
+  fromQuantity: number
+  toQuantity: number
+}
+
 export function usePlayerInventory() {
   const { playerId } = usePlayerId()
   const { mutatePlayerInventory } = useMutatePlayerInventory({ playerId })
@@ -23,25 +36,14 @@ export function usePlayerInventory() {
     ...items[playerInventory.itemId],
   }))
 
-  async function moveOrSwapItem(
-    fromSlotId: number,
-    toSlotId: number,
-    fromInventoryContainerId: number,
-    toInventoryContainerId: number,
-    fromItemId: number,
-    toItemId: number,
-    fromName: string,
-    toName: string,
-    fromQuantity: number,
-    toQuantity: number,
-  ) {
+  async function moveOrSwapItem(params: TmoveOrSwapItem) {
     try {
       const result = await doMoveOrSwapItemAction({
         playerId: playerId,
-        fromSlotId: fromSlotId,
-        toSlotId: toSlotId,
-        fromInventoryContainerId: fromInventoryContainerId,
-        toInventoryContainerId: toInventoryContainerId,
+        fromSlotId: params.fromSlotId,
+        toSlotId: params.toSlotId,
+        fromInventoryContainerId: params.fromInventoryContainerId,
+        toInventoryContainerId: params.toInventoryContainerId,
       })
 
       console.log(result)
@@ -50,18 +52,18 @@ export function usePlayerInventory() {
       }
 
       mutatePlayerInventory({
-        slotId: fromSlotId,
-        containerId: fromInventoryContainerId,
-        itemId: fromItemId,
-        name: fromName,
-        quantity: fromQuantity,
+        slotId: params.fromSlotId,
+        containerId: params.fromInventoryContainerId,
+        itemId: params.fromItemId,
+        name: params.fromName,
+        quantity: params.fromQuantity,
       })
       mutatePlayerInventory({
-        slotId: toSlotId,
-        containerId: toInventoryContainerId,
-        itemId: toItemId,
-        name: toName,
-        quantity: toQuantity,
+        slotId: params.toSlotId,
+        containerId: params.toInventoryContainerId,
+        itemId: params.toItemId,
+        name: params.toName,
+        quantity: params.toQuantity,
       })
 
       return result.message
