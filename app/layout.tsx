@@ -1,3 +1,4 @@
+import { DndProvider } from "@/providers/dnd-provider"
 import { SWRProvider } from "@/providers/swr-provider"
 import { Provider } from "jotai"
 import type { Metadata } from "next"
@@ -22,8 +23,10 @@ export default async function RootLayout({
         <SessionProvider>
           <Provider>
             <SWRProvider>
-              {children}
-              <Toaster position='bottom-right' />
+              <DndProvider>
+                {children}
+                <Toaster position='bottom-right' />
+              </DndProvider>
             </SWRProvider>
           </Provider>
         </SessionProvider>
