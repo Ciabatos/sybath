@@ -20,5 +20,5 @@ export function usePlayerInventory() {
     ...items[playerInventory.itemId],
   }))
 
-  return { items, playerInventory, combinedPlayerInventory }
+  return { playerId, items, playerInventory, combinedPlayerInventory }
 }

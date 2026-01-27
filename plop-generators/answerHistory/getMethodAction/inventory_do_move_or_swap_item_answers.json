@@ -1,0 +1,58 @@
+{
+  "promptAnswers": {
+    "schema": "inventory",
+    "method": "do_move_or_swap_item",
+    "usePrevious": false
+  },
+  "schema": "inventory",
+  "method": "do_move_or_swap_item",
+  "methodCamelName": "doMoveOrSwapItem",
+  "methodPascalName": "DoMoveOrSwapItem",
+  "methodName": "doMoveOrSwapItemAction",
+  "methodTypeName": "TDoMoveOrSwapItem",
+  "methodParamsTypeName": "TDoMoveOrSwapItemParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    },
+    {
+      "name": "p_from_slot_id",
+      "camelName": "fromSlotId",
+      "tsType": "number"
+    },
+    {
+      "name": "p_to_slot_id",
+      "camelName": "toSlotId",
+      "tsType": "number"
+    },
+    {
+      "name": "p_from_inventory_container_id",
+      "camelName": "fromInventoryContainerId",
+      "tsType": "number"
+    },
+    {
+      "name": "p_to_inventory_container_id",
+      "camelName": "toInventoryContainerId",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "status",
+      "camelName": "status",
+      "pascalName": "Status",
+      "tsType": "boolean",
+      "optional": ""
+    },
+    {
+      "name": "message",
+      "camelName": "message",
+      "pascalName": "Message",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1, $2, $3, $4, $5"
+}
