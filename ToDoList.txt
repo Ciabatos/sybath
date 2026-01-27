@@ -1,4 +1,5 @@
 przetworzyc useMutete dla PlayerInventory
+utils nie istnieeje util
 
 --pobieranie playerKnowledge
 --pobieranie playerInventory

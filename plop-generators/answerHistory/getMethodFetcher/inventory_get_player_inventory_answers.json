@@ -7,7 +7,7 @@
       "slotId"
     ],
     "generateMutation": true,
-    "mutationMergeOldData": false
+    "mutationMergeOldData": true
   },
   "schema": "inventory",
   "method": "get_player_inventory",
@@ -79,5 +79,5 @@
   "apiPath": "app/api/inventory/rpc/get-player-inventory/[playerId]/route.ts",
   "apiPathParams": "/api/inventory/rpc/get-player-inventory/${params.playerId}",
   "generateMutation": true,
-  "mutationMergeOldData": false
+  "mutationMergeOldData": true
 }

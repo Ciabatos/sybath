@@ -51,20 +51,22 @@ export function usePlayerInventory() {
         return result.message
       }
 
-      mutatePlayerInventory({
-        slotId: params.fromSlotId,
-        containerId: params.fromInventoryContainerId,
-        itemId: params.fromItemId,
-        name: params.fromName,
-        quantity: params.fromQuantity,
-      })
-      mutatePlayerInventory({
-        slotId: params.toSlotId,
-        containerId: params.toInventoryContainerId,
-        itemId: params.toItemId,
-        name: params.toName,
-        quantity: params.toQuantity,
-      })
+      mutatePlayerInventory([
+        {
+          slotId: params.fromSlotId,
+          containerId: params.fromInventoryContainerId,
+          itemId: params.fromItemId,
+          name: params.fromName,
+          quantity: params.fromQuantity,
+        },
+        {
+          slotId: params.toSlotId,
+          containerId: params.toInventoryContainerId,
+          itemId: params.toItemId,
+          name: params.toName,
+          quantity: params.toQuantity,
+        },
+      ])
 
       return result.message
     } catch (err) {
