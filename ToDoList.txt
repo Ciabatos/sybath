@@ -1,5 +1,6 @@
 przetworzyc useMutete dla PlayerInventory
 utils nie istnieeje util
+TanStackQuery
 
 --pobieranie playerKnowledge
 --pobieranie playerInventory
