@@ -6,7 +6,7 @@ import { DragDropProvider } from "@dnd-kit/react"
 import styles from "./styles/PanelPlayerContainer.module.css"
 
 export function PanelPlayerContainer() {
-  const { combinedPlayerInventory } = usePlayerInventory()
+  const { combinedPlayerInventory, moveOrSwapItem } = usePlayerInventory()
 
   function handleDragEnd(event: any) {
     const { operation } = event
@@ -16,15 +16,29 @@ export function PanelPlayerContainer() {
     if (!target) return
     const sourceData = source.data
     const targetData = target.data
-
     console.log(sourceData, targetData)
+
     if (!sourceData?.itemId) return
 
-    if (targetData?.itemId) {
-      console.log(`Items swapped between slot ${sourceData.id} and slot ${targetData.id}`)
-    } else {
-      console.log(`Item moved from slot ${sourceData.id} to slot ${targetData.id}`)
-    }
+    const sourceId = sourceData.id
+    const sourceName = sourceData.name
+    const sourceDescription = sourceData.description
+    const sourceImage = sourceData.image
+    const sourceSlotId = sourceData.slotId
+    const sourceContainerId = sourceData.containerId
+    const sourceItemId = sourceData.itemId
+    const sourceQuantity = sourceData.quantity
+
+    const targetId = targetData.id
+    const targetName = targetData.name
+    const targetDescription = targetData.description
+    const targetImage = targetData.image
+    const targetSlotId = targetData.slotId
+    const targetContainerId = targetData.containerId
+    const targetItemId = targetData.itemId
+    const targetQuantity = targetData.quantity
+
+    moveOrSwapItem({})
   }
 
   const handleSortInventory = () => {

@@ -1,16 +1,19 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
-import { TPlayerInventoryRecordBySlotId , TPlayerInventoryParams, TPlayerInventory  } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
+import {
+  TPlayerInventory,
+  TPlayerInventoryParams,
+  TPlayerInventoryRecordBySlotId,
+} from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { playerInventoryAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 import useSWR from "swr"
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutatePlayerInventory( params: TPlayerInventoryParams) {
+export function useMutatePlayerInventory(params: TPlayerInventoryParams) {
   const { mutate } = useSWR<TPlayerInventory[]>(`/api/inventory/rpc/get-player-inventory/${params.playerId}`)
   const setPlayerInventory = useSetAtom(playerInventoryAtom)
-  
 
   function mutatePlayerInventory(optimisticParams?: Partial<TPlayerInventory> | Partial<TPlayerInventory>[]) {
     if (!optimisticParams) {
@@ -23,11 +26,11 @@ export function useMutatePlayerInventory( params: TPlayerInventoryParams) {
     //MANUAL CODE - START
 
     const defaultValues = {
-      slotId: ``,
-      containerId: ``,
-      itemId: ``,
+      slotId: 0,
+      containerId: 0,
+      itemId: 0,
       name: ``,
-      quantity: ``,
+      quantity: 0,
     }
 
     //MANUAL CODE - END
@@ -38,12 +41,11 @@ export function useMutatePlayerInventory( params: TPlayerInventoryParams) {
     }))
 
     const newObj = arrayToObjectKey(["slotId"], dataWithDefaults) as TPlayerInventoryRecordBySlotId
-    
+
     const optimisticDataMergeWithOldData: TPlayerInventoryRecordBySlotId = {
-       
-      ...newObj,      
+      ...newObj,
     }
-    
+
     setPlayerInventory(optimisticDataMergeWithOldData)
 
     mutate(dataWithDefaults, {
