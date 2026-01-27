@@ -67,6 +67,7 @@ Gry:
 -Imperator Rome
 -Shadow Empire
 -Pathbreakers: Roaming Blades
+-Neath
 Zagrywane są karty akcji co turę (5 minut) i odpalane w sekwencji - potem tylko ogladasz replay rundy
 na przyklad atak, parry/rest, riposte
 
