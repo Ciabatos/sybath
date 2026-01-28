@@ -8,12 +8,11 @@ import {
 } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { playerInventoryAtom } from "@/store/atoms"
-import { useAtomValue, useSetAtom } from "jotai"
+import { useAtomValue } from "jotai"
 import useSWR from "swr"
 
 export function useMutatePlayerInventory(params: TPlayerInventoryParams) {
   const { mutate } = useSWR<TPlayerInventory[]>(`/api/inventory/rpc/get-player-inventory/${params.playerId}`)
-  const setPlayerInventory = useSetAtom(playerInventoryAtom)
   const playerInventory = useAtomValue(playerInventoryAtom)
 
   function mutatePlayerInventory(optimisticParams?: Partial<TPlayerInventory> | Partial<TPlayerInventory>[]) {
@@ -48,14 +47,12 @@ export function useMutatePlayerInventory(params: TPlayerInventoryParams) {
       ...newObj,
     }
 
-    // setPlayerInventory(optimisticDataMergeWithOldData)
-
     const currentInventoryArray = Object.values(optimisticDataMergeWithOldData)
 
     mutate(currentInventoryArray, {
       optimisticData: currentInventoryArray,
       rollbackOnError: true,
-      revalidate: true,
+      revalidate: false,
       populateCache: true,
     })
   }

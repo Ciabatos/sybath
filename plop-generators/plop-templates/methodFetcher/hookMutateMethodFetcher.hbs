@@ -2,14 +2,13 @@
 "use client"
 
 import { {{indexTypeName}} {{#if methodParamsColumns}}, {{methodParamsTypeName}}, {{methodTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
-import { {{methodCamelName}}Atom } from "@/store/atoms"
-import { useSetAtom{{#if mutationMergeOldData}}, useAtomValue{{/if}} } from "jotai"
+{{#if mutationMergeOldData}}import { {{methodCamelName}}Atom } from "@/store/atoms"{{/if}}
+import { {{#if mutationMergeOldData}}, useAtomValue{{/if}} } from "jotai"
 import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutate{{methodPascalName}}({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}) {
   const { mutate } = useSWR<{{methodTypeName}}[]>(`{{apiPathParams}}`)
-  const set{{methodPascalName}} = useSetAtom({{methodCamelName}}Atom)
   {{#if mutationMergeOldData}}const {{methodCamelName}} = useAtomValue({{methodCamelName}}Atom){{/if}}
 
   function mutate{{methodPascalName}}(optimisticParams?: Partial<{{methodTypeName}}> | Partial<{{methodTypeName}}>[]) {
@@ -34,20 +33,22 @@ export function useMutate{{methodPascalName}}({{#if methodParamsColumns}} params
       ...defaultValues,
       ...val,
     }))
+{{#if mutationMergeOldData}}
 
     const newObj = {{{indexMethodName}}}({{{indexMethodParams}}}, dataWithDefaults) as {{indexTypeName}}
     
     const optimisticDataMergeWithOldData: {{indexTypeName}} = {
-      {{#if mutationMergeOldData}}...{{methodCamelName}},{{/if}} 
+      ...{{methodCamelName}}, 
       ...newObj,      
     }
-    
-    set{{methodPascalName}}(optimisticDataMergeWithOldData)
 
-    mutate(dataWithDefaults, {
-      optimisticData: dataWithDefaults,
+    const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
+{{/if}} 
+
+    mutate({{#if mutationMergeOldData}}optimisticDataMergeWithOldDataArray{{else}}dataWithDefaults{{/if}}, {
+      optimisticData: {{#if mutationMergeOldData}}optimisticDataMergeWithOldDataArray{{else}}dataWithDefaults{{/if}},
       rollbackOnError: true,
-      revalidate: true,
+      revalidate: false,
       populateCache: true,
     })
   }

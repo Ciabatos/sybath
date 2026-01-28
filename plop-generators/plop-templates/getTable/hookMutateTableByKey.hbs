@@ -2,14 +2,13 @@
 "use client"
 
 import { {{indexTypeName}} {{#if methodParamsColumns}}, {{methodParamsTypeName}}, {{methodTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
-import { {{tableCamelName}}Atom } from "@/store/atoms"
-import { useSetAtom{{#if mutationMergeOldData}}, useAtomValue{{/if}} } from "jotai"
+{{#if mutationMergeOldData}}import { {{tableCamelName}}Atom } from "@/store/atoms"{{/if}}
+import { {{#if mutationMergeOldData}}, useAtomValue{{/if}} } from "jotai"
 import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutate{{schemaTablePascalName}}({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}) {
   const { mutate } = useSWR<{{methodTypeName}}[]>(`{{apiPathParamsByKey}}`)
-  const set{{schemaTablePascalName}} = useSetAtom({{tableCamelName}}Atom)
   {{#if mutationMergeOldData}}const {{tableCamelName}} = useAtomValue({{tableCamelName}}Atom){{/if}}
 
   function mutate{{schemaTablePascalName}}(optimisticParams?: Partial<{{methodTypeName}}> | Partial<{{methodTypeName}}>[]) {
@@ -34,20 +33,22 @@ export function useMutate{{schemaTablePascalName}}({{#if methodParamsColumns}} p
       ...defaultValues,
       ...val,
     }))
+{{#if mutationMergeOldData}}
 
     const newObj = {{{indexMethodName}}}({{{indexMethodParams}}}, dataWithDefaults) as {{indexTypeName}}
     
     const optimisticDataMergeWithOldData: {{indexTypeName}} = {
-      {{#if mutationMergeOldData}}...{{tableCamelName}},{{/if}} 
+      ...{{tableCamelName}},
       ...newObj,      
     }
     
-    set{{schemaTablePascalName}}(optimisticDataMergeWithOldData)
+    const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
+{{/if}}
 
-    mutate(dataWithDefaults, {
-      optimisticData: dataWithDefaults,
+    mutate({{#if mutationMergeOldData}}optimisticDataMergeWithOldDataArray{{else}}dataWithDefaults{{/if}}, {
+      optimisticData: {{#if mutationMergeOldData}}optimisticDataMergeWithOldDataArray{{else}}dataWithDefaults{{/if}},
       rollbackOnError: true,
-      revalidate: true,
+      revalidate: false,
       populateCache: true,
     })
   }

@@ -190,8 +190,7 @@ export default function getTable(plop) {
         {
           type: "list",
           name: "generateMutation",
-          message:
-            "Czy chcesz wygenerować także hook useMutate ? Służy do szybkiego odświeżania UI po użyciu akcji, ale należy dokonać ręcznej konfiguracji",
+          message: "Czy chcesz wygenerować także hook useMutate ? Służy do szybkiego odświeżania UI po użyciu akcji",
           choices: [
             { name: "Nie", value: false },
             { name: "Tak", value: true },
@@ -204,7 +203,7 @@ export default function getTable(plop) {
           type: "list",
           name: "mutationMergeOldData",
           message:
-            "Czy zmergować stare dane z atomu do nowych danych przy użyciu Mutate ? (pytanie: czy nowy rekord, ZAWSZE posiada wszystkie stare rekordy ?) ",
+            "Czy zmergować stare dane z atomu do nowych danych przy użyciu Mutate ? (pytanie pomocnicze : Czy mój optimistic update dotyczy tylko części istniejących danych, które muszę scalić z obecnym cache, zamiast zastępować cały stan?) ",
           choices: [
             { name: "Nie", value: false },
             { name: "Tak", value: true },
