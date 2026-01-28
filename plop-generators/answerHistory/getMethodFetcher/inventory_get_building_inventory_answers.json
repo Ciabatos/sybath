@@ -79,5 +79,8 @@
   "apiPath": "app/api/inventory/rpc/get-building-inventory/[buildingId]/route.ts",
   "apiPathParams": "/api/inventory/rpc/get-building-inventory/${params.buildingId}",
   "generateMutation": true,
-  "mutationMergeOldData": false
+  "mutationMergeOldData": false,
+  "selectedGenerators": [
+    "getMethodFetcher"
+  ]
 }

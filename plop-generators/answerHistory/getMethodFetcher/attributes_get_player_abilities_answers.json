@@ -65,5 +65,8 @@
   "apiPath": "app/api/attributes/rpc/get-player-abilities/[playerId]/route.ts",
   "apiPathParams": "/api/attributes/rpc/get-player-abilities/${params.playerId}",
   "generateMutation": true,
-  "mutationMergeOldData": true
+  "mutationMergeOldData": true,
+  "selectedGenerators": [
+    "getMethodFetcher"
+  ]
 }

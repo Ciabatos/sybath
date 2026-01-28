@@ -1,15 +1,14 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
-import { TPlayerSkillsRecordBySkillId , TPlayerSkillsParams, TPlayerSkills  } from "@/db/postgresMainDatabase/schemas/attributes/playerSkills"
+import { TPlayerSkillsRecordBySkillId,  TPlayerSkillsParams, TPlayerSkills  } from "@/db/postgresMainDatabase/schemas/attributes/playerSkills"
 import { playerSkillsAtom } from "@/store/atoms"
-import { useSetAtom, useAtomValue } from "jotai"
+import { useAtomValue } from "jotai"
 import useSWR from "swr"
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
+import { arrayToObjectKey } from "@/methods/functions/util/converters" 
 
 export function useMutatePlayerSkills( params: TPlayerSkillsParams) {
   const { mutate } = useSWR<TPlayerSkills[]>(`/api/attributes/rpc/get-player-skills/${params.playerId}`)
-  const setPlayerSkills = useSetAtom(playerSkillsAtom)
   const playerSkills = useAtomValue(playerSkillsAtom)
 
   function mutatePlayerSkills(optimisticParams?: Partial<TPlayerSkills> | Partial<TPlayerSkills>[]) {
@@ -41,13 +40,13 @@ export function useMutatePlayerSkills( params: TPlayerSkillsParams) {
       ...playerSkills, 
       ...newObj,      
     }
-    
-    setPlayerSkills(optimisticDataMergeWithOldData)
 
-    mutate(dataWithDefaults, {
-      optimisticData: dataWithDefaults,
+    const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
+
+    mutate(optimisticDataMergeWithOldDataArray, {
+      optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
-      revalidate: true,
+      revalidate: false,
       populateCache: true,
     })
   }

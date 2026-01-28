@@ -1,15 +1,14 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
-import { TActivePlayerProfileRecordByName , TActivePlayerProfileParams, TActivePlayerProfile  } from "@/db/postgresMainDatabase/schemas/players/activePlayerProfile"
+import { TActivePlayerProfileRecordByName,  TActivePlayerProfileParams, TActivePlayerProfile  } from "@/db/postgresMainDatabase/schemas/players/activePlayerProfile"
 import { activePlayerProfileAtom } from "@/store/atoms"
-import { useSetAtom, useAtomValue } from "jotai"
+import { useAtomValue } from "jotai"
 import useSWR from "swr"
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
+import { arrayToObjectKey } from "@/methods/functions/util/converters" 
 
 export function useMutateActivePlayerProfile( params: TActivePlayerProfileParams) {
   const { mutate } = useSWR<TActivePlayerProfile[]>(`/api/players/rpc/get-active-player-profile/${params.playerId}`)
-  const setActivePlayerProfile = useSetAtom(activePlayerProfileAtom)
   const activePlayerProfile = useAtomValue(activePlayerProfileAtom)
 
   function mutateActivePlayerProfile(optimisticParams?: Partial<TActivePlayerProfile> | Partial<TActivePlayerProfile>[]) {
@@ -43,13 +42,13 @@ export function useMutateActivePlayerProfile( params: TActivePlayerProfileParams
       ...activePlayerProfile, 
       ...newObj,      
     }
-    
-    setActivePlayerProfile(optimisticDataMergeWithOldData)
 
-    mutate(dataWithDefaults, {
-      optimisticData: dataWithDefaults,
+    const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
+
+    mutate(optimisticDataMergeWithOldDataArray, {
+      optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
-      revalidate: true,
+      revalidate: false,
       populateCache: true,
     })
   }

@@ -1,11 +1,11 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
-import { {{indexTypeName}} {{#if methodParamsColumns}}, {{methodParamsTypeName}}, {{methodTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
+import { {{#if mutationMergeOldData}}{{indexTypeName}}, {{/if}}{{#if methodParamsColumns}} {{methodParamsTypeName}}, {{methodTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
 {{#if mutationMergeOldData}}import { {{methodCamelName}}Atom } from "@/store/atoms"{{/if}}
-import { {{#if mutationMergeOldData}}, useAtomValue{{/if}} } from "jotai"
+{{#if mutationMergeOldData}}import { useAtomValue } from "jotai"{{/if}}
 import useSWR from "swr"
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
+{{#if mutationMergeOldData}}import { arrayToObjectKey } from "@/methods/functions/util/converters"{{/if}} 
 
 export function useMutate{{methodPascalName}}({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}) {
   const { mutate } = useSWR<{{methodTypeName}}[]>(`{{apiPathParams}}`)

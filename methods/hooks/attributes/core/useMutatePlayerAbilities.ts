@@ -1,15 +1,14 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
-import { TPlayerAbilitiesRecordByAbilityId , TPlayerAbilitiesParams, TPlayerAbilities  } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
+import { TPlayerAbilitiesRecordByAbilityId,  TPlayerAbilitiesParams, TPlayerAbilities  } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
 import { playerAbilitiesAtom } from "@/store/atoms"
-import { useSetAtom, useAtomValue } from "jotai"
+import { useAtomValue } from "jotai"
 import useSWR from "swr"
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
+import { arrayToObjectKey } from "@/methods/functions/util/converters" 
 
 export function useMutatePlayerAbilities( params: TPlayerAbilitiesParams) {
   const { mutate } = useSWR<TPlayerAbilities[]>(`/api/attributes/rpc/get-player-abilities/${params.playerId}`)
-  const setPlayerAbilities = useSetAtom(playerAbilitiesAtom)
   const playerAbilities = useAtomValue(playerAbilitiesAtom)
 
   function mutatePlayerAbilities(optimisticParams?: Partial<TPlayerAbilities> | Partial<TPlayerAbilities>[]) {
@@ -41,13 +40,13 @@ export function useMutatePlayerAbilities( params: TPlayerAbilitiesParams) {
       ...playerAbilities, 
       ...newObj,      
     }
-    
-    setPlayerAbilities(optimisticDataMergeWithOldData)
 
-    mutate(dataWithDefaults, {
-      optimisticData: dataWithDefaults,
+    const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
+
+    mutate(optimisticDataMergeWithOldDataArray, {
+      optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
-      revalidate: true,
+      revalidate: false,
       populateCache: true,
     })
   }

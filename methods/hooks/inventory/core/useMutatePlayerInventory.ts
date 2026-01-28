@@ -47,10 +47,10 @@ export function useMutatePlayerInventory(params: TPlayerInventoryParams) {
       ...newObj,
     }
 
-    const currentInventoryArray = Object.values(optimisticDataMergeWithOldData)
+    const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(currentInventoryArray, {
-      optimisticData: currentInventoryArray,
+    mutate(optimisticDataMergeWithOldDataArray, {
+      optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,
       populateCache: true,
