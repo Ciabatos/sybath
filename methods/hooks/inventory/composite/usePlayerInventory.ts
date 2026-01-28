@@ -55,16 +55,16 @@ export function usePlayerInventory() {
         {
           slotId: params.fromSlotId,
           containerId: params.fromInventoryContainerId,
-          itemId: params.fromItemId,
-          name: params.fromName,
-          quantity: params.fromQuantity,
+          itemId: params.toItemId,
+          name: params.toName,
+          quantity: params.toQuantity,
         },
         {
           slotId: params.toSlotId,
           containerId: params.toInventoryContainerId,
-          itemId: params.toItemId,
-          name: params.toName,
-          quantity: params.toQuantity,
+          itemId: params.fromItemId,
+          name: params.fromName,
+          quantity: params.fromQuantity,
         },
       ])
 
