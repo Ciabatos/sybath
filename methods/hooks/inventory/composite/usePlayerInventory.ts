@@ -70,7 +70,7 @@ export function usePlayerInventory() {
 
       return result.message
     } catch (err) {
-      console.error("Unexpected error in switchPlayer:", err)
+      console.error("Unexpected error in moveOrSwapItem:", err)
       return "Unexpected error occurred. Please refresh the page."
     }
   }

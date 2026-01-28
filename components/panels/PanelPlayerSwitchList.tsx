@@ -13,7 +13,7 @@ export default function PanelPlayerSwitchList() {
 
   const handleClick = async (id: number) => {
     const result = await switchPlayer(id)
-    toast.error(`${result}`)
+    toast.error(result)
   }
 
   return (

@@ -1,6 +1,5 @@
-przetworzyc useMutete dla PlayerInventory
-utils nie istnieeje util
-TanStackQuery
+zrobic normalizacje componentow na frontendzie uzywajacych action
+uzyc do tego plopjs ?
 
 --pobieranie playerKnowledge
 --pobieranie playerInventory
@@ -21,7 +20,7 @@ Owner zakladka - ustawianie placy/sprzedaz
 zatrudnianie graczy
 zatrudnianie populacji miasta
 transport
-+GameLoop!
++GameLoop!+
 +MarketPlace
 +Mechaniki kupowania/sprzedawania
 +Mechaniki produkcji
