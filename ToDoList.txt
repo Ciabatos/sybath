@@ -1,5 +1,5 @@
 zrobic normalizacje componentow na frontendzie uzywajacych action
-uzyc do tego plopjs ?
+uzyc do tego plopjs snippeta ?
 
 --pobieranie playerKnowledge
 --pobieranie playerInventory
