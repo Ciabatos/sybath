@@ -1,15 +1,14 @@
-// GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTable.hbs
+// GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTableByKey.hbs
 "use client"
 
-import { TItemsItemsRecordById , TItemsItemsParams, TItemsItems  } from "@/db/postgresMainDatabase/schemas/items/items"
-import { itemsAtom } from "@/store/atoms"
-import { useSetAtom, useAtomValue } from "jotai"
+import { TItemsItemsRecordById, TItemsItemsParams, TItemsItems  } from "@/db/postgresMainDatabase/schemas/items/items"
 import useSWR from "swr"
+import { itemsAtom } from "@/store/atoms"
+import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateItemsItems( params: TItemsItemsParams) {
   const { mutate } = useSWR<TItemsItems[]>(`/api/items/items/${params.id}`)
-  const setItemsItems = useSetAtom(itemsAtom)
   const items = useAtomValue(itemsAtom)
 
   function mutateItemsItems(optimisticParams?: Partial<TItemsItems> | Partial<TItemsItems>[]) {
@@ -39,16 +38,16 @@ export function useMutateItemsItems( params: TItemsItemsParams) {
     const newObj = arrayToObjectKey(["id"], dataWithDefaults) as TItemsItemsRecordById
     
     const optimisticDataMergeWithOldData: TItemsItemsRecordById = {
-      ...items, 
+      ...items,
       ...newObj,      
     }
     
-    setItemsItems(optimisticDataMergeWithOldData)
+    const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(dataWithDefaults, {
-      optimisticData: dataWithDefaults,
+    mutate(optimisticDataMergeWithOldDataArray, {
+      optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
-      revalidate: true,
+      revalidate: false,
       populateCache: true,
     })
   }

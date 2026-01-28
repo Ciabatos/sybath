@@ -2,14 +2,13 @@
 "use client"
 
 import { TWorldMapTilesRecordByXY, TWorldMapTiles } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
-import { mapTilesAtom } from "@/store/atoms"
-import { useSetAtom, useAtomValue } from "jotai"
 import useSWR from "swr"
+import { mapTilesAtom } from "@/store/atoms"
+import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateWorldMapTiles() {
   const { mutate } = useSWR<TWorldMapTiles[]>(`/api/world/map-tiles`)
-  const setWorldMapTiles = useSetAtom(mapTilesAtom)
   const mapTiles = useAtomValue(mapTilesAtom)
 
   function mutateWorldMapTiles(optimisticParams?: Partial<TWorldMapTiles> | Partial<TWorldMapTiles>[]) {
@@ -40,16 +39,16 @@ export function useMutateWorldMapTiles() {
     const newObj = arrayToObjectKey(["x", "y"], dataWithDefaults) as TWorldMapTilesRecordByXY
     
     const optimisticDataMergeWithOldData: TWorldMapTilesRecordByXY = {
-      ...mapTiles, 
+      ...mapTiles,
       ...newObj,      
     }
     
-    setWorldMapTiles(optimisticDataMergeWithOldData)
+    const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(dataWithDefaults, {
-      optimisticData: dataWithDefaults,
+    mutate(optimisticDataMergeWithOldDataArray, {
+      optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
-      revalidate: true,
+      revalidate: false,
       populateCache: true,
     })
   }

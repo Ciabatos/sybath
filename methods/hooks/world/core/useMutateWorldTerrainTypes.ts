@@ -2,14 +2,13 @@
 "use client"
 
 import { TWorldTerrainTypesRecordById, TWorldTerrainTypes } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
-import { terrainTypesAtom } from "@/store/atoms"
-import { useSetAtom, useAtomValue } from "jotai"
 import useSWR from "swr"
+import { terrainTypesAtom } from "@/store/atoms"
+import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateWorldTerrainTypes() {
   const { mutate } = useSWR<TWorldTerrainTypes[]>(`/api/world/terrain-types`)
-  const setWorldTerrainTypes = useSetAtom(terrainTypesAtom)
   const terrainTypes = useAtomValue(terrainTypesAtom)
 
   function mutateWorldTerrainTypes(optimisticParams?: Partial<TWorldTerrainTypes> | Partial<TWorldTerrainTypes>[]) {
@@ -39,16 +38,16 @@ export function useMutateWorldTerrainTypes() {
     const newObj = arrayToObjectKey(["id"], dataWithDefaults) as TWorldTerrainTypesRecordById
     
     const optimisticDataMergeWithOldData: TWorldTerrainTypesRecordById = {
-      ...terrainTypes, 
+      ...terrainTypes,
       ...newObj,      
     }
     
-    setWorldTerrainTypes(optimisticDataMergeWithOldData)
+    const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(dataWithDefaults, {
-      optimisticData: dataWithDefaults,
+    mutate(optimisticDataMergeWithOldDataArray, {
+      optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
-      revalidate: true,
+      revalidate: false,
       populateCache: true,
     })
   }

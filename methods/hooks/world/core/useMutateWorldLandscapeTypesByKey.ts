@@ -1,15 +1,14 @@
-// GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTable.hbs
+// GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTableByKey.hbs
 "use client"
 
-import { TWorldLandscapeTypesRecordById , TWorldLandscapeTypesParams, TWorldLandscapeTypes  } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
-import { landscapeTypesAtom } from "@/store/atoms"
-import { useSetAtom, useAtomValue } from "jotai"
+import { TWorldLandscapeTypesRecordById, TWorldLandscapeTypesParams, TWorldLandscapeTypes  } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import useSWR from "swr"
+import { landscapeTypesAtom } from "@/store/atoms"
+import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateWorldLandscapeTypes( params: TWorldLandscapeTypesParams) {
   const { mutate } = useSWR<TWorldLandscapeTypes[]>(`/api/world/landscape-types/${params.id}`)
-  const setWorldLandscapeTypes = useSetAtom(landscapeTypesAtom)
   const landscapeTypes = useAtomValue(landscapeTypesAtom)
 
   function mutateWorldLandscapeTypes(optimisticParams?: Partial<TWorldLandscapeTypes> | Partial<TWorldLandscapeTypes>[]) {
@@ -39,16 +38,16 @@ export function useMutateWorldLandscapeTypes( params: TWorldLandscapeTypesParams
     const newObj = arrayToObjectKey(["id"], dataWithDefaults) as TWorldLandscapeTypesRecordById
     
     const optimisticDataMergeWithOldData: TWorldLandscapeTypesRecordById = {
-      ...landscapeTypes, 
+      ...landscapeTypes,
       ...newObj,      
     }
     
-    setWorldLandscapeTypes(optimisticDataMergeWithOldData)
+    const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(dataWithDefaults, {
-      optimisticData: dataWithDefaults,
+    mutate(optimisticDataMergeWithOldDataArray, {
+      optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
-      revalidate: true,
+      revalidate: false,
       populateCache: true,
     })
   }

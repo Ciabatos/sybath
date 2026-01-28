@@ -1,15 +1,14 @@
-// GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTable.hbs
+// GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTableByKey.hbs
 "use client"
 
-import { TBuildingsBuildingsRecordByCityTileXCityTileY , TBuildingsBuildingsParams, TBuildingsBuildings  } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
-import { buildingsAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { TBuildingsBuildingsParams, TBuildingsBuildings  } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
 import useSWR from "swr"
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
+
+
+
 
 export function useMutateBuildingsBuildings( params: TBuildingsBuildingsParams) {
   const { mutate } = useSWR<TBuildingsBuildings[]>(`/api/buildings/buildings/${params.cityId}`)
-  const setBuildingsBuildings = useSetAtom(buildingsAtom)
   
 
   function mutateBuildingsBuildings(optimisticParams?: Partial<TBuildingsBuildings> | Partial<TBuildingsBuildings>[]) {
@@ -38,19 +37,10 @@ export function useMutateBuildingsBuildings( params: TBuildingsBuildingsParams) 
       ...val,
     }))
 
-    const newObj = arrayToObjectKey(["cityTileX", "cityTileY"], dataWithDefaults) as TBuildingsBuildingsRecordByCityTileXCityTileY
-    
-    const optimisticDataMergeWithOldData: TBuildingsBuildingsRecordByCityTileXCityTileY = {
-       
-      ...newObj,      
-    }
-    
-    setBuildingsBuildings(optimisticDataMergeWithOldData)
-
     mutate(dataWithDefaults, {
       optimisticData: dataWithDefaults,
       rollbackOnError: true,
-      revalidate: true,
+      revalidate: false,
       populateCache: true,
     })
   }

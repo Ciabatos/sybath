@@ -1,15 +1,14 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTable.hbs
 "use client"
 
-import { TDistrictsDistrictsRecordByMapTileXMapTileY, TDistrictsDistricts } from "@/db/postgresMainDatabase/schemas/districts/districts"
-import { districtsAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { TDistrictsDistricts } from "@/db/postgresMainDatabase/schemas/districts/districts"
 import useSWR from "swr"
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
+
+
+
 
 export function useMutateDistrictsDistricts() {
   const { mutate } = useSWR<TDistrictsDistricts[]>(`/api/districts/districts`)
-  const setDistrictsDistricts = useSetAtom(districtsAtom)
   
 
   function mutateDistrictsDistricts(optimisticParams?: Partial<TDistrictsDistricts> | Partial<TDistrictsDistricts>[]) {
@@ -38,19 +37,10 @@ export function useMutateDistrictsDistricts() {
       ...val,
     }))
 
-    const newObj = arrayToObjectKey(["mapTileX", "mapTileY"], dataWithDefaults) as TDistrictsDistrictsRecordByMapTileXMapTileY
-    
-    const optimisticDataMergeWithOldData: TDistrictsDistrictsRecordByMapTileXMapTileY = {
-       
-      ...newObj,      
-    }
-    
-    setDistrictsDistricts(optimisticDataMergeWithOldData)
-
     mutate(dataWithDefaults, {
       optimisticData: dataWithDefaults,
       rollbackOnError: true,
-      revalidate: true,
+      revalidate: false,
       populateCache: true,
     })
   }

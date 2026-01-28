@@ -1,15 +1,14 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTable.hbs
 "use client"
 
-import { TCitiesCitiesRecordByMapTileXMapTileY, TCitiesCities } from "@/db/postgresMainDatabase/schemas/cities/cities"
-import { citiesAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { TCitiesCities } from "@/db/postgresMainDatabase/schemas/cities/cities"
 import useSWR from "swr"
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
+
+
+
 
 export function useMutateCitiesCities() {
   const { mutate } = useSWR<TCitiesCities[]>(`/api/cities/cities`)
-  const setCitiesCities = useSetAtom(citiesAtom)
   
 
   function mutateCitiesCities(optimisticParams?: Partial<TCitiesCities> | Partial<TCitiesCities>[]) {
@@ -39,19 +38,10 @@ export function useMutateCitiesCities() {
       ...val,
     }))
 
-    const newObj = arrayToObjectKey(["mapTileX", "mapTileY"], dataWithDefaults) as TCitiesCitiesRecordByMapTileXMapTileY
-    
-    const optimisticDataMergeWithOldData: TCitiesCitiesRecordByMapTileXMapTileY = {
-       
-      ...newObj,      
-    }
-    
-    setCitiesCities(optimisticDataMergeWithOldData)
-
     mutate(dataWithDefaults, {
       optimisticData: dataWithDefaults,
       rollbackOnError: true,
-      revalidate: true,
+      revalidate: false,
       populateCache: true,
     })
   }

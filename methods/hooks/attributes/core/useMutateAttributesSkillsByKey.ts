@@ -1,15 +1,14 @@
-// GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTable.hbs
+// GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTableByKey.hbs
 "use client"
 
-import { TAttributesSkillsRecordById , TAttributesSkillsParams, TAttributesSkills  } from "@/db/postgresMainDatabase/schemas/attributes/skills"
-import { skillsAtom } from "@/store/atoms"
-import { useSetAtom, useAtomValue } from "jotai"
+import { TAttributesSkillsRecordById, TAttributesSkillsParams, TAttributesSkills  } from "@/db/postgresMainDatabase/schemas/attributes/skills"
 import useSWR from "swr"
+import { skillsAtom } from "@/store/atoms"
+import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateAttributesSkills( params: TAttributesSkillsParams) {
   const { mutate } = useSWR<TAttributesSkills[]>(`/api/attributes/skills/${params.id}`)
-  const setAttributesSkills = useSetAtom(skillsAtom)
   const skills = useAtomValue(skillsAtom)
 
   function mutateAttributesSkills(optimisticParams?: Partial<TAttributesSkills> | Partial<TAttributesSkills>[]) {
@@ -39,16 +38,16 @@ export function useMutateAttributesSkills( params: TAttributesSkillsParams) {
     const newObj = arrayToObjectKey(["id"], dataWithDefaults) as TAttributesSkillsRecordById
     
     const optimisticDataMergeWithOldData: TAttributesSkillsRecordById = {
-      ...skills, 
+      ...skills,
       ...newObj,      
     }
     
-    setAttributesSkills(optimisticDataMergeWithOldData)
+    const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(dataWithDefaults, {
-      optimisticData: dataWithDefaults,
+    mutate(optimisticDataMergeWithOldDataArray, {
+      optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
-      revalidate: true,
+      revalidate: false,
       populateCache: true,
     })
   }

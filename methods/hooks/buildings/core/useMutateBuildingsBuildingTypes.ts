@@ -2,14 +2,13 @@
 "use client"
 
 import { TBuildingsBuildingTypesRecordById, TBuildingsBuildingTypes } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
-import { buildingTypesAtom } from "@/store/atoms"
-import { useSetAtom, useAtomValue } from "jotai"
 import useSWR from "swr"
+import { buildingTypesAtom } from "@/store/atoms"
+import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateBuildingsBuildingTypes() {
   const { mutate } = useSWR<TBuildingsBuildingTypes[]>(`/api/buildings/building-types`)
-  const setBuildingsBuildingTypes = useSetAtom(buildingTypesAtom)
   const buildingTypes = useAtomValue(buildingTypesAtom)
 
   function mutateBuildingsBuildingTypes(optimisticParams?: Partial<TBuildingsBuildingTypes> | Partial<TBuildingsBuildingTypes>[]) {
@@ -38,16 +37,16 @@ export function useMutateBuildingsBuildingTypes() {
     const newObj = arrayToObjectKey(["id"], dataWithDefaults) as TBuildingsBuildingTypesRecordById
     
     const optimisticDataMergeWithOldData: TBuildingsBuildingTypesRecordById = {
-      ...buildingTypes, 
+      ...buildingTypes,
       ...newObj,      
     }
     
-    setBuildingsBuildingTypes(optimisticDataMergeWithOldData)
+    const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(dataWithDefaults, {
-      optimisticData: dataWithDefaults,
+    mutate(optimisticDataMergeWithOldDataArray, {
+      optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
-      revalidate: true,
+      revalidate: false,
       populateCache: true,
     })
   }

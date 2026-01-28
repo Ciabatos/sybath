@@ -1,11 +1,11 @@
-// GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTable.hbs
+// GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTableByKey.hbs
 "use client"
 
-import { {{indexTypeName}} {{#if methodParamsColumns}}, {{methodParamsTypeName}}, {{methodTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
-{{#if mutationMergeOldData}}import { {{tableCamelName}}Atom } from "@/store/atoms"{{/if}}
-import { {{#if mutationMergeOldData}}, useAtomValue{{/if}} } from "jotai"
+import { {{#if mutationMergeOldData}}{{indexTypeName}}, {{/if}}{{#if methodParamsColumns}}{{methodParamsTypeName}}, {{methodTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 import useSWR from "swr"
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
+{{#if mutationMergeOldData}}import { {{tableCamelName}}Atom } from "@/store/atoms"{{/if}}
+{{#if mutationMergeOldData}}import { useAtomValue } from "jotai"{{/if}}
+{{#if mutationMergeOldData}}import { arrayToObjectKey } from "@/methods/functions/util/converters"{{/if}}
 
 export function useMutate{{schemaTablePascalName}}({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}) {
   const { mutate } = useSWR<{{methodTypeName}}[]>(`{{apiPathParamsByKey}}`)

@@ -2,14 +2,13 @@
 "use client"
 
 import { TAttributesAbilitiesRecordById, TAttributesAbilities } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
-import { abilitiesAtom } from "@/store/atoms"
-import { useSetAtom, useAtomValue } from "jotai"
 import useSWR from "swr"
+import { abilitiesAtom } from "@/store/atoms"
+import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateAttributesAbilities() {
   const { mutate } = useSWR<TAttributesAbilities[]>(`/api/attributes/abilities`)
-  const setAttributesAbilities = useSetAtom(abilitiesAtom)
   const abilities = useAtomValue(abilitiesAtom)
 
   function mutateAttributesAbilities(optimisticParams?: Partial<TAttributesAbilities> | Partial<TAttributesAbilities>[]) {
@@ -39,16 +38,16 @@ export function useMutateAttributesAbilities() {
     const newObj = arrayToObjectKey(["id"], dataWithDefaults) as TAttributesAbilitiesRecordById
     
     const optimisticDataMergeWithOldData: TAttributesAbilitiesRecordById = {
-      ...abilities, 
+      ...abilities,
       ...newObj,      
     }
     
-    setAttributesAbilities(optimisticDataMergeWithOldData)
+    const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(dataWithDefaults, {
-      optimisticData: dataWithDefaults,
+    mutate(optimisticDataMergeWithOldDataArray, {
+      optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
-      revalidate: true,
+      revalidate: false,
       populateCache: true,
     })
   }

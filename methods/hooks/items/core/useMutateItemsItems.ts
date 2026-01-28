@@ -2,14 +2,13 @@
 "use client"
 
 import { TItemsItemsRecordById, TItemsItems } from "@/db/postgresMainDatabase/schemas/items/items"
-import { itemsAtom } from "@/store/atoms"
-import { useSetAtom, useAtomValue } from "jotai"
 import useSWR from "swr"
+import { itemsAtom } from "@/store/atoms"
+import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateItemsItems() {
   const { mutate } = useSWR<TItemsItems[]>(`/api/items/items`)
-  const setItemsItems = useSetAtom(itemsAtom)
   const items = useAtomValue(itemsAtom)
 
   function mutateItemsItems(optimisticParams?: Partial<TItemsItems> | Partial<TItemsItems>[]) {
@@ -39,16 +38,16 @@ export function useMutateItemsItems() {
     const newObj = arrayToObjectKey(["id"], dataWithDefaults) as TItemsItemsRecordById
     
     const optimisticDataMergeWithOldData: TItemsItemsRecordById = {
-      ...items, 
+      ...items,
       ...newObj,      
     }
     
-    setItemsItems(optimisticDataMergeWithOldData)
+    const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(dataWithDefaults, {
-      optimisticData: dataWithDefaults,
+    mutate(optimisticDataMergeWithOldDataArray, {
+      optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
-      revalidate: true,
+      revalidate: false,
       populateCache: true,
     })
   }

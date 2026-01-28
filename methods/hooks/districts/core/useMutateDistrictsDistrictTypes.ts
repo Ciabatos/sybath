@@ -2,14 +2,13 @@
 "use client"
 
 import { TDistrictsDistrictTypesRecordById, TDistrictsDistrictTypes } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
-import { districtTypesAtom } from "@/store/atoms"
-import { useSetAtom, useAtomValue } from "jotai"
 import useSWR from "swr"
+import { districtTypesAtom } from "@/store/atoms"
+import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateDistrictsDistrictTypes() {
   const { mutate } = useSWR<TDistrictsDistrictTypes[]>(`/api/districts/district-types`)
-  const setDistrictsDistrictTypes = useSetAtom(districtTypesAtom)
   const districtTypes = useAtomValue(districtTypesAtom)
 
   function mutateDistrictsDistrictTypes(optimisticParams?: Partial<TDistrictsDistrictTypes> | Partial<TDistrictsDistrictTypes>[]) {
@@ -39,16 +38,16 @@ export function useMutateDistrictsDistrictTypes() {
     const newObj = arrayToObjectKey(["id"], dataWithDefaults) as TDistrictsDistrictTypesRecordById
     
     const optimisticDataMergeWithOldData: TDistrictsDistrictTypesRecordById = {
-      ...districtTypes, 
+      ...districtTypes,
       ...newObj,      
     }
     
-    setDistrictsDistrictTypes(optimisticDataMergeWithOldData)
+    const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(dataWithDefaults, {
-      optimisticData: dataWithDefaults,
+    mutate(optimisticDataMergeWithOldDataArray, {
+      optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
-      revalidate: true,
+      revalidate: false,
       populateCache: true,
     })
   }
