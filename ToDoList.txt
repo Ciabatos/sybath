@@ -1,6 +1,13 @@
 zrobic normalizacje componentow na frontendzie uzywajacych action
 uzyc do tego plopjs snippeta ?
 
+Dodac nowy typ container dla Gear gracza 
+Da sie to zrobic dla wszystkich kontenerow
+z tabeli containers robie selecta do unii wszystkich tabel z typem contenera i potem selecty na sloty
+
+Gear gracza moze wygladac tak ze losowe sloty sa ale skad bede wiedzial ze do danego slota wchodzi helm ?
+dodanie kolumny inventory_slots typ slotu ? i dodatkowa tabele slot_type 1,2,3,4 helm, gloves, resources, any ? 
+
 --pobieranie playerKnowledge
 --pobieranie playerInventory
 --chodzenie po mapie
