@@ -8,7 +8,7 @@ import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { itemsAtom, playerInventoryAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 
-type TmoveOrSwapItem = {
+type TMoveOrSwapItem = {
   fromSlotId: number
   toSlotId: number
   fromInventoryContainerId: number
@@ -31,12 +31,12 @@ export function usePlayerInventory() {
   useFetchPlayerInventory({ playerId })
   const playerInventory = useAtomValue(playerInventoryAtom)
 
-  const combinedPlayerInventory = Object.entries(playerInventory).map(([key, playerInventory]) => ({
+  const combinedPlayerInventory = Object.values(playerInventory).map((playerInventory) => ({
     ...playerInventory,
     ...items[playerInventory.itemId],
   }))
 
-  async function moveOrSwapItem(params: TmoveOrSwapItem) {
+  async function moveOrSwapItem(params: TMoveOrSwapItem) {
     try {
       const result = await doMoveOrSwapItemAction({
         playerId: playerId,
