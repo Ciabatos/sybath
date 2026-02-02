@@ -1,3 +1,5 @@
+Poprawić API dodać sprawdzenie playerId po sprawdzeniu ETagu (zamienic kolejnosc)
+
 zrobic normalizacje componentow na frontendzie uzywajacych action
 uzyc do tego plopjs snippeta ?
 
