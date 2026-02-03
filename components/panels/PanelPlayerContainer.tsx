@@ -64,7 +64,7 @@ export function PanelPlayerContainer() {
         {combinedPlayerInventory.map((playerInventory) => (
           <InventorySlot
             key={playerInventory.slotId}
-            playerInventory={playerInventory}
+            inventory={playerInventory}
           />
         ))}
       </div>

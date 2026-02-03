@@ -2,7 +2,7 @@ import getIcon from "@/methods/functions/icons/getIcon"
 import { useDraggable, useDroppable } from "@dnd-kit/react"
 import styles from "./styles/PanelPlayerContainer.module.css"
 
-type TPlayerInventory = {
+type TInventorySlot = {
   id: number
   name: string
   description?: string | undefined
@@ -14,46 +14,41 @@ type TPlayerInventory = {
 }
 
 type TProps = {
-  playerInventory: TPlayerInventory
+  inventory: TInventorySlot
 }
 
-export function InventorySlot({ playerInventory }: TProps) {
+export function InventorySlot({ inventory }: TProps) {
   const draggable = useDraggable({
-    id: `item-${playerInventory.slotId}`,
-    disabled: !playerInventory.itemId,
-    data: playerInventory,
+    id: `item-${inventory.slotId}`,
+    disabled: !inventory.itemId,
+    data: inventory,
   })
 
   const droppable = useDroppable({
-    id: `slot-${playerInventory.slotId}`,
-    data: playerInventory,
+    id: `slot-${inventory.slotId}`,
+    data: inventory,
   })
 
   const handleDoubleClick = () => {
-    if (!playerInventory.itemId) return
-    console.log(`Context menu for item: ${playerInventory.name} in slot ${playerInventory.slotId}`)
+    if (!inventory.itemId) return
+    console.log(`Context menu for item: ${inventory.name} in slot ${inventory.slotId}`)
   }
 
   return (
     <div
       ref={droppable.ref}
-      className={`${styles.slot} ${playerInventory.itemId ? styles.occupied : ""} ${droppable.isDropTarget ? styles.dragOver : ""}`}
-      title={
-        playerInventory.itemId
-          ? `${playerInventory.name}${playerInventory.description ? `\n${playerInventory.description}` : ""}`
-          : "Empty slot"
-      }
+      className={`${styles.slot} ${inventory.itemId ? styles.occupied : ""} ${droppable.isDropTarget ? styles.dragOver : ""}`}
     >
-      {playerInventory.itemId ? (
+      {inventory.itemId ? (
         <div
           ref={draggable.ref}
           className={`${styles.item} ${draggable.isDragging ? styles.dragging : ""}`}
           onDoubleClick={handleDoubleClick}
         >
-          <span className={styles.itemImage}>{getIcon(playerInventory.image)}</span>
-          <span className={styles.itemName}>{playerInventory.name}</span>
-          {playerInventory.quantity && playerInventory.quantity >= 1 ? (
-            <span className={styles.quantity}> x{playerInventory.quantity}</span>
+          <span className={styles.itemImage}>{getIcon(inventory.image)}</span>
+          <span className={styles.itemName}>{inventory.name}</span>
+          {inventory.quantity && inventory.quantity >= 1 ? (
+            <span className={styles.quantity}> x{inventory.quantity}</span>
           ) : null}
         </div>
       ) : (

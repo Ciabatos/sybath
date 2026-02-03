@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { InventorySlot } from "@/components/panels/InventorySlot"
+import { usePlayerGearInventory } from "@/methods/hooks/inventory/composite/usePlayerGearInventory"
 import styles from "./styles/PanelPlayerGear.module.css"
 
 interface GearItem {
@@ -11,47 +12,28 @@ interface GearItem {
   stats?: string
 }
 
-const defaultGear = {
-  helm: null,
-  weapon: null,
-  shield: null,
-  armor: null,
-  boots: null,
-  trinket: null,
-  belt: null,
-  ring1: null,
-  ring2: null,
-  beltSlot1: null,
-  beltSlot2: null,
-}
-
 export function PanelPlayerGear() {
-  const [gear, setGear] = useState<Record<string, GearItem | null>>(defaultGear)
-  const [selectedSlot, setSelectedSlot] = useState<string | null>(null)
+  const { combinedPlayerGearInventory, moveOrSwapItem } = usePlayerGearInventory()
 
-  const renderSlot = (slotName: string, label: string, icon: string) => {
-    const item = gear[slotName]
-    const isSelected = selectedSlot === slotName
+  const renderSlot = (inventorySlotTypeId: number, icon: string) => {
+    const gear = Object.values(combinedPlayerGearInventory).find(
+      (gearItem) => gearItem.inventorySlotTypeId === inventorySlotTypeId,
+    )
 
     return (
       <div
-        className={`${styles.slot} ${item ? styles.slotFilled : ""} ${isSelected ? styles.slotSelected : ""}`}
-        title={item?.description || `Empty ${label} slot`}
+        className={`${styles.slot} ${gear ? styles.slotFilled : ""}`}
+        title={gear?.description || `Empty slot`}
       >
-        {item ? (
+        {gear ? (
           <>
-            <img
-              src={item.image || "/placeholder.svg"}
-              alt={item.name}
-              className={styles.slotImage}
+            <InventorySlot
+              key={gear.slotId}
+              inventory={gear}
             />
-            <span className={styles.slotLabel}>{item.name}</span>
           </>
         ) : (
-          <>
-            <div className={styles.slotIcon}>{icon}</div>
-            <span className={styles.slotLabel}>{label}</span>
-          </>
+          <>null</>
         )}
       </div>
     )
@@ -64,32 +46,44 @@ export function PanelPlayerGear() {
       </div>
 
       <div className={styles.gearLayout}>
-        {/* Top row: Helm */}
-        <div className={styles.rowTop}>{renderSlot("helm", "Helm", "⛑")}</div>
+        {/* 1	Head */}
+        <div className={styles.rowTop}>{renderSlot(1, "⛑")}</div>
 
-        {/* Accessories row: Ring1, Trinket, Ring2 */}
-        <div className={styles.rowAccessories}>{renderSlot("trinket", "Trinket", "✦")}</div>
+        {/* 2	Neck */}
+        <div className={styles.rowAccessories}>{renderSlot(2, "📿")}</div>
 
+        {/* 3	Left hand 
+        9	Left finger 
+        10	Right finger
+        4	Right hand 
+        */}
         <div className={styles.rowAccessories}>
-          {renderSlot("ring1", "Gauntlet Right Hand", "💍")}
-          {renderSlot("ring2", "Gauntlet Left Hand", "💍")}
+          {renderSlot(3, "🧤")}
+          {renderSlot(9, "💍")}
+          {renderSlot(10, "💍")}
+          {renderSlot(4, "🧤")}
         </div>
 
-        {/* Middle row: Weapon, Armor, Shield */}
+        {/* 12	Left hand gear
+         5	Chest
+         13	Right hand gear*/}
         <div className={styles.rowMiddle}>
-          {renderSlot("weapon", "Weapon", "⚔")}
-          {renderSlot("armor", "Armor", "🛡")}
-          {renderSlot("shield", "Shield", "🛡")}
+          {renderSlot(12, "⚔")}
+          {renderSlot(5, "🎒")}
+          {renderSlot(13, "🛡")}
         </div>
 
+        {/* 7	Left waist 
+        6	Waist 
+        8	Right waist*/}
         <div className={styles.rowMiddle}>
-          <div className={styles.rowBelt}>{renderSlot("beltSlot1", "Belt Slot", "🎒")}</div>
-          <div className={styles.rowBelt}>{renderSlot("belt", "Belt", "⚡")}</div>
-          <div className={styles.rowBelt}>{renderSlot("beltSlot2", "Belt Slot", "🎒")}</div>
+          <div className={styles.rowBelt}>{renderSlot(7, "🎒")}</div>
+          <div className={styles.rowBelt}>{renderSlot(6, "🎒")}</div>
+          <div className={styles.rowBelt}>{renderSlot(8, "🎒")}</div>
         </div>
 
-        {/* Bottom row: Boots */}
-        <div className={styles.rowBottom}>{renderSlot("boots", "Boots", "👢")}</div>
+        {/* 11	Feets*/}
+        <div className={styles.rowBottom}>{renderSlot(11, "👢")}</div>
       </div>
     </div>
   )
