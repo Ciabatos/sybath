@@ -308,5 +308,29 @@
       "const playerStats = useAtomValue(playerStatsAtom)"
     ],
     "description": "Destructuring usePlayerStats hook"
+  },
+  "Destructure useInventoryInventorySlotTypes": {
+    "prefix": "hook_inventory_core_useInventoryInventorySlotTypes",
+    "body": [
+      "useFetchInventoryInventorySlotTypes()",
+      "const inventorySlotTypes = useAtomValue(inventorySlotTypesAtom)"
+    ],
+    "description": "Destructuring useInventoryInventorySlotTypes hook"
+  },
+  "Destructure useInventoryInventorySlotTypesByKey": {
+    "prefix": "hook_inventory_core_useInventoryInventorySlotTypesByKey",
+    "body": [
+      "useFetchInventoryInventorySlotTypesByKey({ id })",
+      "const inventorySlotTypes = useAtomValue(inventorySlotTypesAtom)"
+    ],
+    "description": "Destructuring useInventoryInventorySlotTypesByKey hook"
+  },  
+  "Destructure usePlayerGearInventory": {
+    "prefix": "hook_inventory_core_usePlayerGearInventory",
+    "body": [
+      "useFetchPlayerGearInventory({ playerId })",
+      "const playerGearInventory = useAtomValue(playerGearInventoryAtom)"
+    ],
+    "description": "Destructuring usePlayerGearInventory hook"
   },//Automatic Snippets
 }

@@ -36,6 +36,8 @@ import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { EPanelsTopCenterBar } from "@/types/enumeration/EPanelsTopCenterBar"
 import { atom } from "jotai"
+import { TInventoryInventorySlotTypesRecordById } from "@/db/postgresMainDatabase/schemas/inventory/inventorySlotTypes"
+import { TPlayerGearInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/playerGearInventory"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBottomCenterBar.Inactive)
@@ -57,6 +59,7 @@ export const playerMapTilesMovementPathAtom = atom<TMapTilesMovementPathRecordBy
 export const playerMapTilesGuardAreaAtom = atom<TAreaRecordByXY>({})
 
 //Tables
+export const inventorySlotTypesAtom = atom<TInventoryInventorySlotTypesRecordById>({})
 export const itemsAtom = atom<TItemsItemsRecordById>({})
 export const districtsAtom = atom<TDistrictsDistrictsRecordByMapTileXMapTileY>({})
 export const districtTypesAtom = atom<TDistrictsDistrictTypesRecordById>({})
@@ -72,6 +75,7 @@ export const mapTilesAtom = atom<TWorldMapTilesRecordByXY>({})
 export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
 
 //Functions
+export const playerGearInventoryAtom = atom<TPlayerGearInventoryRecordBySlotId>({})
 export const playerStatsAtom = atom<TPlayerStatsRecordByStatId>({})
 export const playerSkillsAtom = atom<TPlayerSkillsRecordBySkillId>({})
 export const buildingInventoryAtom = atom<TBuildingInventoryRecordBySlotId>({})

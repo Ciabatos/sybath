@@ -1,0 +1,70 @@
+{
+  "promptAnswers": {
+    "schema": "inventory",
+    "table": "inventory_slot_types",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "id"
+    ],
+    "paramsColumns": [
+      "id"
+    ],
+    "generateMutation": false
+  },
+  "schema": "inventory",
+  "table": "inventory_slot_types",
+  "tableCamelName": "inventorySlotTypes",
+  "tablePascalName": "InventorySlotTypes",
+  "tableKebabName": "inventory-slot-types",
+  "schemaTablePascalName": "InventoryInventorySlotTypes",
+  "methodTypeName": "TInventoryInventorySlotTypes",
+  "methodParamsTypeName": "TInventoryInventorySlotTypesParams",
+  "methodParamsColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number"
+    }
+  ],
+  "methodName": "getInventoryInventorySlotTypes",
+  "methodNameByKey": "getInventoryInventorySlotTypesByKey",
+  "methodRecords": "get_inventory_slot_types",
+  "methodRecordsByKey": "get_inventory_slot_types_by_key",
+  "sqlParamsPlaceholders": "$1",
+  "methodColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Id"
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "tsType": "string",
+      "optional": "?"
+    }
+  ],
+  "indexMethodParams": "[\"id\"]",
+  "indexParamsColumns": "id",
+  "indexTypeMethodName": "Id",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TInventoryInventorySlotTypesRecordById",
+  "indexColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Id"
+    }
+  ],
+  "apiPath": "app/api/inventory/inventory-slot-types/route.ts",
+  "apiPathParams": "/api/inventory/inventory-slot-types",
+  "apiPathByKey": "app/api/inventory/inventory-slot-types/[id]/route.ts",
+  "apiPathParamsByKey": "/api/inventory/inventory-slot-types/${params.id}",
+  "generateMutation": false,
+  "fetcherName": "fetchInventoryInventorySlotTypes",
+  "fetcherNameByKey": "fetchInventoryInventorySlotTypesByKey"
+}
