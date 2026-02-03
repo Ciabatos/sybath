@@ -25,18 +25,18 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
     const paramsFromPromise = await params
     const parsedParams = typeParamsSchema.parse(paramsFromPromise)
 
-    const sessionPlayerId = (await getActivePlayerServer({ userId: sessionUserId }, { forceFresh: true })).raw[0].id
-
-    if (sessionPlayerId !== parsedParams.playerId) {
-      return NextResponse.json({ message: "Not found" }, { status: 404 })
-    }
-    
     const clientEtag = request.headers.get("if-none-match") ?? undefined
 
     const { record, etag, cacheHit, etagMatched } = await fetchDistrictInventoryService(parsedParams, { clientEtag })
 
     if (cacheHit || etagMatched) {
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })
+    }
+
+    const sessionPlayerId = (await getActivePlayerServer({ userId: sessionUserId }, { forceFresh: true })).raw[0].id
+
+    if (sessionPlayerId !== parsedParams.playerId) {
+      return NextResponse.json({ message: "Not found" }, { status: 404 })
     }
 
     return NextResponse.json(record!.raw, { headers: { ETag: etag } })
