@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict bl1WgmQUk1Yz7oCiDbbhSpq3S5ROiVhSJVbkHyVp2gvCNnQzbSo6fWK0gHUGzlR
+\restrict M2v0nQlx8cF05ufEetkQFXbUYEzPGVmd94qaS7884ijfaWHON7tIgV0QUBd3gmQ
 
 -- Dumped from database version 18.1
 -- Dumped by pg_dump version 18.1
 
--- Started on 2026-01-14 23:53:23
+-- Started on 2026-02-03 15:56:16
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -22,7 +22,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 15 (class 2615 OID 17517)
+-- TOC entry 6 (class 2615 OID 32098)
 -- Name: admin; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -32,7 +32,7 @@ CREATE SCHEMA admin;
 ALTER SCHEMA admin OWNER TO postgres;
 
 --
--- TOC entry 5 (class 2615 OID 16389)
+-- TOC entry 7 (class 2615 OID 32099)
 -- Name: attributes; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -42,7 +42,7 @@ CREATE SCHEMA attributes;
 ALTER SCHEMA attributes OWNER TO postgres;
 
 --
--- TOC entry 6 (class 2615 OID 16390)
+-- TOC entry 8 (class 2615 OID 32100)
 -- Name: auth; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -52,7 +52,7 @@ CREATE SCHEMA auth;
 ALTER SCHEMA auth OWNER TO postgres;
 
 --
--- TOC entry 7 (class 2615 OID 16391)
+-- TOC entry 9 (class 2615 OID 32101)
 -- Name: buildings; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -62,7 +62,7 @@ CREATE SCHEMA buildings;
 ALTER SCHEMA buildings OWNER TO postgres;
 
 --
--- TOC entry 8 (class 2615 OID 16392)
+-- TOC entry 10 (class 2615 OID 32102)
 -- Name: cities; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -72,7 +72,7 @@ CREATE SCHEMA cities;
 ALTER SCHEMA cities OWNER TO postgres;
 
 --
--- TOC entry 9 (class 2615 OID 16393)
+-- TOC entry 11 (class 2615 OID 32103)
 -- Name: districts; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -82,7 +82,7 @@ CREATE SCHEMA districts;
 ALTER SCHEMA districts OWNER TO postgres;
 
 --
--- TOC entry 10 (class 2615 OID 16394)
+-- TOC entry 12 (class 2615 OID 32104)
 -- Name: inventory; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -92,7 +92,7 @@ CREATE SCHEMA inventory;
 ALTER SCHEMA inventory OWNER TO postgres;
 
 --
--- TOC entry 11 (class 2615 OID 16395)
+-- TOC entry 13 (class 2615 OID 32105)
 -- Name: items; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -102,7 +102,7 @@ CREATE SCHEMA items;
 ALTER SCHEMA items OWNER TO postgres;
 
 --
--- TOC entry 12 (class 2615 OID 16396)
+-- TOC entry 14 (class 2615 OID 32106)
 -- Name: players; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -112,7 +112,7 @@ CREATE SCHEMA players;
 ALTER SCHEMA players OWNER TO postgres;
 
 --
--- TOC entry 13 (class 2615 OID 16397)
+-- TOC entry 15 (class 2615 OID 32107)
 -- Name: tasks; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -122,17 +122,17 @@ CREATE SCHEMA tasks;
 ALTER SCHEMA tasks OWNER TO postgres;
 
 --
--- TOC entry 16 (class 2615 OID 17569)
--- Name: utils; Type: SCHEMA; Schema: -; Owner: postgres
+-- TOC entry 16 (class 2615 OID 32108)
+-- Name: util; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
-CREATE SCHEMA utils;
+CREATE SCHEMA util;
 
 
-ALTER SCHEMA utils OWNER TO postgres;
+ALTER SCHEMA util OWNER TO postgres;
 
 --
--- TOC entry 14 (class 2615 OID 16398)
+-- TOC entry 17 (class 2615 OID 32109)
 -- Name: world; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -142,7 +142,7 @@ CREATE SCHEMA world;
 ALTER SCHEMA world OWNER TO postgres;
 
 --
--- TOC entry 303 (class 1255 OID 17518)
+-- TOC entry 311 (class 1255 OID 32110)
 -- Name: choose_terrain_based_on_neighbors(integer[], integer, integer, integer, integer, integer, integer); Type: FUNCTION; Schema: admin; Owner: postgres
 --
 
@@ -203,7 +203,7 @@ $$;
 ALTER FUNCTION admin.choose_terrain_based_on_neighbors(terrain_grid integer[], x integer, y integer, width integer, height integer, upper1 integer, lower1 integer) OWNER TO postgres;
 
 --
--- TOC entry 343 (class 1255 OID 17521)
+-- TOC entry 383 (class 1255 OID 32111)
 -- Name: city_insert(integer, integer, character varying); Type: PROCEDURE; Schema: admin; Owner: postgres
 --
 
@@ -245,7 +245,7 @@ $$;
 ALTER PROCEDURE admin.city_insert(IN p_map_tile_x integer, IN p_map_tile_y integer, IN p_map_name character varying) OWNER TO postgres;
 
 --
--- TOC entry 352 (class 1255 OID 17519)
+-- TOC entry 349 (class 1255 OID 32112)
 -- Name: map_delete(); Type: PROCEDURE; Schema: admin; Owner: postgres
 --
 
@@ -265,7 +265,7 @@ $$;
 ALTER PROCEDURE admin.map_delete() OWNER TO postgres;
 
 --
--- TOC entry 314 (class 1255 OID 17522)
+-- TOC entry 318 (class 1255 OID 32113)
 -- Name: map_insert(); Type: PROCEDURE; Schema: admin; Owner: postgres
 --
 
@@ -335,7 +335,64 @@ $$;
 ALTER PROCEDURE admin.map_insert() OWNER TO postgres;
 
 --
--- TOC entry 320 (class 1255 OID 17520)
+-- TOC entry 309 (class 1255 OID 32114)
+-- Name: new_player(integer, character varying, character varying); Type: PROCEDURE; Schema: admin; Owner: postgres
+--
+
+CREATE PROCEDURE admin.new_player(IN p_user_id integer, IN p_name character varying, IN p_second_name character varying)
+    LANGUAGE plpgsql
+    AS $$
+
+DECLARE
+p_player_id int;
+p_is_active boolean;
+
+BEGIN
+
+SELECT NOT EXISTS (
+    SELECT 1
+    FROM players.players
+    WHERE user_id = p_user_id
+)
+INTO p_is_active;
+
+INSERT INTO players.players
+(user_id, "name", image_map, image_portrait, is_active, second_name, nickname)
+VALUES(p_user_id, p_name, 'default.png'::character varying, 'default.png'::character varying, p_is_active, p_second_name, NULL)
+  RETURNING id INTO p_player_id;
+
+
+INSERT INTO world.map_tiles_players_positions
+(player_id, map_id, map_tile_x, map_tile_y)
+VALUES(p_player_id, 1, 3, 3);
+
+
+INSERT INTO "attributes".player_stats
+(player_id, stat_id, value)
+SELECT 
+p_player_id
+,T1.id
+,floor(random() * 10 + 1)::int
+FROM "attributes".stats T1;
+
+INSERT INTO "attributes".player_skills
+(player_id, skill_id, value)
+SELECT 
+p_player_id
+,T1.id
+,floor(random() * 10 + 1)::int
+FROM "attributes".skills T1;
+
+PERFORM inventory.add_inventory_container('player', p_player_id);
+
+END;
+$$;
+
+
+ALTER PROCEDURE admin.new_player(IN p_user_id integer, IN p_name character varying, IN p_second_name character varying) OWNER TO postgres;
+
+--
+-- TOC entry 330 (class 1255 OID 32115)
 -- Name: random_landscape_types(integer); Type: FUNCTION; Schema: admin; Owner: postgres
 --
 
@@ -399,19 +456,52 @@ $$;
 ALTER FUNCTION admin.random_landscape_types(terrain_type_id integer) OWNER TO postgres;
 
 --
--- TOC entry 348 (class 1255 OID 17513)
+-- TOC entry 356 (class 1255 OID 32822)
+-- Name: reset_all(); Type: PROCEDURE; Schema: admin; Owner: postgres
+--
+
+CREATE PROCEDURE admin.reset_all()
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+
+TRUNCATE TABLE  players.players 					RESTART IDENTITY CASCADE;
+TRUNCATE TABLE  world.map_tiles_players_positions RESTART IDENTITY CASCADE;
+TRUNCATE TABLE  "attributes".player_stats     	RESTART IDENTITY CASCADE;
+TRUNCATE TABLE  "attributes".player_skills     	RESTART IDENTITY CASCADE;
+TRUNCATE TABLE  "attributes".player_abilities  	   RESTART IDENTITY CASCADE;
+TRUNCATE TABLE  inventory.inventory_containers     RESTART IDENTITY CASCADE;
+TRUNCATE TABLE  inventory.inventory_container_player     RESTART IDENTITY CASCADE;
+TRUNCATE TABLE  inventory.inventory_container_building     RESTART IDENTITY CASCADE;
+TRUNCATE TABLE  inventory.inventory_container_district     RESTART IDENTITY CASCADE;
+TRUNCATE TABLE  inventory.inventory_container_player_gear     RESTART IDENTITY CASCADE;
+TRUNCATE TABLE  inventory.inventory_slots 			RESTART IDENTITY CASCADE;
+
+
+	
+
+
+    RAISE NOTICE 'All have been truncated and reset';
+END;
+$$;
+
+
+ALTER PROCEDURE admin.reset_all() OWNER TO postgres;
+
+--
+-- TOC entry 320 (class 1255 OID 32116)
 -- Name: add_player_ability(integer, integer, integer); Type: FUNCTION; Schema: attributes; Owner: postgres
 --
 
-CREATE FUNCTION attributes.add_player_ability(p_player_id integer, p_ability_id integer, p_value integer) RETURNS TABLE(status text, message text)
+CREATE FUNCTION attributes.add_player_ability(p_player_id integer, p_ability_id integer, p_value integer) RETURNS TABLE(status boolean, message text)
     LANGUAGE plpgsql
     AS $$
 BEGIN
     INSERT INTO attributes.player_abilities(player_id, ability_id, value)
     VALUES (p_player_id, p_ability_id, p_value);
-    RETURN QUERY SELECT 'ok', FORMAT('Added ability %s to player %s', p_ability_id, p_player_id);
+    RETURN QUERY SELECT true, FORMAT('Added ability %s to player %s', p_ability_id, p_player_id);
 EXCEPTION WHEN unique_violation THEN
-    RETURN QUERY SELECT 'fail', FORMAT('Player %s already has ability %s', p_player_id, p_ability_id);
+    RETURN QUERY SELECT false, FORMAT('Player %s already has ability %s', p_player_id, p_ability_id);
 END;
 $$;
 
@@ -419,7 +509,16 @@ $$;
 ALTER FUNCTION attributes.add_player_ability(p_player_id integer, p_ability_id integer, p_value integer) OWNER TO postgres;
 
 --
--- TOC entry 338 (class 1255 OID 17514)
+-- TOC entry 5500 (class 0 OID 0)
+-- Dependencies: 320
+-- Name: FUNCTION add_player_ability(p_player_id integer, p_ability_id integer, p_value integer); Type: COMMENT; Schema: attributes; Owner: postgres
+--
+
+COMMENT ON FUNCTION attributes.add_player_ability(p_player_id integer, p_ability_id integer, p_value integer) IS 'do sprawdzenia';
+
+
+--
+-- TOC entry 355 (class 1255 OID 32117)
 -- Name: check_ability_requirements(integer); Type: FUNCTION; Schema: attributes; Owner: postgres
 --
 
@@ -450,25 +549,36 @@ $$;
 
 ALTER FUNCTION attributes.check_ability_requirements(p_player_id integer) OWNER TO postgres;
 
+--
+-- TOC entry 5501 (class 0 OID 0)
+-- Dependencies: 355
+-- Name: FUNCTION check_ability_requirements(p_player_id integer); Type: COMMENT; Schema: attributes; Owner: postgres
+--
+
+COMMENT ON FUNCTION attributes.check_ability_requirements(p_player_id integer) IS 'do sprawdzenia';
+
+
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
 --
--- TOC entry 230 (class 1259 OID 16399)
+-- TOC entry 231 (class 1259 OID 32118)
 -- Name: abilities; Type: TABLE; Schema: attributes; Owner: postgres
 --
 
 CREATE TABLE attributes.abilities (
     id integer NOT NULL,
-    name character varying(255)
+    name character varying(255),
+    description character varying(255),
+    image character varying(255) DEFAULT 'default.png'::character varying NOT NULL
 );
 
 
 ALTER TABLE attributes.abilities OWNER TO postgres;
 
 --
--- TOC entry 308 (class 1255 OID 16403)
+-- TOC entry 366 (class 1255 OID 32126)
 -- Name: get_abilities(); Type: FUNCTION; Schema: attributes; Owner: postgres
 --
 
@@ -486,8 +596,8 @@ CREATE FUNCTION attributes.get_abilities() RETURNS SETOF attributes.abilities
 ALTER FUNCTION attributes.get_abilities() OWNER TO postgres;
 
 --
--- TOC entry 5353 (class 0 OID 0)
--- Dependencies: 308
+-- TOC entry 5502 (class 0 OID 0)
+-- Dependencies: 366
 -- Name: FUNCTION get_abilities(); Type: COMMENT; Schema: attributes; Owner: postgres
 --
 
@@ -495,7 +605,7 @@ COMMENT ON FUNCTION attributes.get_abilities() IS 'automatic_get_api';
 
 
 --
--- TOC entry 307 (class 1255 OID 16404)
+-- TOC entry 312 (class 1255 OID 32127)
 -- Name: get_abilities_by_key(integer); Type: FUNCTION; Schema: attributes; Owner: postgres
 --
 
@@ -514,8 +624,8 @@ CREATE FUNCTION attributes.get_abilities_by_key(p_id integer) RETURNS SETOF attr
 ALTER FUNCTION attributes.get_abilities_by_key(p_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5354 (class 0 OID 0)
--- Dependencies: 307
+-- TOC entry 5503 (class 0 OID 0)
+-- Dependencies: 312
 -- Name: FUNCTION get_abilities_by_key(p_id integer); Type: COMMENT; Schema: attributes; Owner: postgres
 --
 
@@ -523,7 +633,7 @@ COMMENT ON FUNCTION attributes.get_abilities_by_key(p_id integer) IS 'automatic_
 
 
 --
--- TOC entry 289 (class 1259 OID 17449)
+-- TOC entry 232 (class 1259 OID 32128)
 -- Name: player_abilities; Type: TABLE; Schema: attributes; Owner: postgres
 --
 
@@ -538,7 +648,7 @@ CREATE TABLE attributes.player_abilities (
 ALTER TABLE attributes.player_abilities OWNER TO postgres;
 
 --
--- TOC entry 350 (class 1255 OID 17578)
+-- TOC entry 382 (class 1255 OID 32135)
 -- Name: get_player_abilities(); Type: FUNCTION; Schema: attributes; Owner: postgres
 --
 
@@ -556,8 +666,8 @@ CREATE FUNCTION attributes.get_player_abilities() RETURNS SETOF attributes.playe
 ALTER FUNCTION attributes.get_player_abilities() OWNER TO postgres;
 
 --
--- TOC entry 5355 (class 0 OID 0)
--- Dependencies: 350
+-- TOC entry 5504 (class 0 OID 0)
+-- Dependencies: 382
 -- Name: FUNCTION get_player_abilities(); Type: COMMENT; Schema: attributes; Owner: postgres
 --
 
@@ -565,7 +675,7 @@ COMMENT ON FUNCTION attributes.get_player_abilities() IS 'automatic_get_api';
 
 
 --
--- TOC entry 325 (class 1255 OID 17534)
+-- TOC entry 384 (class 1255 OID 32136)
 -- Name: get_player_abilities(integer); Type: FUNCTION; Schema: attributes; Owner: postgres
 --
 
@@ -591,8 +701,8 @@ $$;
 ALTER FUNCTION attributes.get_player_abilities(p_player_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5356 (class 0 OID 0)
--- Dependencies: 325
+-- TOC entry 5505 (class 0 OID 0)
+-- Dependencies: 384
 -- Name: FUNCTION get_player_abilities(p_player_id integer); Type: COMMENT; Schema: attributes; Owner: postgres
 --
 
@@ -600,7 +710,7 @@ COMMENT ON FUNCTION attributes.get_player_abilities(p_player_id integer) IS 'get
 
 
 --
--- TOC entry 327 (class 1255 OID 17579)
+-- TOC entry 370 (class 1255 OID 32137)
 -- Name: get_player_abilities_by_key(integer); Type: FUNCTION; Schema: attributes; Owner: postgres
 --
 
@@ -619,8 +729,8 @@ CREATE FUNCTION attributes.get_player_abilities_by_key(p_player_id integer) RETU
 ALTER FUNCTION attributes.get_player_abilities_by_key(p_player_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5357 (class 0 OID 0)
--- Dependencies: 327
+-- TOC entry 5506 (class 0 OID 0)
+-- Dependencies: 370
 -- Name: FUNCTION get_player_abilities_by_key(p_player_id integer); Type: COMMENT; Schema: attributes; Owner: postgres
 --
 
@@ -628,7 +738,7 @@ COMMENT ON FUNCTION attributes.get_player_abilities_by_key(p_player_id integer) 
 
 
 --
--- TOC entry 340 (class 1255 OID 17533)
+-- TOC entry 378 (class 1255 OID 32138)
 -- Name: get_player_skills(integer); Type: FUNCTION; Schema: attributes; Owner: postgres
 --
 
@@ -654,8 +764,8 @@ $$;
 ALTER FUNCTION attributes.get_player_skills(p_player_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5358 (class 0 OID 0)
--- Dependencies: 340
+-- TOC entry 5507 (class 0 OID 0)
+-- Dependencies: 378
 -- Name: FUNCTION get_player_skills(p_player_id integer); Type: COMMENT; Schema: attributes; Owner: postgres
 --
 
@@ -663,7 +773,7 @@ COMMENT ON FUNCTION attributes.get_player_skills(p_player_id integer) IS 'get_ap
 
 
 --
--- TOC entry 315 (class 1255 OID 17535)
+-- TOC entry 302 (class 1255 OID 32139)
 -- Name: get_player_stats(integer); Type: FUNCTION; Schema: attributes; Owner: postgres
 --
 
@@ -674,7 +784,7 @@ BEGIN
 
  RETURN QUERY
  SELECT 
-    t1.ability_id,
+    t1.stat_id,
     t1.value,
     t2.name
    FROM attributes.player_stats t1
@@ -689,8 +799,8 @@ $$;
 ALTER FUNCTION attributes.get_player_stats(p_player_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5359 (class 0 OID 0)
--- Dependencies: 315
+-- TOC entry 5508 (class 0 OID 0)
+-- Dependencies: 302
 -- Name: FUNCTION get_player_stats(p_player_id integer); Type: COMMENT; Schema: attributes; Owner: postgres
 --
 
@@ -698,7 +808,7 @@ COMMENT ON FUNCTION attributes.get_player_stats(p_player_id integer) IS 'get_api
 
 
 --
--- TOC entry 231 (class 1259 OID 16405)
+-- TOC entry 233 (class 1259 OID 32140)
 -- Name: roles; Type: TABLE; Schema: attributes; Owner: postgres
 --
 
@@ -711,7 +821,7 @@ CREATE TABLE attributes.roles (
 ALTER TABLE attributes.roles OWNER TO postgres;
 
 --
--- TOC entry 333 (class 1255 OID 16409)
+-- TOC entry 335 (class 1255 OID 32144)
 -- Name: get_roles(); Type: FUNCTION; Schema: attributes; Owner: postgres
 --
 
@@ -728,8 +838,8 @@ CREATE FUNCTION attributes.get_roles() RETURNS SETOF attributes.roles
 ALTER FUNCTION attributes.get_roles() OWNER TO postgres;
 
 --
--- TOC entry 5360 (class 0 OID 0)
--- Dependencies: 333
+-- TOC entry 5509 (class 0 OID 0)
+-- Dependencies: 335
 -- Name: FUNCTION get_roles(); Type: COMMENT; Schema: attributes; Owner: postgres
 --
 
@@ -737,7 +847,7 @@ COMMENT ON FUNCTION attributes.get_roles() IS 'automatic_get_api';
 
 
 --
--- TOC entry 349 (class 1255 OID 16410)
+-- TOC entry 346 (class 1255 OID 32145)
 -- Name: get_roles_by_key(integer); Type: FUNCTION; Schema: attributes; Owner: postgres
 --
 
@@ -755,8 +865,8 @@ CREATE FUNCTION attributes.get_roles_by_key(p_id integer) RETURNS SETOF attribut
 ALTER FUNCTION attributes.get_roles_by_key(p_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5361 (class 0 OID 0)
--- Dependencies: 349
+-- TOC entry 5510 (class 0 OID 0)
+-- Dependencies: 346
 -- Name: FUNCTION get_roles_by_key(p_id integer); Type: COMMENT; Schema: attributes; Owner: postgres
 --
 
@@ -764,20 +874,22 @@ COMMENT ON FUNCTION attributes.get_roles_by_key(p_id integer) IS 'automatic_get_
 
 
 --
--- TOC entry 232 (class 1259 OID 16411)
+-- TOC entry 234 (class 1259 OID 32146)
 -- Name: skills; Type: TABLE; Schema: attributes; Owner: postgres
 --
 
 CREATE TABLE attributes.skills (
     id integer NOT NULL,
-    name character varying(255)
+    name character varying(255),
+    description character varying(255),
+    image character varying(255) DEFAULT 'default.png'::character varying NOT NULL
 );
 
 
 ALTER TABLE attributes.skills OWNER TO postgres;
 
 --
--- TOC entry 324 (class 1255 OID 16415)
+-- TOC entry 313 (class 1255 OID 32154)
 -- Name: get_skills(); Type: FUNCTION; Schema: attributes; Owner: postgres
 --
 
@@ -795,8 +907,8 @@ CREATE FUNCTION attributes.get_skills() RETURNS SETOF attributes.skills
 ALTER FUNCTION attributes.get_skills() OWNER TO postgres;
 
 --
--- TOC entry 5362 (class 0 OID 0)
--- Dependencies: 324
+-- TOC entry 5511 (class 0 OID 0)
+-- Dependencies: 313
 -- Name: FUNCTION get_skills(); Type: COMMENT; Schema: attributes; Owner: postgres
 --
 
@@ -804,7 +916,7 @@ COMMENT ON FUNCTION attributes.get_skills() IS 'automatic_get_api';
 
 
 --
--- TOC entry 354 (class 1255 OID 16416)
+-- TOC entry 329 (class 1255 OID 32155)
 -- Name: get_skills_by_key(integer); Type: FUNCTION; Schema: attributes; Owner: postgres
 --
 
@@ -823,8 +935,8 @@ CREATE FUNCTION attributes.get_skills_by_key(p_id integer) RETURNS SETOF attribu
 ALTER FUNCTION attributes.get_skills_by_key(p_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5363 (class 0 OID 0)
--- Dependencies: 354
+-- TOC entry 5512 (class 0 OID 0)
+-- Dependencies: 329
 -- Name: FUNCTION get_skills_by_key(p_id integer); Type: COMMENT; Schema: attributes; Owner: postgres
 --
 
@@ -832,20 +944,22 @@ COMMENT ON FUNCTION attributes.get_skills_by_key(p_id integer) IS 'automatic_get
 
 
 --
--- TOC entry 233 (class 1259 OID 16417)
+-- TOC entry 235 (class 1259 OID 32156)
 -- Name: stats; Type: TABLE; Schema: attributes; Owner: postgres
 --
 
 CREATE TABLE attributes.stats (
     id integer NOT NULL,
-    name character varying(255)
+    name character varying(255),
+    description character varying(255),
+    image character varying(255) DEFAULT 'default.png'::character varying NOT NULL
 );
 
 
 ALTER TABLE attributes.stats OWNER TO postgres;
 
 --
--- TOC entry 339 (class 1255 OID 16421)
+-- TOC entry 303 (class 1255 OID 32164)
 -- Name: get_stats(); Type: FUNCTION; Schema: attributes; Owner: postgres
 --
 
@@ -863,8 +977,8 @@ CREATE FUNCTION attributes.get_stats() RETURNS SETOF attributes.stats
 ALTER FUNCTION attributes.get_stats() OWNER TO postgres;
 
 --
--- TOC entry 5364 (class 0 OID 0)
--- Dependencies: 339
+-- TOC entry 5513 (class 0 OID 0)
+-- Dependencies: 303
 -- Name: FUNCTION get_stats(); Type: COMMENT; Schema: attributes; Owner: postgres
 --
 
@@ -872,7 +986,7 @@ COMMENT ON FUNCTION attributes.get_stats() IS 'automatic_get_api';
 
 
 --
--- TOC entry 304 (class 1255 OID 16422)
+-- TOC entry 333 (class 1255 OID 32165)
 -- Name: get_stats_by_key(integer); Type: FUNCTION; Schema: attributes; Owner: postgres
 --
 
@@ -891,8 +1005,8 @@ CREATE FUNCTION attributes.get_stats_by_key(p_id integer) RETURNS SETOF attribut
 ALTER FUNCTION attributes.get_stats_by_key(p_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5365 (class 0 OID 0)
--- Dependencies: 304
+-- TOC entry 5514 (class 0 OID 0)
+-- Dependencies: 333
 -- Name: FUNCTION get_stats_by_key(p_id integer); Type: COMMENT; Schema: attributes; Owner: postgres
 --
 
@@ -900,7 +1014,7 @@ COMMENT ON FUNCTION attributes.get_stats_by_key(p_id integer) IS 'automatic_get_
 
 
 --
--- TOC entry 302 (class 1255 OID 17515)
+-- TOC entry 321 (class 1255 OID 32166)
 -- Name: unlock_player_abilities(integer); Type: FUNCTION; Schema: attributes; Owner: postgres
 --
 
@@ -929,7 +1043,16 @@ $$;
 ALTER FUNCTION attributes.unlock_player_abilities(p_player_id integer) OWNER TO postgres;
 
 --
--- TOC entry 301 (class 1255 OID 16423)
+-- TOC entry 5515 (class 0 OID 0)
+-- Dependencies: 321
+-- Name: FUNCTION unlock_player_abilities(p_player_id integer); Type: COMMENT; Schema: attributes; Owner: postgres
+--
+
+COMMENT ON FUNCTION attributes.unlock_player_abilities(p_player_id integer) IS 'do sprawdzenia';
+
+
+--
+-- TOC entry 368 (class 1255 OID 32167)
 -- Name: insert_user(text, text); Type: FUNCTION; Schema: auth; Owner: postgres
 --
 
@@ -946,7 +1069,7 @@ $$;
 ALTER FUNCTION auth.insert_user(p_email text, p_password text) OWNER TO postgres;
 
 --
--- TOC entry 256 (class 1259 OID 16574)
+-- TOC entry 236 (class 1259 OID 32168)
 -- Name: building_types; Type: TABLE; Schema: buildings; Owner: postgres
 --
 
@@ -960,7 +1083,7 @@ CREATE TABLE buildings.building_types (
 ALTER TABLE buildings.building_types OWNER TO postgres;
 
 --
--- TOC entry 360 (class 1255 OID 17003)
+-- TOC entry 351 (class 1255 OID 32173)
 -- Name: get_building_types(); Type: FUNCTION; Schema: buildings; Owner: postgres
 --
 
@@ -978,8 +1101,8 @@ CREATE FUNCTION buildings.get_building_types() RETURNS SETOF buildings.building_
 ALTER FUNCTION buildings.get_building_types() OWNER TO postgres;
 
 --
--- TOC entry 5366 (class 0 OID 0)
--- Dependencies: 360
+-- TOC entry 5516 (class 0 OID 0)
+-- Dependencies: 351
 -- Name: FUNCTION get_building_types(); Type: COMMENT; Schema: buildings; Owner: postgres
 --
 
@@ -987,7 +1110,7 @@ COMMENT ON FUNCTION buildings.get_building_types() IS 'automatic_get_api';
 
 
 --
--- TOC entry 318 (class 1255 OID 17004)
+-- TOC entry 317 (class 1255 OID 32174)
 -- Name: get_building_types_by_key(integer); Type: FUNCTION; Schema: buildings; Owner: postgres
 --
 
@@ -1006,8 +1129,8 @@ CREATE FUNCTION buildings.get_building_types_by_key(p_id integer) RETURNS SETOF 
 ALTER FUNCTION buildings.get_building_types_by_key(p_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5367 (class 0 OID 0)
--- Dependencies: 318
+-- TOC entry 5517 (class 0 OID 0)
+-- Dependencies: 317
 -- Name: FUNCTION get_building_types_by_key(p_id integer); Type: COMMENT; Schema: buildings; Owner: postgres
 --
 
@@ -1015,7 +1138,7 @@ COMMENT ON FUNCTION buildings.get_building_types_by_key(p_id integer) IS 'automa
 
 
 --
--- TOC entry 234 (class 1259 OID 16424)
+-- TOC entry 237 (class 1259 OID 32175)
 -- Name: buildings; Type: TABLE; Schema: buildings; Owner: postgres
 --
 
@@ -1032,7 +1155,7 @@ CREATE TABLE buildings.buildings (
 ALTER TABLE buildings.buildings OWNER TO postgres;
 
 --
--- TOC entry 309 (class 1255 OID 17444)
+-- TOC entry 364 (class 1255 OID 32184)
 -- Name: get_buildings(); Type: FUNCTION; Schema: buildings; Owner: postgres
 --
 
@@ -1050,8 +1173,8 @@ CREATE FUNCTION buildings.get_buildings() RETURNS SETOF buildings.buildings
 ALTER FUNCTION buildings.get_buildings() OWNER TO postgres;
 
 --
--- TOC entry 5368 (class 0 OID 0)
--- Dependencies: 309
+-- TOC entry 5518 (class 0 OID 0)
+-- Dependencies: 364
 -- Name: FUNCTION get_buildings(); Type: COMMENT; Schema: buildings; Owner: postgres
 --
 
@@ -1059,7 +1182,7 @@ COMMENT ON FUNCTION buildings.get_buildings() IS 'automatic_get_api';
 
 
 --
--- TOC entry 305 (class 1255 OID 17445)
+-- TOC entry 350 (class 1255 OID 32185)
 -- Name: get_buildings_by_key(integer); Type: FUNCTION; Schema: buildings; Owner: postgres
 --
 
@@ -1078,8 +1201,8 @@ CREATE FUNCTION buildings.get_buildings_by_key(p_city_id integer) RETURNS SETOF 
 ALTER FUNCTION buildings.get_buildings_by_key(p_city_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5369 (class 0 OID 0)
--- Dependencies: 305
+-- TOC entry 5519 (class 0 OID 0)
+-- Dependencies: 350
 -- Name: FUNCTION get_buildings_by_key(p_city_id integer); Type: COMMENT; Schema: buildings; Owner: postgres
 --
 
@@ -1087,7 +1210,7 @@ COMMENT ON FUNCTION buildings.get_buildings_by_key(p_city_id integer) IS 'automa
 
 
 --
--- TOC entry 235 (class 1259 OID 16435)
+-- TOC entry 238 (class 1259 OID 32186)
 -- Name: cities; Type: TABLE; Schema: cities; Owner: postgres
 --
 
@@ -1105,7 +1228,7 @@ CREATE TABLE cities.cities (
 ALTER TABLE cities.cities OWNER TO postgres;
 
 --
--- TOC entry 296 (class 1255 OID 17440)
+-- TOC entry 361 (class 1255 OID 32195)
 -- Name: get_cities(); Type: FUNCTION; Schema: cities; Owner: postgres
 --
 
@@ -1123,8 +1246,8 @@ CREATE FUNCTION cities.get_cities() RETURNS SETOF cities.cities
 ALTER FUNCTION cities.get_cities() OWNER TO postgres;
 
 --
--- TOC entry 5370 (class 0 OID 0)
--- Dependencies: 296
+-- TOC entry 5520 (class 0 OID 0)
+-- Dependencies: 361
 -- Name: FUNCTION get_cities(); Type: COMMENT; Schema: cities; Owner: postgres
 --
 
@@ -1132,7 +1255,7 @@ COMMENT ON FUNCTION cities.get_cities() IS 'automatic_get_api';
 
 
 --
--- TOC entry 330 (class 1255 OID 17441)
+-- TOC entry 365 (class 1255 OID 32196)
 -- Name: get_cities_by_key(integer); Type: FUNCTION; Schema: cities; Owner: postgres
 --
 
@@ -1151,8 +1274,8 @@ CREATE FUNCTION cities.get_cities_by_key(p_map_id integer) RETURNS SETOF cities.
 ALTER FUNCTION cities.get_cities_by_key(p_map_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5371 (class 0 OID 0)
--- Dependencies: 330
+-- TOC entry 5521 (class 0 OID 0)
+-- Dependencies: 365
 -- Name: FUNCTION get_cities_by_key(p_map_id integer); Type: COMMENT; Schema: cities; Owner: postgres
 --
 
@@ -1160,7 +1283,7 @@ COMMENT ON FUNCTION cities.get_cities_by_key(p_map_id integer) IS 'automatic_get
 
 
 --
--- TOC entry 236 (class 1259 OID 16447)
+-- TOC entry 239 (class 1259 OID 32197)
 -- Name: city_tiles; Type: TABLE; Schema: cities; Owner: postgres
 --
 
@@ -1176,7 +1299,7 @@ CREATE TABLE cities.city_tiles (
 ALTER TABLE cities.city_tiles OWNER TO postgres;
 
 --
--- TOC entry 341 (class 1255 OID 16455)
+-- TOC entry 352 (class 1255 OID 32205)
 -- Name: get_city_tiles(); Type: FUNCTION; Schema: cities; Owner: postgres
 --
 
@@ -1194,8 +1317,8 @@ CREATE FUNCTION cities.get_city_tiles() RETURNS SETOF cities.city_tiles
 ALTER FUNCTION cities.get_city_tiles() OWNER TO postgres;
 
 --
--- TOC entry 5372 (class 0 OID 0)
--- Dependencies: 341
+-- TOC entry 5522 (class 0 OID 0)
+-- Dependencies: 352
 -- Name: FUNCTION get_city_tiles(); Type: COMMENT; Schema: cities; Owner: postgres
 --
 
@@ -1203,7 +1326,7 @@ COMMENT ON FUNCTION cities.get_city_tiles() IS 'automatic_get_api';
 
 
 --
--- TOC entry 368 (class 1255 OID 17439)
+-- TOC entry 375 (class 1255 OID 32206)
 -- Name: get_city_tiles_by_key(integer); Type: FUNCTION; Schema: cities; Owner: postgres
 --
 
@@ -1222,8 +1345,8 @@ CREATE FUNCTION cities.get_city_tiles_by_key(p_city_id integer) RETURNS SETOF ci
 ALTER FUNCTION cities.get_city_tiles_by_key(p_city_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5373 (class 0 OID 0)
--- Dependencies: 368
+-- TOC entry 5523 (class 0 OID 0)
+-- Dependencies: 375
 -- Name: FUNCTION get_city_tiles_by_key(p_city_id integer); Type: COMMENT; Schema: cities; Owner: postgres
 --
 
@@ -1231,7 +1354,7 @@ COMMENT ON FUNCTION cities.get_city_tiles_by_key(p_city_id integer) IS 'automati
 
 
 --
--- TOC entry 331 (class 1255 OID 17586)
+-- TOC entry 331 (class 1255 OID 32207)
 -- Name: get_player_city(integer); Type: FUNCTION; Schema: cities; Owner: postgres
 --
 
@@ -1254,7 +1377,7 @@ CREATE FUNCTION cities.get_player_city(p_player_id integer) RETURNS TABLE(city_i
 ALTER FUNCTION cities.get_player_city(p_player_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5374 (class 0 OID 0)
+-- TOC entry 5524 (class 0 OID 0)
 -- Dependencies: 331
 -- Name: FUNCTION get_player_city(p_player_id integer); Type: COMMENT; Schema: cities; Owner: postgres
 --
@@ -1263,7 +1386,7 @@ COMMENT ON FUNCTION cities.get_player_city(p_player_id integer) IS 'get_api';
 
 
 --
--- TOC entry 262 (class 1259 OID 16594)
+-- TOC entry 240 (class 1259 OID 32208)
 -- Name: district_types; Type: TABLE; Schema: districts; Owner: postgres
 --
 
@@ -1278,7 +1401,7 @@ CREATE TABLE districts.district_types (
 ALTER TABLE districts.district_types OWNER TO postgres;
 
 --
--- TOC entry 344 (class 1255 OID 17006)
+-- TOC entry 326 (class 1255 OID 32214)
 -- Name: get_district_types(); Type: FUNCTION; Schema: districts; Owner: postgres
 --
 
@@ -1296,8 +1419,8 @@ CREATE FUNCTION districts.get_district_types() RETURNS SETOF districts.district_
 ALTER FUNCTION districts.get_district_types() OWNER TO postgres;
 
 --
--- TOC entry 5375 (class 0 OID 0)
--- Dependencies: 344
+-- TOC entry 5525 (class 0 OID 0)
+-- Dependencies: 326
 -- Name: FUNCTION get_district_types(); Type: COMMENT; Schema: districts; Owner: postgres
 --
 
@@ -1305,7 +1428,7 @@ COMMENT ON FUNCTION districts.get_district_types() IS 'automatic_get_api';
 
 
 --
--- TOC entry 312 (class 1255 OID 17007)
+-- TOC entry 372 (class 1255 OID 32215)
 -- Name: get_district_types_by_key(integer); Type: FUNCTION; Schema: districts; Owner: postgres
 --
 
@@ -1324,8 +1447,8 @@ CREATE FUNCTION districts.get_district_types_by_key(p_id integer) RETURNS SETOF 
 ALTER FUNCTION districts.get_district_types_by_key(p_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5376 (class 0 OID 0)
--- Dependencies: 312
+-- TOC entry 5526 (class 0 OID 0)
+-- Dependencies: 372
 -- Name: FUNCTION get_district_types_by_key(p_id integer); Type: COMMENT; Schema: districts; Owner: postgres
 --
 
@@ -1333,7 +1456,7 @@ COMMENT ON FUNCTION districts.get_district_types_by_key(p_id integer) IS 'automa
 
 
 --
--- TOC entry 237 (class 1259 OID 16458)
+-- TOC entry 241 (class 1259 OID 32216)
 -- Name: districts; Type: TABLE; Schema: districts; Owner: postgres
 --
 
@@ -1350,7 +1473,7 @@ CREATE TABLE districts.districts (
 ALTER TABLE districts.districts OWNER TO postgres;
 
 --
--- TOC entry 310 (class 1255 OID 17442)
+-- TOC entry 341 (class 1255 OID 32224)
 -- Name: get_districts(); Type: FUNCTION; Schema: districts; Owner: postgres
 --
 
@@ -1368,8 +1491,8 @@ CREATE FUNCTION districts.get_districts() RETURNS SETOF districts.districts
 ALTER FUNCTION districts.get_districts() OWNER TO postgres;
 
 --
--- TOC entry 5377 (class 0 OID 0)
--- Dependencies: 310
+-- TOC entry 5527 (class 0 OID 0)
+-- Dependencies: 341
 -- Name: FUNCTION get_districts(); Type: COMMENT; Schema: districts; Owner: postgres
 --
 
@@ -1377,7 +1500,7 @@ COMMENT ON FUNCTION districts.get_districts() IS 'automatic_get_api';
 
 
 --
--- TOC entry 323 (class 1255 OID 17443)
+-- TOC entry 373 (class 1255 OID 32225)
 -- Name: get_districts_by_key(integer); Type: FUNCTION; Schema: districts; Owner: postgres
 --
 
@@ -1396,8 +1519,8 @@ CREATE FUNCTION districts.get_districts_by_key(p_map_id integer) RETURNS SETOF d
 ALTER FUNCTION districts.get_districts_by_key(p_map_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5378 (class 0 OID 0)
--- Dependencies: 323
+-- TOC entry 5528 (class 0 OID 0)
+-- Dependencies: 373
 -- Name: FUNCTION get_districts_by_key(p_map_id integer); Type: COMMENT; Schema: districts; Owner: postgres
 --
 
@@ -1405,15 +1528,16 @@ COMMENT ON FUNCTION districts.get_districts_by_key(p_map_id integer) IS 'automat
 
 
 --
--- TOC entry 356 (class 1255 OID 17447)
+-- TOC entry 323 (class 1255 OID 32226)
 -- Name: add_inventory_container(text, integer, integer); Type: FUNCTION; Schema: inventory; Owner: postgres
 --
 
-CREATE FUNCTION inventory.add_inventory_container(p_owner_type text, p_owner_id integer, p_inventory_size integer DEFAULT 5) RETURNS TABLE(status text, message text, container_id integer)
+CREATE FUNCTION inventory.add_inventory_container(p_owner_type text, p_owner_id integer, p_inventory_size integer DEFAULT 9) RETURNS TABLE(status boolean, message text)
     LANGUAGE plpgsql
     AS $$
 DECLARE
     container_id INT;
+	player_gear_size INT := 13;
 BEGIN
 
 
@@ -1432,13 +1556,13 @@ END IF;
 
 
     IF p_owner_type = 'player' THEN
-        INSERT INTO inventory.inventory_container_player (container_id, player_id)
+        INSERT INTO inventory.inventory_container_player (inventory_container_id, player_id)
         VALUES (container_id, p_owner_id);
     ELSIF p_owner_type = 'building' THEN
-        INSERT INTO inventory.inventory_container_building (container_id, building_id)
+        INSERT INTO inventory.inventory_container_building (inventory_container_id, building_id)
         VALUES (container_id, p_owner_id);
     ELSIF p_owner_type = 'district' THEN
-        INSERT INTO inventory.inventory_container_district (container_id, district_id)
+        INSERT INTO inventory.inventory_container_district (inventory_container_id, district_id)
         VALUES (container_id, p_owner_id);
     END IF;
 
@@ -1449,7 +1573,35 @@ END IF;
             INSERT INTO inventory.inventory_slots (inventory_container_id)
             VALUES (container_id);
         END LOOP;
-    RETURN QUERY SELECT 'ok', 'Container created successfully', container_id;
+
+
+
+IF p_owner_type = 'player' THEN
+	    INSERT INTO inventory.inventory_containers (inventory_size)
+	    VALUES (player_gear_size)
+	    RETURNING id INTO container_id;
+
+        INSERT INTO inventory.inventory_container_player_gear (inventory_container_id, player_id)
+        VALUES (container_id, p_owner_id);
+
+	        INSERT INTO inventory.inventory_slots (inventory_container_id, item_id, quantity, inventory_slot_type_id)
+			VALUES(container_id, NULL, NULL, 1),
+			(container_id, NULL, NULL, 1),
+			(container_id, NULL, NULL, 1),
+			(container_id, NULL, NULL, 1),
+			(container_id, NULL, NULL, 1),
+			(container_id, NULL, NULL, 1),
+			(container_id, NULL, NULL, 1),
+			(container_id, NULL, NULL, 1),
+			(container_id, NULL, NULL, 1),
+			(container_id, NULL, NULL, 1),
+			(container_id, NULL, NULL, 1),
+			(container_id, NULL, NULL, 1),
+			(container_id, NULL, NULL, 1);
+
+END IF;
+
+    RETURN QUERY SELECT true, 'Container created successfully';
 
 
 END;
@@ -1459,7 +1611,7 @@ $$;
 ALTER FUNCTION inventory.add_inventory_container(p_owner_type text, p_owner_id integer, p_inventory_size integer) OWNER TO postgres;
 
 --
--- TOC entry 355 (class 1255 OID 17599)
+-- TOC entry 362 (class 1255 OID 32227)
 -- Name: add_item_to_inventory_free_slot(integer, integer, integer); Type: FUNCTION; Schema: inventory; Owner: postgres
 --
 
@@ -1490,7 +1642,7 @@ $$;
 ALTER FUNCTION inventory.add_item_to_inventory_free_slot(p_inventory_container_id integer, p_item_id integer, p_quantity integer) OWNER TO postgres;
 
 --
--- TOC entry 297 (class 1255 OID 17576)
+-- TOC entry 357 (class 1255 OID 32228)
 -- Name: check_free_inventory_slots(integer); Type: FUNCTION; Schema: inventory; Owner: postgres
 --
 
@@ -1508,7 +1660,7 @@ $$;
 ALTER FUNCTION inventory.check_free_inventory_slots(p_inventory_container_id integer) OWNER TO postgres;
 
 --
--- TOC entry 311 (class 1255 OID 17575)
+-- TOC entry 342 (class 1255 OID 32229)
 -- Name: check_inventory_container_exists(integer); Type: FUNCTION; Schema: inventory; Owner: postgres
 --
 
@@ -1526,11 +1678,73 @@ $$;
 ALTER FUNCTION inventory.check_inventory_container_exists(p_inventory_container_id integer) OWNER TO postgres;
 
 --
--- TOC entry 298 (class 1255 OID 17572)
+-- TOC entry 369 (class 1255 OID 32230)
+-- Name: check_inventory_container_ownership(integer, integer); Type: FUNCTION; Schema: inventory; Owner: postgres
+--
+
+CREATE FUNCTION inventory.check_inventory_container_ownership(p_player_id integer, p_inventory_container_id integer) RETURNS void
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM inventory.inventory_container_player WHERE inventory_container_id = p_inventory_container_id AND player_id = p_player_id) THEN
+        PERFORM util.raise_error('You are no owner of inventory container');
+    END IF;
+END;
+$$;
+
+
+ALTER FUNCTION inventory.check_inventory_container_ownership(p_player_id integer, p_inventory_container_id integer) OWNER TO postgres;
+
+--
+-- TOC entry 328 (class 1255 OID 32231)
+-- Name: check_inventory_containers_same_tile(integer, integer); Type: FUNCTION; Schema: inventory; Owner: postgres
+--
+
+CREATE FUNCTION inventory.check_inventory_containers_same_tile(p_inventory_container_id_first integer, p_inventory_container_id_second integer) RETURNS void
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+   IF EXISTS (
+    SELECT 1
+    FROM inventory.get_container_tile(p_inventory_container_id_first) t1
+    FULL JOIN inventory.get_container_tile(p_inventory_container_id_second) t2 ON 1=1
+    WHERE (t1.map_id, t1.map_tile_x, t1.map_tile_y)
+          IS DISTINCT FROM
+          (t2.map_id, t2.map_tile_x, t2.map_tile_y)
+	) THEN
+
+    PERFORM util.raise_error('Inventories are too far away from each other');
+    END IF;
+END;
+$$;
+
+
+ALTER FUNCTION inventory.check_inventory_containers_same_tile(p_inventory_container_id_first integer, p_inventory_container_id_second integer) OWNER TO postgres;
+
+--
+-- TOC entry 348 (class 1255 OID 32232)
+-- Name: check_inventory_slot_exists(integer, integer); Type: FUNCTION; Schema: inventory; Owner: postgres
+--
+
+CREATE FUNCTION inventory.check_inventory_slot_exists(p_inventory_container_id integer, p_slot_id integer) RETURNS void
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM inventory.inventory_slots WHERE inventory_container_id = p_inventory_container_id AND id = p_slot_id) THEN
+        PERFORM util.raise_error('No spot in inventory container');
+    END IF;
+END;
+$$;
+
+
+ALTER FUNCTION inventory.check_inventory_slot_exists(p_inventory_container_id integer, p_slot_id integer) OWNER TO postgres;
+
+--
+-- TOC entry 339 (class 1255 OID 32233)
 -- Name: do_add_item_to_inventory(integer, integer, integer); Type: FUNCTION; Schema: inventory; Owner: postgres
 --
 
-CREATE FUNCTION inventory.do_add_item_to_inventory(p_inventory_container_id integer, p_item_id integer, p_quantity integer) RETURNS TABLE(status text, message text)
+CREATE FUNCTION inventory.do_add_item_to_inventory(p_inventory_container_id integer, p_item_id integer, p_quantity integer) RETURNS TABLE(status boolean, message text)
     LANGUAGE plpgsql
     AS $$
 BEGIN
@@ -1545,12 +1759,12 @@ PERFORM inventory.add_item_to_inventory_free_slot(p_inventory_container_id, p_it
 
         
         
-    RETURN QUERY SELECT 'ok', 'Item added successfully';
+    RETURN QUERY SELECT true, 'Item added successfully';
     
     EXCEPTION
         WHEN OTHERS THEN
             IF SQLSTATE = 'P0001' THEN
-                RETURN QUERY SELECT 'fail', SQLERRM;
+                RETURN QUERY SELECT false, SQLERRM;
             ELSE
                 RAISE;
             END IF;
@@ -1562,8 +1776,8 @@ $$;
 ALTER FUNCTION inventory.do_add_item_to_inventory(p_inventory_container_id integer, p_item_id integer, p_quantity integer) OWNER TO postgres;
 
 --
--- TOC entry 5379 (class 0 OID 0)
--- Dependencies: 298
+-- TOC entry 5529 (class 0 OID 0)
+-- Dependencies: 339
 -- Name: FUNCTION do_add_item_to_inventory(p_inventory_container_id integer, p_item_id integer, p_quantity integer); Type: COMMENT; Schema: inventory; Owner: postgres
 --
 
@@ -1571,7 +1785,56 @@ COMMENT ON FUNCTION inventory.do_add_item_to_inventory(p_inventory_container_id 
 
 
 --
--- TOC entry 353 (class 1255 OID 17536)
+-- TOC entry 324 (class 1255 OID 32234)
+-- Name: do_move_or_swap_item(integer, integer, integer, integer, integer); Type: FUNCTION; Schema: inventory; Owner: postgres
+--
+
+CREATE FUNCTION inventory.do_move_or_swap_item(p_player_id integer, p_from_slot_id integer, p_to_slot_id integer, p_from_inventory_container_id integer, p_to_inventory_container_id integer) RETURNS TABLE(status boolean, message text)
+    LANGUAGE plpgsql
+    AS $$
+
+BEGIN
+	PERFORM inventory.check_inventory_container_ownership(p_player_id, p_from_inventory_container_id);
+	PERFORM inventory.check_inventory_container_ownership(p_player_id, p_to_inventory_container_id);
+    PERFORM inventory.check_inventory_slot_exists(p_from_inventory_container_id, p_from_slot_id);
+    PERFORM inventory.check_inventory_slot_exists(p_to_inventory_container_id, p_to_slot_id);
+    PERFORM inventory.check_inventory_containers_same_tile(p_from_inventory_container_id, p_to_inventory_container_id);
+
+PERFORM inventory.move_or_swap_item(
+    p_from_slot_id,
+    p_to_slot_id,
+    p_from_inventory_container_id,
+	p_to_inventory_container_id
+);
+
+        
+    RETURN QUERY SELECT true, 'Item transferred successfully';
+    
+    EXCEPTION
+        WHEN OTHERS THEN
+            IF SQLSTATE = 'P0001' THEN
+                RETURN QUERY SELECT false, SQLERRM;
+            ELSE
+                RAISE;
+            END IF;
+
+END;
+$$;
+
+
+ALTER FUNCTION inventory.do_move_or_swap_item(p_player_id integer, p_from_slot_id integer, p_to_slot_id integer, p_from_inventory_container_id integer, p_to_inventory_container_id integer) OWNER TO postgres;
+
+--
+-- TOC entry 5530 (class 0 OID 0)
+-- Dependencies: 324
+-- Name: FUNCTION do_move_or_swap_item(p_player_id integer, p_from_slot_id integer, p_to_slot_id integer, p_from_inventory_container_id integer, p_to_inventory_container_id integer); Type: COMMENT; Schema: inventory; Owner: postgres
+--
+
+COMMENT ON FUNCTION inventory.do_move_or_swap_item(p_player_id integer, p_from_slot_id integer, p_to_slot_id integer, p_from_inventory_container_id integer, p_to_inventory_container_id integer) IS 'action_api';
+
+
+--
+-- TOC entry 379 (class 1255 OID 32235)
 -- Name: get_building_inventory(integer); Type: FUNCTION; Schema: inventory; Owner: postgres
 --
 
@@ -1598,8 +1861,8 @@ $$;
 ALTER FUNCTION inventory.get_building_inventory(p_building_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5380 (class 0 OID 0)
--- Dependencies: 353
+-- TOC entry 5531 (class 0 OID 0)
+-- Dependencies: 379
 -- Name: FUNCTION get_building_inventory(p_building_id integer); Type: COMMENT; Schema: inventory; Owner: postgres
 --
 
@@ -1607,7 +1870,48 @@ COMMENT ON FUNCTION inventory.get_building_inventory(p_building_id integer) IS '
 
 
 --
--- TOC entry 337 (class 1255 OID 17537)
+-- TOC entry 336 (class 1255 OID 32236)
+-- Name: get_container_tile(integer); Type: FUNCTION; Schema: inventory; Owner: postgres
+--
+
+CREATE FUNCTION inventory.get_container_tile(p_container_id integer) RETURNS TABLE(map_id integer, map_tile_x integer, map_tile_y integer)
+    LANGUAGE sql
+    AS $$
+
+	SELECT T3.map_id,
+	T3.map_tile_x,
+	T3.map_tile_y
+	FROM inventory.inventory_container_building T1
+	JOIN buildings.buildings T2 ON T1.building_id = T2.id
+	JOIN cities.cities T3 ON T2.city_id = T3.id
+	WHERE T1.inventory_container_id = p_container_id
+
+    UNION ALL
+
+	SELECT T2.map_id,
+	T2.map_tile_x,
+	T2.map_tile_y
+	FROM inventory.inventory_container_district T1
+	JOIN districts.districts T2 ON T1.district_id = T2.id
+	WHERE T1.inventory_container_id = p_container_id
+
+    UNION ALL
+
+	SELECT T2.map_id,
+	T2.map_tile_x,
+	T2.map_tile_y
+	FROM inventory.inventory_container_player T1
+	JOIN world.map_tiles_players_positions T2 ON T1.player_id = T2.player_id
+	WHERE T1.inventory_container_id = p_container_id
+
+    LIMIT 1;
+$$;
+
+
+ALTER FUNCTION inventory.get_container_tile(p_container_id integer) OWNER TO postgres;
+
+--
+-- TOC entry 316 (class 1255 OID 32237)
 -- Name: get_district_inventory(integer); Type: FUNCTION; Schema: inventory; Owner: postgres
 --
 
@@ -1634,8 +1938,8 @@ $$;
 ALTER FUNCTION inventory.get_district_inventory(p_district_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5381 (class 0 OID 0)
--- Dependencies: 337
+-- TOC entry 5532 (class 0 OID 0)
+-- Dependencies: 316
 -- Name: FUNCTION get_district_inventory(p_district_id integer); Type: COMMENT; Schema: inventory; Owner: postgres
 --
 
@@ -1643,7 +1947,7 @@ COMMENT ON FUNCTION inventory.get_district_inventory(p_district_id integer) IS '
 
 
 --
--- TOC entry 358 (class 1255 OID 17435)
+-- TOC entry 337 (class 1255 OID 32238)
 -- Name: get_player_inventory(integer); Type: FUNCTION; Schema: inventory; Owner: postgres
 --
 
@@ -1670,8 +1974,8 @@ $$;
 ALTER FUNCTION inventory.get_player_inventory(p_player_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5382 (class 0 OID 0)
--- Dependencies: 358
+-- TOC entry 5533 (class 0 OID 0)
+-- Dependencies: 337
 -- Name: FUNCTION get_player_inventory(p_player_id integer); Type: COMMENT; Schema: inventory; Owner: postgres
 --
 
@@ -1679,7 +1983,78 @@ COMMENT ON FUNCTION inventory.get_player_inventory(p_player_id integer) IS 'get_
 
 
 --
--- TOC entry 357 (class 1255 OID 17573)
+-- TOC entry 344 (class 1255 OID 32239)
+-- Name: move_or_swap_item(integer, integer, integer, integer); Type: FUNCTION; Schema: inventory; Owner: postgres
+--
+
+CREATE FUNCTION inventory.move_or_swap_item(p_from_slot_id integer, p_to_slot_id integer, p_from_inventory_container_id integer, p_to_inventory_container_id integer) RETURNS void
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    v_from_item_id   integer;
+    v_from_quantity  integer;
+
+    v_to_item_id     integer;
+    v_to_quantity    integer;
+BEGIN
+
+
+    -- Pobierz slot źródłowy (z blokadą)
+    SELECT item_id, quantity
+    INTO v_from_item_id, v_from_quantity
+    FROM inventory.inventory_slots
+    WHERE id = p_from_slot_id
+      AND inventory_container_id = p_from_inventory_container_id
+    FOR UPDATE;
+
+    IF v_from_item_id IS NULL THEN
+        PERFORM util.raise_error('Source slot is empty');
+    END IF;
+
+    -- Pobierz slot docelowy (z blokadą)
+    SELECT item_id, quantity
+    INTO v_to_item_id, v_to_quantity
+    FROM inventory.inventory_slots
+    WHERE id = p_to_slot_id
+      AND inventory_container_id = p_to_inventory_container_id
+    FOR UPDATE;
+
+    -- Jeśli docelowy slot jest pusty → move
+    IF v_to_item_id IS NULL THEN
+
+        UPDATE inventory.inventory_slots
+        SET item_id = v_from_item_id,
+            quantity = v_from_quantity
+        WHERE id = p_to_slot_id;
+
+        UPDATE inventory.inventory_slots
+        SET item_id = NULL,
+            quantity = NULL
+        WHERE id = p_from_slot_id;
+
+    -- Jeśli zajęty → swap
+    ELSE
+
+        UPDATE inventory.inventory_slots
+        SET item_id = v_to_item_id,
+            quantity = v_to_quantity
+        WHERE id = p_from_slot_id;
+
+        UPDATE inventory.inventory_slots
+        SET item_id = v_from_item_id,
+            quantity = v_from_quantity
+        WHERE id = p_to_slot_id;
+
+    END IF;
+
+END;
+$$;
+
+
+ALTER FUNCTION inventory.move_or_swap_item(p_from_slot_id integer, p_to_slot_id integer, p_from_inventory_container_id integer, p_to_inventory_container_id integer) OWNER TO postgres;
+
+--
+-- TOC entry 358 (class 1255 OID 32240)
 -- Name: check_item_exists(integer); Type: FUNCTION; Schema: items; Owner: postgres
 --
 
@@ -1697,7 +2072,7 @@ $$;
 ALTER FUNCTION items.check_item_exists(p_item_id integer) OWNER TO postgres;
 
 --
--- TOC entry 316 (class 1255 OID 17574)
+-- TOC entry 367 (class 1255 OID 32241)
 -- Name: check_quantity_positive(integer); Type: FUNCTION; Schema: items; Owner: postgres
 --
 
@@ -1715,7 +2090,7 @@ $$;
 ALTER FUNCTION items.check_quantity_positive(p_quantity integer) OWNER TO postgres;
 
 --
--- TOC entry 270 (class 1259 OID 16638)
+-- TOC entry 242 (class 1259 OID 32242)
 -- Name: item_stats; Type: TABLE; Schema: items; Owner: postgres
 --
 
@@ -1730,7 +2105,7 @@ CREATE TABLE items.item_stats (
 ALTER TABLE items.item_stats OWNER TO postgres;
 
 --
--- TOC entry 342 (class 1255 OID 17009)
+-- TOC entry 325 (class 1255 OID 32249)
 -- Name: get_item_stats(); Type: FUNCTION; Schema: items; Owner: postgres
 --
 
@@ -1747,8 +2122,8 @@ CREATE FUNCTION items.get_item_stats() RETURNS SETOF items.item_stats
 ALTER FUNCTION items.get_item_stats() OWNER TO postgres;
 
 --
--- TOC entry 5383 (class 0 OID 0)
--- Dependencies: 342
+-- TOC entry 5534 (class 0 OID 0)
+-- Dependencies: 325
 -- Name: FUNCTION get_item_stats(); Type: COMMENT; Schema: items; Owner: postgres
 --
 
@@ -1756,7 +2131,7 @@ COMMENT ON FUNCTION items.get_item_stats() IS 'automatic_get_api';
 
 
 --
--- TOC entry 335 (class 1255 OID 17010)
+-- TOC entry 310 (class 1255 OID 32250)
 -- Name: get_item_stats_by_key(integer); Type: FUNCTION; Schema: items; Owner: postgres
 --
 
@@ -1774,8 +2149,8 @@ CREATE FUNCTION items.get_item_stats_by_key(p_id integer) RETURNS SETOF items.it
 ALTER FUNCTION items.get_item_stats_by_key(p_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5384 (class 0 OID 0)
--- Dependencies: 335
+-- TOC entry 5535 (class 0 OID 0)
+-- Dependencies: 310
 -- Name: FUNCTION get_item_stats_by_key(p_id integer); Type: COMMENT; Schema: items; Owner: postgres
 --
 
@@ -1783,20 +2158,23 @@ COMMENT ON FUNCTION items.get_item_stats_by_key(p_id integer) IS 'automatic_get_
 
 
 --
--- TOC entry 238 (class 1259 OID 16468)
+-- TOC entry 243 (class 1259 OID 32251)
 -- Name: items; Type: TABLE; Schema: items; Owner: postgres
 --
 
 CREATE TABLE items.items (
     id integer NOT NULL,
-    name character varying(255)
+    name character varying(255),
+    description character varying(255),
+    image character varying(255) DEFAULT 'default.png'::character varying NOT NULL,
+    item_type_id integer DEFAULT 1 NOT NULL
 );
 
 
 ALTER TABLE items.items OWNER TO postgres;
 
 --
--- TOC entry 365 (class 1255 OID 16472)
+-- TOC entry 374 (class 1255 OID 32259)
 -- Name: get_items(); Type: FUNCTION; Schema: items; Owner: postgres
 --
 
@@ -1814,8 +2192,8 @@ CREATE FUNCTION items.get_items() RETURNS SETOF items.items
 ALTER FUNCTION items.get_items() OWNER TO postgres;
 
 --
--- TOC entry 5385 (class 0 OID 0)
--- Dependencies: 365
+-- TOC entry 5536 (class 0 OID 0)
+-- Dependencies: 374
 -- Name: FUNCTION get_items(); Type: COMMENT; Schema: items; Owner: postgres
 --
 
@@ -1823,7 +2201,7 @@ COMMENT ON FUNCTION items.get_items() IS 'automatic_get_api';
 
 
 --
--- TOC entry 359 (class 1255 OID 16473)
+-- TOC entry 301 (class 1255 OID 32260)
 -- Name: get_items_by_key(integer); Type: FUNCTION; Schema: items; Owner: postgres
 --
 
@@ -1842,8 +2220,8 @@ CREATE FUNCTION items.get_items_by_key(p_id integer) RETURNS SETOF items.items
 ALTER FUNCTION items.get_items_by_key(p_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5386 (class 0 OID 0)
--- Dependencies: 359
+-- TOC entry 5537 (class 0 OID 0)
+-- Dependencies: 301
 -- Name: FUNCTION get_items_by_key(p_id integer); Type: COMMENT; Schema: items; Owner: postgres
 --
 
@@ -1851,23 +2229,23 @@ COMMENT ON FUNCTION items.get_items_by_key(p_id integer) IS 'automatic_get_api';
 
 
 --
--- TOC entry 294 (class 1255 OID 17598)
+-- TOC entry 354 (class 1255 OID 32261)
 -- Name: do_switch_active_player(integer, integer); Type: FUNCTION; Schema: players; Owner: postgres
 --
 
-CREATE FUNCTION players.do_switch_active_player(p_player_id integer, p_switch_to_player_id integer) RETURNS TABLE(status text, message text)
+CREATE FUNCTION players.do_switch_active_player(p_player_id integer, p_switch_to_player_id integer) RETURNS TABLE(status boolean, message text)
     LANGUAGE plpgsql
     AS $$
 BEGIN
 
 PERFORM players.switch_active_player(p_player_id, p_switch_to_player_id);
 
-    RETURN QUERY SELECT 'ok', 'Player switched';
+    RETURN QUERY SELECT true, 'Player switched';
     
     EXCEPTION
         WHEN OTHERS THEN
             IF SQLSTATE = 'P0001' THEN
-                RETURN QUERY SELECT 'fail', SQLERRM;
+                RETURN QUERY SELECT false, SQLERRM;
             ELSE
                 RAISE;
             END IF;
@@ -1879,8 +2257,8 @@ $$;
 ALTER FUNCTION players.do_switch_active_player(p_player_id integer, p_switch_to_player_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5387 (class 0 OID 0)
--- Dependencies: 294
+-- TOC entry 5538 (class 0 OID 0)
+-- Dependencies: 354
 -- Name: FUNCTION do_switch_active_player(p_player_id integer, p_switch_to_player_id integer); Type: COMMENT; Schema: players; Owner: postgres
 --
 
@@ -1888,20 +2266,17 @@ COMMENT ON FUNCTION players.do_switch_active_player(p_player_id integer, p_switc
 
 
 --
--- TOC entry 317 (class 1255 OID 17601)
+-- TOC entry 380 (class 1255 OID 32262)
 -- Name: get_active_player(integer); Type: FUNCTION; Schema: players; Owner: postgres
 --
 
-CREATE FUNCTION players.get_active_player(p_user_id integer) RETURNS TABLE(id integer, name character varying, image_map character varying, image_portrait character varying)
+CREATE FUNCTION players.get_active_player(p_user_id integer) RETURNS TABLE(id integer)
     LANGUAGE plpgsql
     AS $$
       BEGIN
             RETURN QUERY
             SELECT 
-            t1.id,
-            t1.name,
-            t1.image_map,
-            t1.image_portrait
+            t1.id
             FROM players.players t1
             WHERE t1.user_id = p_user_id
              AND t1.is_active = true
@@ -1913,16 +2288,76 @@ CREATE FUNCTION players.get_active_player(p_user_id integer) RETURNS TABLE(id in
 ALTER FUNCTION players.get_active_player(p_user_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5388 (class 0 OID 0)
--- Dependencies: 317
--- Name: FUNCTION get_active_player(p_user_id integer); Type: COMMENT; Schema: players; Owner: postgres
+-- TOC entry 345 (class 1255 OID 32263)
+-- Name: get_active_player_profile(integer); Type: FUNCTION; Schema: players; Owner: postgres
 --
 
-COMMENT ON FUNCTION players.get_active_player(p_user_id integer) IS 'get_api';
+CREATE FUNCTION players.get_active_player_profile(p_player_id integer) RETURNS TABLE(name character varying, second_name character varying, nickname character varying, image_map character varying, image_portrait character varying)
+    LANGUAGE plpgsql
+    AS $$
+      BEGIN
+            RETURN QUERY
+            SELECT 
+            t1.name,
+			t1.second_name,
+			t1.nickname,
+            t1.image_map,
+            t1.image_portrait
+            FROM players.players t1
+            WHERE t1.id = p_player_id
+             AND t1.is_active = true
+            LIMIT 1;
+      END;
+      $$;
+
+
+ALTER FUNCTION players.get_active_player_profile(p_player_id integer) OWNER TO postgres;
+
+--
+-- TOC entry 5539 (class 0 OID 0)
+-- Dependencies: 345
+-- Name: FUNCTION get_active_player_profile(p_player_id integer); Type: COMMENT; Schema: players; Owner: postgres
+--
+
+COMMENT ON FUNCTION players.get_active_player_profile(p_player_id integer) IS 'get_api';
 
 
 --
--- TOC entry 369 (class 1255 OID 17600)
+-- TOC entry 338 (class 1255 OID 32264)
+-- Name: get_active_player_switch_profiles(integer); Type: FUNCTION; Schema: players; Owner: postgres
+--
+
+CREATE FUNCTION players.get_active_player_switch_profiles(p_player_id integer) RETURNS TABLE(id integer, name character varying, second_name character varying, nickname character varying, image_portrait character varying)
+    LANGUAGE plpgsql
+    AS $$
+      BEGIN
+            RETURN QUERY
+              SELECT 
+                p2.id,
+                p2.name,
+				p2.second_name,
+				p2.nickname,
+                p2.image_portrait
+              FROM players.players p1
+              JOIN players.players p2 ON p2.user_id = p1.user_id
+              WHERE p1.id = p_player_id;
+      END;
+      $$;
+
+
+ALTER FUNCTION players.get_active_player_switch_profiles(p_player_id integer) OWNER TO postgres;
+
+--
+-- TOC entry 5540 (class 0 OID 0)
+-- Dependencies: 338
+-- Name: FUNCTION get_active_player_switch_profiles(p_player_id integer); Type: COMMENT; Schema: players; Owner: postgres
+--
+
+COMMENT ON FUNCTION players.get_active_player_switch_profiles(p_player_id integer) IS 'get_api';
+
+
+--
+-- TOC entry 304 (class 1255 OID 32265)
 -- Name: switch_active_player(integer, integer); Type: FUNCTION; Schema: players; Owner: postgres
 --
 
@@ -1946,7 +2381,7 @@ $$;
 ALTER FUNCTION players.switch_active_player(p_player_id integer, p_switch_to_player_id integer) OWNER TO postgres;
 
 --
--- TOC entry 295 (class 1255 OID 16491)
+-- TOC entry 322 (class 1255 OID 32266)
 -- Name: cancel_task(integer, character varying); Type: FUNCTION; Schema: tasks; Owner: postgres
 --
 
@@ -1972,7 +2407,7 @@ $$;
 ALTER FUNCTION tasks.cancel_task(p_player_id integer, p_method_name character varying) OWNER TO postgres;
 
 --
--- TOC entry 336 (class 1255 OID 17555)
+-- TOC entry 334 (class 1255 OID 32267)
 -- Name: insert_task(integer, character varying, jsonb); Type: FUNCTION; Schema: tasks; Owner: postgres
 --
 
@@ -2017,11 +2452,11 @@ $$;
 ALTER FUNCTION tasks.insert_task(p_player_id integer, p_method_name character varying, p_parameters jsonb) OWNER TO postgres;
 
 --
--- TOC entry 306 (class 1255 OID 17570)
--- Name: raise_error(text, text[]); Type: FUNCTION; Schema: utils; Owner: postgres
+-- TOC entry 314 (class 1255 OID 32268)
+-- Name: raise_error(text, text[]); Type: FUNCTION; Schema: util; Owner: postgres
 --
 
-CREATE FUNCTION utils.raise_error(p_message text, VARIADIC p_args text[]) RETURNS void
+CREATE FUNCTION util.raise_error(p_message text, VARIADIC p_args text[] DEFAULT ARRAY[]::text[]) RETURNS void
     LANGUAGE plpgsql
     AS $$
 DECLARE
@@ -2038,14 +2473,14 @@ END;
 $$;
 
 
-ALTER FUNCTION utils.raise_error(p_message text, VARIADIC p_args text[]) OWNER TO postgres;
+ALTER FUNCTION util.raise_error(p_message text, VARIADIC p_args text[]) OWNER TO postgres;
 
 --
--- TOC entry 346 (class 1255 OID 17546)
+-- TOC entry 359 (class 1255 OID 32269)
 -- Name: do_player_movement(integer, jsonb); Type: FUNCTION; Schema: world; Owner: postgres
 --
 
-CREATE FUNCTION world.do_player_movement(p_player_id integer, p_path jsonb) RETURNS TABLE(status text, message text)
+CREATE FUNCTION world.do_player_movement(p_player_id integer, p_path jsonb) RETURNS TABLE(status boolean, message text)
     LANGUAGE plpgsql
     AS $$
 DECLARE
@@ -2059,7 +2494,7 @@ BEGIN
         PERFORM tasks.insert_task(p_player_id, 'world.player_movement', tile);
     END LOOP;
 
-    RETURN QUERY SELECT 'ok', 'Movement actions assigned';
+    RETURN QUERY SELECT true, 'Movement actions assigned';
 END;
 $$;
 
@@ -2067,8 +2502,8 @@ $$;
 ALTER FUNCTION world.do_player_movement(p_player_id integer, p_path jsonb) OWNER TO postgres;
 
 --
--- TOC entry 5389 (class 0 OID 0)
--- Dependencies: 346
+-- TOC entry 5541 (class 0 OID 0)
+-- Dependencies: 359
 -- Name: FUNCTION do_player_movement(p_player_id integer, p_path jsonb); Type: COMMENT; Schema: world; Owner: postgres
 --
 
@@ -2076,7 +2511,7 @@ COMMENT ON FUNCTION world.do_player_movement(p_player_id integer, p_path jsonb) 
 
 
 --
--- TOC entry 240 (class 1259 OID 16495)
+-- TOC entry 244 (class 1259 OID 32270)
 -- Name: landscape_types; Type: TABLE; Schema: world; Owner: postgres
 --
 
@@ -2091,7 +2526,7 @@ CREATE TABLE world.landscape_types (
 ALTER TABLE world.landscape_types OWNER TO postgres;
 
 --
--- TOC entry 363 (class 1255 OID 16501)
+-- TOC entry 319 (class 1255 OID 32276)
 -- Name: get_landscape_types(); Type: FUNCTION; Schema: world; Owner: postgres
 --
 
@@ -2109,8 +2544,8 @@ CREATE FUNCTION world.get_landscape_types() RETURNS SETOF world.landscape_types
 ALTER FUNCTION world.get_landscape_types() OWNER TO postgres;
 
 --
--- TOC entry 5390 (class 0 OID 0)
--- Dependencies: 363
+-- TOC entry 5542 (class 0 OID 0)
+-- Dependencies: 319
 -- Name: FUNCTION get_landscape_types(); Type: COMMENT; Schema: world; Owner: postgres
 --
 
@@ -2118,7 +2553,7 @@ COMMENT ON FUNCTION world.get_landscape_types() IS 'automatic_get_api';
 
 
 --
--- TOC entry 367 (class 1255 OID 16502)
+-- TOC entry 363 (class 1255 OID 32277)
 -- Name: get_landscape_types_by_key(integer); Type: FUNCTION; Schema: world; Owner: postgres
 --
 
@@ -2137,8 +2572,8 @@ CREATE FUNCTION world.get_landscape_types_by_key(p_id integer) RETURNS SETOF wor
 ALTER FUNCTION world.get_landscape_types_by_key(p_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5391 (class 0 OID 0)
--- Dependencies: 367
+-- TOC entry 5543 (class 0 OID 0)
+-- Dependencies: 363
 -- Name: FUNCTION get_landscape_types_by_key(p_id integer); Type: COMMENT; Schema: world; Owner: postgres
 --
 
@@ -2146,7 +2581,7 @@ COMMENT ON FUNCTION world.get_landscape_types_by_key(p_id integer) IS 'automatic
 
 
 --
--- TOC entry 279 (class 1259 OID 16690)
+-- TOC entry 245 (class 1259 OID 32278)
 -- Name: map_tiles; Type: TABLE; Schema: world; Owner: postgres
 --
 
@@ -2162,7 +2597,7 @@ CREATE TABLE world.map_tiles (
 ALTER TABLE world.map_tiles OWNER TO postgres;
 
 --
--- TOC entry 300 (class 1255 OID 16997)
+-- TOC entry 300 (class 1255 OID 32286)
 -- Name: get_map_tiles(); Type: FUNCTION; Schema: world; Owner: postgres
 --
 
@@ -2180,7 +2615,7 @@ CREATE FUNCTION world.get_map_tiles() RETURNS SETOF world.map_tiles
 ALTER FUNCTION world.get_map_tiles() OWNER TO postgres;
 
 --
--- TOC entry 5392 (class 0 OID 0)
+-- TOC entry 5544 (class 0 OID 0)
 -- Dependencies: 300
 -- Name: FUNCTION get_map_tiles(); Type: COMMENT; Schema: world; Owner: postgres
 --
@@ -2189,7 +2624,7 @@ COMMENT ON FUNCTION world.get_map_tiles() IS 'automatic_get_api';
 
 
 --
--- TOC entry 362 (class 1255 OID 17011)
+-- TOC entry 308 (class 1255 OID 32287)
 -- Name: get_map_tiles_by_key(integer); Type: FUNCTION; Schema: world; Owner: postgres
 --
 
@@ -2208,8 +2643,8 @@ CREATE FUNCTION world.get_map_tiles_by_key(p_map_id integer) RETURNS SETOF world
 ALTER FUNCTION world.get_map_tiles_by_key(p_map_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5393 (class 0 OID 0)
--- Dependencies: 362
+-- TOC entry 5545 (class 0 OID 0)
+-- Dependencies: 308
 -- Name: FUNCTION get_map_tiles_by_key(p_map_id integer); Type: COMMENT; Schema: world; Owner: postgres
 --
 
@@ -2217,7 +2652,7 @@ COMMENT ON FUNCTION world.get_map_tiles_by_key(p_map_id integer) IS 'automatic_g
 
 
 --
--- TOC entry 351 (class 1255 OID 17584)
+-- TOC entry 332 (class 1255 OID 32288)
 -- Name: get_player_map(integer); Type: FUNCTION; Schema: world; Owner: postgres
 --
 
@@ -2237,8 +2672,8 @@ CREATE FUNCTION world.get_player_map(p_player_id integer) RETURNS TABLE(map_id i
 ALTER FUNCTION world.get_player_map(p_player_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5394 (class 0 OID 0)
--- Dependencies: 351
+-- TOC entry 5546 (class 0 OID 0)
+-- Dependencies: 332
 -- Name: FUNCTION get_player_map(p_player_id integer); Type: COMMENT; Schema: world; Owner: postgres
 --
 
@@ -2246,7 +2681,7 @@ COMMENT ON FUNCTION world.get_player_map(p_player_id integer) IS 'get_api';
 
 
 --
--- TOC entry 321 (class 1255 OID 17563)
+-- TOC entry 360 (class 1255 OID 32289)
 -- Name: get_player_movement(integer); Type: FUNCTION; Schema: world; Owner: postgres
 --
 
@@ -2292,8 +2727,8 @@ $$;
 ALTER FUNCTION world.get_player_movement(p_player_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5395 (class 0 OID 0)
--- Dependencies: 321
+-- TOC entry 5547 (class 0 OID 0)
+-- Dependencies: 360
 -- Name: FUNCTION get_player_movement(p_player_id integer); Type: COMMENT; Schema: world; Owner: postgres
 --
 
@@ -2301,7 +2736,7 @@ COMMENT ON FUNCTION world.get_player_movement(p_player_id integer) IS 'get_api';
 
 
 --
--- TOC entry 329 (class 1255 OID 17591)
+-- TOC entry 347 (class 1255 OID 32290)
 -- Name: get_player_position(integer, integer); Type: FUNCTION; Schema: world; Owner: postgres
 --
 
@@ -2324,8 +2759,8 @@ CREATE FUNCTION world.get_player_position(p_map_id integer, p_player_id integer)
 ALTER FUNCTION world.get_player_position(p_map_id integer, p_player_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5396 (class 0 OID 0)
--- Dependencies: 329
+-- TOC entry 5548 (class 0 OID 0)
+-- Dependencies: 347
 -- Name: FUNCTION get_player_position(p_map_id integer, p_player_id integer); Type: COMMENT; Schema: world; Owner: postgres
 --
 
@@ -2333,7 +2768,7 @@ COMMENT ON FUNCTION world.get_player_position(p_map_id integer, p_player_id inte
 
 
 --
--- TOC entry 328 (class 1255 OID 17566)
+-- TOC entry 315 (class 1255 OID 32291)
 -- Name: get_player_vision_players_positions(integer, integer); Type: FUNCTION; Schema: world; Owner: postgres
 --
 
@@ -2356,8 +2791,8 @@ CREATE FUNCTION world.get_player_vision_players_positions(p_map_id integer, p_pl
 ALTER FUNCTION world.get_player_vision_players_positions(p_map_id integer, p_player_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5397 (class 0 OID 0)
--- Dependencies: 328
+-- TOC entry 5549 (class 0 OID 0)
+-- Dependencies: 315
 -- Name: FUNCTION get_player_vision_players_positions(p_map_id integer, p_player_id integer); Type: COMMENT; Schema: world; Owner: postgres
 --
 
@@ -2365,7 +2800,7 @@ COMMENT ON FUNCTION world.get_player_vision_players_positions(p_map_id integer, 
 
 
 --
--- TOC entry 241 (class 1259 OID 16503)
+-- TOC entry 246 (class 1259 OID 32292)
 -- Name: terrain_types; Type: TABLE; Schema: world; Owner: postgres
 --
 
@@ -2380,7 +2815,7 @@ CREATE TABLE world.terrain_types (
 ALTER TABLE world.terrain_types OWNER TO postgres;
 
 --
--- TOC entry 366 (class 1255 OID 16509)
+-- TOC entry 340 (class 1255 OID 32298)
 -- Name: get_terrain_types(); Type: FUNCTION; Schema: world; Owner: postgres
 --
 
@@ -2398,8 +2833,8 @@ CREATE FUNCTION world.get_terrain_types() RETURNS SETOF world.terrain_types
 ALTER FUNCTION world.get_terrain_types() OWNER TO postgres;
 
 --
--- TOC entry 5398 (class 0 OID 0)
--- Dependencies: 366
+-- TOC entry 5550 (class 0 OID 0)
+-- Dependencies: 340
 -- Name: FUNCTION get_terrain_types(); Type: COMMENT; Schema: world; Owner: postgres
 --
 
@@ -2407,7 +2842,7 @@ COMMENT ON FUNCTION world.get_terrain_types() IS 'automatic_get_api';
 
 
 --
--- TOC entry 370 (class 1255 OID 16510)
+-- TOC entry 305 (class 1255 OID 32299)
 -- Name: get_terrain_types_by_key(integer); Type: FUNCTION; Schema: world; Owner: postgres
 --
 
@@ -2426,8 +2861,8 @@ CREATE FUNCTION world.get_terrain_types_by_key(p_id integer) RETURNS SETOF world
 ALTER FUNCTION world.get_terrain_types_by_key(p_id integer) OWNER TO postgres;
 
 --
--- TOC entry 5399 (class 0 OID 0)
--- Dependencies: 370
+-- TOC entry 5551 (class 0 OID 0)
+-- Dependencies: 305
 -- Name: FUNCTION get_terrain_types_by_key(p_id integer); Type: COMMENT; Schema: world; Owner: postgres
 --
 
@@ -2435,7 +2870,7 @@ COMMENT ON FUNCTION world.get_terrain_types_by_key(p_id integer) IS 'automatic_g
 
 
 --
--- TOC entry 242 (class 1259 OID 16516)
+-- TOC entry 247 (class 1259 OID 32300)
 -- Name: abilities_id_seq; Type: SEQUENCE; Schema: attributes; Owner: postgres
 --
 
@@ -2450,7 +2885,7 @@ ALTER TABLE attributes.abilities ALTER COLUMN id ADD GENERATED BY DEFAULT AS IDE
 
 
 --
--- TOC entry 243 (class 1259 OID 16517)
+-- TOC entry 248 (class 1259 OID 32301)
 -- Name: ability_skill_requirements; Type: TABLE; Schema: attributes; Owner: postgres
 --
 
@@ -2464,7 +2899,7 @@ CREATE TABLE attributes.ability_skill_requirements (
 ALTER TABLE attributes.ability_skill_requirements OWNER TO postgres;
 
 --
--- TOC entry 244 (class 1259 OID 16524)
+-- TOC entry 249 (class 1259 OID 32308)
 -- Name: ability_stat_requirements; Type: TABLE; Schema: attributes; Owner: postgres
 --
 
@@ -2478,7 +2913,7 @@ CREATE TABLE attributes.ability_stat_requirements (
 ALTER TABLE attributes.ability_stat_requirements OWNER TO postgres;
 
 --
--- TOC entry 288 (class 1259 OID 17448)
+-- TOC entry 250 (class 1259 OID 32315)
 -- Name: player_abilities_id_seq; Type: SEQUENCE; Schema: attributes; Owner: postgres
 --
 
@@ -2493,7 +2928,7 @@ ALTER TABLE attributes.player_abilities ALTER COLUMN id ADD GENERATED BY DEFAULT
 
 
 --
--- TOC entry 291 (class 1259 OID 17459)
+-- TOC entry 251 (class 1259 OID 32316)
 -- Name: player_skills; Type: TABLE; Schema: attributes; Owner: postgres
 --
 
@@ -2508,7 +2943,7 @@ CREATE TABLE attributes.player_skills (
 ALTER TABLE attributes.player_skills OWNER TO postgres;
 
 --
--- TOC entry 290 (class 1259 OID 17458)
+-- TOC entry 252 (class 1259 OID 32323)
 -- Name: player_skills_id_seq; Type: SEQUENCE; Schema: attributes; Owner: postgres
 --
 
@@ -2523,7 +2958,7 @@ ALTER TABLE attributes.player_skills ALTER COLUMN id ADD GENERATED BY DEFAULT AS
 
 
 --
--- TOC entry 293 (class 1259 OID 17474)
+-- TOC entry 253 (class 1259 OID 32324)
 -- Name: player_stats; Type: TABLE; Schema: attributes; Owner: postgres
 --
 
@@ -2538,7 +2973,7 @@ CREATE TABLE attributes.player_stats (
 ALTER TABLE attributes.player_stats OWNER TO postgres;
 
 --
--- TOC entry 292 (class 1259 OID 17473)
+-- TOC entry 254 (class 1259 OID 32331)
 -- Name: player_stats_id_seq; Type: SEQUENCE; Schema: attributes; Owner: postgres
 --
 
@@ -2553,7 +2988,7 @@ ALTER TABLE attributes.player_stats ALTER COLUMN id ADD GENERATED BY DEFAULT AS 
 
 
 --
--- TOC entry 245 (class 1259 OID 16531)
+-- TOC entry 255 (class 1259 OID 32332)
 -- Name: roles_id_seq; Type: SEQUENCE; Schema: attributes; Owner: postgres
 --
 
@@ -2568,7 +3003,7 @@ ALTER TABLE attributes.roles ALTER COLUMN id ADD GENERATED BY DEFAULT AS IDENTIT
 
 
 --
--- TOC entry 246 (class 1259 OID 16532)
+-- TOC entry 256 (class 1259 OID 32333)
 -- Name: skills_id_seq; Type: SEQUENCE; Schema: attributes; Owner: postgres
 --
 
@@ -2583,7 +3018,7 @@ ALTER TABLE attributes.skills ALTER COLUMN id ADD GENERATED BY DEFAULT AS IDENTI
 
 
 --
--- TOC entry 247 (class 1259 OID 16533)
+-- TOC entry 257 (class 1259 OID 32334)
 -- Name: stats_id_seq; Type: SEQUENCE; Schema: attributes; Owner: postgres
 --
 
@@ -2598,7 +3033,7 @@ ALTER TABLE attributes.stats ALTER COLUMN id ADD GENERATED BY DEFAULT AS IDENTIT
 
 
 --
--- TOC entry 248 (class 1259 OID 16534)
+-- TOC entry 258 (class 1259 OID 32335)
 -- Name: accounts; Type: TABLE; Schema: auth; Owner: postgres
 --
 
@@ -2621,7 +3056,7 @@ CREATE TABLE auth.accounts (
 ALTER TABLE auth.accounts OWNER TO postgres;
 
 --
--- TOC entry 249 (class 1259 OID 16544)
+-- TOC entry 259 (class 1259 OID 32345)
 -- Name: accounts_id_seq; Type: SEQUENCE; Schema: auth; Owner: postgres
 --
 
@@ -2636,7 +3071,7 @@ ALTER TABLE auth.accounts ALTER COLUMN id ADD GENERATED BY DEFAULT AS IDENTITY (
 
 
 --
--- TOC entry 250 (class 1259 OID 16545)
+-- TOC entry 260 (class 1259 OID 32346)
 -- Name: sessions; Type: TABLE; Schema: auth; Owner: postgres
 --
 
@@ -2651,7 +3086,7 @@ CREATE TABLE auth.sessions (
 ALTER TABLE auth.sessions OWNER TO postgres;
 
 --
--- TOC entry 251 (class 1259 OID 16552)
+-- TOC entry 261 (class 1259 OID 32353)
 -- Name: sessions_id_seq; Type: SEQUENCE; Schema: auth; Owner: postgres
 --
 
@@ -2666,7 +3101,7 @@ ALTER TABLE auth.sessions ALTER COLUMN id ADD GENERATED BY DEFAULT AS IDENTITY (
 
 
 --
--- TOC entry 252 (class 1259 OID 16553)
+-- TOC entry 262 (class 1259 OID 32354)
 -- Name: users; Type: TABLE; Schema: auth; Owner: postgres
 --
 
@@ -2683,7 +3118,7 @@ CREATE TABLE auth.users (
 ALTER TABLE auth.users OWNER TO postgres;
 
 --
--- TOC entry 253 (class 1259 OID 16559)
+-- TOC entry 263 (class 1259 OID 32360)
 -- Name: users_id_seq; Type: SEQUENCE; Schema: auth; Owner: postgres
 --
 
@@ -2698,7 +3133,7 @@ ALTER TABLE auth.users ALTER COLUMN id ADD GENERATED BY DEFAULT AS IDENTITY (
 
 
 --
--- TOC entry 254 (class 1259 OID 16560)
+-- TOC entry 264 (class 1259 OID 32361)
 -- Name: verification_token; Type: TABLE; Schema: auth; Owner: postgres
 --
 
@@ -2712,7 +3147,7 @@ CREATE TABLE auth.verification_token (
 ALTER TABLE auth.verification_token OWNER TO postgres;
 
 --
--- TOC entry 255 (class 1259 OID 16568)
+-- TOC entry 265 (class 1259 OID 32369)
 -- Name: building_roles; Type: TABLE; Schema: buildings; Owner: postgres
 --
 
@@ -2726,7 +3161,7 @@ CREATE TABLE buildings.building_roles (
 ALTER TABLE buildings.building_roles OWNER TO postgres;
 
 --
--- TOC entry 257 (class 1259 OID 16579)
+-- TOC entry 266 (class 1259 OID 32375)
 -- Name: building_types_id_seq; Type: SEQUENCE; Schema: buildings; Owner: postgres
 --
 
@@ -2741,7 +3176,7 @@ ALTER TABLE buildings.building_types ALTER COLUMN id ADD GENERATED BY DEFAULT AS
 
 
 --
--- TOC entry 258 (class 1259 OID 16580)
+-- TOC entry 267 (class 1259 OID 32376)
 -- Name: buildings_id_seq; Type: SEQUENCE; Schema: buildings; Owner: postgres
 --
 
@@ -2756,7 +3191,7 @@ ALTER TABLE buildings.buildings ALTER COLUMN id ADD GENERATED BY DEFAULT AS IDEN
 
 
 --
--- TOC entry 259 (class 1259 OID 16581)
+-- TOC entry 268 (class 1259 OID 32377)
 -- Name: cities_id_seq; Type: SEQUENCE; Schema: cities; Owner: postgres
 --
 
@@ -2771,7 +3206,7 @@ ALTER TABLE cities.cities ALTER COLUMN id ADD GENERATED BY DEFAULT AS IDENTITY (
 
 
 --
--- TOC entry 260 (class 1259 OID 16582)
+-- TOC entry 269 (class 1259 OID 32378)
 -- Name: city_roles; Type: TABLE; Schema: cities; Owner: postgres
 --
 
@@ -2785,7 +3220,7 @@ CREATE TABLE cities.city_roles (
 ALTER TABLE cities.city_roles OWNER TO postgres;
 
 --
--- TOC entry 261 (class 1259 OID 16588)
+-- TOC entry 270 (class 1259 OID 32384)
 -- Name: district_roles; Type: TABLE; Schema: districts; Owner: postgres
 --
 
@@ -2799,7 +3234,7 @@ CREATE TABLE districts.district_roles (
 ALTER TABLE districts.district_roles OWNER TO postgres;
 
 --
--- TOC entry 263 (class 1259 OID 16600)
+-- TOC entry 271 (class 1259 OID 32390)
 -- Name: district_types_id_seq; Type: SEQUENCE; Schema: districts; Owner: postgres
 --
 
@@ -2814,7 +3249,7 @@ ALTER TABLE districts.district_types ALTER COLUMN id ADD GENERATED BY DEFAULT AS
 
 
 --
--- TOC entry 264 (class 1259 OID 16601)
+-- TOC entry 272 (class 1259 OID 32391)
 -- Name: districts_id_seq; Type: SEQUENCE; Schema: districts; Owner: postgres
 --
 
@@ -2829,7 +3264,7 @@ ALTER TABLE districts.districts ALTER COLUMN id ADD GENERATED BY DEFAULT AS IDEN
 
 
 --
--- TOC entry 265 (class 1259 OID 16602)
+-- TOC entry 273 (class 1259 OID 32392)
 -- Name: inventory_container_building; Type: TABLE; Schema: inventory; Owner: postgres
 --
 
@@ -2842,7 +3277,7 @@ CREATE TABLE inventory.inventory_container_building (
 ALTER TABLE inventory.inventory_container_building OWNER TO postgres;
 
 --
--- TOC entry 266 (class 1259 OID 16607)
+-- TOC entry 274 (class 1259 OID 32397)
 -- Name: inventory_container_district; Type: TABLE; Schema: inventory; Owner: postgres
 --
 
@@ -2855,7 +3290,7 @@ CREATE TABLE inventory.inventory_container_district (
 ALTER TABLE inventory.inventory_container_district OWNER TO postgres;
 
 --
--- TOC entry 267 (class 1259 OID 16612)
+-- TOC entry 275 (class 1259 OID 32402)
 -- Name: inventory_container_player; Type: TABLE; Schema: inventory; Owner: postgres
 --
 
@@ -2868,7 +3303,20 @@ CREATE TABLE inventory.inventory_container_player (
 ALTER TABLE inventory.inventory_container_player OWNER TO postgres;
 
 --
--- TOC entry 268 (class 1259 OID 16622)
+-- TOC entry 297 (class 1259 OID 32785)
+-- Name: inventory_container_player_gear; Type: TABLE; Schema: inventory; Owner: postgres
+--
+
+CREATE TABLE inventory.inventory_container_player_gear (
+    inventory_container_id integer NOT NULL,
+    player_id integer NOT NULL
+);
+
+
+ALTER TABLE inventory.inventory_container_player_gear OWNER TO postgres;
+
+--
+-- TOC entry 276 (class 1259 OID 32407)
 -- Name: inventory_containers; Type: TABLE; Schema: inventory; Owner: postgres
 --
 
@@ -2882,7 +3330,7 @@ CREATE TABLE inventory.inventory_containers (
 ALTER TABLE inventory.inventory_containers OWNER TO postgres;
 
 --
--- TOC entry 269 (class 1259 OID 16628)
+-- TOC entry 277 (class 1259 OID 32413)
 -- Name: inventory_containers_id_seq; Type: SEQUENCE; Schema: inventory; Owner: postgres
 --
 
@@ -2897,7 +3345,35 @@ ALTER TABLE inventory.inventory_containers ALTER COLUMN id ADD GENERATED BY DEFA
 
 
 --
--- TOC entry 287 (class 1259 OID 17412)
+-- TOC entry 299 (class 1259 OID 32803)
+-- Name: inventory_slot_types; Type: TABLE; Schema: inventory; Owner: postgres
+--
+
+CREATE TABLE inventory.inventory_slot_types (
+    id integer NOT NULL,
+    name character varying(255)
+);
+
+
+ALTER TABLE inventory.inventory_slot_types OWNER TO postgres;
+
+--
+-- TOC entry 298 (class 1259 OID 32802)
+-- Name: inventory_slot_types_id_seq; Type: SEQUENCE; Schema: inventory; Owner: postgres
+--
+
+ALTER TABLE inventory.inventory_slot_types ALTER COLUMN id ADD GENERATED BY DEFAULT AS IDENTITY (
+    SEQUENCE NAME inventory.inventory_slot_types_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 278 (class 1259 OID 32414)
 -- Name: inventory_slots; Type: TABLE; Schema: inventory; Owner: postgres
 --
 
@@ -2906,6 +3382,7 @@ CREATE TABLE inventory.inventory_slots (
     inventory_container_id integer NOT NULL,
     item_id integer,
     quantity integer,
+    inventory_slot_type_id integer,
     CONSTRAINT inventory_slots_quantity_check CHECK ((quantity >= 0))
 );
 
@@ -2913,7 +3390,7 @@ CREATE TABLE inventory.inventory_slots (
 ALTER TABLE inventory.inventory_slots OWNER TO postgres;
 
 --
--- TOC entry 286 (class 1259 OID 17411)
+-- TOC entry 279 (class 1259 OID 32420)
 -- Name: inventory_slots_id_seq; Type: SEQUENCE; Schema: inventory; Owner: postgres
 --
 
@@ -2928,7 +3405,7 @@ ALTER TABLE inventory.inventory_slots ALTER COLUMN id ADD GENERATED BY DEFAULT A
 
 
 --
--- TOC entry 271 (class 1259 OID 16645)
+-- TOC entry 280 (class 1259 OID 32421)
 -- Name: item_stats_id_seq; Type: SEQUENCE; Schema: items; Owner: postgres
 --
 
@@ -2943,7 +3420,35 @@ ALTER TABLE items.item_stats ALTER COLUMN id ADD GENERATED BY DEFAULT AS IDENTIT
 
 
 --
--- TOC entry 272 (class 1259 OID 16646)
+-- TOC entry 296 (class 1259 OID 32769)
+-- Name: item_types; Type: TABLE; Schema: items; Owner: postgres
+--
+
+CREATE TABLE items.item_types (
+    id integer NOT NULL,
+    name character varying(255)
+);
+
+
+ALTER TABLE items.item_types OWNER TO postgres;
+
+--
+-- TOC entry 295 (class 1259 OID 32768)
+-- Name: item_types_id_seq; Type: SEQUENCE; Schema: items; Owner: postgres
+--
+
+ALTER TABLE items.item_types ALTER COLUMN id ADD GENERATED BY DEFAULT AS IDENTITY (
+    SEQUENCE NAME items.item_types_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 281 (class 1259 OID 32422)
 -- Name: items_id_seq; Type: SEQUENCE; Schema: items; Owner: postgres
 --
 
@@ -2958,7 +3463,7 @@ ALTER TABLE items.items ALTER COLUMN id ADD GENERATED BY DEFAULT AS IDENTITY (
 
 
 --
--- TOC entry 239 (class 1259 OID 16477)
+-- TOC entry 282 (class 1259 OID 32423)
 -- Name: players; Type: TABLE; Schema: players; Owner: postgres
 --
 
@@ -2968,14 +3473,16 @@ CREATE TABLE players.players (
     name character varying(255) NOT NULL,
     image_map character varying(255) DEFAULT 'default.png'::character varying CONSTRAINT players_image_url_not_null NOT NULL,
     image_portrait character varying(255) DEFAULT 'default.png'::character varying NOT NULL,
-    is_active boolean DEFAULT false
+    is_active boolean DEFAULT false,
+    second_name character varying(255) DEFAULT 'Nomad'::character varying NOT NULL,
+    nickname character varying(255)
 );
 
 
 ALTER TABLE players.players OWNER TO postgres;
 
 --
--- TOC entry 273 (class 1259 OID 16671)
+-- TOC entry 283 (class 1259 OID 32438)
 -- Name: players_id_seq; Type: SEQUENCE; Schema: players; Owner: postgres
 --
 
@@ -2990,7 +3497,7 @@ ALTER TABLE players.players ALTER COLUMN id ADD GENERATED BY DEFAULT AS IDENTITY
 
 
 --
--- TOC entry 274 (class 1259 OID 16672)
+-- TOC entry 284 (class 1259 OID 32439)
 -- Name: status_types; Type: TABLE; Schema: tasks; Owner: postgres
 --
 
@@ -3003,7 +3510,7 @@ CREATE TABLE tasks.status_types (
 ALTER TABLE tasks.status_types OWNER TO postgres;
 
 --
--- TOC entry 275 (class 1259 OID 16677)
+-- TOC entry 285 (class 1259 OID 32444)
 -- Name: status_types_id_seq; Type: SEQUENCE; Schema: tasks; Owner: postgres
 --
 
@@ -3018,7 +3525,7 @@ ALTER TABLE tasks.status_types ALTER COLUMN id ADD GENERATED BY DEFAULT AS IDENT
 
 
 --
--- TOC entry 276 (class 1259 OID 16678)
+-- TOC entry 286 (class 1259 OID 32445)
 -- Name: tasks; Type: TABLE; Schema: tasks; Owner: postgres
 --
 
@@ -3038,7 +3545,7 @@ CREATE TABLE tasks.tasks (
 ALTER TABLE tasks.tasks OWNER TO postgres;
 
 --
--- TOC entry 277 (class 1259 OID 16688)
+-- TOC entry 287 (class 1259 OID 32455)
 -- Name: tasks_id_seq; Type: SEQUENCE; Schema: tasks; Owner: postgres
 --
 
@@ -3053,7 +3560,7 @@ ALTER TABLE tasks.tasks ALTER COLUMN id ADD GENERATED BY DEFAULT AS IDENTITY (
 
 
 --
--- TOC entry 278 (class 1259 OID 16689)
+-- TOC entry 288 (class 1259 OID 32456)
 -- Name: landscape_types_id_seq; Type: SEQUENCE; Schema: world; Owner: postgres
 --
 
@@ -3068,7 +3575,7 @@ ALTER TABLE world.landscape_types ALTER COLUMN id ADD GENERATED BY DEFAULT AS ID
 
 
 --
--- TOC entry 280 (class 1259 OID 16698)
+-- TOC entry 289 (class 1259 OID 32457)
 -- Name: map_tiles_players_positions; Type: TABLE; Schema: world; Owner: postgres
 --
 
@@ -3083,7 +3590,7 @@ CREATE TABLE world.map_tiles_players_positions (
 ALTER TABLE world.map_tiles_players_positions OWNER TO postgres;
 
 --
--- TOC entry 281 (class 1259 OID 16705)
+-- TOC entry 290 (class 1259 OID 32464)
 -- Name: maps; Type: TABLE; Schema: world; Owner: postgres
 --
 
@@ -3096,7 +3603,7 @@ CREATE TABLE world.maps (
 ALTER TABLE world.maps OWNER TO postgres;
 
 --
--- TOC entry 282 (class 1259 OID 16710)
+-- TOC entry 291 (class 1259 OID 32469)
 -- Name: maps_id_seq; Type: SEQUENCE; Schema: world; Owner: postgres
 --
 
@@ -3111,7 +3618,7 @@ ALTER TABLE world.maps ALTER COLUMN id ADD GENERATED BY DEFAULT AS IDENTITY (
 
 
 --
--- TOC entry 283 (class 1259 OID 16711)
+-- TOC entry 292 (class 1259 OID 32470)
 -- Name: terrain_types_id_seq; Type: SEQUENCE; Schema: world; Owner: postgres
 --
 
@@ -3126,7 +3633,7 @@ ALTER TABLE world.terrain_types ALTER COLUMN id ADD GENERATED BY DEFAULT AS IDEN
 
 
 --
--- TOC entry 284 (class 1259 OID 16712)
+-- TOC entry 293 (class 1259 OID 32471)
 -- Name: v_buildings; Type: VIEW; Schema: world; Owner: postgres
 --
 
@@ -3145,7 +3652,7 @@ CREATE VIEW world.v_buildings AS
 ALTER VIEW world.v_buildings OWNER TO postgres;
 
 --
--- TOC entry 285 (class 1259 OID 16716)
+-- TOC entry 294 (class 1259 OID 32475)
 -- Name: v_districts; Type: VIEW; Schema: world; Owner: postgres
 --
 
@@ -3164,19 +3671,20 @@ CREATE VIEW world.v_districts AS
 ALTER VIEW world.v_districts OWNER TO postgres;
 
 --
--- TOC entry 5286 (class 0 OID 16399)
--- Dependencies: 230
+-- TOC entry 5428 (class 0 OID 32118)
+-- Dependencies: 231
 -- Data for Name: abilities; Type: TABLE DATA; Schema: attributes; Owner: postgres
 --
 
-COPY attributes.abilities (id, name) FROM stdin;
-1	Colonize
+COPY attributes.abilities (id, name, description, image) FROM stdin;
+2	Explore	Explore new land's	Eye
+1	Colonize	Settle Nomad's	Tent
 \.
 
 
 --
--- TOC entry 5299 (class 0 OID 16517)
--- Dependencies: 243
+-- TOC entry 5445 (class 0 OID 32301)
+-- Dependencies: 248
 -- Data for Name: ability_skill_requirements; Type: TABLE DATA; Schema: attributes; Owner: postgres
 --
 
@@ -3185,8 +3693,8 @@ COPY attributes.ability_skill_requirements (ability_id, skill_id, min_value) FRO
 
 
 --
--- TOC entry 5300 (class 0 OID 16524)
--- Dependencies: 244
+-- TOC entry 5446 (class 0 OID 32308)
+-- Dependencies: 249
 -- Data for Name: ability_stat_requirements; Type: TABLE DATA; Schema: attributes; Owner: postgres
 --
 
@@ -3195,8 +3703,8 @@ COPY attributes.ability_stat_requirements (ability_id, stat_id, min_value) FROM 
 
 
 --
--- TOC entry 5343 (class 0 OID 17449)
--- Dependencies: 289
+-- TOC entry 5429 (class 0 OID 32128)
+-- Dependencies: 232
 -- Data for Name: player_abilities; Type: TABLE DATA; Schema: attributes; Owner: postgres
 --
 
@@ -3205,28 +3713,38 @@ COPY attributes.player_abilities (id, player_id, ability_id, value) FROM stdin;
 
 
 --
--- TOC entry 5345 (class 0 OID 17459)
--- Dependencies: 291
+-- TOC entry 5448 (class 0 OID 32316)
+-- Dependencies: 251
 -- Data for Name: player_skills; Type: TABLE DATA; Schema: attributes; Owner: postgres
 --
 
 COPY attributes.player_skills (id, player_id, skill_id, value) FROM stdin;
+1	1	1	9
+2	1	2	8
+3	1	3	9
 \.
 
 
 --
--- TOC entry 5347 (class 0 OID 17474)
--- Dependencies: 293
+-- TOC entry 5450 (class 0 OID 32324)
+-- Dependencies: 253
 -- Data for Name: player_stats; Type: TABLE DATA; Schema: attributes; Owner: postgres
 --
 
 COPY attributes.player_stats (id, player_id, stat_id, value) FROM stdin;
+1	1	1	3
+2	1	3	8
+3	1	4	7
+4	1	5	10
+5	1	6	10
+6	1	7	9
+7	1	2	1
 \.
 
 
 --
--- TOC entry 5287 (class 0 OID 16405)
--- Dependencies: 231
+-- TOC entry 5430 (class 0 OID 32140)
+-- Dependencies: 233
 -- Data for Name: roles; Type: TABLE DATA; Schema: attributes; Owner: postgres
 --
 
@@ -3236,29 +3754,38 @@ COPY attributes.roles (id, name) FROM stdin;
 
 
 --
--- TOC entry 5288 (class 0 OID 16411)
--- Dependencies: 232
+-- TOC entry 5431 (class 0 OID 32146)
+-- Dependencies: 234
 -- Data for Name: skills; Type: TABLE DATA; Schema: attributes; Owner: postgres
 --
 
-COPY attributes.skills (id, name) FROM stdin;
-1	Colonization
+COPY attributes.skills (id, name, description, image) FROM stdin;
+1	Colonization	Settle new world's !	Tent
+2	Survival	Navigate wilderness and find resources stay alive	TreePine
+3	Trade	How cheap can you buy ?	HandCoinsIcon
 \.
 
 
 --
--- TOC entry 5289 (class 0 OID 16417)
--- Dependencies: 233
+-- TOC entry 5432 (class 0 OID 32156)
+-- Dependencies: 235
 -- Data for Name: stats; Type: TABLE DATA; Schema: attributes; Owner: postgres
 --
 
-COPY attributes.stats (id, name) FROM stdin;
+COPY attributes.stats (id, name, description, image) FROM stdin;
+1	Health	Your character's life force	Heart
+3	Strength	Strength represents a creature's ability to exert physical force	HandFist
+4	Dexterity	Dexterity represents a creature's agility and reflexes	Rabbit
+5	Intelligence	Intelligence represents a creature's recall, as well as their ability to reason and think quickly	Brain
+6	Wisdom	Wisdom represents a creature's awareness of their surroundings and their intuition	BookOpenText
+7	Charisma	Charisma represents a creature's ability to exert their will when interacting with others	Speech
+2	Stamina	Energy for physical actions	Activity
 \.
 
 
 --
--- TOC entry 5304 (class 0 OID 16534)
--- Dependencies: 248
+-- TOC entry 5455 (class 0 OID 32335)
+-- Dependencies: 258
 -- Data for Name: accounts; Type: TABLE DATA; Schema: auth; Owner: postgres
 --
 
@@ -3267,8 +3794,8 @@ COPY auth.accounts (id, "userId", type, provider, "providerAccountId", refresh_t
 
 
 --
--- TOC entry 5306 (class 0 OID 16545)
--- Dependencies: 250
+-- TOC entry 5457 (class 0 OID 32346)
+-- Dependencies: 260
 -- Data for Name: sessions; Type: TABLE DATA; Schema: auth; Owner: postgres
 --
 
@@ -3277,21 +3804,19 @@ COPY auth.sessions (id, "userId", expires, "sessionToken") FROM stdin;
 
 
 --
--- TOC entry 5308 (class 0 OID 16553)
--- Dependencies: 252
+-- TOC entry 5459 (class 0 OID 32354)
+-- Dependencies: 262
 -- Data for Name: users; Type: TABLE DATA; Schema: auth; Owner: postgres
 --
 
 COPY auth.users (id, name, email, "emailVerified", image, password) FROM stdin;
-15	ciabat	pszabat001@gmail.com	\N	\N	$2b$10$4IQKRdaQ8l29u9KEdy6G6esjYGPJe9rQsWlAqPSe0OgbzyjsV6rCW
-16	Ciabat2	gbfd@dfss	\N	\N	$2b$10$yLt6ItQ02xBIPkv46D0E8uuguJe839vCekaOftroPtkA3vXqnEFpa
-29	\N	example@example.com	\N	\N	$2b$10$l6wWTVh7TV8V5hBzZeatFOZTCzr6Z9DxV1Ltv95QVDnQnZQkBKQey
+1	ciabat	pszabat001@gmail.com	\N	\N	$2b$10$4IQKRdaQ8l29u9KEdy6G6esjYGPJe9rQsWlAqPSe0OgbzyjsV6rCW
 \.
 
 
 --
--- TOC entry 5310 (class 0 OID 16560)
--- Dependencies: 254
+-- TOC entry 5461 (class 0 OID 32361)
+-- Dependencies: 264
 -- Data for Name: verification_token; Type: TABLE DATA; Schema: auth; Owner: postgres
 --
 
@@ -3300,8 +3825,8 @@ COPY auth.verification_token (identifier, expires, token) FROM stdin;
 
 
 --
--- TOC entry 5311 (class 0 OID 16568)
--- Dependencies: 255
+-- TOC entry 5462 (class 0 OID 32369)
+-- Dependencies: 265
 -- Data for Name: building_roles; Type: TABLE DATA; Schema: buildings; Owner: postgres
 --
 
@@ -3310,8 +3835,8 @@ COPY buildings.building_roles (building_id, player_id, role_id) FROM stdin;
 
 
 --
--- TOC entry 5312 (class 0 OID 16574)
--- Dependencies: 256
+-- TOC entry 5433 (class 0 OID 32168)
+-- Dependencies: 236
 -- Data for Name: building_types; Type: TABLE DATA; Schema: buildings; Owner: postgres
 --
 
@@ -3324,8 +3849,8 @@ COPY buildings.building_types (id, name, image_url) FROM stdin;
 
 
 --
--- TOC entry 5290 (class 0 OID 16424)
--- Dependencies: 234
+-- TOC entry 5434 (class 0 OID 32175)
+-- Dependencies: 237
 -- Data for Name: buildings; Type: TABLE DATA; Schema: buildings; Owner: postgres
 --
 
@@ -3342,8 +3867,8 @@ COPY buildings.buildings (id, city_id, city_tile_x, city_tile_y, building_type_i
 
 
 --
--- TOC entry 5291 (class 0 OID 16435)
--- Dependencies: 235
+-- TOC entry 5435 (class 0 OID 32186)
+-- Dependencies: 238
 -- Data for Name: cities; Type: TABLE DATA; Schema: cities; Owner: postgres
 --
 
@@ -3353,8 +3878,8 @@ COPY cities.cities (id, map_id, map_tile_x, map_tile_y, name, move_cost, image_u
 
 
 --
--- TOC entry 5316 (class 0 OID 16582)
--- Dependencies: 260
+-- TOC entry 5466 (class 0 OID 32378)
+-- Dependencies: 269
 -- Data for Name: city_roles; Type: TABLE DATA; Schema: cities; Owner: postgres
 --
 
@@ -3363,8 +3888,8 @@ COPY cities.city_roles (city_id, player_id, role_id) FROM stdin;
 
 
 --
--- TOC entry 5292 (class 0 OID 16447)
--- Dependencies: 236
+-- TOC entry 5436 (class 0 OID 32197)
+-- Dependencies: 239
 -- Data for Name: city_tiles; Type: TABLE DATA; Schema: cities; Owner: postgres
 --
 
@@ -3473,8 +3998,8 @@ COPY cities.city_tiles (city_id, x, y, terrain_type_id, landscape_type_id) FROM 
 
 
 --
--- TOC entry 5317 (class 0 OID 16588)
--- Dependencies: 261
+-- TOC entry 5467 (class 0 OID 32384)
+-- Dependencies: 270
 -- Data for Name: district_roles; Type: TABLE DATA; Schema: districts; Owner: postgres
 --
 
@@ -3483,8 +4008,8 @@ COPY districts.district_roles (district_id, player_id, role_id) FROM stdin;
 
 
 --
--- TOC entry 5318 (class 0 OID 16594)
--- Dependencies: 262
+-- TOC entry 5437 (class 0 OID 32208)
+-- Dependencies: 240
 -- Data for Name: district_types; Type: TABLE DATA; Schema: districts; Owner: postgres
 --
 
@@ -3494,19 +4019,19 @@ COPY districts.district_types (id, name, move_cost, image_url) FROM stdin;
 
 
 --
--- TOC entry 5293 (class 0 OID 16458)
--- Dependencies: 237
+-- TOC entry 5438 (class 0 OID 32216)
+-- Dependencies: 241
 -- Data for Name: districts; Type: TABLE DATA; Schema: districts; Owner: postgres
 --
 
 COPY districts.districts (id, map_id, map_tile_x, map_tile_y, district_type_id, name) FROM stdin;
-1	1	4	4	1	"Green Hills"
+1	1	4	4	1	Green Hills
 \.
 
 
 --
--- TOC entry 5321 (class 0 OID 16602)
--- Dependencies: 265
+-- TOC entry 5470 (class 0 OID 32392)
+-- Dependencies: 273
 -- Data for Name: inventory_container_building; Type: TABLE DATA; Schema: inventory; Owner: postgres
 --
 
@@ -3515,8 +4040,8 @@ COPY inventory.inventory_container_building (inventory_container_id, building_id
 
 
 --
--- TOC entry 5322 (class 0 OID 16607)
--- Dependencies: 266
+-- TOC entry 5471 (class 0 OID 32397)
+-- Dependencies: 274
 -- Data for Name: inventory_container_district; Type: TABLE DATA; Schema: inventory; Owner: postgres
 --
 
@@ -3525,38 +4050,85 @@ COPY inventory.inventory_container_district (inventory_container_id, district_id
 
 
 --
--- TOC entry 5323 (class 0 OID 16612)
--- Dependencies: 267
+-- TOC entry 5472 (class 0 OID 32402)
+-- Dependencies: 275
 -- Data for Name: inventory_container_player; Type: TABLE DATA; Schema: inventory; Owner: postgres
 --
 
 COPY inventory.inventory_container_player (inventory_container_id, player_id) FROM stdin;
+1	1
 \.
 
 
 --
--- TOC entry 5324 (class 0 OID 16622)
--- Dependencies: 268
+-- TOC entry 5492 (class 0 OID 32785)
+-- Dependencies: 297
+-- Data for Name: inventory_container_player_gear; Type: TABLE DATA; Schema: inventory; Owner: postgres
+--
+
+COPY inventory.inventory_container_player_gear (inventory_container_id, player_id) FROM stdin;
+2	1
+\.
+
+
+--
+-- TOC entry 5473 (class 0 OID 32407)
+-- Dependencies: 276
 -- Data for Name: inventory_containers; Type: TABLE DATA; Schema: inventory; Owner: postgres
 --
 
 COPY inventory.inventory_containers (id, inventory_size) FROM stdin;
+1	9
+2	13
 \.
 
 
 --
--- TOC entry 5341 (class 0 OID 17412)
--- Dependencies: 287
+-- TOC entry 5494 (class 0 OID 32803)
+-- Dependencies: 299
+-- Data for Name: inventory_slot_types; Type: TABLE DATA; Schema: inventory; Owner: postgres
+--
+
+COPY inventory.inventory_slot_types (id, name) FROM stdin;
+1	Head
+\.
+
+
+--
+-- TOC entry 5475 (class 0 OID 32414)
+-- Dependencies: 278
 -- Data for Name: inventory_slots; Type: TABLE DATA; Schema: inventory; Owner: postgres
 --
 
-COPY inventory.inventory_slots (id, inventory_container_id, item_id, quantity) FROM stdin;
+COPY inventory.inventory_slots (id, inventory_container_id, item_id, quantity, inventory_slot_type_id) FROM stdin;
+1	1	\N	\N	\N
+2	1	\N	\N	\N
+3	1	\N	\N	\N
+4	1	\N	\N	\N
+5	1	\N	\N	\N
+6	1	\N	\N	\N
+7	1	\N	\N	\N
+8	1	\N	\N	\N
+9	1	\N	\N	\N
+10	2	\N	\N	1
+11	2	\N	\N	1
+12	2	\N	\N	1
+13	2	\N	\N	1
+14	2	\N	\N	1
+15	2	\N	\N	1
+16	2	\N	\N	1
+17	2	\N	\N	1
+18	2	\N	\N	1
+19	2	\N	\N	1
+20	2	\N	\N	1
+21	2	\N	\N	1
+22	2	\N	\N	1
 \.
 
 
 --
--- TOC entry 5326 (class 0 OID 16638)
--- Dependencies: 270
+-- TOC entry 5439 (class 0 OID 32242)
+-- Dependencies: 242
 -- Data for Name: item_stats; Type: TABLE DATA; Schema: items; Owner: postgres
 --
 
@@ -3565,32 +4137,51 @@ COPY items.item_stats (id, item_id, stat_id, value) FROM stdin;
 
 
 --
--- TOC entry 5294 (class 0 OID 16468)
--- Dependencies: 238
+-- TOC entry 5491 (class 0 OID 32769)
+-- Dependencies: 296
+-- Data for Name: item_types; Type: TABLE DATA; Schema: items; Owner: postgres
+--
+
+COPY items.item_types (id, name) FROM stdin;
+1	Any
+2	Helmet
+3	Trinket
+4	Armor
+5	Weapon
+6	Shield
+7	Belt
+8	Boots
+9	Ring
+\.
+
+
+--
+-- TOC entry 5440 (class 0 OID 32251)
+-- Dependencies: 243
 -- Data for Name: items; Type: TABLE DATA; Schema: items; Owner: postgres
 --
 
-COPY items.items (id, name) FROM stdin;
-1	Food
+COPY items.items (id, name, description, image, item_type_id) FROM stdin;
+1	Food	\N	Herbalism	1
+2	Sword	\N	Sword	5
+3	Helmet	\N	default.png	2
 \.
 
 
 --
--- TOC entry 5295 (class 0 OID 16477)
--- Dependencies: 239
+-- TOC entry 5479 (class 0 OID 32423)
+-- Dependencies: 282
 -- Data for Name: players; Type: TABLE DATA; Schema: players; Owner: postgres
 --
 
-COPY players.players (id, user_id, name, image_map, image_portrait, is_active) FROM stdin;
-4	15	DrugiPlayer	default.png	1.png	f
-1	15	ciabat	default.png	default.png	t
-2	16	DrugiGracz	default.png	default.png	t
+COPY players.players (id, user_id, name, image_map, image_portrait, is_active, second_name, nickname) FROM stdin;
+1	1	Pawlak	default.png	default.png	t	Odeon	\N
 \.
 
 
 --
--- TOC entry 5330 (class 0 OID 16672)
--- Dependencies: 274
+-- TOC entry 5481 (class 0 OID 32439)
+-- Dependencies: 284
 -- Data for Name: status_types; Type: TABLE DATA; Schema: tasks; Owner: postgres
 --
 
@@ -3605,8 +4196,8 @@ COPY tasks.status_types (id, name) FROM stdin;
 
 
 --
--- TOC entry 5332 (class 0 OID 16678)
--- Dependencies: 276
+-- TOC entry 5483 (class 0 OID 32445)
+-- Dependencies: 286
 -- Data for Name: tasks; Type: TABLE DATA; Schema: tasks; Owner: postgres
 --
 
@@ -5293,8 +5884,8 @@ COPY tasks.tasks (id, player_id, status, created_at, scheduled_at, last_executed
 
 
 --
--- TOC entry 5296 (class 0 OID 16495)
--- Dependencies: 240
+-- TOC entry 5441 (class 0 OID 32270)
+-- Dependencies: 244
 -- Data for Name: landscape_types; Type: TABLE DATA; Schema: world; Owner: postgres
 --
 
@@ -5312,8 +5903,8 @@ COPY world.landscape_types (id, name, move_cost, image_url) FROM stdin;
 
 
 --
--- TOC entry 5335 (class 0 OID 16690)
--- Dependencies: 279
+-- TOC entry 5442 (class 0 OID 32278)
+-- Dependencies: 245
 -- Data for Name: map_tiles; Type: TABLE DATA; Schema: world; Owner: postgres
 --
 
@@ -6222,20 +6813,19 @@ COPY world.map_tiles (map_id, x, y, terrain_type_id, landscape_type_id) FROM std
 
 
 --
--- TOC entry 5336 (class 0 OID 16698)
--- Dependencies: 280
+-- TOC entry 5486 (class 0 OID 32457)
+-- Dependencies: 289
 -- Data for Name: map_tiles_players_positions; Type: TABLE DATA; Schema: world; Owner: postgres
 --
 
 COPY world.map_tiles_players_positions (player_id, map_id, map_tile_x, map_tile_y) FROM stdin;
-2	1	2	2
-1	1	4	3
+1	1	3	3
 \.
 
 
 --
--- TOC entry 5337 (class 0 OID 16705)
--- Dependencies: 281
+-- TOC entry 5487 (class 0 OID 32464)
+-- Dependencies: 290
 -- Data for Name: maps; Type: TABLE DATA; Schema: world; Owner: postgres
 --
 
@@ -6245,8 +6835,8 @@ COPY world.maps (id, name) FROM stdin;
 
 
 --
--- TOC entry 5297 (class 0 OID 16503)
--- Dependencies: 241
+-- TOC entry 5443 (class 0 OID 32292)
+-- Dependencies: 246
 -- Data for Name: terrain_types; Type: TABLE DATA; Schema: world; Owner: postgres
 --
 
@@ -6262,17 +6852,17 @@ COPY world.terrain_types (id, name, move_cost, image_url) FROM stdin;
 
 
 --
--- TOC entry 5400 (class 0 OID 0)
--- Dependencies: 242
+-- TOC entry 5552 (class 0 OID 0)
+-- Dependencies: 247
 -- Name: abilities_id_seq; Type: SEQUENCE SET; Schema: attributes; Owner: postgres
 --
 
-SELECT pg_catalog.setval('attributes.abilities_id_seq', 1, false);
+SELECT pg_catalog.setval('attributes.abilities_id_seq', 2, true);
 
 
 --
--- TOC entry 5401 (class 0 OID 0)
--- Dependencies: 288
+-- TOC entry 5553 (class 0 OID 0)
+-- Dependencies: 250
 -- Name: player_abilities_id_seq; Type: SEQUENCE SET; Schema: attributes; Owner: postgres
 --
 
@@ -6280,26 +6870,26 @@ SELECT pg_catalog.setval('attributes.player_abilities_id_seq', 1, false);
 
 
 --
--- TOC entry 5402 (class 0 OID 0)
--- Dependencies: 290
+-- TOC entry 5554 (class 0 OID 0)
+-- Dependencies: 252
 -- Name: player_skills_id_seq; Type: SEQUENCE SET; Schema: attributes; Owner: postgres
 --
 
-SELECT pg_catalog.setval('attributes.player_skills_id_seq', 1, false);
+SELECT pg_catalog.setval('attributes.player_skills_id_seq', 3, true);
 
 
 --
--- TOC entry 5403 (class 0 OID 0)
--- Dependencies: 292
+-- TOC entry 5555 (class 0 OID 0)
+-- Dependencies: 254
 -- Name: player_stats_id_seq; Type: SEQUENCE SET; Schema: attributes; Owner: postgres
 --
 
-SELECT pg_catalog.setval('attributes.player_stats_id_seq', 1, false);
+SELECT pg_catalog.setval('attributes.player_stats_id_seq', 7, true);
 
 
 --
--- TOC entry 5404 (class 0 OID 0)
--- Dependencies: 245
+-- TOC entry 5556 (class 0 OID 0)
+-- Dependencies: 255
 -- Name: roles_id_seq; Type: SEQUENCE SET; Schema: attributes; Owner: postgres
 --
 
@@ -6307,26 +6897,26 @@ SELECT pg_catalog.setval('attributes.roles_id_seq', 1, false);
 
 
 --
--- TOC entry 5405 (class 0 OID 0)
--- Dependencies: 246
+-- TOC entry 5557 (class 0 OID 0)
+-- Dependencies: 256
 -- Name: skills_id_seq; Type: SEQUENCE SET; Schema: attributes; Owner: postgres
 --
 
-SELECT pg_catalog.setval('attributes.skills_id_seq', 1, false);
+SELECT pg_catalog.setval('attributes.skills_id_seq', 3, true);
 
 
 --
--- TOC entry 5406 (class 0 OID 0)
--- Dependencies: 247
+-- TOC entry 5558 (class 0 OID 0)
+-- Dependencies: 257
 -- Name: stats_id_seq; Type: SEQUENCE SET; Schema: attributes; Owner: postgres
 --
 
-SELECT pg_catalog.setval('attributes.stats_id_seq', 1, false);
+SELECT pg_catalog.setval('attributes.stats_id_seq', 7, true);
 
 
 --
--- TOC entry 5407 (class 0 OID 0)
--- Dependencies: 249
+-- TOC entry 5559 (class 0 OID 0)
+-- Dependencies: 259
 -- Name: accounts_id_seq; Type: SEQUENCE SET; Schema: auth; Owner: postgres
 --
 
@@ -6334,8 +6924,8 @@ SELECT pg_catalog.setval('auth.accounts_id_seq', 1, false);
 
 
 --
--- TOC entry 5408 (class 0 OID 0)
--- Dependencies: 251
+-- TOC entry 5560 (class 0 OID 0)
+-- Dependencies: 261
 -- Name: sessions_id_seq; Type: SEQUENCE SET; Schema: auth; Owner: postgres
 --
 
@@ -6343,8 +6933,8 @@ SELECT pg_catalog.setval('auth.sessions_id_seq', 1, false);
 
 
 --
--- TOC entry 5409 (class 0 OID 0)
--- Dependencies: 253
+-- TOC entry 5561 (class 0 OID 0)
+-- Dependencies: 263
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: auth; Owner: postgres
 --
 
@@ -6352,8 +6942,8 @@ SELECT pg_catalog.setval('auth.users_id_seq', 1, false);
 
 
 --
--- TOC entry 5410 (class 0 OID 0)
--- Dependencies: 257
+-- TOC entry 5562 (class 0 OID 0)
+-- Dependencies: 266
 -- Name: building_types_id_seq; Type: SEQUENCE SET; Schema: buildings; Owner: postgres
 --
 
@@ -6361,8 +6951,8 @@ SELECT pg_catalog.setval('buildings.building_types_id_seq', 1, false);
 
 
 --
--- TOC entry 5411 (class 0 OID 0)
--- Dependencies: 258
+-- TOC entry 5563 (class 0 OID 0)
+-- Dependencies: 267
 -- Name: buildings_id_seq; Type: SEQUENCE SET; Schema: buildings; Owner: postgres
 --
 
@@ -6370,8 +6960,8 @@ SELECT pg_catalog.setval('buildings.buildings_id_seq', 1, false);
 
 
 --
--- TOC entry 5412 (class 0 OID 0)
--- Dependencies: 259
+-- TOC entry 5564 (class 0 OID 0)
+-- Dependencies: 268
 -- Name: cities_id_seq; Type: SEQUENCE SET; Schema: cities; Owner: postgres
 --
 
@@ -6379,8 +6969,8 @@ SELECT pg_catalog.setval('cities.cities_id_seq', 1, false);
 
 
 --
--- TOC entry 5413 (class 0 OID 0)
--- Dependencies: 263
+-- TOC entry 5565 (class 0 OID 0)
+-- Dependencies: 271
 -- Name: district_types_id_seq; Type: SEQUENCE SET; Schema: districts; Owner: postgres
 --
 
@@ -6388,8 +6978,8 @@ SELECT pg_catalog.setval('districts.district_types_id_seq', 1, false);
 
 
 --
--- TOC entry 5414 (class 0 OID 0)
--- Dependencies: 264
+-- TOC entry 5566 (class 0 OID 0)
+-- Dependencies: 272
 -- Name: districts_id_seq; Type: SEQUENCE SET; Schema: districts; Owner: postgres
 --
 
@@ -6397,26 +6987,35 @@ SELECT pg_catalog.setval('districts.districts_id_seq', 1, false);
 
 
 --
--- TOC entry 5415 (class 0 OID 0)
--- Dependencies: 269
+-- TOC entry 5567 (class 0 OID 0)
+-- Dependencies: 277
 -- Name: inventory_containers_id_seq; Type: SEQUENCE SET; Schema: inventory; Owner: postgres
 --
 
-SELECT pg_catalog.setval('inventory.inventory_containers_id_seq', 1, false);
+SELECT pg_catalog.setval('inventory.inventory_containers_id_seq', 2, true);
 
 
 --
--- TOC entry 5416 (class 0 OID 0)
--- Dependencies: 286
+-- TOC entry 5568 (class 0 OID 0)
+-- Dependencies: 298
+-- Name: inventory_slot_types_id_seq; Type: SEQUENCE SET; Schema: inventory; Owner: postgres
+--
+
+SELECT pg_catalog.setval('inventory.inventory_slot_types_id_seq', 1, true);
+
+
+--
+-- TOC entry 5569 (class 0 OID 0)
+-- Dependencies: 279
 -- Name: inventory_slots_id_seq; Type: SEQUENCE SET; Schema: inventory; Owner: postgres
 --
 
-SELECT pg_catalog.setval('inventory.inventory_slots_id_seq', 1, false);
+SELECT pg_catalog.setval('inventory.inventory_slots_id_seq', 22, true);
 
 
 --
--- TOC entry 5417 (class 0 OID 0)
--- Dependencies: 271
+-- TOC entry 5570 (class 0 OID 0)
+-- Dependencies: 280
 -- Name: item_stats_id_seq; Type: SEQUENCE SET; Schema: items; Owner: postgres
 --
 
@@ -6424,26 +7023,35 @@ SELECT pg_catalog.setval('items.item_stats_id_seq', 1, false);
 
 
 --
--- TOC entry 5418 (class 0 OID 0)
--- Dependencies: 272
+-- TOC entry 5571 (class 0 OID 0)
+-- Dependencies: 295
+-- Name: item_types_id_seq; Type: SEQUENCE SET; Schema: items; Owner: postgres
+--
+
+SELECT pg_catalog.setval('items.item_types_id_seq', 9, true);
+
+
+--
+-- TOC entry 5572 (class 0 OID 0)
+-- Dependencies: 281
 -- Name: items_id_seq; Type: SEQUENCE SET; Schema: items; Owner: postgres
 --
 
-SELECT pg_catalog.setval('items.items_id_seq', 1, false);
+SELECT pg_catalog.setval('items.items_id_seq', 3, true);
 
 
 --
--- TOC entry 5419 (class 0 OID 0)
--- Dependencies: 273
+-- TOC entry 5573 (class 0 OID 0)
+-- Dependencies: 283
 -- Name: players_id_seq; Type: SEQUENCE SET; Schema: players; Owner: postgres
 --
 
-SELECT pg_catalog.setval('players.players_id_seq', 1, false);
+SELECT pg_catalog.setval('players.players_id_seq', 1, true);
 
 
 --
--- TOC entry 5420 (class 0 OID 0)
--- Dependencies: 275
+-- TOC entry 5574 (class 0 OID 0)
+-- Dependencies: 285
 -- Name: status_types_id_seq; Type: SEQUENCE SET; Schema: tasks; Owner: postgres
 --
 
@@ -6451,8 +7059,8 @@ SELECT pg_catalog.setval('tasks.status_types_id_seq', 1, false);
 
 
 --
--- TOC entry 5421 (class 0 OID 0)
--- Dependencies: 277
+-- TOC entry 5575 (class 0 OID 0)
+-- Dependencies: 287
 -- Name: tasks_id_seq; Type: SEQUENCE SET; Schema: tasks; Owner: postgres
 --
 
@@ -6460,8 +7068,8 @@ SELECT pg_catalog.setval('tasks.tasks_id_seq', 1, false);
 
 
 --
--- TOC entry 5422 (class 0 OID 0)
--- Dependencies: 278
+-- TOC entry 5576 (class 0 OID 0)
+-- Dependencies: 288
 -- Name: landscape_types_id_seq; Type: SEQUENCE SET; Schema: world; Owner: postgres
 --
 
@@ -6469,8 +7077,8 @@ SELECT pg_catalog.setval('world.landscape_types_id_seq', 1, false);
 
 
 --
--- TOC entry 5423 (class 0 OID 0)
--- Dependencies: 282
+-- TOC entry 5577 (class 0 OID 0)
+-- Dependencies: 291
 -- Name: maps_id_seq; Type: SEQUENCE SET; Schema: world; Owner: postgres
 --
 
@@ -6478,8 +7086,8 @@ SELECT pg_catalog.setval('world.maps_id_seq', 1, false);
 
 
 --
--- TOC entry 5424 (class 0 OID 0)
--- Dependencies: 283
+-- TOC entry 5578 (class 0 OID 0)
+-- Dependencies: 292
 -- Name: terrain_types_id_seq; Type: SEQUENCE SET; Schema: world; Owner: postgres
 --
 
@@ -6487,7 +7095,7 @@ SELECT pg_catalog.setval('world.terrain_types_id_seq', 1, false);
 
 
 --
--- TOC entry 5018 (class 2606 OID 16721)
+-- TOC entry 5150 (class 2606 OID 32480)
 -- Name: abilities abilities_pkey; Type: CONSTRAINT; Schema: attributes; Owner: postgres
 --
 
@@ -6496,7 +7104,7 @@ ALTER TABLE ONLY attributes.abilities
 
 
 --
--- TOC entry 5044 (class 2606 OID 16723)
+-- TOC entry 5183 (class 2606 OID 32482)
 -- Name: ability_skill_requirements ability_skill_requirements_pkey; Type: CONSTRAINT; Schema: attributes; Owner: postgres
 --
 
@@ -6505,7 +7113,7 @@ ALTER TABLE ONLY attributes.ability_skill_requirements
 
 
 --
--- TOC entry 5046 (class 2606 OID 16725)
+-- TOC entry 5185 (class 2606 OID 32484)
 -- Name: ability_stat_requirements ability_stat_requirements_pkey; Type: CONSTRAINT; Schema: attributes; Owner: postgres
 --
 
@@ -6514,7 +7122,7 @@ ALTER TABLE ONLY attributes.ability_stat_requirements
 
 
 --
--- TOC entry 5090 (class 2606 OID 17457)
+-- TOC entry 5152 (class 2606 OID 32486)
 -- Name: player_abilities player_abilities_pkey; Type: CONSTRAINT; Schema: attributes; Owner: postgres
 --
 
@@ -6523,7 +7131,7 @@ ALTER TABLE ONLY attributes.player_abilities
 
 
 --
--- TOC entry 5092 (class 2606 OID 17467)
+-- TOC entry 5187 (class 2606 OID 32488)
 -- Name: player_skills player_skills_pkey; Type: CONSTRAINT; Schema: attributes; Owner: postgres
 --
 
@@ -6532,7 +7140,7 @@ ALTER TABLE ONLY attributes.player_skills
 
 
 --
--- TOC entry 5094 (class 2606 OID 17482)
+-- TOC entry 5189 (class 2606 OID 32490)
 -- Name: player_stats player_stats_pkey; Type: CONSTRAINT; Schema: attributes; Owner: postgres
 --
 
@@ -6541,7 +7149,7 @@ ALTER TABLE ONLY attributes.player_stats
 
 
 --
--- TOC entry 5020 (class 2606 OID 16727)
+-- TOC entry 5154 (class 2606 OID 32492)
 -- Name: roles roles_pkey; Type: CONSTRAINT; Schema: attributes; Owner: postgres
 --
 
@@ -6550,7 +7158,7 @@ ALTER TABLE ONLY attributes.roles
 
 
 --
--- TOC entry 5022 (class 2606 OID 16729)
+-- TOC entry 5156 (class 2606 OID 32494)
 -- Name: skills skills_pkey; Type: CONSTRAINT; Schema: attributes; Owner: postgres
 --
 
@@ -6559,7 +7167,7 @@ ALTER TABLE ONLY attributes.skills
 
 
 --
--- TOC entry 5024 (class 2606 OID 16731)
+-- TOC entry 5158 (class 2606 OID 32496)
 -- Name: stats stats_pkey; Type: CONSTRAINT; Schema: attributes; Owner: postgres
 --
 
@@ -6568,7 +7176,7 @@ ALTER TABLE ONLY attributes.stats
 
 
 --
--- TOC entry 5048 (class 2606 OID 16733)
+-- TOC entry 5191 (class 2606 OID 32498)
 -- Name: accounts accounts_pkey; Type: CONSTRAINT; Schema: auth; Owner: postgres
 --
 
@@ -6577,7 +7185,7 @@ ALTER TABLE ONLY auth.accounts
 
 
 --
--- TOC entry 5050 (class 2606 OID 16735)
+-- TOC entry 5193 (class 2606 OID 32500)
 -- Name: sessions sessions_pkey; Type: CONSTRAINT; Schema: auth; Owner: postgres
 --
 
@@ -6586,7 +7194,7 @@ ALTER TABLE ONLY auth.sessions
 
 
 --
--- TOC entry 5052 (class 2606 OID 16737)
+-- TOC entry 5195 (class 2606 OID 32502)
 -- Name: users users_email_key; Type: CONSTRAINT; Schema: auth; Owner: postgres
 --
 
@@ -6595,7 +7203,7 @@ ALTER TABLE ONLY auth.users
 
 
 --
--- TOC entry 5054 (class 2606 OID 16739)
+-- TOC entry 5197 (class 2606 OID 32504)
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: auth; Owner: postgres
 --
 
@@ -6604,7 +7212,7 @@ ALTER TABLE ONLY auth.users
 
 
 --
--- TOC entry 5056 (class 2606 OID 16741)
+-- TOC entry 5199 (class 2606 OID 32506)
 -- Name: verification_token verification_token_pkey; Type: CONSTRAINT; Schema: auth; Owner: postgres
 --
 
@@ -6613,7 +7221,7 @@ ALTER TABLE ONLY auth.verification_token
 
 
 --
--- TOC entry 5058 (class 2606 OID 16743)
+-- TOC entry 5201 (class 2606 OID 32508)
 -- Name: building_roles building_owners_pkey; Type: CONSTRAINT; Schema: buildings; Owner: postgres
 --
 
@@ -6622,7 +7230,7 @@ ALTER TABLE ONLY buildings.building_roles
 
 
 --
--- TOC entry 5060 (class 2606 OID 16745)
+-- TOC entry 5160 (class 2606 OID 32510)
 -- Name: building_types building_types_pkey; Type: CONSTRAINT; Schema: buildings; Owner: postgres
 --
 
@@ -6631,7 +7239,7 @@ ALTER TABLE ONLY buildings.building_types
 
 
 --
--- TOC entry 5026 (class 2606 OID 16747)
+-- TOC entry 5162 (class 2606 OID 32512)
 -- Name: buildings buildings_pkey; Type: CONSTRAINT; Schema: buildings; Owner: postgres
 --
 
@@ -6640,7 +7248,7 @@ ALTER TABLE ONLY buildings.buildings
 
 
 --
--- TOC entry 5028 (class 2606 OID 16749)
+-- TOC entry 5164 (class 2606 OID 32514)
 -- Name: cities cities_pkey; Type: CONSTRAINT; Schema: cities; Owner: postgres
 --
 
@@ -6649,7 +7257,7 @@ ALTER TABLE ONLY cities.cities
 
 
 --
--- TOC entry 5062 (class 2606 OID 16751)
+-- TOC entry 5203 (class 2606 OID 32516)
 -- Name: city_roles city_owners_pkey; Type: CONSTRAINT; Schema: cities; Owner: postgres
 --
 
@@ -6658,7 +7266,7 @@ ALTER TABLE ONLY cities.city_roles
 
 
 --
--- TOC entry 5031 (class 2606 OID 16753)
+-- TOC entry 5167 (class 2606 OID 32518)
 -- Name: city_tiles city_tiles_pkey; Type: CONSTRAINT; Schema: cities; Owner: postgres
 --
 
@@ -6667,7 +7275,7 @@ ALTER TABLE ONLY cities.city_tiles
 
 
 --
--- TOC entry 5064 (class 2606 OID 16755)
+-- TOC entry 5205 (class 2606 OID 32520)
 -- Name: district_roles district_owners_pkey; Type: CONSTRAINT; Schema: districts; Owner: postgres
 --
 
@@ -6676,7 +7284,7 @@ ALTER TABLE ONLY districts.district_roles
 
 
 --
--- TOC entry 5066 (class 2606 OID 16757)
+-- TOC entry 5169 (class 2606 OID 32522)
 -- Name: district_types district_types_pkey; Type: CONSTRAINT; Schema: districts; Owner: postgres
 --
 
@@ -6685,7 +7293,7 @@ ALTER TABLE ONLY districts.district_types
 
 
 --
--- TOC entry 5033 (class 2606 OID 16759)
+-- TOC entry 5171 (class 2606 OID 32524)
 -- Name: districts districts_pkey; Type: CONSTRAINT; Schema: districts; Owner: postgres
 --
 
@@ -6694,7 +7302,7 @@ ALTER TABLE ONLY districts.districts
 
 
 --
--- TOC entry 5068 (class 2606 OID 16761)
+-- TOC entry 5207 (class 2606 OID 32526)
 -- Name: inventory_container_building inventory_container_building_pkey; Type: CONSTRAINT; Schema: inventory; Owner: postgres
 --
 
@@ -6703,7 +7311,7 @@ ALTER TABLE ONLY inventory.inventory_container_building
 
 
 --
--- TOC entry 5070 (class 2606 OID 16763)
+-- TOC entry 5209 (class 2606 OID 32528)
 -- Name: inventory_container_district inventory_container_district_pkey; Type: CONSTRAINT; Schema: inventory; Owner: postgres
 --
 
@@ -6712,7 +7320,16 @@ ALTER TABLE ONLY inventory.inventory_container_district
 
 
 --
--- TOC entry 5072 (class 2606 OID 16765)
+-- TOC entry 5230 (class 2606 OID 32791)
+-- Name: inventory_container_player_gear inventory_container_player_gear_pkey; Type: CONSTRAINT; Schema: inventory; Owner: postgres
+--
+
+ALTER TABLE ONLY inventory.inventory_container_player_gear
+    ADD CONSTRAINT inventory_container_player_gear_pkey PRIMARY KEY (inventory_container_id);
+
+
+--
+-- TOC entry 5211 (class 2606 OID 32530)
 -- Name: inventory_container_player inventory_container_player_pkey; Type: CONSTRAINT; Schema: inventory; Owner: postgres
 --
 
@@ -6721,7 +7338,7 @@ ALTER TABLE ONLY inventory.inventory_container_player
 
 
 --
--- TOC entry 5074 (class 2606 OID 16769)
+-- TOC entry 5213 (class 2606 OID 32532)
 -- Name: inventory_containers inventory_containers_pkey; Type: CONSTRAINT; Schema: inventory; Owner: postgres
 --
 
@@ -6730,7 +7347,16 @@ ALTER TABLE ONLY inventory.inventory_containers
 
 
 --
--- TOC entry 5088 (class 2606 OID 17419)
+-- TOC entry 5232 (class 2606 OID 32808)
+-- Name: inventory_slot_types inventory_slot_types_pkey; Type: CONSTRAINT; Schema: inventory; Owner: postgres
+--
+
+ALTER TABLE ONLY inventory.inventory_slot_types
+    ADD CONSTRAINT inventory_slot_types_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 5215 (class 2606 OID 32534)
 -- Name: inventory_slots inventory_slots_pkey; Type: CONSTRAINT; Schema: inventory; Owner: postgres
 --
 
@@ -6739,7 +7365,7 @@ ALTER TABLE ONLY inventory.inventory_slots
 
 
 --
--- TOC entry 5076 (class 2606 OID 16775)
+-- TOC entry 5173 (class 2606 OID 32536)
 -- Name: item_stats item_stats_pkey; Type: CONSTRAINT; Schema: items; Owner: postgres
 --
 
@@ -6748,7 +7374,16 @@ ALTER TABLE ONLY items.item_stats
 
 
 --
--- TOC entry 5035 (class 2606 OID 16777)
+-- TOC entry 5228 (class 2606 OID 32774)
+-- Name: item_types item_types_pkey; Type: CONSTRAINT; Schema: items; Owner: postgres
+--
+
+ALTER TABLE ONLY items.item_types
+    ADD CONSTRAINT item_types_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 5175 (class 2606 OID 32538)
 -- Name: items items_pkey; Type: CONSTRAINT; Schema: items; Owner: postgres
 --
 
@@ -6757,7 +7392,7 @@ ALTER TABLE ONLY items.items
 
 
 --
--- TOC entry 5038 (class 2606 OID 16785)
+-- TOC entry 5218 (class 2606 OID 32540)
 -- Name: players players_pkey; Type: CONSTRAINT; Schema: players; Owner: postgres
 --
 
@@ -6766,7 +7401,7 @@ ALTER TABLE ONLY players.players
 
 
 --
--- TOC entry 5078 (class 2606 OID 16787)
+-- TOC entry 5220 (class 2606 OID 32542)
 -- Name: status_types status_types_pkey; Type: CONSTRAINT; Schema: tasks; Owner: postgres
 --
 
@@ -6775,7 +7410,7 @@ ALTER TABLE ONLY tasks.status_types
 
 
 --
--- TOC entry 5080 (class 2606 OID 16789)
+-- TOC entry 5222 (class 2606 OID 32544)
 -- Name: tasks tasks_pkey; Type: CONSTRAINT; Schema: tasks; Owner: postgres
 --
 
@@ -6784,7 +7419,7 @@ ALTER TABLE ONLY tasks.tasks
 
 
 --
--- TOC entry 5040 (class 2606 OID 16791)
+-- TOC entry 5177 (class 2606 OID 32546)
 -- Name: landscape_types landscape_types_pkey; Type: CONSTRAINT; Schema: world; Owner: postgres
 --
 
@@ -6793,7 +7428,7 @@ ALTER TABLE ONLY world.landscape_types
 
 
 --
--- TOC entry 5082 (class 2606 OID 16793)
+-- TOC entry 5179 (class 2606 OID 32548)
 -- Name: map_tiles map_tiles_pkey; Type: CONSTRAINT; Schema: world; Owner: postgres
 --
 
@@ -6802,7 +7437,7 @@ ALTER TABLE ONLY world.map_tiles
 
 
 --
--- TOC entry 5084 (class 2606 OID 16795)
+-- TOC entry 5224 (class 2606 OID 32550)
 -- Name: map_tiles_players_positions map_tiles_players_positions_pkey; Type: CONSTRAINT; Schema: world; Owner: postgres
 --
 
@@ -6811,7 +7446,7 @@ ALTER TABLE ONLY world.map_tiles_players_positions
 
 
 --
--- TOC entry 5086 (class 2606 OID 16797)
+-- TOC entry 5226 (class 2606 OID 32552)
 -- Name: maps maps_pkey; Type: CONSTRAINT; Schema: world; Owner: postgres
 --
 
@@ -6820,7 +7455,7 @@ ALTER TABLE ONLY world.maps
 
 
 --
--- TOC entry 5042 (class 2606 OID 16799)
+-- TOC entry 5181 (class 2606 OID 32554)
 -- Name: terrain_types terrain_types_pkey; Type: CONSTRAINT; Schema: world; Owner: postgres
 --
 
@@ -6829,7 +7464,7 @@ ALTER TABLE ONLY world.terrain_types
 
 
 --
--- TOC entry 5029 (class 1259 OID 16800)
+-- TOC entry 5165 (class 1259 OID 32555)
 -- Name: unique_city_position; Type: INDEX; Schema: cities; Owner: postgres
 --
 
@@ -6837,7 +7472,7 @@ CREATE UNIQUE INDEX unique_city_position ON cities.cities USING btree (map_tile_
 
 
 --
--- TOC entry 5036 (class 1259 OID 17593)
+-- TOC entry 5216 (class 1259 OID 32556)
 -- Name: one_active_player_per_user; Type: INDEX; Schema: players; Owner: postgres
 --
 
@@ -6845,7 +7480,7 @@ CREATE UNIQUE INDEX one_active_player_per_user ON players.players USING btree (u
 
 
 --
--- TOC entry 5103 (class 2606 OID 16801)
+-- TOC entry 5249 (class 2606 OID 32557)
 -- Name: ability_skill_requirements ability_skill_requirements_ability_id_fkey; Type: FK CONSTRAINT; Schema: attributes; Owner: postgres
 --
 
@@ -6854,7 +7489,7 @@ ALTER TABLE ONLY attributes.ability_skill_requirements
 
 
 --
--- TOC entry 5104 (class 2606 OID 16806)
+-- TOC entry 5250 (class 2606 OID 32562)
 -- Name: ability_skill_requirements ability_skill_requirements_skill_id_fkey; Type: FK CONSTRAINT; Schema: attributes; Owner: postgres
 --
 
@@ -6863,7 +7498,7 @@ ALTER TABLE ONLY attributes.ability_skill_requirements
 
 
 --
--- TOC entry 5105 (class 2606 OID 16811)
+-- TOC entry 5251 (class 2606 OID 32567)
 -- Name: ability_stat_requirements ability_stat_requirements_ability_id_fkey; Type: FK CONSTRAINT; Schema: attributes; Owner: postgres
 --
 
@@ -6872,7 +7507,7 @@ ALTER TABLE ONLY attributes.ability_stat_requirements
 
 
 --
--- TOC entry 5106 (class 2606 OID 16816)
+-- TOC entry 5252 (class 2606 OID 32572)
 -- Name: ability_stat_requirements ability_stat_requirements_stat_id_fkey; Type: FK CONSTRAINT; Schema: attributes; Owner: postgres
 --
 
@@ -6881,7 +7516,7 @@ ALTER TABLE ONLY attributes.ability_stat_requirements
 
 
 --
--- TOC entry 5131 (class 2606 OID 17498)
+-- TOC entry 5233 (class 2606 OID 32577)
 -- Name: player_abilities player_abilities_abilities_fk; Type: FK CONSTRAINT; Schema: attributes; Owner: postgres
 --
 
@@ -6890,7 +7525,7 @@ ALTER TABLE ONLY attributes.player_abilities
 
 
 --
--- TOC entry 5132 (class 2606 OID 17503)
+-- TOC entry 5234 (class 2606 OID 32582)
 -- Name: player_abilities player_abilities_players_fk; Type: FK CONSTRAINT; Schema: attributes; Owner: postgres
 --
 
@@ -6899,7 +7534,7 @@ ALTER TABLE ONLY attributes.player_abilities
 
 
 --
--- TOC entry 5133 (class 2606 OID 17508)
+-- TOC entry 5253 (class 2606 OID 32587)
 -- Name: player_skills player_skills_players_fk; Type: FK CONSTRAINT; Schema: attributes; Owner: postgres
 --
 
@@ -6908,7 +7543,7 @@ ALTER TABLE ONLY attributes.player_skills
 
 
 --
--- TOC entry 5134 (class 2606 OID 17468)
+-- TOC entry 5254 (class 2606 OID 32592)
 -- Name: player_skills player_skills_skills_fk; Type: FK CONSTRAINT; Schema: attributes; Owner: postgres
 --
 
@@ -6917,7 +7552,7 @@ ALTER TABLE ONLY attributes.player_skills
 
 
 --
--- TOC entry 5135 (class 2606 OID 17483)
+-- TOC entry 5255 (class 2606 OID 32597)
 -- Name: player_stats player_stats_players_fk; Type: FK CONSTRAINT; Schema: attributes; Owner: postgres
 --
 
@@ -6926,7 +7561,7 @@ ALTER TABLE ONLY attributes.player_stats
 
 
 --
--- TOC entry 5136 (class 2606 OID 17488)
+-- TOC entry 5256 (class 2606 OID 32602)
 -- Name: player_stats player_stats_stats_fk; Type: FK CONSTRAINT; Schema: attributes; Owner: postgres
 --
 
@@ -6935,7 +7570,7 @@ ALTER TABLE ONLY attributes.player_stats
 
 
 --
--- TOC entry 5107 (class 2606 OID 16821)
+-- TOC entry 5257 (class 2606 OID 32607)
 -- Name: accounts accounts_users_fk; Type: FK CONSTRAINT; Schema: auth; Owner: postgres
 --
 
@@ -6944,7 +7579,7 @@ ALTER TABLE ONLY auth.accounts
 
 
 --
--- TOC entry 5108 (class 2606 OID 16826)
+-- TOC entry 5258 (class 2606 OID 32612)
 -- Name: sessions sessions_users_fk; Type: FK CONSTRAINT; Schema: auth; Owner: postgres
 --
 
@@ -6953,7 +7588,7 @@ ALTER TABLE ONLY auth.sessions
 
 
 --
--- TOC entry 5109 (class 2606 OID 16831)
+-- TOC entry 5259 (class 2606 OID 32617)
 -- Name: building_roles building_roles_buildings_fk; Type: FK CONSTRAINT; Schema: buildings; Owner: postgres
 --
 
@@ -6962,7 +7597,7 @@ ALTER TABLE ONLY buildings.building_roles
 
 
 --
--- TOC entry 5110 (class 2606 OID 16836)
+-- TOC entry 5260 (class 2606 OID 32622)
 -- Name: building_roles building_roles_players_fk; Type: FK CONSTRAINT; Schema: buildings; Owner: postgres
 --
 
@@ -6971,7 +7606,7 @@ ALTER TABLE ONLY buildings.building_roles
 
 
 --
--- TOC entry 5111 (class 2606 OID 16841)
+-- TOC entry 5261 (class 2606 OID 32627)
 -- Name: building_roles building_roles_roles_fk; Type: FK CONSTRAINT; Schema: buildings; Owner: postgres
 --
 
@@ -6980,7 +7615,7 @@ ALTER TABLE ONLY buildings.building_roles
 
 
 --
--- TOC entry 5095 (class 2606 OID 16846)
+-- TOC entry 5235 (class 2606 OID 32632)
 -- Name: buildings buildings_building_types_fk; Type: FK CONSTRAINT; Schema: buildings; Owner: postgres
 --
 
@@ -6989,7 +7624,7 @@ ALTER TABLE ONLY buildings.buildings
 
 
 --
--- TOC entry 5096 (class 2606 OID 16851)
+-- TOC entry 5236 (class 2606 OID 32637)
 -- Name: buildings buildings_cities_fk; Type: FK CONSTRAINT; Schema: buildings; Owner: postgres
 --
 
@@ -6998,7 +7633,7 @@ ALTER TABLE ONLY buildings.buildings
 
 
 --
--- TOC entry 5097 (class 2606 OID 16856)
+-- TOC entry 5237 (class 2606 OID 32642)
 -- Name: buildings buildings_city_tiles_fk; Type: FK CONSTRAINT; Schema: buildings; Owner: postgres
 --
 
@@ -7007,7 +7642,7 @@ ALTER TABLE ONLY buildings.buildings
 
 
 --
--- TOC entry 5098 (class 2606 OID 16861)
+-- TOC entry 5238 (class 2606 OID 32647)
 -- Name: cities cities_map_tiles_fk; Type: FK CONSTRAINT; Schema: cities; Owner: postgres
 --
 
@@ -7016,7 +7651,7 @@ ALTER TABLE ONLY cities.cities
 
 
 --
--- TOC entry 5099 (class 2606 OID 16866)
+-- TOC entry 5239 (class 2606 OID 32652)
 -- Name: cities cities_maps_fk; Type: FK CONSTRAINT; Schema: cities; Owner: postgres
 --
 
@@ -7025,7 +7660,7 @@ ALTER TABLE ONLY cities.cities
 
 
 --
--- TOC entry 5112 (class 2606 OID 16871)
+-- TOC entry 5262 (class 2606 OID 32657)
 -- Name: district_roles district_roles_districts_fk; Type: FK CONSTRAINT; Schema: districts; Owner: postgres
 --
 
@@ -7034,7 +7669,7 @@ ALTER TABLE ONLY districts.district_roles
 
 
 --
--- TOC entry 5113 (class 2606 OID 16876)
+-- TOC entry 5263 (class 2606 OID 32662)
 -- Name: district_roles district_roles_players_fk; Type: FK CONSTRAINT; Schema: districts; Owner: postgres
 --
 
@@ -7043,7 +7678,7 @@ ALTER TABLE ONLY districts.district_roles
 
 
 --
--- TOC entry 5114 (class 2606 OID 16881)
+-- TOC entry 5264 (class 2606 OID 32667)
 -- Name: district_roles district_roles_roles_fk; Type: FK CONSTRAINT; Schema: districts; Owner: postgres
 --
 
@@ -7052,7 +7687,7 @@ ALTER TABLE ONLY districts.district_roles
 
 
 --
--- TOC entry 5100 (class 2606 OID 16886)
+-- TOC entry 5240 (class 2606 OID 32672)
 -- Name: districts districts_district_types_fk; Type: FK CONSTRAINT; Schema: districts; Owner: postgres
 --
 
@@ -7061,7 +7696,7 @@ ALTER TABLE ONLY districts.districts
 
 
 --
--- TOC entry 5101 (class 2606 OID 16891)
+-- TOC entry 5241 (class 2606 OID 32677)
 -- Name: districts districts_map_tiles_fk; Type: FK CONSTRAINT; Schema: districts; Owner: postgres
 --
 
@@ -7070,7 +7705,7 @@ ALTER TABLE ONLY districts.districts
 
 
 --
--- TOC entry 5102 (class 2606 OID 16896)
+-- TOC entry 5242 (class 2606 OID 32682)
 -- Name: districts districts_maps_fk; Type: FK CONSTRAINT; Schema: districts; Owner: postgres
 --
 
@@ -7079,7 +7714,7 @@ ALTER TABLE ONLY districts.districts
 
 
 --
--- TOC entry 5115 (class 2606 OID 16901)
+-- TOC entry 5265 (class 2606 OID 32687)
 -- Name: inventory_container_building inventory_container_building_buildings_fk; Type: FK CONSTRAINT; Schema: inventory; Owner: postgres
 --
 
@@ -7088,7 +7723,7 @@ ALTER TABLE ONLY inventory.inventory_container_building
 
 
 --
--- TOC entry 5116 (class 2606 OID 16906)
+-- TOC entry 5266 (class 2606 OID 32692)
 -- Name: inventory_container_building inventory_container_building_container_id_fkey; Type: FK CONSTRAINT; Schema: inventory; Owner: postgres
 --
 
@@ -7097,7 +7732,7 @@ ALTER TABLE ONLY inventory.inventory_container_building
 
 
 --
--- TOC entry 5117 (class 2606 OID 16911)
+-- TOC entry 5267 (class 2606 OID 32697)
 -- Name: inventory_container_district inventory_container_district_container_id_fkey; Type: FK CONSTRAINT; Schema: inventory; Owner: postgres
 --
 
@@ -7106,7 +7741,7 @@ ALTER TABLE ONLY inventory.inventory_container_district
 
 
 --
--- TOC entry 5118 (class 2606 OID 16916)
+-- TOC entry 5268 (class 2606 OID 32702)
 -- Name: inventory_container_district inventory_container_district_districts_fk; Type: FK CONSTRAINT; Schema: inventory; Owner: postgres
 --
 
@@ -7115,7 +7750,7 @@ ALTER TABLE ONLY inventory.inventory_container_district
 
 
 --
--- TOC entry 5119 (class 2606 OID 16921)
+-- TOC entry 5269 (class 2606 OID 32707)
 -- Name: inventory_container_player inventory_container_player_container_id_fkey; Type: FK CONSTRAINT; Schema: inventory; Owner: postgres
 --
 
@@ -7124,7 +7759,25 @@ ALTER TABLE ONLY inventory.inventory_container_player
 
 
 --
--- TOC entry 5120 (class 2606 OID 17430)
+-- TOC entry 5277 (class 2606 OID 32792)
+-- Name: inventory_container_player_gear inventory_container_player_gear_container_id_fkey; Type: FK CONSTRAINT; Schema: inventory; Owner: postgres
+--
+
+ALTER TABLE ONLY inventory.inventory_container_player_gear
+    ADD CONSTRAINT inventory_container_player_gear_container_id_fkey FOREIGN KEY (inventory_container_id) REFERENCES inventory.inventory_containers(id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 5278 (class 2606 OID 32797)
+-- Name: inventory_container_player_gear inventory_container_player_gear_players_fk; Type: FK CONSTRAINT; Schema: inventory; Owner: postgres
+--
+
+ALTER TABLE ONLY inventory.inventory_container_player_gear
+    ADD CONSTRAINT inventory_container_player_gear_players_fk FOREIGN KEY (player_id) REFERENCES players.players(id);
+
+
+--
+-- TOC entry 5270 (class 2606 OID 32712)
 -- Name: inventory_container_player inventory_container_player_players_fk; Type: FK CONSTRAINT; Schema: inventory; Owner: postgres
 --
 
@@ -7133,7 +7786,7 @@ ALTER TABLE ONLY inventory.inventory_container_player
 
 
 --
--- TOC entry 5129 (class 2606 OID 17420)
+-- TOC entry 5271 (class 2606 OID 32717)
 -- Name: inventory_slots inventory_slots_inventory_container_id_fkey; Type: FK CONSTRAINT; Schema: inventory; Owner: postgres
 --
 
@@ -7142,7 +7795,16 @@ ALTER TABLE ONLY inventory.inventory_slots
 
 
 --
--- TOC entry 5130 (class 2606 OID 17425)
+-- TOC entry 5272 (class 2606 OID 32816)
+-- Name: inventory_slots inventory_slots_inventory_slot_types_fk; Type: FK CONSTRAINT; Schema: inventory; Owner: postgres
+--
+
+ALTER TABLE ONLY inventory.inventory_slots
+    ADD CONSTRAINT inventory_slots_inventory_slot_types_fk FOREIGN KEY (inventory_slot_type_id) REFERENCES inventory.inventory_slot_types(id);
+
+
+--
+-- TOC entry 5273 (class 2606 OID 32722)
 -- Name: inventory_slots inventory_slots_items_fk; Type: FK CONSTRAINT; Schema: inventory; Owner: postgres
 --
 
@@ -7151,7 +7813,7 @@ ALTER TABLE ONLY inventory.inventory_slots
 
 
 --
--- TOC entry 5121 (class 2606 OID 16951)
+-- TOC entry 5243 (class 2606 OID 32727)
 -- Name: item_stats item_stats_items_fk; Type: FK CONSTRAINT; Schema: items; Owner: postgres
 --
 
@@ -7160,7 +7822,7 @@ ALTER TABLE ONLY items.item_stats
 
 
 --
--- TOC entry 5122 (class 2606 OID 16956)
+-- TOC entry 5244 (class 2606 OID 32732)
 -- Name: item_stats item_stats_stats_fk; Type: FK CONSTRAINT; Schema: items; Owner: postgres
 --
 
@@ -7169,7 +7831,16 @@ ALTER TABLE ONLY items.item_stats
 
 
 --
--- TOC entry 5123 (class 2606 OID 16966)
+-- TOC entry 5245 (class 2606 OID 32775)
+-- Name: items items_item_types_fk; Type: FK CONSTRAINT; Schema: items; Owner: postgres
+--
+
+ALTER TABLE ONLY items.items
+    ADD CONSTRAINT items_item_types_fk FOREIGN KEY (item_type_id) REFERENCES items.item_types(id);
+
+
+--
+-- TOC entry 5246 (class 2606 OID 32737)
 -- Name: map_tiles map_tiles_landscape_types_fk; Type: FK CONSTRAINT; Schema: world; Owner: postgres
 --
 
@@ -7178,7 +7849,7 @@ ALTER TABLE ONLY world.map_tiles
 
 
 --
--- TOC entry 5124 (class 2606 OID 16971)
+-- TOC entry 5247 (class 2606 OID 32742)
 -- Name: map_tiles map_tiles_maps_fk; Type: FK CONSTRAINT; Schema: world; Owner: postgres
 --
 
@@ -7187,7 +7858,7 @@ ALTER TABLE ONLY world.map_tiles
 
 
 --
--- TOC entry 5126 (class 2606 OID 16976)
+-- TOC entry 5274 (class 2606 OID 32747)
 -- Name: map_tiles_players_positions map_tiles_players_positions_map_tiles_fk; Type: FK CONSTRAINT; Schema: world; Owner: postgres
 --
 
@@ -7196,7 +7867,7 @@ ALTER TABLE ONLY world.map_tiles_players_positions
 
 
 --
--- TOC entry 5127 (class 2606 OID 16981)
+-- TOC entry 5275 (class 2606 OID 32752)
 -- Name: map_tiles_players_positions map_tiles_players_positions_maps_fk; Type: FK CONSTRAINT; Schema: world; Owner: postgres
 --
 
@@ -7205,7 +7876,7 @@ ALTER TABLE ONLY world.map_tiles_players_positions
 
 
 --
--- TOC entry 5128 (class 2606 OID 16986)
+-- TOC entry 5276 (class 2606 OID 32757)
 -- Name: map_tiles_players_positions map_tiles_players_positions_players_fk; Type: FK CONSTRAINT; Schema: world; Owner: postgres
 --
 
@@ -7214,7 +7885,7 @@ ALTER TABLE ONLY world.map_tiles_players_positions
 
 
 --
--- TOC entry 5125 (class 2606 OID 16991)
+-- TOC entry 5248 (class 2606 OID 32762)
 -- Name: map_tiles map_tiles_terrain_types_fk; Type: FK CONSTRAINT; Schema: world; Owner: postgres
 --
 
@@ -7222,11 +7893,11 @@ ALTER TABLE ONLY world.map_tiles
     ADD CONSTRAINT map_tiles_terrain_types_fk FOREIGN KEY (terrain_type_id) REFERENCES world.terrain_types(id);
 
 
--- Completed on 2026-01-14 23:53:23
+-- Completed on 2026-02-03 15:56:17
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict bl1WgmQUk1Yz7oCiDbbhSpq3S5ROiVhSJVbkHyVp2gvCNnQzbSo6fWK0gHUGzlR
+\unrestrict M2v0nQlx8cF05ufEetkQFXbUYEzPGVmd94qaS7884ijfaWHON7tIgV0QUBd3gmQ
 
