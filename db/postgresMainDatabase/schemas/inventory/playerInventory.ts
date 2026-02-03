@@ -11,6 +11,7 @@ export type TPlayerInventoryParams = {
 export type TPlayerInventory = {
   slotId: number
   containerId: number
+  inventorySlotTypeId: number
   itemId: number
   name: string
   quantity: number

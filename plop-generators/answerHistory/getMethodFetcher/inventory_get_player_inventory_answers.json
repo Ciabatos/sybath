@@ -40,6 +40,13 @@
       "optional": ""
     },
     {
+      "name": "inventory_slot_type_id",
+      "camelName": "inventorySlotTypeId",
+      "pascalName": "InventorySlotTypeId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
       "name": "item_id",
       "camelName": "itemId",
       "pascalName": "ItemId",
@@ -79,8 +86,5 @@
   "apiPath": "app/api/inventory/rpc/get-player-inventory/[playerId]/route.ts",
   "apiPathParams": "/api/inventory/rpc/get-player-inventory/${params.playerId}",
   "generateMutation": true,
-  "mutationMergeOldData": true,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ]
+  "mutationMergeOldData": true
 }
