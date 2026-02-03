@@ -1,15 +1,15 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
-import {  TDistrictInventoryParams, TDistrictInventory  } from "@/db/postgresMainDatabase/schemas/inventory/districtInventory"
-
-
+import { TDistrictInventoryRecordBySlotId,  TDistrictInventoryParams, TDistrictInventory  } from "@/db/postgresMainDatabase/schemas/inventory/districtInventory"
+import { districtInventoryAtom } from "@/store/atoms"
+import { useAtomValue } from "jotai"
 import useSWR from "swr"
- 
+import { arrayToObjectKey } from "@/methods/functions/util/converters" 
 
 export function useMutateDistrictInventory( params: TDistrictInventoryParams) {
   const { mutate } = useSWR<TDistrictInventory[]>(`/api/inventory/rpc/get-district-inventory/${params.districtId}`)
-  
+  const districtInventory = useAtomValue(districtInventoryAtom)
 
   function mutateDistrictInventory(optimisticParams?: Partial<TDistrictInventory> | Partial<TDistrictInventory>[]) {
     if (!optimisticParams) {
@@ -24,6 +24,7 @@ export function useMutateDistrictInventory( params: TDistrictInventoryParams) {
     const defaultValues = {
       slotId: ``,
       containerId: ``,
+      inventorySlotTypeId: ``,
       itemId: ``,
       name: ``,
       quantity: ``,
@@ -36,8 +37,17 @@ export function useMutateDistrictInventory( params: TDistrictInventoryParams) {
       ...val,
     }))
 
-    mutate(dataWithDefaults, {
-      optimisticData: dataWithDefaults,
+    const newObj = arrayToObjectKey(["slotId"], dataWithDefaults) as TDistrictInventoryRecordBySlotId
+    
+    const optimisticDataMergeWithOldData: TDistrictInventoryRecordBySlotId = {
+      ...districtInventory, 
+      ...newObj,      
+    }
+
+    const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
+
+    mutate(optimisticDataMergeWithOldDataArray, {
+      optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,
       populateCache: true,
