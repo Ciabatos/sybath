@@ -11,6 +11,7 @@ export type TBuildingInventoryParams = {
 export type TBuildingInventory = {
   slotId: number
   containerId: number
+  inventorySlotTypeId: number
   itemId: number
   name: string
   quantity: number

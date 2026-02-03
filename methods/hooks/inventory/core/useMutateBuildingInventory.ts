@@ -1,15 +1,15 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
-import {  TBuildingInventoryParams, TBuildingInventory  } from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory"
-
-
+import { TBuildingInventoryRecordBySlotId,  TBuildingInventoryParams, TBuildingInventory  } from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory"
+import { buildingInventoryAtom } from "@/store/atoms"
+import { useAtomValue } from "jotai"
 import useSWR from "swr"
- 
+import { arrayToObjectKey } from "@/methods/functions/util/converters" 
 
 export function useMutateBuildingInventory( params: TBuildingInventoryParams) {
   const { mutate } = useSWR<TBuildingInventory[]>(`/api/inventory/rpc/get-building-inventory/${params.buildingId}`)
-  
+  const buildingInventory = useAtomValue(buildingInventoryAtom)
 
   function mutateBuildingInventory(optimisticParams?: Partial<TBuildingInventory> | Partial<TBuildingInventory>[]) {
     if (!optimisticParams) {
@@ -24,6 +24,7 @@ export function useMutateBuildingInventory( params: TBuildingInventoryParams) {
     const defaultValues = {
       slotId: ``,
       containerId: ``,
+      inventorySlotTypeId: ``,
       itemId: ``,
       name: ``,
       quantity: ``,
@@ -36,8 +37,17 @@ export function useMutateBuildingInventory( params: TBuildingInventoryParams) {
       ...val,
     }))
 
-    mutate(dataWithDefaults, {
-      optimisticData: dataWithDefaults,
+    const newObj = arrayToObjectKey(["slotId"], dataWithDefaults) as TBuildingInventoryRecordBySlotId
+    
+    const optimisticDataMergeWithOldData: TBuildingInventoryRecordBySlotId = {
+      ...buildingInventory, 
+      ...newObj,      
+    }
+
+    const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
+
+    mutate(optimisticDataMergeWithOldDataArray, {
+      optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,
       populateCache: true,
