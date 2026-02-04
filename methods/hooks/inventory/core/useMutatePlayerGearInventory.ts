@@ -24,6 +24,7 @@ export function useMutatePlayerGearInventory( params: TPlayerGearInventoryParams
     const defaultValues = {
       slotId: ``,
       containerId: ``,
+      inventoryContainerTypeId: ``,
       inventorySlotTypeId: ``,
       itemId: ``,
       name: ``,

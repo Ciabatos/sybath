@@ -11,6 +11,7 @@ export type TDistrictInventoryParams = {
 export type TDistrictInventory = {
   slotId: number
   containerId: number
+  inventoryContainerTypeId: number
   inventorySlotTypeId: number
   itemId: number
   name: string

@@ -7,7 +7,7 @@
       "slotId"
     ],
     "generateMutation": true,
-    "mutationMergeOldData": false
+    "mutationMergeOldData": true
   },
   "schema": "inventory",
   "method": "get_district_inventory",
@@ -36,6 +36,20 @@
       "name": "container_id",
       "camelName": "containerId",
       "pascalName": "ContainerId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "inventory_container_type_id",
+      "camelName": "inventoryContainerTypeId",
+      "pascalName": "InventoryContainerTypeId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "inventory_slot_type_id",
+      "camelName": "inventorySlotTypeId",
+      "pascalName": "InventorySlotTypeId",
       "tsType": "number",
       "optional": ""
     },
@@ -79,8 +93,5 @@
   "apiPath": "app/api/inventory/rpc/get-district-inventory/[districtId]/route.ts",
   "apiPathParams": "/api/inventory/rpc/get-district-inventory/${params.districtId}",
   "generateMutation": true,
-  "mutationMergeOldData": false,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ]
+  "mutationMergeOldData": true
 }

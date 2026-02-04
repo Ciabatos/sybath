@@ -24,6 +24,7 @@ export function useMutateBuildingInventory( params: TBuildingInventoryParams) {
     const defaultValues = {
       slotId: ``,
       containerId: ``,
+      inventoryContainerTypeId: ``,
       inventorySlotTypeId: ``,
       itemId: ``,
       name: ``,

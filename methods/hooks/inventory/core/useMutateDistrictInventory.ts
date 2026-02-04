@@ -24,6 +24,7 @@ export function useMutateDistrictInventory( params: TDistrictInventoryParams) {
     const defaultValues = {
       slotId: ``,
       containerId: ``,
+      inventoryContainerTypeId: ``,
       inventorySlotTypeId: ``,
       itemId: ``,
       name: ``,

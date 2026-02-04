@@ -40,6 +40,13 @@
       "optional": ""
     },
     {
+      "name": "inventory_container_type_id",
+      "camelName": "inventoryContainerTypeId",
+      "pascalName": "InventoryContainerTypeId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
       "name": "inventory_slot_type_id",
       "camelName": "inventorySlotTypeId",
       "pascalName": "InventorySlotTypeId",
