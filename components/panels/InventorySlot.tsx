@@ -2,57 +2,61 @@ import getIcon from "@/methods/functions/icons/getIcon"
 import { useDraggable, useDroppable } from "@dnd-kit/react"
 import styles from "./styles/PanelPlayerContainer.module.css"
 
-type TInventorySlot = {
+export type TInventorySlot = {
   id: number
   name: string
-  description?: string | undefined
+  description?: string
   image: string
   slotId: number
   containerId: number
+  inventorySlotTypeId: number
   itemId: number
   quantity: number
 }
 
 type TProps = {
-  inventory: TInventorySlot
+  inventory?: TInventorySlot
+  placeholderIcon?: string
 }
 
-export function InventorySlot({ inventory }: TProps) {
+export function InventorySlot({ inventory, placeholderIcon }: TProps) {
+  const hasItem = inventory?.itemId
+
   const draggable = useDraggable({
-    id: `item-${inventory.slotId}`,
-    disabled: !inventory.itemId,
+    id: `item-${inventory?.slotId || Math.random()}`,
+    disabled: !hasItem,
     data: inventory,
   })
 
   const droppable = useDroppable({
-    id: `slot-${inventory.slotId}`,
+    id: `slot-${inventory?.slotId || Math.random()}`,
     data: inventory,
   })
-
-  const handleDoubleClick = () => {
-    if (!inventory.itemId) return
-    console.log(`Context menu for item: ${inventory.name} in slot ${inventory.slotId}`)
-  }
 
   return (
     <div
       ref={droppable.ref}
-      className={`${styles.slot} ${inventory.itemId ? styles.occupied : ""} ${droppable.isDropTarget ? styles.dragOver : ""}`}
+      className={`${styles.slot} ${hasItem ? styles.occupied : ""} ${droppable.isDropTarget ? styles.dragOver : ""}`}
     >
-      {inventory.itemId ? (
+      {hasItem ? (
         <div
           ref={draggable.ref}
           className={`${styles.item} ${draggable.isDragging ? styles.dragging : ""}`}
-          onDoubleClick={handleDoubleClick}
         >
           <span className={styles.itemImage}>{getIcon(inventory.image)}</span>
           <span className={styles.itemName}>{inventory.name}</span>
+          <span>{inventory.slotId}</span>
           {inventory.quantity && inventory.quantity >= 1 ? (
             <span className={styles.quantity}> x{inventory.quantity}</span>
           ) : null}
         </div>
       ) : (
-        droppable.isDropTarget && <div className={styles.dropHint}>↓</div>
+        (droppable.isDropTarget && <div className={styles.dropHint}>↓</div>) || (
+          <div>
+            {getIcon(placeholderIcon)}
+            <span>{inventory?.slotId}</span>
+          </div>
+        )
       )}
     </div>
   )

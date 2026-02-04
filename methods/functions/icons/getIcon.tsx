@@ -39,7 +39,7 @@ const iconMap: Record<string, JSX.Element | string> = {
   SwordMastery: "🗡️",
   HeavySword: "🗡",
   DualSword: "⚔️",
-  HeavyArmor: "🛡️",
+  HeavyShield: "🛡️",
   Tactics: "📋",
   Endurance: "💚",
   Leadership: "👑",
@@ -56,6 +56,14 @@ const iconMap: Record<string, JSX.Element | string> = {
   Pickaxe: "⛏️",
   Herbalism: "🌿",
   Axe: "🪓",
+  Armour: "🥋",
+  Belt: "🎒",
+  Boots: "🥾",
+  Gloves: "🧤",
+  Cloak: "🦺",
+  Ring: "💍",
+  Necklace: "📿",
+  Helmet: "⛑️",
 }
 
 export default function getIcon(iconKey?: string) {
