@@ -2,6 +2,7 @@
 
 import { TInventorySlot } from "@/components/panels/InventorySlot"
 import { doMoveOrSwapItemAction } from "@/methods/actions/inventory/doMoveOrSwapItemAction"
+import { useMutatePlayerGearInventory } from "@/methods/hooks/inventory/core/useMutatePlayerGearInventory"
 import { useMutatePlayerInventory } from "@/methods/hooks/inventory/core/useMutatePlayerInventory"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { useDragDropMonitor } from "@dnd-kit/react"
@@ -12,6 +13,10 @@ type TMoveOrSwapItem = {
   toSlotId: number
   fromInventoryContainerId: number
   toInventoryContainerId: number
+  fromInventoryContainerTypeId: number
+  toInventoryContainerTypeId: number
+  fromInventorySlotTypeId: number
+  toInventorySlotTypeId: number
   fromItemId: number
   toItemId: number
   fromName: string
@@ -23,6 +28,7 @@ type TMoveOrSwapItem = {
 export function useInventory() {
   const { playerId } = usePlayerId()
   const { mutatePlayerInventory } = useMutatePlayerInventory({ playerId })
+  const { mutatePlayerGearInventory } = useMutatePlayerGearInventory({ playerId })
 
   useDragDropMonitor({
     onDragEnd: async (event) => {
@@ -44,6 +50,10 @@ export function useInventory() {
         toSlotId: targetData.slotId,
         fromInventoryContainerId: sourceData.containerId,
         toInventoryContainerId: targetData.containerId,
+        fromInventoryContainerTypeId: sourceData.inventoryContainerTypeId,
+        toInventoryContainerTypeId: targetData.inventoryContainerTypeId,
+        fromInventorySlotTypeId: sourceData.inventorySlotTypeId,
+        toInventorySlotTypeId: targetData.inventorySlotTypeId,
         fromItemId: sourceData.itemId,
         toItemId: targetData.itemId,
         fromName: sourceData.name,
@@ -66,27 +76,65 @@ export function useInventory() {
         toInventoryContainerId: params.toInventoryContainerId,
       })
 
-      console.log(result)
       if (!result.status) {
         return result.message
       }
 
-      mutatePlayerInventory([
-        {
+      const updatesPlayerInventory = []
+      const updatesPlayerGearInventory = []
+
+      if (params.fromInventoryContainerTypeId === 1) {
+        updatesPlayerInventory.push({
           slotId: params.fromSlotId,
           containerId: params.fromInventoryContainerId,
+          inventoryContainerTypeId: params.fromInventoryContainerTypeId,
+          inventorySlotTypeId: params.fromInventorySlotTypeId,
           itemId: params.toItemId,
           name: params.toName,
           quantity: params.toQuantity,
-        },
-        {
+        })
+      }
+      if (params.toInventoryContainerTypeId === 1) {
+        updatesPlayerInventory.push({
           slotId: params.toSlotId,
           containerId: params.toInventoryContainerId,
+          inventoryContainerTypeId: params.toInventoryContainerTypeId,
+          inventorySlotTypeId: params.toInventorySlotTypeId,
           itemId: params.fromItemId,
           name: params.fromName,
           quantity: params.fromQuantity,
-        },
-      ])
+        })
+      }
+
+      if (params.fromInventoryContainerTypeId === 2) {
+        updatesPlayerGearInventory.push({
+          slotId: params.fromSlotId,
+          containerId: params.fromInventoryContainerId,
+          inventoryContainerTypeId: params.fromInventoryContainerTypeId,
+          inventorySlotTypeId: params.fromInventorySlotTypeId,
+          itemId: params.toItemId,
+          name: params.toName,
+          quantity: params.toQuantity,
+        })
+      }
+      if (params.toInventoryContainerTypeId === 2) {
+        updatesPlayerGearInventory.push({
+          slotId: params.toSlotId,
+          containerId: params.toInventoryContainerId,
+          inventoryContainerTypeId: params.toInventoryContainerTypeId,
+          inventorySlotTypeId: params.toInventorySlotTypeId,
+          itemId: params.fromItemId,
+          name: params.fromName,
+          quantity: params.fromQuantity,
+        })
+      }
+      if (updatesPlayerInventory.length) {
+        mutatePlayerInventory(updatesPlayerInventory)
+      }
+
+      if (updatesPlayerGearInventory.length) {
+        mutatePlayerGearInventory(updatesPlayerGearInventory)
+      }
 
       return result.message
     } catch (err) {

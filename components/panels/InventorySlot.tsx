@@ -9,6 +9,7 @@ export type TInventorySlot = {
   image: string
   slotId: number
   containerId: number
+  inventoryContainerTypeId: number
   inventorySlotTypeId: number
   itemId: number
   quantity: number

@@ -28,6 +28,8 @@ export function useMutatePlayerInventory(params: TPlayerInventoryParams) {
     const defaultValues = {
       slotId: 0,
       containerId: 0,
+      inventoryContainerTypeId: 0,
+      inventorySlotTypeId: 0,
       itemId: 0,
       name: ``,
       quantity: 0,

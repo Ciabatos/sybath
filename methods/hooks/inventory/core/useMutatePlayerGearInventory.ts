@@ -1,17 +1,23 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
-import { TPlayerGearInventoryRecordBySlotId,  TPlayerGearInventoryParams, TPlayerGearInventory  } from "@/db/postgresMainDatabase/schemas/inventory/playerGearInventory"
+import {
+  TPlayerGearInventory,
+  TPlayerGearInventoryParams,
+  TPlayerGearInventoryRecordBySlotId,
+} from "@/db/postgresMainDatabase/schemas/inventory/playerGearInventory"
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { playerGearInventoryAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import useSWR from "swr"
-import { arrayToObjectKey } from "@/methods/functions/util/converters" 
 
-export function useMutatePlayerGearInventory( params: TPlayerGearInventoryParams) {
+export function useMutatePlayerGearInventory(params: TPlayerGearInventoryParams) {
   const { mutate } = useSWR<TPlayerGearInventory[]>(`/api/inventory/rpc/get-player-gear-inventory/${params.playerId}`)
   const playerGearInventory = useAtomValue(playerGearInventoryAtom)
 
-  function mutatePlayerGearInventory(optimisticParams?: Partial<TPlayerGearInventory> | Partial<TPlayerGearInventory>[]) {
+  function mutatePlayerGearInventory(
+    optimisticParams?: Partial<TPlayerGearInventory> | Partial<TPlayerGearInventory>[],
+  ) {
     if (!optimisticParams) {
       mutate()
       return
@@ -22,13 +28,13 @@ export function useMutatePlayerGearInventory( params: TPlayerGearInventoryParams
     //MANUAL CODE - START
 
     const defaultValues = {
-      slotId: ``,
-      containerId: ``,
-      inventoryContainerTypeId: ``,
-      inventorySlotTypeId: ``,
-      itemId: ``,
+      slotId: 0,
+      containerId: 0,
+      inventoryContainerTypeId: 0,
+      inventorySlotTypeId: 0,
+      itemId: 0,
       name: ``,
-      quantity: ``,
+      quantity: 0,
     }
 
     //MANUAL CODE - END
@@ -39,10 +45,10 @@ export function useMutatePlayerGearInventory( params: TPlayerGearInventoryParams
     }))
 
     const newObj = arrayToObjectKey(["slotId"], dataWithDefaults) as TPlayerGearInventoryRecordBySlotId
-    
+
     const optimisticDataMergeWithOldData: TPlayerGearInventoryRecordBySlotId = {
-      ...playerGearInventory, 
-      ...newObj,      
+      ...playerGearInventory,
+      ...newObj,
     }
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
