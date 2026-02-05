@@ -80,6 +80,7 @@ Gry:
 -Pathbreakers: Roaming Blades
 -Neath
 -Folk Emerging
+--https://www.youtube.com/watch?v=B9B9y0KcgD0
 Zagrywane są karty akcji co turę (5 minut) i odpalane w sekwencji - potem tylko ogladasz replay rundy
 na przyklad atak, parry/rest, riposte
 
