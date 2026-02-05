@@ -97,10 +97,7 @@ export default function PanelOtherPlayerPanel() {
               value='Inventory'
               className={styles.tabsContentInventory}
             >
-              <PanelPlayerInventory
-                columns={8}
-                rows={6}
-              />
+              <PanelPlayerInventory />
             </TabsContent>
 
             <TabsContent

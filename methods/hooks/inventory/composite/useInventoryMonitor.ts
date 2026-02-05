@@ -4,7 +4,6 @@ import { TInventorySlot } from "@/components/panels/InventorySlot"
 import { doMoveOrSwapItemAction } from "@/methods/actions/inventory/doMoveOrSwapItemAction"
 import { useMutatePlayerGearInventory } from "@/methods/hooks/inventory/core/useMutatePlayerGearInventory"
 import { useMutatePlayerInventory } from "@/methods/hooks/inventory/core/useMutatePlayerInventory"
-import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { useDragDropMonitor } from "@dnd-kit/react"
 import { toast } from "sonner"
 
@@ -25,8 +24,8 @@ type TMoveOrSwapItem = {
   toQuantity: number
 }
 
-export function useInventory() {
-  const { playerId } = usePlayerId()
+export function useInventoryMonitor() {
+  const playerId = 1
   const { mutatePlayerInventory } = useMutatePlayerInventory({ playerId })
   const { mutatePlayerGearInventory } = useMutatePlayerGearInventory({ playerId })
 
@@ -142,10 +141,4 @@ export function useInventory() {
       return "Unexpected error occurred. Please refresh the page."
     }
   }
-
-  const handleSortInventory = () => {
-    console.log("Sorting inventory...")
-  }
-
-  return { moveOrSwapItem, handleSortInventory, useDragDropMonitor }
 }
