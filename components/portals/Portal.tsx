@@ -6,6 +6,7 @@ import { ModalRightCenter } from "@/components/modals/ModalRightCenter"
 import ModalTopCenter from "@/components/modals/ModalTopCenter"
 import ModalTopCenterBar from "@/components/modals/ModalTopCenterBar"
 import { useResetModalsOnRouteChange } from "@/methods/hooks/modals/useResetModalsOnRouteChange"
+import { DndMonitorProvider } from "@/providers/dnd-monitor-provider"
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 
@@ -23,6 +24,7 @@ export default function Portal() {
 
   return createPortal(
     <>
+      <DndMonitorProvider />
       <ModalTopCenterBar />
       <ModalTopCenter />
       <ModalLeftTopBar />
