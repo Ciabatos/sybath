@@ -1,19 +1,20 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTableByKey.hbs
 "use client"
 
+import { useSWRConfig } from "swr"
 import { {{#if mutationMergeOldData}}{{indexTypeName}}, {{/if}}{{#if methodParamsColumns}}{{methodParamsTypeName}}, {{methodTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
-import useSWR from "swr"
 {{#if mutationMergeOldData}}import { {{tableCamelName}}Atom } from "@/store/atoms"{{/if}}
 {{#if mutationMergeOldData}}import { useAtomValue } from "jotai"{{/if}}
 {{#if mutationMergeOldData}}import { arrayToObjectKey } from "@/methods/functions/util/converters"{{/if}}
 
 export function useMutate{{schemaTablePascalName}}({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}) {
-  const { mutate } = useSWR<{{methodTypeName}}[]>(`{{apiPathParamsByKey}}`)
+  const { mutate } = useSWRConfig()
+  const key = `{{apiPathParamsByKey}}`
   {{#if mutationMergeOldData}}const {{tableCamelName}} = useAtomValue({{tableCamelName}}Atom){{/if}}
 
   function mutate{{schemaTablePascalName}}(optimisticParams?: Partial<{{methodTypeName}}> | Partial<{{methodTypeName}}>[]) {
     if (!optimisticParams) {
-      mutate()
+      mutate(key)
       return
     }
 
@@ -45,7 +46,7 @@ export function useMutate{{schemaTablePascalName}}({{#if methodParamsColumns}} p
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 {{/if}}
 
-    mutate({{#if mutationMergeOldData}}optimisticDataMergeWithOldDataArray{{else}}dataWithDefaults{{/if}}, {
+    mutate(key, {{#if mutationMergeOldData}}optimisticDataMergeWithOldDataArray{{else}}dataWithDefaults{{/if}}, {
       optimisticData: {{#if mutationMergeOldData}}optimisticDataMergeWithOldDataArray{{else}}dataWithDefaults{{/if}},
       rollbackOnError: true,
       revalidate: false,

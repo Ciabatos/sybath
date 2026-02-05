@@ -14,7 +14,6 @@ import { useSWRConfig } from "swr"
 export function useMutatePlayerInventory(params: TPlayerInventoryParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/inventory/rpc/get-player-inventory/${params.playerId}`
-  // const { mutate } = useSWR<TPlayerInventory[]>(`/api/inventory/rpc/get-player-inventory/${params.playerId}`)
   const playerInventory = useAtomValue(playerInventoryAtom)
 
   function mutatePlayerInventory(optimisticParams?: Partial<TPlayerInventory> | Partial<TPlayerInventory>[]) {
