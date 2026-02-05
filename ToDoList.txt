@@ -1,15 +1,3 @@
-Poprawić API dodać sprawdzenie playerId po sprawdzeniu ETagu (zamienic kolejnosc)
-
-zrobic normalizacje componentow na frontendzie uzywajacych action
-uzyc do tego plopjs snippeta ?
-
-Dodac nowy typ container dla Gear gracza 
-Da sie to zrobic dla wszystkich kontenerow
-z tabeli containers robie selecta do unii wszystkich tabel z typem contenera i potem selecty na sloty
-
-Gear gracza moze wygladac tak ze losowe sloty sa ale skad bede wiedzial ze do danego slota wchodzi helm ?
-dodanie kolumny inventory_slots typ slotu ? i dodatkowa tabele slot_type 1,2,3,4 helm, gloves, resources, any ? 
-
 --pobieranie playerKnowledge
 --pobieranie playerInventory
 --chodzenie po mapie
@@ -23,7 +11,6 @@ dodanie kolumny inventory_slots typ slotu ? i dodatkowa tabele slot_type 1,2,3,4
 
 
 teraz zajac sie districtem
-dodac inventory
 produkowanie co interwal produktow
 Owner zakladka - ustawianie placy/sprzedaz
 zatrudnianie graczy
@@ -84,18 +71,8 @@ Gry:
 Zagrywane są karty akcji co turę (5 minut) i odpalane w sekwencji - potem tylko ogladasz replay rundy
 na przyklad atak, parry/rest, riposte
 
-Mapa
--na początek tylko miasta maja sub-mapy
--stworzyc UI dla tilesow - modala z meta danymi o tilesie
--stworzyc generowanie regionow
 
 UI i flow dla „systemu informacji”
-
-pozycje graczy ustaw poprawnie - chyba wywalic z renderowania, dodac panel z graczami i tam mozna wyswietlac gdzie sa
-- dodac jedynie moja pozyccje
-- dodac ikone ludzi znajdujacych sie na polu ktora otwiera panel graczy na tilesie
-- dodac w panelu liste graczy i mozliwosc zaznaczenia go na mapie np kolorem
-
 
 Nie wiem czy to dodawac bo tak na serio to twarz czlowieka jest ta sama ? ale kaptur mozna zalozyc
 efemeryczne (zmienne) tokeny po stronie backendu
@@ -137,7 +114,6 @@ Użytkownik pisząc księge dostaje obrazki ładne z ai i odpowiada na pytania t
 --Crafting itemów (Tworzenie marszrut i struktur IFS)
 --Kombinacja surowcow i/lub innych itemów w jeden następny
 
-
 --Manipulacja rynkiem przez graczy (PROBLEM)
 --Przynależność do nomadów gwarantuje żywność
 --Żywność samemu można zdobyć
@@ -161,13 +137,6 @@ https://civitai.com/models/97079/gameiconresearchcj2lora
 https://civitai.com/models/143301/game-icon-instituteanfgv3
 https://civitai.com/models/1857872/mobile-game-isometric-building-xl
 
-
-
-JOTAI DEVTOOL
-
-
-
-
 GENERATOR SPRITESHEETOW - https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/
 https://opengameart.org/
 https://www.spritefusion.com/editor
@@ -178,6 +147,16 @@ WEBGL - UNITY/PIXI/JSREACT - nie wydaje się takie trudne jak myślałem
 unityInstance.SendMessage - wysylanie danych do Unity i tam sa funkcje do przesylu do reacta
 
 
+WEB_SCOKETS
+POSTGRESQL NOTIFY LISTEN
+select * from pg_listening_channels();
+https://www.pedroalonso.net/blog/postgres-listen-notify-real-time/
+Triggery na bazie wysylaja NOTIFY
+Nodejs ma LISTEN przez biblioteke do postgresa
+Po odebraniu listen wysyla Websocket
+Odbiera go na clientSide Websocket provider globalny
+Przestaje w Hooku SWR robic pooling po 3 sekundy
+Robie Websocket listenery z globalnego clientSide providera websocketow, jak przyjdzie powiadomienie to robie mutateHooka i tyle 
 
 animacja bitwy w UNITY
 
@@ -348,5 +327,3 @@ Ma 3 graczy
 Przyjmuje JSON bitwy z React
 
 Odtwarza wszystkie ruchy, ataki i animacje krok po kroku
-
-Chcesz, żebym taki przykład przygotował?
