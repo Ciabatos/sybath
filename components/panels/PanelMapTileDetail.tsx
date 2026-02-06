@@ -203,7 +203,7 @@ export default function PanelMapTileDetail() {
                 handleClick()
               }}
             >
-              {isMoving ? "Confirm Move" : "Move Here"}
+              {!isMoving ? "Move Here" : "Confirm Move"}
             </Button>
           </div>
         </section>
