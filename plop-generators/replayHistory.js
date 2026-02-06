@@ -89,7 +89,14 @@ export default function replayHistory(plop) {
       }
       console.dir(actions, { depth: null, maxArrayLength: null })
 
-      return [...actions, ...actionPrettier]
+      const filteredActions = actions.filter((action) => {
+        if (action.type === "PrettierFormat") {
+          return false // usuń wszystkie PrettierFormat z replay
+        }
+        return true
+      })
+
+      return [...filteredActions, ...actionPrettier]
     },
   })
 }
