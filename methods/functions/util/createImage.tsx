@@ -1,21 +1,48 @@
-import Image from "next/image"
+"use client"
+import getImageUrl from "@/methods/functions/util/getImageUrl"
+import getImageUrlCss from "@/methods/functions/util/getImageUrlCss"
 
-export default function createImage(imageUrl: string | undefined, type: string) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
-  if (!imageUrl) {
-    return ""
+export function createImage() {
+  function createPlayerImage(imageUrl: string | undefined) {
+    return getImageUrlCss(imageUrl, "playersPicture")
   }
-  const imageSrc = `/${type}/${imageUrl}`
-  const imageComponent = (
-    <Image
-      src={imageSrc}
-      layout='fill'
-      objectFit='contain'
-      quality={100}
-      alt={imageUrl || ""}
-      priority
-    />
-  )
-  const optimizedImageUrl = `${baseUrl}${imageComponent.props.src}`
-  return optimizedImageUrl
+
+  function createLandscapeImage(imageUrl: string | undefined) {
+    return getImageUrlCss(imageUrl, "landscapeTypePicture")
+  }
+
+  function createTerrainImage(imageUrl: string | undefined) {
+    return getImageUrlCss(imageUrl, "terrainTypePicture")
+  }
+
+  function createCitiesImage(imageUrl: string | undefined) {
+    return getImageUrlCss(imageUrl, "citiesPicture")
+  }
+
+  function creatDistrictsImage(imageUrl: string | undefined) {
+    return getImageUrlCss(imageUrl, "districstPicture")
+  }
+
+  function creatBuildingsImage(imageUrl: string | undefined) {
+    return getImageUrlCss(imageUrl, "buildingsPicture")
+  }
+
+  function createPlayerPortrait(imageUrl: string | undefined) {
+    return getImageUrl(imageUrl, "heroPortrait")
+  }
+
+  const combineImages = (...images: string[]): string => {
+    return images.filter(Boolean).join(", ")
+  }
+
+  return {
+    createPlayerImage,
+    createLandscapeImage,
+    createTerrainImage,
+    createCitiesImage,
+    creatDistrictsImage,
+    creatBuildingsImage,
+    combineImages,
+    createPlayerPortrait,
+  }
 }

@@ -6,7 +6,7 @@ import { PanelPlayerStats } from "@/components/panels/PanelPlayerStats"
 import PlayerSwitchButton from "@/components/panels/PlayerSwitchButton"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { createHeroPortrait } from "@/methods/functions/panels/createHeroPortrait"
+import { createImage } from "@/methods/functions/util/createImage"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { useActivePlayerProfile } from "@/methods/hooks/players/composite/useActivePlayerProfile"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
@@ -16,7 +16,7 @@ import styles from "./styles/PanelPlayerPanel.module.css"
 
 export default function PanelPlayerPanel() {
   const { openModalLeftTopBar } = useModalLeftTopBar()
-  const { createPortrait } = createHeroPortrait()
+  const { createPlayerPortrait } = createImage()
   const { activePlayerProfile } = useActivePlayerProfile()
 
   function onClose() {
@@ -26,7 +26,7 @@ export default function PanelPlayerPanel() {
   const name = activePlayerProfile?.name
   const secondName = activePlayerProfile?.secondName
   const nickname = activePlayerProfile?.nickname
-  const avatarUrl = createPortrait(activePlayerProfile?.imagePortrait)
+  const avatarUrl = createPlayerPortrait(activePlayerProfile?.imagePortrait)
   const avatarFallback = "VB"
 
   return (

@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-export default function createImageCss(imageUrl: string | undefined, type: string) {
+export default function getImageUrlCss(imageUrl: string | undefined, type: string) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
   if (!imageUrl) {
     return ""

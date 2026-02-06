@@ -1,7 +1,7 @@
 "use client"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { createHeroPortrait } from "@/methods/functions/panels/createHeroPortrait"
+import { createImage } from "@/methods/functions/util/createImage"
 import { useActivePlayerSwitchProfiles } from "@/methods/hooks/players/composite/useActivePlayerSwitchProfiles"
 import { toast } from "sonner"
 import styles from "./styles/PanelPlayerSwitchList.module.css"
@@ -9,7 +9,7 @@ import styles from "./styles/PanelPlayerSwitchList.module.css"
 export default function PanelPlayerSwitchList() {
   const { activePlayerSwitchProfiles } = useActivePlayerSwitchProfiles()
   const { switchPlayer } = useActivePlayerSwitchProfiles()
-  const { createPortrait } = createHeroPortrait()
+  const { createPlayerPortrait } = createImage()
 
   const handleClick = async (id: number) => {
     const result = await switchPlayer(id)
@@ -33,7 +33,7 @@ export default function PanelPlayerSwitchList() {
           >
             <Avatar className={styles.heroAvatar}>
               <AvatarImage
-                src={createPortrait(profile.imagePortrait)}
+                src={createPlayerPortrait(profile.imagePortrait)}
                 alt={profile.name}
               />
               <AvatarFallback className={styles.heroFallback}>{profile.name.charAt(0)}</AvatarFallback>

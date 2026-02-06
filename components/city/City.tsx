@@ -6,7 +6,7 @@ import { TBuildingsBuildingTypes } from "@/db/postgresMainDatabase/schemas/build
 import { TCitiesCityTiles } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
 import { TWorldLandscapeTypes } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { TWorldTerrainTypes } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
-import { createBackgroundImage } from "@/methods/functions/map/createBackgroundImage"
+import { createImage } from "@/methods/functions/util/createImage"
 
 interface Props {
   cityTiles: TCitiesCityTiles
@@ -17,7 +17,7 @@ interface Props {
 }
 
 export default function City(props: Props) {
-  const { createLandscapeImage, createTerrainImage, creatBuildingsImage, combineImages } = createBackgroundImage()
+  const { createLandscapeImage, createTerrainImage, creatBuildingsImage, combineImages } = createImage()
   // const { actualCityTileStatus, newCityTilesActionStatus } = useCityTilesActionStatus()
   // const { setClickedCityTile } = useCityTilesActions()
   const backgroundImage = createTerrainImage(props.terrainTypes.imageUrl)

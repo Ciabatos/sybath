@@ -9,7 +9,7 @@ import { TWorldLandscapeTypes } from "@/db/postgresMainDatabase/schemas/world/la
 import { TWorldMapTiles } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
 import { TPlayerPosition } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 import { TWorldTerrainTypes } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
-import { createBackgroundImage } from "@/methods/functions/map/createBackgroundImage"
+import { createImage } from "@/methods/functions/util/createImage"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 
 export type TMapTile = {
@@ -30,7 +30,7 @@ export default function Map(props: TMapTile) {
     createCitiesImage,
     creatDistrictsImage,
     combineImages,
-  } = createBackgroundImage()
+  } = createImage()
 
   const backgroundImage = createTerrainImage(props.terrainTypes.imageUrl)
   const landscapeImage = createLandscapeImage(props.landscapeTypes?.imageUrl)
