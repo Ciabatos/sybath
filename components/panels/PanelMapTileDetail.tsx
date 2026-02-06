@@ -5,6 +5,7 @@ import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMovement"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { X } from "lucide-react"
+import { useState } from "react"
 import styles from "./styles/PanelMapTileDetail.module.css"
 
 const terrainData = {
@@ -69,14 +70,22 @@ const terrainData = {
 export default function PanelMapTileDetail() {
   const { resetModalRightCenter } = useModalRightCenter()
   const { clickedTile } = useMapTileActions()
-  const { selectPlayerPathToClickedTile } = usePlayerMovement()
+  const { selectPlayerPathToClickedTile, selectPlayerPathAndMovePlayerToClickedTile } = usePlayerMovement()
 
   const onClose = () => {
     resetModalRightCenter()
   }
 
+  const [isMoving, setIsMoving] = useState(false)
+
   function handleClick() {
-    selectPlayerPathToClickedTile()
+    if (!isMoving) {
+      selectPlayerPathToClickedTile()
+      setIsMoving(true)
+    } else {
+      selectPlayerPathAndMovePlayerToClickedTile()
+      setIsMoving(false)
+    }
   }
 
   const terrainName = clickedTile?.terrainTypes.name
@@ -194,7 +203,7 @@ export default function PanelMapTileDetail() {
                 handleClick()
               }}
             >
-              Travel Here
+              {isMoving ? "Confirm Move" : "Move Here"}
             </Button>
           </div>
         </section>
