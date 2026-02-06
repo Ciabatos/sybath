@@ -17,7 +17,7 @@ import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/co
 import { getWorldMapTilesByKeyServer } from "@/methods/server-fetchers/world/core/getWorldMapTilesByKeyServer"
 import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
 
-export async function getMapData(clientMapId: number, sessionUserId: number) {
+export async function getInitialPageMapData(clientMapId: number, sessionUserId: number) {
   const activePlayer = await getActivePlayerServer({ userId: sessionUserId })
   const sessionPlayerId = activePlayer.raw[0].id
   const playerId = sessionPlayerId

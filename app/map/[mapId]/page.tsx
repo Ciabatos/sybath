@@ -1,7 +1,7 @@
 "use server"
 import { auth } from "@/auth"
 import MapWrapper from "@/components/map/MapWrapper"
-import { getMapData } from "@/methods/server-fetchers/world/composite/getMapData"
+import { getInitialPageMapData } from "@/methods/server-fetchers/world/composite/getInitialPageMapData"
 import { AtomsHydrator } from "@/providers/jotai-hydrator"
 import { SWRHydrator } from "@/providers/swr-hydrator"
 import styles from "./page.module.css"
@@ -24,13 +24,13 @@ export default async function WorldPage({ params }: { params: TParams }) {
     return null
   }
 
-  const mapData = await getMapData(clientMapId, sessionUserId)
+  const initialPageMapData = await getInitialPageMapData(clientMapId, sessionUserId)
 
-  if (!mapData) {
+  if (!initialPageMapData) {
     return null
   }
 
-  const { atomHydrationData, fallbackData } = mapData
+  const { atomHydrationData, fallbackData } = initialPageMapData
 
   return (
     <div className={styles.main}>

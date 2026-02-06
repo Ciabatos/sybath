@@ -1,7 +1,7 @@
 "use server"
 import { auth } from "@/auth"
 import CityWrapper from "@/components/city/CityWrapper"
-import { getCityData } from "@/methods/server-fetchers/cities/composite/getCityData"
+import { getInitialPageCityData } from "@/methods/server-fetchers/cities/composite/getInitialPageCityData"
 import { AtomsHydrator } from "@/providers/jotai-hydrator"
 import { SWRHydrator } from "@/providers/swr-hydrator"
 import styles from "./page.module.css"
@@ -23,13 +23,13 @@ export default async function CityPage({ params }: { params: TParams }) {
   if (!clientCityId || isNaN(clientCityId)) {
     return null
   }
-  const cityData = await getCityData(clientCityId, sessionUserId)
+  const initialPageCityData = await getInitialPageCityData(clientCityId, sessionUserId)
 
-  if (!cityData) {
+  if (!initialPageCityData) {
     return null
   }
 
-  const { atomHydrationData, fallbackData } = cityData
+  const { atomHydrationData, fallbackData } = initialPageCityData
 
   return (
     <div className={styles.main}>

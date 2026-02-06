@@ -5,6 +5,7 @@ import { TDoPlayerMovementParams, doPlayerMovement } from "@/db/postgresMainData
 import { pathFromPointToPoint } from "@/methods/functions/map/pathFromPointToPoint"
 import { getCitiesCitiesByKeyServer } from "@/methods/server-fetchers/cities/core/getCitiesCitiesByKeyServer"
 import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
+import { getPlayerMapServer } from "@/methods/server-fetchers/world/core/getPlayerMapServer"
 import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
 import { getWorldMapTilesByKeyServer } from "@/methods/server-fetchers/world/core/getWorldMapTilesByKeyServer"
 import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
@@ -37,7 +38,7 @@ export async function doPlayerMovementService(params: TDoPlayerMovementServicePa
 
     //MANUAL CODE - START
 
-    const mapId = await getWorldMapsServer()
+    const mapId = await getPlayerMapServer({ playerId })
     const mapTiles = await getWorldMapTilesByKeyServer({ mapId: mapId.raw[0].id })
     const terrainTypes = await getWorldTerrainTypesServer()
     const landscapeTypes = await getWorldLandscapeTypesServer()

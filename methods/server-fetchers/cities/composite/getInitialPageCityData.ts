@@ -12,7 +12,7 @@ import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/ge
 import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
 import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
 
-export async function getCityData(clientCityId: number, sessionUserId: number) {
+export async function getInitialPageCityData(clientCityId: number, sessionUserId: number) {
   const activePlayer = await getActivePlayerServer({ userId: sessionUserId })
   const sessionPlayerId = activePlayer.raw[0].id
   const playerId = sessionPlayerId
