@@ -54,7 +54,7 @@ export default function PanelPlayerPanel() {
             <h2 className={styles.heroName}>
               {name} {secondName}
             </h2>
-            <p className={styles.heroTitle}>{nickname}</p>
+            <p className={styles.heroTitle}>Inni głosują za nickiem lub nazywają{nickname}</p>
           </div>
         </div>
 
