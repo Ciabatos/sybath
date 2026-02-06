@@ -29,6 +29,7 @@ async function configurePlop(plop) {
       throw err
     }
   })
+  createPanels(plop)
 
   getMethodAction(plop)
 
@@ -37,8 +38,6 @@ async function configurePlop(plop) {
   getTable(plop)
 
   replayHistory(plop)
-
-  createPanels(plop)
 }
 
 export default configurePlop
