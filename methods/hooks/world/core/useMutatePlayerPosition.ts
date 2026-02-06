@@ -1,19 +1,20 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
+import { useSWRConfig } from "swr"
 import {  TPlayerPositionParams, TPlayerPosition  } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 
 
-import useSWR from "swr"
  
 
 export function useMutatePlayerPosition( params: TPlayerPositionParams) {
-  const { mutate } = useSWR<TPlayerPosition[]>(`/api/world/rpc/get-player-position/${params.mapId}/${params.playerId}`)
+  const { mutate } = useSWRConfig()
+  const key = `/api/world/rpc/get-player-position/${params.mapId}/${params.playerId}`
   
 
   function mutatePlayerPosition(optimisticParams?: Partial<TPlayerPosition> | Partial<TPlayerPosition>[]) {
     if (!optimisticParams) {
-      mutate()
+      mutate(key)
       return
     }
 
@@ -34,7 +35,7 @@ export function useMutatePlayerPosition( params: TPlayerPositionParams) {
       ...val,
     }))
 
-    mutate(dataWithDefaults, {
+    mutate(key, dataWithDefaults, {
       optimisticData: dataWithDefaults,
       rollbackOnError: true,
       revalidate: false,

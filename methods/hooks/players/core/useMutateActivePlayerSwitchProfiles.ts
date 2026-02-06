@@ -1,19 +1,20 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
+import { useSWRConfig } from "swr"
 import {  TActivePlayerSwitchProfilesParams, TActivePlayerSwitchProfiles  } from "@/db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles"
 
 
-import useSWR from "swr"
  
 
 export function useMutateActivePlayerSwitchProfiles( params: TActivePlayerSwitchProfilesParams) {
-  const { mutate } = useSWR<TActivePlayerSwitchProfiles[]>(`/api/players/rpc/get-active-player-switch-profiles/${params.playerId}`)
+  const { mutate } = useSWRConfig()
+  const key = `/api/players/rpc/get-active-player-switch-profiles/${params.playerId}`
   
 
   function mutateActivePlayerSwitchProfiles(optimisticParams?: Partial<TActivePlayerSwitchProfiles> | Partial<TActivePlayerSwitchProfiles>[]) {
     if (!optimisticParams) {
-      mutate()
+      mutate(key)
       return
     }
 
@@ -36,7 +37,7 @@ export function useMutateActivePlayerSwitchProfiles( params: TActivePlayerSwitch
       ...val,
     }))
 
-    mutate(dataWithDefaults, {
+    mutate(key, dataWithDefaults, {
       optimisticData: dataWithDefaults,
       rollbackOnError: true,
       revalidate: false,

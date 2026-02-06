@@ -1,19 +1,20 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
+import { useSWRConfig } from "swr"
 import { TActivePlayerProfileRecordByName,  TActivePlayerProfileParams, TActivePlayerProfile  } from "@/db/postgresMainDatabase/schemas/players/activePlayerProfile"
 import { activePlayerProfileAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters" 
 
 export function useMutateActivePlayerProfile( params: TActivePlayerProfileParams) {
-  const { mutate } = useSWR<TActivePlayerProfile[]>(`/api/players/rpc/get-active-player-profile/${params.playerId}`)
+  const { mutate } = useSWRConfig()
+  const key = `/api/players/rpc/get-active-player-profile/${params.playerId}`
   const activePlayerProfile = useAtomValue(activePlayerProfileAtom)
 
   function mutateActivePlayerProfile(optimisticParams?: Partial<TActivePlayerProfile> | Partial<TActivePlayerProfile>[]) {
     if (!optimisticParams) {
-      mutate()
+      mutate(key)
       return
     }
 
@@ -45,7 +46,7 @@ export function useMutateActivePlayerProfile( params: TActivePlayerProfileParams
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(optimisticDataMergeWithOldDataArray, {
+    mutate(key, optimisticDataMergeWithOldDataArray, {
       optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,

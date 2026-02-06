@@ -1,19 +1,20 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
+import { useSWRConfig } from "swr"
 import { TDistrictInventoryRecordBySlotId,  TDistrictInventoryParams, TDistrictInventory  } from "@/db/postgresMainDatabase/schemas/inventory/districtInventory"
 import { districtInventoryAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters" 
 
 export function useMutateDistrictInventory( params: TDistrictInventoryParams) {
-  const { mutate } = useSWR<TDistrictInventory[]>(`/api/inventory/rpc/get-district-inventory/${params.districtId}`)
+  const { mutate } = useSWRConfig()
+  const key = `/api/inventory/rpc/get-district-inventory/${params.districtId}`
   const districtInventory = useAtomValue(districtInventoryAtom)
 
   function mutateDistrictInventory(optimisticParams?: Partial<TDistrictInventory> | Partial<TDistrictInventory>[]) {
     if (!optimisticParams) {
-      mutate()
+      mutate(key)
       return
     }
 
@@ -47,7 +48,7 @@ export function useMutateDistrictInventory( params: TDistrictInventoryParams) {
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(optimisticDataMergeWithOldDataArray, {
+    mutate(key, optimisticDataMergeWithOldDataArray, {
       optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,

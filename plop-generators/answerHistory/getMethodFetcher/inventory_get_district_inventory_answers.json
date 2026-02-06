@@ -93,5 +93,8 @@
   "apiPath": "app/api/inventory/rpc/get-district-inventory/[districtId]/route.ts",
   "apiPathParams": "/api/inventory/rpc/get-district-inventory/${params.districtId}",
   "generateMutation": true,
-  "mutationMergeOldData": true
+  "mutationMergeOldData": true,
+  "selectedGenerators": [
+    "getMethodFetcher"
+  ]
 }

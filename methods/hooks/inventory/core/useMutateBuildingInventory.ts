@@ -1,19 +1,20 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
+import { useSWRConfig } from "swr"
 import { TBuildingInventoryRecordBySlotId,  TBuildingInventoryParams, TBuildingInventory  } from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory"
 import { buildingInventoryAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters" 
 
 export function useMutateBuildingInventory( params: TBuildingInventoryParams) {
-  const { mutate } = useSWR<TBuildingInventory[]>(`/api/inventory/rpc/get-building-inventory/${params.buildingId}`)
+  const { mutate } = useSWRConfig()
+  const key = `/api/inventory/rpc/get-building-inventory/${params.buildingId}`
   const buildingInventory = useAtomValue(buildingInventoryAtom)
 
   function mutateBuildingInventory(optimisticParams?: Partial<TBuildingInventory> | Partial<TBuildingInventory>[]) {
     if (!optimisticParams) {
-      mutate()
+      mutate(key)
       return
     }
 
@@ -47,7 +48,7 @@ export function useMutateBuildingInventory( params: TBuildingInventoryParams) {
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(optimisticDataMergeWithOldDataArray, {
+    mutate(key, optimisticDataMergeWithOldDataArray, {
       optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,

@@ -9,17 +9,18 @@ import {
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { playerGearInventoryAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import useSWR from "swr"
+import { useSWRConfig } from "swr"
 
 export function useMutatePlayerGearInventory(params: TPlayerGearInventoryParams) {
-  const { mutate } = useSWR<TPlayerGearInventory[]>(`/api/inventory/rpc/get-player-gear-inventory/${params.playerId}`)
+  const { mutate } = useSWRConfig()
+  const key = `/api/inventory/rpc/get-player-gear-inventory/${params.playerId}`
   const playerGearInventory = useAtomValue(playerGearInventoryAtom)
 
   function mutatePlayerGearInventory(
     optimisticParams?: Partial<TPlayerGearInventory> | Partial<TPlayerGearInventory>[],
   ) {
     if (!optimisticParams) {
-      mutate()
+      mutate(key)
       return
     }
 
@@ -53,7 +54,7 @@ export function useMutatePlayerGearInventory(params: TPlayerGearInventoryParams)
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(optimisticDataMergeWithOldDataArray, {
+    mutate(key, optimisticDataMergeWithOldDataArray, {
       optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,

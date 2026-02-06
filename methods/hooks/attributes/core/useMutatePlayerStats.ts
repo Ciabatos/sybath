@@ -1,19 +1,20 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
+import { useSWRConfig } from "swr"
 import { TPlayerStatsRecordByStatId,  TPlayerStatsParams, TPlayerStats  } from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
 import { playerStatsAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import useSWR from "swr"
 import { arrayToObjectKey } from "@/methods/functions/util/converters" 
 
 export function useMutatePlayerStats( params: TPlayerStatsParams) {
-  const { mutate } = useSWR<TPlayerStats[]>(`/api/attributes/rpc/get-player-stats/${params.playerId}`)
+  const { mutate } = useSWRConfig()
+  const key = `/api/attributes/rpc/get-player-stats/${params.playerId}`
   const playerStats = useAtomValue(playerStatsAtom)
 
   function mutatePlayerStats(optimisticParams?: Partial<TPlayerStats> | Partial<TPlayerStats>[]) {
     if (!optimisticParams) {
-      mutate()
+      mutate(key)
       return
     }
 
@@ -43,7 +44,7 @@ export function useMutatePlayerStats( params: TPlayerStatsParams) {
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(optimisticDataMergeWithOldDataArray, {
+    mutate(key, optimisticDataMergeWithOldDataArray, {
       optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,
