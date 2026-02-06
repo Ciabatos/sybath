@@ -39,8 +39,6 @@ async function configurePlop(plop) {
   replayHistory(plop)
 
   createPanels(plop)
-
-  // recalculateHistory(plop)
 }
 
 export default configurePlop

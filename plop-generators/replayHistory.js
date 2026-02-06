@@ -83,6 +83,11 @@ export default function replayHistory(plop) {
         }
       }
       console.dir(actions, { depth: null, maxArrayLength: null })
+
+      actions.push({
+        type: "PrettierFormat",
+      })
+
       return actions
     },
   })
