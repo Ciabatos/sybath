@@ -38,11 +38,14 @@ export async function doPlayerMovementService(params: TDoPlayerMovementServicePa
 
     //MANUAL CODE - START
 
-    const mapId = await getPlayerMapServer({ playerId })
-    const mapTiles = await getWorldMapTilesByKeyServer({ mapId: mapId.raw[0].id })
-    const terrainTypes = await getWorldTerrainTypesServer()
-    const landscapeTypes = await getWorldLandscapeTypesServer()
-    const cities = await getCitiesCitiesByKeyServer({ mapId: mapId.raw[0].id })
+    const mapId = (await getPlayerMapServer({ playerId })).raw[0].mapId
+
+    const [mapTiles, terrainTypes, landscapeTypes, cities] = await Promise.all([
+      getWorldMapTilesByKeyServer({ mapId }),
+      getWorldTerrainTypesServer(),
+      getWorldLandscapeTypesServer(),
+      getCitiesCitiesByKeyServer({ mapId }),
+    ])
 
     if (!mapTiles) {
       return
