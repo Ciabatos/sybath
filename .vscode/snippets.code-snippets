@@ -1,18 +1,80 @@
 {
   "useState": {
     "prefix": "use_State",
-    "body": ["const [${1}, set${1/(.*)/${1:/capitalize}/}] = useState($2)"],
+    "body": [
+      "const [${1}, set${1/(.*)/${1:/capitalize}/}] = useState($2)"
+    ],
     "description": "useState with proper camel casing for setter function name.",
   },
   "useAtom": {
     "prefix": "use_Atom",
-    "body": ["const ${1} = useAtomValue(${1}Atom)", "const set${1/(.*)/${1:/capitalize}/} = useSetAtom(${1}Atom)"],
+    "body": [
+      "const ${1} = useAtomValue(${1}Atom)",
+      "const set${1/(.*)/${1:/capitalize}/} = useSetAtom(${1}Atom)"
+    ],
     "description": "Separate useAtomValue and useSetAtom with proper setter name",
   },
-
-
-//Dodane automatycznie - start
-
+  "ModalBottomCenterBar": {
+    "prefix": "hook_ModalBottomCenterBar",
+    "body": [
+      "const { openModalBottomCenterBar } = useModalBottomCenterBar()",
+      "// const { resetModalBottomCenterBar } = useModalBottomCenterBar()",
+      "openModalBottomCenterBar(EPanelsBottomCenterBar.${1})",
+      "// resetModalBottomCenterBar()"
+    ],
+    "description": "ModalBottomCenterBar Open",
+  },
+  "ModalLeftCenter": {
+    "prefix": "hook_ModalLeftCenter",
+    "body": [
+      "const { openModalLeftCenter } = useModalLeftCenter()",
+      "// const { resetModalLeftCenter } = useModalLeftCenter()",
+      "openModalLeftCenter(EPanelsLeftCenter.${1})",
+      "// resetModalLeftCenter()"
+    ],
+    "description": "ModalLeftCenter Open",
+  },
+  "ModalLeftTopBar": {
+    "prefix": "hook_ModalLeftTopBar",
+    "body": [
+      "const { openModalLeftTopBar } = useModalLeftTopBar()",
+      "// const { resetModalLeftTopBar } = useModalLeftTopBar()",
+      "openModalLeftTopBar(EPanelsLeftTopBar.${1})",
+      "// resetModalLeftTopBar()"
+    ],
+    "description": "ModalLeftTopBar Open",
+  },
+  "ModalRightCenter": {
+    "prefix": "hook_ModalRightCenter",
+    "body": [
+      "const { openModalRightCenter } = useModalRightCenter()",
+      "// const { resetModalRightCenter } = useModalRightCenter()",
+      "openModalRightCenter(EPanelsRightCenter.${1})",
+      "// resetModalRightCenter()"
+    ],
+    "description": "ModalRightCenter Open",
+  },
+  "ModalTopCenter": {
+    "prefix": "hook_ModalTopCenter",
+    "body": [
+      "const { openModalTopCenter } = useModalTopCenter()",
+      "// const { resetModalTopCenter } = useModalTopCenter()",
+      "openModalTopCenter(EPanelsTopCenter.${1})",
+      "// resetModalTopCenter()"
+    ],
+    "description": "ModalTopCenter Open",
+  },
+  "ModalTopCenterBar": {
+    "prefix": "hook_ModalTopCenterBar",
+    "body": [
+      "const { openModalTopCenterBar } = useModalTopCenterBar()",
+      "// const { resetModalTopCenterBar } = useModalTopCenterBar()",
+      "openModalTopCenterBar(EPanelsTopCenterBar.${1})",
+      "// resetModalTopCenterBar()"
+    ],
+    "description": "ModalTopCenterBar Open",
+  },
+  //Dodane automatycznie - start
   "Destructure usePlayerCity": {
     "prefix": "hook_cities_core_usePlayerCity",
     "body": [
@@ -20,7 +82,7 @@
       "const playerCity = useAtomValue(playerCityAtom)"
     ],
     "description": "Destructuring usePlayerCity hook"
-  },  
+  },
   "Destructure usePlayerInventory": {
     "prefix": "hook_inventory_core_usePlayerInventory",
     "body": [
@@ -28,7 +90,7 @@
       "const playerInventory = useAtomValue(playerInventoryAtom)"
     ],
     "description": "Destructuring usePlayerInventory hook"
-  },  
+  },
   "Destructure usePlayerMap": {
     "prefix": "hook_world_core_usePlayerMap",
     "body": [
@@ -36,7 +98,7 @@
       "const playerMap = useAtomValue(playerMapAtom)"
     ],
     "description": "Destructuring usePlayerMap hook"
-  },  
+  },
   "Destructure usePlayerMovement": {
     "prefix": "hook_world_core_usePlayerMovement",
     "body": [
@@ -44,7 +106,7 @@
       "const playerMovement = useAtomValue(playerMovementAtom)"
     ],
     "description": "Destructuring usePlayerMovement hook"
-  },  
+  },
   "Destructure usePlayerPosition": {
     "prefix": "hook_world_core_usePlayerPosition",
     "body": [
@@ -52,7 +114,7 @@
       "const playerPosition = useAtomValue(playerPositionAtom)"
     ],
     "description": "Destructuring usePlayerPosition hook"
-  },  
+  },
   "Destructure useActivePlayerProfile": {
     "prefix": "hook_players_core_useActivePlayerProfile",
     "body": [
@@ -268,7 +330,7 @@
       "const terrainTypes = useAtomValue(terrainTypesAtom)"
     ],
     "description": "Destructuring useWorldTerrainTypesByKey hook"
-  },  
+  },
   "Destructure useActivePlayerSwitchProfiles": {
     "prefix": "hook_players_core_useActivePlayerSwitchProfiles",
     "body": [
@@ -276,7 +338,7 @@
       "const activePlayerSwitchProfiles = useAtomValue(activePlayerSwitchProfilesAtom)"
     ],
     "description": "Destructuring useActivePlayerSwitchProfiles hook"
-  },  
+  },
   "Destructure useDistrictInventory": {
     "prefix": "hook_inventory_core_useDistrictInventory",
     "body": [
@@ -284,7 +346,7 @@
       "const districtInventory = useAtomValue(districtInventoryAtom)"
     ],
     "description": "Destructuring useDistrictInventory hook"
-  },  
+  },
   "Destructure useBuildingInventory": {
     "prefix": "hook_inventory_core_useBuildingInventory",
     "body": [
@@ -292,7 +354,7 @@
       "const buildingInventory = useAtomValue(buildingInventoryAtom)"
     ],
     "description": "Destructuring useBuildingInventory hook"
-  },  
+  },
   "Destructure usePlayerSkills": {
     "prefix": "hook_attributes_core_usePlayerSkills",
     "body": [
@@ -300,7 +362,7 @@
       "const playerSkills = useAtomValue(playerSkillsAtom)"
     ],
     "description": "Destructuring usePlayerSkills hook"
-  },  
+  },
   "Destructure usePlayerStats": {
     "prefix": "hook_attributes_core_usePlayerStats",
     "body": [
@@ -324,7 +386,7 @@
       "const inventorySlotTypes = useAtomValue(inventorySlotTypesAtom)"
     ],
     "description": "Destructuring useInventoryInventorySlotTypesByKey hook"
-  },  
+  },
   "Destructure usePlayerGearInventory": {
     "prefix": "hook_inventory_core_usePlayerGearInventory",
     "body": [
@@ -332,5 +394,5 @@
       "const playerGearInventory = useAtomValue(playerGearInventoryAtom)"
     ],
     "description": "Destructuring usePlayerGearInventory hook"
-  },//Automatic Snippets
+  }, //Automatic Snippets
 }
