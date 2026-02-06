@@ -70,7 +70,7 @@ Gry:
 --https://www.youtube.com/watch?v=B9B9y0KcgD0
 Zagrywane są karty akcji co turę (5 minut) i odpalane w sekwencji - potem tylko ogladasz replay rundy
 na przyklad atak, parry/rest, riposte
-
+--Blob na jednym tiles, kiedy jednostka jest przepchnięta jednostki mogą zajmować jeden tile ale mają ograniczony ruch (nie mogą atakować tylko movment/ucieczka z tile ich ratuje)
 
 UI i flow dla „systemu informacji”
 
