@@ -149,9 +149,9 @@ export default function getMethodAction(plop) {
         templateFile: "plop-templates/answerHistory.hbs",
         force: true,
       },
-      {
-        type: "PrettierFormat",
-      },
+      // {
+      //   type: "PrettierFormat",
+      // },
     ],
   })
 }

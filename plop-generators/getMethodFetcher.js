@@ -297,9 +297,9 @@ export default function getMethodFetcher(plop) {
         templateFile: "plop-templates/answerHistory.hbs",
         force: true,
       },
-      {
-        type: "PrettierFormat",
-      },
+      // {
+      //   type: "PrettierFormat",
+      // },
     ],
   })
 }

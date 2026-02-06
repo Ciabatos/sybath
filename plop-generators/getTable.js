@@ -392,9 +392,9 @@ export default function getTable(plop) {
         templateFile: "plop-templates/answerHistory.hbs",
         force: true,
       },
-      {
-        type: "PrettierFormat",
-      },
+      // {
+      //   type: "PrettierFormat",
+      // },
     ],
   })
 }

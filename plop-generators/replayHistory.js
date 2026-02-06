@@ -2,6 +2,11 @@ import fs from "fs"
 import path from "path"
 
 const HISTORY_ROOT = path.resolve("plop-generators/answerHistory")
+const actionPrettier = [
+  {
+    type: "PrettierFormat",
+  },
+]
 
 export default function replayHistory(plop) {
   plop.setGenerator("replayHistory", {
@@ -84,11 +89,7 @@ export default function replayHistory(plop) {
       }
       console.dir(actions, { depth: null, maxArrayLength: null })
 
-      actions.push({
-        type: "PrettierFormat",
-      })
-
-      return actions
+      return [...actions, ...actionPrettier]
     },
   })
 }
