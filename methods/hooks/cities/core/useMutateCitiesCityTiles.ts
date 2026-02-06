@@ -1,19 +1,20 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTable.hbs
 "use client"
 
+import { useSWRConfig } from "swr"
 import { TCitiesCityTilesRecordByXY, TCitiesCityTiles } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
-import useSWR from "swr"
 import { cityTilesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateCitiesCityTiles() {
-  const { mutate } = useSWR<TCitiesCityTiles[]>(`/api/cities/city-tiles`)
+  const { mutate } = useSWRConfig()
+  const key = `/api/cities/city-tiles`
   const cityTiles = useAtomValue(cityTilesAtom)
 
   function mutateCitiesCityTiles(optimisticParams?: Partial<TCitiesCityTiles> | Partial<TCitiesCityTiles>[]) {
     if (!optimisticParams) {
-      mutate()
+      mutate(key)
       return
     }
     
@@ -45,7 +46,7 @@ export function useMutateCitiesCityTiles() {
     
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(optimisticDataMergeWithOldDataArray, {
+    mutate(key, optimisticDataMergeWithOldDataArray, {
       optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,

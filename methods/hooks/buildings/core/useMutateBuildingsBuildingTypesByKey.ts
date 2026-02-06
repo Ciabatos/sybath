@@ -1,19 +1,20 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTableByKey.hbs
 "use client"
 
+import { useSWRConfig } from "swr"
 import { TBuildingsBuildingTypesRecordById, TBuildingsBuildingTypesParams, TBuildingsBuildingTypes  } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
-import useSWR from "swr"
 import { buildingTypesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateBuildingsBuildingTypes( params: TBuildingsBuildingTypesParams) {
-  const { mutate } = useSWR<TBuildingsBuildingTypes[]>(`/api/buildings/building-types/${params.id}`)
+  const { mutate } = useSWRConfig()
+  const key = `/api/buildings/building-types/${params.id}`
   const buildingTypes = useAtomValue(buildingTypesAtom)
 
   function mutateBuildingsBuildingTypes(optimisticParams?: Partial<TBuildingsBuildingTypes> | Partial<TBuildingsBuildingTypes>[]) {
     if (!optimisticParams) {
-      mutate()
+      mutate(key)
       return
     }
 
@@ -43,7 +44,7 @@ export function useMutateBuildingsBuildingTypes( params: TBuildingsBuildingTypes
     
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(optimisticDataMergeWithOldDataArray, {
+    mutate(key, optimisticDataMergeWithOldDataArray, {
       optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,

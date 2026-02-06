@@ -1,19 +1,20 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTableByKey.hbs
 "use client"
 
+import { useSWRConfig } from "swr"
 import { TCitiesCitiesParams, TCitiesCities  } from "@/db/postgresMainDatabase/schemas/cities/cities"
-import useSWR from "swr"
 
 
 
 
 export function useMutateCitiesCities( params: TCitiesCitiesParams) {
-  const { mutate } = useSWR<TCitiesCities[]>(`/api/cities/cities/${params.mapId}`)
+  const { mutate } = useSWRConfig()
+  const key = `/api/cities/cities/${params.mapId}`
   
 
   function mutateCitiesCities(optimisticParams?: Partial<TCitiesCities> | Partial<TCitiesCities>[]) {
     if (!optimisticParams) {
-      mutate()
+      mutate(key)
       return
     }
 
@@ -38,7 +39,7 @@ export function useMutateCitiesCities( params: TCitiesCitiesParams) {
       ...val,
     }))
 
-    mutate(dataWithDefaults, {
+    mutate(key, dataWithDefaults, {
       optimisticData: dataWithDefaults,
       rollbackOnError: true,
       revalidate: false,

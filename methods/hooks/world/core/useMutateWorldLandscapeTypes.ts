@@ -1,19 +1,20 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTable.hbs
 "use client"
 
+import { useSWRConfig } from "swr"
 import { TWorldLandscapeTypesRecordById, TWorldLandscapeTypes } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
-import useSWR from "swr"
 import { landscapeTypesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateWorldLandscapeTypes() {
-  const { mutate } = useSWR<TWorldLandscapeTypes[]>(`/api/world/landscape-types`)
+  const { mutate } = useSWRConfig()
+  const key = `/api/world/landscape-types`
   const landscapeTypes = useAtomValue(landscapeTypesAtom)
 
   function mutateWorldLandscapeTypes(optimisticParams?: Partial<TWorldLandscapeTypes> | Partial<TWorldLandscapeTypes>[]) {
     if (!optimisticParams) {
-      mutate()
+      mutate(key)
       return
     }
     
@@ -44,7 +45,7 @@ export function useMutateWorldLandscapeTypes() {
     
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(optimisticDataMergeWithOldDataArray, {
+    mutate(key, optimisticDataMergeWithOldDataArray, {
       optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,

@@ -1,19 +1,20 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTable.hbs
 "use client"
 
+import { useSWRConfig } from "swr"
 import { TDistrictsDistricts } from "@/db/postgresMainDatabase/schemas/districts/districts"
-import useSWR from "swr"
 
 
 
 
 export function useMutateDistrictsDistricts() {
-  const { mutate } = useSWR<TDistrictsDistricts[]>(`/api/districts/districts`)
+  const { mutate } = useSWRConfig()
+  const key = `/api/districts/districts`
   
 
   function mutateDistrictsDistricts(optimisticParams?: Partial<TDistrictsDistricts> | Partial<TDistrictsDistricts>[]) {
     if (!optimisticParams) {
-      mutate()
+      mutate(key)
       return
     }
     
@@ -37,7 +38,7 @@ export function useMutateDistrictsDistricts() {
       ...val,
     }))
 
-    mutate(dataWithDefaults, {
+    mutate(key, dataWithDefaults, {
       optimisticData: dataWithDefaults,
       rollbackOnError: true,
       revalidate: false,

@@ -1,19 +1,20 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTableByKey.hbs
 "use client"
 
+import { useSWRConfig } from "swr"
 import { TBuildingsBuildingsParams, TBuildingsBuildings  } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
-import useSWR from "swr"
 
 
 
 
 export function useMutateBuildingsBuildings( params: TBuildingsBuildingsParams) {
-  const { mutate } = useSWR<TBuildingsBuildings[]>(`/api/buildings/buildings/${params.cityId}`)
+  const { mutate } = useSWRConfig()
+  const key = `/api/buildings/buildings/${params.cityId}`
   
 
   function mutateBuildingsBuildings(optimisticParams?: Partial<TBuildingsBuildings> | Partial<TBuildingsBuildings>[]) {
     if (!optimisticParams) {
-      mutate()
+      mutate(key)
       return
     }
 
@@ -37,7 +38,7 @@ export function useMutateBuildingsBuildings( params: TBuildingsBuildingsParams) 
       ...val,
     }))
 
-    mutate(dataWithDefaults, {
+    mutate(key, dataWithDefaults, {
       optimisticData: dataWithDefaults,
       rollbackOnError: true,
       revalidate: false,

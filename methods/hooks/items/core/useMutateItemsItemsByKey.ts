@@ -1,19 +1,20 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTableByKey.hbs
 "use client"
 
+import { useSWRConfig } from "swr"
 import { TItemsItemsRecordById, TItemsItemsParams, TItemsItems  } from "@/db/postgresMainDatabase/schemas/items/items"
-import useSWR from "swr"
 import { itemsAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateItemsItems( params: TItemsItemsParams) {
-  const { mutate } = useSWR<TItemsItems[]>(`/api/items/items/${params.id}`)
+  const { mutate } = useSWRConfig()
+  const key = `/api/items/items/${params.id}`
   const items = useAtomValue(itemsAtom)
 
   function mutateItemsItems(optimisticParams?: Partial<TItemsItems> | Partial<TItemsItems>[]) {
     if (!optimisticParams) {
-      mutate()
+      mutate(key)
       return
     }
 
@@ -44,7 +45,7 @@ export function useMutateItemsItems( params: TItemsItemsParams) {
     
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(optimisticDataMergeWithOldDataArray, {
+    mutate(key, optimisticDataMergeWithOldDataArray, {
       optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,

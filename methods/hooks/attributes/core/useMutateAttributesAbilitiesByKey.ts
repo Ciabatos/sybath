@@ -1,19 +1,20 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateTableByKey.hbs
 "use client"
 
+import { useSWRConfig } from "swr"
 import { TAttributesAbilitiesRecordById, TAttributesAbilitiesParams, TAttributesAbilities  } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
-import useSWR from "swr"
 import { abilitiesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateAttributesAbilities( params: TAttributesAbilitiesParams) {
-  const { mutate } = useSWR<TAttributesAbilities[]>(`/api/attributes/abilities/${params.id}`)
+  const { mutate } = useSWRConfig()
+  const key = `/api/attributes/abilities/${params.id}`
   const abilities = useAtomValue(abilitiesAtom)
 
   function mutateAttributesAbilities(optimisticParams?: Partial<TAttributesAbilities> | Partial<TAttributesAbilities>[]) {
     if (!optimisticParams) {
-      mutate()
+      mutate(key)
       return
     }
 
@@ -44,7 +45,7 @@ export function useMutateAttributesAbilities( params: TAttributesAbilitiesParams
     
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(optimisticDataMergeWithOldDataArray, {
+    mutate(key, optimisticDataMergeWithOldDataArray, {
       optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,
