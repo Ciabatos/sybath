@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
+import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMovement"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { X } from "lucide-react"
 import styles from "./styles/PanelMapTileDetail.module.css"
@@ -68,9 +69,14 @@ const terrainData = {
 export default function PanelMapTileDetail() {
   const { resetModalRightCenter } = useModalRightCenter()
   const { clickedTile } = useMapTileActions()
+  const { selectPlayerPathToClickedTile } = usePlayerMovement()
 
   const onClose = () => {
     resetModalRightCenter()
+  }
+
+  function handleClick() {
+    selectPlayerPathToClickedTile()
   }
 
   const terrainName = clickedTile?.terrainTypes.name
@@ -184,8 +190,11 @@ export default function PanelMapTileDetail() {
             <Button
               className={styles.actionButton}
               variant='outline'
+              onClick={() => {
+                handleClick()
+              }}
             >
-              Quick Travel
+              Travel Here
             </Button>
           </div>
         </section>

@@ -9,7 +9,8 @@ export function useMapId() {
   useFetchPlayerMap({ playerId })
   const playerMap = useAtomValue(playerMapAtom)
 
-  const playerMapData = Object.values(playerMap)[0] ?? null
+  const [playerMapData] = Object.values(playerMap)
+
   const mapId = playerMapData?.mapId
 
   return { mapId }

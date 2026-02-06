@@ -20,21 +20,21 @@ type TGetPathFromPointToPointParams = {
 export type TMapTilesMovementPathRecordByXY = Record<string, TPathFromPointToPoint>
 
 export function useMapTilesPathFromPointToPoint() {
+  const { mapId } = useMapId()
+
+  useFetchWorldMapTilesByKey({ mapId })
+  const mapTiles = useAtomValue(mapTilesAtom)
+
+  useFetchWorldTerrainTypes()
+  const terrainTypes = useAtomValue(terrainTypesAtom)
+
+  useFetchWorldLandscapeTypes()
+  const landscapeTypes = useAtomValue(landscapeTypesAtom)
+
+  useFetchCitiesCitiesByKey({ mapId })
+  const cities = useAtomValue(citiesAtom)
+
   function getPathFromPointToPoint(params: TGetPathFromPointToPointParams) {
-    const { mapId } = useMapId()
-
-    useFetchWorldMapTilesByKey({ mapId })
-    const mapTiles = useAtomValue(mapTilesAtom)
-
-    useFetchWorldTerrainTypes()
-    const terrainTypes = useAtomValue(terrainTypesAtom)
-
-    useFetchWorldLandscapeTypes()
-    const landscapeTypes = useAtomValue(landscapeTypesAtom)
-
-    useFetchCitiesCitiesByKey({ mapId })
-    const cities = useAtomValue(citiesAtom)
-
     const movementPath = pathFromPointToPoint({
       startX: params.startX,
       startY: params.startY,

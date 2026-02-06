@@ -7,7 +7,8 @@ export function usePlayerId() {
   useFetchActivePlayer()
   const activePlayerData = useAtomValue(activePlayerAtom)
 
-  const activePlayer = Object.values(activePlayerData)[0] ?? null
+  const [activePlayer] = Object.values(activePlayerData)
+
   const playerId = activePlayer?.id
 
   return { playerId }
