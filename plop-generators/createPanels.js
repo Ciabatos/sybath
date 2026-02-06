@@ -66,6 +66,21 @@ export default function createPanels(plop) {
         })
       })
 
+
+
+{
+  "Open Modal ...": {
+    "prefix": "openModalPlayer",
+    "body": [
+      "const { openModalLeftTopBar } = useModalLeftTopBar()",
+      "openModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerPanel)"
+    ],
+    "description": "Open player panel in left top bar modal"
+  }
+}
+
+
+
       return actions
     },
   })
