@@ -2,15 +2,11 @@
 "use client"
 
 import { useSWRConfig } from "swr"
-import { TDistrictsDistrictsParams, TDistrictsDistricts  } from "@/db/postgresMainDatabase/schemas/districts/districts"
+import { TDistrictsDistrictsParams, TDistrictsDistricts } from "@/db/postgresMainDatabase/schemas/districts/districts"
 
-
-
-
-export function useMutateDistrictsDistricts( params: TDistrictsDistrictsParams) {
+export function useMutateDistrictsDistricts(params: TDistrictsDistrictsParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/districts/districts/${params.mapId}`
-  
 
   function mutateDistrictsDistricts(optimisticParams?: Partial<TDistrictsDistricts> | Partial<TDistrictsDistricts>[]) {
     if (!optimisticParams) {
@@ -19,7 +15,7 @@ export function useMutateDistrictsDistricts( params: TDistrictsDistrictsParams) 
     }
 
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
-    
+
     //MANUAL CODE - START
 
     const defaultValues = {

@@ -17,9 +17,9 @@ export function useMutateAttributesStats() {
       mutate(key)
       return
     }
-    
+
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
-    
+
     //MANUAL CODE - START
 
     const defaultValues = {
@@ -37,12 +37,12 @@ export function useMutateAttributesStats() {
     }))
 
     const newObj = arrayToObjectKey(["id"], dataWithDefaults) as TAttributesStatsRecordById
-    
+
     const optimisticDataMergeWithOldData: TAttributesStatsRecordById = {
       ...stats,
-      ...newObj,      
+      ...newObj,
     }
-    
+
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
     mutate(key, optimisticDataMergeWithOldDataArray, {

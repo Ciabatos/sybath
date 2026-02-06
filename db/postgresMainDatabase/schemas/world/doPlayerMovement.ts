@@ -19,7 +19,6 @@ export async function doPlayerMovement(params: TDoPlayerMovementParams) {
     const sql = `SELECT * FROM world.do_player_movement($1, $2);`
     const result = await query(sql, sqlParams)
 
-
     return result.rows[0] as TDoPlayerMovement
   } catch (error) {
     console.error("Error executing doPlayerMovement:", {
@@ -27,7 +26,7 @@ export async function doPlayerMovement(params: TDoPlayerMovementParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to execute doPlayerMovement")
   }
 }

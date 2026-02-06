@@ -2,15 +2,11 @@
 "use client"
 
 import { useSWRConfig } from "swr"
-import { TBuildingsBuildingsParams, TBuildingsBuildings  } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
+import { TBuildingsBuildingsParams, TBuildingsBuildings } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
 
-
-
-
-export function useMutateBuildingsBuildings( params: TBuildingsBuildingsParams) {
+export function useMutateBuildingsBuildings(params: TBuildingsBuildingsParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/buildings/buildings/${params.cityId}`
-  
 
   function mutateBuildingsBuildings(optimisticParams?: Partial<TBuildingsBuildings> | Partial<TBuildingsBuildings>[]) {
     if (!optimisticParams) {
@@ -19,7 +15,7 @@ export function useMutateBuildingsBuildings( params: TBuildingsBuildingsParams) 
     }
 
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
-    
+
     //MANUAL CODE - START
 
     const defaultValues = {

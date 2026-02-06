@@ -2,17 +2,23 @@
 "use client"
 
 import { useSWRConfig } from "swr"
-import { TActivePlayerProfileRecordByName,  TActivePlayerProfileParams, TActivePlayerProfile  } from "@/db/postgresMainDatabase/schemas/players/activePlayerProfile"
+import {
+  TActivePlayerProfileRecordByName,
+  TActivePlayerProfileParams,
+  TActivePlayerProfile,
+} from "@/db/postgresMainDatabase/schemas/players/activePlayerProfile"
 import { activePlayerProfileAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import { arrayToObjectKey } from "@/methods/functions/util/converters" 
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutateActivePlayerProfile( params: TActivePlayerProfileParams) {
+export function useMutateActivePlayerProfile(params: TActivePlayerProfileParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/players/rpc/get-active-player-profile/${params.playerId}`
   const activePlayerProfile = useAtomValue(activePlayerProfileAtom)
 
-  function mutateActivePlayerProfile(optimisticParams?: Partial<TActivePlayerProfile> | Partial<TActivePlayerProfile>[]) {
+  function mutateActivePlayerProfile(
+    optimisticParams?: Partial<TActivePlayerProfile> | Partial<TActivePlayerProfile>[],
+  ) {
     if (!optimisticParams) {
       mutate(key)
       return
@@ -38,10 +44,10 @@ export function useMutateActivePlayerProfile( params: TActivePlayerProfileParams
     }))
 
     const newObj = arrayToObjectKey(["name"], dataWithDefaults) as TActivePlayerProfileRecordByName
-    
+
     const optimisticDataMergeWithOldData: TActivePlayerProfileRecordByName = {
-      ...activePlayerProfile, 
-      ...newObj,      
+      ...activePlayerProfile,
+      ...newObj,
     }
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)

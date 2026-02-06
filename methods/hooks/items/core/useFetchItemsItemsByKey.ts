@@ -8,9 +8,9 @@ import { useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchItemsItemsByKey( params: TItemsItemsParams ) {
+export function useFetchItemsItemsByKey(params: TItemsItemsParams) {
   const setItemsItems = useSetAtom(itemsAtom)
-  
+
   const { data } = useSWR<TItemsItems[]>(`/api/items/items/${params.id}`, { refreshInterval: 3000 })
 
   useEffect(() => {

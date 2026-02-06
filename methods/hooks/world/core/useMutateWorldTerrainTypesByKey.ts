@@ -2,12 +2,16 @@
 "use client"
 
 import { useSWRConfig } from "swr"
-import { TWorldTerrainTypesRecordById, TWorldTerrainTypesParams, TWorldTerrainTypes  } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
+import {
+  TWorldTerrainTypesRecordById,
+  TWorldTerrainTypesParams,
+  TWorldTerrainTypes,
+} from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { terrainTypesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutateWorldTerrainTypes( params: TWorldTerrainTypesParams) {
+export function useMutateWorldTerrainTypes(params: TWorldTerrainTypesParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/world/terrain-types/${params.id}`
   const terrainTypes = useAtomValue(terrainTypesAtom)
@@ -19,7 +23,7 @@ export function useMutateWorldTerrainTypes( params: TWorldTerrainTypesParams) {
     }
 
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
-    
+
     //MANUAL CODE - START
 
     const defaultValues = {
@@ -37,12 +41,12 @@ export function useMutateWorldTerrainTypes( params: TWorldTerrainTypesParams) {
     }))
 
     const newObj = arrayToObjectKey(["id"], dataWithDefaults) as TWorldTerrainTypesRecordById
-    
+
     const optimisticDataMergeWithOldData: TWorldTerrainTypesRecordById = {
       ...terrainTypes,
-      ...newObj,      
+      ...newObj,
     }
-    
+
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
     mutate(key, optimisticDataMergeWithOldDataArray, {

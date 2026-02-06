@@ -13,7 +13,7 @@ const typeParamsSchema = z.object({
   districtId: z.coerce.number(),
 }) satisfies z.ZodType<TDistrictInventoryParams>
 
-export async function GET(request: NextRequest, { params }: { params: TApiParams } ): Promise<NextResponse> {
+export async function GET(request: NextRequest, { params }: { params: TApiParams }): Promise<NextResponse> {
   try {
     const session = await auth()
     const sessionUserId = session?.user?.userId

@@ -4,22 +4,18 @@
 import { useSWRConfig } from "swr"
 import { TBuildingsBuildings } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
 
-
-
-
 export function useMutateBuildingsBuildings() {
   const { mutate } = useSWRConfig()
   const key = `/api/buildings/buildings`
-  
 
   function mutateBuildingsBuildings(optimisticParams?: Partial<TBuildingsBuildings> | Partial<TBuildingsBuildings>[]) {
     if (!optimisticParams) {
       mutate(key)
       return
     }
-    
+
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
-    
+
     //MANUAL CODE - START
 
     const defaultValues = {

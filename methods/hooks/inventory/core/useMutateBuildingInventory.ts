@@ -2,12 +2,16 @@
 "use client"
 
 import { useSWRConfig } from "swr"
-import { TBuildingInventoryRecordBySlotId,  TBuildingInventoryParams, TBuildingInventory  } from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory"
+import {
+  TBuildingInventoryRecordBySlotId,
+  TBuildingInventoryParams,
+  TBuildingInventory,
+} from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory"
 import { buildingInventoryAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import { arrayToObjectKey } from "@/methods/functions/util/converters" 
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutateBuildingInventory( params: TBuildingInventoryParams) {
+export function useMutateBuildingInventory(params: TBuildingInventoryParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/inventory/rpc/get-building-inventory/${params.buildingId}`
   const buildingInventory = useAtomValue(buildingInventoryAtom)
@@ -40,10 +44,10 @@ export function useMutateBuildingInventory( params: TBuildingInventoryParams) {
     }))
 
     const newObj = arrayToObjectKey(["slotId"], dataWithDefaults) as TBuildingInventoryRecordBySlotId
-    
+
     const optimisticDataMergeWithOldData: TBuildingInventoryRecordBySlotId = {
-      ...buildingInventory, 
-      ...newObj,      
+      ...buildingInventory,
+      ...newObj,
     }
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)

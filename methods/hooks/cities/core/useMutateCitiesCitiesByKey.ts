@@ -2,15 +2,11 @@
 "use client"
 
 import { useSWRConfig } from "swr"
-import { TCitiesCitiesParams, TCitiesCities  } from "@/db/postgresMainDatabase/schemas/cities/cities"
+import { TCitiesCitiesParams, TCitiesCities } from "@/db/postgresMainDatabase/schemas/cities/cities"
 
-
-
-
-export function useMutateCitiesCities( params: TCitiesCitiesParams) {
+export function useMutateCitiesCities(params: TCitiesCitiesParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/cities/cities/${params.mapId}`
-  
 
   function mutateCitiesCities(optimisticParams?: Partial<TCitiesCities> | Partial<TCitiesCities>[]) {
     if (!optimisticParams) {
@@ -19,7 +15,7 @@ export function useMutateCitiesCities( params: TCitiesCitiesParams) {
     }
 
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
-    
+
     //MANUAL CODE - START
 
     const defaultValues = {

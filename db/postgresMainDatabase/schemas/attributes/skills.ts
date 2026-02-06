@@ -20,7 +20,7 @@ export type TAttributesSkillsRecordById = Record<string, TAttributesSkills>
 export async function getAttributesSkills() {
   try {
     const sql = `SELECT * FROM attributes.get_skills();`
-    
+
     const result = await query(sql)
     return snakeToCamelRows(result.rows) as TAttributesSkills[]
   } catch (error) {
@@ -28,7 +28,7 @@ export async function getAttributesSkills() {
       error,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getAttributesSkills")
   }
 }
@@ -37,7 +37,7 @@ export async function getAttributesSkillsByKey(params: TAttributesSkillsParams) 
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM attributes.get_skills_by_key($1);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TAttributesSkills[]
   } catch (error) {

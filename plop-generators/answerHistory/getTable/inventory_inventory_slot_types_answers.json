@@ -66,5 +66,8 @@
   "apiPathParamsByKey": "/api/inventory/inventory-slot-types/${params.id}",
   "generateMutation": false,
   "fetcherName": "fetchInventoryInventorySlotTypes",
-  "fetcherNameByKey": "fetchInventoryInventorySlotTypesByKey"
+  "fetcherNameByKey": "fetchInventoryInventorySlotTypesByKey",
+  "selectedGenerators": [
+    "getTable"
+  ]
 }

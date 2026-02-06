@@ -2,12 +2,16 @@
 "use client"
 
 import { useSWRConfig } from "swr"
-import { TPlayerStatsRecordByStatId,  TPlayerStatsParams, TPlayerStats  } from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
+import {
+  TPlayerStatsRecordByStatId,
+  TPlayerStatsParams,
+  TPlayerStats,
+} from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
 import { playerStatsAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import { arrayToObjectKey } from "@/methods/functions/util/converters" 
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutatePlayerStats( params: TPlayerStatsParams) {
+export function useMutatePlayerStats(params: TPlayerStatsParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/attributes/rpc/get-player-stats/${params.playerId}`
   const playerStats = useAtomValue(playerStatsAtom)
@@ -36,10 +40,10 @@ export function useMutatePlayerStats( params: TPlayerStatsParams) {
     }))
 
     const newObj = arrayToObjectKey(["statId"], dataWithDefaults) as TPlayerStatsRecordByStatId
-    
+
     const optimisticDataMergeWithOldData: TPlayerStatsRecordByStatId = {
-      ...playerStats, 
-      ...newObj,      
+      ...playerStats,
+      ...newObj,
     }
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)

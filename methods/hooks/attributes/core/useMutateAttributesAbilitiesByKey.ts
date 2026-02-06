@@ -2,24 +2,30 @@
 "use client"
 
 import { useSWRConfig } from "swr"
-import { TAttributesAbilitiesRecordById, TAttributesAbilitiesParams, TAttributesAbilities  } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
+import {
+  TAttributesAbilitiesRecordById,
+  TAttributesAbilitiesParams,
+  TAttributesAbilities,
+} from "@/db/postgresMainDatabase/schemas/attributes/abilities"
 import { abilitiesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutateAttributesAbilities( params: TAttributesAbilitiesParams) {
+export function useMutateAttributesAbilities(params: TAttributesAbilitiesParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/attributes/abilities/${params.id}`
   const abilities = useAtomValue(abilitiesAtom)
 
-  function mutateAttributesAbilities(optimisticParams?: Partial<TAttributesAbilities> | Partial<TAttributesAbilities>[]) {
+  function mutateAttributesAbilities(
+    optimisticParams?: Partial<TAttributesAbilities> | Partial<TAttributesAbilities>[],
+  ) {
     if (!optimisticParams) {
       mutate(key)
       return
     }
 
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
-    
+
     //MANUAL CODE - START
 
     const defaultValues = {
@@ -37,12 +43,12 @@ export function useMutateAttributesAbilities( params: TAttributesAbilitiesParams
     }))
 
     const newObj = arrayToObjectKey(["id"], dataWithDefaults) as TAttributesAbilitiesRecordById
-    
+
     const optimisticDataMergeWithOldData: TAttributesAbilitiesRecordById = {
       ...abilities,
-      ...newObj,      
+      ...newObj,
     }
-    
+
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
     mutate(key, optimisticDataMergeWithOldDataArray, {

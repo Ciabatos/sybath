@@ -1,8 +1,11 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcherServer.hbs
 "use server"
 
-import type { TDistrictInventoryParams } from "@/db/postgresMainDatabase/schemas/inventory/districtInventory" 
-import type { TDistrictInventoryRecordBySlotId,TDistrictInventory } from "@/db/postgresMainDatabase/schemas/inventory/districtInventory"
+import type { TDistrictInventoryParams } from "@/db/postgresMainDatabase/schemas/inventory/districtInventory"
+import type {
+  TDistrictInventoryRecordBySlotId,
+  TDistrictInventory,
+} from "@/db/postgresMainDatabase/schemas/inventory/districtInventory"
 import { fetchDistrictInventoryService } from "@/methods/services/inventory/fetchDistrictInventoryService"
 
 type TResult = {
@@ -12,7 +15,10 @@ type TResult = {
   atomName: string
 }
 
-export async function getDistrictInventoryServer( params: TDistrictInventoryParams, options?: { forceFresh?: boolean },): Promise<TResult> {
+export async function getDistrictInventoryServer(
+  params: TDistrictInventoryParams,
+  options?: { forceFresh?: boolean },
+): Promise<TResult> {
   const { record } = await fetchDistrictInventoryService(params, { forceFresh: options?.forceFresh })
 
   return {
@@ -22,4 +28,3 @@ export async function getDistrictInventoryServer( params: TDistrictInventoryPara
     atomName: `districtInventoryAtom`,
   }
 }
-

@@ -22,7 +22,6 @@ export async function doMoveOrSwapItem(params: TDoMoveOrSwapItemParams) {
     const sql = `SELECT * FROM inventory.do_move_or_swap_item($1, $2, $3, $4, $5);`
     const result = await query(sql, sqlParams)
 
-
     return result.rows[0] as TDoMoveOrSwapItem
   } catch (error) {
     console.error("Error executing doMoveOrSwapItem:", {
@@ -30,7 +29,7 @@ export async function doMoveOrSwapItem(params: TDoMoveOrSwapItemParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to execute doMoveOrSwapItem")
   }
 }

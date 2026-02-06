@@ -10,7 +10,7 @@ import useSWR from "swr"
 
 export function useFetchCitiesCities() {
   const setCitiesCities = useSetAtom(citiesAtom)
-  
+
   const { data } = useSWR<TCitiesCities[]>(`/api/cities/cities`, { refreshInterval: 3000 })
 
   useEffect(() => {

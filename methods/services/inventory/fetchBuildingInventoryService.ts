@@ -1,6 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type { TBuildingInventory, TBuildingInventoryRecordBySlotId,TBuildingInventoryParams } from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory"
+import type {
+  TBuildingInventory,
+  TBuildingInventoryRecordBySlotId,
+  TBuildingInventoryParams,
+} from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory"
 import { getBuildingInventory } from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -23,7 +27,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchBuildingInventoryService(
- params: TBuildingInventoryParams,
+  params: TBuildingInventoryParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getBuildingInventory", params)
@@ -61,7 +65,6 @@ export async function fetchBuildingInventoryService(
   }
 
   const byKey = arrayToObjectKey(["slotId"], raw) as TBuildingInventoryRecordBySlotId
-
 
   const record: TCacheRecord = {
     raw,

@@ -18,7 +18,7 @@ export type TInventoryInventorySlotTypesRecordById = Record<string, TInventoryIn
 export async function getInventoryInventorySlotTypes() {
   try {
     const sql = `SELECT * FROM inventory.get_inventory_slot_types();`
-    
+
     const result = await query(sql)
     return snakeToCamelRows(result.rows) as TInventoryInventorySlotTypes[]
   } catch (error) {
@@ -26,7 +26,7 @@ export async function getInventoryInventorySlotTypes() {
       error,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getInventoryInventorySlotTypes")
   }
 }
@@ -35,7 +35,7 @@ export async function getInventoryInventorySlotTypesByKey(params: TInventoryInve
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM inventory.get_inventory_slot_types_by_key($1);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TInventoryInventorySlotTypes[]
   } catch (error) {

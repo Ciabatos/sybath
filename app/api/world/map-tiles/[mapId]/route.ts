@@ -20,7 +20,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
     if (!sessionUserId || isNaN(sessionUserId)) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
     }
-  
+
     const paramsFromPromise = await params
     const parsedParams = typeParamsSchema.parse(paramsFromPromise)
 

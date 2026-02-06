@@ -2,24 +2,30 @@
 "use client"
 
 import { useSWRConfig } from "swr"
-import { TBuildingsBuildingTypesRecordById, TBuildingsBuildingTypesParams, TBuildingsBuildingTypes  } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
+import {
+  TBuildingsBuildingTypesRecordById,
+  TBuildingsBuildingTypesParams,
+  TBuildingsBuildingTypes,
+} from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
 import { buildingTypesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutateBuildingsBuildingTypes( params: TBuildingsBuildingTypesParams) {
+export function useMutateBuildingsBuildingTypes(params: TBuildingsBuildingTypesParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/buildings/building-types/${params.id}`
   const buildingTypes = useAtomValue(buildingTypesAtom)
 
-  function mutateBuildingsBuildingTypes(optimisticParams?: Partial<TBuildingsBuildingTypes> | Partial<TBuildingsBuildingTypes>[]) {
+  function mutateBuildingsBuildingTypes(
+    optimisticParams?: Partial<TBuildingsBuildingTypes> | Partial<TBuildingsBuildingTypes>[],
+  ) {
     if (!optimisticParams) {
       mutate(key)
       return
     }
 
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
-    
+
     //MANUAL CODE - START
 
     const defaultValues = {
@@ -36,12 +42,12 @@ export function useMutateBuildingsBuildingTypes( params: TBuildingsBuildingTypes
     }))
 
     const newObj = arrayToObjectKey(["id"], dataWithDefaults) as TBuildingsBuildingTypesRecordById
-    
+
     const optimisticDataMergeWithOldData: TBuildingsBuildingTypesRecordById = {
       ...buildingTypes,
-      ...newObj,      
+      ...newObj,
     }
-    
+
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
     mutate(key, optimisticDataMergeWithOldDataArray, {

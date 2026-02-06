@@ -1,6 +1,9 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTable.hbs
 
-import type { TInventoryInventorySlotTypes, TInventoryInventorySlotTypesRecordById } from "@/db/postgresMainDatabase/schemas/inventory/inventorySlotTypes"
+import type {
+  TInventoryInventorySlotTypes,
+  TInventoryInventorySlotTypesRecordById,
+} from "@/db/postgresMainDatabase/schemas/inventory/inventorySlotTypes"
 import { getInventoryInventorySlotTypes } from "@/db/postgresMainDatabase/schemas/inventory/inventorySlotTypes"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -22,9 +25,10 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchInventoryInventorySlotTypesService(
-  options?: { clientEtag?: string; forceFresh?: boolean },
-): Promise<TFetchResult> {
+export async function fetchInventoryInventorySlotTypesService(options?: {
+  clientEtag?: string
+  forceFresh?: boolean
+}): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getInventoryInventorySlotTypes")
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
@@ -60,7 +64,6 @@ export async function fetchInventoryInventorySlotTypesService(
   }
 
   const byKey = arrayToObjectKey(["id"], raw) as TInventoryInventorySlotTypesRecordById
-
 
   const record: TCacheRecord = {
     raw,

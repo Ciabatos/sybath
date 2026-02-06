@@ -1,8 +1,8 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcherServer.hbs
 "use server"
 
-import type { TPlayerStatsParams } from "@/db/postgresMainDatabase/schemas/attributes/playerStats" 
-import type { TPlayerStatsRecordByStatId,TPlayerStats } from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
+import type { TPlayerStatsParams } from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
+import type { TPlayerStatsRecordByStatId, TPlayerStats } from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
 import { fetchPlayerStatsService } from "@/methods/services/attributes/fetchPlayerStatsService"
 
 type TResult = {
@@ -12,7 +12,10 @@ type TResult = {
   atomName: string
 }
 
-export async function getPlayerStatsServer( params: TPlayerStatsParams, options?: { forceFresh?: boolean },): Promise<TResult> {
+export async function getPlayerStatsServer(
+  params: TPlayerStatsParams,
+  options?: { forceFresh?: boolean },
+): Promise<TResult> {
   const { record } = await fetchPlayerStatsService(params, { forceFresh: options?.forceFresh })
 
   return {
@@ -22,4 +25,3 @@ export async function getPlayerStatsServer( params: TPlayerStatsParams, options?
     atomName: `playerStatsAtom`,
   }
 }
-

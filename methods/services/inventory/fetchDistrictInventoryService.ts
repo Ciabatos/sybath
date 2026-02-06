@@ -1,6 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type { TDistrictInventory, TDistrictInventoryRecordBySlotId,TDistrictInventoryParams } from "@/db/postgresMainDatabase/schemas/inventory/districtInventory"
+import type {
+  TDistrictInventory,
+  TDistrictInventoryRecordBySlotId,
+  TDistrictInventoryParams,
+} from "@/db/postgresMainDatabase/schemas/inventory/districtInventory"
 import { getDistrictInventory } from "@/db/postgresMainDatabase/schemas/inventory/districtInventory"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -23,7 +27,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchDistrictInventoryService(
- params: TDistrictInventoryParams,
+  params: TDistrictInventoryParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getDistrictInventory", params)
@@ -61,7 +65,6 @@ export async function fetchDistrictInventoryService(
   }
 
   const byKey = arrayToObjectKey(["slotId"], raw) as TDistrictInventoryRecordBySlotId
-
 
   const record: TCacheRecord = {
     raw,

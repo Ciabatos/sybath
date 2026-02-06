@@ -10,7 +10,7 @@ import useSWR from "swr"
 
 export function useFetchWorldTerrainTypes() {
   const setWorldTerrainTypes = useSetAtom(terrainTypesAtom)
-  
+
   const { data } = useSWR<TWorldTerrainTypes[]>(`/api/world/terrain-types`, { refreshInterval: 3000 })
 
   useEffect(() => {

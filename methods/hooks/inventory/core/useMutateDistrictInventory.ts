@@ -2,12 +2,16 @@
 "use client"
 
 import { useSWRConfig } from "swr"
-import { TDistrictInventoryRecordBySlotId,  TDistrictInventoryParams, TDistrictInventory  } from "@/db/postgresMainDatabase/schemas/inventory/districtInventory"
+import {
+  TDistrictInventoryRecordBySlotId,
+  TDistrictInventoryParams,
+  TDistrictInventory,
+} from "@/db/postgresMainDatabase/schemas/inventory/districtInventory"
 import { districtInventoryAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import { arrayToObjectKey } from "@/methods/functions/util/converters" 
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutateDistrictInventory( params: TDistrictInventoryParams) {
+export function useMutateDistrictInventory(params: TDistrictInventoryParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/inventory/rpc/get-district-inventory/${params.districtId}`
   const districtInventory = useAtomValue(districtInventoryAtom)
@@ -40,10 +44,10 @@ export function useMutateDistrictInventory( params: TDistrictInventoryParams) {
     }))
 
     const newObj = arrayToObjectKey(["slotId"], dataWithDefaults) as TDistrictInventoryRecordBySlotId
-    
+
     const optimisticDataMergeWithOldData: TDistrictInventoryRecordBySlotId = {
-      ...districtInventory, 
-      ...newObj,      
+      ...districtInventory,
+      ...newObj,
     }
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)

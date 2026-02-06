@@ -1,6 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type { TPlayerAbilities, TPlayerAbilitiesRecordByAbilityId,TPlayerAbilitiesParams } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
+import type {
+  TPlayerAbilities,
+  TPlayerAbilitiesRecordByAbilityId,
+  TPlayerAbilitiesParams,
+} from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
 import { getPlayerAbilities } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -23,7 +27,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchPlayerAbilitiesService(
- params: TPlayerAbilitiesParams,
+  params: TPlayerAbilitiesParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getPlayerAbilities", params)
@@ -61,7 +65,6 @@ export async function fetchPlayerAbilitiesService(
   }
 
   const byKey = arrayToObjectKey(["abilityId"], raw) as TPlayerAbilitiesRecordByAbilityId
-
 
   const record: TCacheRecord = {
     raw,

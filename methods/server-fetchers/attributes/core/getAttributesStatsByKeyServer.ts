@@ -2,7 +2,7 @@
 "use server"
 
 import type { TAttributesStats, TAttributesStatsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/stats"
-import type{ TAttributesStatsParams } from "@/db/postgresMainDatabase/schemas/attributes/stats" 
+import type { TAttributesStatsParams } from "@/db/postgresMainDatabase/schemas/attributes/stats"
 import { fetchAttributesStatsByKeyService } from "@/methods/services/attributes/fetchAttributesStatsByKeyService"
 
 type TResult = {
@@ -12,7 +12,10 @@ type TResult = {
   atomName: string
 }
 
-export async function getAttributesStatsByKeyServer( params: TAttributesStatsParams, options?: { forceFresh?: boolean },): Promise<TResult> {
+export async function getAttributesStatsByKeyServer(
+  params: TAttributesStatsParams,
+  options?: { forceFresh?: boolean },
+): Promise<TResult> {
   const { record } = await fetchAttributesStatsByKeyService(params, { forceFresh: options?.forceFresh })
 
   return {

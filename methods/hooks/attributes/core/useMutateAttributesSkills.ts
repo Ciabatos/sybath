@@ -17,9 +17,9 @@ export function useMutateAttributesSkills() {
       mutate(key)
       return
     }
-    
+
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
-    
+
     //MANUAL CODE - START
 
     const defaultValues = {
@@ -37,12 +37,12 @@ export function useMutateAttributesSkills() {
     }))
 
     const newObj = arrayToObjectKey(["id"], dataWithDefaults) as TAttributesSkillsRecordById
-    
+
     const optimisticDataMergeWithOldData: TAttributesSkillsRecordById = {
       ...skills,
-      ...newObj,      
+      ...newObj,
     }
-    
+
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
     mutate(key, optimisticDataMergeWithOldDataArray, {

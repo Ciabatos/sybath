@@ -17,9 +17,9 @@ export function useMutateWorldTerrainTypes() {
       mutate(key)
       return
     }
-    
+
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
-    
+
     //MANUAL CODE - START
 
     const defaultValues = {
@@ -37,12 +37,12 @@ export function useMutateWorldTerrainTypes() {
     }))
 
     const newObj = arrayToObjectKey(["id"], dataWithDefaults) as TWorldTerrainTypesRecordById
-    
+
     const optimisticDataMergeWithOldData: TWorldTerrainTypesRecordById = {
       ...terrainTypes,
-      ...newObj,      
+      ...newObj,
     }
-    
+
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
     mutate(key, optimisticDataMergeWithOldDataArray, {

@@ -4,22 +4,18 @@
 import { useSWRConfig } from "swr"
 import { TDistrictsDistricts } from "@/db/postgresMainDatabase/schemas/districts/districts"
 
-
-
-
 export function useMutateDistrictsDistricts() {
   const { mutate } = useSWRConfig()
   const key = `/api/districts/districts`
-  
 
   function mutateDistrictsDistricts(optimisticParams?: Partial<TDistrictsDistricts> | Partial<TDistrictsDistricts>[]) {
     if (!optimisticParams) {
       mutate(key)
       return
     }
-    
+
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
-    
+
     //MANUAL CODE - START
 
     const defaultValues = {

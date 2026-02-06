@@ -4,22 +4,18 @@
 import { useSWRConfig } from "swr"
 import { TCitiesCities } from "@/db/postgresMainDatabase/schemas/cities/cities"
 
-
-
-
 export function useMutateCitiesCities() {
   const { mutate } = useSWRConfig()
   const key = `/api/cities/cities`
-  
 
   function mutateCitiesCities(optimisticParams?: Partial<TCitiesCities> | Partial<TCitiesCities>[]) {
     if (!optimisticParams) {
       mutate(key)
       return
     }
-    
+
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
-    
+
     //MANUAL CODE - START
 
     const defaultValues = {

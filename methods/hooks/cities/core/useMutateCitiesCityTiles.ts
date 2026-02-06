@@ -17,9 +17,9 @@ export function useMutateCitiesCityTiles() {
       mutate(key)
       return
     }
-    
+
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
-    
+
     //MANUAL CODE - START
 
     const defaultValues = {
@@ -38,12 +38,12 @@ export function useMutateCitiesCityTiles() {
     }))
 
     const newObj = arrayToObjectKey(["x", "y"], dataWithDefaults) as TCitiesCityTilesRecordByXY
-    
+
     const optimisticDataMergeWithOldData: TCitiesCityTilesRecordByXY = {
       ...cityTiles,
-      ...newObj,      
+      ...newObj,
     }
-    
+
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
     mutate(key, optimisticDataMergeWithOldDataArray, {

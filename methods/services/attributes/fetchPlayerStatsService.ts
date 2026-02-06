@@ -1,6 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type { TPlayerStats, TPlayerStatsRecordByStatId,TPlayerStatsParams } from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
+import type {
+  TPlayerStats,
+  TPlayerStatsRecordByStatId,
+  TPlayerStatsParams,
+} from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
 import { getPlayerStats } from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -23,7 +27,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchPlayerStatsService(
- params: TPlayerStatsParams,
+  params: TPlayerStatsParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getPlayerStats", params)
@@ -61,7 +65,6 @@ export async function fetchPlayerStatsService(
   }
 
   const byKey = arrayToObjectKey(["statId"], raw) as TPlayerStatsRecordByStatId
-
 
   const record: TCacheRecord = {
     raw,

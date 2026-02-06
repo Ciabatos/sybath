@@ -19,7 +19,6 @@ export async function doSwitchActivePlayer(params: TDoSwitchActivePlayerParams) 
     const sql = `SELECT * FROM players.do_switch_active_player($1, $2);`
     const result = await query(sql, sqlParams)
 
-
     return result.rows[0] as TDoSwitchActivePlayer
   } catch (error) {
     console.error("Error executing doSwitchActivePlayer:", {
@@ -27,7 +26,7 @@ export async function doSwitchActivePlayer(params: TDoSwitchActivePlayerParams) 
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to execute doSwitchActivePlayer")
   }
 }

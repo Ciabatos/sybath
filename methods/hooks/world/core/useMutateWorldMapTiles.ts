@@ -17,9 +17,9 @@ export function useMutateWorldMapTiles() {
       mutate(key)
       return
     }
-    
+
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
-    
+
     //MANUAL CODE - START
 
     const defaultValues = {
@@ -38,12 +38,12 @@ export function useMutateWorldMapTiles() {
     }))
 
     const newObj = arrayToObjectKey(["x", "y"], dataWithDefaults) as TWorldMapTilesRecordByXY
-    
+
     const optimisticDataMergeWithOldData: TWorldMapTilesRecordByXY = {
       ...mapTiles,
-      ...newObj,      
+      ...newObj,
     }
-    
+
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
     mutate(key, optimisticDataMergeWithOldDataArray, {

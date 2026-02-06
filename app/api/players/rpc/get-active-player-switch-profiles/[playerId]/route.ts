@@ -13,7 +13,7 @@ const typeParamsSchema = z.object({
   playerId: z.coerce.number(),
 }) satisfies z.ZodType<TActivePlayerSwitchProfilesParams>
 
-export async function GET(request: NextRequest, { params }: { params: TApiParams } ): Promise<NextResponse> {
+export async function GET(request: NextRequest, { params }: { params: TApiParams }): Promise<NextResponse> {
   try {
     const session = await auth()
     const sessionUserId = session?.user?.userId
@@ -27,7 +27,9 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
 
     const clientEtag = request.headers.get("if-none-match") ?? undefined
 
-    const { record, etag, cacheHit, etagMatched } = await fetchActivePlayerSwitchProfilesService(parsedParams, { clientEtag })
+    const { record, etag, cacheHit, etagMatched } = await fetchActivePlayerSwitchProfilesService(parsedParams, {
+      clientEtag,
+    })
 
     if (cacheHit || etagMatched) {
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })

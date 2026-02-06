@@ -10,7 +10,7 @@ import useSWR from "swr"
 
 export function useFetchAttributesStats() {
   const setAttributesStats = useSetAtom(statsAtom)
-  
+
   const { data } = useSWR<TAttributesStats[]>(`/api/attributes/stats`, { refreshInterval: 3000 })
 
   useEffect(() => {

@@ -17,9 +17,9 @@ export function useMutateItemsItems() {
       mutate(key)
       return
     }
-    
+
     const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
-    
+
     //MANUAL CODE - START
 
     const defaultValues = {
@@ -37,12 +37,12 @@ export function useMutateItemsItems() {
     }))
 
     const newObj = arrayToObjectKey(["id"], dataWithDefaults) as TItemsItemsRecordById
-    
+
     const optimisticDataMergeWithOldData: TItemsItemsRecordById = {
       ...items,
-      ...newObj,      
+      ...newObj,
     }
-    
+
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
     mutate(key, optimisticDataMergeWithOldDataArray, {

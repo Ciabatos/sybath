@@ -24,7 +24,7 @@ export async function getPlayerInventory(params: TPlayerInventoryParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM inventory.get_player_inventory($1);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TPlayerInventory[]
   } catch (error) {
@@ -33,7 +33,7 @@ export async function getPlayerInventory(params: TPlayerInventoryParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getPlayerInventory")
   }
 }

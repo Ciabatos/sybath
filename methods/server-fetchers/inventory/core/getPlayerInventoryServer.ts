@@ -1,8 +1,11 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcherServer.hbs
 "use server"
 
-import type { TPlayerInventoryParams } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory" 
-import type { TPlayerInventoryRecordBySlotId,TPlayerInventory } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
+import type { TPlayerInventoryParams } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
+import type {
+  TPlayerInventoryRecordBySlotId,
+  TPlayerInventory,
+} from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
 import { fetchPlayerInventoryService } from "@/methods/services/inventory/fetchPlayerInventoryService"
 
 type TResult = {
@@ -12,7 +15,10 @@ type TResult = {
   atomName: string
 }
 
-export async function getPlayerInventoryServer( params: TPlayerInventoryParams, options?: { forceFresh?: boolean },): Promise<TResult> {
+export async function getPlayerInventoryServer(
+  params: TPlayerInventoryParams,
+  options?: { forceFresh?: boolean },
+): Promise<TResult> {
   const { record } = await fetchPlayerInventoryService(params, { forceFresh: options?.forceFresh })
 
   return {
@@ -22,4 +28,3 @@ export async function getPlayerInventoryServer( params: TPlayerInventoryParams, 
     atomName: `playerInventoryAtom`,
   }
 }
-

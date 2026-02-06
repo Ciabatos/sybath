@@ -24,7 +24,7 @@ export async function getBuildingInventory(params: TBuildingInventoryParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM inventory.get_building_inventory($1);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TBuildingInventory[]
   } catch (error) {
@@ -33,7 +33,7 @@ export async function getBuildingInventory(params: TBuildingInventoryParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getBuildingInventory")
   }
 }

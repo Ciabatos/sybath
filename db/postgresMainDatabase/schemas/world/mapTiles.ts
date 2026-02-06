@@ -21,7 +21,7 @@ export type TWorldMapTilesRecordByXY = Record<string, TWorldMapTiles>
 export async function getWorldMapTiles() {
   try {
     const sql = `SELECT * FROM world.get_map_tiles();`
-    
+
     const result = await query(sql)
     return snakeToCamelRows(result.rows) as TWorldMapTiles[]
   } catch (error) {
@@ -29,7 +29,7 @@ export async function getWorldMapTiles() {
       error,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getWorldMapTiles")
   }
 }
@@ -38,7 +38,7 @@ export async function getWorldMapTilesByKey(params: TWorldMapTilesParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM world.get_map_tiles_by_key($1);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TWorldMapTiles[]
   } catch (error) {

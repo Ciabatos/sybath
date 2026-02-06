@@ -1,7 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableServer.hbs
 "use server"
 
-import type { TInventoryInventorySlotTypes, TInventoryInventorySlotTypesRecordById } from "@/db/postgresMainDatabase/schemas/inventory/inventorySlotTypes"
+import type {
+  TInventoryInventorySlotTypes,
+  TInventoryInventorySlotTypesRecordById,
+} from "@/db/postgresMainDatabase/schemas/inventory/inventorySlotTypes"
 import { fetchInventoryInventorySlotTypesService } from "@/methods/services/inventory/fetchInventoryInventorySlotTypesService"
 
 type TResult = {

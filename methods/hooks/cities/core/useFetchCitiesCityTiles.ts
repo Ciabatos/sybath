@@ -10,7 +10,7 @@ import useSWR from "swr"
 
 export function useFetchCitiesCityTiles() {
   const setCitiesCityTiles = useSetAtom(cityTilesAtom)
-  
+
   const { data } = useSWR<TCitiesCityTiles[]>(`/api/cities/city-tiles`, { refreshInterval: 3000 })
 
   useEffect(() => {

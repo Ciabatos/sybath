@@ -10,7 +10,7 @@ import useSWR from "swr"
 
 export function useFetchItemsItems() {
   const setItemsItems = useSetAtom(itemsAtom)
-  
+
   const { data } = useSWR<TItemsItems[]>(`/api/items/items`, { refreshInterval: 3000 })
 
   useEffect(() => {

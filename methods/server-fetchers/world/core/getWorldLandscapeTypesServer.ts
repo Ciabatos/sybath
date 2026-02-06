@@ -1,7 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableServer.hbs
 "use server"
 
-import type { TWorldLandscapeTypes, TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
+import type {
+  TWorldLandscapeTypes,
+  TWorldLandscapeTypesRecordById,
+} from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { fetchWorldLandscapeTypesService } from "@/methods/services/world/fetchWorldLandscapeTypesService"
 
 type TResult = {
