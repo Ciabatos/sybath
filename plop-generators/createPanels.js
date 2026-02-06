@@ -1,59 +1,72 @@
 import fs from "fs"
 import path from "path"
-const ROOT = path.resolve("./")
+
+const MAIN_ROOT = path.resolve("types/enumeration")
 
 export default function createPanels(plop) {
   plop.setGenerator("createPanels", {
-    description: "Sync LeftTopBar panels from folders to index files",
-
-    prompts: [],
-
-    actions: function () {
-      const panelsDir = path.join(ROOT, "/components/panels")
-
-      const files = fs.readdirSync(panelsDir, { withFileTypes: true })
-
-      const panelFolders = files
-        .filter((dirent) => dirent.isDirectory() && dirent.name !== "styles")
-        .map((dirent) => {
-          return {
-            folderName: dirent.name,
+    description: "Create new panel",
+    prompts: [
+      {
+        type: "input",
+        name: "newPanelName",
+        message: "Panel name",
+      },
+      {
+        type: "checkbox",
+        name: "enumeration",
+        message: "Select modals to render the panels",
+        choices: fs.readdirSync(MAIN_ROOT).filter((f) => fs.statSync(path.join(MAIN_ROOT, f)).isFile()),
+        validate: (answer) => {
+          if (answer.length < 1) {
+            return "Musisz wybrać przynajmniej jeden modal."
           }
+          return true
+        },
+      },
+    ],
+
+    actions(data) {
+      const actions = []
+
+      actions.push(
+        {
+          type: "add",
+          path: "../components/panels/{{newPanelName}}.tsx",
+          templateFile: "plop-templates/createPanels/panel.hbs",
+          force: true,
+        },
+        {
+          type: "add",
+          path: "../components/panels/styles/{{newPanelName}}.module.css",
+          templateFile: "plop-templates/createPanels/panelStyle.hbs",
+          force: true,
+        },
+      )
+
+      data.enumeration.forEach((enumFileName) => {
+        const enumName = enumFileName.replace(/\.ts$/, "")
+        const enumSuffix = enumName.replace(/^EPanels/, "")
+        const panelName = `panel${enumSuffix}`
+
+        actions.push({
+          type: "modify",
+          path: `../types/enumeration/${enumFileName}`,
+          pattern: new RegExp(`(export enum ${enumName}\\s*\\{[\\s\\S]*?)(\\n\\})`),
+          template: `$1
+  {{newPanelName}} = "{{newPanelName}}",$2`,
         })
 
-      for (let folder of panelFolders) {
-        const subFolderDir = path.join(panelsDir, `/${folder.folderName}`)
-        const files = fs.readdirSync(subFolderDir, { withFileTypes: true })
+        actions.push({
+          type: "modify",
+          path: `../types/panels/${panelName}.ts`,
+          pattern: new RegExp(`(export const ${panelName}[\\s\\S]*?=\\s*\\{[\\s\\S]*?)(\\n\\})`),
+          template: `$1
+  [${enumName}.{{newPanelName}}]: React.lazy(() => import("@/components/panels/{{newPanelName}}")),$2`,
+        })
+      })
 
-        const panelFiles = files
-          .filter((dirent) => dirent.isFile() && (dirent.name.endsWith(".tsx") || dirent.name.endsWith(".jsx")))
-          .map((dirent) => {
-            const fileName = path.basename(dirent.name, path.extname(dirent.name))
-            return {
-              folderName: folder.folderName,
-              fileName: fileName,
-            }
-          })
-
-        console.log(`Folder ${folder.folderName}:`, panelFiles)
-      }
-
-      return [
-        // {
-        //   type: "add",
-        //   path: "../src/components/panels/panelLeftTopBar.ts",
-        //   templateFile: "plop-templates/panelLeftTopBar.hbs",
-        //   force: true,
-        //   data: { panels: panelFolders },
-        // },
-        // {
-        //   type: "add",
-        //   path: "../src/types/enumeration/EPanelsLeftTopBar.ts",
-        //   templateFile: "plop-templates/EPanelsLeftTopBar.hbs",
-        //   force: true,
-        //   data: { panels: panelFolders },
-        // },
-      ]
+      return actions
     },
   })
 }
