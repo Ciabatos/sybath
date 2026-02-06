@@ -72,6 +72,10 @@ Gry:
 Zagrywane są karty akcji co turę (5 minut) i odpalane w sekwencji - potem tylko ogladasz replay rundy
 na przyklad atak, parry/rest, riposte
 --Blob na jednym tiles, kiedy jednostka jest przepchnięta jednostki mogą zajmować jeden tile ale mają ograniczony ruch (nie mogą atakować tylko movment/ucieczka z tile ich ratuje)
+--utrata COHESION moze byc w taki sposob ze jednostka pozostaje na tilesie ale w CSS czyli wizualnie jest ona przemieszczona w strone innego tiles, w bazie danych to tez bedzie
+odwzorowane jakas statystyka ktora da minusa do cohesion tej jednostce i tez jednostce ktora stoi na tilesie na ktory nachodzi ta jednostka
+Bedzie to ladnie wygladalo jak wrog bedzie pushowal jednostki jedne na drugie blobowal, albo jak armia sie bedzie przemieszczac rozproszona
+Squady z duzym cohesion beda idealnie ustawione a te z malym beda nachodzic jedne na drugie
 
 UI i flow dla „systemu informacji”
 
