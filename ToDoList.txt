@@ -1,3 +1,6 @@
+przebudowac bo sie mutate zmienily,
+Dodac ESLINTA ktory poblokuje return constów w composite hooks, uzywac atomow
+
 --pobieranie playerKnowledge
 --pobieranie playerInventory
 --chodzenie po mapie

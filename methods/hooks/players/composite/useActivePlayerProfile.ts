@@ -11,7 +11,7 @@ export function useActivePlayerProfile() {
   useFetchActivePlayerProfile({ playerId })
   const activePlayerProfileData = useAtomValue(activePlayerProfileAtom)
 
-  const activePlayerProfile = Object.values(activePlayerProfileData)[0] ?? null
+  const [activePlayerProfile] = Object.values(activePlayerProfileData)
 
   return { activePlayerProfile }
 }
