@@ -1,5 +1,5 @@
-przebudowac bo sie mutate zmienily,
 Dodac ESLINTA ktory poblokuje return constów w composite hooks, uzywac atomow
+zastanowic sie nad tym bo z atomow lepsza wydajnosc niz odpalanie hooka z kolei odapalnie hooka jest musowe zazwyczaj raz
 
 --pobieranie playerKnowledge
 --pobieranie playerInventory
