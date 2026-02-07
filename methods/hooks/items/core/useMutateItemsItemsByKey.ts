@@ -12,13 +12,11 @@ export function useMutateItemsItems(params: TItemsItemsParams) {
   const key = `/api/items/items/${params.id}`
   const items = useAtomValue(itemsAtom)
 
-  function mutateItemsItems(optimisticParams?: Partial<TItemsItems> | Partial<TItemsItems>[]) {
+  function mutateItemsItems(optimisticParams?: Partial<TItemsItems>[]) {
     if (!optimisticParams) {
       mutate(key)
       return
     }
-
-    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START
 
@@ -31,7 +29,7 @@ export function useMutateItemsItems(params: TItemsItemsParams) {
 
     //MANUAL CODE - END
 
-    const dataWithDefaults = paramsArray.map((val) => ({
+    const dataWithDefaults = optimisticParams.map((val) => ({
       ...defaultValues,
       ...val,
     }))

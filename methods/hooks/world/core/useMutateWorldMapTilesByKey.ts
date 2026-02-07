@@ -16,13 +16,11 @@ export function useMutateWorldMapTiles(params: TWorldMapTilesParams) {
   const key = `/api/world/map-tiles/${params.mapId}`
   const mapTiles = useAtomValue(mapTilesAtom)
 
-  function mutateWorldMapTiles(optimisticParams?: Partial<TWorldMapTiles> | Partial<TWorldMapTiles>[]) {
+  function mutateWorldMapTiles(optimisticParams?: Partial<TWorldMapTiles>[]) {
     if (!optimisticParams) {
       mutate(key)
       return
     }
-
-    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START
 
@@ -36,7 +34,7 @@ export function useMutateWorldMapTiles(params: TWorldMapTilesParams) {
 
     //MANUAL CODE - END
 
-    const dataWithDefaults = paramsArray.map((val) => ({
+    const dataWithDefaults = optimisticParams.map((val) => ({
       ...defaultValues,
       ...val,
     }))

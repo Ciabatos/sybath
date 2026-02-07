@@ -8,13 +8,11 @@ export function useMutateCitiesCities() {
   const { mutate } = useSWRConfig()
   const key = `/api/cities/cities`
 
-  function mutateCitiesCities(optimisticParams?: Partial<TCitiesCities> | Partial<TCitiesCities>[]) {
+  function mutateCitiesCities(optimisticParams?: Partial<TCitiesCities>[]) {
     if (!optimisticParams) {
       mutate(key)
       return
     }
-
-    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START
 
@@ -30,7 +28,7 @@ export function useMutateCitiesCities() {
 
     //MANUAL CODE - END
 
-    const dataWithDefaults = paramsArray.map((val) => ({
+    const dataWithDefaults = optimisticParams.map((val) => ({
       ...defaultValues,
       ...val,
     }))

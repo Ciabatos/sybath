@@ -8,13 +8,11 @@ export function useMutateBuildingsBuildings() {
   const { mutate } = useSWRConfig()
   const key = `/api/buildings/buildings`
 
-  function mutateBuildingsBuildings(optimisticParams?: Partial<TBuildingsBuildings> | Partial<TBuildingsBuildings>[]) {
+  function mutateBuildingsBuildings(optimisticParams?: Partial<TBuildingsBuildings>[]) {
     if (!optimisticParams) {
       mutate(key)
       return
     }
-
-    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START
 
@@ -29,7 +27,7 @@ export function useMutateBuildingsBuildings() {
 
     //MANUAL CODE - END
 
-    const dataWithDefaults = paramsArray.map((val) => ({
+    const dataWithDefaults = optimisticParams.map((val) => ({
       ...defaultValues,
       ...val,
     }))

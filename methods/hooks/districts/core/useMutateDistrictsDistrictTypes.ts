@@ -15,15 +15,11 @@ export function useMutateDistrictsDistrictTypes() {
   const key = `/api/districts/district-types`
   const districtTypes = useAtomValue(districtTypesAtom)
 
-  function mutateDistrictsDistrictTypes(
-    optimisticParams?: Partial<TDistrictsDistrictTypes> | Partial<TDistrictsDistrictTypes>[],
-  ) {
+  function mutateDistrictsDistrictTypes(optimisticParams?: Partial<TDistrictsDistrictTypes>[]) {
     if (!optimisticParams) {
       mutate(key)
       return
     }
-
-    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START
 
@@ -36,7 +32,7 @@ export function useMutateDistrictsDistrictTypes() {
 
     //MANUAL CODE - END
 
-    const dataWithDefaults = paramsArray.map((val) => ({
+    const dataWithDefaults = optimisticParams.map((val) => ({
       ...defaultValues,
       ...val,
     }))

@@ -8,13 +8,11 @@ export function useMutateDistrictsDistricts(params: TDistrictsDistrictsParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/districts/districts/${params.mapId}`
 
-  function mutateDistrictsDistricts(optimisticParams?: Partial<TDistrictsDistricts> | Partial<TDistrictsDistricts>[]) {
+  function mutateDistrictsDistricts(optimisticParams?: Partial<TDistrictsDistricts>[]) {
     if (!optimisticParams) {
       mutate(key)
       return
     }
-
-    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START
 
@@ -29,7 +27,7 @@ export function useMutateDistrictsDistricts(params: TDistrictsDistrictsParams) {
 
     //MANUAL CODE - END
 
-    const dataWithDefaults = paramsArray.map((val) => ({
+    const dataWithDefaults = optimisticParams.map((val) => ({
       ...defaultValues,
       ...val,
     }))

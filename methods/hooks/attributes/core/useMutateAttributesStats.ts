@@ -12,13 +12,11 @@ export function useMutateAttributesStats() {
   const key = `/api/attributes/stats`
   const stats = useAtomValue(statsAtom)
 
-  function mutateAttributesStats(optimisticParams?: Partial<TAttributesStats> | Partial<TAttributesStats>[]) {
+  function mutateAttributesStats(optimisticParams?: Partial<TAttributesStats>[]) {
     if (!optimisticParams) {
       mutate(key)
       return
     }
-
-    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START
 
@@ -31,7 +29,7 @@ export function useMutateAttributesStats() {
 
     //MANUAL CODE - END
 
-    const dataWithDefaults = paramsArray.map((val) => ({
+    const dataWithDefaults = optimisticParams.map((val) => ({
       ...defaultValues,
       ...val,
     }))

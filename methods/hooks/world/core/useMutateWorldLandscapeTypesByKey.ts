@@ -16,15 +16,11 @@ export function useMutateWorldLandscapeTypes(params: TWorldLandscapeTypesParams)
   const key = `/api/world/landscape-types/${params.id}`
   const landscapeTypes = useAtomValue(landscapeTypesAtom)
 
-  function mutateWorldLandscapeTypes(
-    optimisticParams?: Partial<TWorldLandscapeTypes> | Partial<TWorldLandscapeTypes>[],
-  ) {
+  function mutateWorldLandscapeTypes(optimisticParams?: Partial<TWorldLandscapeTypes>[]) {
     if (!optimisticParams) {
       mutate(key)
       return
     }
-
-    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START
 
@@ -37,7 +33,7 @@ export function useMutateWorldLandscapeTypes(params: TWorldLandscapeTypesParams)
 
     //MANUAL CODE - END
 
-    const dataWithDefaults = paramsArray.map((val) => ({
+    const dataWithDefaults = optimisticParams.map((val) => ({
       ...defaultValues,
       ...val,
     }))

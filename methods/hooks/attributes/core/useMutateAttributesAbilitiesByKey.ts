@@ -16,15 +16,11 @@ export function useMutateAttributesAbilities(params: TAttributesAbilitiesParams)
   const key = `/api/attributes/abilities/${params.id}`
   const abilities = useAtomValue(abilitiesAtom)
 
-  function mutateAttributesAbilities(
-    optimisticParams?: Partial<TAttributesAbilities> | Partial<TAttributesAbilities>[],
-  ) {
+  function mutateAttributesAbilities(optimisticParams?: Partial<TAttributesAbilities>[]) {
     if (!optimisticParams) {
       mutate(key)
       return
     }
-
-    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START
 
@@ -37,7 +33,7 @@ export function useMutateAttributesAbilities(params: TAttributesAbilitiesParams)
 
     //MANUAL CODE - END
 
-    const dataWithDefaults = paramsArray.map((val) => ({
+    const dataWithDefaults = optimisticParams.map((val) => ({
       ...defaultValues,
       ...val,
     }))

@@ -16,13 +16,11 @@ export function useMutateCitiesCityTiles(params: TCitiesCityTilesParams) {
   const key = `/api/cities/city-tiles/${params.cityId}`
   const cityTiles = useAtomValue(cityTilesAtom)
 
-  function mutateCitiesCityTiles(optimisticParams?: Partial<TCitiesCityTiles> | Partial<TCitiesCityTiles>[]) {
+  function mutateCitiesCityTiles(optimisticParams?: Partial<TCitiesCityTiles>[]) {
     if (!optimisticParams) {
       mutate(key)
       return
     }
-
-    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START
 
@@ -36,7 +34,7 @@ export function useMutateCitiesCityTiles(params: TCitiesCityTilesParams) {
 
     //MANUAL CODE - END
 
-    const dataWithDefaults = paramsArray.map((val) => ({
+    const dataWithDefaults = optimisticParams.map((val) => ({
       ...defaultValues,
       ...val,
     }))
