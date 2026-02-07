@@ -12,13 +12,11 @@ export function useMutate{{schemaTablePascalName}}({{#if methodParamsColumns}} p
   const key = `{{apiPathParamsByKey}}`
   {{#if mutationMergeOldData}}const {{tableCamelName}} = useAtomValue({{tableCamelName}}Atom){{/if}}
 
-  function mutate{{schemaTablePascalName}}(optimisticParams?: Partial<{{methodTypeName}}> | Partial<{{methodTypeName}}>[]) {
+  function mutate{{schemaTablePascalName}}(optimisticParams?: Partial<{{methodTypeName}}>[]) {
     if (!optimisticParams) {
       mutate(key)
       return
     }
-
-    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
     
     //MANUAL CODE - START
 
@@ -30,7 +28,7 @@ export function useMutate{{schemaTablePascalName}}({{#if methodParamsColumns}} p
 
     //MANUAL CODE - END
 
-    const dataWithDefaults = paramsArray.map((val) => ({
+    const dataWithDefaults = optimisticParams.map((val) => ({
       ...defaultValues,
       ...val,
     }))

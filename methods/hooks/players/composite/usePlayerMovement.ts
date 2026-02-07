@@ -5,8 +5,10 @@ import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { useMapId } from "@/methods/hooks/world/composite/useMapId"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { useMapTilesPathFromPointToPoint } from "@/methods/hooks/world/composite/useMapTilesPathFromPointToPoint"
+import { useFetchPlayerMovement } from "@/methods/hooks/world/core/useFetchPlayerMovement"
 import { useFetchPlayerPosition } from "@/methods/hooks/world/core/useFetchPlayerPosition"
-import { playerMapTilesMovementPathAtom, playerPositionAtom } from "@/store/atoms"
+import { useMutatePlayerMovement } from "@/methods/hooks/world/core/useMutatePlayerMovement"
+import { playerMovementAtom, playerMovementPlannedAtom, playerPositionAtom } from "@/store/atoms"
 import { useAtom, useAtomValue } from "jotai"
 import { toast } from "sonner"
 
@@ -19,8 +21,9 @@ type TPlayerMovementParams = {
 }
 
 export function usePlayerMovement() {
+  const [playerMovementPlanned, setPlayerMovementPlanned] = useAtom(playerMovementPlannedAtom)
+
   const { getPathFromPointToPoint } = useMapTilesPathFromPointToPoint()
-  const [playerMapTilesMovementPath, setPlayerMapTilesMovementPath] = useAtom(playerMapTilesMovementPathAtom)
 
   const { playerId } = usePlayerId()
   const { mapId } = useMapId()
@@ -31,9 +34,14 @@ export function usePlayerMovement() {
 
   const { clickedTile } = useMapTileActions()
 
+  useFetchPlayerMovement({ playerId })
+  const playerMovement = useAtomValue(playerMovementAtom)
+
+  const { mutatePlayerMovement } = useMutatePlayerMovement({ playerId })
+
   function selectPlayerPath(params: TPlayerMovementParams) {
     const path = getPathFromPointToPoint(params)
-    setPlayerMapTilesMovementPath(path)
+    setPlayerMovementPlanned(path)
 
     return toast.success(`Path selected confirm to move`)
   }
@@ -51,15 +59,17 @@ export function usePlayerMovement() {
     }
 
     const path = getPathFromPointToPoint(params)
-    setPlayerMapTilesMovementPath(path)
+    setPlayerMovementPlanned(path)
 
     return toast.success(`Path selected confirm to move`)
   }
 
   function selectPlayerPathAndMovePlayer(params: TPlayerMovementParams) {
     const path = getPathFromPointToPoint(params)
-    setPlayerMapTilesMovementPath(path)
+    setPlayerMovementPlanned(path)
     doPlayerMovementAction(params)
+
+    mutatePlayerMovement(Object.values(path))
 
     return toast.success(`You are moving to destination`)
   }
@@ -78,14 +88,16 @@ export function usePlayerMovement() {
     }
 
     const path = getPathFromPointToPoint(params)
-    setPlayerMapTilesMovementPath(path)
+    setPlayerMovementPlanned(path)
     doPlayerMovementAction(params)
 
+    mutatePlayerMovement(Object.values(path))
     return toast.success(`You are moving to destination`)
   }
 
   return {
-    playerMapTilesMovementPath,
+    playerMovementPlanned,
+    playerMovement,
     selectPlayerPath,
     selectPlayerPathToClickedTile,
     selectPlayerPathAndMovePlayer,

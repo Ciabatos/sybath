@@ -1,6 +1,7 @@
 import { TCitiesCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
+import { TPlayerMovement } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { astar, Graph } from "@/methods/functions/map/astar.cjs"
 
@@ -27,14 +28,7 @@ type TPathFromPointToPointParams = {
   cities: TCitiesCitiesRecordByMapTileXMapTileY
 }
 
-export type TPathFromPointToPoint = {
-  x: number
-  y: number
-  moveCost: number
-  totalMovementCost: number
-}
-
-export function pathFromPointToPoint(params: TPathFromPointToPointParams): TPathFromPointToPoint[] {
+export function pathFromPointToPoint(params: TPathFromPointToPointParams): TPlayerMovement[] {
   if (!params) {
     return []
   }
@@ -80,10 +74,9 @@ export function pathFromPointToPoint(params: TPathFromPointToPointParams): TPath
   const filteredMapTiles = fullPath.map((node) => {
     const tile = mapTilesArray.find((tile) => tile.x === node.x && tile.y === node.y)
     return {
+      moveCost: grid[node.x][node.y],
       x: node.x,
       y: node.y,
-      moveCost: grid[node.x][node.y],
-      totalMovementCost: node.weight,
     }
   })
 

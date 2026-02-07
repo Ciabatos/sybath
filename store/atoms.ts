@@ -30,7 +30,6 @@ import { TPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/wor
 import { TPlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { TAreaRecordByXY } from "@/methods/hooks/world/composite/useMapTilesArea"
-import { TMapTilesMovementPathRecordByXY } from "@/methods/hooks/world/composite/useMapTilesPathFromPointToPoint"
 import { EPanelsBottomCenterBar } from "@/types/enumeration/EPanelsBottomCenterBar"
 import { EPanelsLeftCenter } from "@/types/enumeration/EPanelsLeftCenter"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
@@ -55,7 +54,7 @@ export const clickedTileAtom = atom<TMapTile>()
 
 //Player
 export const playerIdAtom = atom<number>(0)
-export const playerMapTilesMovementPathAtom = atom<TMapTilesMovementPathRecordByXY>({})
+export const playerMovementPlannedAtom = atom<TPlayerMovementRecordByXY>({})
 export const playerMapTilesGuardAreaAtom = atom<TAreaRecordByXY>({})
 
 //Tables
@@ -75,6 +74,7 @@ export const mapTilesAtom = atom<TWorldMapTilesRecordByXY>({})
 export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
 
 //Functions
+export const playerMovementAtom = atom<TPlayerMovementRecordByXY>({})
 export const playerGearInventoryAtom = atom<TPlayerGearInventoryRecordBySlotId>({})
 export const playerStatsAtom = atom<TPlayerStatsRecordByStatId>({})
 export const playerSkillsAtom = atom<TPlayerSkillsRecordBySkillId>({})
@@ -87,5 +87,4 @@ export const playerCityAtom = atom<TPlayerCityRecordByCityId>({})
 export const playerMapAtom = atom<TPlayerMapRecordByMapId>({})
 export const playerInventoryAtom = atom<TPlayerInventoryRecordBySlotId>({})
 export const playerPositionAtom = atom<TPlayerPositionRecordByXY>({})
-export const playerMovementAtom = atom<TPlayerMovementRecordByXY>({})
 export const playerAbilitiesAtom = atom<TPlayerAbilitiesRecordByAbilityId>({})

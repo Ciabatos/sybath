@@ -1,55 +1,38 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
-import {
-  TPlayerMovementRecordByXY,
-  TPlayerMovementParams,
-  TPlayerMovement,
-} from "@/db/postgresMainDatabase/schemas/world/playerMovement"
-import { playerMovementAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
-import useSWR from "swr"
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
+import { TPlayerMovement, TPlayerMovementParams } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
+import { useSWRConfig } from "swr"
 
 export function useMutatePlayerMovement(params: TPlayerMovementParams) {
-  const { mutate } = useSWR<TPlayerMovement[]>(`/api/world/rpc/get-player-movement/${params.playerId}`)
-  const setPlayerMovement = useSetAtom(playerMovementAtom)
+  const { mutate } = useSWRConfig()
+  const key = `/api/world/rpc/get-player-movement/${params.playerId}`
 
-  function mutatePlayerMovement(optimisticParams?: Partial<TPlayerMovement> | Partial<TPlayerMovement>[]) {
+  function mutatePlayerMovement(optimisticParams?: Partial<TPlayerMovement>[]) {
     if (!optimisticParams) {
-      mutate()
+      mutate(key)
       return
     }
-
-    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START
 
     const defaultValues = {
-      scheduledAt: ``,
-      x: ``,
-      y: ``,
+      moveCost: 0,
+      x: 0,
+      y: 0,
     }
 
     //MANUAL CODE - END
 
-    const dataWithDefaults = paramsArray.map((val) => ({
+    const dataWithDefaults: TPlayerMovement[] = optimisticParams.map((val) => ({
       ...defaultValues,
       ...val,
     }))
 
-    const newObj = arrayToObjectKey(["x", "y"], dataWithDefaults) as TPlayerMovementRecordByXY
-
-    const optimisticDataMergeWithOldData: TPlayerMovementRecordByXY = {
-      ...newObj,
-    }
-
-    setPlayerMovement(optimisticDataMergeWithOldData)
-
-    mutate(dataWithDefaults, {
+    mutate(key, dataWithDefaults, {
       optimisticData: dataWithDefaults,
       rollbackOnError: true,
-      revalidate: true,
+      revalidate: false,
       populateCache: true,
     })
   }

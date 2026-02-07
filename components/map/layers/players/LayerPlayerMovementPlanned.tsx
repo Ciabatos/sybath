@@ -1,7 +1,5 @@
 "use client"
 
-import LayerPlayerMovement from "@/components/map/layers/players/LayerPlayerMovement"
-import LayerPlayerMovementPlanned from "@/components/map/layers/players/LayerPlayerMovementPlanned"
 import { TCitiesCities } from "@/db/postgresMainDatabase/schemas/cities/cities"
 import { TDistrictsDistricts } from "@/db/postgresMainDatabase/schemas/districts/districts"
 import { TDistrictsDistrictTypes } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
@@ -9,6 +7,8 @@ import { TWorldLandscapeTypes } from "@/db/postgresMainDatabase/schemas/world/la
 import { TWorldMapTiles } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
 import { TPlayerPosition } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 import { TWorldTerrainTypes } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
+import { playerMovementPlannedAtom } from "@/store/atoms"
+import { useAtomValue } from "jotai"
 
 export type TMapTile = {
   mapTiles: TWorldMapTiles
@@ -20,11 +20,30 @@ export type TMapTile = {
   playerPosition?: TPlayerPosition
 }
 
-export default function LayersHandling(props: TMapTile) {
+export default function LayerPlayerMovementPlanned(props: TMapTile) {
+  const playerMovementPlanned = useAtomValue(playerMovementPlannedAtom)
+
+  const layerData = playerMovementPlanned[`${props.mapTiles.x},${props.mapTiles.y}`]
+
+  if (!layerData) {
+    return null
+  }
+
   return (
     <>
-      <LayerPlayerMovement {...props} />
-      <LayerPlayerMovementPlanned {...props} />
+      {/* <p>{layerData.moveCost}</p> */}
+      <svg
+        fill='none'
+        xmlns='http://www.w3.org/2000/svg'
+        style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+      >
+        <rect
+          width='100%'
+          height='100%'
+          fill='blue'
+          opacity={0.5}
+        />
+      </svg>
     </>
   )
 }

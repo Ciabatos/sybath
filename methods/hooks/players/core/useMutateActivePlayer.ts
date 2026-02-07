@@ -7,7 +7,7 @@ import useSWR from "swr"
 export function useMutateActivePlayer() {
   const { mutate } = useSWR<TActivePlayer[]>(`/api/players/rpc/get-active-player`)
 
-  function mutateActivePlayer(optimisticParams?: Partial<TActivePlayer> | Partial<TActivePlayer>[]) {
+  function mutateActivePlayer(optimisticParams?: Partial<TActivePlayer>[]) {
     if (!optimisticParams) {
       mutate()
       return

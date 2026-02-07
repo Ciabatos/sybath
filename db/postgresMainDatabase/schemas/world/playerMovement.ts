@@ -9,7 +9,7 @@ export type TPlayerMovementParams = {
 }
 
 export type TPlayerMovement = {
-  scheduledAt: string
+  moveCost: number
   x: number
   y: number
 }

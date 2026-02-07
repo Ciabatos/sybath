@@ -15,7 +15,7 @@ export type TDoPlayerMovement = {
 
 export async function doPlayerMovement(params: TDoPlayerMovementParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.playerId, JSON.stringify(params.path)]
     const sql = `SELECT * FROM world.do_player_movement($1, $2);`
     const result = await query(sql, sqlParams)
 

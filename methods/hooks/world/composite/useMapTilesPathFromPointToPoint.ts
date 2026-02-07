@@ -1,6 +1,7 @@
 "use client"
 
-import { pathFromPointToPoint, TPathFromPointToPoint } from "@/methods/functions/map/pathFromPointToPoint"
+import { TPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
+import { pathFromPointToPoint } from "@/methods/functions/map/pathFromPointToPoint"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { useFetchCitiesCitiesByKey } from "@/methods/hooks/cities/core/useFetchCitiesCitiesByKey"
 import { useMapId } from "@/methods/hooks/world/composite/useMapId"
@@ -16,8 +17,6 @@ type TGetPathFromPointToPointParams = {
   endX: number
   endY: number
 }
-
-export type TMapTilesMovementPathRecordByXY = Record<string, TPathFromPointToPoint>
 
 export function useMapTilesPathFromPointToPoint() {
   const { mapId } = useMapId()
@@ -46,7 +45,7 @@ export function useMapTilesPathFromPointToPoint() {
       cities: cities,
     })
 
-    const movementPathRecordByXY = arrayToObjectKey(["x", "y"], movementPath) as TMapTilesMovementPathRecordByXY
+    const movementPathRecordByXY = arrayToObjectKey(["x", "y"], movementPath) as TPlayerMovementRecordByXY
     return movementPathRecordByXY
   }
 

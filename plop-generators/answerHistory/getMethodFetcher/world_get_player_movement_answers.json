@@ -1,4 +1,15 @@
 {
+  "promptAnswers": {
+    "schema": "world",
+    "method": "get_player_movement",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "x",
+      "y"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": false
+  },
   "schema": "world",
   "method": "get_player_movement",
   "methodCamelName": "playerMovement",
@@ -16,10 +27,10 @@
   ],
   "methodColumns": [
     {
-      "name": "scheduled_at",
-      "camelName": "scheduledAt",
-      "pascalName": "ScheduledAt",
-      "tsType": "string",
+      "name": "move_cost",
+      "camelName": "moveCost",
+      "pascalName": "MoveCost",
+      "tsType": "number",
       "optional": ""
     },
     {
@@ -61,8 +72,6 @@
   "sqlParamsPlaceholders": "$1",
   "apiPath": "app/api/world/rpc/get-player-movement/[playerId]/route.ts",
   "apiPathParams": "/api/world/rpc/get-player-movement/${params.playerId}",
-  "generateMutation": false,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ]
+  "generateMutation": true,
+  "mutationMergeOldData": false
 }

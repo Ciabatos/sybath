@@ -22,7 +22,7 @@ export function useActivePlayerSwitchProfiles() {
         return result.message
       }
 
-      mutateActivePlayer({ id: newPlayerId })
+      mutateActivePlayer([{ id: newPlayerId }])
 
       return result.message
     } catch (err) {

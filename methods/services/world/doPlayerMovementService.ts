@@ -61,6 +61,7 @@ export async function doPlayerMovementService(params: TDoPlayerMovementServicePa
       landscapeTypes: landscapeTypes.byKey,
       cities: cities.byKey,
     })
+
     //MANUAL CODE - END
 
     const data: TDoPlayerMovementParams = {

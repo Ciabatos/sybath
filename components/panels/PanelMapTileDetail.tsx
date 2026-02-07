@@ -5,7 +5,7 @@ import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMovement"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { X } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styles from "./styles/PanelMapTileDetail.module.css"
 
 const terrainData = {
@@ -77,6 +77,10 @@ export default function PanelMapTileDetail() {
   }
 
   const [isMoving, setIsMoving] = useState(false)
+
+  useEffect(() => {
+    setIsMoving(false)
+  }, [clickedTile])
 
   function handleClick() {
     if (!isMoving) {
