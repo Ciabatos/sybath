@@ -16,13 +16,11 @@ export function useMutateBuildingInventory(params: TBuildingInventoryParams) {
   const key = `/api/inventory/rpc/get-building-inventory/${params.buildingId}`
   const buildingInventory = useAtomValue(buildingInventoryAtom)
 
-  function mutateBuildingInventory(optimisticParams?: Partial<TBuildingInventory> | Partial<TBuildingInventory>[]) {
+  function mutateBuildingInventory(optimisticParams?: Partial<TBuildingInventory>[]) {
     if (!optimisticParams) {
       mutate(key)
       return
     }
-
-    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START
 
@@ -38,7 +36,7 @@ export function useMutateBuildingInventory(params: TBuildingInventoryParams) {
 
     //MANUAL CODE - END
 
-    const dataWithDefaults = paramsArray.map((val) => ({
+    const dataWithDefaults = optimisticParams.map((val) => ({
       ...defaultValues,
       ...val,
     }))

@@ -16,15 +16,11 @@ export function useMutateActivePlayerProfile(params: TActivePlayerProfileParams)
   const key = `/api/players/rpc/get-active-player-profile/${params.playerId}`
   const activePlayerProfile = useAtomValue(activePlayerProfileAtom)
 
-  function mutateActivePlayerProfile(
-    optimisticParams?: Partial<TActivePlayerProfile> | Partial<TActivePlayerProfile>[],
-  ) {
+  function mutateActivePlayerProfile(optimisticParams?: Partial<TActivePlayerProfile>[]) {
     if (!optimisticParams) {
       mutate(key)
       return
     }
-
-    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START
 
@@ -38,7 +34,7 @@ export function useMutateActivePlayerProfile(params: TActivePlayerProfileParams)
 
     //MANUAL CODE - END
 
-    const dataWithDefaults = paramsArray.map((val) => ({
+    const dataWithDefaults = optimisticParams.map((val) => ({
       ...defaultValues,
       ...val,
     }))

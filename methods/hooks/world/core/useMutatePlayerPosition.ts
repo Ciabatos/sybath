@@ -8,13 +8,11 @@ export function useMutatePlayerPosition(params: TPlayerPositionParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/world/rpc/get-player-position/${params.mapId}/${params.playerId}`
 
-  function mutatePlayerPosition(optimisticParams?: Partial<TPlayerPosition> | Partial<TPlayerPosition>[]) {
+  function mutatePlayerPosition(optimisticParams?: Partial<TPlayerPosition>[]) {
     if (!optimisticParams) {
       mutate(key)
       return
     }
-
-    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START
 
@@ -26,7 +24,7 @@ export function useMutatePlayerPosition(params: TPlayerPositionParams) {
 
     //MANUAL CODE - END
 
-    const dataWithDefaults = paramsArray.map((val) => ({
+    const dataWithDefaults = optimisticParams.map((val) => ({
       ...defaultValues,
       ...val,
     }))

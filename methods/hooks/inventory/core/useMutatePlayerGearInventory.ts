@@ -16,15 +16,11 @@ export function useMutatePlayerGearInventory(params: TPlayerGearInventoryParams)
   const key = `/api/inventory/rpc/get-player-gear-inventory/${params.playerId}`
   const playerGearInventory = useAtomValue(playerGearInventoryAtom)
 
-  function mutatePlayerGearInventory(
-    optimisticParams?: Partial<TPlayerGearInventory> | Partial<TPlayerGearInventory>[],
-  ) {
+  function mutatePlayerGearInventory(optimisticParams?: Partial<TPlayerGearInventory>[]) {
     if (!optimisticParams) {
       mutate(key)
       return
     }
-
-    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START
 
@@ -40,7 +36,7 @@ export function useMutatePlayerGearInventory(params: TPlayerGearInventoryParams)
 
     //MANUAL CODE - END
 
-    const dataWithDefaults = paramsArray.map((val) => ({
+    const dataWithDefaults = optimisticParams.map((val) => ({
       ...defaultValues,
       ...val,
     }))

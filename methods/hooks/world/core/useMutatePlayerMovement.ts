@@ -24,7 +24,7 @@ export function useMutatePlayerMovement(params: TPlayerMovementParams) {
 
     //MANUAL CODE - END
 
-    const dataWithDefaults: TPlayerMovement[] = optimisticParams.map((val) => ({
+    const dataWithDefaults = optimisticParams.map((val) => ({
       ...defaultValues,
       ...val,
     }))

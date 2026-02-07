@@ -16,13 +16,11 @@ export function useMutatePlayerSkills(params: TPlayerSkillsParams) {
   const key = `/api/attributes/rpc/get-player-skills/${params.playerId}`
   const playerSkills = useAtomValue(playerSkillsAtom)
 
-  function mutatePlayerSkills(optimisticParams?: Partial<TPlayerSkills> | Partial<TPlayerSkills>[]) {
+  function mutatePlayerSkills(optimisticParams?: Partial<TPlayerSkills>[]) {
     if (!optimisticParams) {
       mutate(key)
       return
     }
-
-    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START
 
@@ -34,7 +32,7 @@ export function useMutatePlayerSkills(params: TPlayerSkillsParams) {
 
     //MANUAL CODE - END
 
-    const dataWithDefaults = paramsArray.map((val) => ({
+    const dataWithDefaults = optimisticParams.map((val) => ({
       ...defaultValues,
       ...val,
     }))

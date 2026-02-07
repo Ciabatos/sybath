@@ -22,8 +22,6 @@ export function useMutatePlayerInventory(params: TPlayerInventoryParams) {
       return
     }
 
-    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
-
     //MANUAL CODE - START
 
     const defaultValues = {
@@ -38,7 +36,7 @@ export function useMutatePlayerInventory(params: TPlayerInventoryParams) {
 
     //MANUAL CODE - END
 
-    const dataWithDefaults = paramsArray.map((val) => ({
+    const dataWithDefaults = optimisticParams.map((val) => ({
       ...defaultValues,
       ...val,
     }))

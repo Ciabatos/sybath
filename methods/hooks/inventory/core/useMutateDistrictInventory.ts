@@ -16,13 +16,11 @@ export function useMutateDistrictInventory(params: TDistrictInventoryParams) {
   const key = `/api/inventory/rpc/get-district-inventory/${params.districtId}`
   const districtInventory = useAtomValue(districtInventoryAtom)
 
-  function mutateDistrictInventory(optimisticParams?: Partial<TDistrictInventory> | Partial<TDistrictInventory>[]) {
+  function mutateDistrictInventory(optimisticParams?: Partial<TDistrictInventory>[]) {
     if (!optimisticParams) {
       mutate(key)
       return
     }
-
-    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START
 
@@ -38,7 +36,7 @@ export function useMutateDistrictInventory(params: TDistrictInventoryParams) {
 
     //MANUAL CODE - END
 
-    const dataWithDefaults = paramsArray.map((val) => ({
+    const dataWithDefaults = optimisticParams.map((val) => ({
       ...defaultValues,
       ...val,
     }))

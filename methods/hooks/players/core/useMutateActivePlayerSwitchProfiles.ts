@@ -11,15 +11,11 @@ export function useMutateActivePlayerSwitchProfiles(params: TActivePlayerSwitchP
   const { mutate } = useSWRConfig()
   const key = `/api/players/rpc/get-active-player-switch-profiles/${params.playerId}`
 
-  function mutateActivePlayerSwitchProfiles(
-    optimisticParams?: Partial<TActivePlayerSwitchProfiles> | Partial<TActivePlayerSwitchProfiles>[],
-  ) {
+  function mutateActivePlayerSwitchProfiles(optimisticParams?: Partial<TActivePlayerSwitchProfiles>[]) {
     if (!optimisticParams) {
       mutate(key)
       return
     }
-
-    const paramsArray = Array.isArray(optimisticParams) ? optimisticParams : [optimisticParams]
 
     //MANUAL CODE - START
 
@@ -33,7 +29,7 @@ export function useMutateActivePlayerSwitchProfiles(params: TActivePlayerSwitchP
 
     //MANUAL CODE - END
 
-    const dataWithDefaults = paramsArray.map((val) => ({
+    const dataWithDefaults = optimisticParams.map((val) => ({
       ...defaultValues,
       ...val,
     }))
