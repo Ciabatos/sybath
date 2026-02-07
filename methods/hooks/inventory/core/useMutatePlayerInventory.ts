@@ -16,7 +16,7 @@ export function useMutatePlayerInventory(params: TPlayerInventoryParams) {
   const key = `/api/inventory/rpc/get-player-inventory/${params.playerId}`
   const playerInventory = useAtomValue(playerInventoryAtom)
 
-  function mutatePlayerInventory(optimisticParams?: Partial<TPlayerInventory> | Partial<TPlayerInventory>[]) {
+  function mutatePlayerInventory(optimisticParams?: Partial<TPlayerInventory>[]) {
     if (!optimisticParams) {
       mutate(key)
       return

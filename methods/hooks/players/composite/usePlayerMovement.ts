@@ -5,6 +5,7 @@ import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { useMapId } from "@/methods/hooks/world/composite/useMapId"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { useMapTilesPathFromPointToPoint } from "@/methods/hooks/world/composite/useMapTilesPathFromPointToPoint"
+import { useFetchPlayerMovement } from "@/methods/hooks/world/core/useFetchPlayerMovement"
 import { useFetchPlayerPosition } from "@/methods/hooks/world/core/useFetchPlayerPosition"
 import { useMutatePlayerMovement } from "@/methods/hooks/world/core/useMutatePlayerMovement"
 import { playerMovementPlannedAtom, playerPositionAtom } from "@/store/atoms"
@@ -34,6 +35,8 @@ export function usePlayerMovement() {
   const { clickedTile } = useMapTileActions()
 
   const { mutatePlayerMovement } = useMutatePlayerMovement({ playerId })
+
+  useFetchPlayerMovement({ playerId })
 
   function selectPlayerPath(params: TPlayerMovementParams) {
     const path = getPathFromPointToPoint(params)
