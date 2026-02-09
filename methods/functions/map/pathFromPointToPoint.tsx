@@ -70,14 +70,20 @@ export function pathFromPointToPoint(params: TPathFromPointToPointParams): TPlay
 
   const startNode = { x: params.startX, y: params.startY, weight: 0.001 } as GridNode
   const fullPath = [startNode, ...resultWithWeight]
+  let accumulatedCost = 0
 
   const filteredMapTiles = fullPath.map((node) => {
-    const tile = mapTilesArray.find((tile) => tile.x === node.x && tile.y === node.y)
+    // const tile = mapTilesArray.find((tile) => tile.x === node.x ?&& tile.y === node.y)
+    const moveCost = grid[node.x][node.y] || 0
+
+    const totalMoveCost = accumulatedCost
+    accumulatedCost += moveCost
+
     return {
       moveCost: grid[node.x][node.y],
       x: node.x,
       y: node.y,
-      totalMoveCost: node.weight,
+      totalMoveCost: totalMoveCost,
     }
   })
 
