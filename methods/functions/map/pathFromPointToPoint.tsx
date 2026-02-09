@@ -74,7 +74,9 @@ export function pathFromPointToPoint(params: TPathFromPointToPointParams): TPlay
   const startWithWeight = graphWithWeight.grid[params.startX][params.startY]
   const endWithWeight = graphWithWeight.grid[params.endX][params.endY]
 
-  const resultWithWeight: GridNode[] = astar.search(graphWithWeight, startWithWeight, endWithWeight)
+  const resultWithWeight: GridNode[] = astar.search(graphWithWeight, startWithWeight, endWithWeight, {
+    heuristic: astar.heuristics.diagonal,
+  })
 
   const startNode = { x: params.startX, y: params.startY, weight: 0.001 } as GridNode
   const fullPath = [startNode, ...resultWithWeight]
