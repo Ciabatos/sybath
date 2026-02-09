@@ -1,8 +1,8 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
-import { TPlayerMovement, TPlayerMovementParams } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
 import { useSWRConfig } from "swr"
+import { TPlayerMovementParams, TPlayerMovement } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
 
 export function useMutatePlayerMovement(params: TPlayerMovementParams) {
   const { mutate } = useSWRConfig()
@@ -17,9 +17,10 @@ export function useMutatePlayerMovement(params: TPlayerMovementParams) {
     //MANUAL CODE - START
 
     const defaultValues = {
-      moveCost: 0,
-      x: 0,
-      y: 0,
+      moveCost: ``,
+      x: ``,
+      y: ``,
+      totalMoveCost: ``,
     }
 
     //MANUAL CODE - END

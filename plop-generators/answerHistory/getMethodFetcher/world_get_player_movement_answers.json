@@ -46,6 +46,13 @@
       "pascalName": "Y",
       "tsType": "number",
       "optional": ""
+    },
+    {
+      "name": "total_move_cost",
+      "camelName": "totalMoveCost",
+      "pascalName": "TotalMoveCost",
+      "tsType": "number",
+      "optional": ""
     }
   ],
   "indexMethodParams": "[\"x\", \"y\"]",
@@ -73,8 +80,5 @@
   "apiPath": "app/api/world/rpc/get-player-movement/[playerId]/route.ts",
   "apiPathParams": "/api/world/rpc/get-player-movement/${params.playerId}",
   "generateMutation": true,
-  "mutationMergeOldData": false,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ]
+  "mutationMergeOldData": false
 }

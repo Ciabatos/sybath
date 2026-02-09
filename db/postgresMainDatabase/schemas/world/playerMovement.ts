@@ -12,6 +12,7 @@ export type TPlayerMovement = {
   moveCost: number
   x: number
   y: number
+  totalMoveCost: number
 }
 
 export type TPlayerMovementRecordByXY = Record<string, TPlayerMovement>

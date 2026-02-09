@@ -77,6 +77,7 @@ export function pathFromPointToPoint(params: TPathFromPointToPointParams): TPlay
       moveCost: grid[node.x][node.y],
       x: node.x,
       y: node.y,
+      totalMoveCost: node.weight,
     }
   })
 
