@@ -4,6 +4,8 @@
 import { TDoPlayerMovementParams, doPlayerMovement } from "@/db/postgresMainDatabase/schemas/world/doPlayerMovement"
 import { pathFromPointToPoint } from "@/methods/functions/map/pathFromPointToPoint"
 import { getCitiesCitiesByKeyServer } from "@/methods/server-fetchers/cities/core/getCitiesCitiesByKeyServer"
+import { getDistrictsDistrictsByKeyServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictsByKeyServer"
+import { getDistrictsDistrictTypesServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictTypesServer"
 import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
 import { getPlayerMapServer } from "@/methods/server-fetchers/world/core/getPlayerMapServer"
 import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
@@ -40,11 +42,13 @@ export async function doPlayerMovementService(params: TDoPlayerMovementServicePa
 
     const mapId = (await getPlayerMapServer({ playerId })).raw[0].mapId
 
-    const [mapTiles, terrainTypes, landscapeTypes, cities] = await Promise.all([
+    const [mapTiles, terrainTypes, landscapeTypes, cities, districts, districtTypes] = await Promise.all([
       getWorldMapTilesByKeyServer({ mapId }),
       getWorldTerrainTypesServer(),
       getWorldLandscapeTypesServer(),
       getCitiesCitiesByKeyServer({ mapId }),
+      getDistrictsDistrictsByKeyServer({ mapId }),
+      getDistrictsDistrictTypesServer(),
     ])
 
     if (!mapTiles) {
@@ -60,6 +64,8 @@ export async function doPlayerMovementService(params: TDoPlayerMovementServicePa
       terrainTypes: terrainTypes.byKey,
       landscapeTypes: landscapeTypes.byKey,
       cities: cities.byKey,
+      districts: districts.byKey,
+      districtTypes: districtTypes.byKey,
     })
 
     //MANUAL CODE - END

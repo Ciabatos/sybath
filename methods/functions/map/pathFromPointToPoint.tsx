@@ -1,4 +1,6 @@
 import { TCitiesCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
+import { TDistrictsDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/districts/districts"
+import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
 import { TPlayerMovement } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
@@ -26,6 +28,8 @@ type TPathFromPointToPointParams = {
   terrainTypes: TWorldTerrainTypesRecordById
   landscapeTypes: TWorldLandscapeTypesRecordById
   cities: TCitiesCitiesRecordByMapTileXMapTileY
+  districts: TDistrictsDistrictsRecordByMapTileXMapTileY
+  districtTypes: TDistrictsDistrictTypesRecordById
 }
 
 export function pathFromPointToPoint(params: TPathFromPointToPointParams): TPlayerMovement[] {
@@ -52,6 +56,10 @@ export function pathFromPointToPoint(params: TPathFromPointToPointParams): TPlay
 
     if (params.cities[`${tile.x},${tile.y}`]) {
       cost += params.cities[`${tile.x},${tile.y}`].moveCost
+    }
+
+    if (params.districts[`${tile.x},${tile.y}`]) {
+      cost += params.districtTypes[params.districts[`${tile.x},${tile.y}`].districtTypeId].moveCost
     }
 
     grid[tile.x][tile.y] = cost

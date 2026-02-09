@@ -105,7 +105,14 @@ export default function PanelMapTileDetail() {
   }
 
   const terrainName = clickedTile?.terrainTypes.name
-  const terrainMoveCost = clickedTile?.terrainTypes.moveCost
+
+  const terrainTypesMoveCost = clickedTile?.terrainTypes.moveCost
+  const landscapeTypesMoveCost = clickedTile?.landscapeTypes?.moveCost
+  const citiesMoveCost = clickedTile?.cities?.moveCost
+  const districtTypesMoveCost = clickedTile?.districtTypes?.moveCost
+  const totalMoveCost =
+    (terrainTypesMoveCost || 0) + (landscapeTypesMoveCost || 0) + (citiesMoveCost || 0) + (districtTypesMoveCost || 0)
+
   const landscapeName = clickedTile?.landscapeTypes?.name
   const cityName = clickedTile?.cities?.name
   const districtName = clickedTile?.districts?.name
@@ -164,6 +171,7 @@ export default function PanelMapTileDetail() {
             >
               <span className={styles.resourceIcon}>📦</span>
               <span className={styles.resourceName}>{districtName}</span>
+              <span className={styles.resourceName}>{districtTypeName}</span>
             </div>
           </div>
         </section>
@@ -172,9 +180,9 @@ export default function PanelMapTileDetail() {
           <h3 className={styles.sectionTitle}>Move cost</h3>
           <div
             className={styles.difficultyBadge}
-            data-difficulty={terrainMoveCost}
+            data-difficulty={totalMoveCost}
           >
-            {terrainMoveCost}
+            {totalMoveCost}
           </div>
         </section>
 
