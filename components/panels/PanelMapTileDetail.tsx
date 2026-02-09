@@ -70,7 +70,8 @@ const terrainData = {
 export default function PanelMapTileDetail() {
   const { resetModalRightCenter } = useModalRightCenter()
   const { clickedTile } = useMapTileActions()
-  const { selectPlayerPathToClickedTile, selectPlayerPathAndMovePlayerToClickedTile } = usePlayerMovement()
+  const { selectPlayerPathToClickedTile, selectPlayerPathAndMovePlayerToClickedTile, resetPlayerMovementPlanned } =
+    usePlayerMovement()
 
   const onClose = () => {
     resetModalRightCenter()
@@ -79,17 +80,28 @@ export default function PanelMapTileDetail() {
   const [isMoving, setIsMoving] = useState(false)
 
   useEffect(() => {
-    setIsMoving(false)
+    if (isMoving) {
+      selectPlayerPathToClickedTile()
+    }
   }, [clickedTile])
 
-  function handleClick() {
+  function handleMove() {
     if (!isMoving) {
       selectPlayerPathToClickedTile()
       setIsMoving(true)
-    } else {
+    }
+  }
+
+  function handleConfirmMove() {
+    if (isMoving) {
       selectPlayerPathAndMovePlayerToClickedTile()
       setIsMoving(false)
     }
+  }
+
+  function handleCancelMove() {
+    resetPlayerMovementPlanned()
+    setIsMoving(false)
   }
 
   const terrainName = clickedTile?.terrainTypes.name
@@ -200,15 +212,38 @@ export default function PanelMapTileDetail() {
             >
               Set Camp
             </Button>
-            <Button
-              className={styles.actionButton}
-              variant='outline'
-              onClick={() => {
-                handleClick()
-              }}
-            >
-              {!isMoving ? "Move Here" : "Confirm Move"}
-            </Button>
+            {!isMoving ? (
+              <Button
+                className={styles.actionButton}
+                variant='outline'
+                onClick={() => {
+                  handleMove()
+                }}
+              >
+                Move Here
+              </Button>
+            ) : (
+              <>
+                <Button
+                  className={styles.actionButton}
+                  variant='outline'
+                  onClick={() => {
+                    handleConfirmMove()
+                  }}
+                >
+                  Confirm Move
+                </Button>
+                <Button
+                  className={styles.actionButton}
+                  variant='outline'
+                  onClick={() => {
+                    handleCancelMove()
+                  }}
+                >
+                  Cancel Move
+                </Button>
+              </>
+            )}
           </div>
         </section>
       </div>

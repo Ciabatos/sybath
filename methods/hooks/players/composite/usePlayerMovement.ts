@@ -65,7 +65,7 @@ export function usePlayerMovement() {
 
   function selectPlayerPathAndMovePlayer(params: TPlayerMovementParams) {
     const path = getPathFromPointToPoint(params)
-    setPlayerMovementPlanned(path)
+    resetPlayerMovementPlanned()
     doPlayerMovementAction(params)
 
     mutatePlayerMovement(Object.values(path))
@@ -87,11 +87,15 @@ export function usePlayerMovement() {
     }
 
     const path = getPathFromPointToPoint(params)
-    setPlayerMovementPlanned(path)
+    resetPlayerMovementPlanned()
     doPlayerMovementAction(params)
 
     mutatePlayerMovement(Object.values(path))
     return toast.success(`You are moving to destination`)
+  }
+
+  function resetPlayerMovementPlanned() {
+    setPlayerMovementPlanned({})
   }
 
   return {
@@ -99,5 +103,6 @@ export function usePlayerMovement() {
     selectPlayerPathToClickedTile,
     selectPlayerPathAndMovePlayer,
     selectPlayerPathAndMovePlayerToClickedTile,
+    resetPlayerMovementPlanned,
   }
 }
