@@ -1,12 +1,6 @@
 "use client"
-import ModalBottomCenterBar from "@/components/modals/ModalBottomCenterBar"
-import { ModalLeftCenter } from "@/components/modals/ModalLeftCenter"
-import ModalLeftTopBar from "@/components/modals/ModalLeftTopBar"
-import { ModalRightCenter } from "@/components/modals/ModalRightCenter"
-import ModalTopCenter from "@/components/modals/ModalTopCenter"
-import ModalTopCenterBar from "@/components/modals/ModalTopCenterBar"
+import { ModalHandling } from "@/components/modals/ModalHandling"
 import { useResetModalsOnRouteChange } from "@/methods/hooks/modals/useResetModalsOnRouteChange"
-import { DndMonitorProvider } from "@/providers/dnd-monitor-provider"
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 
@@ -24,13 +18,7 @@ export default function Portal() {
 
   return createPortal(
     <>
-      <DndMonitorProvider />
-      <ModalTopCenterBar />
-      <ModalTopCenter />
-      <ModalLeftTopBar />
-      <ModalRightCenter />
-      <ModalLeftCenter />
-      <ModalBottomCenterBar />
+      <ModalHandling />
     </>,
     document.body,
   )
