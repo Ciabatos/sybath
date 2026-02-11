@@ -1,5 +1,9 @@
-Dodac ESLINTA ktory poblokuje return constów w composite hooks, uzywac atomow
-zastanowic sie nad tym bo z atomow lepsza wydajnosc niz odpalanie hooka z kolei odapalnie hooka jest musowe zazwyczaj raz
+Panel graczy na tiles - mini ikonka People tam gdzie stoisz albo ikona na dole ekranu wieksza
+widoczne wszystkie osoby na tiles anonimowo - chyba ze ma sie knowledge na ich temat
+śledzenie gracza - pojawia sie na mapie jako mniejsza ikona tak jak gracz tylko mala i sie ustawiaja w rzedzie jak jest ich wiecej na 1 tiles
+max 10 graczy sledzenia ?
+last seen - knowledge
+dodac uuid do playerId table, zmiana uuid w momencie zmiany tilesa, budynku lub na reczne wywolanie gracza albo bardziej RPG po zmianie aparycji ?
 
 --pobieranie playerKnowledge
 --pobieranie playerInventory
