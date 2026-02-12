@@ -1,0 +1,15 @@
+.avatar {
+  width: 5.5rem;
+  height: 5.5rem;
+}
+
+.avatarImage {
+  object-fit: cover;
+}
+
+.avatarFallback {
+  background-color: #292524;
+  color: #c89a4a;
+  font-size: 0.875rem;
+  font-family: "Cinzel", serif;
+}
