@@ -39,3 +39,9 @@
   font-size: 0.875rem;
   font-family: "Cinzel", serif;
 }
+
+.playerSwitchButtonContainer {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+}

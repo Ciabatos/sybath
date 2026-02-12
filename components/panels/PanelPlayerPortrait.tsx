@@ -1,6 +1,5 @@
 "use client"
 
-import PanelPlayerSquadPortrait from "@/components/panels/PanelPlayerSquadPortrait"
 import PlayerSwitchButton from "@/components/players/PlayerSwitchButton"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
@@ -38,8 +37,9 @@ export default function PanelPlayerPortrait() {
           <AvatarFallback className={styles.avatarFallback}>{avatarFallback}</AvatarFallback>
         </Avatar>
       </Button>
-      <PlayerSwitchButton />
-      <PanelPlayerSquadPortrait />
+      <div className={styles.playerSwitchButtonContainer}>
+        <PlayerSwitchButton />
+      </div>
     </div>
   )
 }

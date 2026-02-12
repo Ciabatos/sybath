@@ -13,7 +13,7 @@ export default function PlayerSwitchButton() {
   }
 
   return (
-    <div>
+    <>
       <button
         className={styles.switchButton}
         aria-label='Switch hero'
@@ -22,6 +22,6 @@ export default function PlayerSwitchButton() {
         <ArrowLeftRight className={styles.icon} />
       </button>
       {open && <PlayerSwitchList />}
-    </div>
+    </>
   )
 }

@@ -8,65 +8,6 @@ import { X } from "lucide-react"
 import { useEffect, useState } from "react"
 import styles from "./styles/PanelMapTileDetail.module.css"
 
-const terrainData = {
-  Jungle: {
-    name: "Dense Forest",
-    description:
-      "A thick woodland filled with ancient trees and hidden paths. Wildlife thrives here, but danger lurks in the shadows.",
-    resources: ["Wood", "Herbs", "Game"],
-    difficulty: "Medium",
-    encounters: ["Wolves", "Bandits", "Wild Boars"],
-  },
-  Grasslands: {
-    name: "Dense Forest",
-    description:
-      "A thick woodland filled with ancient trees and hidden paths. Wildlife thrives here, but danger lurks in the shadows.",
-    resources: ["Wood", "Herbs", "Game"],
-    difficulty: "Medium",
-    encounters: ["Wolves", "Bandits", "Wild Boars"],
-  },
-  Savannah: {
-    name: "Mountain Peak",
-    description:
-      "Towering peaks covered in snow and ice. The air is thin and the paths treacherous, but valuable minerals can be found.",
-    resources: ["Iron Ore", "Stone", "Gems"],
-    difficulty: "Hard",
-    encounters: ["Mountain Trolls", "Eagles", "Frost Giants"],
-  },
-  Plains: {
-    name: "Open Plains",
-    description:
-      "Vast grasslands stretching to the horizon. Easy to traverse but offers little cover from enemies or weather.",
-    resources: ["Grain", "Livestock", "Wild Flowers"],
-    difficulty: "Easy",
-    encounters: ["Raiders", "Wild Horses", "Nomads"],
-  },
-  Desert: {
-    name: "Arid Desert",
-    description:
-      "Endless sand dunes under a scorching sun. Water is scarce and the heat can be deadly to the unprepared.",
-    resources: ["Sand", "Cactus", "Ancient Artifacts"],
-    difficulty: "Hard",
-    encounters: ["Sand Wurms", "Desert Bandits", "Scorpions"],
-  },
-  Marsh: {
-    name: "Deep Waters",
-    description:
-      "A vast body of water, whether lake, river, or sea. Rich with fish but dangerous for those who cannot swim.",
-    resources: ["Fish", "Pearls", "Seaweed"],
-    difficulty: "Medium",
-    encounters: ["Pirates", "Sea Monsters", "Sirens"],
-  },
-  Shrubland: {
-    name: "Settlement",
-    description:
-      "A small village where travelers can rest, trade, and gather information. The locals are friendly but wary of strangers.",
-    resources: ["Trade Goods", "Information", "Supplies"],
-    difficulty: "Safe",
-    encounters: ["Merchants", "Guards", "Villagers"],
-  },
-}
-
 export default function PanelMapTileDetail() {
   const { resetModalRightCenter } = useModalRightCenter()
   const { clickedTile } = useMapTileActions()
