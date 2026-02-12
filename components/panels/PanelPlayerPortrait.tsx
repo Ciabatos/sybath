@@ -1,7 +1,7 @@
 "use client"
 
 import PanelPlayerSquadPortrait from "@/components/panels/PanelPlayerSquadPortrait"
-import PlayerSwitchButton from "@/components/panels/PlayerSwitchButton"
+import PlayerSwitchButton from "@/components/players/PlayerSwitchButton"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { createImage } from "@/methods/functions/util/createImage"
