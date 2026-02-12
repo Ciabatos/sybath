@@ -20,11 +20,10 @@ export default function PanelLeftMenu() {
   }
 
   return (
-    <div>
+    <>
       <Button
         onClick={handleClickPlayerPortrait}
         className={styles.heroButton}
-        size='icon'
       >
         <PlayerPortrait />
       </Button>
@@ -35,11 +34,10 @@ export default function PanelLeftMenu() {
         <Button
           onClick={handleClickPlayerSquadPortrait}
           className={styles.squadButton}
-          size='icon'
         >
           <PlayerSquadPortrait />
         </Button>
       </div>
-    </div>
+    </>
   )
 }

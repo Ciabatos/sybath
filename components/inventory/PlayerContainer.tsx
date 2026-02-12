@@ -2,9 +2,9 @@
 
 import { InventorySlot } from "@/components/inventory/InventorySlot"
 import { usePlayerInventory } from "@/methods/hooks/inventory/composite/usePlayerInventory"
-import styles from "./styles/PanelPlayerContainer.module.css"
+import styles from "./styles/PlayerContainer.module.css"
 
-export function PanelPlayerContainer() {
+export function PlayerContainer() {
   const { combinedPlayerInventory } = usePlayerInventory()
 
   return (
