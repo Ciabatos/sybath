@@ -11,14 +11,18 @@ import styles from "./styles/PanelLeftMenu.module.css"
 export default function PanelLeftMenu() {
   const { openModalLeftTopBar } = useModalLeftTopBar()
 
-  const handleClick = () => {
+  const handleClickPlayerPortrait = () => {
     openModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerPanel)
+  }
+
+  const handleClickPlayerSquadPortrait = () => {
+    openModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerSquad)
   }
 
   return (
     <div>
       <Button
-        onClick={handleClick}
+        onClick={handleClickPlayerPortrait}
         className={styles.heroButton}
         size='icon'
       >
@@ -27,7 +31,15 @@ export default function PanelLeftMenu() {
       <div className={styles.playerSwitchButtonContainer}>
         <PlayerSwitchButton />
       </div>
-      <PanelPlayerSquadPortrait />
+      <div className={styles.squadPortraitWrapper}>
+        <Button
+          onClick={handleClickPlayerSquadPortrait}
+          className={styles.squadButton}
+          size='icon'
+        >
+          <PanelPlayerSquadPortrait />
+        </Button>
+      </div>
     </div>
   )
 }
