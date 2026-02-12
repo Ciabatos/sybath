@@ -6,9 +6,9 @@ import PlayerSwitchButton from "@/components/players/PlayerSwitchButton"
 import { Button } from "@/components/ui/button"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
-import styles from "./styles/PanelLeftMenu.module.css"
+import styles from "./styles/PanelLeftSidebarPlayerMenu.module.css"
 
-export default function PanelLeftMenu() {
+export default function PanelLeftSidebarPlayerMenu() {
   const { openModalLeftTopBar } = useModalLeftTopBar()
 
   const handleClickPlayerPortrait = () => {
