@@ -1,3 +1,6 @@
+Poprawic Panele - one renderuja componenty
+Wrappery pozycyjne Z CSS dac do parenta wtedy bede mogl reużywać component wszędzie w różnych miejscach
+
 Panel Listy Characterow - ogolny
 Panel graczy na tiles - mini ikonka People tam gdzie stoisz albo ikona na dole ekranu wieksza
 widoczne wszystkie osoby na tiles anonimowo - chyba ze ma sie knowledge na ich temat

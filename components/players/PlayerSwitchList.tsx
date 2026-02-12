@@ -4,9 +4,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { createImage } from "@/methods/functions/util/createImage"
 import { useActivePlayerSwitchProfiles } from "@/methods/hooks/players/composite/useActivePlayerSwitchProfiles"
 import { toast } from "sonner"
-import styles from "./styles/PanelPlayerSwitchList.module.css"
+import styles from "./styles/PlayerSwitchList.module.css"
 
-export default function PanelPlayerSwitchList() {
+export default function PlayerSwitchList() {
   const { activePlayerSwitchProfiles } = useActivePlayerSwitchProfiles()
   const { switchPlayer } = useActivePlayerSwitchProfiles()
   const { createPlayerPortrait } = createImage()
