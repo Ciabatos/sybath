@@ -1,8 +1,8 @@
+import { PlayerSkills } from "@/components/attributes/PlayerSkills"
 import PlayerStats from "@/components/attributes/PlayerStats"
 import { PanelPlayerAbilities } from "@/components/panels/PanelPlayerAbilities"
 import { PanelPlayerInventory } from "@/components/panels/PanelPlayerInventory"
 import { PanelPlayerKnowledge } from "@/components/panels/PanelPlayerKnowledge"
-import { PanelPlayerSkills } from "@/components/panels/PanelPlayerSkills"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
@@ -104,7 +104,7 @@ export default function PanelOtherPlayerPanel() {
               value='Skills'
               className={styles.tabsContent}
             >
-              <PanelPlayerSkills />
+              <PlayerSkills />
             </TabsContent>
 
             <TabsContent

@@ -1,0 +1,12 @@
+.skillsContainer {
+  padding: 16px;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.skillsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

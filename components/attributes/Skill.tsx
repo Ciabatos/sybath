@@ -1,7 +1,5 @@
 "use client"
-import getIcon from "@/methods/functions/icons/getIcon"
-import { usePlayerSkills } from "@/methods/hooks/attributes/composite/usePlayerSkills"
-import styles from "./styles/PanelPlayerSkills.module.css"
+import styles from "./styles/Skill.module.css"
 
 interface TSkillProps {
   icon: React.ReactNode
@@ -11,7 +9,7 @@ interface TSkillProps {
   description?: string
 }
 
-function Skill({ icon, name, value, maxValue, description }: TSkillProps) {
+export default function Skill({ icon, name, value, maxValue, description }: TSkillProps) {
   const hasMax = maxValue !== undefined
   const percentage = hasMax ? (value / maxValue) * 100 : 0
 
@@ -37,31 +35,6 @@ function Skill({ icon, name, value, maxValue, description }: TSkillProps) {
           </div>
         </div>
         <p className={styles.skillDescription}>{description}</p>
-      </div>
-    </div>
-  )
-}
-
-export function PanelPlayerSkills() {
-  const { combinedPlayerSkills } = usePlayerSkills()
-
-  return (
-    <div className={styles.skillsContainer}>
-      <p>
-        Skills slużą do pokazania jakie umiejętności posiada postać. Można je przekazywać innym postaciom ale nie są to
-        aktywne abilities
-      </p>
-      <div className={styles.skillsGrid}>
-        {combinedPlayerSkills.map((playerSkill) => (
-          <Skill
-            key={playerSkill.id}
-            icon={getIcon(playerSkill.image)}
-            name={playerSkill.name}
-            value={playerSkill.value}
-            maxValue={10}
-            description={playerSkill.description}
-          />
-        ))}
       </div>
     </div>
   )
