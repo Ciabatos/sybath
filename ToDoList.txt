@@ -145,6 +145,9 @@ Waluta(PROBLEM)
 --Podatek w walucie bazowej lub w innej walucie +15% różnica idzie do NPC (sink)
 --możliwośc niszczenia waluty
 
+Buildings
+--Caverna BoardGame - moduly
+
 stability.ai Craiyon
 https://civitai.com/
 stable diffusion XL + 1.5 + stable-diffusion-webui 1111
