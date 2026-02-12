@@ -2,9 +2,9 @@
 import Ability from "@/components/attributes/Ability"
 import getIcon from "@/methods/functions/icons/getIcon"
 import { usePlayerAbilities } from "@/methods/hooks/attributes/composite/usePlayerAbilities"
-import styles from "./styles/PanelPlayerAbilities.module.css"
+import styles from "./styles/PlayerAbilities.module.css"
 
-export function PanelPlayerAbilities() {
+export function PlayerAbilities() {
   const { combinedPlayerAbilities } = usePlayerAbilities()
 
   return (
