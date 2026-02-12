@@ -1,0 +1,144 @@
+.abilityItem {
+  display: flex;
+  gap: 16px;
+  transition: all 0.2s ease;
+  border: 2px solid #4a3426;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #2b1810 0%, #1a0f08 100%);
+  padding: 12px;
+}
+
+.abilityItem:hover {
+  transform: translateX(4px);
+  border-color: #c89a4a;
+  background: linear-gradient(135deg, #3d2415 0%, #2b1810 100%);
+}
+
+.abilityIcon {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.5),
+    0 4px 8px rgba(0, 0, 0, 0.3);
+  border: 3px solid #6b4f3a;
+  border-radius: 8px;
+  background: radial-gradient(circle, #3d2415 0%, #1a0f08 100%);
+  width: 64px;
+  min-width: 64px;
+  height: 64px;
+}
+
+.iconEmoji {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+  font-size: 32px;
+}
+
+.cooldownBadge {
+  display: flex;
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  border: 2px solid #c89a4a;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8b4513 0%, #654321 100%);
+  width: 24px;
+  height: 24px;
+  color: #e6c998;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.abilityContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.abilityHeader {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.abilityName {
+  margin: 0;
+  color: #d4a574;
+  font-weight: 600;
+  font-size: 18px;
+  font-family: "Cinzel", serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.abilityLevel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 80px;
+}
+
+.levelText {
+  color: #c89a4a;
+  font-size: 12px;
+  font-family: "Lora", serif;
+  text-align: right;
+}
+
+.levelBar {
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  border: 1px solid #4a3426;
+  border-radius: 4px;
+  background: #1a0f08;
+  width: 100%;
+  height: 8px;
+  overflow: hidden;
+}
+
+.levelProgress {
+  transition: width 0.3s ease;
+  box-shadow: 0 0 8px rgba(200, 154, 74, 0.6);
+  background: linear-gradient(90deg, #c89a4a 0%, #d4a574 50%, #e6c998 100%);
+  height: 100%;
+}
+
+.abilityDescription {
+  margin: 0;
+  color: #b8956f;
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: "Lora", serif;
+}
+
+@media (max-width: 768px) {
+  .abilityItem {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .abilityIcon {
+    width: 56px;
+    min-width: 56px;
+    height: 56px;
+  }
+
+  .iconEmoji {
+    font-size: 28px;
+  }
+
+  .abilityHeader {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .levelText {
+    text-align: left;
+  }
+}

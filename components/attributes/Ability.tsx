@@ -1,0 +1,41 @@
+"use client"
+import styles from "./styles/Ability.module.css"
+
+interface TAbilityProps {
+  icon: React.ReactNode
+  name: string
+  value: number
+  maxValue?: number
+  description?: string
+}
+
+export default function Ability({ icon, name, value, maxValue, description }: TAbilityProps) {
+  const hasMax = maxValue !== undefined
+  const percentage = hasMax ? (value / maxValue) * 100 : 0
+
+  return (
+    <div className={styles.abilityItem}>
+      <div className={styles.abilityIcon}>
+        <span className={styles.iconEmoji}>{icon}</span>
+        <div className={styles.cooldownBadge}>{`X`}</div>
+      </div>
+      <div className={styles.abilityContent}>
+        <div className={styles.abilityHeader}>
+          <h3 className={styles.abilityName}>{name}</h3>
+          <div className={styles.abilityLevel}>
+            <span className={styles.levelText}>
+              {value}/{maxValue}
+            </span>
+            <div className={styles.levelBar}>
+              <div
+                className={styles.levelProgress}
+                style={{ width: `${percentage}%` }}
+              />
+            </div>
+          </div>
+        </div>
+        <p className={styles.abilityDescription}>{description}</p>
+      </div>
+    </div>
+  )
+}
