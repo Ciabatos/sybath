@@ -1,6 +1,6 @@
 import { Book, Crown, MapPin, Scroll, Skull, Users, UserSearch } from "lucide-react"
 import type React from "react"
-import styles from "./styles/PanelPlayerKnowledge.module.css"
+import styles from "./styles/PlayerKnowledge.module.css"
 
 type KnowledgeItemProps = {
   icon: React.ReactNode
@@ -50,7 +50,7 @@ function KnowledgeCategory({ title, items }: KnowledgeCategoryProps) {
   )
 }
 
-export function PanelPlayerKnowledge() {
+export function PlayerKnowledge() {
   const locationKnowledge = [
     {
       icon: <MapPin />,
