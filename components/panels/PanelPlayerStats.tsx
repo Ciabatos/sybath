@@ -1,28 +1,10 @@
-import Stat from "@/components/attributes/Stat"
-import getIcon from "@/methods/functions/icons/getIcon"
-import { usePlayerStats } from "@/methods/hooks/attributes/composite/usePlayerStats"
+import PlayerStats from "@/components/attributes/PlayerStats"
 import styles from "./styles/PanelPlayerStats.module.css"
 
 export function PanelPlayerStats() {
-  const { combinedPlayerStats } = usePlayerStats()
-
   return (
     <div className={styles.container}>
-      <div className={styles.section}>
-        <h3 className={styles.sectionTitle}>Stats</h3>
-        <div className={styles.statsGrid}>
-          {combinedPlayerStats.map((playerStat) => (
-            <Stat
-              key={playerStat.id}
-              icon={getIcon(playerStat.image)}
-              name={playerStat.name}
-              value={playerStat.value}
-              maxValue={10}
-              description={playerStat.description}
-            />
-          ))}
-        </div>
-      </div>
+      <PlayerStats />
     </div>
   )
 }
