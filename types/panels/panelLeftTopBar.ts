@@ -4,6 +4,6 @@ import React from "react"
 export const panelLeftTopBar: Record<EPanelsLeftTopBar, React.LazyExoticComponent<React.ComponentType<any>> | null> = {
   [EPanelsLeftTopBar.Inactive]: null,
   [EPanelsLeftTopBar.PanelPlayerPanel]: React.lazy(() => import("@/components/panels/PanelPlayerPanel")),
-  [EPanelsLeftTopBar.PanelPlayerPortrait]: React.lazy(() => import("@/components/panels/PanelPlayerPortrait")),
+  [EPanelsLeftTopBar.PanelLeftMenu]: React.lazy(() => import("@/components/panels/PanelLeftMenu")),
   [EPanelsLeftTopBar.PanelPlayerSquad]: React.lazy(() => import("@/components/panels/PanelPlayerSquad")),
 }

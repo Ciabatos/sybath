@@ -63,7 +63,7 @@ export default function PanelPlayerSquad() {
   const { openModalLeftTopBar } = useModalLeftTopBar()
 
   function onClose() {
-    openModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerPortrait)
+    openModalLeftTopBar(EPanelsLeftTopBar.PanelLeftMenu)
   }
 
   function handleClickDetails() {

@@ -1,13 +1,14 @@
 "use client"
 
+import PanelPlayerSquadPortrait from "@/components/panels/PanelPlayerSquadPortrait"
 import PlayerPortrait from "@/components/players/PlayerPortrait"
 import PlayerSwitchButton from "@/components/players/PlayerSwitchButton"
 import { Button } from "@/components/ui/button"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
-import styles from "./styles/PanelPlayerPortrait.module.css"
+import styles from "./styles/PanelLeftMenu.module.css"
 
-export default function PanelPlayerPortrait() {
+export default function PanelLeftMenu() {
   const { openModalLeftTopBar } = useModalLeftTopBar()
 
   const handleClick = () => {
@@ -26,6 +27,7 @@ export default function PanelPlayerPortrait() {
       <div className={styles.playerSwitchButtonContainer}>
         <PlayerSwitchButton />
       </div>
+      <PanelPlayerSquadPortrait />
     </div>
   )
 }

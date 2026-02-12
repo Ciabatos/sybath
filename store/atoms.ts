@@ -40,7 +40,7 @@ import { atom } from "jotai"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBottomCenterBar.Inactive)
-export const modalLeftTopBarAtom = atom<EPanelsLeftTopBar>(EPanelsLeftTopBar.PanelPlayerPortrait)
+export const modalLeftTopBarAtom = atom<EPanelsLeftTopBar>(EPanelsLeftTopBar.PanelLeftMenu)
 export const modalRightCenterAtom = atom<EPanelsRightCenter>(EPanelsRightCenter.Inactive)
 export const modalTopCenterAtom = atom<EPanelsTopCenter>(EPanelsTopCenter.Inactive)
 export const modalTopCenterBarAtom = atom<EPanelsTopCenterBar>(EPanelsTopCenterBar.Inactive)
