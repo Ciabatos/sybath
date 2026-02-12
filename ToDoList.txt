@@ -1,5 +1,10 @@
+Panel Listy Characterow - ogolny
 Panel graczy na tiles - mini ikonka People tam gdzie stoisz albo ikona na dole ekranu wieksza
 widoczne wszystkie osoby na tiles anonimowo - chyba ze ma sie knowledge na ich temat
+w miescie nie mozna ich zobaczyc, dopiero jak sie wejdzie w konkretny budynek
+Podwalic pomysł od CK3 i CK2 interfejs, zwlaszcza familiy https://steamcommunity.com/sharedfiles/filedetails/?id=2838140104
+https://steamcommunity.com/sharedfiles/filedetails/?id=3276373926&searchtext=
+
 śledzenie gracza - pojawia sie na mapie jako mniejsza ikona tak jak gracz tylko mala i sie ustawiaja w rzedzie jak jest ich wiecej na 1 tiles
 max 10 graczy sledzenia ?
 last seen - knowledge
@@ -154,6 +159,7 @@ https://opengameart.org/
 https://www.spritefusion.com/editor
 https://itch.io/
 https://wareya.github.io/webtyler/
+https://steamcommunity.com/sharedfiles/filedetails/?id=756755380&searchtext=
 
 WEBGL - UNITY/PIXI/JSREACT - nie wydaje się takie trudne jak myślałem
 unityInstance.SendMessage - wysylanie danych do Unity i tam sa funkcje do przesylu do reacta

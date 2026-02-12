@@ -1,0 +1,139 @@
+.slot {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+  border: 2px solid #5a4022;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #2b1810 0%, #1a0f08 100%);
+  width: 100%; /* Szerokość 100% rodzica */
+  min-height: 80px; /* Minimalna wysokość, ale dopasowuje się do zawartości */
+}
+
+.slot:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.5),
+    0 0 12px rgba(200, 154, 74, 0.3);
+  border-color: #8b6d3a;
+  background: linear-gradient(135deg, #3d2415 0%, #2b1810 100%);
+}
+
+.slot.occupied {
+  border-color: #8b6d3a;
+  background: linear-gradient(135deg, #3d2415 0%, #2b1810 100%);
+}
+
+.slot.occupied:hover {
+  border-color: #c89a4a;
+}
+
+.slot.dragging {
+  opacity: 0.5;
+  border: 2px dashed #ffeb3b;
+  background-color: rgba(255, 255, 0, 0.1);
+}
+
+.slot.dragOver {
+  animation: pulse 0.5s infinite alternate;
+  border: 2px solid #4caf50;
+  background-color: rgba(76, 175, 80, 0.2);
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: move;
+  padding: 5px;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+
+.itemImage {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+  margin-bottom: 5px;
+  pointer-events: none;
+  font-size: 2rem;
+}
+
+.itemName {
+  max-width: 100%;
+  pointer-events: none;
+  color: #e6c998;
+  font-weight: 600;
+  font-size: 0.7rem;
+  font-family: "Cinzel", serif;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+  word-break: break-word;
+}
+
+.quantity {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  border: 1px solid #5a4022;
+  border-radius: 3px;
+  background: rgba(26, 15, 8, 0.9);
+  padding: 1px 4px;
+  pointer-events: none;
+  color: #c89a4a;
+  font-weight: bold;
+  font-size: 0.65rem;
+  font-family: "Cinzel", serif;
+}
+
+.dropHint {
+  animation: bounce 0.5s infinite alternate;
+  pointer-events: none; /* Dzięki temu nie blokuje zdarzeń myszy */
+  color: #4caf50;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+@media (max-width: 768px) {
+  .slot {
+    min-height: 60px;
+  }
+
+  .itemImage {
+    font-size: 1.5rem;
+  }
+
+  .itemName {
+    font-size: 0.6rem;
+  }
+
+  .quantity {
+    font-size: 0.55rem;
+  }
+}
+
+/* Animacje */
+@keyframes pulse {
+  from {
+    background-color: rgba(76, 175, 80, 0.2);
+  }
+  to {
+    background-color: rgba(76, 175, 80, 0.4);
+  }
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-5px);
+  }
+}

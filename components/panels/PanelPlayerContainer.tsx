@@ -1,6 +1,6 @@
 "use client"
 
-import { InventorySlot } from "@/components/panels/InventorySlot"
+import { InventorySlot } from "@/components/inventory/InventorySlot"
 import { usePlayerInventory } from "@/methods/hooks/inventory/composite/usePlayerInventory"
 import styles from "./styles/PanelPlayerContainer.module.css"
 

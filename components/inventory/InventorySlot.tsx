@@ -1,7 +1,7 @@
 import getIcon from "@/methods/functions/icons/getIcon"
 import { useDraggable, useDroppable } from "@dnd-kit/react"
 import { ReactNode, useId } from "react"
-import styles from "./styles/PanelPlayerContainer.module.css"
+import styles from "./styles/InventorySlot.module.css"
 
 export type TInventorySlot = {
   id: number
