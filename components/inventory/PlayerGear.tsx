@@ -2,9 +2,9 @@
 
 import { InventorySlot } from "@/components/inventory/InventorySlot"
 import { usePlayerGearInventory } from "@/methods/hooks/inventory/composite/usePlayerGearInventory"
-import styles from "./styles/PanelPlayerGear.module.css"
+import styles from "./styles/PlayerGear.module.css"
 
-export function PanelPlayerGear() {
+export function PlayerGear() {
   const { combinedPlayerGearInventory } = usePlayerGearInventory()
 
   const renderSlot = (inventorySlotTypeId: number, icon: string) => {
