@@ -161,3 +161,9 @@
   background-color: rgba(120, 53, 15, 0.4);
   color: #d4a574;
 }
+
+.playerSwitchButtonContainer {
+  position: absolute;
+  top: -8px;
+  right: -20px;
+}

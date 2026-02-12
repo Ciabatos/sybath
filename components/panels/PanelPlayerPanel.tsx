@@ -133,7 +133,9 @@ export default function PanelPlayerPanel() {
           </Tabs>
         </div>
       </div>
-      <PlayerSwitchButton />
+      <div className={styles.playerSwitchButtonContainer}>
+        <PlayerSwitchButton />
+      </div>
     </div>
   )
 }
