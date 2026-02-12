@@ -9,7 +9,7 @@ export default function PlayerStats() {
   const { combinedPlayerStats } = usePlayerStats()
 
   return (
-    <>
+    <div className={styles.container}>
       <div className={styles.section}>
         <h3 className={styles.sectionTitle}>Stats</h3>
         <div className={styles.statsGrid}>
@@ -25,6 +25,6 @@ export default function PlayerStats() {
           ))}
         </div>
       </div>
-    </>
+    </div>
   )
 }
