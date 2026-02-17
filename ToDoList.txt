@@ -1,4 +1,5 @@
 Dodac morza i rzeki przez rysowanie SVG, z bazy wydzielic tilesy na dwa typy, morze i lądy i robic SVG po morzu
+2 textury Jedna do wypelnienia woda a druga textura do obrysu SVG
 
 Poprawic Panele - one renderuja componenty
 Wrappery pozycyjne Z CSS dac do parenta wtedy bede mogl reużywać component wszędzie w różnych miejscach
