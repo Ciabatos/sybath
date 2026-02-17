@@ -62,6 +62,16 @@ export function pathFromPointToPoint(params: TPathFromPointToPointParams): TPlay
       cost += params.districtTypes[params.districts[`${tile.x},${tile.y}`].districtTypeId].moveCost
     }
 
+    if (tile.terrainTypeId === 8) {
+      //water
+      cost = 0
+    }
+
+    if (tile.terrainTypeId === 9) {
+      //water
+      cost = 0
+    }
+
     grid[tile.x][tile.y] = cost
 
     // koszt ruchu tiles
