@@ -1,3 +1,5 @@
+Dodac morza i rzeki przez rysowanie SVG, z bazy wydzielic tilesy na dwa typy, morze i lądy i robic SVG po morzu
+
 Poprawic Panele - one renderuja componenty
 Wrappery pozycyjne Z CSS dac do parenta wtedy bede mogl reużywać component wszędzie w różnych miejscach
 
@@ -147,6 +149,9 @@ Waluta(PROBLEM)
 --Stworzyc kantor NPC do przeliczania wagi waluty, kupowanie i wymiana walut tylko kantorem
 --Podatek w walucie bazowej lub w innej walucie +15% różnica idzie do NPC (sink)
 --możliwośc niszczenia waluty
+
+Urzędnicy
+--Raporty, np dluznicy itp maja ten knowledge, chodzi mi o to, że samemu jeden gracz nie jest w stanie wszystkim zarządzać. Dlatego każde stanowisko będzie miało specjalne umiejętności
 
 Buildings
 --Caverna BoardGame - moduly
