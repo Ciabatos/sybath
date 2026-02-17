@@ -101,8 +101,8 @@ export default function RegionLayer() {
         <filter id='wavy'>
           <feTurbulence
             type='fractalNoise'
-            baseFrequency='0.05'
-            numOctaves='2'
+            baseFrequency='0.3'
+            numOctaves='6'
             result='noise'
           />
           <feDisplacementMap
