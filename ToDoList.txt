@@ -47,11 +47,13 @@ transport
   Mozna sprzedawac ludzi AI
   Nie trzeba wyeksplorowac regionu do 100%, wystarczy hex na ktorym jest tribe
   Sluzy do namnozenia ludzi, zachecenie do exploracji regionu, budowaniu najemnikow i stylu gry barbarzyncow pladrowania
+  Ilość ludzi zależy od FREE LAND
 --Wioska
   decyduje sie na kingdome istniejacy lub zaklada nowy 
   ma juz normalny targ
   Ludzie AI posiadaja monete kingdoma
   Ludzie AI automatycznie obsiadaja prace od najwyzej platynch do najmniej zgodnie ze statusem spolecznym
+  Prywatna ekonomia wioski wykupuje ziemie, żeby sie budować dla ludzi FREE LAND też pobieraja
 --Miasto
 
 Handel
