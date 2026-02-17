@@ -20,7 +20,7 @@ export type TMapTile = {
   playerPosition?: TPlayerPosition
 }
 
-export default function LayerPlayerMovement(props: TMapTile) {
+export default function TileLayerPlayerMovement(props: TMapTile) {
   const playerMovement = useAtomValue(playerMovementAtom)
 
   const layerData = playerMovement[`${props.mapTiles.x},${props.mapTiles.y}`]

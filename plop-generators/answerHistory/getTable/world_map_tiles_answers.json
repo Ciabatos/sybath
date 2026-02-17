@@ -65,6 +65,12 @@
       "camelName": "landscapeTypeId",
       "tsType": "number",
       "optional": "?"
+    },
+    {
+      "name": "region_id",
+      "camelName": "regionId",
+      "tsType": "number",
+      "optional": "?"
     }
   ],
   "indexMethodParams": "[\"x\", \"y\"]",
@@ -95,8 +101,5 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "fetcherName": "fetchWorldMapTiles",
-  "fetcherNameByKey": "fetchWorldMapTilesByKey",
-  "selectedGenerators": [
-    "getTable"
-  ]
+  "fetcherNameByKey": "fetchWorldMapTilesByKey"
 }

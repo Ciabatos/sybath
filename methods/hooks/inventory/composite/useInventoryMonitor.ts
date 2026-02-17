@@ -1,6 +1,6 @@
 "use client"
 
-import { TInventorySlot } from "@/components/panels/InventorySlot"
+import { TInventorySlot } from "@/components/inventory/InventorySlot"
 import { doMoveOrSwapItemAction } from "@/methods/actions/inventory/doMoveOrSwapItemAction"
 import { useMutatePlayerGearInventory } from "@/methods/hooks/inventory/core/useMutatePlayerGearInventory"
 import { useMutatePlayerInventory } from "@/methods/hooks/inventory/core/useMutatePlayerInventory"

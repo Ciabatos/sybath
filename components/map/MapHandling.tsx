@@ -7,6 +7,16 @@ import { useMapHandlingData } from "@/methods/hooks/world/composite/useMapHandli
 export default function MapHandling() {
   const { combinedMap } = useMapHandlingData()
   usePlayerMovement()
+
+  const regionTiles = combinedMap
+    .filter((t) => t.mapTiles.regionId === 1)
+    .map((t) => ({
+      x: t.mapTiles.x - 1,
+      y: t.mapTiles.y - 1,
+    }))
+
+  console.log(regionTiles)
+
   return (
     <>
       {combinedMap.map(({ key, ...combinedMapProps }) => (

@@ -26,6 +26,7 @@ export function useMutateWorldMapTiles() {
       y: ``,
       terrainTypeId: ``,
       landscapeTypeId: ``,
+      regionId: ``,
     }
 
     //MANUAL CODE - END

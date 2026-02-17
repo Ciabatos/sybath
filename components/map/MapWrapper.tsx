@@ -1,6 +1,7 @@
 "use client"
 
 import MapHandling from "@/components/map/MapHandling"
+import RegionLayer from "@/components/map/layers/mapLayers/RegionLayer"
 import { useMapHandlingData } from "@/methods/hooks/world/composite/useMapHandlingData"
 import { useRef, useState } from "react"
 import type { ReactZoomPanPinchContentRef } from "react-zoom-pan-pinch"
@@ -61,6 +62,7 @@ export default function MapWrapper() {
               className={style.Tiles}
             >
               <MapHandling />
+              <RegionLayer />
             </div>
           </TransformComponent>
         </TransformWrapper>

@@ -30,6 +30,7 @@ export function useMutateWorldMapTiles(params: TWorldMapTilesParams) {
       y: ``,
       terrainTypeId: ``,
       landscapeTypeId: ``,
+      regionId: ``,
     }
 
     //MANUAL CODE - END
