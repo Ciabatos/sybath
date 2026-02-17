@@ -157,7 +157,7 @@ Urzędnicy
 
 Buildings
 --Caverna BoardGame - moduly
---Drogi - wktorowe jak w EU5 ?
+--Drogi - wktorowe jak w EU5 ? czy Jak w civ 4 ? Obstawiam jak w civ 4 są ładne i może być ich dużo
 
 stability.ai Craiyon
 https://civitai.com/
