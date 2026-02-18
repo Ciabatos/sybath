@@ -1,4 +1,15 @@
 {
+  "promptAnswers": {
+    "schema": "world",
+    "method": "get_player_position",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "x",
+      "y"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": false
+  },
   "schema": "world",
   "method": "get_player_position",
   "methodCamelName": "playerPosition",
@@ -67,8 +78,5 @@
   "apiPath": "app/api/world/rpc/get-player-position/[mapId]/[playerId]/route.ts",
   "apiPathParams": "/api/world/rpc/get-player-position/${params.mapId}/${params.playerId}",
   "generateMutation": true,
-  "mutationMergeOldData": false,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ]
+  "mutationMergeOldData": false
 }
