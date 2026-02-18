@@ -221,7 +221,7 @@ export default function getTable(plop) {
       const promptAnswers = {
         schema,
         table,
-        usePrevious,
+        usePrevious: false,
         selectedColumnsIndex,
         paramsColumns,
         generateMutation,

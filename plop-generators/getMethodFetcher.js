@@ -181,7 +181,7 @@ export default function getMethodFetcher(plop) {
       const promptAnswers = {
         schema,
         method,
-        usePrevious,
+        usePrevious: false,
         selectedColumnsIndex,
         generateMutation,
         mutationMergeOldData,

@@ -94,7 +94,7 @@ export default function getMethodAction(plop) {
       const promptAnswers = {
         schema,
         method,
-        usePrevious,
+        usePrevious: false,
       }
 
       console.log({
