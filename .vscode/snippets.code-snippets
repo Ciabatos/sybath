@@ -410,5 +410,21 @@
       "const mapTilesMapRegions = useAtomValue(mapTilesMapRegionsAtom)"
     ],
     "description": "Destructuring useWorldMapTilesMapRegionsByKey hook"
+  },  
+  "Destructure useKnownPlayersPositions": {
+    "prefix": "hook_world_core_useKnownPlayersPositions",
+    "body": [
+      "useFetchKnownPlayersPositions({ mapId, playerId })",
+      "const knownPlayersPositions = useAtomValue(knownPlayersPositionsAtom)"
+    ],
+    "description": "Destructuring useKnownPlayersPositions hook"
+  },  
+  "Destructure usePlayersOnTheSameTile": {
+    "prefix": "hook_world_core_usePlayersOnTheSameTile",
+    "body": [
+      "useFetchPlayersOnTheSameTile({ mapId, playerId })",
+      "const playersOnTheSameTile = useAtomValue(playersOnTheSameTileAtom)"
+    ],
+    "description": "Destructuring usePlayersOnTheSameTile hook"
   },//Automatic Snippets
 }

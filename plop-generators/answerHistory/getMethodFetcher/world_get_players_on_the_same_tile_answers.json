@@ -1,0 +1,95 @@
+{
+  "promptAnswers": {
+    "schema": "world",
+    "method": "get_players_on_the_same_tile",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "otherPlayerId"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "world",
+  "method": "get_players_on_the_same_tile",
+  "methodCamelName": "playersOnTheSameTile",
+  "methodPascalName": "PlayersOnTheSameTile",
+  "methodKebabName": "get-players-on-the-same-tile",
+  "methodName": "getPlayersOnTheSameTile",
+  "methodTypeName": "TPlayersOnTheSameTile",
+  "methodParamsTypeName": "TPlayersOnTheSameTileParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_map_id",
+      "camelName": "mapId",
+      "tsType": "number"
+    },
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "other_player_id",
+      "camelName": "otherPlayerId",
+      "pascalName": "OtherPlayerId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "pascalName": "Name",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "second_name",
+      "camelName": "secondName",
+      "pascalName": "SecondName",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "nickname",
+      "camelName": "nickname",
+      "pascalName": "Nickname",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "image_map",
+      "camelName": "imageMap",
+      "pascalName": "ImageMap",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "image_portrait",
+      "camelName": "imagePortrait",
+      "pascalName": "ImagePortrait",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"otherPlayerId\"]",
+  "indexParamsColumns": "mapId, playerId",
+  "indexTypeMethodName": "OtherPlayerId",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TPlayersOnTheSameTileRecordByOtherPlayerId",
+  "indexColumns": [
+    {
+      "name": "other_player_id",
+      "camelName": "otherPlayerId",
+      "pascalName": "OtherPlayerId",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1, $2",
+  "apiPath": "app/api/world/rpc/get-players-on-the-same-tile/[mapId]/[playerId]/route.ts",
+  "apiPathParams": "/api/world/rpc/get-players-on-the-same-tile/${params.mapId}/${params.playerId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true
+}
