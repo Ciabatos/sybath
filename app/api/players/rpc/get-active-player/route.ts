@@ -18,7 +18,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
     const { record, etag, cacheHit, etagMatched } = await fetchActivePlayerService(
       { userId: sessionUserId },
-      { clientEtag },
+      { clientEtag, forceFresh: true },
     )
 
     if (cacheHit || etagMatched) {
