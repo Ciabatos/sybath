@@ -65,12 +65,6 @@
       "camelName": "landscapeTypeId",
       "tsType": "number",
       "optional": "?"
-    },
-    {
-      "name": "region_id",
-      "camelName": "regionId",
-      "tsType": "number",
-      "optional": "?"
     }
   ],
   "indexMethodParams": "[\"x\", \"y\"]",

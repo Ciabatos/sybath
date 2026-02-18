@@ -14,7 +14,6 @@ export type TWorldMapTiles = {
   y: number
   terrainTypeId: number
   landscapeTypeId?: number
-  regionId?: number
 }
 
 export type TWorldMapTilesRecordByXY = Record<string, TWorldMapTiles>
