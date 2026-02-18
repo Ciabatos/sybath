@@ -394,5 +394,21 @@
       "const playerGearInventory = useAtomValue(playerGearInventoryAtom)"
     ],
     "description": "Destructuring usePlayerGearInventory hook"
-  }, //Automatic Snippets
+  }, 
+  "Destructure useWorldMapTilesMapRegions": {
+    "prefix": "hook_world_core_useWorldMapTilesMapRegions",
+    "body": [
+      "useFetchWorldMapTilesMapRegions()",
+      "const mapTilesMapRegions = useAtomValue(mapTilesMapRegionsAtom)"
+    ],
+    "description": "Destructuring useWorldMapTilesMapRegions hook"
+  },
+  "Destructure useWorldMapTilesMapRegionsByKey": {
+    "prefix": "hook_world_core_useWorldMapTilesMapRegionsByKey",
+    "body": [
+      "useFetchWorldMapTilesMapRegionsByKey({ mapId })",
+      "const mapTilesMapRegions = useAtomValue(mapTilesMapRegionsAtom)"
+    ],
+    "description": "Destructuring useWorldMapTilesMapRegionsByKey hook"
+  },//Automatic Snippets
 }

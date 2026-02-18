@@ -37,6 +37,7 @@ import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { EPanelsTopCenterBar } from "@/types/enumeration/EPanelsTopCenterBar"
 import { atom } from "jotai"
+import { TWorldMapTilesMapRegionsRecordByRegionId } from "@/db/postgresMainDatabase/schemas/world/mapTilesMapRegions"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBottomCenterBar.Inactive)
@@ -58,6 +59,7 @@ export const playerMovementPlannedAtom = atom<TPlayerMovementRecordByXY>({})
 export const playerMapTilesGuardAreaAtom = atom<TAreaRecordByXY>({})
 
 //Tables
+export const mapTilesMapRegionsAtom = atom<TWorldMapTilesMapRegionsRecordByRegionId>({})
 export const inventorySlotTypesAtom = atom<TInventoryInventorySlotTypesRecordById>({})
 export const itemsAtom = atom<TItemsItemsRecordById>({})
 export const districtsAtom = atom<TDistrictsDistrictsRecordByMapTileXMapTileY>({})
