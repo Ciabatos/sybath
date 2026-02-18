@@ -49,6 +49,7 @@ export default function getMethodFetcher(plop) {
       const historyDir = path.resolve(process.cwd(), "plop-generators/answerHistory/getMethodFetcher")
       if (!fs.existsSync(historyDir)) fs.mkdirSync(historyDir, { recursive: true })
       const historyFile = path.join(historyDir, `${schema}_${method}_answers.json`)
+      let previousAnswers = null
 
       if (fs.existsSync(historyFile)) {
         const { usePrevious } = await inquirer.prompt([
@@ -63,8 +64,9 @@ export default function getMethodFetcher(plop) {
           },
         ])
 
+        previousAnswers = JSON.parse(fs.readFileSync(historyFile, "utf-8"))
+
         if (usePrevious) {
-          const previousAnswers = JSON.parse(fs.readFileSync(historyFile, "utf-8"))
           console.log("Wczytano poprzednie ustawienia:", previousAnswers)
           return previousAnswers
         }
@@ -103,6 +105,7 @@ export default function getMethodFetcher(plop) {
           type: "checkbox",
           name: "selectedColumnsIndex",
           message: "Wybierz kolumny dla indexu do szybkiego wyszukiwania krotki po stronie Aplikacji:",
+          default: previousAnswers?.promptAnswers?.selectedColumnsIndex ?? null,
           choices: resultColumns.map((f) => ({
             name: `${f.camelName} (${f.type})`,
             value: f.camelName,
@@ -152,6 +155,7 @@ export default function getMethodFetcher(plop) {
           type: "list",
           name: "generateMutation",
           message: "Czy chcesz wygenerować także hook useMutate ? Służy do szybkiego odświeżania UI po użyciu akcji",
+          default: previousAnswers?.promptAnswers?.generateMutation ?? null,
           choices: [
             { name: "Nie", value: false },
             { name: "Tak", value: true },
@@ -165,6 +169,7 @@ export default function getMethodFetcher(plop) {
           name: "mutationMergeOldData",
           message:
             "Czy zmergować stare dane z atomu do nowych danych przy użyciu Mutate ? (pytanie pomocnicze : Czy mój optimistic update dotyczy tylko części istniejących danych, które muszę scalić z obecnym cache, zamiast zastępować cały stan?)",
+          default: previousAnswers?.promptAnswers?.mutationMergeOldData ?? null,
           choices: [
             { name: "Nie", value: false },
             { name: "Tak", value: true },
@@ -176,7 +181,7 @@ export default function getMethodFetcher(plop) {
       const promptAnswers = {
         schema,
         method,
-        usePrevious: false,
+        usePrevious,
         selectedColumnsIndex,
         generateMutation,
         mutationMergeOldData,

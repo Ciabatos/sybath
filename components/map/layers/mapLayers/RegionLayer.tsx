@@ -59,22 +59,22 @@ function orderEdgesToPolygon(edges: Edge[]) {
 export default function RegionLayer() {
   const { combinedMap } = useMapHandlingData()
 
-  // Grupowanie kafelków po regionId
-  const tilesByRegion = combinedMap.reduce(
-    (acc, t) => {
-      const id = t.mapTiles.regionId
-      if (id && id > 0) {
-        if (!acc[id]) acc[id] = []
-        acc[id].push({
-          x: t.mapTiles.x - 1,
-          y: t.mapTiles.y - 1,
-          // type: t.mapTiles.region_type, // zakładam, że masz region_type w mapTiles
-        })
+  const tilesByRegion: Record<number, { x: number; y: number; type?: string }[]> = {}
+
+  combinedMap.forEach((tile) => {
+    const id = tile.mapTiles.regionId
+
+    if (id && id > 0) {
+      if (!tilesByRegion[id]) {
+        tilesByRegion[id] = []
       }
-      return acc
-    },
-    {} as Record<number, { x: number; y: number; type?: string }[]>,
-  )
+
+      tilesByRegion[id].push({
+        x: tile.mapTiles.x - 1,
+        y: tile.mapTiles.y - 1,
+      })
+    }
+  })
 
   if (!Object.keys(tilesByRegion).length) return null
 

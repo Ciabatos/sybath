@@ -42,6 +42,7 @@ export default function getMethodAction(plop) {
       const historyDir = path.resolve(process.cwd(), "plop-generators/answerHistory/getMethodAction")
       if (!fs.existsSync(historyDir)) fs.mkdirSync(historyDir, { recursive: true })
       const historyFile = path.join(historyDir, `${schema}_${method}_answers.json`)
+      let previousAnswers = null
 
       if (fs.existsSync(historyFile)) {
         const { usePrevious } = await inquirer.prompt([
@@ -56,8 +57,9 @@ export default function getMethodAction(plop) {
           },
         ])
 
+        previousAnswers = JSON.parse(fs.readFileSync(historyFile, "utf-8"))
+
         if (usePrevious) {
-          const previousAnswers = JSON.parse(fs.readFileSync(historyFile, "utf-8"))
           console.log("Wczytano poprzednie ustawienia:", previousAnswers)
           return previousAnswers
         }
@@ -92,7 +94,7 @@ export default function getMethodAction(plop) {
       const promptAnswers = {
         schema,
         method,
-        usePrevious: false,
+        usePrevious,
       }
 
       console.log({
