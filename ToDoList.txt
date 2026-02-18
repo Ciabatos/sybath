@@ -1,3 +1,6 @@
+useVirtualizer 
+@tanstack/react-virtual
+
 Dodac morza i rzeki przez rysowanie SVG, z bazy wydzielic tilesy na dwa typy, morze i lądy i robic SVG po morzu
 2 textury Jedna do wypelnienia woda a druga textura do obrysu SVG
 
