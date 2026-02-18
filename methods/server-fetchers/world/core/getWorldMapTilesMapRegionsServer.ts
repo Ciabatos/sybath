@@ -3,13 +3,13 @@
 
 import type {
   TWorldMapTilesMapRegions,
-  TWorldMapTilesMapRegionsRecordByRegionId,
+  TWorldMapTilesMapRegionsRecordByMapTileXMapTileY,
 } from "@/db/postgresMainDatabase/schemas/world/mapTilesMapRegions"
 import { fetchWorldMapTilesMapRegionsService } from "@/methods/services/world/fetchWorldMapTilesMapRegionsService"
 
 type TResult = {
   raw: TWorldMapTilesMapRegions[]
-  byKey: TWorldMapTilesMapRegionsRecordByRegionId
+  byKey: TWorldMapTilesMapRegionsRecordByMapTileXMapTileY
   apiPath: string
   atomName: string
 }

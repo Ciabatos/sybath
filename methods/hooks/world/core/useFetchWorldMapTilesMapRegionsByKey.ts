@@ -2,7 +2,7 @@
 
 "use client"
 import {
-  TWorldMapTilesMapRegionsRecordByRegionId,
+  TWorldMapTilesMapRegionsRecordByMapTileXMapTileY,
   TWorldMapTilesMapRegions,
   TWorldMapTilesMapRegionsParams,
 } from "@/db/postgresMainDatabase/schemas/world/mapTilesMapRegions"
@@ -21,7 +21,10 @@ export function useFetchWorldMapTilesMapRegionsByKey(params: TWorldMapTilesMapRe
 
   useEffect(() => {
     if (data) {
-      const mapTilesMapRegions = arrayToObjectKey(["regionId"], data) as TWorldMapTilesMapRegionsRecordByRegionId
+      const mapTilesMapRegions = arrayToObjectKey(
+        ["mapTileX", "mapTileY"],
+        data,
+      ) as TWorldMapTilesMapRegionsRecordByMapTileXMapTileY
       setWorldMapTilesMapRegions(mapTilesMapRegions)
     }
   }, [data, setWorldMapTilesMapRegions])

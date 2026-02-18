@@ -3,7 +3,7 @@
 
 import { useSWRConfig } from "swr"
 import {
-  TWorldMapTilesMapRegionsRecordByRegionId,
+  TWorldMapTilesMapRegionsRecordByMapTileXMapTileY,
   TWorldMapTilesMapRegionsParams,
   TWorldMapTilesMapRegions,
 } from "@/db/postgresMainDatabase/schemas/world/mapTilesMapRegions"
@@ -38,9 +38,12 @@ export function useMutateWorldMapTilesMapRegions(params: TWorldMapTilesMapRegion
       ...val,
     }))
 
-    const newObj = arrayToObjectKey(["regionId"], dataWithDefaults) as TWorldMapTilesMapRegionsRecordByRegionId
+    const newObj = arrayToObjectKey(
+      ["mapTileX", "mapTileY"],
+      dataWithDefaults,
+    ) as TWorldMapTilesMapRegionsRecordByMapTileXMapTileY
 
-    const optimisticDataMergeWithOldData: TWorldMapTilesMapRegionsRecordByRegionId = {
+    const optimisticDataMergeWithOldData: TWorldMapTilesMapRegionsRecordByMapTileXMapTileY = {
       ...mapTilesMapRegions,
       ...newObj,
     }

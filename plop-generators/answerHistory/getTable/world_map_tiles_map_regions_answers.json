@@ -4,7 +4,8 @@
     "table": "map_tiles_map_regions",
     "usePrevious": false,
     "selectedColumnsIndex": [
-      "region_id"
+      "map_tile_x",
+      "map_tile_y"
     ],
     "paramsColumns": [
       "map_id"
@@ -37,8 +38,7 @@
       "name": "region_id",
       "camelName": "regionId",
       "tsType": "number",
-      "optional": "",
-      "pascalName": "RegionId"
+      "optional": ""
     },
     {
       "name": "map_id",
@@ -50,27 +50,36 @@
       "name": "map_tile_x",
       "camelName": "mapTileX",
       "tsType": "number",
-      "optional": ""
+      "optional": "",
+      "pascalName": "MapTileX"
     },
     {
       "name": "map_tile_y",
       "camelName": "mapTileY",
       "tsType": "number",
-      "optional": ""
+      "optional": "",
+      "pascalName": "MapTileY"
     }
   ],
-  "indexMethodParams": "[\"regionId\"]",
+  "indexMethodParams": "[\"mapTileX\", \"mapTileY\"]",
   "indexParamsColumns": "mapId",
-  "indexTypeMethodName": "RegionId",
+  "indexTypeMethodName": "MapTileXMapTileY",
   "indexMethodName": "arrayToObjectKey",
-  "indexTypeName": "TWorldMapTilesMapRegionsRecordByRegionId",
+  "indexTypeName": "TWorldMapTilesMapRegionsRecordByMapTileXMapTileY",
   "indexColumns": [
     {
-      "name": "region_id",
-      "camelName": "regionId",
+      "name": "map_tile_x",
+      "camelName": "mapTileX",
       "tsType": "number",
       "optional": "",
-      "pascalName": "RegionId"
+      "pascalName": "MapTileX"
+    },
+    {
+      "name": "map_tile_y",
+      "camelName": "mapTileY",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "MapTileY"
     }
   ],
   "apiPath": "app/api/world/map-tiles-map-regions/route.ts",

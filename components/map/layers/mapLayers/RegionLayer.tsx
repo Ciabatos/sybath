@@ -1,6 +1,7 @@
 "use client"
 
-import { useMapHandlingData } from "@/methods/hooks/world/composite/useMapHandlingData"
+import { TWorldMapTilesMapRegions } from "@/db/postgresMainDatabase/schemas/world/mapTilesMapRegions"
+import { useRegionLayerHandlingData } from "@/methods/hooks/world/composite/useRegionLayerHandlingData"
 import style from "./styles/RegionLayer.module.css"
 
 type Point = { x: number; y: number }
@@ -8,7 +9,7 @@ type Edge = { a: Point; b: Point }
 
 const TILE_SIZE = 64
 
-function buildRegionOutline(tiles: { x: number; y: number }[], tileSize: number) {
+function buildRegionOutline(tiles: TWorldMapTilesMapRegions[], tileSize: number) {
   const edges = new Map<string, Edge>()
 
   function addEdge(a: Point, b: Point) {
@@ -19,8 +20,8 @@ function buildRegionOutline(tiles: { x: number; y: number }[], tileSize: number)
   }
 
   for (const t of tiles) {
-    const x = t.x * tileSize
-    const y = t.y * tileSize
+    const x = t.mapTileX * tileSize
+    const y = t.mapTileY * tileSize
     const s = tileSize
 
     const p1 = { x, y }
@@ -57,23 +58,24 @@ function orderEdgesToPolygon(edges: Edge[]) {
 }
 
 export default function RegionLayer() {
-  const { combinedMap } = useMapHandlingData()
+  const { mapTilesMapRegions } = useRegionLayerHandlingData()
 
-  const tilesByRegion: Record<number, { x: number; y: number; type?: string }[]> = {}
+  const tilesByRegion: Record<number, TWorldMapTilesMapRegions[]> = {}
 
-  combinedMap.forEach((tile) => {
-    const id = tile.mapTiles.regionId
+  Object.values(mapTilesMapRegions).forEach((tile) => {
+    const id = tile.regionId
 
-    if (id && id > 0) {
-      if (!tilesByRegion[id]) {
-        tilesByRegion[id] = []
-      }
+    if (!id || id <= 0) return
 
-      tilesByRegion[id].push({
-        x: tile.mapTiles.x - 1,
-        y: tile.mapTiles.y - 1,
-      })
+    if (!tilesByRegion[id]) {
+      tilesByRegion[id] = []
     }
+
+    tilesByRegion[id].push({
+      ...tile,
+      mapTileX: tile.mapTileX - 1,
+      mapTileY: tile.mapTileY - 1,
+    })
   })
 
   if (!Object.keys(tilesByRegion).length) return null
@@ -115,7 +117,6 @@ export default function RegionLayer() {
 
       {Object.entries(tilesByRegion).map(([regionIdStr, tiles]) => {
         const regionId = Number(regionIdStr)
-        if (!tiles.length) return null
 
         const edges = buildRegionOutline(tiles, TILE_SIZE)
         const polygon = orderEdgesToPolygon(edges)
@@ -134,10 +135,11 @@ export default function RegionLayer() {
             <polygon
               points={points}
               fill='none'
-              stroke='url(#beachPattern)'
-              strokeWidth={5}
+              // stroke='url(#beachPattern)'
+              stroke='white'
+              strokeWidth={2}
               strokeLinejoin='round'
-              filter='url(#wavy)'
+              // filter='url(#wavy)'
             />
 
             {/* Fill regionu */}

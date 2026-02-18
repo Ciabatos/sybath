@@ -2,7 +2,7 @@
 
 import type {
   TWorldMapTilesMapRegions,
-  TWorldMapTilesMapRegionsRecordByRegionId,
+  TWorldMapTilesMapRegionsRecordByMapTileXMapTileY,
   TWorldMapTilesMapRegionsParams,
 } from "@/db/postgresMainDatabase/schemas/world/mapTilesMapRegions"
 import { getWorldMapTilesMapRegionsByKey } from "@/db/postgresMainDatabase/schemas/world/mapTilesMapRegions"
@@ -12,7 +12,7 @@ import crypto from "crypto"
 
 type TCacheRecord = {
   raw: TWorldMapTilesMapRegions[]
-  byKey: TWorldMapTilesMapRegionsRecordByRegionId
+  byKey: TWorldMapTilesMapRegionsRecordByMapTileXMapTileY
   etag: string
 }
 
@@ -64,7 +64,7 @@ export async function fetchWorldMapTilesMapRegionsByKeyService(
     }
   }
 
-  const byKey = arrayToObjectKey(["regionId"], raw) as TWorldMapTilesMapRegionsRecordByRegionId
+  const byKey = arrayToObjectKey(["mapTileX", "mapTileY"], raw) as TWorldMapTilesMapRegionsRecordByMapTileXMapTileY
 
   const record: TCacheRecord = {
     raw,

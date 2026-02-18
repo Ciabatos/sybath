@@ -15,7 +15,7 @@ export type TWorldMapTilesMapRegions = {
   mapTileY: number
 }
 
-export type TWorldMapTilesMapRegionsRecordByRegionId = Record<string, TWorldMapTilesMapRegions>
+export type TWorldMapTilesMapRegionsRecordByMapTileXMapTileY = Record<string, TWorldMapTilesMapRegions>
 
 export async function getWorldMapTilesMapRegions() {
   try {
