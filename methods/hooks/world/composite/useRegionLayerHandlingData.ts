@@ -5,7 +5,7 @@ import { useAtomValue } from "jotai"
 export function useRegionLayerHandlingData() {
   useFetchWorldMapTilesMapRegions()
   const mapTilesMapRegions = useAtomValue(mapTilesMapRegionsAtom)
-
+  //rozwlaic na rozne regiony a nie jeden
   return {
     mapTilesMapRegions,
   }
