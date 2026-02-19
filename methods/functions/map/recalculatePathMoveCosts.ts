@@ -22,8 +22,17 @@ export function recalculatePathMoveCosts(params: TPathFromPointToPointParams): T
   const pathArray = Object.values(params.path)
   const result: TPlayerMovement[] = []
 
+  let blocked = false
+
   for (const step of pathArray) {
     let moveCost = calculateTileMoveCost(step.x, step.y, params)
+
+    if (blocked) {
+      moveCost = 9999999999
+    } else if (moveCost === 0) {
+      blocked = true
+      moveCost = 9999999999
+    }
 
     result.push({
       order: step.order,
