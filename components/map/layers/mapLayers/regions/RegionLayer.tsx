@@ -2,14 +2,14 @@
 
 import { TKnownMapRegion } from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
 import { buildRegionOutline, orderEdgesToPolygon } from "@/methods/functions/map/layers/buildRegions"
-import { useRegionLayerHandlingData } from "@/methods/hooks/world/composite/useRegionLayerHandlingData"
+import { useRegionLayerProvince } from "@/methods/hooks/world/composite/useRegionLayerProvince"
 import style from "./styles/RegionLayer.module.css"
 
 const TILE_SIZE = 64
 
 export default function RegionLayer() {
   //zamienic na provincesRegion
-  const { knownMapRegion } = useRegionLayerHandlingData()
+  const { knownMapRegion } = useRegionLayerProvince()
 
   const tilesByRegion: Record<number, TKnownMapRegion[]> = {}
 
@@ -88,7 +88,7 @@ export default function RegionLayer() {
               fill='none'
               // stroke='url(#beachPattern)'
               stroke='white'
-              strokeWidth={2}
+              strokeWidth={5}
               strokeLinejoin='round'
               // filter='url(#wavy)'
             />

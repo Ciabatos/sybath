@@ -5,7 +5,7 @@ import { knownMapRegionAtom } from "@/store/atoms"
 
 import { useAtomValue } from "jotai"
 
-export function useRegionLayerHandlingData() {
+export function useRegionLayerProvince() {
   const { playerId } = usePlayerId()
   const { mapId } = useMapId()
   const regionType = 1
