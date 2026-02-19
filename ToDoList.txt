@@ -189,8 +189,9 @@ select * from pg_listening_channels();
 https://www.pedroalonso.net/blog/postgres-listen-notify-real-time/
 Triggery na bazie wysylaja NOTIFY
 Nodejs ma LISTEN przez biblioteke do postgresa
-Po odebraniu listen wysyla Websocket
-Odbiera go na clientSide Websocket provider globalny
+Po odebraniu listen wysyla Websocket / SSE lepszy
+Odbiera go na clientSide Websocket globalny provider per USERID ktory nasluchuje i rozprzestrzenia sseHub.emit ktory wysyla i sseHub.on w swoich hookach ktore nasluchuja emita,
+    tak zeby tylko interesowaly go rzeczy na ktore obecnie hooki ma odpalone 
 Przestaje w Hooku SWR robic pooling po 3 sekundy
 Robie Websocket listenery z globalnego clientSide providera websocketow, jak przyjdzie powiadomienie to robie mutateHooka i tyle 
 
