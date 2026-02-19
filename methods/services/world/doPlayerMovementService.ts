@@ -2,19 +2,21 @@
 "use server"
 
 import { TDoPlayerMovementParams, doPlayerMovement } from "@/db/postgresMainDatabase/schemas/world/doPlayerMovement"
-import { pathFromPointToPoint } from "@/methods/functions/map/pathFromPointToPoint"
+import { TPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
+import { recalculatePathMoveCosts } from "@/methods/functions/map/recalculatePathMoveCosts"
 import { getCitiesCitiesByKeyServer } from "@/methods/server-fetchers/cities/core/getCitiesCitiesByKeyServer"
 import { getDistrictsDistrictsByKeyServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictsByKeyServer"
 import { getDistrictsDistrictTypesServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictTypesServer"
 import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
-import { getKnownMapTilesServer } from "@/methods/server-fetchers/world/core/getKnownMapTilesServer"
 import { getPlayerMapServer } from "@/methods/server-fetchers/world/core/getPlayerMapServer"
 import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
+import { getWorldMapTilesByKeyServer } from "@/methods/server-fetchers/world/core/getWorldMapTilesByKeyServer"
 import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
 
 //MANUAL CODE - START
 
 export type TDoPlayerMovementServiceParams = {
+  path: TPlayerMovementRecordByXY
   sessionUserId: number
   playerId: number
   startX: number
@@ -43,7 +45,7 @@ export async function doPlayerMovementService(params: TDoPlayerMovementServicePa
     const mapId = (await getPlayerMapServer({ playerId })).raw[0].mapId
 
     const [mapTiles, terrainTypes, landscapeTypes, cities, districts, districtTypes] = await Promise.all([
-      getKnownMapTilesServer({ mapId, playerId }),
+      getWorldMapTilesByKeyServer({ mapId }),
       getWorldTerrainTypesServer(),
       getWorldLandscapeTypesServer(),
       getCitiesCitiesByKeyServer({ mapId }),
@@ -55,11 +57,8 @@ export async function doPlayerMovementService(params: TDoPlayerMovementServicePa
       return
     }
 
-    const path = pathFromPointToPoint({
-      startX: params.startX,
-      startY: params.startY,
-      endX: params.endX,
-      endY: params.endY,
+    const path = recalculatePathMoveCosts({
+      path: params.path,
       mapTiles: mapTiles.byKey,
       terrainTypes: terrainTypes.byKey,
       landscapeTypes: landscapeTypes.byKey,

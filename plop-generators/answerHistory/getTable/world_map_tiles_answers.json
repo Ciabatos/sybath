@@ -1,0 +1,97 @@
+{
+  "promptAnswers": {
+    "schema": "world",
+    "table": "map_tiles",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "x",
+      "y"
+    ],
+    "paramsColumns": [
+      "map_id"
+    ],
+    "generateMutation": false
+  },
+  "schema": "world",
+  "table": "map_tiles",
+  "tableCamelName": "mapTiles",
+  "tablePascalName": "MapTiles",
+  "tableKebabName": "map-tiles",
+  "schemaTablePascalName": "WorldMapTiles",
+  "methodTypeName": "TWorldMapTiles",
+  "methodParamsTypeName": "TWorldMapTilesParams",
+  "methodParamsColumns": [
+    {
+      "name": "map_id",
+      "camelName": "mapId",
+      "tsType": "number"
+    }
+  ],
+  "methodName": "getWorldMapTiles",
+  "methodNameByKey": "getWorldMapTilesByKey",
+  "methodRecords": "get_map_tiles",
+  "methodRecordsByKey": "get_map_tiles_by_key",
+  "sqlParamsPlaceholders": "$1",
+  "methodColumns": [
+    {
+      "name": "map_id",
+      "camelName": "mapId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "x",
+      "camelName": "x",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "X"
+    },
+    {
+      "name": "y",
+      "camelName": "y",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Y"
+    },
+    {
+      "name": "terrain_type_id",
+      "camelName": "terrainTypeId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "landscape_type_id",
+      "camelName": "landscapeTypeId",
+      "tsType": "number",
+      "optional": "?"
+    }
+  ],
+  "indexMethodParams": "[\"x\", \"y\"]",
+  "indexParamsColumns": "mapId",
+  "indexTypeMethodName": "XY",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TWorldMapTilesRecordByXY",
+  "indexColumns": [
+    {
+      "name": "x",
+      "camelName": "x",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "X"
+    },
+    {
+      "name": "y",
+      "camelName": "y",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Y"
+    }
+  ],
+  "apiPath": "app/api/world/map-tiles/route.ts",
+  "apiPathParams": "/api/world/map-tiles",
+  "apiPathByKey": "app/api/world/map-tiles/[mapId]/route.ts",
+  "apiPathParamsByKey": "/api/world/map-tiles/${params.mapId}",
+  "generateMutation": false,
+  "fetcherName": "fetchWorldMapTiles",
+  "fetcherNameByKey": "fetchWorldMapTilesByKey"
+}

@@ -410,5 +410,21 @@
       "const knownMapTiles = useAtomValue(knownMapTilesAtom)"
     ],
     "description": "Destructuring useKnownMapTiles hook"
+  },
+  "Destructure useWorldMapTiles": {
+    "prefix": "hook_world_core_useWorldMapTiles",
+    "body": [
+      "useFetchWorldMapTiles()",
+      "const mapTiles = useAtomValue(mapTilesAtom)"
+    ],
+    "description": "Destructuring useWorldMapTiles hook"
+  },
+  "Destructure useWorldMapTilesByKey": {
+    "prefix": "hook_world_core_useWorldMapTilesByKey",
+    "body": [
+      "useFetchWorldMapTilesByKey({ mapId })",
+      "const mapTiles = useAtomValue(mapTilesAtom)"
+    ],
+    "description": "Destructuring useWorldMapTilesByKey hook"
   },//Automatic Snippets
 }

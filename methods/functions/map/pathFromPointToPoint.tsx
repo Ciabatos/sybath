@@ -7,6 +7,7 @@ import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schema
 import { TPlayerMovement } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { astar, Graph } from "@/methods/functions/map/astar.cjs"
+import { calculateTileMoveCost } from "@/methods/functions/map/calculateTileMoveCost"
 
 type GridNode = {
   x: number // The X coordinate of the node
@@ -39,50 +40,14 @@ export function pathFromPointToPoint(params: TPathFromPointToPointParams): TPlay
   }
 
   const mapTilesArray = Object.values(params.mapTiles)
-  console.log("mapTilesArray", mapTilesArray)
+
   if (mapTilesArray.length === 0) return []
 
   const gridSize = Math.sqrt(mapTilesArray.length) + 1
   const grid = Array.from({ length: gridSize }, () => Array(gridSize).fill(0))
 
   mapTilesArray.forEach((tile) => {
-    let cost = 0
-
-    if (tile.terrainTypeId === null) {
-      cost = 99999
-    }
-
-    if (tile.terrainTypeId !== undefined && params.terrainTypes[tile.terrainTypeId]) {
-      cost += params.terrainTypes[tile.terrainTypeId].moveCost
-    }
-
-    if (tile.landscapeTypeId !== undefined && params.landscapeTypes[tile.landscapeTypeId]) {
-      cost += params.landscapeTypes[tile.landscapeTypeId].moveCost
-    }
-
-    if (params.cities[`${tile.x},${tile.y}`]) {
-      cost += params.cities[`${tile.x},${tile.y}`].moveCost
-    }
-
-    if (params.districts[`${tile.x},${tile.y}`]) {
-      cost += params.districtTypes[params.districts[`${tile.x},${tile.y}`].districtTypeId].moveCost
-    }
-
-    if (tile.terrainTypeId === 8) {
-      //water
-      cost = 0
-    }
-
-    if (tile.terrainTypeId === 9) {
-      //water
-      cost = 0
-    }
-
-    grid[tile.x][tile.y] = cost
-
-    // koszt ruchu tiles
-    // 0 - wall
-    // im wieksze tym wiekszy koszt
+    grid[tile.x][tile.y] = calculateTileMoveCost(tile.x, tile.y, params)
   })
 
   const graphWithWeight = new Graph(grid, { diagonal: true })
@@ -96,16 +61,20 @@ export function pathFromPointToPoint(params: TPathFromPointToPointParams): TPlay
 
   const startNode = { x: params.startX, y: params.startY, weight: 0.001 } as GridNode
   const fullPath = [startNode, ...resultWithWeight]
+
   let accumulatedCost = 0
+  let order = 0
 
   const filteredMapTiles = fullPath.map((node) => {
     // const tile = mapTilesArray.find((tile) => tile.x === node.x ?&& tile.y === node.y)
-    const moveCost = grid[node.x][node.y] || 0
 
+    const moveCost = grid[node.x][node.y] || 0
     const totalMoveCost = accumulatedCost
     accumulatedCost += moveCost
+    order += 1
 
     return {
+      order: order,
       moveCost: grid[node.x][node.y],
       x: node.x,
       y: node.y,
