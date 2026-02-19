@@ -7,15 +7,24 @@ import { TMapTile } from "@/methods/hooks/world/composite/useMapHandlingData"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 
 export default function Map(props: TMapTile) {
+  const { handleClickOnMapTile } = useMapTileActions()
+
+  const handleClick = () => {
+    handleClickOnMapTile(props)
+  }
+
   if (!props.terrainTypes) {
     return (
       <div
         className={style.BackgroundImage}
+        onDoubleClick={handleClick}
         style={{
           gridColumnStart: props.mapTiles.x,
           gridRowStart: props.mapTiles.y,
         }}
-      ></div>
+      >
+        <TileLayersHandling {...props} />
+      </div>
     )
   }
 
@@ -35,12 +44,6 @@ export default function Map(props: TMapTile) {
   const citiesImage = createCitiesImage(props.cities?.imageUrl)
   const districtsImage = creatDistrictsImage(props.districtTypes?.imageUrl)
   const combinedImages = combineImages(landscapeImage, backgroundImage)
-
-  const { handleClickOnMapTile } = useMapTileActions()
-
-  const handleClick = () => {
-    handleClickOnMapTile(props)
-  }
 
   return (
     <div

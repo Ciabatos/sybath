@@ -45,9 +45,9 @@ export default function PanelMapTileDetail() {
     setIsMoving(false)
   }
 
-  const terrainName = clickedTile?.terrainTypes.name
+  const terrainName = clickedTile?.terrainTypes?.name
 
-  const terrainTypesMoveCost = clickedTile?.terrainTypes.moveCost
+  const terrainTypesMoveCost = clickedTile?.terrainTypes?.moveCost
   const landscapeTypesMoveCost = clickedTile?.landscapeTypes?.moveCost
   const citiesMoveCost = clickedTile?.cities?.moveCost
   const districtTypesMoveCost = clickedTile?.districtTypes?.moveCost
