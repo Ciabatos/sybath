@@ -10,7 +10,7 @@ export type TKnownPlayersPositionsParams = {
 }
 
 export type TKnownPlayersPositions = {
-  otherPlayerId: number
+  otherPlayerId: string
   x: number
   y: number
   imageMap: string
