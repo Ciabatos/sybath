@@ -1,0 +1,115 @@
+{
+  "promptAnswers": {
+    "schema": "world",
+    "method": "get_known_map_region",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "mapTileX",
+      "mapTileY"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "world",
+  "method": "get_known_map_region",
+  "methodCamelName": "knownMapRegion",
+  "methodPascalName": "KnownMapRegion",
+  "methodKebabName": "get-known-map-region",
+  "methodName": "getKnownMapRegion",
+  "methodTypeName": "TKnownMapRegion",
+  "methodParamsTypeName": "TKnownMapRegionParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_map_id",
+      "camelName": "mapId",
+      "tsType": "number"
+    },
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    },
+    {
+      "name": "p_region_type",
+      "camelName": "regionType",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "region_id",
+      "camelName": "regionId",
+      "pascalName": "RegionId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "map_id",
+      "camelName": "mapId",
+      "pascalName": "MapId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "map_tile_x",
+      "camelName": "mapTileX",
+      "pascalName": "MapTileX",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "map_tile_y",
+      "camelName": "mapTileY",
+      "pascalName": "MapTileY",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "region_name",
+      "camelName": "regionName",
+      "pascalName": "RegionName",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "image_fill",
+      "camelName": "imageFill",
+      "pascalName": "ImageFill",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "image_outline",
+      "camelName": "imageOutline",
+      "pascalName": "ImageOutline",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"mapTileX\", \"mapTileY\"]",
+  "indexParamsColumns": "mapId, playerId, regionType",
+  "indexTypeMethodName": "MapTileXMapTileY",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TKnownMapRegionRecordByMapTileXMapTileY",
+  "indexColumns": [
+    {
+      "name": "map_tile_x",
+      "camelName": "mapTileX",
+      "pascalName": "MapTileX",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "map_tile_y",
+      "camelName": "mapTileY",
+      "pascalName": "MapTileY",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1, $2, $3",
+  "apiPath": "app/api/world/rpc/get-known-map-region/[mapId]/[playerId]/[regionType]/route.ts",
+  "apiPathParams": "/api/world/rpc/get-known-map-region/${params.mapId}/${params.playerId}/${params.regionType}",
+  "generateMutation": true,
+  "mutationMergeOldData": true
+}

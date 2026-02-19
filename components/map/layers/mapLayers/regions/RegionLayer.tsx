@@ -1,6 +1,6 @@
 "use client"
 
-import { TWorldMapTilesMapRegions } from "@/db/postgresMainDatabase/schemas/world/mapTilesMapRegions"
+import { TKnownMapRegion } from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
 import { buildRegionOutline, orderEdgesToPolygon } from "@/methods/functions/map/layers/buildRegions"
 import { useRegionLayerHandlingData } from "@/methods/hooks/world/composite/useRegionLayerHandlingData"
 import style from "./styles/RegionLayer.module.css"
@@ -9,11 +9,11 @@ const TILE_SIZE = 64
 
 export default function RegionLayer() {
   //zamienic na provincesRegion
-  const { mapTilesMapRegions } = useRegionLayerHandlingData()
+  const { knownMapRegion } = useRegionLayerHandlingData()
 
-  const tilesByRegion: Record<number, TWorldMapTilesMapRegions[]> = {}
+  const tilesByRegion: Record<number, TKnownMapRegion[]> = {}
 
-  Object.values(mapTilesMapRegions).forEach((tile) => {
+  Object.values(knownMapRegion).forEach((tile) => {
     const id = tile.regionId
 
     if (!id || id <= 0) return
