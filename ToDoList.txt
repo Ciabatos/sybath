@@ -1,5 +1,3 @@
-automatic_api przerobic na normalne funkcje
-
 Panel Listy Characterow - ogolny
 Panel graczy na tiles - mini ikonka People tam gdzie stoisz albo ikona na dole ekranu wieksza
 widoczne wszystkie osoby na tiles anonimowo - chyba ze ma sie knowledge na ich temat
