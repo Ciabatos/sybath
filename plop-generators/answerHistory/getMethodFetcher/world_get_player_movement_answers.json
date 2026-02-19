@@ -27,6 +27,13 @@
   ],
   "methodColumns": [
     {
+      "name": "order",
+      "camelName": "order",
+      "pascalName": "Order",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
       "name": "move_cost",
       "camelName": "moveCost",
       "pascalName": "MoveCost",

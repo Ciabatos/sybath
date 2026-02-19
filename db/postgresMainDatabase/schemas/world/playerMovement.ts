@@ -9,6 +9,7 @@ export type TPlayerMovementParams = {
 }
 
 export type TPlayerMovement = {
+  order: number
   moveCost: number
   x: number
   y: number

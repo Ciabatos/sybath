@@ -3,7 +3,7 @@ import { TDistrictsDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDa
 import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
 import { TKnownMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/knownMapTiles"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
-import { TPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
+import { TPlayerMovement, TPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { calculateTileMoveCost } from "@/methods/functions/map/calculateTileMoveCost"
 
@@ -17,21 +17,16 @@ type TPathFromPointToPointParams = {
   districtTypes: TDistrictsDistrictTypesRecordById
 }
 
-type TCalculatedMovement = {
-  x: number
-  y: number
-  moveCost: number
-  totalMoveCost: number
-}
-export function recalculatePathMoveCosts(params: TPathFromPointToPointParams): TCalculatedMovement[] {
+export function recalculatePathMoveCosts(params: TPathFromPointToPointParams): TPlayerMovement[] {
   let totalMoveCost = 0
   const pathArray = Object.values(params.path)
-  const result: TCalculatedMovement[] = []
+  const result: TPlayerMovement[] = []
 
   for (const step of pathArray) {
     let moveCost = calculateTileMoveCost(step.x, step.y, params)
 
     result.push({
+      order: step.order,
       x: step.x,
       y: step.y,
       moveCost,

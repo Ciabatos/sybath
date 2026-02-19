@@ -17,6 +17,7 @@ export function useMutatePlayerMovement(params: TPlayerMovementParams) {
     //MANUAL CODE - START
 
     const defaultValues = {
+      order: ``,
       moveCost: ``,
       x: ``,
       y: ``,
