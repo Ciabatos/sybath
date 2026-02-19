@@ -7,6 +7,14 @@ import { TMapTile } from "@/methods/hooks/world/composite/useMapHandlingData"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 
 export default function Map(props: TMapTile) {
+  if (!props.terrainTypes) {
+    return (
+      <div>
+        <p>mgła wojny</p>
+      </div>
+    )
+  }
+
   const {
     createPlayerImage,
     createLandscapeImage,
