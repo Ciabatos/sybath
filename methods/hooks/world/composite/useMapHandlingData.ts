@@ -31,7 +31,6 @@ import {
 import { useAtomValue } from "jotai"
 
 export type TMapTile = {
-  key: string
   mapTiles: TWorldMapTiles
   terrainTypes: TWorldTerrainTypes
   landscapeTypes?: TWorldLandscapeTypes
@@ -75,7 +74,6 @@ export function useMapHandlingData() {
     const district = districts[tileKey]
 
     return {
-      key,
       mapTiles: tile,
       terrainTypes: terrainTypes[tile.terrainTypeId],
       landscapeTypes: tile.landscapeTypeId ? landscapeTypes[tile.landscapeTypeId] : undefined,

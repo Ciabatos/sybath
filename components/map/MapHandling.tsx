@@ -10,9 +10,9 @@ export default function MapHandling() {
 
   return (
     <>
-      {combinedMap.map(({ key, ...combinedMapProps }) => (
+      {combinedMap.map(({ ...combinedMapProps }) => (
         <Map
-          key={key}
+          key={`${combinedMapProps.mapTiles.x},${combinedMapProps.mapTiles.y}`}
           {...combinedMapProps}
         />
       ))}
