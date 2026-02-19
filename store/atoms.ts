@@ -1,6 +1,5 @@
 "use client"
 
-import { TMapTile } from "@/components/map/Map"
 import { TAttributesAbilitiesRecordById } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
 import { TPlayerAbilitiesRecordByAbilityId } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
 import { TPlayerSkillsRecordBySkillId } from "@/db/postgresMainDatabase/schemas/attributes/playerSkills"
@@ -23,13 +22,16 @@ import { TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/i
 import { TActivePlayerRecordById } from "@/db/postgresMainDatabase/schemas/players/activePlayer"
 import { TActivePlayerProfileRecordByName } from "@/db/postgresMainDatabase/schemas/players/activePlayerProfile"
 import { TActivePlayerSwitchProfilesRecordById } from "@/db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles"
+import { TKnownPlayersPositionsRecordByXY } from "@/db/postgresMainDatabase/schemas/world/knownPlayersPositions"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
 import { TWorldMapTilesMapRegionsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/world/mapTilesMapRegions"
 import { TPlayerMapRecordByMapId } from "@/db/postgresMainDatabase/schemas/world/playerMap"
 import { TPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
 import { TPlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
+import { TPlayersOnTheSameTileRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/world/playersOnTheSameTile"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
+import { TMapTile } from "@/methods/hooks/world/composite/useMapHandlingData"
 import { TAreaRecordByXY } from "@/methods/hooks/world/composite/useMapTilesArea"
 import { EPanelsBottomCenterBar } from "@/types/enumeration/EPanelsBottomCenterBar"
 import { EPanelsLeftCenter } from "@/types/enumeration/EPanelsLeftCenter"
@@ -38,8 +40,6 @@ import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { EPanelsTopCenterBar } from "@/types/enumeration/EPanelsTopCenterBar"
 import { atom } from "jotai"
-import { TKnownPlayersPositionsRecordByXY } from "@/db/postgresMainDatabase/schemas/world/knownPlayersPositions"
-import { TPlayersOnTheSameTileRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/world/playersOnTheSameTile"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBottomCenterBar.Inactive)

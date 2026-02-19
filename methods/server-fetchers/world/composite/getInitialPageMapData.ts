@@ -11,6 +11,7 @@ import { getDistrictsDistrictsByKeyServer } from "@/methods/server-fetchers/dist
 import { getDistrictsDistrictTypesServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictTypesServer"
 import { getPlayerInventoryServer } from "@/methods/server-fetchers/inventory/core/getPlayerInventoryServer"
 import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
+import { getKnownPlayersPositionsServer } from "@/methods/server-fetchers/world/core/getKnownPlayersPositionsServer"
 import { getPlayerMapServer } from "@/methods/server-fetchers/world/core/getPlayerMapServer"
 import { getPlayerPositionServer } from "@/methods/server-fetchers/world/core/getPlayerPositionServer"
 import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
@@ -42,6 +43,7 @@ export async function getInitialPageMapData(clientMapId: number, sessionUserId: 
     districts,
     districtTypes,
     playerPosition,
+    knownPlayersPositions,
     skills,
     abilities,
     playerSkills,
@@ -55,6 +57,7 @@ export async function getInitialPageMapData(clientMapId: number, sessionUserId: 
     getDistrictsDistrictsByKeyServer({ mapId }),
     getDistrictsDistrictTypesServer(),
     getPlayerPositionServer({ mapId, playerId }),
+    getKnownPlayersPositionsServer({ mapId, playerId }),
     getAttributesSkillsServer(),
     getAttributesAbilitiesServer(),
     getPlayerSkillsServer({ playerId }),
@@ -72,6 +75,7 @@ export async function getInitialPageMapData(clientMapId: number, sessionUserId: 
     districts,
     districtTypes,
     playerPosition,
+    knownPlayersPositions,
     playerSkills,
     playerAbilities,
     playerIventory,
@@ -89,6 +93,7 @@ export async function getInitialPageMapData(clientMapId: number, sessionUserId: 
     districts,
     districtTypes,
     playerPosition,
+    knownPlayersPositions,
     playerSkills,
     playerAbilities,
     playerIventory,
@@ -108,6 +113,7 @@ export async function getInitialPageMapData(clientMapId: number, sessionUserId: 
     skills,
     abilities,
     playerPosition,
+    knownPlayersPositions,
     playerSkills,
     playerAbilities,
     playerIventory,

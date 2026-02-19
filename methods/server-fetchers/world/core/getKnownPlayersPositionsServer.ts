@@ -1,10 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcherServer.hbs
 "use server"
 
-import type { TKnownPlayersPositionsParams } from "@/db/postgresMainDatabase/schemas/world/knownPlayersPositions"
 import type {
-  TKnownPlayersPositionsRecordByXY,
   TKnownPlayersPositions,
+  TKnownPlayersPositionsParams,
+  TKnownPlayersPositionsRecordByXY,
 } from "@/db/postgresMainDatabase/schemas/world/knownPlayersPositions"
 import { fetchKnownPlayersPositionsService } from "@/methods/services/world/fetchKnownPlayersPositionsService"
 

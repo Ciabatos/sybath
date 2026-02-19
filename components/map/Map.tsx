@@ -2,25 +2,9 @@
 
 import TileLayersHandling from "@/components/map/layers/tileLayers/TileLayersHandling"
 import style from "@/components/map/styles/Tile.module.css"
-import { TCitiesCities } from "@/db/postgresMainDatabase/schemas/cities/cities"
-import { TDistrictsDistricts } from "@/db/postgresMainDatabase/schemas/districts/districts"
-import { TDistrictsDistrictTypes } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
-import { TWorldLandscapeTypes } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
-import { TWorldMapTiles } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
-import { TPlayerPosition } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
-import { TWorldTerrainTypes } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { createImage } from "@/methods/functions/util/createImage"
+import { TMapTile } from "@/methods/hooks/world/composite/useMapHandlingData"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
-
-export type TMapTile = {
-  mapTiles: TWorldMapTiles
-  terrainTypes: TWorldTerrainTypes
-  landscapeTypes?: TWorldLandscapeTypes
-  cities?: TCitiesCities
-  districts?: TDistrictsDistricts
-  districtTypes?: TDistrictsDistrictTypes
-  playerPosition?: TPlayerPosition
-}
 
 export default function Map(props: TMapTile) {
   const {
@@ -35,6 +19,7 @@ export default function Map(props: TMapTile) {
   const backgroundImage = createTerrainImage(props.terrainTypes.imageUrl)
   const landscapeImage = createLandscapeImage(props.landscapeTypes?.imageUrl)
   const playerImage = createPlayerImage(props.playerPosition?.imageMap)
+  const otherPlayerImage = createPlayerImage(props.knownPlayersPositions?.imageMap)
   const citiesImage = createCitiesImage(props.cities?.imageUrl)
   const districtsImage = creatDistrictsImage(props.districtTypes?.imageUrl)
   const combinedImages = combineImages(landscapeImage, backgroundImage)
@@ -76,6 +61,14 @@ export default function Map(props: TMapTile) {
           className={style.PlayerImage}
           style={{
             backgroundImage: playerImage,
+          }}
+        ></div>
+      )}
+      {otherPlayerImage && (
+        <div
+          className={style.PlayerImage}
+          style={{
+            backgroundImage: otherPlayerImage,
           }}
         ></div>
       )}
