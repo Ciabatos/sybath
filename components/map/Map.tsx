@@ -9,9 +9,13 @@ import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileAct
 export default function Map(props: TMapTile) {
   if (!props.terrainTypes) {
     return (
-      <div>
-        <p>mgła wojny</p>
-      </div>
+      <div
+        className={style.BackgroundImage}
+        style={{
+          gridColumnStart: props.mapTiles.x,
+          gridRowStart: props.mapTiles.y,
+        }}
+      ></div>
     )
   }
 

@@ -1,99 +1,96 @@
 {
   "promptAnswers": {
     "schema": "world",
-    "table": "map_tiles",
+    "method": "get_known_map_tiles",
     "usePrevious": false,
     "selectedColumnsIndex": [
       "x",
       "y"
     ],
-    "paramsColumns": [
-      "map_id"
-    ],
     "generateMutation": true,
     "mutationMergeOldData": true
   },
   "schema": "world",
-  "table": "map_tiles",
-  "tableCamelName": "mapTiles",
-  "tablePascalName": "MapTiles",
-  "tableKebabName": "map-tiles",
-  "schemaTablePascalName": "WorldMapTiles",
-  "methodTypeName": "TWorldMapTiles",
-  "methodParamsTypeName": "TWorldMapTilesParams",
+  "method": "get_known_map_tiles",
+  "methodCamelName": "knownMapTiles",
+  "methodPascalName": "KnownMapTiles",
+  "methodKebabName": "get-known-map-tiles",
+  "methodName": "getKnownMapTiles",
+  "methodTypeName": "TKnownMapTiles",
+  "methodParamsTypeName": "TKnownMapTilesParams",
   "methodParamsColumns": [
     {
-      "name": "map_id",
+      "name": "p_map_id",
       "camelName": "mapId",
+      "tsType": "number"
+    },
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
       "tsType": "number"
     }
   ],
-  "methodName": "getWorldMapTiles",
-  "methodNameByKey": "getWorldMapTilesByKey",
-  "methodRecords": "get_map_tiles",
-  "methodRecordsByKey": "get_map_tiles_by_key",
-  "sqlParamsPlaceholders": "$1",
   "methodColumns": [
     {
       "name": "map_id",
       "camelName": "mapId",
+      "pascalName": "MapId",
       "tsType": "number",
       "optional": ""
     },
     {
       "name": "x",
       "camelName": "x",
+      "pascalName": "X",
       "tsType": "number",
-      "optional": "",
-      "pascalName": "X"
+      "optional": ""
     },
     {
       "name": "y",
       "camelName": "y",
+      "pascalName": "Y",
       "tsType": "number",
-      "optional": "",
-      "pascalName": "Y"
+      "optional": ""
     },
     {
       "name": "terrain_type_id",
       "camelName": "terrainTypeId",
+      "pascalName": "TerrainTypeId",
       "tsType": "number",
       "optional": ""
     },
     {
       "name": "landscape_type_id",
       "camelName": "landscapeTypeId",
+      "pascalName": "LandscapeTypeId",
       "tsType": "number",
-      "optional": "?"
+      "optional": ""
     }
   ],
   "indexMethodParams": "[\"x\", \"y\"]",
-  "indexParamsColumns": "mapId",
+  "indexParamsColumns": "mapId, playerId",
   "indexTypeMethodName": "XY",
   "indexMethodName": "arrayToObjectKey",
-  "indexTypeName": "TWorldMapTilesRecordByXY",
+  "indexTypeName": "TKnownMapTilesRecordByXY",
   "indexColumns": [
     {
       "name": "x",
       "camelName": "x",
+      "pascalName": "X",
       "tsType": "number",
-      "optional": "",
-      "pascalName": "X"
+      "optional": ""
     },
     {
       "name": "y",
       "camelName": "y",
+      "pascalName": "Y",
       "tsType": "number",
-      "optional": "",
-      "pascalName": "Y"
+      "optional": ""
     }
   ],
-  "apiPath": "app/api/world/map-tiles/route.ts",
-  "apiPathParams": "/api/world/map-tiles",
-  "apiPathByKey": "app/api/world/map-tiles/[mapId]/route.ts",
-  "apiPathParamsByKey": "/api/world/map-tiles/${params.mapId}",
+  "sqlParamsPlaceholders": "$1, $2",
+  "apiPath": "app/api/world/rpc/get-known-map-tiles/[mapId]/[playerId]/route.ts",
+  "apiPathParams": "/api/world/rpc/get-known-map-tiles/${params.mapId}/${params.playerId}",
   "generateMutation": true,
-  "mutationMergeOldData": true,
-  "fetcherName": "fetchWorldMapTiles",
-  "fetcherNameByKey": "fetchWorldMapTilesByKey"
+  "mutationMergeOldData": true
 }

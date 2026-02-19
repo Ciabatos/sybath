@@ -1,8 +1,9 @@
 import { TCitiesCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
 import { TDistrictsDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/districts/districts"
 import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
+import { TKnownMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/knownMapTiles"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
-import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
+
 import { TPlayerMovement } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { astar, Graph } from "@/methods/functions/map/astar.cjs"
@@ -24,7 +25,7 @@ type TPathFromPointToPointParams = {
   startY: number
   endX: number
   endY: number
-  mapTiles: TWorldMapTilesRecordByXY
+  mapTiles: TKnownMapTilesRecordByXY
   terrainTypes: TWorldTerrainTypesRecordById
   landscapeTypes: TWorldLandscapeTypesRecordById
   cities: TCitiesCitiesRecordByMapTileXMapTileY
@@ -38,6 +39,7 @@ export function pathFromPointToPoint(params: TPathFromPointToPointParams): TPlay
   }
 
   const mapTilesArray = Object.values(params.mapTiles)
+  console.log("mapTilesArray", mapTilesArray)
   if (mapTilesArray.length === 0) return []
 
   const gridSize = Math.sqrt(mapTilesArray.length) + 1
@@ -46,7 +48,11 @@ export function pathFromPointToPoint(params: TPathFromPointToPointParams): TPlay
   mapTilesArray.forEach((tile) => {
     let cost = 0
 
-    if (params.terrainTypes[tile.terrainTypeId]) {
+    if (tile.terrainTypeId === null) {
+      cost = 99999
+    }
+
+    if (tile.terrainTypeId !== undefined && params.terrainTypes[tile.terrainTypeId]) {
       cost += params.terrainTypes[tile.terrainTypeId].moveCost
     }
 

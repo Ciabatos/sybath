@@ -7,9 +7,9 @@ import { getCitiesCitiesByKeyServer } from "@/methods/server-fetchers/cities/cor
 import { getDistrictsDistrictsByKeyServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictsByKeyServer"
 import { getDistrictsDistrictTypesServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictTypesServer"
 import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
+import { getKnownMapTilesServer } from "@/methods/server-fetchers/world/core/getKnownMapTilesServer"
 import { getPlayerMapServer } from "@/methods/server-fetchers/world/core/getPlayerMapServer"
 import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
-import { getWorldMapTilesByKeyServer } from "@/methods/server-fetchers/world/core/getWorldMapTilesByKeyServer"
 import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
 
 //MANUAL CODE - START
@@ -43,7 +43,7 @@ export async function doPlayerMovementService(params: TDoPlayerMovementServicePa
     const mapId = (await getPlayerMapServer({ playerId })).raw[0].mapId
 
     const [mapTiles, terrainTypes, landscapeTypes, cities, districts, districtTypes] = await Promise.all([
-      getWorldMapTilesByKeyServer({ mapId }),
+      getKnownMapTilesServer({ mapId, playerId }),
       getWorldTerrainTypesServer(),
       getWorldLandscapeTypesServer(),
       getCitiesCitiesByKeyServer({ mapId }),

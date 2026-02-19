@@ -11,11 +11,11 @@ import { getDistrictsDistrictsByKeyServer } from "@/methods/server-fetchers/dist
 import { getDistrictsDistrictTypesServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictTypesServer"
 import { getPlayerInventoryServer } from "@/methods/server-fetchers/inventory/core/getPlayerInventoryServer"
 import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
+import { getKnownMapTilesServer } from "@/methods/server-fetchers/world/core/getKnownMapTilesServer"
 import { getKnownPlayersPositionsServer } from "@/methods/server-fetchers/world/core/getKnownPlayersPositionsServer"
 import { getPlayerMapServer } from "@/methods/server-fetchers/world/core/getPlayerMapServer"
 import { getPlayerPositionServer } from "@/methods/server-fetchers/world/core/getPlayerPositionServer"
 import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
-import { getWorldMapTilesByKeyServer } from "@/methods/server-fetchers/world/core/getWorldMapTilesByKeyServer"
 import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
 
 export async function getInitialPageMapData(clientMapId: number, sessionUserId: number) {
@@ -51,7 +51,7 @@ export async function getInitialPageMapData(clientMapId: number, sessionUserId: 
     playerIventory,
   ] = await Promise.all([
     getWorldTerrainTypesServer(),
-    getWorldMapTilesByKeyServer({ mapId }),
+    getKnownMapTilesServer({ mapId, playerId }),
     getWorldLandscapeTypesServer(),
     getCitiesCitiesByKeyServer({ mapId }),
     getDistrictsDistrictsByKeyServer({ mapId }),

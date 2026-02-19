@@ -6,16 +6,17 @@ import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { useFetchCitiesCitiesByKey } from "@/methods/hooks/cities/core/useFetchCitiesCitiesByKey"
 import { useFetchDistrictsDistrictsByKey } from "@/methods/hooks/districts/core/useFetchDistrictsDistrictsByKey"
 import { useFetchDistrictsDistrictTypes } from "@/methods/hooks/districts/core/useFetchDistrictsDistrictTypes"
+import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { useMapId } from "@/methods/hooks/world/composite/useMapId"
+import { useFetchKnownMapTiles } from "@/methods/hooks/world/core/useFetchKnownMapTiles"
 import { useFetchWorldLandscapeTypes } from "@/methods/hooks/world/core/useFetchWorldLandscapeTypes"
-import { useFetchWorldMapTilesByKey } from "@/methods/hooks/world/core/useFetchWorldMapTilesByKey"
 import { useFetchWorldTerrainTypes } from "@/methods/hooks/world/core/useFetchWorldTerrainTypes"
 import {
   citiesAtom,
   districtsAtom,
   districtTypesAtom,
+  knownMapTilesAtom,
   landscapeTypesAtom,
-  mapTilesAtom,
   terrainTypesAtom,
 } from "@/store/atoms"
 import { useAtomValue } from "jotai"
@@ -28,10 +29,11 @@ type TGetPathFromPointToPointParams = {
 }
 
 export function useMapTilesPathFromPointToPoint() {
+  const { playerId } = usePlayerId()
   const { mapId } = useMapId()
 
-  useFetchWorldMapTilesByKey({ mapId })
-  const mapTiles = useAtomValue(mapTilesAtom)
+  useFetchKnownMapTiles({ mapId, playerId })
+  const knownMapTiles = useAtomValue(knownMapTilesAtom)
 
   useFetchWorldTerrainTypes()
   const terrainTypes = useAtomValue(terrainTypesAtom)
@@ -54,7 +56,7 @@ export function useMapTilesPathFromPointToPoint() {
       startY: params.startY,
       endX: params.endX,
       endY: params.endY,
-      mapTiles: mapTiles,
+      mapTiles: knownMapTiles,
       terrainTypes: terrainTypes,
       landscapeTypes: landscapeTypes,
       cities: cities,
