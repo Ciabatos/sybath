@@ -43,10 +43,8 @@ export default function PanelOtherPlayerPanel() {
             <AvatarFallback className={styles.avatarFallback}>{avatarFallback}</AvatarFallback>
           </Avatar>
           <div className={styles.headerInfo}>
-            <h2 className={styles.heroName}>
-              {name} {secondName}
-            </h2>
-            <p className={styles.heroTitle}>Inni głosują za nickiem lub nazywają{nickname}</p>
+            <h2 className={styles.heroName}>dsafsadf</h2>
+            <p className={styles.heroTitle}>Inni głosują za nickiem lub nazywają</p>
           </div>
         </div>
 
