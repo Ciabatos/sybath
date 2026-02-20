@@ -1,9 +1,9 @@
-import { TWorldMapTilesMapRegions } from "@/db/postgresMainDatabase/schemas/world/mapTilesMapRegions"
+import { TKnownMapRegion } from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
 
 type Point = { x: number; y: number }
 type Edge = { a: Point; b: Point }
 
-export function buildRegionOutline(tiles: TWorldMapTilesMapRegions[], tileSize: number) {
+export function buildRegionOutline(tiles: TKnownMapRegion[], tileSize: number) {
   const edges = new Map<string, Edge>()
 
   function addEdge(a: Point, b: Point) {

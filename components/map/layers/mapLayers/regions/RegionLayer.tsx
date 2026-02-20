@@ -68,9 +68,10 @@ export default function RegionLayer() {
 
       {Object.entries(tilesByRegion).map(([regionIdStr, tiles]) => {
         const regionId = Number(regionIdStr)
-
+        const imageOutline = tiles[0]?.imageOutline
         const edges = buildRegionOutline(tiles, TILE_SIZE)
         const polygon = orderEdgesToPolygon(edges)
+
         let finalPolygon = polygon
         if (
           polygon.length &&
@@ -87,8 +88,8 @@ export default function RegionLayer() {
               points={points}
               fill='none'
               // stroke='url(#beachPattern)'
-              stroke='white'
-              strokeWidth={5}
+              stroke={imageOutline}
+              strokeWidth={4}
               strokeLinejoin='round'
               // filter='url(#wavy)'
             />
