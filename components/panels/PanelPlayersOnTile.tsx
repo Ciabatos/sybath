@@ -1,19 +1,27 @@
 "use client"
+import PlayerPortrait from "@/components/players/PlayerPortrait"
 import { Button } from "@/components/ui/button"
+import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import usePlayersOnTile from "@/methods/hooks/world/composite/usePlayersOnTile"
+import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
 import { X } from "lucide-react"
 import styles from "./styles/PanelPlayersOnTile.module.css"
 
 export default function PanelPlayersOnTile() {
   const { resetModalRightCenter } = useModalRightCenter()
+  const { openModalLeftTopBar } = useModalLeftTopBar()
 
   const { clickedTile } = useMapTileActions()
   if (!clickedTile) return null
 
   const { playersOnTile } = usePlayersOnTile(clickedTile.mapTiles.x, clickedTile.mapTiles.y)
   if (!playersOnTile) return null
+
+  const handleClickPlayerPortrait = () => {
+    openModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerPanel)
+  }
 
   const onClose = () => {
     resetModalRightCenter()
@@ -36,7 +44,12 @@ export default function PanelPlayersOnTile() {
             <div>{otherPlayer.name}</div>
             <div>{otherPlayer.secondName}</div>
             <div>{otherPlayer.nickname}</div>
-            <div>{otherPlayer.imagePortrait}</div>
+            <Button
+              onClick={handleClickPlayerPortrait}
+              className={styles.heroButton}
+            >
+              <PlayerPortrait imagePortrait={otherPlayer.imagePortrait} />
+            </Button>
           </div>
         ))}
       </div>

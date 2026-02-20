@@ -9,3 +9,29 @@
   width: 100%;
   overflow: hidden;
 }
+
+.heroButton {
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-shadow:
+    inset 0 2px 8px rgba(0, 0, 0, 0.6),
+    0 4px 12px rgba(0, 0, 0, 0.8);
+  border: 4px solid rgba(180, 83, 9, 0.6);
+  border-radius: 9999px;
+  background: linear-gradient(to bottom, rgba(120, 53, 15, 0.4) 0%, rgba(28, 25, 23, 0.6) 100%);
+  padding: 0;
+  width: 6rem;
+  height: 6rem;
+}
+
+.heroButton:hover {
+  transform: scale(1.05);
+  box-shadow:
+    inset 0 2px 8px rgba(0, 0, 0, 0.6),
+    0 6px 16px rgba(200, 154, 74, 0.4);
+  border-color: rgba(217, 119, 6, 0.8);
+}
+
+.heroButton:active {
+  transform: translateY(2px);
+}
