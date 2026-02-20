@@ -71,8 +71,8 @@ export default function RegionLayer() {
         const imageOutline = tiles[0]?.imageOutline
         const edges = buildRegionOutline(tiles, TILE_SIZE)
         const polygon = orderEdgesToPolygon(edges)
-
         let finalPolygon = polygon
+
         if (
           polygon.length &&
           (polygon[0].x !== polygon[polygon.length - 1].x || polygon[0].y !== polygon[polygon.length - 1].y)
@@ -80,24 +80,25 @@ export default function RegionLayer() {
           finalPolygon = [...polygon, polygon[0]]
         }
         const points = finalPolygon.map((p) => `${p.x},${p.y}`).join(" ")
+        const clipId = `clip-region-${regionId}`
 
         return (
           <g key={regionId}>
-            {/* Plaża/falowany obrys */}
-            <polygon
-              points={points}
-              fill='none'
-              // stroke='url(#beachPattern)'
-              stroke={imageOutline}
-              strokeWidth={4}
-              strokeLinejoin='round'
-              // filter='url(#wavy)'
-            />
+            <defs>
+              <clipPath id={clipId}>
+                <polygon points={points} />
+              </clipPath>
+            </defs>
 
-            {/* Fill regionu */}
+            {/* Stroke z podwojoną grubością, przycięty do ZEWNĄTRZ przez inwersję */}
+            {/* Trick: rysujemy stroke 2x grubszy, clipPath wycina wnętrze → zostaje tylko zewnętrzny stroke */}
             <polygon
               points={points}
               fill='none'
+              stroke={imageOutline}
+              strokeWidth={8} // 2x docelowa grubość
+              strokeLinejoin='round'
+              clipPath={`url(#${clipId})`}
             />
           </g>
         )
