@@ -11,5 +11,5 @@ export default function usePlayersOnTheSameTile() {
   useFetchPlayersOnTheSameTile({ mapId, playerId })
   const playersOnTheSameTile = useAtomValue(playersOnTheSameTileAtom)
 
-  return playersOnTheSameTile
+  return { playersOnTheSameTile }
 }
