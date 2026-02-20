@@ -8,15 +8,11 @@ import { useAtom } from "jotai"
 
 export function useMapTileActions() {
   const [clickedTile, setClickedTile] = useAtom(clickedTileAtom)
-  const { openModalRightCenter } = useModalRightCenter()
+  const { ModalRightCenter, openModalRightCenter } = useModalRightCenter()
 
   function handleClickOnMapTile(params: TMapTile) {
     setClickedTile(params)
-    if (params.cities?.name) {
-      openModalRightCenter(EPanelsRightCenter.PanelMapTileDetail)
-    } else if (params.districts?.name) {
-      openModalRightCenter(EPanelsRightCenter.PanelMapTileDetail)
-    } else {
+    if (!ModalRightCenter) {
       openModalRightCenter(EPanelsRightCenter.PanelMapTileDetail)
     }
   }
