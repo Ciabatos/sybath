@@ -2,15 +2,17 @@
 
 import { Button } from "@/components/ui/button"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
+import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
 import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMovement"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
-import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
+import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { X } from "lucide-react"
 import { useEffect, useState } from "react"
 import styles from "./styles/PanelMapTileDetail.module.css"
 
 export default function PanelMapTileDetail() {
-  const { openModalRightCenter, resetModalRightCenter } = useModalRightCenter()
+  const { resetModalRightCenter } = useModalRightCenter()
+  const { openModalTopCenter } = useModalTopCenter()
   const { clickedTile } = useMapTileActions()
   const { selectPlayerPathToClickedTile, selectPlayerPathAndMovePlayerToClickedTile, resetPlayerMovementPlanned } =
     usePlayerMovement()
@@ -28,7 +30,7 @@ export default function PanelMapTileDetail() {
   }, [clickedTile])
 
   function handlePlayersListOnTile() {
-    openModalRightCenter(EPanelsRightCenter.PanelPlayersOnTile)
+    openModalTopCenter(EPanelsTopCenter.PanelPlayersOnTile)
   }
 
   function handleMove() {

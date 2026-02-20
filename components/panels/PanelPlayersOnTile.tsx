@@ -2,7 +2,7 @@
 import PlayerPortrait from "@/components/players/PlayerPortrait"
 import { Button } from "@/components/ui/button"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
-import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
+import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import usePlayersOnTile from "@/methods/hooks/world/composite/usePlayersOnTile"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
@@ -10,7 +10,7 @@ import { X } from "lucide-react"
 import styles from "./styles/PanelPlayersOnTile.module.css"
 
 export default function PanelPlayersOnTile() {
-  const { resetModalRightCenter } = useModalRightCenter()
+  const { resetModalTopCeneter } = useModalTopCenter()
   const { openModalLeftTopBar } = useModalLeftTopBar()
 
   const { clickedTile } = useMapTileActions()
@@ -24,7 +24,7 @@ export default function PanelPlayersOnTile() {
   }
 
   const onClose = () => {
-    resetModalRightCenter()
+    resetModalTopCeneter()
   }
 
   return (
