@@ -30,7 +30,7 @@ import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/worl
 import { TPlayerMapRecordByMapId } from "@/db/postgresMainDatabase/schemas/world/playerMap"
 import { TPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
 import { TPlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
-import { TPlayersOnTheSameTileRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/world/playersOnTheSameTile"
+import { TPlayersOnTileRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/world/playersOnTile"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
 import { TAreaRecordByXY } from "@/methods/hooks/world/composite/useMapTilesArea"
@@ -41,7 +41,6 @@ import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { EPanelsTopCenterBar } from "@/types/enumeration/EPanelsTopCenterBar"
 import { atom } from "jotai"
-import { TPlayersOnTileRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/world/playersOnTile"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBottomCenterBar.Inactive)
@@ -58,7 +57,7 @@ export const clickedCityTileAtom = atom<number>(0)
 export const clickedTileAtom = atom<TMapTile>()
 
 //Player
-export const playerIdAtom = atom<number>(0)
+export const clickedOtherPlayerMaskedIdAtom = atom<string>("")
 export const playerMovementPlannedAtom = atom<TPlayerMovementRecordByXY>({})
 export const playerMapTilesGuardAreaAtom = atom<TAreaRecordByXY>({})
 
@@ -82,7 +81,6 @@ export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
 export const playersOnTileAtom = atom<TPlayersOnTileRecordByOtherPlayerId>({})
 export const knownMapTilesAtom = atom<TKnownMapTilesRecordByXY>({})
 export const knownMapRegionAtom = atom<TKnownMapRegionRecordByMapTileXMapTileY>({})
-export const playersOnTheSameTileAtom = atom<TPlayersOnTheSameTileRecordByOtherPlayerId>({})
 export const knownPlayersPositionsAtom = atom<TKnownPlayersPositionsRecordByXY>({})
 export const playerMovementAtom = atom<TPlayerMovementRecordByXY>({})
 export const playerGearInventoryAtom = atom<TPlayerGearInventoryRecordBySlotId>({})

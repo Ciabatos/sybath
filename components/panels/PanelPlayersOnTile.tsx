@@ -3,6 +3,7 @@ import PlayerPortrait from "@/components/players/PlayerPortrait"
 import { Button } from "@/components/ui/button"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
+import { useSetOtherPlayerId } from "@/methods/hooks/players/composite/useOtherPlayerId"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import usePlayersOnTile from "@/methods/hooks/world/composite/usePlayersOnTile"
 import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
@@ -12,6 +13,7 @@ import styles from "./styles/PanelPlayersOnTile.module.css"
 export default function PanelPlayersOnTile() {
   const { resetModalTopCeneter } = useModalTopCenter()
   const { openModalRightCenter } = useModalRightCenter()
+  const setOtherPlayerId = useSetOtherPlayerId()
 
   const { clickedTile } = useMapTileActions()
   if (!clickedTile) return null
@@ -19,7 +21,8 @@ export default function PanelPlayersOnTile() {
   const { playersOnTile } = usePlayersOnTile(clickedTile.mapTiles.x, clickedTile.mapTiles.y)
   if (!playersOnTile) return null
 
-  const handleClickPlayerPortrait = () => {
+  function handleClickPlayerPortrait(otherPlayerId: string) {
+    setOtherPlayerId(otherPlayerId)
     openModalRightCenter(EPanelsRightCenter.PanelOtherPlayerPanel)
   }
 
@@ -45,7 +48,7 @@ export default function PanelPlayersOnTile() {
             <div>{otherPlayer.secondName}</div>
             <div>{otherPlayer.nickname}</div>
             <Button
-              onClick={handleClickPlayerPortrait}
+              onClick={() => handleClickPlayerPortrait(otherPlayer.otherPlayerId)}
               className={styles.heroButton}
             >
               <PlayerPortrait imagePortrait={otherPlayer.imagePortrait} />

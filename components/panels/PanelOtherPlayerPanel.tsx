@@ -3,6 +3,7 @@ import { PlayerSkills } from "@/components/attributes/PlayerSkills"
 import PlayerStats from "@/components/attributes/PlayerStats"
 import { PlayerCombinedInventory } from "@/components/inventory/PlayerCombinedInventory"
 import { PlayerKnowledge } from "@/components/knowledge/PlayerKnowledge"
+import PlayerSwitchButton from "@/components/players/PlayerSwitchButton"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
@@ -35,15 +36,17 @@ export default function PanelOtherPlayerPanel() {
         <div className={styles.header}>
           <Avatar className={styles.avatar}>
             <AvatarImage
-              src={avatarUrl || "/placeholder.svg"}
+              src={avatarUrl}
               alt='Hero'
               className={styles.avatarImage}
             />
             <AvatarFallback className={styles.avatarFallback}>{avatarFallback}</AvatarFallback>
           </Avatar>
           <div className={styles.headerInfo}>
-            <h2 className={styles.heroName}>Das Man</h2>
-            <p className={styles.heroTitle}>The Dog</p>
+            <h2 className={styles.heroName}>
+              {name} {secondName}
+            </h2>
+            <p className={styles.heroTitle}>Inni głosują za nickiem lub nazywają{nickname}</p>
           </div>
         </div>
 
@@ -89,7 +92,6 @@ export default function PanelOtherPlayerPanel() {
               value='Stats'
               className={styles.tabsContent}
             >
-              <span className={`${styles.knowledgeLevel} ${styles[`levelKnown`]}`}>levelKnown</span>
               <PlayerStats />
             </TabsContent>
 
@@ -122,6 +124,9 @@ export default function PanelOtherPlayerPanel() {
             </TabsContent>
           </Tabs>
         </div>
+      </div>
+      <div className={styles.playerSwitchButtonContainer}>
+        <PlayerSwitchButton />
       </div>
     </div>
   )
