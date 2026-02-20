@@ -426,5 +426,13 @@
       "const playersOnTile = useAtomValue(playersOnTileAtom)"
     ],
     "description": "Destructuring usePlayersOnTile hook"
-  }, //Automatic Snippets
+  },   
+  "Destructure useOtherPlayerProfile": {
+    "prefix": "hook_players_core_useOtherPlayerProfile",
+    "body": [
+      "useFetchOtherPlayerProfile({ playerId, otherPlayerMaskId })",
+      "const otherPlayerProfile = useAtomValue(otherPlayerProfileAtom)"
+    ],
+    "description": "Destructuring useOtherPlayerProfile hook"
+  },//Automatic Snippets
 }

@@ -3,23 +3,34 @@ import { PlayerSkills } from "@/components/attributes/PlayerSkills"
 import PlayerStats from "@/components/attributes/PlayerStats"
 import { PlayerCombinedInventory } from "@/components/inventory/PlayerCombinedInventory"
 import { PlayerKnowledge } from "@/components/knowledge/PlayerKnowledge"
-import PlayerSwitchButton from "@/components/players/PlayerSwitchButton"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { createImage } from "@/methods/functions/util/createImage"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
+import { useOtherPlayerId } from "@/methods/hooks/players/composite/useOtherPlayerId"
+import { useOtherPlayerProfile } from "@/methods/hooks/players/composite/useOtherPlayerProfile"
+import { Avatar, AvatarImage } from "@radix-ui/react-avatar"
 import { X } from "lucide-react"
 import styles from "./styles/PanelOtherPlayerPanel.module.css"
 
 export default function PanelOtherPlayerPanel() {
   const { resetModalRightCenter } = useModalRightCenter()
+  const { createPlayerPortrait } = createImage()
+  const { otherPlayerProfile } = useOtherPlayerProfile()
+  const otherPLayerId = useOtherPlayerId()
 
   function onClose() {
     resetModalRightCenter()
   }
 
-  const avatarUrl = "https://github.com/shadcn.png"
-  const avatarFallback = "VB"
+  const name = otherPlayerProfile?.name ? otherPlayerProfile?.name : otherPLayerId
+  const secondName = otherPlayerProfile?.secondName
+  const nickname = otherPlayerProfile?.nickname
+
+  const avatarUrl =
+    otherPlayerProfile?.imagePortrait && otherPlayerProfile?.imagePortrait.trim() !== ""
+      ? createPlayerPortrait(otherPlayerProfile?.imagePortrait)
+      : createPlayerPortrait("masked.png")
 
   return (
     <div className={styles.panelsContainer}>
@@ -40,11 +51,12 @@ export default function PanelOtherPlayerPanel() {
               alt='Hero'
               className={styles.avatarImage}
             />
-            <AvatarFallback className={styles.avatarFallback}>{avatarFallback}</AvatarFallback>
           </Avatar>
           <div className={styles.headerInfo}>
-            <h2 className={styles.heroName}>dsafsadf</h2>
-            <p className={styles.heroTitle}>Inni głosują za nickiem lub nazywają</p>
+            <h2 className={styles.heroName}>
+              {name} {secondName}
+            </h2>
+            <p className={styles.heroTitle}>Inni głosują za nickiem lub nazywają{nickname}</p>
           </div>
         </div>
 
@@ -122,9 +134,6 @@ export default function PanelOtherPlayerPanel() {
             </TabsContent>
           </Tabs>
         </div>
-      </div>
-      <div className={styles.playerSwitchButtonContainer}>
-        <PlayerSwitchButton />
       </div>
     </div>
   )

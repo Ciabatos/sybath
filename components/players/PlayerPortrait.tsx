@@ -11,22 +11,10 @@ type TPlayerPortrait = {
 export default function PlayerPortrait(props: TPlayerPortrait) {
   const { createPlayerPortrait } = createImage()
 
-  const avatarUrl = createPlayerPortrait(props.imagePortrait)
-  const avatarMasked = createPlayerPortrait("masked.png")
-
-  if (!avatarUrl) {
-    return (
-      <>
-        <Avatar className={styles.avatar}>
-          <AvatarImage
-            src={avatarMasked}
-            alt='Hero avatar'
-            className={styles.avatarImage}
-          />
-        </Avatar>
-      </>
-    )
-  }
+  const avatarUrl =
+    props.imagePortrait && props.imagePortrait.trim() !== ""
+      ? createPlayerPortrait(props.imagePortrait)
+      : createPlayerPortrait("masked.png")
 
   return (
     <>
