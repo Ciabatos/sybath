@@ -3,7 +3,7 @@
 import TileLayersHandling from "@/components/map/layers/tileLayers/TileLayersHandling"
 import style from "@/components/map/styles/Tile.module.css"
 import { createImage } from "@/methods/functions/util/createImage"
-import { TMapTile } from "@/methods/hooks/world/composite/useMapHandlingData"
+import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 
 export default function Map(props: TMapTile) {

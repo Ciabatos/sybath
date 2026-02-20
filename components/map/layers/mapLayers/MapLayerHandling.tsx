@@ -1,11 +1,11 @@
 "use client"
 
-import RegionLayer from "@/components/map/layers/mapLayers/regions/RegionLayer"
+import RegionLayerProvince from "@/components/map/layers/mapLayers/regions/RegionLayerProvince"
 
 export default function MapLayerHandling() {
   return (
     <>
-      <RegionLayer />
+      <RegionLayerProvince />
     </>
   )
 }

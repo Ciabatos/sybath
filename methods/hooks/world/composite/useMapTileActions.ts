@@ -1,7 +1,7 @@
 "use client"
 
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
-import { TMapTile } from "@/methods/hooks/world/composite/useMapHandlingData"
+import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
 import { clickedTileAtom } from "@/store/atoms"
 import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { useAtom } from "jotai"

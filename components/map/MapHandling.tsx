@@ -2,10 +2,10 @@
 
 import Map from "@/components/map/Map"
 import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMovement"
-import { useMapHandlingData } from "@/methods/hooks/world/composite/useMapHandlingData"
+import { useMapHandling } from "@/methods/hooks/world/composite/useMapHandling"
 
 export default function MapHandling() {
-  const { combinedMap } = useMapHandlingData()
+  const { combinedMap } = useMapHandling()
   usePlayerMovement()
 
   return (

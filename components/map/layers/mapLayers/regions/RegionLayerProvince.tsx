@@ -7,7 +7,7 @@ import style from "./styles/RegionLayer.module.css"
 
 const TILE_SIZE = 64
 
-export default function RegionLayer() {
+export default function RegionLayerProvince() {
   //zamienic na provincesRegion
   const { knownMapRegion } = useRegionLayerProvince()
 

@@ -1,6 +1,6 @@
 "use client"
 
-import { TMapTile } from "@/methods/hooks/world/composite/useMapHandlingData"
+import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
 import { playerMovementAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 

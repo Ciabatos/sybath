@@ -41,7 +41,7 @@ export type TMapTile = {
   knownPlayersPositions?: TKnownPlayersPositions
 }
 
-export function useMapHandlingData() {
+export function useMapHandling() {
   const { playerId } = usePlayerId()
   const { mapId } = useMapId()
 
