@@ -1,6 +1,6 @@
 "use client"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { createImage } from "@/methods/functions/util/createImage"
 import styles from "./styles/PlayerPortrait.module.css"
 
@@ -12,7 +12,21 @@ export default function PlayerPortrait(props: TPlayerPortrait) {
   const { createPlayerPortrait } = createImage()
 
   const avatarUrl = createPlayerPortrait(props.imagePortrait)
-  const avatarFallback = "VB"
+  const avatarMasked = createPlayerPortrait("masked.png")
+
+  if (!avatarUrl) {
+    return (
+      <>
+        <Avatar className={styles.avatar}>
+          <AvatarImage
+            src={avatarMasked}
+            alt='Hero avatar'
+            className={styles.avatarImage}
+          />
+        </Avatar>
+      </>
+    )
+  }
 
   return (
     <>
@@ -22,7 +36,6 @@ export default function PlayerPortrait(props: TPlayerPortrait) {
           alt='Hero avatar'
           className={styles.avatarImage}
         />
-        <AvatarFallback className={styles.avatarFallback}>{avatarFallback}</AvatarFallback>
       </Avatar>
     </>
   )
