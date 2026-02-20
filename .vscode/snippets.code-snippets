@@ -387,14 +387,6 @@
     ],
     "description": "Destructuring useKnownPlayersPositions hook"
   },
-  "Destructure usePlayersOnTheSameTile": {
-    "prefix": "hook_world_core_usePlayersOnTheSameTile",
-    "body": [
-      "useFetchPlayersOnTheSameTile({ mapId, playerId })",
-      "const playersOnTheSameTile = useAtomValue(playersOnTheSameTileAtom)"
-    ],
-    "description": "Destructuring usePlayersOnTheSameTile hook"
-  },
   "Destructure useKnownMapRegion": {
     "prefix": "hook_world_core_useKnownMapRegion",
     "body": [
@@ -402,7 +394,7 @@
       "const knownMapRegion = useAtomValue(knownMapRegionAtom)"
     ],
     "description": "Destructuring useKnownMapRegion hook"
-  },   
+  },
   "Destructure useKnownMapTiles": {
     "prefix": "hook_world_core_useKnownMapTiles",
     "body": [
@@ -426,7 +418,7 @@
       "const mapTiles = useAtomValue(mapTilesAtom)"
     ],
     "description": "Destructuring useWorldMapTilesByKey hook"
-  },  
+  },
   "Destructure usePlayersOnTile": {
     "prefix": "hook_world_core_usePlayersOnTile",
     "body": [
@@ -434,5 +426,5 @@
       "const playersOnTile = useAtomValue(playersOnTileAtom)"
     ],
     "description": "Destructuring usePlayersOnTile hook"
-  },//Automatic Snippets
+  }, //Automatic Snippets
 }
