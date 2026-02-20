@@ -7,4 +7,5 @@ export const panelRightCenter: Record<EPanelsRightCenter, React.LazyExoticCompon
     // [EPanelsRightCenter.PanelPlayerPanel]: React.lazy(() => import("@/components/panels/PanelPlayerPanel")),
     [EPanelsRightCenter.PanelMapTileDetail]: React.lazy(() => import("@/components/panels/PanelMapTileDetail")),
     [EPanelsRightCenter.PanelOtherPlayerPanel]: React.lazy(() => import("@/components/panels/PanelOtherPlayerPanel")),
+    [EPanelsRightCenter.PanelPlayersOnTile]: React.lazy(() => import("@/components/panels/PanelPlayersOnTile")),
   }

@@ -1,0 +1,11 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    -4px 0 20px rgba(0, 0, 0, 0.7),
+    inset 0 0 30px rgba(0, 0, 0, 0.3);
+  border-left: 3px solid #4a3728;
+  background: linear-gradient(135deg, #1a0f08 0%, #2b1810 50%, #1a0f08 100%);
+  width: 100%;
+  overflow: hidden;
+}

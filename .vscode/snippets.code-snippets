@@ -426,5 +426,13 @@
       "const mapTiles = useAtomValue(mapTilesAtom)"
     ],
     "description": "Destructuring useWorldMapTilesByKey hook"
+  },  
+  "Destructure usePlayersOnTile": {
+    "prefix": "hook_world_core_usePlayersOnTile",
+    "body": [
+      "useFetchPlayersOnTile({ mapId, mapTileX, mapTileY, playerId })",
+      "const playersOnTile = useAtomValue(playersOnTileAtom)"
+    ],
+    "description": "Destructuring usePlayersOnTile hook"
   },//Automatic Snippets
 }

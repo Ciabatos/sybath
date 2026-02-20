@@ -1,0 +1,98 @@
+{
+  "promptAnswers": {
+    "schema": "world",
+    "method": "get_players_on_tile",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "otherPlayerId"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "world",
+  "method": "get_players_on_tile",
+  "methodCamelName": "playersOnTile",
+  "methodPascalName": "PlayersOnTile",
+  "methodKebabName": "get-players-on-tile",
+  "methodName": "getPlayersOnTile",
+  "methodTypeName": "TPlayersOnTile",
+  "methodParamsTypeName": "TPlayersOnTileParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_map_id",
+      "camelName": "mapId",
+      "tsType": "number"
+    },
+    {
+      "name": "p_map_tile_x",
+      "camelName": "mapTileX",
+      "tsType": "number"
+    },
+    {
+      "name": "p_map_tile_y",
+      "camelName": "mapTileY",
+      "tsType": "number"
+    },
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "other_player_id",
+      "camelName": "otherPlayerId",
+      "pascalName": "OtherPlayerId",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "pascalName": "Name",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "second_name",
+      "camelName": "secondName",
+      "pascalName": "SecondName",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "nickname",
+      "camelName": "nickname",
+      "pascalName": "Nickname",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "image_portrait",
+      "camelName": "imagePortrait",
+      "pascalName": "ImagePortrait",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"otherPlayerId\"]",
+  "indexParamsColumns": "mapId, mapTileX, mapTileY, playerId",
+  "indexTypeMethodName": "OtherPlayerId",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TPlayersOnTileRecordByOtherPlayerId",
+  "indexColumns": [
+    {
+      "name": "other_player_id",
+      "camelName": "otherPlayerId",
+      "pascalName": "OtherPlayerId",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1, $2, $3, $4",
+  "apiPath": "app/api/world/rpc/get-players-on-tile/[mapId]/[mapTileX]/[mapTileY]/[playerId]/route.ts",
+  "apiPathParams": "/api/world/rpc/get-players-on-tile/${params.mapId}/${params.mapTileX}/${params.mapTileY}/${params.playerId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true
+}

@@ -4,12 +4,13 @@ import { Button } from "@/components/ui/button"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMovement"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
+import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { X } from "lucide-react"
 import { useEffect, useState } from "react"
 import styles from "./styles/PanelMapTileDetail.module.css"
 
 export default function PanelMapTileDetail() {
-  const { resetModalRightCenter } = useModalRightCenter()
+  const { openModalRightCenter, resetModalRightCenter } = useModalRightCenter()
   const { clickedTile } = useMapTileActions()
   const { selectPlayerPathToClickedTile, selectPlayerPathAndMovePlayerToClickedTile, resetPlayerMovementPlanned } =
     usePlayerMovement()
@@ -25,6 +26,10 @@ export default function PanelMapTileDetail() {
       selectPlayerPathToClickedTile()
     }
   }, [clickedTile])
+
+  function handlePlayersListOnTile() {
+    openModalRightCenter(EPanelsRightCenter.PanelPlayersOnTile)
+  }
 
   function handleMove() {
     if (!isMoving) {
@@ -147,8 +152,14 @@ export default function PanelMapTileDetail() {
               key={12}
               className={styles.encounterItem}
             >
-              <span className={styles.encounterIcon}>⚔️</span>
-              <span className={styles.encounterName}>{`encounter`}</span>
+              <Button
+                className={styles.actionButton}
+                onClick={() => {
+                  handlePlayersListOnTile()
+                }}
+              >
+                Players list on tile
+              </Button>
             </div>
           </div>
         </section>
