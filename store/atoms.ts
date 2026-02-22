@@ -16,12 +16,13 @@ import { TDistrictsDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDa
 import { TBuildingInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory"
 import { TDistrictInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/districtInventory"
 import { TInventoryInventorySlotTypesRecordById } from "@/db/postgresMainDatabase/schemas/inventory/inventorySlotTypes"
-import { TPlayerGearInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/playerGearInventory"
+import { TOtherPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/otherPlayerInventory"
 import { TPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
 import { TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/items"
 import { TActivePlayerRecordById } from "@/db/postgresMainDatabase/schemas/players/activePlayer"
 import { TActivePlayerProfileRecordByName } from "@/db/postgresMainDatabase/schemas/players/activePlayerProfile"
 import { TActivePlayerSwitchProfilesRecordById } from "@/db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles"
+import { TOtherPlayerProfileRecordByName } from "@/db/postgresMainDatabase/schemas/players/otherPlayerProfile"
 import { TKnownMapRegionRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
 import { TKnownMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/knownMapTiles"
 import { TKnownPlayersPositionsRecordByXY } from "@/db/postgresMainDatabase/schemas/world/knownPlayersPositions"
@@ -41,9 +42,6 @@ import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { EPanelsTopCenterBar } from "@/types/enumeration/EPanelsTopCenterBar"
 import { atom } from "jotai"
-import { TOtherPlayerProfileRecordByName } from "@/db/postgresMainDatabase/schemas/players/otherPlayerProfile"
-import { TOtherPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/otherPlayerInventory"
-import { TOtherPlayerGearInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/otherPlayerGearInventory"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBottomCenterBar.Inactive)
@@ -81,7 +79,6 @@ export const terrainTypesAtom = atom<TWorldTerrainTypesRecordById>({})
 export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
 
 //Functions
-export const otherPlayerGearInventoryAtom = atom<TOtherPlayerGearInventoryRecordBySlotId>({})
 export const otherPlayerInventoryAtom = atom<TOtherPlayerInventoryRecordBySlotId>({})
 export const otherPlayerProfileAtom = atom<TOtherPlayerProfileRecordByName>({})
 export const playersOnTileAtom = atom<TPlayersOnTileRecordByOtherPlayerId>({})
@@ -89,7 +86,6 @@ export const knownMapTilesAtom = atom<TKnownMapTilesRecordByXY>({})
 export const knownMapRegionAtom = atom<TKnownMapRegionRecordByMapTileXMapTileY>({})
 export const knownPlayersPositionsAtom = atom<TKnownPlayersPositionsRecordByXY>({})
 export const playerMovementAtom = atom<TPlayerMovementRecordByXY>({})
-export const playerGearInventoryAtom = atom<TPlayerGearInventoryRecordBySlotId>({})
 export const playerStatsAtom = atom<TPlayerStatsRecordByStatId>({})
 export const playerSkillsAtom = atom<TPlayerSkillsRecordBySkillId>({})
 export const buildingInventoryAtom = atom<TBuildingInventoryRecordBySlotId>({})

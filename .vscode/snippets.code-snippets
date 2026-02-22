@@ -371,14 +371,6 @@
     ],
     "description": "Destructuring useInventoryInventorySlotTypesByKey hook"
   },
-  "Destructure usePlayerGearInventory": {
-    "prefix": "hook_inventory_core_usePlayerGearInventory",
-    "body": [
-      "useFetchPlayerGearInventory({ playerId })",
-      "const playerGearInventory = useAtomValue(playerGearInventoryAtom)"
-    ],
-    "description": "Destructuring usePlayerGearInventory hook"
-  },
   "Destructure useKnownPlayersPositions": {
     "prefix": "hook_world_core_useKnownPlayersPositions",
     "body": [
@@ -426,7 +418,7 @@
       "const playersOnTile = useAtomValue(playersOnTileAtom)"
     ],
     "description": "Destructuring usePlayersOnTile hook"
-  },   
+  },
   "Destructure useOtherPlayerProfile": {
     "prefix": "hook_players_core_useOtherPlayerProfile",
     "body": [
@@ -434,7 +426,7 @@
       "const otherPlayerProfile = useAtomValue(otherPlayerProfileAtom)"
     ],
     "description": "Destructuring useOtherPlayerProfile hook"
-  },  
+  },
   "Destructure useOtherPlayerInventory": {
     "prefix": "hook_inventory_core_useOtherPlayerInventory",
     "body": [
@@ -442,13 +434,5 @@
       "const otherPlayerInventory = useAtomValue(otherPlayerInventoryAtom)"
     ],
     "description": "Destructuring useOtherPlayerInventory hook"
-  },  
-  "Destructure useOtherPlayerGearInventory": {
-    "prefix": "hook_inventory_core_useOtherPlayerGearInventory",
-    "body": [
-      "useFetchOtherPlayerGearInventory({ playerId, otherPlayerMaskId })",
-      "const otherPlayerGearInventory = useAtomValue(otherPlayerGearInventoryAtom)"
-    ],
-    "description": "Destructuring useOtherPlayerGearInventory hook"
-  },//Automatic Snippets
+  }, //Automatic Snippets
 }
