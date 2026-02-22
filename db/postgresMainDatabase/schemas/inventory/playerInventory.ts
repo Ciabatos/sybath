@@ -6,6 +6,7 @@ import { snakeToCamelRows } from "@/methods/functions/util/snakeToCamel"
 
 export type TPlayerInventoryParams = {
   playerId: number
+  inventoryContainerTypeId: number
 }
 
 export type TPlayerInventory = {
@@ -23,7 +24,7 @@ export type TPlayerInventoryRecordBySlotId = Record<string, TPlayerInventory>
 export async function getPlayerInventory(params: TPlayerInventoryParams) {
   try {
     const sqlParams = Object.values(params)
-    const sql = `SELECT * FROM inventory.get_player_inventory($1);`
+    const sql = `SELECT * FROM inventory.get_player_inventory($1, $2);`
 
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TPlayerInventory[]

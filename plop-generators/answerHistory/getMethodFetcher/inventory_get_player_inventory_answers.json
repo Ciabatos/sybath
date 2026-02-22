@@ -22,6 +22,11 @@
       "name": "p_player_id",
       "camelName": "playerId",
       "tsType": "number"
+    },
+    {
+      "name": "p_inventory_container_type_id",
+      "camelName": "inventoryContainerTypeId",
+      "tsType": "number"
     }
   ],
   "methodColumns": [
@@ -76,7 +81,7 @@
     }
   ],
   "indexMethodParams": "[\"slotId\"]",
-  "indexParamsColumns": "playerId",
+  "indexParamsColumns": "playerId, inventoryContainerTypeId",
   "indexTypeMethodName": "SlotId",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TPlayerInventoryRecordBySlotId",
@@ -89,12 +94,9 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1",
-  "apiPath": "app/api/inventory/rpc/get-player-inventory/[playerId]/route.ts",
-  "apiPathParams": "/api/inventory/rpc/get-player-inventory/${params.playerId}",
+  "sqlParamsPlaceholders": "$1, $2",
+  "apiPath": "app/api/inventory/rpc/get-player-inventory/[playerId]/[inventoryContainerTypeId]/route.ts",
+  "apiPathParams": "/api/inventory/rpc/get-player-inventory/${params.playerId}/${params.inventoryContainerTypeId}",
   "generateMutation": true,
-  "mutationMergeOldData": true,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ]
+  "mutationMergeOldData": true
 }

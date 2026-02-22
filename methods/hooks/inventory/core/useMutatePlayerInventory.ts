@@ -1,19 +1,19 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
+import { useSWRConfig } from "swr"
 import {
-  TPlayerInventory,
-  TPlayerInventoryParams,
   TPlayerInventoryRecordBySlotId,
+  TPlayerInventoryParams,
+  TPlayerInventory,
 } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { playerInventoryAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import { useSWRConfig } from "swr"
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutatePlayerInventory(params: TPlayerInventoryParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/inventory/rpc/get-player-inventory/${params.playerId}`
+  const key = `/api/inventory/rpc/get-player-inventory/${params.playerId}/${params.inventoryContainerTypeId}`
   const playerInventory = useAtomValue(playerInventoryAtom)
 
   function mutatePlayerInventory(optimisticParams?: Partial<TPlayerInventory>[]) {
@@ -25,13 +25,13 @@ export function useMutatePlayerInventory(params: TPlayerInventoryParams) {
     //MANUAL CODE - START
 
     const defaultValues = {
-      slotId: 0,
-      containerId: 0,
-      inventoryContainerTypeId: 0,
-      inventorySlotTypeId: 0,
-      itemId: 0,
+      slotId: ``,
+      containerId: ``,
+      inventoryContainerTypeId: ``,
+      inventorySlotTypeId: ``,
+      itemId: ``,
       name: ``,
-      quantity: 0,
+      quantity: ``,
     }
 
     //MANUAL CODE - END
