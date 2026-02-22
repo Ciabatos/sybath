@@ -1,0 +1,102 @@
+{
+  "promptAnswers": {
+    "schema": "inventory",
+    "method": "get_other_player_inventory",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "slotId"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "inventory",
+  "method": "get_other_player_inventory",
+  "methodCamelName": "otherPlayerInventory",
+  "methodPascalName": "OtherPlayerInventory",
+  "methodKebabName": "get-other-player-inventory",
+  "methodName": "getOtherPlayerInventory",
+  "methodTypeName": "TOtherPlayerInventory",
+  "methodParamsTypeName": "TOtherPlayerInventoryParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    },
+    {
+      "name": "p_other_player_mask_id",
+      "camelName": "otherPlayerMaskId",
+      "tsType": "string"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "slot_id",
+      "camelName": "slotId",
+      "pascalName": "SlotId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "container_id",
+      "camelName": "containerId",
+      "pascalName": "ContainerId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "inventory_container_type_id",
+      "camelName": "inventoryContainerTypeId",
+      "pascalName": "InventoryContainerTypeId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "inventory_slot_type_id",
+      "camelName": "inventorySlotTypeId",
+      "pascalName": "InventorySlotTypeId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "item_id",
+      "camelName": "itemId",
+      "pascalName": "ItemId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "pascalName": "Name",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "quantity",
+      "camelName": "quantity",
+      "pascalName": "Quantity",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"slotId\"]",
+  "indexParamsColumns": "playerId, otherPlayerMaskId",
+  "indexTypeMethodName": "SlotId",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TOtherPlayerInventoryRecordBySlotId",
+  "indexColumns": [
+    {
+      "name": "slot_id",
+      "camelName": "slotId",
+      "pascalName": "SlotId",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1, $2",
+  "apiPath": "app/api/inventory/rpc/get-other-player-inventory/[playerId]/[otherPlayerMaskId]/route.ts",
+  "apiPathParams": "/api/inventory/rpc/get-other-player-inventory/${params.playerId}/${params.otherPlayerMaskId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true
+}

@@ -42,6 +42,7 @@ import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { EPanelsTopCenterBar } from "@/types/enumeration/EPanelsTopCenterBar"
 import { atom } from "jotai"
 import { TOtherPlayerProfileRecordByName } from "@/db/postgresMainDatabase/schemas/players/otherPlayerProfile"
+import { TOtherPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/otherPlayerInventory"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBottomCenterBar.Inactive)
@@ -79,6 +80,7 @@ export const terrainTypesAtom = atom<TWorldTerrainTypesRecordById>({})
 export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
 
 //Functions
+export const otherPlayerInventoryAtom = atom<TOtherPlayerInventoryRecordBySlotId>({})
 export const otherPlayerProfileAtom = atom<TOtherPlayerProfileRecordByName>({})
 export const playersOnTileAtom = atom<TPlayersOnTileRecordByOtherPlayerId>({})
 export const knownMapTilesAtom = atom<TKnownMapTilesRecordByXY>({})

@@ -434,5 +434,13 @@
       "const otherPlayerProfile = useAtomValue(otherPlayerProfileAtom)"
     ],
     "description": "Destructuring useOtherPlayerProfile hook"
+  },  
+  "Destructure useOtherPlayerInventory": {
+    "prefix": "hook_inventory_core_useOtherPlayerInventory",
+    "body": [
+      "useFetchOtherPlayerInventory({ playerId, otherPlayerMaskId })",
+      "const otherPlayerInventory = useAtomValue(otherPlayerInventoryAtom)"
+    ],
+    "description": "Destructuring useOtherPlayerInventory hook"
   },//Automatic Snippets
 }
