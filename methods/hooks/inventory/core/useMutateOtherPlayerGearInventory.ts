@@ -3,20 +3,20 @@
 
 import { useSWRConfig } from "swr"
 import {
-  TPlayerInventoryRecordBySlotId,
-  TPlayerInventoryParams,
-  TPlayerInventory,
-} from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
-import { playerInventoryAtom } from "@/store/atoms"
+  TOtherPlayerGearInventoryRecordBySlotId,
+  TOtherPlayerGearInventoryParams,
+  TOtherPlayerGearInventory,
+} from "@/db/postgresMainDatabase/schemas/inventory/otherPlayerGearInventory"
+import { otherPlayerGearInventoryAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutatePlayerInventory(params: TPlayerInventoryParams) {
+export function useMutateOtherPlayerGearInventory(params: TOtherPlayerGearInventoryParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/inventory/rpc/get-player-inventory/${params.playerId}`
-  const playerInventory = useAtomValue(playerInventoryAtom)
+  const key = `/api/inventory/rpc/get-other-player-gear-inventory/${params.playerId}/${params.otherPlayerMaskId}`
+  const otherPlayerGearInventory = useAtomValue(otherPlayerGearInventoryAtom)
 
-  function mutatePlayerInventory(optimisticParams?: Partial<TPlayerInventory>[]) {
+  function mutateOtherPlayerGearInventory(optimisticParams?: Partial<TOtherPlayerGearInventory>[]) {
     if (!optimisticParams) {
       mutate(key)
       return
@@ -41,10 +41,10 @@ export function useMutatePlayerInventory(params: TPlayerInventoryParams) {
       ...val,
     }))
 
-    const newObj = arrayToObjectKey(["slotId"], dataWithDefaults) as TPlayerInventoryRecordBySlotId
+    const newObj = arrayToObjectKey(["slotId"], dataWithDefaults) as TOtherPlayerGearInventoryRecordBySlotId
 
-    const optimisticDataMergeWithOldData: TPlayerInventoryRecordBySlotId = {
-      ...playerInventory,
+    const optimisticDataMergeWithOldData: TOtherPlayerGearInventoryRecordBySlotId = {
+      ...otherPlayerGearInventory,
       ...newObj,
     }
 
@@ -58,5 +58,5 @@ export function useMutatePlayerInventory(params: TPlayerInventoryParams) {
     })
   }
 
-  return { mutatePlayerInventory }
+  return { mutateOtherPlayerGearInventory }
 }

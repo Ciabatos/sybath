@@ -16,7 +16,9 @@ import { TDistrictsDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDa
 import { TBuildingInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory"
 import { TDistrictInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/districtInventory"
 import { TInventoryInventorySlotTypesRecordById } from "@/db/postgresMainDatabase/schemas/inventory/inventorySlotTypes"
+import { TOtherPlayerGearInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/otherPlayerGearInventory"
 import { TOtherPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/otherPlayerInventory"
+import { TPlayerGearInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/playerGearInventory"
 import { TPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
 import { TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/items"
 import { TActivePlayerRecordById } from "@/db/postgresMainDatabase/schemas/players/activePlayer"
@@ -79,7 +81,9 @@ export const terrainTypesAtom = atom<TWorldTerrainTypesRecordById>({})
 export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
 
 //Functions
+export const otherPlayerGearInventoryAtom = atom<TOtherPlayerGearInventoryRecordBySlotId>({})
 export const otherPlayerInventoryAtom = atom<TOtherPlayerInventoryRecordBySlotId>({})
+export const playerGearInventoryAtom = atom<TPlayerGearInventoryRecordBySlotId>({})
 export const otherPlayerProfileAtom = atom<TOtherPlayerProfileRecordByName>({})
 export const playersOnTileAtom = atom<TPlayersOnTileRecordByOtherPlayerId>({})
 export const knownMapTilesAtom = atom<TKnownMapTilesRecordByXY>({})

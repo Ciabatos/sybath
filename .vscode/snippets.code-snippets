@@ -434,5 +434,21 @@
       "const otherPlayerInventory = useAtomValue(otherPlayerInventoryAtom)"
     ],
     "description": "Destructuring useOtherPlayerInventory hook"
+  },
+  "Destructure usePlayerGearInventory": {
+    "prefix": "hook_inventory_core_usePlayerGearInventory",
+    "body": [
+      "useFetchPlayerGearInventory({ playerId })",
+      "const playerGearInventory = useAtomValue(playerGearInventoryAtom)"
+    ],
+    "description": "Destructuring usePlayerGearInventory hook"
+  },
+  "Destructure useOtherPlayerGearInventory": {
+    "prefix": "hook_inventory_core_useOtherPlayerGearInventory",
+    "body": [
+      "useFetchOtherPlayerGearInventory({ playerId, otherPlayerMaskId })",
+      "const otherPlayerGearInventory = useAtomValue(otherPlayerGearInventoryAtom)"
+    ],
+    "description": "Destructuring useOtherPlayerGearInventory hook"
   }, //Automatic Snippets
 }

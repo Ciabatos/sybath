@@ -1,7 +1,7 @@
 {
   "promptAnswers": {
     "schema": "inventory",
-    "method": "get_player_inventory",
+    "method": "get_player_gear_inventory",
     "usePrevious": false,
     "selectedColumnsIndex": [
       "slotId"
@@ -10,13 +10,13 @@
     "mutationMergeOldData": true
   },
   "schema": "inventory",
-  "method": "get_player_inventory",
-  "methodCamelName": "playerInventory",
-  "methodPascalName": "PlayerInventory",
-  "methodKebabName": "get-player-inventory",
-  "methodName": "getPlayerInventory",
-  "methodTypeName": "TPlayerInventory",
-  "methodParamsTypeName": "TPlayerInventoryParams",
+  "method": "get_player_gear_inventory",
+  "methodCamelName": "playerGearInventory",
+  "methodPascalName": "PlayerGearInventory",
+  "methodKebabName": "get-player-gear-inventory",
+  "methodName": "getPlayerGearInventory",
+  "methodTypeName": "TPlayerGearInventory",
+  "methodParamsTypeName": "TPlayerGearInventoryParams",
   "methodParamsColumns": [
     {
       "name": "p_player_id",
@@ -79,7 +79,7 @@
   "indexParamsColumns": "playerId",
   "indexTypeMethodName": "SlotId",
   "indexMethodName": "arrayToObjectKey",
-  "indexTypeName": "TPlayerInventoryRecordBySlotId",
+  "indexTypeName": "TPlayerGearInventoryRecordBySlotId",
   "indexColumns": [
     {
       "name": "slot_id",
@@ -90,8 +90,8 @@
     }
   ],
   "sqlParamsPlaceholders": "$1",
-  "apiPath": "app/api/inventory/rpc/get-player-inventory/[playerId]/route.ts",
-  "apiPathParams": "/api/inventory/rpc/get-player-inventory/${params.playerId}",
+  "apiPath": "app/api/inventory/rpc/get-player-gear-inventory/[playerId]/route.ts",
+  "apiPathParams": "/api/inventory/rpc/get-player-gear-inventory/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": true
 }

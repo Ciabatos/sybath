@@ -3,20 +3,20 @@
 
 import { useSWRConfig } from "swr"
 import {
-  TPlayerInventoryRecordBySlotId,
-  TPlayerInventoryParams,
-  TPlayerInventory,
-} from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
-import { playerInventoryAtom } from "@/store/atoms"
+  TPlayerGearInventoryRecordBySlotId,
+  TPlayerGearInventoryParams,
+  TPlayerGearInventory,
+} from "@/db/postgresMainDatabase/schemas/inventory/playerGearInventory"
+import { playerGearInventoryAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutatePlayerInventory(params: TPlayerInventoryParams) {
+export function useMutatePlayerGearInventory(params: TPlayerGearInventoryParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/inventory/rpc/get-player-inventory/${params.playerId}`
-  const playerInventory = useAtomValue(playerInventoryAtom)
+  const key = `/api/inventory/rpc/get-player-gear-inventory/${params.playerId}`
+  const playerGearInventory = useAtomValue(playerGearInventoryAtom)
 
-  function mutatePlayerInventory(optimisticParams?: Partial<TPlayerInventory>[]) {
+  function mutatePlayerGearInventory(optimisticParams?: Partial<TPlayerGearInventory>[]) {
     if (!optimisticParams) {
       mutate(key)
       return
@@ -41,10 +41,10 @@ export function useMutatePlayerInventory(params: TPlayerInventoryParams) {
       ...val,
     }))
 
-    const newObj = arrayToObjectKey(["slotId"], dataWithDefaults) as TPlayerInventoryRecordBySlotId
+    const newObj = arrayToObjectKey(["slotId"], dataWithDefaults) as TPlayerGearInventoryRecordBySlotId
 
-    const optimisticDataMergeWithOldData: TPlayerInventoryRecordBySlotId = {
-      ...playerInventory,
+    const optimisticDataMergeWithOldData: TPlayerGearInventoryRecordBySlotId = {
+      ...playerGearInventory,
       ...newObj,
     }
 
@@ -58,5 +58,5 @@ export function useMutatePlayerInventory(params: TPlayerInventoryParams) {
     })
   }
 
-  return { mutatePlayerInventory }
+  return { mutatePlayerGearInventory }
 }
