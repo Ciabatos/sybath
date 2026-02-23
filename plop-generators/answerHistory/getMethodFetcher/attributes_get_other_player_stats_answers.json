@@ -1,0 +1,74 @@
+{
+  "promptAnswers": {
+    "schema": "attributes",
+    "method": "get_other_player_stats",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "statId"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "attributes",
+  "method": "get_other_player_stats",
+  "methodCamelName": "otherPlayerStats",
+  "methodPascalName": "OtherPlayerStats",
+  "methodKebabName": "get-other-player-stats",
+  "methodName": "getOtherPlayerStats",
+  "methodTypeName": "TOtherPlayerStats",
+  "methodParamsTypeName": "TOtherPlayerStatsParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    },
+    {
+      "name": "p_other_player_mask_id",
+      "camelName": "otherPlayerMaskId",
+      "tsType": "string"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "stat_id",
+      "camelName": "statId",
+      "pascalName": "StatId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "value",
+      "camelName": "value",
+      "pascalName": "Value",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "pascalName": "Name",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"statId\"]",
+  "indexParamsColumns": "playerId, otherPlayerMaskId",
+  "indexTypeMethodName": "StatId",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TOtherPlayerStatsRecordByStatId",
+  "indexColumns": [
+    {
+      "name": "stat_id",
+      "camelName": "statId",
+      "pascalName": "StatId",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1, $2",
+  "apiPath": "app/api/attributes/rpc/get-other-player-stats/[playerId]/[otherPlayerMaskId]/route.ts",
+  "apiPathParams": "/api/attributes/rpc/get-other-player-stats/${params.playerId}/${params.otherPlayerMaskId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true
+}
