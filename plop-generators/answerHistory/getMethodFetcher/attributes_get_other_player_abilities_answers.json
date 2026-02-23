@@ -1,0 +1,74 @@
+{
+  "promptAnswers": {
+    "schema": "attributes",
+    "method": "get_other_player_abilities",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "abilityId"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "attributes",
+  "method": "get_other_player_abilities",
+  "methodCamelName": "otherPlayerAbilities",
+  "methodPascalName": "OtherPlayerAbilities",
+  "methodKebabName": "get-other-player-abilities",
+  "methodName": "getOtherPlayerAbilities",
+  "methodTypeName": "TOtherPlayerAbilities",
+  "methodParamsTypeName": "TOtherPlayerAbilitiesParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    },
+    {
+      "name": "p_other_player_mask_id",
+      "camelName": "otherPlayerMaskId",
+      "tsType": "string"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "ability_id",
+      "camelName": "abilityId",
+      "pascalName": "AbilityId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "value",
+      "camelName": "value",
+      "pascalName": "Value",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "pascalName": "Name",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"abilityId\"]",
+  "indexParamsColumns": "playerId, otherPlayerMaskId",
+  "indexTypeMethodName": "AbilityId",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TOtherPlayerAbilitiesRecordByAbilityId",
+  "indexColumns": [
+    {
+      "name": "ability_id",
+      "camelName": "abilityId",
+      "pascalName": "AbilityId",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1, $2",
+  "apiPath": "app/api/attributes/rpc/get-other-player-abilities/[playerId]/[otherPlayerMaskId]/route.ts",
+  "apiPathParams": "/api/attributes/rpc/get-other-player-abilities/${params.playerId}/${params.otherPlayerMaskId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true
+}

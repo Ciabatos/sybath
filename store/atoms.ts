@@ -46,6 +46,7 @@ import { EPanelsTopCenterBar } from "@/types/enumeration/EPanelsTopCenterBar"
 import { atom } from "jotai"
 import { TOtherPlayerStatsRecordByStatId } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerStats"
 import { TOtherPlayerSkillsRecordBySkillId } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerSkills"
+import { TOtherPlayerAbilitiesRecordByAbilityId } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerAbilities"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBottomCenterBar.Inactive)
@@ -83,6 +84,7 @@ export const terrainTypesAtom = atom<TWorldTerrainTypesRecordById>({})
 export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
 
 //Functions
+export const otherPlayerAbilitiesAtom = atom<TOtherPlayerAbilitiesRecordByAbilityId>({})
 export const otherPlayerSkillsAtom = atom<TOtherPlayerSkillsRecordBySkillId>({})
 export const otherPlayerStatsAtom = atom<TOtherPlayerStatsRecordByStatId>({})
 export const otherPlayerGearInventoryAtom = atom<TOtherPlayerGearInventoryRecordBySlotId>({})
