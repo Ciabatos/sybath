@@ -458,5 +458,13 @@
       "const otherPlayerStats = useAtomValue(otherPlayerStatsAtom)"
     ],
     "description": "Destructuring useOtherPlayerStats hook"
+  },  
+  "Destructure useOtherPlayerSkills": {
+    "prefix": "hook_attributes_core_useOtherPlayerSkills",
+    "body": [
+      "useFetchOtherPlayerSkills({ playerId, otherPlayerMaskId })",
+      "const otherPlayerSkills = useAtomValue(otherPlayerSkillsAtom)"
+    ],
+    "description": "Destructuring useOtherPlayerSkills hook"
   },//Automatic Snippets
 }

@@ -1,0 +1,74 @@
+{
+  "promptAnswers": {
+    "schema": "attributes",
+    "method": "get_other_player_skills",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "skillId"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "attributes",
+  "method": "get_other_player_skills",
+  "methodCamelName": "otherPlayerSkills",
+  "methodPascalName": "OtherPlayerSkills",
+  "methodKebabName": "get-other-player-skills",
+  "methodName": "getOtherPlayerSkills",
+  "methodTypeName": "TOtherPlayerSkills",
+  "methodParamsTypeName": "TOtherPlayerSkillsParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    },
+    {
+      "name": "p_other_player_mask_id",
+      "camelName": "otherPlayerMaskId",
+      "tsType": "string"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "skill_id",
+      "camelName": "skillId",
+      "pascalName": "SkillId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "value",
+      "camelName": "value",
+      "pascalName": "Value",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "pascalName": "Name",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"skillId\"]",
+  "indexParamsColumns": "playerId, otherPlayerMaskId",
+  "indexTypeMethodName": "SkillId",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TOtherPlayerSkillsRecordBySkillId",
+  "indexColumns": [
+    {
+      "name": "skill_id",
+      "camelName": "skillId",
+      "pascalName": "SkillId",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1, $2",
+  "apiPath": "app/api/attributes/rpc/get-other-player-skills/[playerId]/[otherPlayerMaskId]/route.ts",
+  "apiPathParams": "/api/attributes/rpc/get-other-player-skills/${params.playerId}/${params.otherPlayerMaskId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true
+}

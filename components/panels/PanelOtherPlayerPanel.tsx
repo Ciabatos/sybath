@@ -1,6 +1,6 @@
+import { OtherPlayerSkills } from "@/components/attributes/OtherPlayerSkills"
 import OtherPlayerStats from "@/components/attributes/OtherPlayerStats"
 import { PlayerAbilities } from "@/components/attributes/PlayerAbilities"
-import { PlayerSkills } from "@/components/attributes/PlayerSkills"
 import { OtherPlayerCombinedInventory } from "@/components/inventory/OtherPlayerCombinedInventory"
 import { PlayerKnowledge } from "@/components/knowledge/PlayerKnowledge"
 import { Button } from "@/components/ui/button"
@@ -116,7 +116,7 @@ export default function PanelOtherPlayerPanel() {
               value='Skills'
               className={styles.tabsContent}
             >
-              <PlayerSkills />
+              <OtherPlayerSkills />
             </TabsContent>
 
             <TabsContent
