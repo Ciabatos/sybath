@@ -1,5 +1,6 @@
 "use client"
 
+import { TInventorySlot } from "@/components/inventory/InventorySlot"
 import { useFetchPlayerInventory } from "@/methods/hooks/inventory/core/useFetchPlayerInventory"
 import { useFetchItemsItems } from "@/methods/hooks/items/core/useFetchItemsItems"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
@@ -15,11 +16,13 @@ export function usePlayerInventory() {
   useFetchPlayerInventory({ playerId })
   const playerInventory = useAtomValue(playerInventoryAtom)
 
-  const combinedPlayerInventory = Object.values(playerInventory).map((playerInventory) => ({
-    type: "playerInventory",
-    ...playerInventory,
-    ...items[playerInventory.itemId],
-  }))
+  const combinedPlayerInventory = Object.values(playerInventory).map(
+    (playerInventory): TInventorySlot => ({
+      type: "playerInventory",
+      ...playerInventory,
+      ...items[playerInventory.itemId],
+    }),
+  )
 
   return { combinedPlayerInventory }
 }

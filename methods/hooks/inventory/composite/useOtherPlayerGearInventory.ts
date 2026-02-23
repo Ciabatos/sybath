@@ -1,5 +1,6 @@
 "use client"
 
+import { TInventorySlot } from "@/components/inventory/InventorySlot"
 import { useFetchOtherPlayerGearInventory } from "@/methods/hooks/inventory/core/useFetchOtherPlayerGearInventory"
 import { useFetchItemsItems } from "@/methods/hooks/items/core/useFetchItemsItems"
 import { useOtherPlayerId } from "@/methods/hooks/players/composite/useOtherPlayerId"
@@ -17,11 +18,13 @@ export function useOtherPlayerGearInventory() {
   useFetchOtherPlayerGearInventory({ playerId, otherPlayerMaskId })
   const otherPlayerGearInventory = useAtomValue(otherPlayerGearInventoryAtom)
 
-  const combinedOtherPlayerGearInventory = Object.values(otherPlayerGearInventory).map((playerGearInventory) => ({
-    type: "otherPlayerGearInventory",
-    ...playerGearInventory,
-    ...items[playerGearInventory.itemId],
-  }))
+  const combinedOtherPlayerGearInventory = Object.values(otherPlayerGearInventory).map(
+    (playerGearInventory): TInventorySlot => ({
+      type: "otherPlayerGearInventory",
+      ...playerGearInventory,
+      ...items[playerGearInventory.itemId],
+    }),
+  )
 
   return { combinedOtherPlayerGearInventory }
 }
