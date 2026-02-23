@@ -2,13 +2,20 @@
 
 import { TInventorySlot } from "@/components/inventory/InventorySlot"
 import { doMoveOrSwapItemAction } from "@/methods/actions/inventory/doMoveOrSwapItemAction"
+import { useMutateOtherPlayerGearInventory } from "@/methods/hooks/inventory/core/useMutateOtherPlayerGearInventory"
+import { useMutateOtherPlayerInventory } from "@/methods/hooks/inventory/core/useMutateOtherPlayerInventory"
 import { useMutatePlayerGearInventory } from "@/methods/hooks/inventory/core/useMutatePlayerGearInventory"
 import { useMutatePlayerInventory } from "@/methods/hooks/inventory/core/useMutatePlayerInventory"
+import { useOtherPlayerId } from "@/methods/hooks/players/composite/useOtherPlayerId"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { useDragDropMonitor } from "@dnd-kit/react"
 import { toast } from "sonner"
 
+type TInventoryType = "playerInventory" | "playerGearInventory" | "otherPlayerInventory" | "otherPlayerGearInventory"
+
 type TMoveOrSwapItem = {
+  fromType: TInventoryType
+  toType: TInventoryType
   fromSlotId: number
   toSlotId: number
   fromInventoryContainerId: number
@@ -25,27 +32,53 @@ type TMoveOrSwapItem = {
   toQuantity: number
 }
 
+type TInventoryUpdate = {
+  type: TInventoryType
+  slotId: number
+  containerId: number
+  inventoryContainerTypeId: number
+  inventorySlotTypeId: number
+  itemId: number
+  name: string
+  quantity: number
+}
+
+// containerTypeId → mutator key
+const CONTAINER_TYPE_TO_MUTATOR = {
+  1: "inventory",
+  2: "gearInventory",
+} as const
+
 export function useInventoryMonitor() {
   const { playerId } = usePlayerId()
+  const otherPlayerId = useOtherPlayerId()
   const { mutatePlayerInventory } = useMutatePlayerInventory({ playerId })
   const { mutatePlayerGearInventory } = useMutatePlayerGearInventory({ playerId })
+  const { mutateOtherPlayerInventory } = useMutateOtherPlayerInventory({ playerId, otherPlayerMaskId: otherPlayerId })
+  const { mutateOtherPlayerGearInventory } = useMutateOtherPlayerGearInventory({
+    playerId,
+    otherPlayerMaskId: otherPlayerId,
+  })
+
+  const mutators: Record<TInventoryType, (updates: TInventoryUpdate[]) => void> = {
+    playerInventory: mutatePlayerInventory,
+    playerGearInventory: mutatePlayerGearInventory,
+    otherPlayerInventory: mutateOtherPlayerInventory,
+    otherPlayerGearInventory: mutateOtherPlayerGearInventory,
+  }
 
   useDragDropMonitor({
     onDragEnd: async (event) => {
       const { operation, canceled } = event
+      if (canceled || !operation.target) return
 
-      if (canceled) return
-      if (!operation.target) return
-
-      const source = operation.source
-      const target = operation.target
-
-      const sourceData = source?.data as TInventorySlot
-      const targetData = target?.data as TInventorySlot
-
+      const sourceData = operation.source?.data as TInventorySlot
+      const targetData = operation.target?.data as TInventorySlot
       if (!sourceData?.itemId) return
 
       const result = await moveOrSwapItem({
+        fromType: sourceData.type,
+        toType: targetData.type,
         fromSlotId: sourceData.slotId,
         toSlotId: targetData.slotId,
         fromInventoryContainerId: sourceData.containerId,
@@ -69,22 +102,19 @@ export function useInventoryMonitor() {
   async function moveOrSwapItem(params: TMoveOrSwapItem) {
     try {
       const result = await doMoveOrSwapItemAction({
-        playerId: playerId,
+        playerId,
         fromSlotId: params.fromSlotId,
         toSlotId: params.toSlotId,
         fromInventoryContainerId: params.fromInventoryContainerId,
         toInventoryContainerId: params.toInventoryContainerId,
       })
 
-      if (!result.status) {
-        return result.message
-      }
+      if (!result.status) return result.message
 
-      const updatesPlayerInventory = []
-      const updatesPlayerGearInventory = []
-
-      if (params.fromInventoryContainerTypeId === 1) {
-        updatesPlayerInventory.push({
+      // Po swapie: slot "from" otrzymuje przedmiot z "to" i odwrotnie
+      const sides = [
+        {
+          type: params.fromType,
           slotId: params.fromSlotId,
           containerId: params.fromInventoryContainerId,
           inventoryContainerTypeId: params.fromInventoryContainerTypeId,
@@ -92,10 +122,9 @@ export function useInventoryMonitor() {
           itemId: params.toItemId,
           name: params.toName,
           quantity: params.toQuantity,
-        })
-      }
-      if (params.toInventoryContainerTypeId === 1) {
-        updatesPlayerInventory.push({
+        },
+        {
+          type: params.toType,
           slotId: params.toSlotId,
           containerId: params.toInventoryContainerId,
           inventoryContainerTypeId: params.toInventoryContainerTypeId,
@@ -103,37 +132,14 @@ export function useInventoryMonitor() {
           itemId: params.fromItemId,
           name: params.fromName,
           quantity: params.fromQuantity,
-        })
-      }
+        },
+      ]
 
-      if (params.fromInventoryContainerTypeId === 2) {
-        updatesPlayerGearInventory.push({
-          slotId: params.fromSlotId,
-          containerId: params.fromInventoryContainerId,
-          inventoryContainerTypeId: params.fromInventoryContainerTypeId,
-          inventorySlotTypeId: params.fromInventorySlotTypeId,
-          itemId: params.toItemId,
-          name: params.toName,
-          quantity: params.toQuantity,
-        })
-      }
-      if (params.toInventoryContainerTypeId === 2) {
-        updatesPlayerGearInventory.push({
-          slotId: params.toSlotId,
-          containerId: params.toInventoryContainerId,
-          inventoryContainerTypeId: params.toInventoryContainerTypeId,
-          inventorySlotTypeId: params.toInventorySlotTypeId,
-          itemId: params.fromItemId,
-          name: params.fromName,
-          quantity: params.fromQuantity,
-        })
-      }
-      if (updatesPlayerInventory.length) {
-        mutatePlayerInventory(updatesPlayerInventory)
-      }
+      // Grupujemy po type i wywołujemy właściwy mutator
+      const grouped = Object.groupBy(sides, (s) => s.type) as Partial<Record<TInventoryType, TInventoryUpdate[]>>
 
-      if (updatesPlayerGearInventory.length) {
-        mutatePlayerGearInventory(updatesPlayerGearInventory)
+      for (const [type, updates] of Object.entries(grouped) as [TInventoryType, TInventoryUpdate[]][]) {
+        mutators[type]?.(updates)
       }
 
       return result.message

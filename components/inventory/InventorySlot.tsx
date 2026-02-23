@@ -4,6 +4,7 @@ import { ReactNode, useId } from "react"
 import styles from "./styles/InventorySlot.module.css"
 
 export type TInventorySlot = {
+  type: `playerGearInventory` | `playerInventory` | `otherPlayerGearInventory` | `otherPlayerInventory`
   id: number
   name: string
   description?: string

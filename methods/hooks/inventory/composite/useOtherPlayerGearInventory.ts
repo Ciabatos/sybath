@@ -18,6 +18,7 @@ export function useOtherPlayerGearInventory() {
   const otherPlayerGearInventory = useAtomValue(otherPlayerGearInventoryAtom)
 
   const combinedOtherPlayerGearInventory = Object.values(otherPlayerGearInventory).map((playerGearInventory) => ({
+    type: "otherPlayerGearInventory",
     ...playerGearInventory,
     ...items[playerGearInventory.itemId],
   }))
