@@ -1,26 +1,14 @@
-Panel Listy Characterow - ogolny
-Panel graczy na tiles - mini ikonka People tam gdzie stoisz albo ikona na dole ekranu wieksza
-widoczne wszystkie osoby na tiles anonimowo - chyba ze ma sie knowledge na ich temat
-w miescie nie mozna ich zobaczyc, dopiero jak sie wejdzie w konkretny budynek
+w miescie nie mozna postaci zobaczyc, dopiero jak sie wejdzie w konkretny budynek
 Podwalic pomysł od CK3 i CK2 interfejs, zwlaszcza familiy https://steamcommunity.com/sharedfiles/filedetails/?id=2838140104
 https://steamcommunity.com/sharedfiles/filedetails/?id=3276373926&searchtext=
-
-śledzenie gracza - pojawia sie na mapie jako mniejsza ikona tak jak gracz tylko mala i sie ustawiaja w rzedzie jak jest ich wiecej na 1 tiles
-max 10 graczy sledzenia ?
 last seen - knowledge
-dodac uuid do playerId table, zmiana uuid w momencie zmiany tilesa, budynku lub na reczne wywolanie gracza albo bardziej RPG po zmianie aparycji ?
 
---pobieranie playerKnowledge
---pobieranie playerInventory
---chodzenie po mapie
---widocznosc innych graczy na mapie
 --wymiana inventory miedzy graczami, budynkami, squadami (ogolny panel trade na centrum ekranu ?)
 --pobieranie informacji o squad
 --zaproszenia/anulacje do squad
 --jezeli w squadzie jest wiecej niz 1 hero to zmiana ikony na mapie
 --Skill budowania nomadow
 ...
-
 
 teraz zajac sie districtem
 produkowanie co interwal produktow
