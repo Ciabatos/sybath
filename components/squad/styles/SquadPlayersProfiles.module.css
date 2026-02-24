@@ -1,0 +1,81 @@
+.squadGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.memberCard {
+  transition: all 0.2s ease;
+  box-shadow:
+    inset 0 1px 4px rgba(0, 0, 0, 0.6),
+    0 4px 12px rgba(0, 0, 0, 0.8);
+  border: 3px solid #78350f;
+  border-radius: 6px;
+  background: linear-gradient(to bottom, #2b1810 0%, #1a0f08 100%);
+  padding: 1rem;
+}
+
+.memberCard:hover {
+  box-shadow:
+    inset 0 1px 4px rgba(0, 0, 0, 0.6),
+    0 6px 16px rgba(200, 154, 74, 0.3);
+  border-color: #b45309;
+}
+
+.memberHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.memberAvatar {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  border: 3px solid #78350f;
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.avatarFallback {
+  background-color: #292524;
+  color: #c89a4a;
+  font-weight: bold;
+  font-family: "Cinzel", serif;
+}
+
+.memberInfo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.memberName {
+  margin: 0;
+  color: #e6c998;
+  font-weight: bold;
+  font-size: 1rem;
+  font-family: "Cinzel", serif;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.actionButton {
+  flex: 1;
+  transition: all 0.2s ease;
+  border: 2px solid #b45309;
+  background: linear-gradient(to bottom, #78350f 0%, #451a03 100%);
+  color: #e6c998;
+  font-size: 0.875rem;
+  font-family: "Cinzel", serif;
+}
+
+.actionButton:hover {
+  box-shadow: 0 4px 12px rgba(200, 154, 74, 0.3);
+  border-color: #d97706;
+  background: linear-gradient(to bottom, #b45309 0%, #78350f 100%);
+}
