@@ -13,7 +13,7 @@ import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateOtherPlayerStats(params: TOtherPlayerStatsParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/attributes/rpc/get-other-player-stats/${params.playerId}/${params.otherPlayerMaskId}`
+  const key = `/api/attributes/rpc/get-other-player-stats/${params.playerId}/${params.otherPlayerId}`
   const otherPlayerStats = useAtomValue(otherPlayerStatsAtom)
 
   function mutateOtherPlayerStats(optimisticParams?: Partial<TOtherPlayerStats>[]) {

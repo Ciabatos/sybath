@@ -9,12 +9,12 @@ import { useAtomValue } from "jotai"
 
 export function useOtherPlayerStats() {
   const { playerId } = usePlayerId()
-  const otherPlayerMaskId = useOtherPlayerId()
+  const otherPlayerId = useOtherPlayerId()
 
   useFetchAttributesStats()
   const stats = useAtomValue(statsAtom)
 
-  useFetchOtherPlayerStats({ playerId, otherPlayerMaskId })
+  useFetchOtherPlayerStats({ playerId, otherPlayerId })
   const otherPlayerStats = useAtomValue(otherPlayerStatsAtom)
 
   const combinedOtherPlayerStats = Object.entries(otherPlayerStats).map(([key, playerStat]) => ({

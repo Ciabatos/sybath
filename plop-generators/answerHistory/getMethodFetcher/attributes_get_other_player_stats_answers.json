@@ -24,8 +24,8 @@
       "tsType": "number"
     },
     {
-      "name": "p_other_player_mask_id",
-      "camelName": "otherPlayerMaskId",
+      "name": "p_other_player_id",
+      "camelName": "otherPlayerId",
       "tsType": "string"
     }
   ],
@@ -53,7 +53,7 @@
     }
   ],
   "indexMethodParams": "[\"statId\"]",
-  "indexParamsColumns": "playerId, otherPlayerMaskId",
+  "indexParamsColumns": "playerId, otherPlayerId",
   "indexTypeMethodName": "StatId",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TOtherPlayerStatsRecordByStatId",
@@ -67,8 +67,8 @@
     }
   ],
   "sqlParamsPlaceholders": "$1, $2",
-  "apiPath": "app/api/attributes/rpc/get-other-player-stats/[playerId]/[otherPlayerMaskId]/route.ts",
-  "apiPathParams": "/api/attributes/rpc/get-other-player-stats/${params.playerId}/${params.otherPlayerMaskId}",
+  "apiPath": "app/api/attributes/rpc/get-other-player-stats/[playerId]/[otherPlayerId]/route.ts",
+  "apiPathParams": "/api/attributes/rpc/get-other-player-stats/${params.playerId}/${params.otherPlayerId}",
   "generateMutation": true,
   "mutationMergeOldData": true
 }

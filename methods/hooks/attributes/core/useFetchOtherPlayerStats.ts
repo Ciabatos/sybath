@@ -16,7 +16,7 @@ export function useFetchOtherPlayerStats(params: TOtherPlayerStatsParams) {
   const setOtherPlayerStats = useSetAtom(otherPlayerStatsAtom)
 
   const { data } = useSWR<TOtherPlayerStats[]>(
-    `/api/attributes/rpc/get-other-player-stats/${params.playerId}/${params.otherPlayerMaskId}`,
+    `/api/attributes/rpc/get-other-player-stats/${params.playerId}/${params.otherPlayerId}`,
     { refreshInterval: 3000 },
   )
 
