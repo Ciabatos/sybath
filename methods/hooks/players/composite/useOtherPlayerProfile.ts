@@ -10,7 +10,7 @@ export function useOtherPlayerProfile() {
   const { playerId } = usePlayerId()
   const otherPlayerId = useOtherPlayerId()
 
-  useFetchOtherPlayerProfile({ playerId, otherPlayerMaskId: otherPlayerId })
+  useFetchOtherPlayerProfile({ playerId, otherPlayerId })
   const otherPlayerProfileData = useAtomValue(otherPlayerProfileAtom)
 
   const [otherPlayerProfile] = Object.values(otherPlayerProfileData)
