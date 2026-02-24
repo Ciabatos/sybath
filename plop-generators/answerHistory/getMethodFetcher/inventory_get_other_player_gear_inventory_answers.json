@@ -24,8 +24,8 @@
       "tsType": "number"
     },
     {
-      "name": "p_other_player_mask_id",
-      "camelName": "otherPlayerMaskId",
+      "name": "p_other_player_id",
+      "camelName": "otherPlayerId",
       "tsType": "string"
     }
   ],
@@ -81,7 +81,7 @@
     }
   ],
   "indexMethodParams": "[\"slotId\"]",
-  "indexParamsColumns": "playerId, otherPlayerMaskId",
+  "indexParamsColumns": "playerId, otherPlayerId",
   "indexTypeMethodName": "SlotId",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TOtherPlayerGearInventoryRecordBySlotId",
@@ -95,8 +95,8 @@
     }
   ],
   "sqlParamsPlaceholders": "$1, $2",
-  "apiPath": "app/api/inventory/rpc/get-other-player-gear-inventory/[playerId]/[otherPlayerMaskId]/route.ts",
-  "apiPathParams": "/api/inventory/rpc/get-other-player-gear-inventory/${params.playerId}/${params.otherPlayerMaskId}",
+  "apiPath": "app/api/inventory/rpc/get-other-player-gear-inventory/[playerId]/[otherPlayerId]/route.ts",
+  "apiPathParams": "/api/inventory/rpc/get-other-player-gear-inventory/${params.playerId}/${params.otherPlayerId}",
   "generateMutation": true,
   "mutationMergeOldData": true
 }

@@ -16,7 +16,7 @@ export function useFetchOtherPlayerGearInventory(params: TOtherPlayerGearInvento
   const setOtherPlayerGearInventory = useSetAtom(otherPlayerGearInventoryAtom)
 
   const { data } = useSWR<TOtherPlayerGearInventory[]>(
-    `/api/inventory/rpc/get-other-player-gear-inventory/${params.playerId}/${params.otherPlayerMaskId}`,
+    `/api/inventory/rpc/get-other-player-gear-inventory/${params.playerId}/${params.otherPlayerId}`,
     { refreshInterval: 3000 },
   )
 
