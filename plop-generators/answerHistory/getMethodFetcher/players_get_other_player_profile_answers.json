@@ -52,13 +52,6 @@
       "optional": ""
     },
     {
-      "name": "image_map",
-      "camelName": "imageMap",
-      "pascalName": "ImageMap",
-      "tsType": "string",
-      "optional": ""
-    },
-    {
       "name": "image_portrait",
       "camelName": "imagePortrait",
       "pascalName": "ImagePortrait",

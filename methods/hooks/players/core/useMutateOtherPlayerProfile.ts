@@ -28,7 +28,6 @@ export function useMutateOtherPlayerProfile(params: TOtherPlayerProfileParams) {
       name: ``,
       secondName: ``,
       nickname: ``,
-      imageMap: ``,
       imagePortrait: ``,
     }
 

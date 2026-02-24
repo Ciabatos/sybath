@@ -13,7 +13,6 @@ export type TOtherPlayerProfile = {
   name: string
   secondName: string
   nickname: string
-  imageMap: string
   imagePortrait: string
 }
 
