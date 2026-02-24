@@ -482,5 +482,21 @@
       "const activePlayerSquad = useAtomValue(activePlayerSquadAtom)"
     ],
     "description": "Destructuring useActivePlayerSquad hook"
+  },  
+  "Destructure useActivePlayerSquadPlayersProfiles": {
+    "prefix": "hook_squad_core_useActivePlayerSquadPlayersProfiles",
+    "body": [
+      "useFetchActivePlayerSquadPlayersProfiles({ playerId })",
+      "const activePlayerSquadPlayersProfiles = useAtomValue(activePlayerSquadPlayersProfilesAtom)"
+    ],
+    "description": "Destructuring useActivePlayerSquadPlayersProfiles hook"
+  },  
+  "Destructure useOtherSquadPlayersProfiles": {
+    "prefix": "hook_squad_core_useOtherSquadPlayersProfiles",
+    "body": [
+      "useFetchOtherSquadPlayersProfiles({ playerId, squadId })",
+      "const otherSquadPlayersProfiles = useAtomValue(otherSquadPlayersProfilesAtom)"
+    ],
+    "description": "Destructuring useOtherSquadPlayersProfiles hook"
   },//Automatic Snippets
 }

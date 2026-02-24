@@ -48,6 +48,8 @@ import { TOtherPlayerStatsRecordByStatId } from "@/db/postgresMainDatabase/schem
 import { TOtherPlayerSkillsRecordBySkillId } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerSkills"
 import { TOtherPlayerAbilitiesRecordByAbilityId } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerAbilities"
 import { TActivePlayerSquadRecordBySquadId } from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquad"
+import { TActivePlayerSquadPlayersProfilesRecordByName } from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquadPlayersProfiles"
+import { TOtherSquadPlayersProfilesRecordByName } from "@/db/postgresMainDatabase/schemas/squad/otherSquadPlayersProfiles"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBottomCenterBar.Inactive)
@@ -85,6 +87,8 @@ export const terrainTypesAtom = atom<TWorldTerrainTypesRecordById>({})
 export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
 
 //Functions
+export const otherSquadPlayersProfilesAtom = atom<TOtherSquadPlayersProfilesRecordByName>({})
+export const activePlayerSquadPlayersProfilesAtom = atom<TActivePlayerSquadPlayersProfilesRecordByName>({})
 export const activePlayerSquadAtom = atom<TActivePlayerSquadRecordBySquadId>({})
 export const otherPlayerAbilitiesAtom = atom<TOtherPlayerAbilitiesRecordByAbilityId>({})
 export const otherPlayerSkillsAtom = atom<TOtherPlayerSkillsRecordBySkillId>({})

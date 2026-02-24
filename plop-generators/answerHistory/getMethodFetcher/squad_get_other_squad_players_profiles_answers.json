@@ -1,0 +1,88 @@
+{
+  "promptAnswers": {
+    "schema": "squad",
+    "method": "get_other_squad_players_profiles",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "name"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "squad",
+  "method": "get_other_squad_players_profiles",
+  "methodCamelName": "otherSquadPlayersProfiles",
+  "methodPascalName": "OtherSquadPlayersProfiles",
+  "methodKebabName": "get-other-squad-players-profiles",
+  "methodName": "getOtherSquadPlayersProfiles",
+  "methodTypeName": "TOtherSquadPlayersProfiles",
+  "methodParamsTypeName": "TOtherSquadPlayersProfilesParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    },
+    {
+      "name": "p_squad_id",
+      "camelName": "squadId",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "name",
+      "camelName": "name",
+      "pascalName": "Name",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "second_name",
+      "camelName": "secondName",
+      "pascalName": "SecondName",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "nickname",
+      "camelName": "nickname",
+      "pascalName": "Nickname",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "image_map",
+      "camelName": "imageMap",
+      "pascalName": "ImageMap",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "image_portrait",
+      "camelName": "imagePortrait",
+      "pascalName": "ImagePortrait",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"name\"]",
+  "indexParamsColumns": "playerId, squadId",
+  "indexTypeMethodName": "Name",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TOtherSquadPlayersProfilesRecordByName",
+  "indexColumns": [
+    {
+      "name": "name",
+      "camelName": "name",
+      "pascalName": "Name",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1, $2",
+  "apiPath": "app/api/squad/rpc/get-other-squad-players-profiles/[playerId]/[squadId]/route.ts",
+  "apiPathParams": "/api/squad/rpc/get-other-squad-players-profiles/${params.playerId}/${params.squadId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true
+}
