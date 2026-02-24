@@ -9,12 +9,12 @@ import { useAtomValue } from "jotai"
 
 export function useOtherPlayerAbilities() {
   const { playerId } = usePlayerId()
-  const otherPlayerMaskId = useOtherPlayerId()
+  const otherPlayerId = useOtherPlayerId()
 
   useFetchAttributesAbilities()
   const abilities = useAtomValue(abilitiesAtom)
 
-  useFetchOtherPlayerAbilities({ playerId, otherPlayerMaskId })
+  useFetchOtherPlayerAbilities({ playerId, otherPlayerId })
   const otherPlayerAbilities = useAtomValue(otherPlayerAbilitiesAtom)
 
   const combinedOtherPlayerAbilities = Object.entries(otherPlayerAbilities).map(([key, playerAbility]) => ({

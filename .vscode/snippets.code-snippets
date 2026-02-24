@@ -443,14 +443,6 @@
     ],
     "description": "Destructuring useOtherPlayerSkills hook"
   },
-  "Destructure useOtherPlayerAbilities": {
-    "prefix": "hook_attributes_core_useOtherPlayerAbilities",
-    "body": [
-      "useFetchOtherPlayerAbilities({ playerId, otherPlayerMaskId })",
-      "const otherPlayerAbilities = useAtomValue(otherPlayerAbilitiesAtom)"
-    ],
-    "description": "Destructuring useOtherPlayerAbilities hook"
-  },
   "Destructure useActivePlayerSquad": {
     "prefix": "hook_squad_core_useActivePlayerSquad",
     "body": [
@@ -498,5 +490,13 @@
       "const otherPlayerGearInventory = useAtomValue(otherPlayerGearInventoryAtom)"
     ],
     "description": "Destructuring useOtherPlayerGearInventory hook"
+  },
+  "Destructure useOtherPlayerAbilities": {
+    "prefix": "hook_attributes_core_useOtherPlayerAbilities",
+    "body": [
+      "useFetchOtherPlayerAbilities({ playerId, otherPlayerId })",
+      "const otherPlayerAbilities = useAtomValue(otherPlayerAbilitiesAtom)"
+    ],
+    "description": "Destructuring useOtherPlayerAbilities hook"
   }, //Automatic Snippets
 }

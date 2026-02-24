@@ -13,7 +13,7 @@ import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateOtherPlayerAbilities(params: TOtherPlayerAbilitiesParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/attributes/rpc/get-other-player-abilities/${params.playerId}/${params.otherPlayerMaskId}`
+  const key = `/api/attributes/rpc/get-other-player-abilities/${params.playerId}/${params.otherPlayerId}`
   const otherPlayerAbilities = useAtomValue(otherPlayerAbilitiesAtom)
 
   function mutateOtherPlayerAbilities(optimisticParams?: Partial<TOtherPlayerAbilities>[]) {
