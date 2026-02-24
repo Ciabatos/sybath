@@ -24,7 +24,7 @@ export async function getOtherPlayerProfileServer(
   return {
     raw: record!.raw,
     byKey: record!.byKey,
-    apiPath: `/api/players/rpc/get-other-player-profile/${params.playerId}/${params.otherPlayerMaskId}`,
+    apiPath: `/api/players/rpc/get-other-player-profile/${params.playerId}/${params.otherPlayerId}`,
     atomName: `otherPlayerProfileAtom`,
   }
 }

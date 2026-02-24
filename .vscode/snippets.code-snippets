@@ -419,14 +419,6 @@
     ],
     "description": "Destructuring usePlayersOnTile hook"
   },
-  "Destructure useOtherPlayerProfile": {
-    "prefix": "hook_players_core_useOtherPlayerProfile",
-    "body": [
-      "useFetchOtherPlayerProfile({ playerId, otherPlayerMaskId })",
-      "const otherPlayerProfile = useAtomValue(otherPlayerProfileAtom)"
-    ],
-    "description": "Destructuring useOtherPlayerProfile hook"
-  },
   "Destructure useOtherPlayerInventory": {
     "prefix": "hook_inventory_core_useOtherPlayerInventory",
     "body": [
@@ -450,7 +442,7 @@
       "const otherPlayerGearInventory = useAtomValue(otherPlayerGearInventoryAtom)"
     ],
     "description": "Destructuring useOtherPlayerGearInventory hook"
-  },   
+  },
   "Destructure useOtherPlayerStats": {
     "prefix": "hook_attributes_core_useOtherPlayerStats",
     "body": [
@@ -458,7 +450,7 @@
       "const otherPlayerStats = useAtomValue(otherPlayerStatsAtom)"
     ],
     "description": "Destructuring useOtherPlayerStats hook"
-  },  
+  },
   "Destructure useOtherPlayerSkills": {
     "prefix": "hook_attributes_core_useOtherPlayerSkills",
     "body": [
@@ -466,7 +458,7 @@
       "const otherPlayerSkills = useAtomValue(otherPlayerSkillsAtom)"
     ],
     "description": "Destructuring useOtherPlayerSkills hook"
-  },  
+  },
   "Destructure useOtherPlayerAbilities": {
     "prefix": "hook_attributes_core_useOtherPlayerAbilities",
     "body": [
@@ -474,7 +466,7 @@
       "const otherPlayerAbilities = useAtomValue(otherPlayerAbilitiesAtom)"
     ],
     "description": "Destructuring useOtherPlayerAbilities hook"
-  },  
+  },
   "Destructure useActivePlayerSquad": {
     "prefix": "hook_squad_core_useActivePlayerSquad",
     "body": [
@@ -482,7 +474,7 @@
       "const activePlayerSquad = useAtomValue(activePlayerSquadAtom)"
     ],
     "description": "Destructuring useActivePlayerSquad hook"
-  },  
+  },
   "Destructure useActivePlayerSquadPlayersProfiles": {
     "prefix": "hook_squad_core_useActivePlayerSquadPlayersProfiles",
     "body": [
@@ -490,7 +482,7 @@
       "const activePlayerSquadPlayersProfiles = useAtomValue(activePlayerSquadPlayersProfilesAtom)"
     ],
     "description": "Destructuring useActivePlayerSquadPlayersProfiles hook"
-  },  
+  },
   "Destructure useOtherSquadPlayersProfiles": {
     "prefix": "hook_squad_core_useOtherSquadPlayersProfiles",
     "body": [
@@ -498,5 +490,13 @@
       "const otherSquadPlayersProfiles = useAtomValue(otherSquadPlayersProfilesAtom)"
     ],
     "description": "Destructuring useOtherSquadPlayersProfiles hook"
-  },//Automatic Snippets
+  },
+  "Destructure useOtherPlayerProfile": {
+    "prefix": "hook_players_core_useOtherPlayerProfile",
+    "body": [
+      "useFetchOtherPlayerProfile({ playerId, otherPlayerId })",
+      "const otherPlayerProfile = useAtomValue(otherPlayerProfileAtom)"
+    ],
+    "description": "Destructuring useOtherPlayerProfile hook"
+  }, //Automatic Snippets
 }

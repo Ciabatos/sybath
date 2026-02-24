@@ -16,7 +16,7 @@ export function useFetchOtherPlayerProfile(params: TOtherPlayerProfileParams) {
   const setOtherPlayerProfile = useSetAtom(otherPlayerProfileAtom)
 
   const { data } = useSWR<TOtherPlayerProfile[]>(
-    `/api/players/rpc/get-other-player-profile/${params.playerId}/${params.otherPlayerMaskId}`,
+    `/api/players/rpc/get-other-player-profile/${params.playerId}/${params.otherPlayerId}`,
     { refreshInterval: 3000 },
   )
 

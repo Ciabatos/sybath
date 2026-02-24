@@ -13,7 +13,7 @@ import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateOtherPlayerProfile(params: TOtherPlayerProfileParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/players/rpc/get-other-player-profile/${params.playerId}/${params.otherPlayerMaskId}`
+  const key = `/api/players/rpc/get-other-player-profile/${params.playerId}/${params.otherPlayerId}`
   const otherPlayerProfile = useAtomValue(otherPlayerProfileAtom)
 
   function mutateOtherPlayerProfile(optimisticParams?: Partial<TOtherPlayerProfile>[]) {
