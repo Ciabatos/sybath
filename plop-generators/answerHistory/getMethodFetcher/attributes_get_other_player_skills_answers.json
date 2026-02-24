@@ -24,8 +24,8 @@
       "tsType": "number"
     },
     {
-      "name": "p_other_player_mask_id",
-      "camelName": "otherPlayerMaskId",
+      "name": "p_other_player_id",
+      "camelName": "otherPlayerId",
       "tsType": "string"
     }
   ],
@@ -53,7 +53,7 @@
     }
   ],
   "indexMethodParams": "[\"skillId\"]",
-  "indexParamsColumns": "playerId, otherPlayerMaskId",
+  "indexParamsColumns": "playerId, otherPlayerId",
   "indexTypeMethodName": "SkillId",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TOtherPlayerSkillsRecordBySkillId",
@@ -67,8 +67,8 @@
     }
   ],
   "sqlParamsPlaceholders": "$1, $2",
-  "apiPath": "app/api/attributes/rpc/get-other-player-skills/[playerId]/[otherPlayerMaskId]/route.ts",
-  "apiPathParams": "/api/attributes/rpc/get-other-player-skills/${params.playerId}/${params.otherPlayerMaskId}",
+  "apiPath": "app/api/attributes/rpc/get-other-player-skills/[playerId]/[otherPlayerId]/route.ts",
+  "apiPathParams": "/api/attributes/rpc/get-other-player-skills/${params.playerId}/${params.otherPlayerId}",
   "generateMutation": true,
   "mutationMergeOldData": true
 }

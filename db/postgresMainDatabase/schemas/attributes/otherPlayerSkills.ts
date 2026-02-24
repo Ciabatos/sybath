@@ -6,7 +6,7 @@ import { snakeToCamelRows } from "@/methods/functions/util/snakeToCamel"
 
 export type TOtherPlayerSkillsParams = {
   playerId: number
-  otherPlayerMaskId: string
+  otherPlayerId: string
 }
 
 export type TOtherPlayerSkills = {

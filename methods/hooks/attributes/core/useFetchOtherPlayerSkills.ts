@@ -16,7 +16,7 @@ export function useFetchOtherPlayerSkills(params: TOtherPlayerSkillsParams) {
   const setOtherPlayerSkills = useSetAtom(otherPlayerSkillsAtom)
 
   const { data } = useSWR<TOtherPlayerSkills[]>(
-    `/api/attributes/rpc/get-other-player-skills/${params.playerId}/${params.otherPlayerMaskId}`,
+    `/api/attributes/rpc/get-other-player-skills/${params.playerId}/${params.otherPlayerId}`,
     { refreshInterval: 3000 },
   )
 
