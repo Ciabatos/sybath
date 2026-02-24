@@ -1,0 +1,55 @@
+{
+  "promptAnswers": {
+    "schema": "squad",
+    "method": "get_active_player_squad",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "squadId"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": false
+  },
+  "schema": "squad",
+  "method": "get_active_player_squad",
+  "methodCamelName": "activePlayerSquad",
+  "methodPascalName": "ActivePlayerSquad",
+  "methodKebabName": "get-active-player-squad",
+  "methodName": "getActivePlayerSquad",
+  "methodTypeName": "TActivePlayerSquad",
+  "methodParamsTypeName": "TActivePlayerSquadParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "squad_id",
+      "camelName": "squadId",
+      "pascalName": "SquadId",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"squadId\"]",
+  "indexParamsColumns": "playerId",
+  "indexTypeMethodName": "SquadId",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TActivePlayerSquadRecordBySquadId",
+  "indexColumns": [
+    {
+      "name": "squad_id",
+      "camelName": "squadId",
+      "pascalName": "SquadId",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1",
+  "apiPath": "app/api/squad/rpc/get-active-player-squad/[playerId]/route.ts",
+  "apiPathParams": "/api/squad/rpc/get-active-player-squad/${params.playerId}",
+  "generateMutation": true,
+  "mutationMergeOldData": false
+}

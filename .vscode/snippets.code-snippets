@@ -474,5 +474,13 @@
       "const otherPlayerAbilities = useAtomValue(otherPlayerAbilitiesAtom)"
     ],
     "description": "Destructuring useOtherPlayerAbilities hook"
+  },  
+  "Destructure useActivePlayerSquad": {
+    "prefix": "hook_squad_core_useActivePlayerSquad",
+    "body": [
+      "useFetchActivePlayerSquad({ playerId })",
+      "const activePlayerSquad = useAtomValue(activePlayerSquadAtom)"
+    ],
+    "description": "Destructuring useActivePlayerSquad hook"
   },//Automatic Snippets
 }
