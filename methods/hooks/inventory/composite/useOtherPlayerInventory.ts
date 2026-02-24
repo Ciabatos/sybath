@@ -10,12 +10,12 @@ import { useAtomValue } from "jotai"
 
 export function useOtherPlayerInventory() {
   const { playerId } = usePlayerId()
-  const otherPlayer = useOtherPlayerId()
+  const otherPlayerId = useOtherPlayerId()
 
   useFetchItemsItems()
   const items = useAtomValue(itemsAtom)
 
-  useFetchOtherPlayerInventory({ playerId, otherPlayer })
+  useFetchOtherPlayerInventory({ playerId, otherPlayerId })
   const otherPlayerInventory = useAtomValue(otherPlayerInventoryAtom)
 
   const combinedOtherPlayerInventory = Object.values(otherPlayerInventory).map(

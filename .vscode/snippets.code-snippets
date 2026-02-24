@@ -494,7 +494,7 @@
   "Destructure useOtherPlayerInventory": {
     "prefix": "hook_inventory_core_useOtherPlayerInventory",
     "body": [
-      "useFetchOtherPlayerInventory({ playerId, otherPlayer })",
+      "useFetchOtherPlayerInventory({ playerId, otherPlayerId })",
       "const otherPlayerInventory = useAtomValue(otherPlayerInventoryAtom)"
     ],
     "description": "Destructuring useOtherPlayerInventory hook"
