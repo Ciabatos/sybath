@@ -11,7 +11,7 @@ type TApiParams = Record<string, string>
 
 const typeParamsSchema = z.object({
   playerId: z.coerce.number(),
-  otherPlayerMaskId: z.coerce.string(),
+  otherPlayer: z.coerce.string(),
 }) satisfies z.ZodType<TOtherPlayerInventoryParams>
 
 export async function GET(request: NextRequest, { params }: { params: TApiParams }): Promise<NextResponse> {

@@ -2,9 +2,9 @@
 
 "use client"
 import {
-  TOtherPlayerInventoryRecordBySlotId,
   TOtherPlayerInventory,
   TOtherPlayerInventoryParams,
+  TOtherPlayerInventoryRecordBySlotId,
 } from "@/db/postgresMainDatabase/schemas/inventory/otherPlayerInventory"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { otherPlayerInventoryAtom } from "@/store/atoms"
@@ -16,7 +16,7 @@ export function useFetchOtherPlayerInventory(params: TOtherPlayerInventoryParams
   const setOtherPlayerInventory = useSetAtom(otherPlayerInventoryAtom)
 
   const { data } = useSWR<TOtherPlayerInventory[]>(
-    `/api/inventory/rpc/get-other-player-inventory/${params.playerId}/${params.otherPlayerMaskId}`,
+    `/api/inventory/rpc/get-other-player-inventory/${params.playerId}/${params.otherPlayer}`,
     { refreshInterval: 3000 },
   )
 

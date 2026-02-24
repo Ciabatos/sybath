@@ -24,7 +24,7 @@ export async function getOtherPlayerInventoryServer(
   return {
     raw: record!.raw,
     byKey: record!.byKey,
-    apiPath: `/api/inventory/rpc/get-other-player-inventory/${params.playerId}/${params.otherPlayerMaskId}`,
+    apiPath: `/api/inventory/rpc/get-other-player-inventory/${params.playerId}/${params.otherPlayer}`,
     atomName: `otherPlayerInventoryAtom`,
   }
 }

@@ -13,7 +13,7 @@ import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateOtherPlayerInventory(params: TOtherPlayerInventoryParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/inventory/rpc/get-other-player-inventory/${params.playerId}/${params.otherPlayerMaskId}`
+  const key = `/api/inventory/rpc/get-other-player-inventory/${params.playerId}/${params.otherPlayer}`
   const otherPlayerInventory = useAtomValue(otherPlayerInventoryAtom)
 
   function mutateOtherPlayerInventory(optimisticParams?: Partial<TOtherPlayerInventory>[]) {
