@@ -1,6 +1,9 @@
 "use client"
 
 import { TAttributesAbilitiesRecordById } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
+import { TOtherPlayerAbilitiesRecordByAbilityId } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerAbilities"
+import { TOtherPlayerSkillsRecordBySkillId } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerSkills"
+import { TOtherPlayerStatsRecordByStatId } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerStats"
 import { TPlayerAbilitiesRecordByAbilityId } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
 import { TPlayerSkillsRecordBySkillId } from "@/db/postgresMainDatabase/schemas/attributes/playerSkills"
 import { TPlayerStatsRecordByStatId } from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
@@ -25,6 +28,9 @@ import { TActivePlayerRecordById } from "@/db/postgresMainDatabase/schemas/playe
 import { TActivePlayerProfileRecordByName } from "@/db/postgresMainDatabase/schemas/players/activePlayerProfile"
 import { TActivePlayerSwitchProfilesRecordById } from "@/db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles"
 import { TOtherPlayerProfileRecordByName } from "@/db/postgresMainDatabase/schemas/players/otherPlayerProfile"
+import { TActivePlayerSquadRecordBySquadId } from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquad"
+import { TActivePlayerSquadPlayersProfilesRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquadPlayersProfiles"
+import { TOtherSquadPlayersProfilesRecordByName } from "@/db/postgresMainDatabase/schemas/squad/otherSquadPlayersProfiles"
 import { TKnownMapRegionRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
 import { TKnownMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/knownMapTiles"
 import { TKnownPlayersPositionsRecordByXY } from "@/db/postgresMainDatabase/schemas/world/knownPlayersPositions"
@@ -44,12 +50,6 @@ import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { EPanelsTopCenterBar } from "@/types/enumeration/EPanelsTopCenterBar"
 import { atom } from "jotai"
-import { TOtherPlayerStatsRecordByStatId } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerStats"
-import { TOtherPlayerSkillsRecordBySkillId } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerSkills"
-import { TOtherPlayerAbilitiesRecordByAbilityId } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerAbilities"
-import { TActivePlayerSquadRecordBySquadId } from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquad"
-import { TActivePlayerSquadPlayersProfilesRecordByName } from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquadPlayersProfiles"
-import { TOtherSquadPlayersProfilesRecordByName } from "@/db/postgresMainDatabase/schemas/squad/otherSquadPlayersProfiles"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBottomCenterBar.Inactive)
@@ -87,8 +87,8 @@ export const terrainTypesAtom = atom<TWorldTerrainTypesRecordById>({})
 export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
 
 //Functions
+export const activePlayerSquadPlayersProfilesAtom = atom<TActivePlayerSquadPlayersProfilesRecordByOtherPlayerId>({})
 export const otherSquadPlayersProfilesAtom = atom<TOtherSquadPlayersProfilesRecordByName>({})
-export const activePlayerSquadPlayersProfilesAtom = atom<TActivePlayerSquadPlayersProfilesRecordByName>({})
 export const activePlayerSquadAtom = atom<TActivePlayerSquadRecordBySquadId>({})
 export const otherPlayerAbilitiesAtom = atom<TOtherPlayerAbilitiesRecordByAbilityId>({})
 export const otherPlayerSkillsAtom = atom<TOtherPlayerSkillsRecordBySkillId>({})

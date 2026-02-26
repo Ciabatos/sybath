@@ -9,6 +9,7 @@ export type TActivePlayerSquadPlayersProfilesParams = {
 }
 
 export type TActivePlayerSquadPlayersProfiles = {
+  otherPlayerId: number
   name: string
   secondName: string
   nickname: string
@@ -16,7 +17,7 @@ export type TActivePlayerSquadPlayersProfiles = {
   imagePortrait: string
 }
 
-export type TActivePlayerSquadPlayersProfilesRecordByName = Record<string, TActivePlayerSquadPlayersProfiles>
+export type TActivePlayerSquadPlayersProfilesRecordByOtherPlayerId = Record<string, TActivePlayerSquadPlayersProfiles>
 
 export async function getActivePlayerSquadPlayersProfiles(params: TActivePlayerSquadPlayersProfilesParams) {
   try {

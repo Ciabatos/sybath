@@ -42,7 +42,7 @@ export default function SquadPlayersProfiles() {
 
           <div className={styles.actionButtons}>
             <Button
-              onClick={() => handleClickDetails(1)}
+              onClick={() => handleClickDetails(player.otherPlayerId.toString())}
               className={styles.actionButton}
               size='sm'
             >

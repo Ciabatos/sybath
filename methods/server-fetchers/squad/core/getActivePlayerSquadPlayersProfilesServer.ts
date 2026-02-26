@@ -3,14 +3,14 @@
 
 import type { TActivePlayerSquadPlayersProfilesParams } from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquadPlayersProfiles"
 import type {
-  TActivePlayerSquadPlayersProfilesRecordByName,
+  TActivePlayerSquadPlayersProfilesRecordByOtherPlayerId,
   TActivePlayerSquadPlayersProfiles,
 } from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquadPlayersProfiles"
 import { fetchActivePlayerSquadPlayersProfilesService } from "@/methods/services/squad/fetchActivePlayerSquadPlayersProfilesService"
 
 type TResult = {
   raw: TActivePlayerSquadPlayersProfiles[]
-  byKey: TActivePlayerSquadPlayersProfilesRecordByName
+  byKey: TActivePlayerSquadPlayersProfilesRecordByOtherPlayerId
   apiPath: string
   atomName: string
 }

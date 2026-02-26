@@ -4,7 +4,7 @@
     "method": "get_active_player_squad_players_profiles",
     "usePrevious": false,
     "selectedColumnsIndex": [
-      "name"
+      "otherPlayerId"
     ],
     "generateMutation": true,
     "mutationMergeOldData": true
@@ -25,6 +25,13 @@
     }
   ],
   "methodColumns": [
+    {
+      "name": "other_player_id",
+      "camelName": "otherPlayerId",
+      "pascalName": "OtherPlayerId",
+      "tsType": "number",
+      "optional": ""
+    },
     {
       "name": "name",
       "camelName": "name",
@@ -61,17 +68,17 @@
       "optional": ""
     }
   ],
-  "indexMethodParams": "[\"name\"]",
+  "indexMethodParams": "[\"otherPlayerId\"]",
   "indexParamsColumns": "playerId",
-  "indexTypeMethodName": "Name",
+  "indexTypeMethodName": "OtherPlayerId",
   "indexMethodName": "arrayToObjectKey",
-  "indexTypeName": "TActivePlayerSquadPlayersProfilesRecordByName",
+  "indexTypeName": "TActivePlayerSquadPlayersProfilesRecordByOtherPlayerId",
   "indexColumns": [
     {
-      "name": "name",
-      "camelName": "name",
-      "pascalName": "Name",
-      "tsType": "string",
+      "name": "other_player_id",
+      "camelName": "otherPlayerId",
+      "pascalName": "OtherPlayerId",
+      "tsType": "number",
       "optional": ""
     }
   ],

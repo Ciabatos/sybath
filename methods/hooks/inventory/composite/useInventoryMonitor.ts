@@ -54,10 +54,10 @@ export function useInventoryMonitor() {
   const otherPlayerId = useOtherPlayerId()
   const { mutatePlayerInventory } = useMutatePlayerInventory({ playerId })
   const { mutatePlayerGearInventory } = useMutatePlayerGearInventory({ playerId })
-  const { mutateOtherPlayerInventory } = useMutateOtherPlayerInventory({ playerId, otherPlayerMaskId: otherPlayerId })
+  const { mutateOtherPlayerInventory } = useMutateOtherPlayerInventory({ playerId, otherPlayerId: otherPlayerId })
   const { mutateOtherPlayerGearInventory } = useMutateOtherPlayerGearInventory({
     playerId,
-    otherPlayerMaskId: otherPlayerId,
+    otherPlayerId,
   })
 
   const mutators: Record<TInventoryType, (updates: TInventoryUpdate[]) => void> = {
