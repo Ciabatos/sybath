@@ -5,6 +5,7 @@ import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
 import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMovement"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
+import { useMapTileDetail } from "@/methods/hooks/world/composite/useMapTileDetail"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { X } from "lucide-react"
 import { useEffect, useState } from "react"
@@ -14,8 +15,13 @@ export default function PanelMapTileDetail() {
   const { resetModalRightCenter } = useModalRightCenter()
   const { openModalTopCenter } = useModalTopCenter()
   const { clickedMapTile } = useMapTileActions()
+  const { combinedKnownMapTilesResourcesOnTile } = useMapTileDetail()
   const { selectPlayerPathToClickedTile, selectPlayerPathAndMovePlayerToClickedTile, resetPlayerMovementPlanned } =
     usePlayerMovement()
+
+  if (!clickedMapTile) {
+    return null
+  }
 
   const onClose = () => {
     resetModalRightCenter()
@@ -103,7 +109,12 @@ export default function PanelMapTileDetail() {
             <h3 className={styles.sectionTitle}>Settlements</h3>
             <div className={styles.resourceList}>
               <div
-                key={1}
+                key={
+                  clickedMapTile?.mapTiles.mapId +
+                  clickedMapTile?.mapTiles.x +
+                  clickedMapTile?.mapTiles.y +
+                  "Settlements"
+                }
                 className={styles.resourceItem}
               >
                 <span className={styles.resourceIcon}>📦</span>
@@ -118,7 +129,9 @@ export default function PanelMapTileDetail() {
             <h3 className={styles.sectionTitle}>Districts</h3>
             <div className={styles.resourceList}>
               <div
-                key={1}
+                key={
+                  clickedMapTile?.mapTiles.mapId + clickedMapTile?.mapTiles.x + clickedMapTile?.mapTiles.y + "Districts"
+                }
                 className={styles.resourceItem}
               >
                 <span className={styles.resourceIcon}>📦</span>
@@ -133,11 +146,28 @@ export default function PanelMapTileDetail() {
           <h3 className={styles.sectionTitle}>Resources</h3>
           <div className={styles.resourceList}>
             <div
-              key={1}
+              key={
+                clickedMapTile?.mapTiles.mapId + clickedMapTile?.mapTiles.x + clickedMapTile?.mapTiles.y + "Resources"
+              }
               className={styles.resourceItem}
             >
-              <span className={styles.resourceIcon}>📦</span>
-              <span className={styles.resourceName}>{`resource`}</span>
+              {combinedKnownMapTilesResourcesOnTile
+                ?.filter((resource) => resource.itemId !== null)
+                .map((resource) => (
+                  <div key={resource.mapTilesResourceId + "KnownMapTilesResourcesOnTile"}>
+                    <span className={styles.resourceIcon}>📦</span>
+                    <span className={styles.resourceName}>{resource.name}</span>
+                  </div>
+                ))}
+              {combinedKnownMapTilesResourcesOnTile && (
+                <div className={styles.resourceStats}>
+                  {`${Math.round(
+                    (combinedKnownMapTilesResourcesOnTile.filter((r) => r.itemId !== null).length /
+                      combinedKnownMapTilesResourcesOnTile.length) *
+                      100,
+                  )}%`}
+                </div>
+              )}
             </div>
           </div>
         </section>
@@ -146,7 +176,9 @@ export default function PanelMapTileDetail() {
           <h3 className={styles.sectionTitle}>Encounters</h3>
           <div className={styles.encounterList}>
             <div
-              key={12}
+              key={
+                clickedMapTile?.mapTiles.mapId + clickedMapTile?.mapTiles.x + clickedMapTile?.mapTiles.y + "Encounters"
+              }
               className={styles.encounterItem}
             >
               <Button
@@ -159,7 +191,12 @@ export default function PanelMapTileDetail() {
               </Button>
             </div>
             <div
-              key={13}
+              key={
+                clickedMapTile?.mapTiles.mapId +
+                clickedMapTile?.mapTiles.x +
+                clickedMapTile?.mapTiles.y +
+                "Players list on tile"
+              }
               className={styles.encounterItem}
             >
               <Button

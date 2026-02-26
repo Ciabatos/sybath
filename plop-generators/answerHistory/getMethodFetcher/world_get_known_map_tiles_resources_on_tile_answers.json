@@ -1,0 +1,84 @@
+{
+  "promptAnswers": {
+    "schema": "world",
+    "method": "get_known_map_tiles_resources_on_tile",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "mapTilesResourceId"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "world",
+  "method": "get_known_map_tiles_resources_on_tile",
+  "methodCamelName": "knownMapTilesResourcesOnTile",
+  "methodPascalName": "KnownMapTilesResourcesOnTile",
+  "methodKebabName": "get-known-map-tiles-resources-on-tile",
+  "methodName": "getKnownMapTilesResourcesOnTile",
+  "methodTypeName": "TKnownMapTilesResourcesOnTile",
+  "methodParamsTypeName": "TKnownMapTilesResourcesOnTileParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_map_id",
+      "camelName": "mapId",
+      "tsType": "number"
+    },
+    {
+      "name": "p_map_tile_x",
+      "camelName": "mapTileX",
+      "tsType": "number"
+    },
+    {
+      "name": "p_map_tile_y",
+      "camelName": "mapTileY",
+      "tsType": "number"
+    },
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "map_tiles_resource_id",
+      "camelName": "mapTilesResourceId",
+      "pascalName": "MapTilesResourceId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "item_id",
+      "camelName": "itemId",
+      "pascalName": "ItemId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "quantity",
+      "camelName": "quantity",
+      "pascalName": "Quantity",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"mapTilesResourceId\"]",
+  "indexParamsColumns": "mapId, mapTileX, mapTileY, playerId",
+  "indexTypeMethodName": "MapTilesResourceId",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId",
+  "indexColumns": [
+    {
+      "name": "map_tiles_resource_id",
+      "camelName": "mapTilesResourceId",
+      "pascalName": "MapTilesResourceId",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1, $2, $3, $4",
+  "apiPath": "app/api/world/rpc/get-known-map-tiles-resources-on-tile/[mapId]/[mapTileX]/[mapTileY]/[playerId]/route.ts",
+  "apiPathParams": "/api/world/rpc/get-known-map-tiles-resources-on-tile/${params.mapId}/${params.mapTileX}/${params.mapTileY}/${params.playerId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true
+}

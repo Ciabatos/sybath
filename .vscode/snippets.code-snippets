@@ -499,5 +499,13 @@
     ],
     "description": "Destructuring useOtherPlayerStats hook"
   },
-  //Automatic Snippets
+    
+  "Destructure useKnownMapTilesResourcesOnTile": {
+    "prefix": "hook_world_core_useKnownMapTilesResourcesOnTile",
+    "body": [
+      "useFetchKnownMapTilesResourcesOnTile({ mapId, mapTileX, mapTileY, playerId })",
+      "const knownMapTilesResourcesOnTile = useAtomValue(knownMapTilesResourcesOnTileAtom)"
+    ],
+    "description": "Destructuring useKnownMapTilesResourcesOnTile hook"
+  },//Automatic Snippets
 }
