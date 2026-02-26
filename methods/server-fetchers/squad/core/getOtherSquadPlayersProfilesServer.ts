@@ -3,14 +3,14 @@
 
 import type { TOtherSquadPlayersProfilesParams } from "@/db/postgresMainDatabase/schemas/squad/otherSquadPlayersProfiles"
 import type {
-  TOtherSquadPlayersProfilesRecordByName,
+  TOtherSquadPlayersProfilesRecordByOtherPlayerId,
   TOtherSquadPlayersProfiles,
 } from "@/db/postgresMainDatabase/schemas/squad/otherSquadPlayersProfiles"
 import { fetchOtherSquadPlayersProfilesService } from "@/methods/services/squad/fetchOtherSquadPlayersProfilesService"
 
 type TResult = {
   raw: TOtherSquadPlayersProfiles[]
-  byKey: TOtherSquadPlayersProfilesRecordByName
+  byKey: TOtherSquadPlayersProfilesRecordByOtherPlayerId
   apiPath: string
   atomName: string
 }

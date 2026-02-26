@@ -2,7 +2,7 @@
 
 import type {
   TOtherSquadPlayersProfiles,
-  TOtherSquadPlayersProfilesRecordByName,
+  TOtherSquadPlayersProfilesRecordByOtherPlayerId,
   TOtherSquadPlayersProfilesParams,
 } from "@/db/postgresMainDatabase/schemas/squad/otherSquadPlayersProfiles"
 import { getOtherSquadPlayersProfiles } from "@/db/postgresMainDatabase/schemas/squad/otherSquadPlayersProfiles"
@@ -12,7 +12,7 @@ import crypto from "crypto"
 
 type TCacheRecord = {
   raw: TOtherSquadPlayersProfiles[]
-  byKey: TOtherSquadPlayersProfilesRecordByName
+  byKey: TOtherSquadPlayersProfilesRecordByOtherPlayerId
   etag: string
 }
 
@@ -64,7 +64,7 @@ export async function fetchOtherSquadPlayersProfilesService(
     }
   }
 
-  const byKey = arrayToObjectKey(["name"], raw) as TOtherSquadPlayersProfilesRecordByName
+  const byKey = arrayToObjectKey(["otherPlayerId"], raw) as TOtherSquadPlayersProfilesRecordByOtherPlayerId
 
   const record: TCacheRecord = {
     raw,

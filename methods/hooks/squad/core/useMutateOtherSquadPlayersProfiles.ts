@@ -3,7 +3,7 @@
 
 import { useSWRConfig } from "swr"
 import {
-  TOtherSquadPlayersProfilesRecordByName,
+  TOtherSquadPlayersProfilesRecordByOtherPlayerId,
   TOtherSquadPlayersProfilesParams,
   TOtherSquadPlayersProfiles,
 } from "@/db/postgresMainDatabase/schemas/squad/otherSquadPlayersProfiles"
@@ -25,6 +25,7 @@ export function useMutateOtherSquadPlayersProfiles(params: TOtherSquadPlayersPro
     //MANUAL CODE - START
 
     const defaultValues = {
+      otherPlayerId: ``,
       name: ``,
       secondName: ``,
       nickname: ``,
@@ -39,9 +40,12 @@ export function useMutateOtherSquadPlayersProfiles(params: TOtherSquadPlayersPro
       ...val,
     }))
 
-    const newObj = arrayToObjectKey(["name"], dataWithDefaults) as TOtherSquadPlayersProfilesRecordByName
+    const newObj = arrayToObjectKey(
+      ["otherPlayerId"],
+      dataWithDefaults,
+    ) as TOtherSquadPlayersProfilesRecordByOtherPlayerId
 
-    const optimisticDataMergeWithOldData: TOtherSquadPlayersProfilesRecordByName = {
+    const optimisticDataMergeWithOldData: TOtherSquadPlayersProfilesRecordByOtherPlayerId = {
       ...otherSquadPlayersProfiles,
       ...newObj,
     }

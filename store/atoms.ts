@@ -30,7 +30,7 @@ import { TActivePlayerSwitchProfilesRecordById } from "@/db/postgresMainDatabase
 import { TOtherPlayerProfileRecordByName } from "@/db/postgresMainDatabase/schemas/players/otherPlayerProfile"
 import { TActivePlayerSquadRecordBySquadId } from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquad"
 import { TActivePlayerSquadPlayersProfilesRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquadPlayersProfiles"
-import { TOtherSquadPlayersProfilesRecordByName } from "@/db/postgresMainDatabase/schemas/squad/otherSquadPlayersProfiles"
+import { TOtherSquadPlayersProfilesRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/squad/otherSquadPlayersProfiles"
 import { TKnownMapRegionRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
 import { TKnownMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/knownMapTiles"
 import { TKnownPlayersPositionsRecordByXY } from "@/db/postgresMainDatabase/schemas/world/knownPlayersPositions"
@@ -87,8 +87,8 @@ export const terrainTypesAtom = atom<TWorldTerrainTypesRecordById>({})
 export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
 
 //Functions
+export const otherSquadPlayersProfilesAtom = atom<TOtherSquadPlayersProfilesRecordByOtherPlayerId>({})
 export const activePlayerSquadPlayersProfilesAtom = atom<TActivePlayerSquadPlayersProfilesRecordByOtherPlayerId>({})
-export const otherSquadPlayersProfilesAtom = atom<TOtherSquadPlayersProfilesRecordByName>({})
 export const activePlayerSquadAtom = atom<TActivePlayerSquadRecordBySquadId>({})
 export const otherPlayerAbilitiesAtom = atom<TOtherPlayerAbilitiesRecordByAbilityId>({})
 export const otherPlayerSkillsAtom = atom<TOtherPlayerSkillsRecordBySkillId>({})

@@ -10,6 +10,7 @@ export type TOtherSquadPlayersProfilesParams = {
 }
 
 export type TOtherSquadPlayersProfiles = {
+  otherPlayerId: string
   name: string
   secondName: string
   nickname: string
@@ -17,7 +18,7 @@ export type TOtherSquadPlayersProfiles = {
   imagePortrait: string
 }
 
-export type TOtherSquadPlayersProfilesRecordByName = Record<string, TOtherSquadPlayersProfiles>
+export type TOtherSquadPlayersProfilesRecordByOtherPlayerId = Record<string, TOtherSquadPlayersProfiles>
 
 export async function getOtherSquadPlayersProfiles(params: TOtherSquadPlayersProfilesParams) {
   try {

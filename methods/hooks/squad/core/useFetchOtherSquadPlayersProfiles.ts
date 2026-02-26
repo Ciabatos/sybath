@@ -2,7 +2,7 @@
 
 "use client"
 import {
-  TOtherSquadPlayersProfilesRecordByName,
+  TOtherSquadPlayersProfilesRecordByOtherPlayerId,
   TOtherSquadPlayersProfiles,
   TOtherSquadPlayersProfilesParams,
 } from "@/db/postgresMainDatabase/schemas/squad/otherSquadPlayersProfiles"
@@ -22,7 +22,10 @@ export function useFetchOtherSquadPlayersProfiles(params: TOtherSquadPlayersProf
 
   useEffect(() => {
     if (data) {
-      const otherSquadPlayersProfiles = arrayToObjectKey(["name"], data) as TOtherSquadPlayersProfilesRecordByName
+      const otherSquadPlayersProfiles = arrayToObjectKey(
+        ["otherPlayerId"],
+        data,
+      ) as TOtherSquadPlayersProfilesRecordByOtherPlayerId
       setOtherSquadPlayersProfiles(otherSquadPlayersProfiles)
     }
   }, [data, setOtherSquadPlayersProfiles])
