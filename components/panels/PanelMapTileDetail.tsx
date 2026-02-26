@@ -161,11 +161,15 @@ export default function PanelMapTileDetail() {
                 ))}
               {combinedKnownMapTilesResourcesOnTile && (
                 <div className={styles.resourceStats}>
-                  {`${Math.round(
-                    (combinedKnownMapTilesResourcesOnTile.filter((r) => r.itemId !== null).length /
-                      combinedKnownMapTilesResourcesOnTile.length) *
-                      100,
-                  )}%`}
+                  {`${
+                    combinedKnownMapTilesResourcesOnTile.length === 0
+                      ? 100
+                      : Math.round(
+                          (combinedKnownMapTilesResourcesOnTile.filter((r) => r.itemId !== null).length /
+                            combinedKnownMapTilesResourcesOnTile.length) *
+                            100,
+                        )
+                  }%`}
                 </div>
               )}
             </div>
