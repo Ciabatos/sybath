@@ -88,6 +88,16 @@ export default function PanelMapTileDetail() {
       </div>
 
       <div className={styles.content}>
+        <section className={styles.section}>
+          <h3 className={styles.sectionTitle}>Movement cost</h3>
+          <div
+            className={styles.difficultyBadge}
+            data-difficulty={totalMoveCost}
+          >
+            {totalMoveCost}
+          </div>
+        </section>
+
         {cityName && (
           <section className={styles.section}>
             <h3 className={styles.sectionTitle}>Settlements</h3>
@@ -120,17 +130,7 @@ export default function PanelMapTileDetail() {
         )}
 
         <section className={styles.section}>
-          <h3 className={styles.sectionTitle}>Move cost</h3>
-          <div
-            className={styles.difficultyBadge}
-            data-difficulty={totalMoveCost}
-          >
-            {totalMoveCost}
-          </div>
-        </section>
-
-        <section className={styles.section}>
-          <h3 className={styles.sectionTitle}>Available Resources</h3>
+          <h3 className={styles.sectionTitle}>Resources</h3>
           <div className={styles.resourceList}>
             <div
               key={1}
@@ -143,7 +143,7 @@ export default function PanelMapTileDetail() {
         </section>
 
         <section className={styles.section}>
-          <h3 className={styles.sectionTitle}>Possible Encounters</h3>
+          <h3 className={styles.sectionTitle}>Encounters</h3>
           <div className={styles.encounterList}>
             <div
               key={12}
