@@ -163,6 +163,19 @@ export default function PanelMapTileDetail() {
                 Players list on tile
               </Button>
             </div>
+            <div
+              key={13}
+              className={styles.encounterItem}
+            >
+              <Button
+                className={styles.actionButton}
+                // onClick={() => {
+                //   handlePlayersListOnTile()
+                // }}
+              >
+                Squad list on tile
+              </Button>
+            </div>
           </div>
         </section>
         <section className={styles.section}>
