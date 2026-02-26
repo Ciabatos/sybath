@@ -498,5 +498,6 @@
       "const otherPlayerStats = useAtomValue(otherPlayerStatsAtom)"
     ],
     "description": "Destructuring useOtherPlayerStats hook"
-  }, //Automatic Snippets
+  },
+  //Automatic Snippets
 }

@@ -9,7 +9,7 @@ export type TActivePlayerSquadPlayersProfilesParams = {
 }
 
 export type TActivePlayerSquadPlayersProfiles = {
-  otherPlayerId: number
+  otherPlayerId: string
   name: string
   secondName: string
   nickname: string
