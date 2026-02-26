@@ -145,34 +145,31 @@ export default function PanelMapTileDetail() {
         <section className={styles.section}>
           <h3 className={styles.sectionTitle}>Resources</h3>
           <div className={styles.resourceList}>
-            <div
-              key={
-                clickedMapTile?.mapTiles.mapId + clickedMapTile?.mapTiles.x + clickedMapTile?.mapTiles.y + "Resources"
-              }
-              className={styles.resourceItem}
-            >
-              {combinedKnownMapTilesResourcesOnTile
-                ?.filter((resource) => resource.itemId !== null)
-                .map((resource) => (
-                  <div key={resource.mapTilesResourceId + "KnownMapTilesResourcesOnTile"}>
-                    <span className={styles.resourceIcon}>📦</span>
-                    <span className={styles.resourceName}>{resource.name}</span>
-                  </div>
-                ))}
-              {combinedKnownMapTilesResourcesOnTile && (
-                <div className={styles.resourceStats}>
-                  {`${
-                    combinedKnownMapTilesResourcesOnTile.length === 0
-                      ? 100
-                      : Math.round(
-                          (combinedKnownMapTilesResourcesOnTile.filter((r) => r.itemId !== null).length /
-                            combinedKnownMapTilesResourcesOnTile.length) *
-                            100,
-                        )
-                  }%`}
+            {combinedKnownMapTilesResourcesOnTile
+              ?.filter((resource) => resource.itemId !== null)
+              .map((resource) => (
+                <div
+                  key={resource.mapTilesResourceId + "KnownMapTilesResourcesOnTile"}
+                  className={styles.resourceItem}
+                >
+                  <span className={styles.resourceIcon}>📦</span>
+                  <span className={styles.resourceName}>{resource.name}</span>
                 </div>
-              )}
-            </div>
+              ))}
+
+            {combinedKnownMapTilesResourcesOnTile && (
+              <div className={styles.resourceStats}>
+                {`${
+                  combinedKnownMapTilesResourcesOnTile.length === 0
+                    ? 100
+                    : Math.round(
+                        (combinedKnownMapTilesResourcesOnTile.filter((r) => r.itemId !== null).length /
+                          combinedKnownMapTilesResourcesOnTile.length) *
+                          100,
+                      )
+                }%`}
+              </div>
+            )}
           </div>
         </section>
 
