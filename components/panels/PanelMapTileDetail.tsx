@@ -13,7 +13,7 @@ import styles from "./styles/PanelMapTileDetail.module.css"
 export default function PanelMapTileDetail() {
   const { resetModalRightCenter } = useModalRightCenter()
   const { openModalTopCenter } = useModalTopCenter()
-  const { clickedTile } = useMapTileActions()
+  const { clickedMapTile } = useMapTileActions()
   const { selectPlayerPathToClickedTile, selectPlayerPathAndMovePlayerToClickedTile, resetPlayerMovementPlanned } =
     usePlayerMovement()
 
@@ -27,7 +27,7 @@ export default function PanelMapTileDetail() {
     if (isMoving) {
       selectPlayerPathToClickedTile()
     }
-  }, [clickedTile])
+  }, [clickedMapTile])
 
   function handlePlayersListOnTile() {
     openModalTopCenter(EPanelsTopCenter.PanelPlayersOnTile)
@@ -52,19 +52,19 @@ export default function PanelMapTileDetail() {
     setIsMoving(false)
   }
 
-  const terrainName = clickedTile?.terrainTypes?.name
+  const terrainName = clickedMapTile?.terrainTypes?.name
 
-  const terrainTypesMoveCost = clickedTile?.terrainTypes?.moveCost
-  const landscapeTypesMoveCost = clickedTile?.landscapeTypes?.moveCost
-  const citiesMoveCost = clickedTile?.cities?.moveCost
-  const districtTypesMoveCost = clickedTile?.districtTypes?.moveCost
+  const terrainTypesMoveCost = clickedMapTile?.terrainTypes?.moveCost
+  const landscapeTypesMoveCost = clickedMapTile?.landscapeTypes?.moveCost
+  const citiesMoveCost = clickedMapTile?.cities?.moveCost
+  const districtTypesMoveCost = clickedMapTile?.districtTypes?.moveCost
   const totalMoveCost =
     (terrainTypesMoveCost || 0) + (landscapeTypesMoveCost || 0) + (citiesMoveCost || 0) + (districtTypesMoveCost || 0)
 
-  const landscapeName = clickedTile?.landscapeTypes?.name
-  const cityName = clickedTile?.cities?.name
-  const districtName = clickedTile?.districts?.name
-  const districtTypeName = clickedTile?.districtTypes?.name
+  const landscapeName = clickedMapTile?.landscapeTypes?.name
+  const cityName = clickedMapTile?.cities?.name
+  const districtName = clickedMapTile?.districts?.name
+  const districtTypeName = clickedMapTile?.districtTypes?.name
 
   return (
     <div className={styles.panel}>
@@ -74,7 +74,7 @@ export default function PanelMapTileDetail() {
           <p className={styles.description}>{landscapeName}</p>
 
           <span className={styles.coordinates}>
-            [{clickedTile?.mapTiles.x}, {clickedTile?.mapTiles.y}]
+            [{clickedMapTile?.mapTiles.x}, {clickedMapTile?.mapTiles.y}]
           </span>
         </div>
         <Button
@@ -88,41 +88,36 @@ export default function PanelMapTileDetail() {
       </div>
 
       <div className={styles.content}>
-        <section className={styles.section}>
-          <h3 className={styles.sectionTitle}>Description</h3>
-          <p className={styles.description}>
-            {
-              "A small village where travelers can rest, trade, and gather information. The locals are friendly but wary of strangers."
-            }
-          </p>
-        </section>
-
-        <section className={styles.section}>
-          <h3 className={styles.sectionTitle}>Settlements</h3>
-          <div className={styles.resourceList}>
-            <div
-              key={1}
-              className={styles.resourceItem}
-            >
-              <span className={styles.resourceIcon}>📦</span>
-              <span className={styles.resourceName}>{cityName}</span>
+        {cityName && (
+          <section className={styles.section}>
+            <h3 className={styles.sectionTitle}>Settlements</h3>
+            <div className={styles.resourceList}>
+              <div
+                key={1}
+                className={styles.resourceItem}
+              >
+                <span className={styles.resourceIcon}>📦</span>
+                <span className={styles.resourceName}>{cityName}</span>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
-        <section className={styles.section}>
-          <h3 className={styles.sectionTitle}>Districts</h3>
-          <div className={styles.resourceList}>
-            <div
-              key={1}
-              className={styles.resourceItem}
-            >
-              <span className={styles.resourceIcon}>📦</span>
-              <span className={styles.resourceName}>{districtName}</span>
-              <span className={styles.resourceName}>{districtTypeName}</span>
+        {districtName && (
+          <section className={styles.section}>
+            <h3 className={styles.sectionTitle}>Districts</h3>
+            <div className={styles.resourceList}>
+              <div
+                key={1}
+                className={styles.resourceItem}
+              >
+                <span className={styles.resourceIcon}>📦</span>
+                <span className={styles.resourceName}>{districtName}</span>
+                <span className={styles.resourceName}>{districtTypeName}</span>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         <section className={styles.section}>
           <h3 className={styles.sectionTitle}>Move cost</h3>

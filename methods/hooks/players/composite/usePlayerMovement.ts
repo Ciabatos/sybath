@@ -32,7 +32,7 @@ export function usePlayerMovement() {
   const playerPosition = useAtomValue(playerPositionAtom)
   const [playerPos] = Object.values(playerPosition)
 
-  const { clickedTile } = useMapTileActions()
+  const { clickedMapTile } = useMapTileActions()
 
   const { mutatePlayerMovement } = useMutatePlayerMovement({ playerId })
 
@@ -46,15 +46,15 @@ export function usePlayerMovement() {
   }
 
   function selectPlayerPathToClickedTile() {
-    if (!clickedTile) {
+    if (!clickedMapTile) {
       return toast.error("No tile selected")
     }
 
     const params = {
       startX: playerPos.x,
       startY: playerPos.y,
-      endX: clickedTile.mapTiles.x,
-      endY: clickedTile.mapTiles.y,
+      endX: clickedMapTile.mapTiles.x,
+      endY: clickedMapTile.mapTiles.y,
     }
 
     const path = getPathFromPointToPoint(params)
@@ -74,7 +74,7 @@ export function usePlayerMovement() {
   }
 
   function selectPlayerPathAndMovePlayerToClickedTile() {
-    if (!clickedTile) {
+    if (!clickedMapTile) {
       return toast.error("No tile selected")
     }
 
@@ -82,8 +82,8 @@ export function usePlayerMovement() {
       playerId,
       startX: playerPos.x,
       startY: playerPos.y,
-      endX: clickedTile.mapTiles.x,
-      endY: clickedTile.mapTiles.y,
+      endX: clickedMapTile.mapTiles.x,
+      endY: clickedMapTile.mapTiles.y,
     }
 
     const path = getPathFromPointToPoint(params)

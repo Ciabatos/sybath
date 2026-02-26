@@ -63,7 +63,7 @@ export const modalLeftCenterAtom = atom<EPanelsLeftCenter>(EPanelsLeftCenter.Ina
 export const clickedCityTileAtom = atom<number>(0)
 
 //Map
-export const clickedTileAtom = atom<TMapTile>()
+export const clickedMapTileAtom = atom<TMapTile>()
 
 //Player
 export const clickedOtherPlayerMaskedIdAtom = atom<string>("")

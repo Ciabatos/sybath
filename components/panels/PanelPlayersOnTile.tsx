@@ -15,10 +15,10 @@ export default function PanelPlayersOnTile() {
   const { openModalRightCenter } = useModalRightCenter()
   const setOtherPlayerId = useSetOtherPlayerId()
 
-  const { clickedTile } = useMapTileActions()
-  if (!clickedTile) return null
+  const { clickedMapTile } = useMapTileActions()
+  if (!clickedMapTile) return null
 
-  const { playersOnTile } = usePlayersOnTile(clickedTile.mapTiles.x, clickedTile.mapTiles.y)
+  const { playersOnTile } = usePlayersOnTile(clickedMapTile.mapTiles.x, clickedMapTile.mapTiles.y)
   if (!playersOnTile) return null
 
   function handleClickPlayerPortrait(otherPlayerId: string) {
