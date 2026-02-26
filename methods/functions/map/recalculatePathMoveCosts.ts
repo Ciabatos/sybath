@@ -35,6 +35,7 @@ export function recalculatePathMoveCosts(params: TPathFromPointToPointParams): T
     }
 
     result.push({
+      mapId: step.mapId,
       order: step.order,
       x: step.x,
       y: step.y,

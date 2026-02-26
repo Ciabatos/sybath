@@ -74,6 +74,7 @@ export function pathFromPointToPoint(params: TPathFromPointToPointParams): TPlay
     order += 1
 
     return {
+      mapId: params.mapTiles[`${node.x},${node.y}`]?.mapId || 1,
       order: order,
       moveCost: grid[node.x][node.y],
       x: node.x,

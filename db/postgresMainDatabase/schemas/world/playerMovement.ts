@@ -11,6 +11,7 @@ export type TPlayerMovementParams = {
 export type TPlayerMovement = {
   order: number
   moveCost: number
+  mapId: number
   x: number
   y: number
   totalMoveCost: number

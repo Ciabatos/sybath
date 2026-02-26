@@ -41,6 +41,13 @@
       "optional": ""
     },
     {
+      "name": "map_id",
+      "camelName": "mapId",
+      "pascalName": "MapId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
       "name": "x",
       "camelName": "x",
       "pascalName": "X",
