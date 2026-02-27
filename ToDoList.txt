@@ -1,3 +1,5 @@
+Exploration sie zaczyna wtedy jak sprawdzimy czy task mmovmenta jest do tego tiles lub gracz jest na tym tiles i wtedy doliczamy do scheludeAt ten ability level jako minuty
+
 dodatkowa zakladka na otherplayer z akcjami np zapros do squadu
 Party teraz Squad 
 Movement w squadzie

@@ -28,10 +28,10 @@ export function recalculatePathMoveCosts(params: TPathFromPointToPointParams): T
     let moveCost = calculateTileMoveCost(step.x, step.y, params)
 
     if (blocked) {
-      moveCost = 9999999999
+      moveCost = 99999999999
     } else if (moveCost === 0) {
       blocked = true
-      moveCost = 9999999999
+      moveCost = 99999999999
     }
 
     result.push({

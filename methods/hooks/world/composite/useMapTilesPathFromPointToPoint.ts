@@ -63,7 +63,9 @@ export function useMapTilesPathFromPointToPoint() {
       districts: districts,
       districtTypes: districtTypes,
     })
-
+    if (!movementPath) {
+      return null
+    }
     const movementPathRecordByXY = arrayToObjectKey(["x", "y"], movementPath) as TPlayerMovementRecordByXY
     return movementPathRecordByXY
   }

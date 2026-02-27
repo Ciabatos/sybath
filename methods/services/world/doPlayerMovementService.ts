@@ -9,6 +9,7 @@ import { getDistrictsDistrictsByKeyServer } from "@/methods/server-fetchers/dist
 import { getDistrictsDistrictTypesServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictTypesServer"
 import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
 import { getPlayerMapServer } from "@/methods/server-fetchers/world/core/getPlayerMapServer"
+import { getPlayerPositionServer } from "@/methods/server-fetchers/world/core/getPlayerPositionServer"
 import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
 import { getWorldMapTilesByKeyServer } from "@/methods/server-fetchers/world/core/getWorldMapTilesByKeyServer"
 import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
@@ -19,10 +20,6 @@ export type TDoPlayerMovementServiceParams = {
   path: TPlayerMovementRecordByXY
   sessionUserId: number
   playerId: number
-  startX: number
-  startY: number
-  endX: number
-  endY: number
 }
 
 //MANUAL CODE - END
@@ -44,17 +41,48 @@ export async function doPlayerMovementService(params: TDoPlayerMovementServicePa
 
     const mapId = (await getPlayerMapServer({ playerId })).raw[0].mapId
 
-    const [mapTiles, terrainTypes, landscapeTypes, cities, districts, districtTypes] = await Promise.all([
-      getWorldMapTilesByKeyServer({ mapId }),
-      getWorldTerrainTypesServer(),
-      getWorldLandscapeTypesServer(),
-      getCitiesCitiesByKeyServer({ mapId }),
-      getDistrictsDistrictsByKeyServer({ mapId }),
-      getDistrictsDistrictTypesServer(),
-    ])
-
+    const [mapTiles, terrainTypes, landscapeTypes, cities, districts, districtTypes, playerPosition] =
+      await Promise.all([
+        getWorldMapTilesByKeyServer({ mapId }),
+        getWorldTerrainTypesServer(),
+        getWorldLandscapeTypesServer(),
+        getCitiesCitiesByKeyServer({ mapId }),
+        getDistrictsDistrictsByKeyServer({ mapId }),
+        getDistrictsDistrictTypesServer(),
+        getPlayerPositionServer({ mapId, playerId }),
+      ])
     if (!mapTiles) {
       return
+    }
+
+    // Validate path starts at player position
+    const pathStart = Object.values(params.path)[0]
+
+    if (
+      !pathStart ||
+      pathStart.x !== playerPosition.byKey[`${pathStart.x},${pathStart.y}`].x ||
+      pathStart.y !== playerPosition.byKey[`${pathStart.x},${pathStart.y}`].y
+    ) {
+      return {
+        status: false,
+        message: "Invalid path: must start at player position",
+      }
+    }
+
+    // Validate path tiles are adjacent in 8-directional grid
+    for (let i = 1; i < Object.values(params.path).length; i++) {
+      const tile = Object.values(params.path)
+      const prev = tile[i - 1]
+      const curr = tile[i]
+      const dx = Math.abs(curr.x - prev.x)
+      const dy = Math.abs(curr.y - prev.y)
+
+      if (dx > 1 || dy > 1 || (dx === 0 && dy === 0)) {
+        return {
+          status: false,
+          message: "Invalid path: tiles must be adjacent",
+        }
+      }
     }
 
     const path = recalculatePathMoveCosts({

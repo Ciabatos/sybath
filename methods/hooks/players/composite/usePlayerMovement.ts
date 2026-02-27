@@ -40,6 +40,11 @@ export function usePlayerMovement() {
 
   function selectPlayerPath(params: TPlayerMovementParams) {
     const path = getPathFromPointToPoint(params)
+
+    if (!path) {
+      return toast.error(`Cannot move to this tile`)
+    }
+
     setPlayerMovementPlanned(path)
 
     return toast.success(`Path selected confirm to move`)
@@ -58,22 +63,35 @@ export function usePlayerMovement() {
     }
 
     const path = getPathFromPointToPoint(params)
+
+    if (!path) {
+      return toast.error(`Cannot move to this tile`)
+    }
+
     setPlayerMovementPlanned(path)
 
     return toast.success(`Path selected confirm to move`)
   }
 
-  function selectPlayerPathAndMovePlayer(params: TPlayerMovementParams) {
+  async function selectPlayerPathAndMovePlayer(params: TPlayerMovementParams) {
     const path = getPathFromPointToPoint(params)
+
+    if (!path) {
+      return toast.error(`Cannot move to this tile`)
+    }
+
     resetPlayerMovementPlanned()
-    doPlayerMovementAction({ path: path, ...params })
+    const result = await doPlayerMovementAction({ path: path, ...params })
 
     mutatePlayerMovement(Object.values(path))
 
+    if (!result?.status) {
+      return toast.error(result?.message)
+    }
     return toast.success(`You are moving to destination`)
   }
 
-  function selectPlayerPathAndMovePlayerToClickedTile() {
+  async function selectPlayerPathAndMovePlayerToClickedTile() {
     if (!clickedMapTile) {
       return toast.error("No tile selected")
     }
@@ -88,9 +106,19 @@ export function usePlayerMovement() {
 
     const path = getPathFromPointToPoint(params)
     resetPlayerMovementPlanned()
-    doPlayerMovementAction({ path: path, ...params })
+
+    if (!path) {
+      return toast.error(`Cannot move to this tile`)
+    }
+
+    const result = await doPlayerMovementAction({ path: path, ...params })
+
+    if (!result?.status) {
+      return toast.error(result?.message)
+    }
 
     mutatePlayerMovement(Object.values(path))
+
     return toast.success(`You are moving to destination`)
   }
 

@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
+import { usePlayerExploration } from "@/methods/hooks/players/composite/usePlayerExploration"
 import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMovement"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { useMapTileDetail } from "@/methods/hooks/world/composite/useMapTileDetail"
@@ -18,6 +19,7 @@ export default function PanelMapTileDetail() {
   const { combinedKnownMapTilesResourcesOnTile } = useMapTileDetail()
   const { selectPlayerPathToClickedTile, selectPlayerPathAndMovePlayerToClickedTile, resetPlayerMovementPlanned } =
     usePlayerMovement()
+  const { exploreClickedTile } = usePlayerExploration()
 
   if (!clickedMapTile) {
     return null
@@ -28,9 +30,10 @@ export default function PanelMapTileDetail() {
   }
 
   const [isMoving, setIsMoving] = useState(false)
+  const [isExploring, setIsExploring] = useState(false)
 
   useEffect(() => {
-    if (isMoving) {
+    if (isMoving || isExploring) {
       selectPlayerPathToClickedTile()
     }
   }, [clickedMapTile])
@@ -41,21 +44,41 @@ export default function PanelMapTileDetail() {
 
   function handleMove() {
     if (!isMoving) {
-      selectPlayerPathToClickedTile()
       setIsMoving(true)
+      selectPlayerPathToClickedTile()
     }
   }
 
   function handleConfirmMove() {
     if (isMoving) {
-      selectPlayerPathAndMovePlayerToClickedTile()
       setIsMoving(false)
+      selectPlayerPathAndMovePlayerToClickedTile()
     }
   }
 
   function handleCancelMove() {
-    resetPlayerMovementPlanned()
     setIsMoving(false)
+    resetPlayerMovementPlanned()
+  }
+
+  function handleExplore() {
+    if (!isExploring) {
+      setIsExploring(true)
+      selectPlayerPathToClickedTile()
+    }
+  }
+
+  function handleConfirmExplore() {
+    if (isExploring) {
+      setIsExploring(false)
+      exploreClickedTile()
+      resetPlayerMovementPlanned()
+    }
+  }
+
+  function handleCancelExplore() {
+    setIsExploring(false)
+    resetPlayerMovementPlanned()
   }
 
   const terrainName = clickedMapTile?.terrainTypes?.name
@@ -213,45 +236,70 @@ export default function PanelMapTileDetail() {
         </section>
         <section className={styles.section}>
           <div className={styles.actionButtons}>
-            <Button className={styles.actionButton}>Explore</Button>
             <Button
               className={styles.actionButton}
               variant='outline'
             >
               Set Camp
             </Button>
-            {!isMoving ? (
-              <Button
-                className={styles.actionButton}
-                variant='outline'
-                onClick={() => {
-                  handleMove()
-                }}
-              >
-                Move Here
-              </Button>
-            ) : (
+
+            {/* Ruch */}
+            {isMoving ? (
               <>
                 <Button
                   className={styles.actionButton}
                   variant='outline'
-                  onClick={() => {
-                    handleConfirmMove()
-                  }}
+                  onClick={handleConfirmMove}
                 >
                   Confirm Move
                 </Button>
                 <Button
                   className={styles.actionButton}
                   variant='outline'
-                  onClick={() => {
-                    handleCancelMove()
-                  }}
+                  onClick={handleCancelMove}
                 >
                   Cancel Move
                 </Button>
               </>
-            )}
+            ) : !isExploring ? (
+              // Pokaż Move Here tylko jeśli NIE eksplorujemy
+              <Button
+                className={styles.actionButton}
+                variant='outline'
+                onClick={handleMove}
+              >
+                Move Here
+              </Button>
+            ) : null}
+
+            {/* Eksploracja */}
+            {isExploring ? (
+              <>
+                <Button
+                  className={styles.actionButton}
+                  variant='outline'
+                  onClick={handleConfirmExplore}
+                >
+                  Confirm Explore
+                </Button>
+                <Button
+                  className={styles.actionButton}
+                  variant='outline'
+                  onClick={handleCancelExplore}
+                >
+                  Cancel Explore
+                </Button>
+              </>
+            ) : !isMoving ? (
+              // Pokaż Explore Here tylko jeśli NIE ruszamy się
+              <Button
+                className={styles.actionButton}
+                variant='outline'
+                onClick={handleExplore}
+              >
+                Explore Here
+              </Button>
+            ) : null}
           </div>
         </section>
       </div>

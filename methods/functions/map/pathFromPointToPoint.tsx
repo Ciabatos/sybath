@@ -34,7 +34,7 @@ type TPathFromPointToPointParams = {
   districtTypes: TDistrictsDistrictTypesRecordById
 }
 
-export function pathFromPointToPoint(params: TPathFromPointToPointParams): TPlayerMovement[] {
+export function pathFromPointToPoint(params: TPathFromPointToPointParams): TPlayerMovement[] | null {
   if (!params) {
     return []
   }
@@ -58,6 +58,10 @@ export function pathFromPointToPoint(params: TPathFromPointToPointParams): TPlay
   const resultWithWeight: GridNode[] = astar.search(graphWithWeight, startWithWeight, endWithWeight, {
     heuristic: astar.heuristics.diagonal,
   })
+
+  if ((params.startX !== params.endX || params.startY !== params.endY) && resultWithWeight.length === 0) {
+    return null
+  }
 
   const startNode = { x: params.startX, y: params.startY, weight: 0.001 } as GridNode
   const fullPath = [startNode, ...resultWithWeight]
