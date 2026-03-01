@@ -33,6 +33,7 @@ import { TActivePlayerSquadPlayersProfilesRecordByOtherPlayerId } from "@/db/pos
 import { TOtherSquadPlayersProfilesRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/squad/otherSquadPlayersProfiles"
 import { TKnownMapRegionRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
 import { TKnownMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/knownMapTiles"
+import { TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId } from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnTile"
 import { TKnownPlayersPositionsRecordByXY } from "@/db/postgresMainDatabase/schemas/world/knownPlayersPositions"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
@@ -50,7 +51,6 @@ import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { EPanelsTopCenterBar } from "@/types/enumeration/EPanelsTopCenterBar"
 import { atom } from "jotai"
-import { TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId } from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnTile"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBottomCenterBar.Inactive)
@@ -70,6 +70,8 @@ export const clickedMapTileAtom = atom<TMapTile>()
 export const clickedOtherPlayerMaskedIdAtom = atom<string>("")
 export const playerMovementPlannedAtom = atom<TPlayerMovementRecordByXY>({})
 export const playerMapTilesGuardAreaAtom = atom<TAreaRecordByXY>({})
+
+//Panels
 
 //Tables
 export const mapTilesAtom = atom<TWorldMapTilesRecordByXY>({})

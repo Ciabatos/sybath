@@ -1,5 +1,11 @@
-Exploration sie zaczyna wtedy jak sprawdzimy czy task mmovmenta jest do tego tiles lub gracz jest na tym tiles i wtedy doliczamy do scheludeAt ten ability level jako minuty
 
+Panel na gathering
+Zbieranie gathering i dokladanie itemow do inventory
+trzeba dodac surowce podstawowe
+poprawic algorytm tworzenia mapy o dokladanie surowcow
+poprawic algorytm tworzenia new player ze zna wszystkich swoich playerow po 1 userem
+dodatkowa zakladka na skill details, item details taki słownik z opisami i levelami co odblokowuje co mozna zrobic etc
+knowledge tree
 dodatkowa zakladka na otherplayer z akcjami np zapros do squadu
 Party teraz Squad 
 Movement w squadzie
@@ -28,7 +34,15 @@ transport
 +Mechaniki produkcji
 +Mechaniki budowania budynkow
 
+
+--Alone
+Przywitanie Negatywne/Pozytwyne 
+Negatywne daje nam mozliwosc zdobcyia bonusa np widok jego inventory
+Pozytywne daje nam mozliwosc prowadzenia negocjacji np zaproszenie do squadu w celu budowy tribeu
 --Nomadic
+  Unlock budowanie namiotu automatycznie czlonkowi, w nomadic sa tylko namioty
+  Communal hall gdzie ludzie moga pracowac for free i np usatwic ze ucza skilla przez 5 godzin
+  Bedac czlonkiem mozna oddawac knowledge o tilesach i exploracjach dla calego nomadic
   Trade normalny tylko ustawianie ceny dla citizens/obcy z czego AI zawsze bieze za darmo jedzenie jedyne ograniczenie to zakaz handlu foodem !
   Ludzie AI nie posiadaja golda
   Ludzie AI automatycznie przydzieleni do zbierania fooda wszyscy
@@ -147,6 +161,15 @@ Urzędnicy
 Buildings
 --Caverna BoardGame - moduly
 --Drogi - wktorowe jak w EU5 ? czy Jak w civ 4 ? Obstawiam jak w civ 4 są ładne i może być ich dużo
+
+knowledge
+-- po 5 lvl mozna uczyc i budowac ulepszenie do budynku np warsztat etc
+--zbierasz inspiracje i odblokowujesz skill na 1 lvl knowledga co daje ci mozliwosc budoawania tych itemow w bardzo wolnym tempie
+--inspiracje zbieramy jak major i minior triumphs z civy, np zabij innego gracza, uzbieraj costam, stworz nowy material 
+
+Przekazywanie dziedziczenie
+--punkty na rozdzielenie i np jak ojciec umial skill to moze wydac na to ze w dziecinstwie sie go nauczyl a jak nie to w co innego np sile wieksza
+--dziedziczy religie kulture nazwisko budynki kase
 
 stability.ai Craiyon
 https://civitai.com/

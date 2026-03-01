@@ -5,6 +5,16 @@ import { useFetchKnownMapTilesResourcesOnTile } from "@/methods/hooks/world/core
 import { itemsAtom, knownMapTilesResourcesOnTileAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 
+export type TMapTileResource = {
+  mapTilesResourceId: number
+  itemId: number
+  quantity: number
+  id: number
+  name?: string
+  description?: string
+  image: string
+}
+
 export function useMapTileDetail() {
   const { playerId } = usePlayerId()
   const { clickedMapTile } = useMapTileActions()
