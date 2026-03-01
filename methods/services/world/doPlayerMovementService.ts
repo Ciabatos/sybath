@@ -51,6 +51,7 @@ export async function doPlayerMovementService(params: TDoPlayerMovementServicePa
         getDistrictsDistrictTypesServer(),
         getPlayerPositionServer({ mapId, playerId }),
       ])
+
     if (!mapTiles) {
       return
     }

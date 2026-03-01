@@ -1,5 +1,4 @@
 
-Panel na gathering
 Zbieranie gathering i dokladanie itemow do inventory
 trzeba dodac surowce podstawowe
 poprawic algorytm tworzenia mapy o dokladanie surowcow
@@ -165,7 +164,7 @@ Buildings
 knowledge
 -- po 5 lvl mozna uczyc i budowac ulepszenie do budynku np warsztat etc
 --zbierasz inspiracje i odblokowujesz skill na 1 lvl knowledga co daje ci mozliwosc budoawania tych itemow w bardzo wolnym tempie
---inspiracje zbieramy jak major i minior triumphs z civy, np zabij innego gracza, uzbieraj costam, stworz nowy material 
+--inspiracje zbieramy jak major i minior triumphs z civy, np zabij innego gracza, uzbieraj costam, stworz nowy material  
 
 Przekazywanie dziedziczenie
 --punkty na rozdzielenie i np jak ojciec umial skill to moze wydac na to ze w dziecinstwie sie go nauczyl a jak nie to w co innego np sile wieksza

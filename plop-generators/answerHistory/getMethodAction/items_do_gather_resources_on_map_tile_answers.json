@@ -1,0 +1,43 @@
+{
+  "promptAnswers": {
+    "schema": "items",
+    "method": "do_gather_resources_on_map_tile",
+    "usePrevious": false
+  },
+  "schema": "items",
+  "method": "do_gather_resources_on_map_tile",
+  "methodCamelName": "doGatherResourcesOnMapTile",
+  "methodPascalName": "DoGatherResourcesOnMapTile",
+  "methodName": "doGatherResourcesOnMapTileAction",
+  "methodTypeName": "TDoGatherResourcesOnMapTile",
+  "methodParamsTypeName": "TDoGatherResourcesOnMapTileParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    },
+    {
+      "name": "parameters",
+      "camelName": "parameters",
+      "tsType": "any"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "status",
+      "camelName": "status",
+      "pascalName": "Status",
+      "tsType": "boolean",
+      "optional": ""
+    },
+    {
+      "name": "message",
+      "camelName": "message",
+      "pascalName": "Message",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1, $2"
+}

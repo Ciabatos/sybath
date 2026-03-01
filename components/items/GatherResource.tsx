@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
+import { useGatherResourcesOnMapTile } from "@/methods/hooks/items/composite/useGatherResourcesOnMapTile"
 import { TMapTileResource } from "@/methods/hooks/world/composite/useMapTileDetail"
 import { Package, Pickaxe, X } from "lucide-react"
 import { useEffect, useState } from "react"
@@ -16,6 +17,12 @@ type Props = {
 export default function GatherResource({ isOpen, onClose, resource }: Props) {
   const [gatherAmount, setGatherAmount] = useState(1)
 
+  const gatherResourcesOnMapTileParams = {
+    resource,
+    gatherAmount,
+  }
+  const { gatherClickedResource } = useGatherResourcesOnMapTile(gatherResourcesOnMapTileParams)
+
   useEffect(() => {
     if (resource) {
       setGatherAmount(1)
@@ -26,11 +33,11 @@ export default function GatherResource({ isOpen, onClose, resource }: Props) {
 
   const maxAmount = resource.quantity
 
-  const handleGather = () => {
-    // onGather?.(gatherAmount)
+  function handleGather() {
+    gatherClickedResource()
   }
 
-  const handleSliderChange = (value: number[]) => {
+  function handleSliderChange(value: number[]) {
     setGatherAmount(value[0])
   }
 
@@ -39,7 +46,9 @@ export default function GatherResource({ isOpen, onClose, resource }: Props) {
       <div className={styles.header}>
         <h3 className={styles.title}>Gather Resource</h3>
         <Button
-          onClick={onClose}
+          onClick={() => {
+            onClose()
+          }}
           variant='ghost'
           size='icon'
           className={styles.closeButton}
@@ -72,7 +81,9 @@ export default function GatherResource({ isOpen, onClose, resource }: Props) {
             max={maxAmount}
             step={1}
             value={[gatherAmount]}
-            onValueChange={handleSliderChange}
+            onValueChange={(value) => {
+              handleSliderChange(value)
+            }}
             className={styles.slider}
           />
           <div className={styles.sliderRange}>

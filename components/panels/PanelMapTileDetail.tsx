@@ -23,6 +23,10 @@ export default function PanelMapTileDetail() {
   const { exploreClickedTile } = usePlayerExploration()
   const [selectedResource, setSelectedResource] = useState<TMapTileResource | null>(null)
 
+  useEffect(() => {
+    setSelectedResource(null)
+  }, [clickedMapTile])
+
   if (!clickedMapTile) {
     return null
   }
