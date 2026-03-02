@@ -1,13 +1,13 @@
 "use client"
 
 import { OtherPlayerContainer } from "@/components/inventory/OtherPlayerContainer"
-import { OtherPlayerGearV2 } from "@/components/inventory/OtherPlayerGearV2"
+import { OtherPlayerGear } from "@/components/inventory/OtherPlayerGear"
 import styles from "./styles/PlayerCombinedInventory.module.css"
 
 export function OtherPlayerCombinedInventory() {
   return (
     <div className={styles.wrapper}>
-      <OtherPlayerGearV2 />
+      <OtherPlayerGear />
       <OtherPlayerContainer />
     </div>
   )

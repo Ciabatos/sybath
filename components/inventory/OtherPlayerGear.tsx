@@ -2,7 +2,7 @@
 
 import { InventorySlot } from "@/components/inventory/InventorySlot"
 import { useOtherPlayerGearInventory } from "@/methods/hooks/inventory/composite/useOtherPlayerGearInventory"
-import styles from "./styles/OtherPlayerGear.module.css"
+import styles from "./styles/PlayerGear.module.css"
 
 export function OtherPlayerGear() {
   const { combinedOtherPlayerGearInventory } = useOtherPlayerGearInventory()
@@ -14,22 +14,24 @@ export function OtherPlayerGear() {
 
     return (
       <div
-        className={`${styles.slot} ${gear ? styles.slotFilled : styles.slotEmpty}`}
+        className={`${styles.slot} ${gear ? styles.slotFilled : ""}`}
         title={gear?.description || `Empty slot`}
       >
-        <InventorySlot
-          key={gear?.slotId}
-          inventory={gear}
-          placeholderIcon={icon}
-        />
+        <>
+          <InventorySlot
+            key={gear?.slotId}
+            inventory={gear}
+            placeholderIcon={icon}
+          />
+        </>
       </div>
     )
   }
 
   return (
-    <div className={styles.otherPlayerGearContainer}>
-      <div className={styles.otherPlayerGearHeader}>
-        <h3 className={styles.otherPlayerGearTitle}>Equipped Gear</h3>
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <h3 className={styles.title}>Equipped Gear</h3>
       </div>
 
       <div className={styles.gearLayout}>
