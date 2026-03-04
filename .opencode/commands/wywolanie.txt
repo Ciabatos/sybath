@@ -1,11 +1,5 @@
-opencode ui-from-hook \
-  --componentName MarketWindow \
-  --uiPurpose "Market window that allows the player to browse all available items and inspect prices and stock." \
-  --layout "Scrollable list or grid of items, header with title, item rows with icon, name, price and amount, optional category filter." \
-  --hookPath "src/hooks/useMarketItems.ts"
+/ui-from-hook 
+"GatheringResourceOnMapTile" "This ui should display to the player that he can pick this selected resource and gather it to his inventory" "should be placed in right panel of the screen" "\methods\hooks\items\composite\useGatherResourcesOnMapTile.ts" true
 
-  opencode ui-from-hook \
-  --componentName MarketWindow \
-  --uiPurpose "Market window that allows the player to browse all available items and inspect prices and stock." \
-  --layout "Scrollable grid or list of items, each row/card shows icon, name, price, and stock. Header with title 'Market'. Optional category filters. Clickable items can show more info in a tooltip." \
-  --hookPath "src/hooks/useMarketItems.ts"
+
+try to wrap into object before passing

@@ -1,57 +1,72 @@
 ---
-name: ui-from-hook
-description: Build a game-style in-game window UI based on a user-provided hook.
-arguments:
-  - name: componentName
-    description: Name of the UI component / window (folder name).
-    required: true
-
-  - name: uiPurpose
-    description: Describe what this UI represents in the game and how the player should use it.
-    required: true
-
-  - name: layout
-    description: Describe layout, sections, lists, charts, tabs, filters and interactions.
-    required: true
-
-  - name: hookPath
-    description: Path to the hook file. The command will read the hook code from this file.
-    required: true
-
-  - name: placement
-    description: Target directory for the new component.
-    required: false
-    default: components/NewComponents/{{componentName}}/
-
-  - name: allowMockUiData
-    description:
-      Allow adding UI-only mock / presentation data (labels, values, badges, placeholders, grouping, colors, etc.).
-    required: false
-    default: true
+description: Build a Next.js game-style in-game window UI component from a hook.
 ---
 
-Build a UI component based on the hook provided below.
+read .opencode\AGENTS.md first !
 
-**UI purpose:**  
-{{uiPurpose}}
+Build a UI component for the Sybath game.
 
-**Window type:**  
-This UI must be rendered as an in-game window (Crusader Kings / Europa Universalis style).
+## Inputs
 
-**Behavior & layout expectations:**  
-{{layout}}
+- **Component name**: $1
+- **UI purpose** (what does this window represent): $2
+- **Layout & behavior** (describe interactions, sections, filters, etc.): $3
+- **Hook file path**: $4
+- **Allow UI-only mock/presentation data** (yes/no): $5
 
-**Data source:**  
-Use ONLY the hook below as the primary data source. You may add UI-only mock / presentation data if needed:
-{{allowMockUiData}}
+## Output requirements
 
-**Hook:**  
-Loaded from file at path `{{hookPath}}`. Focus on the data returned; TypeScript types may be in a different folder.
+### Files to create
 
-**Styling:**  
-Follow styles from `components/**/styles/**` and project styling rules. Prefer components from `components/ui/**`.
+1. `/components/NewComponents/$1.tsx` — React component
+2. `/components/NewComponents/styles/$1.module.css` — CSS Module
 
-**Placement:**
+### Component structure tsx
 
-- Component file: `{{placement}}/`
-- CSS Module: `{{placement}}/styles/`
+```
+- Hook calls must be INSIDE function component body
+- useState declarations must be INSIDE component body (START of component)
+- All internal functions use traditional function syntax
+- try to wrap into object before passing parameters to function
+
+import styles from "./styles/$1.module.css"
+// import hook from "$4"
+// import { Button, Dialog, etc. } from "@/components/ui/..."
+
+Example of UI :
+export default function $1() {
+  // HOOKS: call hooks INSIDE component
+
+  // useState: DECLARED INSIDE component, at START
+
+  return (
+
+    <div className={styles.window}>
+      <div className={styles.titleBar}>
+        <h2 className={styles.title}>WINDOW TITLE</h2>
+      </div>
+      <div className={styles.content}>
+        {/* main content */}
+      </div>
+    </div>
+  )
+}
+```
+
+### CSS Module structure
+
+Follow the visual conventions from `components/**/styles/**`. Color palette and font from .opencode\AGENTS.md
+
+## Rules
+
+- Consume ONLY the hook from `$4` — no direct fetch calls
+- No Tailwind utility chains in JSX
+- Use components from `components/ui/**` for buttons, dialogs, tooltips
+- Traditional `function` syntax for all internal functions
+- Window must visually resemble a CK3/EU4 in-game panel
+- useState declarations MUST be inside component function body, never at file/module level
+- Hook calls stay inside component — no effects at module level
+
+##Rendering
+
+- Component will be rendered in one of the Panels components that are here in this location `components\panels\**`
