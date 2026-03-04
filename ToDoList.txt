@@ -49,14 +49,17 @@ Pozytywne daje nam mozliwosc prowadzenia negocjacji np zaproszenie do squadu w c
   Mozna sprzedawac ludzi AI
   Nie trzeba wyeksplorowac regionu do 100%, wystarczy hex na ktorym jest tribe
   Sluzy do namnozenia ludzi, zachecenie do exploracji regionu, budowaniu najemnikow i stylu gry barbarzyncow pladrowania
-  Ilość ludzi zależy od FREE LAND
+  Ilość ludzi zależy od FREE LAND - czyli tiles udostepnionych dla AI
+  Posiada tylko peasants
 --Wioska
   decyduje sie na kingdome istniejacy lub zaklada nowy 
   ma juz normalny targ
   Ludzie AI posiadaja monete kingdoma
   Ludzie AI automatycznie obsiadaja prace od najwyzej platynch do najmniej zgodnie ze statusem spolecznym
-  Prywatna ekonomia wioski wykupuje ziemie, żeby sie budować dla ludzi FREE LAND też pobieraja
+  Prywatna ekonomia wioski wykupuje ziemie, żeby sie budować dla ludzi FREE LAND też pobieraja - czyli tiles udostepnionych dla AI
+  Posiada tylko peasants
 --Miasto
+  Posiada juz obywateli ktorzy moga pracowac w specjalistycznych warsztatach
 
 Handel
 --Hanza !
@@ -72,8 +75,9 @@ import/export
 
 Statusy spoleczne
   -Niewolnik
+  -Pesant
   -Citizen
-  -Upper Class
+  -Noble
 
 Walka:
 Gry: 
