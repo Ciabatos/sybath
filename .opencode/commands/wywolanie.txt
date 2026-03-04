@@ -3,3 +3,15 @@
 
 
 try to wrap into object before passing
+
+
+ /ui-from-hook 
+ ExplorationOnMapTile 
+ "This UI is used by the player to see what he can get from exploring targeted tile, there should be on    
+ button named toExplore and it will send action to server to explore     
+ that tile i will make this function manually you just create it in      
+ this ui component, please think what else i can add to this ui,         
+ rembember it is a strategic game on map" 
+ "think for yourself" 
+ "i dont have data for it yet, you can mock it yourself as you want to" 
+"yes"

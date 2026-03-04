@@ -10,7 +10,7 @@ Medieval/fantasy multiplayer turn-based game with real-time elements.
 - **Language**: TypeScript
 - **Styling**: CSS Modules (per-component)
 - **State**: Jotai, SWR
-- **Icons**: Lucide React
+- **Icons**: `lucide-react`
 - **UI Primitives**: Radix UI (`components/ui/**`)
 
 ## Project Structure

@@ -2,7 +2,7 @@
 description: Build a Next.js game-style in-game window UI component from a hook.
 ---
 
-read .opencode\AGENTS.md first !
+read .opencode\AGENTS.md first here is the text of it `!cat .opencode/AGENTS.md`
 
 Build a UI component for the Sybath game.
 
@@ -67,6 +67,14 @@ Follow the visual conventions from `components/**/styles/**`. Color palette and 
 - useState declarations MUST be inside component function body, never at file/module level
 - Hook calls stay inside component — no effects at module level
 
+## Mocking
+
+- Always -mock data in the component UI so i can test it and delete later
+
 ##Rendering
 
 - Component will be rendered in one of the Panels components that are here in this location `components\panels\**`
+
+## Examples
+
+you can create UI based on: `!find components -type f -exec cat {} +`
