@@ -1,98 +1,105 @@
 # AGENTS.md
 
-## Project: Sybath - Medieval Equipment Game
+## Project: Sybath - Medieval/Fantasy Multiplayer Turn Game with real time
 
 ## Overview
 
-Sybath is a medieval-themed equipment management game built with React, TypeScript, and Tailwind CSS. Players collect,
-equip, and manage various gear pieces including weapons, armor, shields, weapons mastery, accessories, and belts.
+Sybath is a medieval/fantasy-themed game built with Next.js, React, TypeScript, and Tailwind CSS.
 
 ## Tech Stack
 
+- Next.js
 - **Frontend**: React (Vite)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
 - **Icons**: Lucide React
 - **Architecture**: Component-based with type-safe state management
+- SWR https://swr.vercel.app/
+- Jotai https://jotai.org/
 
-## Common Tasks You Can Help With
+## Common Tasks for You
 
-### Code Development
+### UI built strictly from user-provided hooks
 
-- Implement new equipment types or slots
-- Add new weapon categories
-- Create component variations (player, inventory, equipment views)
-- Implement drag-and-drop functionality between player gear and inventory
-- Add item selection and unequipping mechanics
+- The user will always describe in the prompt what the UI is supposed to represent and how it should behave (for
+  example: inventory view, market window, price history view, equipment panel, etc.).
+- Treat the user description as the functional UI specification.
+- The user always provides a ready data hook (for example: a hook returning market items, or historical prices).
+- Your task is to build ONLY the UI layer for that hook.
 
-### Refactoring & Cleanup
+You MUST:
 
-- Simplify complex component logic
-- Extract repeated patterns into hooks
-- Improve type definitions
-- Optimize re-renders
-- Clean up unused code
+- NOT create or modify the hook logic.
+- NOT fetch data directly.
+- NOT introduce alternative data sources.
+- ONLY consume the hook provided by the user.
+- reflect the described purpose clearly in the visual structure (for example: inventory grid, market list with prices,
+  historical chart, filters, etc.).
+- follow the user’s UI intent when designing layout, components and interactions.
 
-### Bug Fixes
+-All hooks and internal functions must use **traditional `function()` syntax**
 
-- Fix state synchronization issues between player and inventory
-- Resolve slot selection conflicts
-- Fix drag-and-drop edge cases
-- Debug component rendering issues
-- Fix styling inconsistencies
+You MAY:
 
-### Testing
+- introduce additional UI-only data if it improves usability or visual clarity, such as:
+  - section titles,
+  - labels,
+  - icons,
+  - visual statuses,
+  - empty-state placeholders,
+  - grouping or categorization purely for presentation,
+  - local mock or derived values used only for display (for example: visual rarity tiers, colors, badges).
+  - mock data for it i will later replace it manually and add this into data fetcher for that component
 
-- Write unit tests for components
-- Create integration tests for equipment flows
-- Add type-checking tests
-- Verify styling across breakpoints
+The UI component must:
 
-### Documentation
+- display all relevant data returned by the hook,
 
-- Add JSDoc comments to components
-- Document type definitions
-- Create API documentation
-- Update README with new features
+Typical examples:
+
+- a hook that returns all market items → build a full market window UI displaying those items,
+- a hook that returns historical price data → build a historical price chart UI.
+- a hook that returns inventory of player → build UI for player inventory.
+
+---
+
+### Visual style and layout (window-based UI)
+
+- All major UI created from hooks should be presented as a window / panel view.
+- The window layout must resemble strategy game UI windows (similar to Crusader Kings or Europa Universalis):
+  - framed container,
+  - visible header / title bar,
+  - inner content area,
+  - subtle borders, shadows and depth,
+  - medieval / parchment / metallic feeling.
+
+The goal is to make every hook-based UI look like an in-game window, not a generic web card.
+
+---
 
 ### Styling
 
-- Create consistent medieval-themed styles
-- Implement responsive layouts
-- Add hover/interaction states
-- Create reusable component styles
+- Create consistent medieval-themed styles based on existing styles from all `styles` directories located anywhere
+  inside the `components` tree (pattern: `components/**/styles/**`).
+- Treat all existing `styles` folders as a shared visual reference and follow their conventions (naming, structure,
+  effects, colors, shadows, etc.).
 
-### Performance
+### Reusable UI components (Radix UI)
 
-- Optimize re-renders with memoization
-- Implement virtual scrolling for large inventories
-- Lazy load heavy assets
-- Optimize bundle size
+- Prefer using reusable UI components (e.g. Button, Dialog, etc.) from: `components/ui/**`.
 
 ## Project Structure
 
 ```
-src/
+sybath/
   components/
+    NewComponents/    # New components should be placed here if folder dont exists then create it
     Player/           # Player component and types
     Inventory/          # Inventory component and types
     Equipment/          # Equipment components and types
     PlayerGear/        # Player gear display component
-  types/               # TypeScript type definitions
-  styles/              # CSS modules for styling
+
 ```
-
-## Equipment Slots
-
-Each category has limited slots:
-
-- **Weapons**: Primary + Special (e.g., Axe, Sword, Mace, Spear)
-- **Armor**: Body + Back (e.g., Mail, Plate, Robe)
-- **Shields**: Primary + Special (e.g., Shield, Bucklers)
-- **Weapon Mastery**: 3 slots (Combat Expertise, Weapon Handling, Weapon Mastery)
-- **Accessories**: Rings + Gloves (e.g., Iron Ring, Leather Ring, Steel Ring, Silver Ring, Gold Ring)
-- **Belt**: Weapon slots + Special (up to 3)
-- **Boots**: (future expansion)
 
 ## Styling Guidelines
 
@@ -101,66 +108,9 @@ Each category has limited slots:
 - Medieval/rusty aesthetic with textures and shadows
 - Responsive design (desktop-first, mobile adjustments)
 
-## Type Safety
-
-- All components have corresponding `.types.ts` or `.types.tsx` files
-- Interfaces define: Slots, Items, Selection states, Equipment types
-- Avoid `any` types, use specific slot/item types
-
-## Before Committing
-
-- Run type check: `npm run type-check`
-- Run lint: `npm run lint` (or equivalent)
-- Verify no console errors
-- Ensure no secrets/credentials exposed
-- Test on multiple viewport sizes
-
-## Known Patterns
-
-**EquipmentSlot Component:**
-
-```typescript
-interface EquipmentSlotProps {
-  slotId: number
-  slotLabel: string
-  itemSlot: ItemSlot
-  typeSlot: ItemSlot
-  selection: SelectableItem
-  fillSlot: (item: SelectableItem | undefined) => void
-  fillType: (type: SelectableItem | undefined) => void
-  deselect: () => void
-}
-```
-
-**Player Component Structure:**
-
-```typescript
-interface PlayerProps {
-  headSlot: ItemSlot
-  armorSlot: ItemSlot
-  legSlot: ItemSlot
-  feetSlot: ItemSlot
-  weaponSlotA: ItemSlot
-  weaponSlotB: ItemSlot
-  shieldSlot: ItemSlot
-  ringSlot: ItemSlot[]
-  gloveSlot: ItemSlot[]
-  beltSlot: ItemSlot[]
-  beltSlot2: ItemSlot[]
-  weaponMasterySlot: ItemSlot[]
-}
-```
-
 ## Communication Style
 
 - Be concise and direct
 - Use markdown for code blocks
 - Reference specific file paths and line numbers
 - Suggest alternatives when appropriate
-
-## Important Notes
-
-- Never commit sensitive information
-- Always validate type definitions before implementation
-- Follow existing naming conventions (PascalCase for components, camelCase for utilities)
-- Maintain TypeScript strict checking
