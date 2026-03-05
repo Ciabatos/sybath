@@ -15,47 +15,43 @@ export default function PlayerCamp() {
 
   // ── MOCK ───────────────────────────────────────────────────────────────────
   const MOCK = {
-    mapTileName: "The Weeping Woods", // mock
-    mapTileCoordinates: "[1247, 892]", // mock
-    mapTileTerrain: "Forest", // mock
-    mapTileRegion: "Northern Marches", // mock
+    mapTileName: "The Weeping Woods",
+    mapTileCoordinates: "[1247, 892]",
+    mapTileTerrain: "Forest",
+    mapTileRegion: "Northern Marches",
 
-    playerHunger: 4, // mock
-    playerFatigue: 3, // mock
-    playerTemperature: 2, // mock
-    currentEncumbrance: 12, // mock
-    maxEncumbrance: 50, // mock
-    encumbranceLevel: "Light", // mock
+    playerHunger: 4,
+    playerFatigue: 3,
+    playerTemperature: 2,
+    currentEncumbrance: 12,
+    maxEncumbrance: 50,
+    encumbranceLevel: "Light",
 
-    campingSince: "2d 4h", // mock
-    dayNightCycle: "Evening", // mock
-    timeUntilDawn: "6h 23m", // mock
-    timeElapsed: "2 days, 4 hours", // mock
+    campingSince: "2d 4h",
+    dayNightCycle: "Evening",
+    timeUntilDawn: "6h 23m",
+    timeElapsed: "2 days, 4 hours",
 
     gainedConditions: [
-      // mock
       { id: "1", name: "Rested", icon: "☀️", description: "+2 Morale, -1 Fatigue" },
       { id: "2", name: "Hungry", icon: "😴", description: "Stomach growls occasionally" },
     ],
 
     campfireEffects: [
-      // mock
       { id: "1", name: "Light & Warmth", value: "+10°C" },
       { id: "2", name: "Morale Boost", value: "+5%" },
       { id: "3", name: "Safe Haven", value: "-3x Ambush chance" },
     ],
 
-    availableActions: ["Move Out", "Wake Up", "Prepare Meal", "Tend Fires"], // mock
+    availableActions: ["Move Out", "Wake Up", "Prepare Meal", "Tend Fires"],
 
     pendingActions: [
-      // mock
       { id: "1", name: "Watch Fires", status: "Ready" },
       { id: "2", name: "Practice Arms", status: "Ready" },
       { id: "3", name: "Study Maps", status: "Ready" },
     ],
 
     gatheredResources: [
-      // mock
       { id: "1", name: "Dripping Moss", quantity: "1x", icon: "🌿" },
       { id: "2", name: "Forest Bream", quantity: "2x", icon: "🐟" },
       { id: "3", name: "Hard Wood", quantity: "1x", icon: "🪵" },
