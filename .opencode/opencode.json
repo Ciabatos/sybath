@@ -8,8 +8,17 @@
         "baseURL": "http://192.168.0.184:1234/v1"
       },
       "models": {
+        "unsloth/qwen3.5-9b": {
+          "name": "unsloth/qwen3.5-9b"
+        },
+        "qwen3.5-9b@q4_k_xl": {
+          "name": "qwen3.5-9b@q4_k_xl"
+        },
         "qwen/qwen3.5-9b": {
-          "name": "Qwen 3.5 9B (local)"
+          "name": "qwen/qwen3.5-9b"
+        },
+        "qwen3.5-4b": {
+          "name": "qwen3.5-4b"
         }
       }
     }

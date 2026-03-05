@@ -26,7 +26,6 @@ sybath/
 ## Component Rules
 
 - Every component file: `ComponentName.tsx` + `ComponentName.module.css` in `styles/` subfolder
-- `"use client"` only when component uses browser APIs, event handlers, or hooks
 - No Tailwind utility chains in JSX — use semantic CSS class names (`.panel`, `.header`, `.row`)
 - Hook calls stay inside the component that owns them — don't scatter effects
 
