@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "sybath-db": {
+      "command": "npx",
+      "args": ["-y", "mcp-postgres-server"],
+      "env": {
+        "PG_HOST": "...",
+        "PG_PORT": "5432",
+        "PG_USER": "...",
+        "PG_PASSWORD": "...",
+        "PG_DATABASE": "..."
+      }
+    }
+  }
+}
+
+https://github.com/modelcontextprotocol/servers-archived/tree/main/src/postgres
