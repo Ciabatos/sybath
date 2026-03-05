@@ -1,0 +1,452 @@
+.overlay {
+  display: flex;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.panel {
+  flex-direction: column;
+  box-shadow:
+    -4px 0 20px rgba(0, 0, 0, 0.7),
+    inset 0 0 30px rgba(0, 0, 0, 0.3);
+  border-left: 3px solid #4a3728;
+  background: linear-gradient(135deg, #1a0f08 0%, #2b1810 50%, #1a0f08 100%);
+  width: 100%;
+  overflow: hidden;
+  min-width: 480px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  border-bottom: 2px solid #4a3728;
+  background: linear-gradient(to bottom, #2b1810, #1a0f08);
+  padding: 20px;
+}
+
+.titleSection {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  color: #c89a4a;
+  font-weight: 700;
+  font-size: 24px;
+  font-family: "Cinzel", serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.titleIcon {
+  width: 24px;
+  height: 24px;
+  color: #d4a574;
+}
+
+.tileInfo {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.terrainName {
+  color: #e6c998;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: "Cinzel", serif;
+}
+
+.landscapeName {
+  color: #d4a574;
+  font-size: 12px;
+  opacity: 0.85;
+  font-family: "Lora", serif;
+}
+
+.coordinates {
+  color: #c89a4a;
+  font-size: 12px;
+  opacity: 0.8;
+  font-family: "Lora", serif;
+}
+
+.closeButton {
+  transition: all 0.2s ease;
+  border: 1px solid #4a3728;
+  border-radius: 4px;
+  background: rgba(74, 55, 40, 0.5);
+  width: 40px;
+  height: 40px;
+  color: #c89a4a;
+  padding: 0;
+}
+
+.closeButton:hover {
+  transform: scale(1.05);
+  border-color: #c89a4a;
+  background: rgba(74, 55, 40, 0.8);
+}
+
+.closeIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  border-bottom: 1px solid #4a3728;
+  padding-bottom: 8px;
+  color: #e6c998;
+  font-weight: 600;
+  font-size: 16px;
+  font-family: "Cinzel", serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.sectionIcon {
+  width: 18px;
+  height: 18px;
+  color: #c89a4a;
+}
+
+.statusContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px;
+  background: rgba(61, 36, 21, 0.3);
+  border: 1px solid #4a3728;
+  border-radius: 4px;
+}
+
+.statusReady {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(74, 55, 40, 0.4);
+  border: 1px solid #6b5e4e;
+  border-radius: 4px;
+}
+
+.readyIndicator {
+  color: #c89a4a;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: "Cinzel", serif;
+}
+
+.explorationInProgress {
+  flex: 1;
+}
+
+.progressContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 120px;
+}
+
+.progressSpinner {
+  width: 30px;
+  height: 30px;
+}
+
+.progressLabel {
+  color: #c89a4a;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Cinzel", serif;
+}
+
+.progressHint {
+  display: block;
+  color: #d4a574;
+  font-size: 11px;
+  opacity: 0.8;
+  font-family: "Lora", serif;
+}
+
+.difficultyBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  color: #c89a4a;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: "Cinzel", serif;
+  background: linear-gradient(135deg, #4a3728, #3d2a1c);
+  border: 2px solid #5a4738;
+  border-radius: 4px;
+  min-width: 140px;
+}
+
+.difficultyIcon {
+  width: 16px;
+  height: 16px;
+  color: #d4a574;
+}
+
+.difficultyText {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.rewardList,
+.riskList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rewardItem,
+.riskItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: rgba(61, 36, 21, 0.3);
+  border: 1px solid #4a3728;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.rewardItem:hover,
+.riskItem:hover {
+  border-color: #c89a4a;
+  background: rgba(61, 36, 21, 0.5);
+}
+
+.rewardIcon {
+  font-size: 18px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.rewardInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.rewardName {
+  color: #e6c998;
+  font-weight: 600;
+  font-size: 13px;
+  font-family: "Lora", serif;
+}
+
+.rewardRarity {
+  display: flex;
+  gap: 4px;
+}
+
+.rarityDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid #4a3728;
+}
+
+.riskLevel {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #5a4022, #4a3728);
+  border: 1px solid #6b5e4e;
+  border-radius: 4px;
+  color: #c89a4a;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: "Cinzel", serif;
+}
+
+.riskName {
+  flex: 1;
+  color: #d4a574;
+  font-weight: 500;
+  font-size: 13px;
+  font-family: "Lora", serif;
+}
+
+.riskProbability {
+  color: #c89a4a;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 4px 8px;
+  border: 1px solid;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.2);
+  font-family: "Cinzel", serif;
+}
+
+.chancesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chanceItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.chanceLabel {
+  color: #d4a574;
+  font-size: 12px;
+  font-family: "Lora", serif;
+}
+
+.chanceValue {
+  color: #c89a4a;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: "Cinzel", serif;
+}
+
+.chanceBar {
+  height: 6px;
+  background: rgba(74, 55, 40, 0.5);
+  border: 1px solid #4a3728;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.actionButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.exploreButton {
+  min-height: 48px;
+  font-size: 16px;
+  font-family: "Cinzel", serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.exploreIcon {
+  width: 20px;
+  height: 20px;
+  color: #e6c998;
+}
+
+.explorerInfo {
+  text-align: center;
+  padding: 12px;
+  color: #d4a574;
+  font-size: 12px;
+  opacity: 0.85;
+  font-style: italic;
+  font-family: "Lora", serif;
+}
+
+.notesText {
+  color: #d4a574;
+  font-size: 13px;
+  line-height: 1.6;
+  font-family: "Lora", serif;
+  background: rgba(61, 36, 21, 0.3);
+  padding: 12px;
+  border: 1px solid #4a3728;
+  border-radius: 4px;
+}
+
+.exploreButton:hover {
+  background: linear-gradient(to bottom, #5a4738, #4d3525);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.6),
+    0 0 12px rgba(200, 154, 74, 0.3);
+}
+
+.exploreButton:active {
+  transform: translateY(0);
+}
+
+.difficultyBadge[data-level="1"] {
+  background: linear-gradient(135deg, #2d5a3d, #1d3d2a);
+  border-color: #3d6a4a;
+}
+
+.difficultyBadge[data-level="1"] .riskName,
+.difficultyBadge[data-level="1"] .difficultyText {
+  color: #86efac;
+}
+
+.difficultyBadge[data-level="2"] {
+  background: linear-gradient(135deg, #3d6a3d, #2a4a2a);
+  border-color: #4a6a4a;
+}
+
+.difficultyBadge[data-level="2"] .riskName,
+.difficultyBadge[data-level="2"] .difficultyText {
+  color: #86efac;
+}
+
+.difficultyBadge[data-level="3"] {
+  background: linear-gradient(135deg, #5a5a2a, #3d3d1a);
+  border-color: #6a6a2a;
+}
+
+.difficultyBadge[data-level="3"] .riskName,
+.difficultyBadge[data-level="3"] .difficultyText {
+  color: #facc15;
+}
+
+.difficultyBadge[data-level="4"] {
+  background: linear-gradient(135deg, #6a4a2a, #4a361a);
+  border-color: #7a5a3a;
+}
+
+.difficultyBadge[data-level="4"] .riskName,
+.difficultyBadge[data-level="4"] .difficultyText {
+  color: #f87171;
+}
+
+.difficultyBadge[data-level="5"] {
+  background: linear-gradient(135deg, #7a2a2a, #561a1a);
+  border-color: #8a3a3a;
+}
+
+.difficultyBadge[data-level="5"] .riskName,
+.difficultyBadge[data-level="5"] .difficultyText {
+  color: #f87171;
+}

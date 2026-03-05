@@ -2,9 +2,7 @@
 description: Build a Next.js game-style in-game window UI component from a hook.
 ---
 
-read .opencode\AGENTS.md first here is the text of it !`cat .opencode/AGENTS.md`
-
-Build a UI component for the Sybath game.
+Build a UI component for the Sybath game. Focus on rendering things not functions for interactions !
 
 ## Inputs
 
@@ -55,13 +53,13 @@ export default function $1() {
 
 ### CSS Module structure
 
-Follow the visual conventions from `components/**/styles/**`. Color palette and font from .opencode\AGENTS.md
+Follow the visual conventions from `components/*/styles/*`. Color palette and font from .opencode\AGENTS.md
 
 ## Rules
 
 - Consume ONLY the hook from `$4` — no direct fetch calls
 - No Tailwind utility chains in JSX
-- Use components from `components/ui/**` for buttons, dialogs, tooltips
+- Use components from `components/ui/*` for buttons, dialogs, tooltips
 - Traditional `function` syntax for all internal functions
 - Window must visually resemble a CK3/EU4 in-game panel
 - useState declarations MUST be inside component function body, never at file/module level
@@ -69,12 +67,9 @@ Follow the visual conventions from `components/**/styles/**`. Color palette and 
 
 ## Mocking
 
-- Always -mock data in the component UI so i can test it and delete later
+- Always -mock data in the component UI so i can test it and delete later, mock it in one big object and put statics to
+  it.
 
 ##Rendering
 
 - Component will be rendered in one of the Panels components that are here in this location `components\panels\**`
-
-## Examples
-
-you can create UI based on: !`find components -type f -exec cat {} +`
