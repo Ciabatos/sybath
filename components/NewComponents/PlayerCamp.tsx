@@ -1,76 +1,76 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { AlertCircle, ArrowRight, Clock, Flame, Hand, Loader, Sparkles, Sunrise, Tent, User, UserCheck } from "lucide-react"
+import { AlertCircle, ArrowRight, Clock, Flame, Hand, Loader, Sparkles, Sunrise, Tent, UserCheck } from "lucide-react"
 import { useState } from "react"
 import styles from "./styles/PlayerCamp.module.css"
 
 export default function PlayerCamp() {
-  const [isSetupComplete, setIsSetupComplete] = useState(false)
-  const [isReadyToRest, setIsReadyToRest] = useState(false)
-  const [isCampfireActive, setIsCampfireActive] = useState(false)
-  const [isEncumbered, setIsEncumbered] = useState(false)
-  const [timeRemaining, setTimeRemaining] = useState(60)
+  // ── UI STATE ───────────────────────────────────────────────────────────────
+  const [isSetupComplete, setIsSetupComplete] = useState<boolean>(false)
+  const [isReadyToRest, setIsReadyToRest] = useState<boolean>(false)
+  const [isCampfireActive, setIsCampfireActive] = useState<boolean>(false)
+  const [isEncumbered, setIsEncumbered] = useState<boolean>(false)
+  const [timeRemaining, setTimeRemaining] = useState<number>(60)
 
+  // ── MOCK ───────────────────────────────────────────────────────────────────
   const MOCK = {
-    mapTileName: "The Weeping Woods",
-    mapTileCoordinates: "[1247, 892]",
-    mapTileTerrain: "Forest",
-    mapTileRegion: "Northern Marches",
+    mapTileName: "The Weeping Woods", // mock
+    mapTileCoordinates: "[1247, 892]", // mock
+    mapTileTerrain: "Forest", // mock
+    mapTileRegion: "Northern Marches", // mock
 
-    playerHunger: 4,
-    playerFatigue: 3,
-    playerTemperature: 2,
-    currentEncumbrance: 12,
-    maxEncumbrance: 50,
-    encumbranceLevel: "Light",
+    playerHunger: 4, // mock
+    playerFatigue: 3, // mock
+    playerTemperature: 2, // mock
+    currentEncumbrance: 12, // mock
+    maxEncumbrance: 50, // mock
+    encumbranceLevel: "Light", // mock
 
-    campingSince: "2d 4h",
-    dayNightCycle: "Evening",
-    timeUntilDawn: "6h 23m",
+    campingSince: "2d 4h", // mock
+    dayNightCycle: "Evening", // mock
+    timeUntilDawn: "6h 23m", // mock
+    timeElapsed: "2 days, 4 hours", // mock
 
     gainedConditions: [
-      { name: "Rested", icon: "☀️", description: "+2 Morale, -1 Fatigue" },
-      { name: "Hungry", icon: "😴", description: "Stomach growls occasionally" },
+      // mock
+      { id: "1", name: "Rested", icon: "☀️", description: "+2 Morale, -1 Fatigue" },
+      { id: "2", name: "Hungry", icon: "😴", description: "Stomach growls occasionally" },
     ],
 
     campfireEffects: [
-      { name: "Light & Warmth", value: "+10°C" },
-      { name: "Morale Boost", value: "+5%" },
-      { name: "Safe Haven", value: "-3x Ambush chance" },
+      // mock
+      { id: "1", name: "Light & Warmth", value: "+10°C" },
+      { id: "2", name: "Morale Boost", value: "+5%" },
+      { id: "3", name: "Safe Haven", value: "-3x Ambush chance" },
     ],
 
-    availableActions: ["Move Out", "Wake Up", "Prepare Meal", "Tend Fires"],
+    availableActions: ["Move Out", "Wake Up", "Prepare Meal", "Tend Fires"], // mock
+
     pendingActions: [
-      { name: "Watch Fires", status: "Ready" },
-      { name: "Practice Arms", status: "Ready" },
-      { name: "Study Maps", status: "Ready" },
+      // mock
+      { id: "1", name: "Watch Fires", status: "Ready" },
+      { id: "2", name: "Practice Arms", status: "Ready" },
+      { id: "3", name: "Study Maps", status: "Ready" },
     ],
 
     gatheredResources: [
-      { name: "Dripping Moss", quantity: "1x", icon: "🌿" },
-      { name: "Forest Bream", quantity: "2x", icon: "🐟" },
-      { name: "Hard Wood", quantity: "1x", icon: "🪵" },
+      // mock
+      { id: "1", name: "Dripping Moss", quantity: "1x", icon: "🌿" },
+      { id: "2", name: "Forest Bream", quantity: "2x", icon: "🐟" },
+      { id: "3", name: "Hard Wood", quantity: "1x", icon: "🪵" },
     ],
-
-    timeElapsed: "2 days, 4 hours",
   }
 
-  const encumbrancePercentage = Math.round(
-    (!MOCK.currentEncumbrance || MOCK.maxEncumbrance === 0)
-      ? 0
-      : (MOCK.currentEncumbrance / MOCK.maxEncumbrance) * 100
-  )
+  // ── DERIVED ────────────────────────────────────────────────────────────────
+  const encumbrancePercentage =
+    MOCK.maxEncumbrance === 0 ? 0 : Math.round((MOCK.currentEncumbrance / MOCK.maxEncumbrance) * 100)
+
   const isHunted = MOCK.playerTemperature >= 2
   const isHungerCritical = MOCK.playerHunger >= 3
-  const isTimeCritical = timeRemaining <= 30
 
-  function handleSetupCamp(data: { mapTileName: string; timeUntilDawn: string; playerCondition: string }) {
-    console.log("Setting up camp on:", data)
-  }
-
+  // ── HANDLERS (stubs) ───────────────────────────────────────────────────────
   function handleWakeUp() {
-    console.log("Waking up from camp")
     setIsSetupComplete(false)
     setIsReadyToRest(false)
   }
@@ -79,60 +79,56 @@ export default function PlayerCamp() {
     console.log("Moving out from camp")
   }
 
-  function handleCampfireAdjustment(adjustment: "add" | "reduce" | "maintain") {
-    console.log("Adjusting campfire:", adjustment)
+  function handleSetupCamp() {
+    setIsSetupComplete(true)
   }
 
-  function handlePrepareMeals(foodType: string) {
-    console.log("Preparing meal:", foodType)
-  }
-
-  function handleWatchFire() {
-    console.log("Watching campfire")
-  }
-
-  function handlePracticeArms() {
-    console.log("Practicing arms")
+  function handleAdjustFire() {
+    setIsCampfireActive(function (prev) {
+      return !prev
+    })
   }
 
   function handleClose() {
     console.log("Closing camp interface")
   }
 
+  // ── RENDER ─────────────────────────────────────────────────────────────────
   return (
-    <div>
     <div className={styles.panel}>
+      {/* HEADER */}
       <div className={styles.header}>
         <div className={styles.titleSection}>
           <h2 className={styles.title}>{MOCK.mapTileName}</h2>
-          <p className={styles.subTitle}>{MOCK.mapTileTerrain}</p>
+          <p className={styles.subTitle}>
+            {MOCK.mapTileTerrain} · {MOCK.mapTileRegion}
+          </p>
           <span className={styles.coordinates}>{MOCK.mapTileCoordinates}</span>
         </div>
         <Button
           onClick={handleClose}
-          variant="ghost"
-          size="icon"
+          variant='ghost'
+          size='icon'
           className={styles.closeButton}
         >
           <AlertCircle className={styles.closeIcon} />
         </Button>
       </div>
 
+      {/* CONTENT */}
       <div className={styles.content}>
+        {/* Camp status */}
         <section className={styles.section}>
-          <div className={styles.restingContainer}>
-            <div className={styles.restingStatus}>
-              <div className={styles.restingIndicator}>
-                <Tent className={styles.readyIcon} />
-                <div className={styles.restingInfo}>
-                  <span className={styles.restingName}>Camping</span>
-                  {isReadyToRest && <span className={styles.restingEffect}>Ready to rest</span>}
-                </div>
-              </div>
+          <div className={styles.restingStatus}>
+            <Tent className={styles.readyIcon} />
+            <div className={styles.restingInfo}>
+              <span className={styles.restingName}>Camping</span>
+              {isReadyToRest && <span className={styles.restingEffect}>Ready to rest</span>}
             </div>
           </div>
         </section>
 
+        {/* Conditions */}
         <section className={styles.section}>
           <h3 className={styles.sectionTitle}>Conditions</h3>
           <div className={styles.conditionsContainer}>
@@ -140,7 +136,7 @@ export default function PlayerCamp() {
               <div className={styles.condition}>
                 <Sunrise className={styles.conditionIcon} />
                 <span className={styles.conditionName}>Hunted</span>
-                <span className={styles.conditionValue}>{isHunted ? "✓" : "✗"}</span>
+                <span className={styles.conditionValue}>Active</span>
               </div>
             )}
             {isHungerCritical && (
@@ -169,147 +165,131 @@ export default function PlayerCamp() {
           </div>
         </section>
 
+        {/* Encumbrance */}
         <section className={styles.section}>
           <h3 className={styles.sectionTitle}>Encumbrance</h3>
           <div className={styles.encumbranceContainer}>
             <Hand className={styles.encumbranceIcon} />
             <div className={styles.encumbranceInfo}>
-              <span className={styles.encumbranceLabel}>Current</span>
-              <span className={styles.encumbranceValue}>
+              <span className={styles.encumbranceLabel}>
                 {MOCK.currentEncumbrance} / {MOCK.maxEncumbrance}
               </span>
               <span className={styles.encumbranceStatus}>{MOCK.encumbranceLevel}</span>
             </div>
-            <div className={styles.encumbrancePercentage}>{encumbrancePercentage}</div>
+            <span className={styles.encumbrancePercentage}>{encumbrancePercentage}%</span>
           </div>
         </section>
 
+        {/* Campfire */}
         <section className={styles.section}>
           <h3 className={styles.sectionTitle}>Campfire</h3>
           <div className={styles.campfireContainer}>
-            <div
-              className={styles.campfireIconWrapper}
-              style={{
-                background: `linear-gradient(45deg, rgba(255,165,0,0.1) 25%,transparent 25%,transparent 50%,rgba(255,165,0,0.1) 50%,rgba(255,165,0,0.1) 75%,transparent 75%,transparent 100%); background-size: 20px 20px;`
-              }}
-            />
-            <div className={styles.campfireName}>
-              <Flame className={styles.flameAnimation} />
-              <br />
-              Campfire ({isCampfireActive ? "Active" : "Unlit"})
-            </div>
+            <Flame className={styles.flameIcon} />
+            <span className={styles.campfireName}>Campfire ({isCampfireActive ? "Active" : "Unlit"})</span>
           </div>
           <div className={styles.conditionsContainer}>
-            {MOCK.campfireEffects.map((effect, index) => (
-              <div
-                key={index}
-                className={styles.condition}
-                data-campfire-effect={true}
-              >
-                <AlertCircle className={styles.conditionIcon} />
-                <span className={styles.conditionName}>{effect.name}</span>
-                <span className={styles.conditionValue}>{effect.value}</span>
-              </div>
-            ))}
+            {MOCK.campfireEffects.map(function (effect) {
+              return (
+                <div
+                  key={effect.id}
+                  className={styles.condition}
+                >
+                  <AlertCircle className={styles.conditionIcon} />
+                  <span className={styles.conditionName}>{effect.name}</span>
+                  <span className={styles.conditionValue}>{effect.value}</span>
+                </div>
+              )
+            })}
           </div>
         </section>
 
+        {/* Time & Cycle */}
         <section className={styles.section}>
           <h3 className={styles.sectionTitle}>Time & Cycle</h3>
-          <div className={styles.dayNightContainer}>
-            <div className={styles.dayNightCell day}>Day</div>
-            <div className={styles.dayNightCell night}>Night</div>
-          </div>
           <div className={styles.timeRemainingContainer}>
             <Clock className={styles.timeRemainingIcon} />
             <span className={styles.timeRemainingValue}>{timeRemaining} min</span>
             <span className={styles.timeRemainingLabel}>until dawn</span>
           </div>
-          <span className={styles.timeRemainingLabel}>
-            Camping since: {MOCK.campingSince}
-          </span>
+          <span className={styles.campingSince}>Camping since: {MOCK.campingSince}</span>
         </section>
 
-        <section className={styles.section}>
-          <h3 className={styles.sectionTitle}>{MOCK.timeElapsed}</h3>
-          <div className={styles.restingProgress}>
-            <Loader className={styles.restingSpinner} />
-            <span className={styles.restingTime}>
-              {isReadyToRest ? "Ready to rest" : "Resting time remaining..."}
-            </span>
-          </div>
-        </section>
-
+        {/* Effects */}
         <section className={styles.section}>
           <h3 className={styles.sectionTitle}>Effects</h3>
           <div className={styles.conditionsContainer}>
-            {MOCK.gainedConditions.map((condition, index) => (
-              <div
-                key={index}
-                className={styles.condition}
-                data-condition-type="gained"
-              >
-                <span className={styles.conditionIcon}>{condition.icon}</span>
-                <span className={styles.conditionName}>{condition.name}</span>
-                <span className={styles.conditionTooltip}>
-                  <AlertCircle className={styles.conditionIcon} size={12} />
+            {MOCK.gainedConditions.map(function (condition) {
+              return (
+                <div
+                  key={condition.id}
+                  className={styles.condition}
+                >
+                  <span className={styles.conditionEmoji}>{condition.icon}</span>
+                  <span className={styles.conditionName}>{condition.name}</span>
                   <span className={styles.conditionValue}>{condition.description}</span>
-                </span>
-              </div>
-            ))}
+                </div>
+              )
+            })}
           </div>
         </section>
 
+        {/* Actions */}
         <section className={styles.section}>
           <h3 className={styles.sectionTitle}>Actions</h3>
           <div className={styles.conditionsContainer}>
-            {MOCK.availableActions.map((action, index) => (
-              <div
-                key={index}
-                className={styles.condition}
-                data-action-type="available"
-              >
-                <ArrowRight className={styles.conditionIcon} />
-                <span className={styles.conditionName}>{action}</span>
-              </div>
-            ))}
+            {MOCK.availableActions.map(function (action, index) {
+              return (
+                <div
+                  key={index}
+                  className={styles.condition}
+                >
+                  <ArrowRight className={styles.conditionIcon} />
+                  <span className={styles.conditionName}>{action}</span>
+                </div>
+              )
+            })}
           </div>
         </section>
 
+        {/* Pending Activity */}
         <section className={styles.section}>
           <h3 className={styles.sectionTitle}>Pending Activity</h3>
           <div className={styles.conditionsContainer}>
-            {MOCK.pendingActions.map((action, index) => (
-              <div
-                key={index}
-                className={styles.condition}
-                data-action-type="pending"
-              >
-                <Sparkles className={styles.conditionIcon} />
-                <span className={styles.conditionName}>{action.name}</span>
-                <span className={styles.conditionValue}>{action.status}</span>
-              </div>
-            ))}
+            {MOCK.pendingActions.map(function (action) {
+              return (
+                <div
+                  key={action.id}
+                  className={styles.condition}
+                >
+                  <Sparkles className={styles.conditionIcon} />
+                  <span className={styles.conditionName}>{action.name}</span>
+                  <span className={styles.conditionValue}>{action.status}</span>
+                </div>
+              )
+            })}
           </div>
         </section>
 
+        {/* Resources Gathered */}
         <section className={styles.section}>
           <h3 className={styles.sectionTitle}>Resources Gathered</h3>
           <div className={styles.conditionsContainer}>
-            {MOCK.gatheredResources.map((resource, index) => (
-              <div
-                key={index}
-                className={styles.condition}
-                data-resource-type="gathered"
-              >
-                <span className={styles.conditionIcon}>{resource.icon}</span>
-                <span className={styles.conditionName}>{resource.name}</span>
-                <span className={styles.conditionValue}>{resource.quantity}</span>
-              </div>
-            ))}
+            {MOCK.gatheredResources.map(function (resource) {
+              return (
+                <div
+                  key={resource.id}
+                  className={styles.condition}
+                >
+                  <span className={styles.conditionEmoji}>{resource.icon}</span>
+                  <span className={styles.conditionName}>{resource.name}</span>
+                  <span className={styles.conditionValue}>{resource.quantity}</span>
+                </div>
+              )
+            })}
           </div>
         </section>
 
+        {/* Action buttons */}
         <div className={styles.actionButtons}>
           <Button
             className={styles.campActionButton}
@@ -327,30 +307,29 @@ export default function PlayerCamp() {
           </Button>
           <Button
             className={styles.campActionButton}
-            variant="outline"
-            disabled={!isSetupComplete}
+            variant='outline'
+            onClick={handleSetupCamp}
+            disabled={isSetupComplete}
           >
             Setup Camp
           </Button>
           <Button
             className={styles.campActionButton}
-            variant="outline"
+            variant='outline'
+            onClick={handleAdjustFire}
             disabled={!isSetupComplete}
           >
             Adjust Fire
           </Button>
         </div>
 
-        {isSetupComplete && (
-          <div className={styles.hintText}>
-            Stay alert! The fire will extinguish when you move out.
-          </div>
-        )}
+        {/* Hints */}
+        {isSetupComplete && <p className={styles.hintText}>Stay alert! The fire will extinguish when you move out.</p>}
 
         {!isSetupComplete && (
           <div className={styles.emptyState}>
             <Tent className={styles.emptyStateIcon} />
-            <p>Press "Setup Camp" to set up camp on this map tile.</p>
+            <p>Press &quot;Setup Camp&quot; to set up camp on this map tile.</p>
           </div>
         )}
       </div>
