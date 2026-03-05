@@ -1,0 +1,477 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    -4px 0 20px rgba(0, 0, 0, 0.7),
+    inset 0 0 30px rgba(0, 0, 0, 0.3),
+    inset 0 0 80px rgba(0, 0, 0, 0.5);
+  border-left: 3px solid #5a4022;
+  background: linear-gradient(135deg, #1a0f08 0%, #2b1810 50%, #1a0f08 100%);
+  width: 100%;
+  min-width: 420px;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  border-bottom: 2px solid #c89a4a;
+  background: linear-gradient(to bottom, #2b1810, #1a0f08);
+  padding: 20px;
+}
+
+.titleSection {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  margin: 0;
+  color: #d4a574;
+  font-weight: 700;
+  font-size: 22px;
+  font-family: "Cinzel", serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.subTitle {
+  margin: 0;
+  color: #e6c998;
+  font-size: 12px;
+  font-style: italic;
+  font-family: "Lora", serif;
+  opacity: 0.85;
+}
+
+.coordinates {
+  opacity: 0.8;
+  color: #c89a4a;
+  font-size: 12px;
+  font-family: "Lora", serif;
+}
+
+.closeButton {
+  transition: all 0.2s ease;
+  border: 1px solid #4a3728;
+  border-radius: 4px;
+  background: rgba(74, 55, 40, 0.5);
+  width: 36px;
+  height: 36px;
+  color: #c89a4a;
+  padding: 0;
+}
+
+.closeButton:hover {
+  transform: scale(1.05);
+  border-color: #c89a4a;
+  background: rgba(74, 55, 40, 0.8);
+}
+
+.closeIcon {
+  width: 18px;
+  height: 18px;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  overflow-y: auto;
+  background: #e6c998;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sectionTitle {
+  margin: 0;
+  border-bottom: 1px solid #c89a4a;
+  padding-bottom: 8px;
+  color: #2b1810;
+  font-weight: 600;
+  font-size: 15px;
+  font-family: "Cinzel", serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Resting & Survival */
+.restingContainer {
+  background: rgba(43, 24, 16, 0.4);
+  border: 1px solid #5a4022;
+  border-radius: 4px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.restingStatus {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.restingIndicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, #5a4022, #3d2a1c);
+  border: 2px solid #c89a4a;
+  border-radius: 4px;
+  min-width: 140px;
+}
+
+.readyIcon {
+  width: 16px;
+  height: 16px;
+  color: #d4a574;
+}
+
+.restingInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.restingName {
+  color: #2b1810;
+  font-weight: 600;
+  font-size: 13px;
+  font-family: "Cinzel", serif;
+}
+
+.restingEffect {
+  color: #5a4022;
+  font-size: 11px;
+  font-family: "Lora", serif;
+  opacity: 0.8;
+}
+
+.restingProgress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 120px;
+}
+
+.restingSpinner {
+  width: 24px;
+  height: 24px;
+}
+
+.restingTime {
+  color: #5a4022;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: "Cinzel", serif;
+}
+
+.restingHint {
+  display: block;
+  color: #c89a4a;
+  font-size: 10px;
+  opacity: 0.8;
+  font-family: "Lora", serif;
+}
+
+/* Conditions */
+.conditionsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.condition {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: rgba(61, 36, 21, 0.3);
+  border: 1px solid #5a4022;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.condition:hover {
+  border-color: #c89a4a;
+  background: rgba(61, 36, 21, 0.5);
+}
+
+.conditionIcon {
+  font-size: 16px;
+  color: #d4a574;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.conditionName {
+  color: #2b1810;
+  font-weight: 500;
+  font-size: 12px;
+  font-family: "Lora", serif;
+}
+
+.conditionValue {
+  color: #c89a4a;
+  font-weight: 600;
+  font-size: 12px;
+  font-family: "Cinzel", serif;
+  margin-left: auto;
+}
+
+.conditionTooltip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Campfire */
+.campfireContainer {
+  background: rgba(74, 55, 40, 0.6);
+  border: 2px solid #c89a4a;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+
+
+.campfireName {
+  text-align: center;
+  color: #d4a574;
+  font-family: "Cinzel", serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(200, 154, 74, 0.5);
+}
+
+
+
+/* Hunger Bar */
+.hungerContainer {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.hungerCell {
+  flex: 1;
+  height: 8px;
+  background: rgba(74, 55, 40, 0.6);
+  border: 1px solid #5a4022;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.hungerCell.hungry {
+  background: #f87171;
+  border-color: #dc2626;
+}
+
+.hungerCell.satiated {
+  background: #4ade80;
+  border-color: #22c55e;
+}
+
+.hungerCell.fatigued {
+  background: #60a5fa;
+  border-color: #3b82f6;
+}
+
+/* Encumbrance */
+.encumbranceContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: rgba(61, 36, 21, 0.3);
+  border: 1px solid #5a4022;
+  border-radius: 4px;
+  gap: 12px;
+}
+
+.encumbranceIcon {
+  width: 20px;
+  height: 20px;
+  color: #d4a574;
+  flex-shrink: 0;
+}
+
+.encumbranceInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.encumbranceLabel {
+  color: #c89a4a;
+  font-size: 11px;
+  font-family: "Lora", serif;
+}
+
+.encumbranceValue {
+  color: #e6c998;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: "Cinzel", serif;
+}
+
+.encumbranceStatus {
+  color: #d4a574;
+  font-size: 11px;
+  font-style: italic;
+  font-family: "Lora", serif;
+}
+
+/* Day/Night Cycle */
+.dayNightContainer {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.dayNightCell {
+  flex: 1;
+  height: 8px;
+  background: rgba(74, 55, 40, 0.6);
+  border: 1px solid #5a4022;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.dayNightCell.day {
+  background: #e6c998;
+  border-color: #c89a4a;
+}
+
+.dayNightCell.night {
+  background: #2d2a26;
+  border-color: #3d3a36;
+}
+
+/* Time Remaining */
+.timeRemainingContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(43, 24, 16, 0.4);
+  border: 1px solid #5a4022;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+.timeRemainingIcon {
+  width: 20px;
+  height: 20px;
+  color: #d4a574;
+  flex-shrink: 0;
+}
+
+.timeRemainingValue {
+  color: #e6c998;
+  font-weight: 600;
+  font-size: 13px;
+  font-family: "Cinzel", serif;
+}
+
+.timeRemainingLabel {
+  color: #c89a4a;
+  font-size: 11px;
+  font-family: "Lora", serif;
+}
+
+/* Buttons */
+.actionButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.campActionButton {
+  min-height: 42px;
+  font-size: 14px;
+  font-family: "Cinzel", serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 2px 4px rgba(0, 0, 0, 0.5);
+  border: 2px solid #c89a4a;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, #5a4738, #4d3525);
+  color: #c89a4a;
+}
+
+.campActionButton:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.6),
+    0 0 12px rgba(200, 154, 74, 0.3);
+  border-color: #d4a574;
+  background: linear-gradient(to bottom, #6b5440, #564330);
+}
+
+.campActionButton:active {
+  transform: translateY(0);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.4),
+    0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.campActionButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Warning/Hint */
+.hintText {
+  color: #c89a4a;
+  font-size: 11px;
+  line-height: 1.5;
+  font-family: "Lora", serif;
+  background: rgba(74, 55, 40, 0.3);
+  padding: 8px 10px;
+  border: 1px solid #5a4022;
+  border-radius: 4px;
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* Empty state */
+.emptyState {
+  text-align: center;
+  padding: 40px 20px;
+  color: #c89a4a;
+  font-family: "Lora", serif;
+  font-style: italic;
+}
+
+.emptyStateIcon {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 48px;
+  opacity: 0.6;
+}

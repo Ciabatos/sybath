@@ -54,6 +54,9 @@ Medieval/fantasy multiplayer turn-based game with real-time elements.
 | React component | `components/NewComponents/$1.tsx`               |
 | CSS Module      | `components/NewComponents/styles/$1.module.css` |
 
+> Do NOT run shell commands to create directories. Just write the files directly — the editor creates directories
+> automatically. Skip any `mkdir` or `cd` steps. Folders NewComponents and styles exists
+
 ---
 
 ## Component rules (`$1.tsx`)
@@ -63,18 +66,20 @@ Medieval/fantasy multiplayer turn-based game with real-time elements.
 
 import styles from "./styles/$1.module.css"
 // import { useYourHook } from "$4"
+// import { useState } from "react"
 // import { Button } from "@/components/ui/button"
 // import { SomeIcon } from "lucide-react"
-
-// ─── MOCK (delete when real hook is connected) ────────────────────────────────
-const MOCK = {
-  // ALL test data as one object
-}
-// ─────────────────────────────────────────────────────────────────────────────
 
 export default function $1() {
   // 1. useState — always at top of component body
   // 2. hook call — always inside component body
+
+  // ─── MOCK (delete when real hook is connected) ────────────────────────────────
+  const MOCK = {
+    // ALL test data as one object
+  }
+  // ─────────────────────────────────────────────────────────────────────────────
+
   // 3. derived values
 
   // internal functions — ALWAYS traditional function syntax
@@ -82,15 +87,21 @@ export default function $1() {
     // ...
   }
 
-  return {
-    /* main content */
-  }
+  return (
+    <div className={styles.window}>
+      <div className={styles.titleBar}>
+        <h2 className={styles.title}>{MOCK.title}</h2>
+      </div>
+      <div className={styles.content}>{/* main content */}</div>
+    </div>
+  )
 }
 ```
 
 **Hard rules:**
 
 - `useState` — inside component body, at the very top
+- `useState` — ONLY for UI interaction state (tabs, toggles, open/close)
 - Hook calls — inside component body only, never at module level
 - Internal functions — traditional `function` syntax, never arrow functions at module level
 - Params — wrap into object before passing: `handleAction({ id, type })` not `handleAction(id, type)`
@@ -116,11 +127,15 @@ export default function $1() {
 
 ## Mocking
 
-When `$6` is **yes** or `$4` is "none":
+When $5 is **yes** or `$4` is "none":
 
 - Put ALL test data in the single `MOCK` object
 - Use `MOCK.*` directly in JSX
 - Comment every mock value with `// mock`
+- Define ONE flat MOCK object. No deep nesting — max 2 levels.
+- Define MOCK **inside the component function body**, after useState declarations.
+- MOCK data — read directly in JSX with `MOCK.value`, never via `setState(MOCK.something)`
+- Never copy MOCK values into state — if it comes from the hook/MOCK, render it directly
 
 ---
 
@@ -129,3 +144,59 @@ When `$6` is **yes** or `$4` is "none":
 This component will be mounted inside one of the panel wrappers at `components/panels/**`.  
 Do not add page-level layout — the panel provides positioning and z-index. "Focus on rendering" only UI and mock data,
 funcionality leave for manual user correction.
+
+## Lucide React — verified icons only
+
+Import only from this list. If the icon you need is not here, use the closest alternative that is. Never guess or invent
+a name.
+
+Sword, Shield, Helmet, Bow, Axe, Spear
+
+User, UserCheck, UserX, UserPlus, UserMinus
+
+Hand, HandMetal, HandCoins
+
+Castle, Church, House, Tower, Fort, Barracks, Building ,Building2
+
+Fire, Flame, BrickWall, BrickWallShield, Fence, Lamp
+
+Coin, Coins, Chest, Handbag, Backpack, Gem, Diamond
+
+Axe, Pickaxe, Hammer, Shovel
+
+Apple, Meat, Potion, FlaskConical, FlaskRound
+
+Sparkles, Star, Lightning, Fire, Zap, Moon, Sun, CrescentMoon
+
+Hexagon, Circle, Triangle
+
+MagicWand, SpellBook, Book, BookOpen, BookHeart
+
+Map, Compass, Globe, ArrowUp, ArrowDown, ArrowLeft, ArrowRight
+
+Flag, FlagTriangleLeft, FlagTriangleRight, Crown
+
+Check, X, AlertCircle, Info, Loader
+
+AlertCircle, Bed, Clock, Flame, Moon, Sunrise, Tent, User
+
+| Category                   | Verified import names                                                                                                                                                                             |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Weapons / combat**       | `Sword`, `Swords`, `Shield`, `Axe`, `BowArrow`, `Crosshair`, `Target`, `Skull`                                                                                                                    |
+| **Characters**             | `User`, `Users`, `UserRound`, `UserCheck`, `UserX`, `UserPlus`, `UserMinus`, `Crown`, `Trophy`                                                                                                    |
+| **Buildings / structures** | `Castle`, `Church`, `Building`, `Building2`, `House`, `Tower`, `Landmark`, `Warehouse`, `Flag`, `FlagTriangleLeft`, `FlagTriangleRight`                                                           |
+| **Fire / light**           | `Flame`, `FlameKindling`, `Sun`, `Sunrise`, `Sunset`, `Moon`, `MoonStar`, `Flashlight`, `Lamp`                                                                                                    |
+| **Resources / wealth**     | `Coins`, `Gem`, `Diamond`, `Backpack`, `Package`, `Barrel`, `Vault`, `PiggyBank`, `Banknote`                                                                                                      |
+| **Tools / crafting**       | `Pickaxe`, `Hammer`, `Shovel`, `Wrench`, `Anvil`, `Drill`                                                                                                                                         |
+| **Food / survival**        | `Apple`, `Wheat`, `Beef`, `Utensils`, `UtensilsCrossed`, `FlaskConical`, `FlaskRound`, `Droplets`                                                                                                 |
+| **Magic / mystic**         | `Sparkles`, `Sparkle`, `Star`, `Stars`, `Zap`, `WandSparkles`, `Wand2`, `BookOpen`, `BookHeart`, `Scroll`, `ScrollText`, `Eye`, `Ghost`, `Hexagon`                                                |
+| **Map / exploration**      | `Map`, `MapPin`, `MapPinned`, `Compass`, `Globe`, `Mountain`, `MountainSnow`, `Trees`, `TreePine`, `TreeDeciduous`, `Footprints`, `Telescope`, `Binoculars`                                       |
+| **Camp / rest**            | `Tent`, `TentTree`, `Bed`, `BedDouble`, `Wind`, `CloudRain`, `Snowflake`, `Thermometer`                                                                                                           |
+| **Interface / status**     | `X`, `Check`, `Info`, `AlertTriangle`, `AlertCircle`, `Clock`, `Calendar`, `Hourglass`, `Timer`, `ChevronUp`, `ChevronDown`, `ChevronLeft`, `ChevronRight`                                        |
+| **Ships / travel**         | `Sailboat`, `Anchor`, `Ship`, `ShipWheel`                                                                                                                                                         |
+| **Strategy / board**       | `BrickWall`, `BrickWallShield`, `BrickWallFire`, `ChessKing`, `ChessQueen`, `ChessRook`, `ChessKnight`, `ChessBishop`, `ChessPawn`, `Dice1`, `Dice2`, `Dice3`, `Dice4`, `Dice5`, `Dice6`, `Dices` |
+
+```tsx
+// ✅ correct
+import { Sword, Shield, Coins } from "lucide-react"
+```
