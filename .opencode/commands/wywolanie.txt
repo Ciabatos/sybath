@@ -1,26 +1,20 @@
-/ui-from-hook 
-"GatheringResourceOnMapTile" "This ui should display to the player that he can pick this selected resource and gather it to his inventory" "should be placed in right panel of the screen" "\methods\hooks\items\composite\useGatherResourcesOnMapTile.ts" true
-
-
-try to wrap into object before passing
-
-
- /create-ui
-
- ExplorationOnMapTile 
-
- "This UI is used by the player to see what he can get from exploring targeted tile, there should be on    
- button named toExplore and it will send action to server to explore     
- that tile i will make this function manually you just create it in      
- this ui component, please think what else i can add to this ui,         
- rembember it is a strategic game on map" 
-
- "think for yourself" 
- "i dont have data for it yet, you can mock it yourself as you want to" 
-"yes"
-
-
-
-
 /create-ui
 PlayerCamp "This UI is used by the player to set camp on target mapTile, he can rest there just like in games, Think and add some ideas what to show here please from RPG and strategic games" "think for yourself" "Mock it please i dont have hook" "yes"
+
+/ui-create
+"ExplorationOnMapTile" "This UI is used by the player to set camp on target mapTile, he can rest there just like in games, Think and add some ideas what to show here please from RPG and strategic games" "think for yourself" "Mock it please i dont have hook" "yes"
+
+/ui-create
+"KnowledgeTree" "This UI is used by the player to see technology and knowledge tree just like in RPG games when you spend skill points to level up, tree should have skills from ancient world in acient times and medieval times. Think and add some ideas what to show here please from RPG and strategic games" "think for yourself" "Mock it please i dont have hook" "yes"
+
+/ui-create
+"OtherPlayerActions" "This UI is used by the player to see what actions can player interact with other players like trade, invite to squad just like in multiplayer and rpg games. Think and add some ideas what to show here please from RPG and strategic games" "think for yourself" "Mock it please i dont have hook" "yes"
+
+/ui-create
+"DistrictDetails" "This UI is used by the player to see what districs are builded on map tiles or can be builded, there can only be max 4 districs and examples of districts are medieval manufacturing buildings like farm, stone mine, iron mine, mines, hunting etc, when there is no district those 4 box slots are empty, slots will be filled with images, when there is no building in it there will be trees. Think and add some ideas what to show here please from RPG and strategic games" "think for yourself" "Mock it please i dont have hook" "yes"
+
+/ui-create
+"CraftingTree" "This UI is used by the player to see crafting tree just like in RPG games when you spend skill points to level up, tree should have crafting recipes from ancient world in acient times and medieval times can have some fantasy like spell building. Think and add some ideas what to show here please from RPG and strategic games" "think for yourself" "Mock it please i dont have hook" "yes"
+
+/ui-create
+"PlayerActions" "This UI is used by the player to see what actions can player interact with map like defend, attack, move etc. Think and add some ideas what to show here please from RPG and strategic games" "think for yourself" "Mock it please i dont have hook" "yes"
