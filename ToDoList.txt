@@ -94,6 +94,17 @@ Gry:
 -Folk Emerging
 -Songs of Syx
 -County of Fortune
+-loop hero
+-songs of conquest
+-mahokenshi
+-master of magic
+-hero hour
+-the iron oath
+-pathfinder - wrath of 
+-potionmics
+-stoneshard
+-victoria3
+
 --https://www.youtube.com/watch?v=B9B9y0KcgD0
 Zagrywane są karty akcji co turę (5 minut) i odpalane w sekwencji - potem tylko ogladasz replay rundy
 na przyklad atak, parry/rest, riposte
@@ -102,6 +113,9 @@ na przyklad atak, parry/rest, riposte
 odwzorowane jakas statystyka ktora da minusa do cohesion tej jednostce i tez jednostce ktora stoi na tilesie na ktory nachodzi ta jednostka
 Bedzie to ladnie wygladalo jak wrog bedzie pushowal jednostki jedne na drugie blobowal, albo jak armia sie bedzie przemieszczac rozproszona
 Squady z duzym cohesion beda idealnie ustawione a te z malym beda nachodzic jedne na drugie
+
+Squad leader ustawia w jakiego rodzaju zolnierzy zamienia sie AI jednostki i jaki ekwipunek wymagaja
+-to nam daje ze robisz szybki replenish w wiosce kupujesz pop i ekwipunek masz juz w squadzie/army lub tez dokupujesz
 
 UI i flow dla „systemu informacji”
 
@@ -117,6 +131,8 @@ Middleware zamienia to na:
 
 
 --Religia
+--Biblioteki, domy i inne budynki maja glowna religie, wszystko w tym budynku nalezy do danej religi i daje jej punkty
+--Ilosc wiernych graczy tez moze dawac punkty jak relikwie z punktu wyzej
 --Promo konto - napisanie ksiegi coś jak księga z bibli
 Użytkownik pisząc księge dostaje obrazki ładne z ai i odpowiada na pytania tworząc:
 -nową religię, traity 
@@ -131,12 +147,15 @@ Użytkownik pisząc księge dostaje obrazki ładne z ai i odpowiada na pytania t
 --może dostęp do edytora nowej mapy i sam ja tworzy ? (tu duzo roboty)
 --dostep do edytora nowych surowcow ?
 --mega paywall/grind -- custom całej hitorii i wszystkiego (moze na punkty ?) -prawdziwa kasa i robota dla mnie jako DLC
+--powstawanie nowych ras od bogow
 
 --Kultura
 --podobnie do religii
---Kulturowo dziedziczenie umiejetnosci ?
---Kulturowo dziedziczenie wiedzy ?
---Kulturowo dziedziczenie widoku mapy / wiedzy o lokacjach
+--Biblioteki, domy i inne budynki maja glowna kulture, wszystko w tym budynku nalezy do danej kultury i daje jej bonusy
+--Kulturowo dziedziczenie tradycji jak w CK3 - punkty na lvl up zalezy od peak max graczy
+--Kulturowo dziedziczenie wiedzy pernamentnej - jak w budynkach w danej kulturze jest dosc ksiazek w danej dziedzinie to ten skill jest od narodzin, jak ksiazki spalone to utracony bonus
+--Mozna do dziedziczenia wiedzy permanentnej doliczyc wiedze zywych graczy
+--Kulturowo dziedziczenie widoku mapy / wiedzy o lokacjach - to samo jak ksiazki ale mapy 
 
 --Crafting nowych surowcow (tworzenie indeksów IFS)
 --Z puli właściwości wybieramy kombinacje np 3
@@ -158,6 +177,12 @@ Waluta(PROBLEM)
 --Stworzyc kantor NPC do przeliczania wagi waluty, kupowanie i wymiana walut tylko kantorem
 --Podatek w walucie bazowej lub w innej walucie +15% różnica idzie do NPC (sink)
 --możliwośc niszczenia waluty
+drugi sposob :
+--Bank skupuje surowiec/walute i wydaje tyle coinsow po ile ustalil sobie cene
+--Banki ustalaja sobie kursy do innych walut tak samo jak do surowcow
+ np 1 drewno = 2 coinsy imperium
+    2 coinsy undead = 1 coins imperium
+--Banki moga nie wydawac depozytow
 
 Urzędnicy
 --Raporty, np dluznicy itp maja ten knowledge, chodzi mi o to, że samemu jeden gracz nie jest w stanie wszystkim zarządzać. Dlatego każde stanowisko będzie miało specjalne umiejętności
@@ -170,6 +195,7 @@ knowledge
 -- po 5 lvl mozna uczyc i budowac ulepszenie do budynku np warsztat etc
 --zbierasz inspiracje i odblokowujesz skill na 1 lvl knowledga co daje ci mozliwosc budoawania tych itemow w bardzo wolnym tempie
 --inspiracje zbieramy jak major i minior triumphs z civy, np zabij innego gracza, uzbieraj costam, stworz nowy material  
+-napisanie ksiazki na temat skilla (patrz co daje w kulturze)
 
 Przekazywanie dziedziczenie
 --punkty na rozdzielenie i np jak ojciec umial skill to moze wydac na to ze w dziecinstwie sie go nauczyl a jak nie to w co innego np sile wieksza
