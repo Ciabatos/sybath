@@ -1,0 +1,257 @@
+.panel {
+  position: relative;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  border: 2px solid #c89a4a;
+  background: #2b1810;
+  padding: 16px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #c89a4a;
+  background: #3d2214;
+  padding: 12px 16px;
+}
+.title {
+  margin: 0 0 4px 0;
+  color: #d4a574;
+  font-size: 20px;
+  font-family: "Cinzel", serif;
+}
+.subTitle {
+  margin: 0 0 8px 0;
+  color: #8b6f47;
+  font-size: 14px;
+  font-family: "Cinzel", serif;
+}
+.coordinates {
+  color: #c89a4a;
+  font-size: 12px;
+  font-family: "Cinzel", serif;
+}
+.closeButton {
+  border: 1px solid #c89a4a;
+  background: transparent;
+  padding: 6px;
+  color: #d4a574;
+}
+.content {
+  border: 1px solid #c89a4a;
+  background: linear-gradient(to bottom, #e6c998, #f0d9a0);
+  padding: 16px;
+}
+.section {
+  margin-bottom: 24px;
+}
+.sectionTitle {
+  margin: 0 0 12px 0;
+  border-bottom: 1px solid #c89a4a;
+  padding-bottom: 6px;
+  color: #5a3e26;
+  font-size: 16px;
+  font-family: "Cinzel", serif;
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #c89a4a;
+  background: rgba(255, 253, 240, 0.3);
+  padding: 6px 12px;
+}
+.pips {
+  display: flex;
+  gap: 2px;
+}
+.pip {
+  border: 1px solid #d4a574;
+  border-radius: 50%;
+  background: #c89a4a;
+  width: 8px;
+  height: 8px;
+}
+.pips.filled .pip {
+  background: #8b6f47;
+}
+.resourcesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.resourceItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #c89a4a;
+  background: rgba(255, 253, 240, 0.2);
+  padding: 8px 12px;
+}
+.resourceIcon {
+  width: 16px;
+  height: 16px;
+  color: #c89a4a;
+}
+.resourceName {
+  color: #5a3e26;
+  font-size: 13px;
+  font-family: "Cinzel", serif;
+}
+.resourceValue {
+  color: #8b6f47;
+  font-weight: bold;
+}
+.tabsContainer {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #c89a4a;
+  padding-bottom: 8px;
+}
+.tab {
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: transparent;
+  padding: 8px 16px;
+  color: #5a3e26;
+  font-family: "Cinzel", serif;
+}
+.tab:hover {
+  border-color: #c89a4a;
+  background: rgba(212, 165, 116, 0.1);
+}
+.tab.active {
+  border-color: #c89a4a;
+  background: rgba(212, 165, 116, 0.15);
+  color: #d4a574;
+  font-weight: bold;
+}
+.skillContainer {
+  margin-top: 16px;
+}
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+.skillCard {
+  transition: all 0.2s ease;
+  border: 1px solid #c89a4a;
+  background: rgba(255, 253, 240, 0.3);
+  padding: 12px;
+}
+.skillCard:hover {
+  border-color: #d4a574;
+  background: rgba(212, 165, 116, 0.15);
+}
+.skillHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.skillIcon {
+  width: 20px;
+  height: 20px;
+  color: #c89a4a;
+}
+.skillName {
+  color: #5a3e26;
+  font-weight: bold;
+  font-family: "Cinzel", serif;
+}
+.skillDescription {
+  margin-bottom: 10px;
+  color: #6b4f38;
+  font-size: 12px;
+}
+.skillFooter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.costLabel {
+  color: #6b4f38;
+  font-size: 12px;
+}
+.costValue {
+  color: #d4a574;
+  font-weight: bold;
+}
+.learntBadge {
+  border-radius: 3px;
+  background: #c89a4a;
+  padding: 2px 8px;
+  color: #2b1810;
+  font-weight: bold;
+  font-size: 11px;
+}
+.disabledAction {
+  color: #6b4f38;
+  font-size: 12px;
+}
+.knowledgeContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.knowledgeItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #c89a4a;
+  background: rgba(255, 253, 240, 0.2);
+  padding: 10px 14px;
+}
+.knowledgeIcon {
+  width: 16px;
+  height: 16px;
+  color: #c89a4a;
+}
+.knowledgeName {
+  color: #5a3e26;
+  font-weight: bold;
+  font-family: "Cinzel", serif;
+}
+.knowledgeDescription {
+  color: #6b4f38;
+  font-size: 11px;
+}
+.actionButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.totalCost {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  border: 1px solid #c89a4a;
+  background: rgba(90, 64, 34, 0.1);
+  padding: 10px;
+  font-family: "Cinzel", serif;
+}
+.pointsRemaining {
+  color: #d4a574;
+  font-size: 13px;
+}
+.closeIcon {
+  width: 18px;
+  height: 18px;
+}

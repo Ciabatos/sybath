@@ -1,0 +1,480 @@
+.window {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  border: 3px solid #c89a4a;
+  border-radius: 8px;
+  background-color: #2b1810;
+  width: 100%;
+  max-width: 900px;
+  height: 650px;
+  overflow: hidden;
+}
+
+.titleBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #c89a4a;
+  background-color: #1f130d;
+  padding: 0 20px;
+  height: 65px;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.title {
+  margin: 0;
+  color: #c89a4a;
+  font-weight: bold;
+  font-size: 22px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.playerCount {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #c89a4a;
+  border-radius: 4px;
+  background-color: #2d1b10;
+  padding: 4px 12px;
+  color: #d4a574;
+  font-size: 13px;
+}
+
+.content {
+  flex: 1;
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20c-5.5 0-10 4.5-10 10s4.5 10 10 10 10-4.5 10-10-4.5-10-10-10zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8z' fill='%23d4a574' fill-opacity='0.1'/%3E%3C/svg%3E");
+  background-color: #e6c998;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.tabsContainer {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #8b6f47;
+  padding-bottom: 12px;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 2px solid #8b6f47;
+  border-radius: 6px 6px 0 0;
+  background-color: #d4a574;
+  padding: 12px 24px;
+  color: #5a3e29;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.tab:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  background-color: #c89a4a;
+}
+
+.tab.active {
+  box-shadow: 0 -2px 8px rgba(216, 180, 74, 0.3);
+  border-bottom-color: transparent;
+  background-color: #5a3e29;
+  color: #d4a574;
+}
+
+.playersList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.playerCard {
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border: 2px solid #8b6f47;
+  border-radius: 8px;
+  background-color: #fffef5;
+  padding: 18px;
+}
+
+.playerCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(216, 180, 74, 0.3);
+  border-color: #c89a4a;
+}
+
+.playerCard.selected {
+  box-shadow: 0 0 12px rgba(216, 180, 74, 0.4);
+  border-color: #d4a574;
+  background-color: #f5e6d1;
+}
+
+.playerHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.avatarContainer {
+  position: relative;
+  width: 52px;
+  height: 52px;
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  background-color: #8b6f47;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+}
+
+.statusDot {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  box-shadow: 0 0 6px rgba(39, 174, 96, 0.6);
+  border-radius: 50%;
+  background-color: #27ae60;
+  width: 14px;
+  height: 14px;
+}
+
+.statusDot.offline {
+  box-shadow: none;
+  background-color: #7f8c8d;
+}
+
+.playerInfo {
+  flex: 1;
+}
+
+.playerNameRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.playerName {
+  margin: 0;
+  color: #2c1e15;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.playerTitle {
+  margin-bottom: 8px;
+  color: #8b6f47;
+  font-style: italic;
+  font-size: 13px;
+}
+
+.playerMeta {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.levelBadge,
+.factionBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid #c89a4a;
+  border-radius: 4px;
+  background-color: #f0d9a0;
+  padding: 3px 8px;
+  color: #5a3e29;
+  font-size: 12px;
+}
+
+.locationInfo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #5a3e29;
+  font-size: 12px;
+}
+
+.coordinates {
+  color: #8b6f47;
+  font-family: monospace;
+}
+
+.reputationBadge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  background-color: #c89a4a;
+  padding: 6px 12px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.reputationBadge:hover {
+  box-shadow: 0 2px 8px rgba(216, 180, 74, 0.4);
+  background-color: #d4a574;
+}
+
+.resourcesRow {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #c89a4a;
+  border-radius: 6px;
+  background-color: #f5e6d1;
+  padding: 10px;
+}
+
+.resourceItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #5a3e29;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.statsRow {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 1px solid #8b6f47;
+  border-radius: 4px;
+  background-color: #fff;
+  padding: 6px 10px;
+  color: #2c1e15;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.statItem:hover {
+  box-shadow: 0 2px 6px rgba(216, 180, 74, 0.3);
+  background-color: #c89a4a;
+  color: #fff;
+}
+
+.statValue {
+  min-width: 28px;
+  text-align: right;
+}
+
+.actionsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 2px solid #8b6f47;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 8px 14px;
+  color: #2c1e15;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.actionButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(216, 180, 74, 0.4);
+  background-color: #c89a4a;
+  color: #fff;
+}
+
+.actionButton.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.actionCost {
+  margin-left: auto;
+  border-radius: 3px;
+  background-color: #fdeaea;
+  padding: 2px 6px;
+  color: #c0392b;
+  font-size: 11px;
+}
+
+.quickActions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  border-top: 1px solid #c89a4a;
+  padding-top: 10px;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  height: 300px;
+  color: #5a3e29;
+  text-align: center;
+}
+
+.emptyState h3 {
+  margin: 0;
+  color: #8b6f47;
+  font-size: 18px;
+}
+
+.detailsPanel {
+  margin-top: 16px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  border: 2px solid #c89a4a;
+  border-radius: 8px;
+  background-color: #fffef5;
+  padding: 18px;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #c89a4a;
+  padding-bottom: 8px;
+  color: #5a3e29;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.detailRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: #2c1e15;
+  font-size: 14px;
+}
+
+.healthPips,
+.moralePips {
+  display: flex;
+  gap: 3px;
+}
+
+.pip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #d4a574;
+  width: 18px;
+  height: 18px;
+  color: transparent;
+  font-size: 12px;
+}
+
+.pip.filled {
+  box-shadow: 0 1px 4px rgba(231, 76, 60, 0.4);
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.actionDetail {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  background-color: #f5e6d1;
+  padding: 10px;
+}
+
+.actionIconButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  background-color: #c89a4a;
+  width: 42px;
+  height: 42px;
+  color: #fff;
+}
+
+.actionIconButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(216, 180, 74, 0.4);
+  background-color: #d4a574;
+}
+
+.actionInfo {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 8px;
+}
+
+.squadStatus {
+  border-radius: 6px;
+  background-color: #f5e6d1;
+  padding: 12px;
+  text-align: center;
+}
+
+.factionInfo {
+  border: 1px solid #c89a4a;
+  border-radius: 6px;
+  background-color: #fff;
+  padding: 14px;
+}
+
+.factionBadgeLarge {
+  display: inline-block;
+  margin-bottom: 8px;
+  border-radius: 5px;
+  background-color: #c89a4a;
+  padding: 8px 16px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  border-top: 2px solid #c89a4a;
+  padding-top: 12px;
+}

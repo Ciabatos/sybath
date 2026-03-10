@@ -197,6 +197,10 @@ knowledge
 --inspiracje zbieramy jak major i minior triumphs z civy, np zabij innego gracza, uzbieraj costam, stworz nowy material  
 -napisanie ksiazki na temat skilla (patrz co daje w kulturze)
 
+Civics/Ustroje
+--Zaleznie od ludnosci?
+--Od kultury mieszkancow ?
+
 Przekazywanie dziedziczenie
 --punkty na rozdzielenie i np jak ojciec umial skill to moze wydac na to ze w dziecinstwie sie go nauczyl a jak nie to w co innego np sile wieksza
 --dziedziczy religie kulture nazwisko budynki kase

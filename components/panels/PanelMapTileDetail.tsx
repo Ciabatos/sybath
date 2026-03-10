@@ -1,6 +1,7 @@
 "use client"
 
 import GatherResource from "@/components/items/GatherResource"
+import OtherPlayerActions from "@/components/NewComponents/OtherPlayerActions"
 import { Button } from "@/components/ui/button"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
@@ -111,6 +112,7 @@ export default function PanelMapTileDetail() {
 
   return (
     <div className={styles.overlay}>
+      <OtherPlayerActions></OtherPlayerActions>
       <GatherResource
         isOpen={!!selectedResource}
         onClose={handleCloseGather}
