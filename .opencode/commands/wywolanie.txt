@@ -18,3 +18,11 @@ PlayerCamp "This UI is used by the player to set camp on target mapTile, he can 
 
 /ui-create
 "PlayerActions" "This UI is used by the player to see what actions can player interact with map like defend, attack, move etc. Think and add some ideas what to show here please from RPG and strategic games" "think for yourself" "Mock it please i dont have hook" "yes"
+
+
+opencode run --prompt "/psz-ui-component" && \
+opencode run --continue --prompt "Prepare for compaction. KEEP details about the future CSS implementation (style and layout), REMOVE everything unnecessary. Then compact the session context and confirm you are ready." && \
+opencode run --continue --prompt "/compact" && \
+opencode run --continue --prompt "/psz-css-generator"
+
+https://github.com/upstash/context7
