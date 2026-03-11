@@ -1,3 +1,0 @@
-@Plan
-
-then @Build

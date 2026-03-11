@@ -19,6 +19,59 @@ PlayerCamp "This UI is used by the player to set camp on target mapTile, he can 
 /ui-create
 "PlayerActions" "This UI is used by the player to see what actions can player interact with map like defend, attack, move etc. Think and add some ideas what to show here please from RPG and strategic games" "think for yourself" 
 
+QuestDairy
+ActionPopup
+Notifications
+
+TradePanel
+Handel między graczami, budynkami, squadami, centrum ekranu.
+
+BuildingProductionSettings
+
+BuildingPanel
+Informacje o budynkach, możliwość produkcji i ulepszeń.
+
+SkillBar
+Pasek szybkiego użycia skillów, z cooldownami i ikonami.
+
+SkillDetailsTab
+Słownik umiejętności z opisami i levelami, co odblokowuje co można zrobić.
+
+ItemDetailsTab
+Słownik itemów, opis, wymagania i możliwości użycia.
+
+QuestMarkers / POIMarkers
+Pokazuje aktywne cele, surowce, budynki, NPC.
+
+PathIndicator
+Linia/trasa do celu, wskazówki dla gracza lub squad.
+
+RegionInfoPanel
+Tooltip lub okienko z informacjami o regionie, produkcji surowców, zagrożeniach.
+
+GatheringUI
+Zbieranie surowców, dodawanie do inventory.
+
+NomadicUI
+Budowanie namiotów, communal hall, zarządzanie AI nomadów.
+
+TileInfoPanel
+Informacje o tile: zasoby, surowce, eksploracja, knowledge.
+
+BuildUI
+Wybór budynków, ich produkcja i ulepszenia.
+
+ProductionPanel
+Pokazuje produkcję w districcie, ilości produktów, interwały.
+
+TransportUI
+Mechanika transportu surowców między buildingami i regionami.
+
+CraftingUI
+Tworzenie nowych surowców i itemów z kombinacji.
+
+GameLoopUI
+Pokazuje aktualne fazy gry, tick system, rundy i eventy.
 
 opencode run --prompt "/psz-ui-component" && \
 opencode run --continue --prompt "Prepare for compaction. KEEP details about the future CSS implementation (style and layout), REMOVE everything unnecessary. Then compact the session context and confirm you are ready." && \

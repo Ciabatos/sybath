@@ -20,7 +20,6 @@
         "write": false,
         "edit": false
       }
-      
     },
     "review-ui-component": {
       "description": "Reviews code for quality and best practices",
