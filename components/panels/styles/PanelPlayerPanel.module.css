@@ -18,8 +18,7 @@
   border-radius: 0.75rem;
   background: linear-gradient(135deg, #0c0a09 0%, #1a1410 50%, #0f0c0a 100%);
   padding: 1.75rem;
-  width: 100%;
-  max-width: 40vw;
+  width: 40vw;
   height: 90vh;
 }
 

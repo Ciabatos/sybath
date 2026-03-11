@@ -1,18 +1,20 @@
 .container {
   display: flex;
+  flex: 0 0 auto;
   flex-direction: column;
-  gap: 0.625rem;
-  border: 2px solid #3d2510;
+  gap: 0.5rem;
+  box-shadow: inset 0 2px 1px rgba(0, 0, 0, 0.5);
+  border: 2px solid #4a3426;
   border-radius: 6px;
-  background: #110a04;
+  background: #0c0805;
   padding: 0.75rem;
   width: 100%;
-  height: 100%;
+  height: 60%;
 }
 
 .header {
-  border-bottom: 1px solid #3d2510;
-  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #4a3426;
+  padding-bottom: 0.5rem;
   text-align: center;
 }
 
@@ -20,7 +22,7 @@
   margin: 0;
   color: #c89a4a;
   font-weight: 700;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-family: "Cinzel", serif;
   letter-spacing: 2px;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
@@ -28,18 +30,15 @@
 }
 
 .gearGrid {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.gearRow {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  height: 100%;
 }
 
 .emptyCell {
-  /* Transparent spacer to maintain grid alignment */
+  border: 1px dashed rgba(74, 52, 38, 0.4);
+  border-radius: 4px;
+  background: rgba(26, 15, 8, 0.3);
   aspect-ratio: 1;
 }

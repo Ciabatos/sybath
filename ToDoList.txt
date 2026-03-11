@@ -1,3 +1,4 @@
+Środowisko do robienia UI przez agenta AI
 
 Zbieranie gathering i dokladanie itemow do inventory
 trzeba dodac surowce podstawowe
