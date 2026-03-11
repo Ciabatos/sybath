@@ -31,7 +31,7 @@
       "prompt": "You are in code review mode",
       "permission": {
         "skill": {
-          "*": "allow"
+          "*": "ask"
         }
       },
       "tools": {
