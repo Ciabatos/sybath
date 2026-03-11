@@ -12,13 +12,14 @@ Medieval/fantasy multiplayer turn-based game with real-time elements.
 
 ## Project Structure
 
-- `components/mainComponents` - Contains all components
-- `components/ui` - Contains reusable primitives. To add new primitives use shadcn
+- `components/` - Contains all components
+- `components/ui` - Contains reusable primitives. To add new primitives use shadcn. This is only for shadcn library, we
+  dont make components here, only install them
 
 ## Component Rules
 
-- Create components in `components/mainComponents/GeneratedComponents/ComponentName.tsx`
-- Create styles for that components in `components/mainComponents/GeneratedComponents/styles/ComponentName.module.css`
+- Create components in `components/GeneratedComponents/ComponentName.tsx`
+- Create styles for that components in `components/GeneratedComponents/styles/ComponentName.module.css`
 - Use mock data only
 - Functions should be stubbed
 - No business logic inside components
@@ -30,6 +31,6 @@ All UI windows must resemble in-game RPG / grand strategy panels, inspired by: C
 
 The interface should feel like a medieval strategy game UI, not a typical web dashboard.
 
-Reference existing styles in `components/mainComponents/**/styles/` for consistency
+Reference existing styles in `components/**/styles/` for consistency
 
 Reference skill game-ui-design
