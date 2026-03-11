@@ -17,13 +17,11 @@ export function PlayerGear() {
         className={`${styles.slot} ${gear ? styles.slotFilled : ""}`}
         title={gear?.description || `Empty slot`}
       >
-        <>
-          <InventorySlot
-            key={gear?.slotId}
-            inventory={gear}
-            placeholderIcon={icon}
-          />
-        </>
+        <InventorySlot
+          key={gear?.slotId}
+          inventory={gear}
+          placeholderIcon={icon}
+        />
       </div>
     )
   }
@@ -31,48 +29,51 @@ export function PlayerGear() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h3 className={styles.title}>Equipped Gear</h3>
+        <h3 className={styles.title}>Equipment</h3>
       </div>
 
-      <div className={styles.gearLayout}>
-        {/* 1	Head */}
-        <div className={styles.rowTop}>{renderSlot(14, "Helmet")}</div>
+      <div className={styles.gearGrid}>
+        {/* Row 1: Head, Neck, Shoulders */}
+        <div className={styles.gearRow}>
+          {renderSlot(14, "Helmet")}
+          {renderSlot(2, "Necklace")}
+          <div></div>
+        </div>
 
-        {/* 2	Neck */}
-        <div className={styles.rowAccessories}>{renderSlot(2, "Necklace")}</div>
-
-        {/* 3	Left hand 
-        9	Left finger 
-        10	Right finger
-        4	Right hand 
-        */}
-        <div className={styles.rowAccessories}>
+        {/* Row 2: Left/Right Hands, Chest, Rings */}
+        <div className={styles.gearRow}>
           {renderSlot(3, "Gloves")}
-          {renderSlot(9, "Ring")}
-          {renderSlot(10, "Ring")}
+          {renderSlot(5, "Armour")}
           {renderSlot(4, "Gloves")}
         </div>
 
-        {/* 12	Left hand gear
-         5	Chest
-         13	Right hand gear*/}
-        <div className={styles.rowMiddle}>
+        {/* Row 3: Weapons/Shields */}
+        <div className={styles.gearRow}>
           {renderSlot(12, "SwordMastery")}
-          {renderSlot(5, "Armour")}
+          <div></div>
           {renderSlot(13, "HeavyShield")}
         </div>
 
-        {/* 7	Left waist 
-        6	Waist 
-        8	Right waist*/}
-        <div className={styles.rowMiddle}>
-          <div className={styles.rowBelt}>{renderSlot(7, "Belt")}</div>
-          <div className={styles.rowBelt}>{renderSlot(6, "Belt")}</div>
-          <div className={styles.rowBelt}>{renderSlot(8, "Belt")}</div>
+        {/* Row 4: Rings */}
+        <div className={styles.gearRow}>
+          {renderSlot(9, "Ring")}
+          <div></div>
+          {renderSlot(10, "Ring")}
         </div>
 
-        {/* 11	Feets*/}
-        <div className={styles.rowBottom}>{renderSlot(11, "Boots")}</div>
+        {/* Row 5: Belts */}
+        <div className={styles.gearRow}>
+          {renderSlot(7, "Belt")}
+          {renderSlot(6, "Belt")}
+          {renderSlot(8, "Belt")}
+        </div>
+
+        {/* Row 6: Feet */}
+        <div className={styles.gearRow}>
+          <div></div>
+          {renderSlot(11, "Boots")}
+          <div></div>
+        </div>
       </div>
     </div>
   )

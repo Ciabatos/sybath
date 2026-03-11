@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "lmstudio1/qwen3.5-4b-claude-4.6-opus-reasoning-distilled",
+  "model": "lmstudio2/qwen_qwen3.5-27b",
   "mcp": {
     "shadcn": {
       "type": "local",
@@ -21,7 +21,7 @@
       },
       "models": {
         "qwen_qwen3.5-27b": {
-          "name": "bartowski-qwen_qwen3.5-27b"
+          "name": "qwen_qwen3.5-27b"
         }
       }
     },
@@ -32,8 +32,8 @@
         "baseURL": "http://192.168.0.160:1234/v1"
       },
       "models": {
-        "qwen3.5-4b-claude-4.6-opus-reasoning-distilled": {
-          "name": "qwen3.5-4b-claude-4.6-opus-reasoning-distilled@q4_k_s"
+        "qwen_qwen3.5-4b": {
+          "name": "qwen_qwen3.5-4b"
         }
       }
     }

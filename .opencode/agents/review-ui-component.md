@@ -1,7 +1,7 @@
 ---
 description: Reviews code for quality and best practices
 mode: subagent
-model: lmstudio1/qwen3.5-4b-claude-4.6-opus-reasoning-distilled
+model: lmstudio2/qwen_qwen3.5-27b
 temperature: 0.1
 tools:
   write: false
