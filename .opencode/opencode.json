@@ -1,76 +1,40 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "model":"qwen_qwen3.5-9b",
-  "plugin": ["micode"],
-  "agent" :{
-    "brainstorm-new-component": {
-      "description": "Brainstorm new component",
-      "mode": "subagent",
-      "hidden" : "true",
-      "colour" : "#ff6b6b",
-      "model": "qwen_qwen3.5-27b",
-      "temperature" : "1",
-      "prompt": "Try to plan a new UI component",
-      "permission": {
-        "skill": {
-          "*": "allow"
-        }
-      },
-      "tools": {
-        "write": false,
-        "edit": false
-      }
-    },
-    "review-ui-component": {
-      "description": "Reviews code for quality and best practices",
-      "mode": "subagent",
-      "hidden" : "true",
-      "colour" : "#ff5b5b",
-      "model": "qwen3.5-4b-claude-4.6-opus-reasoning-distilled",
-      "temperature" : "0.1",
-      "prompt": "You are in code review mode",
-      "permission": {
-        "skill": {
-          "*": "ask"
-        }
-      },
-      "tools": {
-        "write": false,
-        "edit": false,
-        "bash": false
-      }
-      
-    }
-  },
+
   "mcp": {
     "shadcn": {
-      "command": "npx",
-      "args": ["shadcn@latest", "mcp"],
+      "type": "local",
+      "command": [
+        "npx",
+        "shadcn@latest",
+        "mcp"
+      ],
       "enabled": true
     }
   },
   "provider": {
-    "lmstudio": {
+    "lmstudio2": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "LM Studio (local)",
+      "name": "LM Studio Glados",
       "options": {
         "baseURL": "http://192.168.0.184:1234/v1"
       },
       "models": {
-        "qwen3.5-4b-claude-4.6-opus-reasoning-distilled": {
-          "name": "jackstrong-qwen3.5-4b-claude-4.6-opus-reasoning-distilled"
-        },
-        "qwen3.5-9b": {
-          "name": "qwen3.5-9b"
-        },
-        "qwen_qwen3.5-9b": {
-          "name": "Bartowski-qwen_qwen3.5-9b"  
-        },
         "qwen_qwen3.5-27b": {
           "name": "bartowski-qwen_qwen3.5-27b"
-        },
-        "qwen2.5-coder-3b-instruct-distill-qwen3-coder-next-abliterated-i1": {
-          "name": "mradermacher-qwen2.5-coder-3b-instruct-distill-qwen3-coder-next-abliterated-i1"
+        }
+      }
+    },
+    "lmstudio1": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "LM Studio Ciabatos",
+      "options": {
+        "baseURL": "http://192.168.0.160:1234/v1"
+      },
+      "models": {
+        "qwen3.5-4b-claude-4.6-opus-reasoning-distilled@q8_0": {
+          "name": "qwen3.5-4b-claude-4.6-opus-reasoning-distilled@q8_0"
         }
       }
     }
