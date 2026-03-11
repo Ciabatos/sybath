@@ -44,12 +44,11 @@ function DroppableSlot({
       className={`${styles.slot} ${isDropTarget ? styles.dragOver : ""}`}
     >
       {children || (
-        <div>
-          {placeholderIcon && getIcon(placeholderIcon)}
-          {inventory && <span>{inventory.slotId}</span>}
+        <div className={styles.placeholder}>
+          {placeholderIcon && <span className={styles.placeholderIcon}>{getIcon(placeholderIcon)}</span>}
         </div>
       )}
-      {isDropTarget && !children && <div className={styles.dropHint}>↓</div>}
+      {isDropTarget && !children && <div className={styles.dropHint}>+</div>}
     </div>
   )
 }
@@ -66,10 +65,8 @@ function DraggableItem({ id, inventory }: { id: string; inventory: TInventorySlo
       className={`${styles.item} ${isDragging ? styles.dragging : ""}`}
     >
       <span className={styles.itemImage}>{getIcon(inventory.image)}</span>
-      <span className={styles.itemName}>{inventory.name}</span>
-      <span>{inventory.slotId}</span>
       {inventory.quantity && inventory.quantity >= 1 ? (
-        <span className={styles.quantity}> x{inventory.quantity}</span>
+        <span className={styles.quantity}>{inventory.quantity}</span>
       ) : null}
     </div>
   )

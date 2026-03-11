@@ -1,136 +1,136 @@
+/* Base slot — used directly by DroppableSlot inside both gear and inventory grids */
 .slot {
   display: flex;
   position: relative;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: all 0.2s ease;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
   cursor: pointer;
-  box-shadow:
-    inset 0 2px 4px rgba(0, 0, 0, 0.4),
-    0 2px 4px rgba(0, 0, 0, 0.3);
-  border: 2px solid #5a4022;
-  border-radius: 4px;
-  background: linear-gradient(135deg, #2b1810 0%, #1a0f08 100%);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+  border: 1px solid #3d2510;
+  border-radius: 3px;
+  background: #160d06;
   aspect-ratio: 1;
+  width: 100%;
+  overflow: hidden;
 }
 
 .slot:hover {
-  transform: translateY(-1px);
   box-shadow:
-    inset 0 2px 4px rgba(0, 0, 0, 0.4),
-    0 4px 8px rgba(0, 0, 0, 0.5),
-    0 0 12px rgba(200, 154, 74, 0.3);
-  border-color: #8b6d3a;
-  background: linear-gradient(135deg, #3d2415 0%, #2b1810 100%);
-}
-
-.slot.occupied {
-  border-color: #8b6d3a;
-  background: linear-gradient(135deg, #3d2415 0%, #2b1810 100%);
-}
-
-.slot.occupied:hover {
-  border-color: #c89a4a;
-}
-
-.slot.dragging {
-  opacity: 0.6;
-  border: 2px dashed #ffeb3b;
-  background-color: rgba(255, 255, 0, 0.1);
+    inset 0 1px 3px rgba(0, 0, 0, 0.6),
+    0 0 8px rgba(200, 154, 74, 0.25);
+  border-color: #7a5530;
+  background: #1e1008;
 }
 
 .slot.dragOver {
-  animation: pulse 0.5s infinite alternate;
-  border: 2px solid #4caf50;
-  background-color: rgba(76, 175, 80, 0.2);
+  animation: pulse 0.4s infinite alternate;
+  border-color: #5aab50;
+  background: rgba(76, 175, 80, 0.12);
 }
 
+/* Placeholder shown when slot is empty */
+.placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.placeholderIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.2;
+  width: 55%;
+  height: 55%;
+}
+
+.placeholderIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Draggable item inside a slot */
 .item {
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2px;
-  cursor: move;
-  padding: 3px;
+  cursor: grab;
+  padding: 4px;
   width: 100%;
   height: 100%;
   user-select: none;
 }
 
+.item:active {
+  cursor: grabbing;
+}
+
+.item.dragging {
+  opacity: 0.4;
+}
+
 .itemImage {
-  flex-shrink: 0;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65%;
+  height: 65%;
   pointer-events: none;
-  font-size: 1.5rem;
 }
 
-.itemName {
-  max-width: 100%;
-  pointer-events: none;
-  color: #e6c998;
-  font-weight: 600;
-  font-size: 0.55rem;
-  line-height: 1.1;
-  font-family: "Cinzel", serif;
-  text-align: center;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
-  word-break: break-word;
+.itemImage svg {
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
+  width: 100%;
+  height: 100%;
 }
 
+/* Quantity badge — bottom right corner */
 .quantity {
   position: absolute;
-  right: 1px;
-  bottom: 1px;
-  border: 1px solid #5a4022;
+  right: 2px;
+  bottom: 2px;
   border-radius: 2px;
-  background: rgba(26, 15, 8, 0.9);
-  padding: 0px 2px;
+  background: rgba(10, 5, 2, 0.85);
+  padding: 0 3px;
   pointer-events: none;
   color: #c89a4a;
-  font-weight: bold;
-  font-size: 0.55rem;
+  font-weight: 700;
+  font-size: 0.6rem;
+  line-height: 1.4;
   font-family: "Cinzel", serif;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 1);
 }
 
+/* Drop hint overlay */
 .dropHint {
-  animation: bounce 0.5s infinite alternate;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  animation: pulse 0.4s infinite alternate;
+  inset: 0;
+  border-radius: 3px;
+  background: rgba(90, 171, 80, 0.15);
   pointer-events: none;
-  color: #4caf50;
+  color: #5aab50;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
-@media (max-width: 768px) {
-  .itemImage {
-    font-size: 1.2rem;
-  }
-
-  .itemName {
-    font-size: 0.5rem;
-  }
-
-  .quantity {
-    font-size: 0.45rem;
-  }
-}
-
-/* Animacje */
 @keyframes pulse {
   from {
-    background-color: rgba(76, 175, 80, 0.2);
+    background-color: rgba(76, 175, 80, 0.1);
   }
   to {
-    background-color: rgba(76, 175, 80, 0.4);
-  }
-}
-
-@keyframes bounce {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-4px);
+    background-color: rgba(76, 175, 80, 0.3);
   }
 }

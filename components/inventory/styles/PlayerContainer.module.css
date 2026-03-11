@@ -10,6 +10,7 @@
   border-radius: 8px;
   background: linear-gradient(135deg, #1a0f08 0%, #2b1810 100%);
   padding: 1rem;
+  height: 100%;
 }
 
 .toolbar {
@@ -64,7 +65,7 @@
   border-radius: 6px;
   background: rgba(26, 15, 8, 0.4);
   padding: 0.5rem;
-  max-height: 400px;
+  max-height: 100%;
   overflow-y: auto;
 }
 

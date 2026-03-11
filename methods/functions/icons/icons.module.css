@@ -2,6 +2,10 @@
   color: #e74c3c;
 }
 
+.black {
+  color: #2c3e50;
+}
+
 .yellow {
   color: #f39c12;
 }
@@ -32,4 +36,12 @@
 
 .brown {
   color: #be6524;
+}
+
+.gray {
+  color: #9ca3af;
+}
+
+.cyan {
+  color: #22d3ee;
 }
