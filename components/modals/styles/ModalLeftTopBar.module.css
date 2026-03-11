@@ -1,10 +1,6 @@
-.modalOverlay {
-  z-index: 99;
-}
-
 .modalContainer {
   position: fixed;
-  top: 10;
-  left: 0;
+  top: 1rem;
+  left: 1rem;
   z-index: 100;
 }

@@ -9,9 +9,9 @@ export function PlayerSkills() {
 
   return (
     <div className={styles.skillsContainer}>
-      <p>
+      <p className={styles.description}>
         Skills slużą do pokazania jakie umiejętności posiada postać. Można je przekazywać innym postaciom ale nie są to
-        aktywne abilities
+        aktywne abilities.
       </p>
       <div className={styles.skillsGrid}>
         {combinedPlayerSkills.map((playerSkill) => (

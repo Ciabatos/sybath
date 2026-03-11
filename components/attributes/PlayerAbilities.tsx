@@ -9,9 +9,9 @@ export function PlayerAbilities() {
 
   return (
     <div className={styles.abilitiesContainer}>
-      <p>
+      <p className={styles.description}>
         Abilities służą do używania, są to aktywne umiejętności, które można używać w walce lub produkcji i innych
-        sytuacjach, ability powstaja jeżeli masz różne kombinacje skills, stats i knowledge.
+        sytuacjach. Ability powstają jeżeli masz różne kombinacje skills, stats i knowledge.
       </p>
       <div className={styles.abilitiesGrid}>
         {combinedPlayerAbilities.map((playerAbility) => (

@@ -1,11 +1,11 @@
 .skillItem {
   display: flex;
-  gap: 16px;
+  gap: 1rem;
   transition: all 0.2s ease;
   border: 2px solid #4a3426;
-  border-radius: 4px;
+  border-radius: 6px;
   background: linear-gradient(135deg, #2b1810 0%, #1a0f08 100%);
-  padding: 12px;
+  padding: 0.75rem;
 }
 
 .skillItem:hover {
@@ -17,6 +17,7 @@
 .skillIcon {
   display: flex;
   position: relative;
+  flex-shrink: 0;
   justify-content: center;
   align-items: center;
   box-shadow:
@@ -25,14 +26,13 @@
   border: 3px solid #6b4f3a;
   border-radius: 8px;
   background: radial-gradient(circle, #3d2415 0%, #1a0f08 100%);
-  width: 64px;
-  min-width: 64px;
-  height: 64px;
+  width: 44px;
+  height: 44px;
 }
 
 .iconEmoji {
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
-  font-size: 32px;
+  font-size: 24px;
 }
 
 .categoryBadge {
@@ -56,7 +56,7 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.5rem;
   min-width: 0;
 }
 
@@ -64,32 +64,36 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: flex-start;
-  gap: 12px;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .skillName {
   margin: 0;
   color: #d4a574;
   font-weight: 600;
-  font-size: 18px;
-  font-family: "Cinzel", serif;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  font-size: 1rem;
+  font-family: "Lora", serif;
 }
 
 .skillLevel {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  min-width: 80px;
+  gap: 0.25rem;
+  min-width: 70px;
 }
 
 .levelText {
-  color: #c89a4a;
-  font-weight: 600;
-  font-size: 12px;
+  color: #e6c998;
+  font-weight: 700;
+  font-size: 0.875rem;
   font-family: "Lora", serif;
   text-align: right;
+}
+
+.statMax {
+  color: rgba(230, 201, 152, 0.6);
+  font-weight: 400;
 }
 
 .levelBar {
@@ -111,9 +115,10 @@
 
 .skillDescription {
   margin: 0;
-  color: #b8956f;
-  font-size: 14px;
-  line-height: 1.5;
+  color: rgba(212, 165, 116, 0.8);
+  font-style: italic;
+  font-size: 0.875rem;
+  line-height: 1.4;
   font-family: "Lora", serif;
 }
 
