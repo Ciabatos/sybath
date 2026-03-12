@@ -1,5 +1,6 @@
 "use client"
 
+import PlayerQuestDiary from "@/components/GeneratedComponents/PlayerQuestDiary"
 import GatherResource from "@/components/items/GatherResource"
 import { Button } from "@/components/ui/button"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
@@ -111,6 +112,7 @@ export default function PanelMapTileDetail() {
 
   return (
     <div className={styles.overlay}>
+      <PlayerQuestDiary></PlayerQuestDiary>
       <GatherResource
         isOpen={!!selectedResource}
         onClose={handleCloseGather}

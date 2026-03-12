@@ -1,0 +1,607 @@
+/* ── PLAYER QUEST DIARY STYLES ───────────────────────────────────────────── */
+
+.panel {
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  border: 3px double #8b0000; /* Crimson red double border */
+  background-color: #f4e4bc; /* Parchment beige */
+  padding: 2rem;
+  min-height: 600px;
+  font-family: "Georgia", serif;
+}
+
+/* ── HEADER STYLES ──────────────────────────────────────────────────────── */
+
+.header {
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #d4af37; /* Gold accent */
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+.titleSection h2 {
+  margin: 0;
+  color: #2c3e50; /* Royal blue */
+  font-size: 2.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.titleSection .subTitle {
+  margin: 0.5rem 0;
+  color: #8b0000; /* Crimson red */
+  font-style: italic;
+  font-size: 1.2rem;
+}
+
+.royalCrest {
+  display: inline-block;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  margin-top: 0.5rem;
+  font-size: 3rem;
+}
+
+/* ── TAB NAVIGATION STYLES ──────────────────────────────────────────────── */
+
+.tabNavigation {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #e8d5a8; /* Lighter parchment */
+  padding: 0.5rem;
+}
+
+.tab {
+  display: flex;
+  position: relative;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid #8b0000;
+  background-color: #d4c5a9; /* Parchment texture */
+  padding: 1rem;
+  color: #2c3e50;
+  font-size: 1.1rem;
+  font-family: "Georgia", serif;
+}
+
+.tab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #c4b599;
+}
+
+.tabActive {
+  box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.2);
+  border-color: #d4af37; /* Gold border */
+  background-color: #f4e4bc; /* Highlighted parchment */
+}
+
+.tabIcon {
+  color: #8b0000;
+}
+
+.waxSealIndicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  background-color: #8b0000;
+  width: 30px;
+  height: 30px;
+  color: #d4af37;
+  font-size: 1.2rem;
+}
+
+/* ── QUEST LIST CONTAINER STYLES ────────────────────────────────────────── */
+
+.questListContainer {
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+  border: 2px solid #8b0000;
+  background-color: #f4e4bc; /* Aged parchment */
+  padding: 1rem;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.questListContainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.questListContainer::-webkit-scrollbar-track {
+  background-color: #e8d5a8;
+}
+
+.questListContainer::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #8b0000;
+}
+
+/* ── QUEST ENTRY CARD STYLES ────────────────────────────────────────────── */
+
+.questEntryCard {
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  border: 2px solid #8b0000;
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 1rem;
+}
+
+.questEntryCard:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-color: #d4af37; /* Gold glow on hover */
+}
+
+.questEntryCard::before {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  bottom: -5px;
+  left: -5px;
+  border: 2px solid #d4af37;
+  pointer-events: none;
+  content: "";
+}
+
+.questHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.questTitleSection h3 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.4rem;
+  text-shadow: 1px 1px 0 rgba(212, 175, 55, 0.5); /* Gold lettering effect */
+}
+
+.questStatusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border-radius: 4px;
+  padding: 0.3rem 0.8rem;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.statusIconActive {
+  color: #ff6b35; /* Glowing flame orange */
+}
+
+.statusIconCompleted {
+  color: #27ae60; /* Green checkmark */
+}
+
+.statusIconLocked {
+  color: #95a5a6; /* Muted gray for locked */
+}
+
+.stageIndicator {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  border-radius: 4px;
+  background-color: rgba(139, 0, 0, 0.2);
+  padding: 0.3rem 0.6rem;
+  font-size: 0.9rem;
+}
+
+.stageIcon {
+  color: #d4af37; /* Gold gem */
+}
+
+.questDescription {
+  margin-bottom: 1rem;
+  color: #5a4a3a;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* ── PROGRESS BAR STYLES (Medieval Health/Stamina) ──────────────────────── */
+
+.progressBarContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.progressLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #2c3e50;
+  font-size: 0.9rem;
+}
+
+.progressIcon {
+  color: #8b0000;
+}
+
+.progressBarFill {
+  flex: 1;
+  border: 2px solid #8b0000;
+  border-radius: 4px;
+  background-color: rgba(139, 0, 0, 0.3); /* Wooden texture base */
+  height: 24px;
+  overflow: hidden;
+}
+
+.progressBarFillInner {
+  transition: width 0.5s ease;
+  background-color: linear-gradient(90deg, #8b0000, #a52a2a, #d4af37); /* Medieval health bar gradient */
+  height: 100%;
+}
+
+/* ── REQUIREMENTS SECTION STYLES ────────────────────────────────────────── */
+
+.requirementsSection {
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  background-color: rgba(139, 0, 0, 0.1);
+  padding: 0.8rem;
+}
+
+.requirementsLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+.requirementsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.requirementItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #5a4a3a;
+  font-size: 0.9rem;
+}
+
+.metRequirement {
+  color: #27ae60; /* Green for met requirements */
+}
+
+.requirementIcon {
+  color: #8b0000;
+}
+
+/* ── REWARDS SECTION STYLES ─────────────────────────────────────────────── */
+
+.rewardSection {
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  background-color: rgba(212, 175, 55, 0.1); /* Gold tint */
+  padding: 0.8rem;
+}
+
+.rewardsLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #d4af37;
+  font-weight: bold;
+}
+
+.rewardsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.rewardItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #2c3e50;
+  font-size: 0.9rem;
+}
+
+.rewardIcon {
+  color: #d4af37; /* Gold coins */
+}
+
+/* ── DIFFICULTY SECTION STYLES ──────────────────────────────────────────── */
+
+.difficultySection {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+  color: #2c3e50;
+}
+
+.difficultyIcon {
+  color: #8b0000;
+}
+
+/* ── REPEATABLE INDICATOR STYLES ────────────────────────────────────────── */
+
+.repeatableIndicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+  color: #27ae60;
+}
+
+.repeatableIcon {
+  color: #27ae60;
+}
+
+/* ── COMPLETION SECTION STYLES ──────────────────────────────────────────── */
+
+.completionSection {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.completionIcon {
+  color: #8b0000;
+}
+
+/* ── QUEST DIVIDER STYLES (Medieval Knotwork) ──────────────────────────── */
+
+.questDivider {
+  margin-top: 0.5rem;
+  background: linear-gradient(to right, transparent, #d4af37, transparent);
+  height: 1px;
+}
+
+/* ── MODAL STYLES (Quest Completion) ────────────────────────────────────── */
+
+.modalOverlay {
+  display: flex;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.completionModal {
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border: 3px double #8b0000;
+  background-color: #f4e4bc; /* Parchment */
+  padding: 2rem;
+  width: 90%;
+  max-width: 600px;
+}
+
+.confettiEffect {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  bottom: -20px;
+  left: -20px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.confettiParticle {
+  position: absolute;
+  animation: confettiFall 3s ease-out forwards;
+  font-size: 1.5rem;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-20px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(300px) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.modalContent {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.sealIcon {
+  color: #8b0000;
+  font-size: 3rem;
+}
+
+.modalTitle {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 2rem;
+}
+
+.modalBody {
+  margin-bottom: 1.5rem;
+}
+
+.completionMessage {
+  margin-bottom: 1.5rem;
+  color: #5a4a3a;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.rewardsSummary {
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  background-color: rgba(212, 175, 55, 0.1);
+  padding: 1rem;
+}
+
+.rewardsSummaryTitle {
+  margin-bottom: 0.8rem;
+  color: #d4af37;
+  font-size: 1.2rem;
+}
+
+.rewardCountdown {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.itemRewards {
+  text-align: left;
+}
+
+.itemRewardsTitle {
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+  font-size: 1rem;
+}
+
+.questLogEntry {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  border-radius: 4px;
+  background-color: rgba(139, 0, 0, 0.1);
+  padding: 1rem;
+}
+
+.logIcon {
+  color: #8b0000;
+  font-size: 2rem;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.claimButton,
+.closeButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-family: "Georgia", serif;
+}
+
+.claimButton {
+  background-color: #8b0000;
+  color: white;
+}
+
+.claimButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(139, 0, 0, 0.4);
+  background-color: #a52a2a;
+}
+
+.closeButton {
+  background-color: #d4af37;
+  color: #2c3e50;
+}
+
+.closeButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+  background-color: #b8962e;
+}
+
+.waxStampAnimation {
+  position: absolute;
+  right: -30px;
+  bottom: -30px;
+  opacity: 0.7;
+  animation: stampPulse 2s ease-in-out infinite;
+  color: #8b0000;
+  font-size: 4rem;
+}
+
+@keyframes stampPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* ── COLOR VARIANTS FOR STATUS BADGES ───────────────────────────────────── */
+
+.colorActive {
+  background-color: #ff6b35 !important; /* Glowing flame orange */
+}
+
+.colorCompleted {
+  background-color: #27ae60 !important; /* Green checkmark */
+}
+
+.colorLocked {
+  background-color: #95a5a6 !important; /* Muted gray */
+}
+
+.colorAvailable {
+  background-color: #3498db !important; /* Royal blue */
+}
+
+/* ── RESPONSIVE STYLES ──────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .panel {
+    padding: 1rem;
+  }
+
+  .titleSection h2 {
+    font-size: 1.8rem;
+  }
+
+  .tabNavigation {
+    flex-direction: column;
+  }
+
+  .questEntryCard {
+    padding: 0.8rem;
+  }
+
+  .modalContent {
+    padding: 1rem;
+  }
+}

@@ -31,6 +31,17 @@ Your job is to generate a components that follows the detected patterns and rule
 
 import { Button } from "@/components/ui/button"
 import { AlertCircle, ArrowRight, Clock, Flame, Hand, Loader, Sparkles, Sunrise, Tent, UserCheck } from "lucide-react"
+import {
+  GiBelt,
+  GiBigDiamondRing,
+  GiChestArmor,
+  GiCrestedHelmet,
+  GiCrystalBall,
+  GiDropWeapon,
+  GiEmeraldNecklace,
+  GiEyeTarget,
+  GiSteeltoeBoots,
+} from "react-icons/gi"
 import { useState } from "react"
 import styles from "./styles/ComponentName.module.css"
 
