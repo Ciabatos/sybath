@@ -1,8 +1,9 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { X, ArrowLeft, ArrowRight, Crown, Shield, Sword, Book, Heart, Lock, Lightning, Flame, Eye, Gem, Star } from "lucide-react"
+import { ArrowLeft, ArrowRight, Book, Crown, Eye, Flame, Gem, Heart, Lock, Shield, Star, Sword, X } from "lucide-react"
 import { useState } from "react"
+import { GiLightningArc } from "react-icons/gi"
 import styles from "./styles/SkillDetailsModal.module.css"
 
 export default function SkillDetailsModal() {
@@ -14,7 +15,8 @@ export default function SkillDetailsModal() {
   const MOCK = {
     skillId: "skl_042",
     skillName: "Shadow Step",
-    description: "A forbidden technique of the Shadow Walkers, allowing the practitioner to phase through darkness and emerge from unseen angles. The skill requires absolute mastery over one's own shadow, bending it to become a conduit for movement.",
+    description:
+      "A forbidden technique of the Shadow Walkers, allowing the practitioner to phase through darkness and emerge from unseen angles. The skill requires absolute mastery over one's own shadow, bending it to become a conduit for movement.",
     level: 7,
     rank: "Master",
     rarity: "Rare",
@@ -25,9 +27,27 @@ export default function SkillDetailsModal() {
       { statName: "Willpower", thresholdValue: 16 },
     ],
     effects: [
-      { effectId: "ef_001", name: "Phantom Movement", description: "Move silently through shadows, leaving no trace.", type: "Stealth", magnitude: "+50% Stealth" },
-      { effectId: "ef_002", name: "Shadow Strike", description: "Deal bonus damage from unexpected angles.", type: "Combat", magnitude: "+15% Damage" },
-      { effectId: "ef_003", name: "Dark Vision", description: "See clearly in low light conditions.", type: "Perception", magnitude: "Unlimited Range" },
+      {
+        effectId: "ef_001",
+        name: "Phantom Movement",
+        description: "Move silently through shadows, leaving no trace.",
+        type: "Stealth",
+        magnitude: "+50% Stealth",
+      },
+      {
+        effectId: "ef_002",
+        name: "Shadow Strike",
+        description: "Deal bonus damage from unexpected angles.",
+        type: "Combat",
+        magnitude: "+15% Damage",
+      },
+      {
+        effectId: "ef_003",
+        name: "Dark Vision",
+        description: "See clearly in low light conditions.",
+        type: "Perception",
+        magnitude: "Unlimited Range",
+      },
     ],
     iconUrl: "/icons/shadow-step.svg",
     isLocked: false,
@@ -83,7 +103,10 @@ export default function SkillDetailsModal() {
             {MOCK.isLocked ? (
               <Lock className={styles.lockIcon} />
             ) : (
-              <Star className={styles.skillIcon} fill="currentColor" />
+              <Star
+                className={styles.skillIcon}
+                fill='currentColor'
+              />
             )}
           </div>
           <div className={styles.titleSection}>
@@ -94,7 +117,7 @@ export default function SkillDetailsModal() {
                   key={i}
                   className={styles.starIcon}
                   fill={i < starCount ? "currentColor" : "none"}
-                  stroke="currentColor"
+                  stroke='currentColor'
                 />
               ))}
             </div>
@@ -120,9 +143,14 @@ export default function SkillDetailsModal() {
             <span className={styles.rankTitle}>{MOCK.rank}</span>
           </div>
           <div className={styles.progressBarContainer}>
-            <div className={styles.progressFill} style={{ width: `${progressPercentage}%` }}></div>
+            <div
+              className={styles.progressFill}
+              style={{ width: `${progressPercentage}%` }}
+            ></div>
           </div>
-          <p className={styles.levelText}>Level {MOCK.level} of {nextRankLevel}</p>
+          <p className={styles.levelText}>
+            Level {MOCK.level} of {nextRankLevel}
+          </p>
         </section>
 
         {/* Requirements */}
@@ -131,7 +159,10 @@ export default function SkillDetailsModal() {
           <div className={styles.requirementsGrid}>
             {MOCK.requirements.map(function (req) {
               return (
-                <div key={req.statName} className={styles.reqCard}>
+                <div
+                  key={req.statName}
+                  className={styles.reqCard}
+                >
                   {req.statName === "Strength" && <Shield className={styles.reqIcon} />}
                   {req.statName === "Dexterity" && <Sword className={styles.reqIcon} />}
                   {req.statName === "Intelligence" && <Book className={styles.reqIcon} />}
@@ -152,7 +183,7 @@ export default function SkillDetailsModal() {
               className={styles.tabButton}
               onClick={() => setActiveTab("bonuses")}
             >
-              <Lightning className={styles.tabIcon} />
+              <GiLightningArc className={styles.tabIcon} />
               Bonuses
             </button>
             <button
@@ -168,11 +199,14 @@ export default function SkillDetailsModal() {
             <div className={styles.effectsContainer}>
               {MOCK.effects.map(function (effect) {
                 return (
-                  <div key={effect.effectId} className={styles.effectPanel}>
+                  <div
+                    key={effect.effectId}
+                    className={styles.effectPanel}
+                  >
                     <div className={styles.effectHeader}>
                       {effect.type === "Stealth" && <Eye className={styles.effectIcon} />}
                       {effect.type === "Combat" && <Flame className={styles.effectIcon} />}
-                      {effect.type === "Perception" && <Lightning className={styles.effectIcon} />}
+                      {effect.type === "Perception" && <GiLightningArc className={styles.effectIcon} />}
                       <span className={styles.effectName}>{effect.name}</span>
                     </div>
                     <p className={styles.effectDescription}>{effect.description}</p>
@@ -217,8 +251,8 @@ export default function SkillDetailsModal() {
       <div className={styles.footer}>
         <Button
           onClick={handlePrevSkill}
-          variant="outline"
-          size="icon"
+          variant='outline'
+          size='icon'
           className={styles.navButton}
         >
           <ArrowLeft className={styles.navIcon} />
@@ -228,8 +262,8 @@ export default function SkillDetailsModal() {
 
         <Button
           onClick={handleNextSkill}
-          variant="outline"
-          size="icon"
+          variant='outline'
+          size='icon'
           className={styles.navButton}
         >
           <ArrowRight className={styles.navIcon} />
@@ -237,8 +271,8 @@ export default function SkillDetailsModal() {
 
         <Button
           onClick={handleClose}
-          variant="ghost"
-          size="icon"
+          variant='ghost'
+          size='icon'
           className={styles.closeButton}
         >
           <X className={styles.closeIcon} />
