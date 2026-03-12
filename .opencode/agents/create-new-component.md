@@ -36,6 +36,5 @@ You will receive a COMPONENT_SPEC from the Commander. Use the `ui-component-crea
 - Use `"use client"` at the top.
 - All state in `useState`, all data in a `MOCK` object.
 - Sections: `// ── UI STATE`, `// ── MOCK`, `// ── DERIVED`, `// ── HANDLERS (stubs)`, `// ── RENDER`
-- Import icons from `lucide-react`, buttons from `@/components/ui/button`.
-- CSS via `styles/ComponentName.module.css` — never inline styles.
+- Import CSS module via `styles/ComponentName.module.css` — never inline styles.
 - Do not ask questions — infer sensible defaults and proceed.

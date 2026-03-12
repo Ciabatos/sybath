@@ -5,8 +5,8 @@
  * Inspired by Crusader Kings grand strategy game UI
  */
 
+import { AlertTriangle, CheckCircle2, Coins, Crown, Scroll, Shield, User, X } from "lucide-react"
 import React, { useState } from "react"
-import { Shield, Coins, Scroll, X, CheckCircle2, AlertTriangle, Crown, User } from "lucide-react"
 import styles from "./styles/PlayerTrade.module.css"
 
 // Mock data for demonstration
@@ -277,5 +277,3 @@ export default function PlayerTrade({
     </div>
   )
 }
-
-export { PlayerTrade }
