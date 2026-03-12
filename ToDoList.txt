@@ -1,5 +1,6 @@
 Środowisko do robienia UI przez agenta AI
 Mock data zebym napisal sql
+Dyad port to 32100 ?
 Zbieranie gathering i dokladanie itemow do inventory
 trzeba dodac surowce podstawowe
 poprawic algorytm tworzenia mapy o dokladanie surowcow
