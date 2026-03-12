@@ -1,13 +1,12 @@
 ---
 description: Create component UI
 mode: subagent
-model: qwen_qwen3.5-9b
+model: lmstudio2/qwen_qwen3.5-9b
 temperature: 0.4
 tools:
   write: true
   edit: false
   "shadcn": true
-hidden: false
 color: "#1b9b34"
 permission:
   skill:

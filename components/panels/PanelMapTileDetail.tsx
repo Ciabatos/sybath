@@ -1,7 +1,7 @@
 "use client"
 
+import PlayerTrade from "@/components/GeneratedComponents/PlayerTrade"
 import GatherResource from "@/components/items/GatherResource"
-import KnowledgeTree from "@/components/NewComponents/KnowledgeTree"
 import { Button } from "@/components/ui/button"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
@@ -112,7 +112,7 @@ export default function PanelMapTileDetail() {
 
   return (
     <div className={styles.overlay}>
-      <KnowledgeTree></KnowledgeTree>
+      <PlayerTrade></PlayerTrade>
       <GatherResource
         isOpen={!!selectedResource}
         onClose={handleCloseGather}

@@ -1,13 +1,12 @@
 ---
 description: software engineer responsible for making decisions and executing solutions
 mode: primary
-model: qwen_qwen3.5-9b
+model: lmstudio2/qwen_qwen3.5-9b
 temperature: 0.7
 tools:
   write: true
   edit: true
   "shadcn": false
-hidden: false
 color: "#ff643b"
 permission:
   task:

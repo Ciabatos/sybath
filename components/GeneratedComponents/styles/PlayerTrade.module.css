@@ -1,0 +1,366 @@
+/* Player Trade Component Styles */
+/* Medieval RPG / Grand Strategy Panel Style - Crusader Kings Inspired */
+
+.container {
+  margin: 0 auto;
+  box-shadow:
+    inset 0 0 20px rgba(0, 0, 0, 0.7),
+    0 4px 15px rgba(0, 0, 0, 0.5);
+  border: 3px solid #8b6914;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #2c1e14 0%, #1a120d 50%, #2c1e14 100%);
+  padding: 16px;
+  max-width: 800px;
+  color: #d4c5a9;
+  font-family: "Georgia", serif;
+}
+
+/* Header Panel */
+.headerPanel {
+  margin-bottom: 16px;
+  border: 2px solid #6b4c29;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #3d2e1f 0%, #2a1f15 100%);
+  padding: 12px 16px;
+  text-align: center;
+}
+
+.titleRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.icon {
+  color: #c9a65e;
+}
+
+.title {
+  margin: 0;
+  color: #f0d9b5;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 8px rgba(201, 166, 94, 0.4);
+}
+
+.playerNames {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 8px;
+}
+
+.playerBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 2px solid #5c4325;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #4a3728 0%, #2d2116 100%);
+  padding: 8px 16px;
+  font-size: 0.9rem;
+}
+
+.offerer {
+  border-color: #7d5a3e;
+}
+
+.acceptor {
+  border-color: #6b4c29;
+}
+
+.arrow {
+  color: #8b6914;
+  font-size: 1.2rem;
+}
+
+.statusRow {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.balanceMatch {
+  color: #7cb342;
+  font-weight: bold;
+}
+
+.balanceMismatch {
+  color: #e57373;
+  font-weight: bold;
+}
+
+/* Items Section */
+.itemsSection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.tradePanel {
+  border: 2px solid #5c4325;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #3a2b1e 0%, #251c14 100%);
+  padding: 12px;
+}
+
+.offerPanel {
+  border-color: #7d5a3e;
+}
+
+.acceptPanel {
+  border-color: #8b6914;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #5c4325;
+  padding-bottom: 8px;
+}
+
+.panelHeader h3 {
+  margin: 0;
+  color: #d4c5a9;
+  font-size: 1rem;
+}
+
+.emptyState {
+  padding: 20px 0;
+  color: #7a6b5e;
+  font-style: italic;
+  text-align: center;
+}
+
+.itemList {
+  margin: 0 0 12px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.itemRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  border: 1px solid #4a3728;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #2a1f15 0%, #3d2e1f 100%);
+  padding: 8px 12px;
+  font-size: 0.9rem;
+}
+
+.typeWeapon {
+  border-left: 3px solid #ef5350;
+}
+
+.typeArmor {
+  border-left: 3px solid #42a5f5;
+}
+
+.typeCurrency {
+  border-left: 3px solid #ffd740;
+}
+
+.typeArtifact {
+  border-left: 3px solid #ab47bc;
+}
+
+.typeGeneric {
+  border-left: 3px solid #9e9e9e;
+}
+
+.itemName {
+  flex: 1;
+  color: #d4c5a9;
+}
+
+.itemValue {
+  margin-right: 8px;
+  color: #ffd740;
+  font-weight: bold;
+}
+
+.removeBtn {
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 2px;
+  color: #ef5350;
+}
+
+.removeBtn:hover {
+  opacity: 1;
+}
+
+.addControls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  border-top: 1px solid #5c4325;
+  padding-top: 8px;
+}
+
+.addControls span {
+  color: #7a6b5e;
+  font-size: 0.9rem;
+}
+
+.addItemBtn {
+  transition: all 0.2s;
+  cursor: pointer;
+  border: 1px solid #6b4c29;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #4a3728 0%, #3d2e1f 100%);
+  padding: 4px 10px;
+  color: #d4c5a9;
+  font-size: 0.8rem;
+}
+
+.addItemBtn:hover:not(:disabled) {
+  border-color: #8b6914;
+  background: linear-gradient(180deg, #5c4325 0%, #4a3728 100%);
+}
+
+.addItemBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.panelTotal {
+  border-top: 1px solid #5c4325;
+  padding-top: 8px;
+  color: #ffd740;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.panelTotal strong {
+  color: #ffcc00;
+}
+
+/* Actions Panel */
+.actionsPanel {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.confirmBtn,
+.cancelBtn {
+  transition: all 0.2s;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 12px 32px;
+  min-width: 150px;
+  font-size: 1rem;
+  font-family: "Georgia", serif;
+}
+
+.cancelBtn {
+  border: 2px solid #6b4c29;
+  background: linear-gradient(180deg, #3d2e1f 0%, #2a1f15 100%);
+  color: #7a6b5e;
+}
+
+.cancelBtn:hover {
+  border-color: #8b6914;
+  background: linear-gradient(180deg, #4a3728 0%, #3d2e1f 100%);
+}
+
+.confirmBtn {
+  border: 2px solid #ffd740;
+  background: linear-gradient(180deg, #5c4325 0%, #4a3728 100%);
+  color: #ffcc00;
+}
+
+.confirmBtn:hover:not(:disabled) {
+  box-shadow: 0 0 15px rgba(255, 215, 64, 0.3);
+  background: linear-gradient(180deg, #6b4c29 0%, #5c4325 100%);
+}
+
+.confirmBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.confirming {
+  border-color: #ffcc00;
+  background: linear-gradient(180deg, #ffd740 0%, #ffcc00 100%);
+  color: #2c1e14;
+}
+
+/* Warning Alert */
+.warningAlert {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #ef5350;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #3d2e1f 0%, #2a1f15 100%);
+  padding: 10px 16px;
+  color: #ffccbc;
+  font-size: 0.9rem;
+}
+
+.warningAlert svg {
+  color: #ef5350;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .itemsSection {
+    grid-template-columns: 1fr;
+  }
+
+  .actionsPanel {
+    flex-direction: column;
+  }
+
+  .confirmBtn,
+  .cancelBtn {
+    width: 100%;
+  }
+}
+
+/* Decorative corner accents */
+.container::before,
+.container::after {
+  position: absolute;
+  transition: all 0.3s ease;
+  border: 2px solid #8b6914;
+  width: 20px;
+  height: 20px;
+  content: "";
+}
+
+.container::before {
+  top: -2px;
+  left: -2px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.container::after {
+  right: -2px;
+  bottom: -2px;
+  border-top: none;
+  border-left: none;
+}
+
+/* Hover effect on container */
+.container:hover::before,
+.container:hover::after {
+  width: 24px;
+  height: 24px;
+}

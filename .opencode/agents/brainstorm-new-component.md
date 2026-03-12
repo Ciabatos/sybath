@@ -1,13 +1,12 @@
 ---
 description: Brainstorm new ideas for component UI
 mode: subagent
-model: qwen_qwen3.5-9b
+model: lmstudio2/qwen_qwen3.5-9b
 temperature: 1
 tools:
   write: false
   edit: false
   "shadcn": true
-hidden: false
 color: "#ff1b9b"
 permission:
   skill:
