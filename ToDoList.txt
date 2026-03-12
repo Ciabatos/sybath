@@ -54,6 +54,7 @@ Pozytywne daje nam mozliwosc prowadzenia negocjacji np zaproszenie do squadu w c
   Ilość ludzi zależy od FREE LAND - czyli tiles udostepnionych dla AI
   Posiada tylko peasants
 --Wioska
+  -- Potrzebne jest waluta ! jeżeli waluta nie istnieje to natychmiast trzeba założyć (czyli potrzebne złoto jako gwarant)
   decyduje sie na kingdome istniejacy lub zaklada nowy 
   ma juz normalny targ
   Ludzie AI posiadaja monete kingdoma
