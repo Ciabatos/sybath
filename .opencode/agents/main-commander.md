@@ -6,7 +6,7 @@ temperature: 0.7
 tools:
   write: true
   edit: true
-  "shadcn": true
+  "shadcn": false
 hidden: false
 color: "#ff643b"
 permission:
