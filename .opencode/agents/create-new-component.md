@@ -7,7 +7,7 @@ temperature: 0.4
 tools:
   write: true
   edit: false
-  "kibo-ui*": true
+  "shadcn-ui-server*": true
   "React Icons MCP*": true
 color: "#1b9b34"
 permission:

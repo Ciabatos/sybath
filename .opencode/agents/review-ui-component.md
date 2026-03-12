@@ -8,7 +8,7 @@ tools:
   write: false
   edit: false
   bash: false
-  "kibo-ui*": true
+  "shadcn-ui-server*": true
   "React Icons MCP*": true
 color: "#ff1b1b"
 permission:

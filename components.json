@@ -22,7 +22,7 @@
   "menuColor": "default",
   "menuAccent": "subtle",
   "registries": {
-    "@kibo": "https://kibo-ui.com/r/{name}.json",
+    "@kibo": "https://shadcn-ui-server.com/r/{name}.json",
     "@reui": "https://reui.io/r/{name}.json"
   }
 }
