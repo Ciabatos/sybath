@@ -79,3 +79,5 @@ opencode run --continue --prompt "/compact" && \
 opencode run --continue --prompt "/psz-css-generator"
 
 https://github.com/upstash/context7
+
+Create a new UI component for the player inventory screen.
