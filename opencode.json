@@ -4,11 +4,12 @@
   "mcp": {
     "shadcn-ui-server": {
       "type": "local",
-      "command": ["npx", "@heilgar/shadcn-ui-mcp-server"]
+      "command": ["cmd.exe", "/c", "npx", "-y", "@heilgar/shadcn-ui-mcp-server"],
+      "enabled": true
     },
-    "React Icons MCP": {
+    "React-Icons-MCP": {
       "type": "local",
-      "command": ["npx", "-y", "react-icons-mcp"],
+      "command": ["cmd.exe", "/c", "npx", "-y", "react-icons-mcp", "--stdio"],
       "enabled": true
     }
   },
