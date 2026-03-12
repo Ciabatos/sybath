@@ -43,8 +43,10 @@ import {
   GiBigDiamondRing,
   GiChestArmor,
   GiCrestedHelmet,
+  GiCrystalBall,
   GiDropWeapon,
   GiEmeraldNecklace,
+  GiEyeTarget,
   GiSteeltoeBoots,
 } from "react-icons/gi"
 import styles from "./icons.module.css"
@@ -107,6 +109,8 @@ const iconMap: Record<string, JSX.Element> = {
   GiBelt: <GiBelt className={styles.brown} />,
   GiSteeltoeBoots: <GiSteeltoeBoots className={styles.brown} />,
   GiDropWeapon: <GiDropWeapon className={styles.gray} />,
+  GiEyeTarget: <GiEyeTarget className={styles.gold} />,
+  GiCrystalBall: <GiCrystalBall className={styles.gold} />,
 }
 
 export default function getIcon(iconKey?: string) {

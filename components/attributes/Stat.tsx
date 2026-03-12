@@ -11,7 +11,6 @@ type TStatProps = {
 
 export default function Stat({ icon, name, value, maxValue, description }: TStatProps) {
   const hasMax = maxValue !== undefined
-  const percentage = hasMax ? (value / maxValue) * 100 : 0
 
   return (
     <div className={styles.statItem}>
@@ -24,15 +23,6 @@ export default function Stat({ icon, name, value, maxValue, description }: TStat
             {hasMax && <span className={styles.statMax}>/{maxValue}</span>}
           </span>
         </div>
-        {hasMax && (
-          <div className={styles.statBarContainer}>
-            <div
-              className={styles.statBar}
-              style={{ width: `${percentage}%` }}
-            />
-          </div>
-        )}
-        {description && <p className={styles.statDescription}>{description}</p>}
       </div>
     </div>
   )

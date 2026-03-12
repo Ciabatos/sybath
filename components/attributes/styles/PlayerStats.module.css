@@ -1,20 +1,20 @@
 .container {
-  display: flex;
+  display: grid;
+  grid-template-rows: auto 1fr;
   flex: 1;
-  flex-direction: column;
   gap: 1rem;
 }
 
 .section {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr;
 }
 
 .sectionTitle {
   margin-bottom: 1rem;
   border-bottom: 2px solid rgba(200, 154, 74, 0.3);
   padding-bottom: 0.5rem;
+
   color: #c89a4a;
   font-weight: 600;
   font-size: 1.125rem;
@@ -23,15 +23,9 @@
   text-transform: uppercase;
 }
 
+/* GRID Z 7 KOLUMNAMI */
 .statsGrid {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.75rem;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .sectionTitle {
-    font-size: 1rem;
-  }
 }
