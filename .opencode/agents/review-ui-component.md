@@ -8,7 +8,7 @@ tools:
   edit: false
   bash: false
   "shadcn": true
-hidden: true
+hidden: false
 color: "#ff1b1b"
 permission:
   skill:
