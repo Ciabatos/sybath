@@ -1,3 +1,6 @@
+Atom Family DLA ATOMÓW i useStore - must have
+derived tile atom
+
 Update nodejs
 Środowisko do robienia UI przez agenta AI
 Mock data zebym napisal sql
