@@ -23,6 +23,10 @@ You will receive a description of a new UI component to plan.
 
 Your job is to think creatively about what this component needs and return a structured COMPONENT_SPEC.
 
+Think what kind of primitives components using mcp `shadcn-ui-server*` you can use.
+
+Think what kind of icons using mcp `React-Icons-MCP*` you can use.
+
 Do NOT generate any code. Do NOT return placeholder or example data — think from scratch based on the request.
 
 ## Output format

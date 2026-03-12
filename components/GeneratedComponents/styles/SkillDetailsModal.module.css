@@ -1,0 +1,422 @@
+/* ── MODAL CONTAINER ─────────────────────────────────────────────────────── */
+.modal {
+  display: flex;
+  flex-direction: column;
+  background-color: #1a1510;
+  border: 3px solid #8b7355;
+  border-radius: 4px;
+  box-shadow: 
+    0 0 20px rgba(0, 0, 0, 0.8),
+    inset 0 0 60px rgba(0, 0, 0, 0.5);
+  font-family: 'Georgia', serif;
+  color: #d4c5b0;
+  min-width: 720px;
+  max-width: 900px;
+}
+
+/* ── HEADER SECTION ─────────────────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: linear-gradient(to bottom, #2d251a, #1a1510);
+  border-bottom: 3px solid #8b7355;
+}
+
+.decorativeBorderTop {
+  width: 100%;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 20px,
+    #c9a66b 20px,
+    #c9a66b 40px
+  );
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}
+
+.iconContainer {
+  width: 56px;
+  height: 56px;
+  background-color: #3d3224;
+  border: 2px solid #c9a66b;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lockIcon {
+  color: #8b7355;
+  width: 32px;
+  height: 32px;
+}
+
+.skillIcon {
+  color: #c9a66b;
+  width: 32px;
+  height: 32px;
+}
+
+.titleSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.skillName {
+  font-size: 24px;
+  font-weight: bold;
+  color: #e8dcc5;
+  text-shadow: 0 0 8px rgba(201, 166, 107, 0.3);
+}
+
+.rarityContainer {
+  display: flex;
+  gap: 4px;
+}
+
+.starIcon {
+  width: 18px;
+  height: 18px;
+  color: #c9a66b;
+}
+
+.decorativeBorderBottom {
+  width: 100%;
+  height: 3px;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    #8b7355 10px,
+    #8b7355 20px
+  );
+}
+
+/* ── CONTENT SECTION ─────────────────────────────────────────────────────── */
+.content {
+  flex: 1;
+  padding: 24px;
+  background-color: #1a1510;
+  overflow-y: auto;
+}
+
+.section {
+  margin-bottom: 28px;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  color: #c9a66b;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #8b7355;
+  padding-bottom: 4px;
+}
+
+/* ── SCROLL CONTAINER (Description) ─────────────────────────────────────── */
+.scrollContainer {
+  background-color: #f4e4c3;
+  border: 2px solid #8b7355;
+  padding: 16px 20px;
+  box-shadow: 
+    inset 0 0 20px rgba(93, 73, 47, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+  font-style: italic;
+  line-height: 1.8;
+}
+
+.descriptionText {
+  color: #5c4a36;
+  font-size: 14px;
+  text-align: justify;
+}
+
+/* ── RANK SECTION ───────────────────────────────────────────────────────── */
+.rankHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.crownIcon {
+  color: #c9a66b;
+  width: 24px;
+  height: 24px;
+}
+
+.rankTitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: #e8dcc5;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.progressBarContainer {
+  width: 100%;
+  height: 8px;
+  background-color: #2d251a;
+  border: 1px solid #8b7355;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(to right, #c9a66b, #e8dcc5);
+  transition: width 0.3s ease;
+}
+
+.levelText {
+  font-size: 12px;
+  color: #8b7355;
+  margin-top: 4px;
+}
+
+/* ── REQUIREMENTS GRID ─────────────────────────────────────────────────── */
+.requirementsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.reqCard {
+  background-color: #2d251a;
+  border: 2px solid #8b7355;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+}
+
+.reqCard:hover {
+  border-color: #c9a66b;
+  box-shadow: 0 0 8px rgba(201, 166, 107, 0.3);
+}
+
+.reqIcon {
+  color: #c9a66b;
+  width: 24px;
+  height: 24px;
+}
+
+.reqLabel {
+  font-size: 13px;
+  color: #d4c5b0;
+}
+
+.reqValue {
+  font-weight: bold;
+  color: #e8dcc5;
+  font-size: 14px;
+}
+
+/* ── TABS SECTION ───────────────────────────────────────────────────────── */
+.tabsContainer {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tabButton {
+  background-color: #2d251a;
+  border: 2px solid #8b7355;
+  color: #c9a66b;
+  padding: 10px 16px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tabButton:hover {
+  border-color: #c9a66b;
+}
+
+.tabButton.active {
+  background-color: #3d3224;
+  border-color: #c9a66b;
+  color: #e8dcc5;
+}
+
+.tabIcon {
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+}
+
+/* ── EFFECTS PANELS ─────────────────────────────────────────────────────── */
+.effectsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.effectPanel, .costPanel {
+  background-color: #2d251a;
+  border: 2px solid #8b7355;
+  padding: 16px;
+  transition: all 0.2s ease;
+}
+
+.effectPanel:hover {
+  border-color: #c9a66b;
+}
+
+.costPanel {
+  background-color: #1f1812;
+}
+
+.effectHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.effectIcon {
+  color: #c9a66b;
+  width: 20px;
+  height: 20px;
+}
+
+.effectName {
+  font-size: 15px;
+  font-weight: bold;
+  color: #e8dcc5;
+}
+
+.effectDescription {
+  font-size: 13px;
+  color: #d4c5b0;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.effectMagnitude {
+  display: inline-block;
+  background-color: #8b7355;
+  color: #e8dcc5;
+  padding: 4px 10px;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.costTitle {
+  font-size: 16px;
+  color: #c9a66b;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.costGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.costItem {
+  background-color: #2d251a;
+  padding: 10px;
+  border: 1px solid #8b7355;
+}
+
+.costLabel {
+  color: #c9a66b;
+  font-size: 12px;
+}
+
+.costValue {
+  color: #e8dcc5;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* ── LOCKED PANEL ───────────────────────────────────────────────────────── */
+.lockedPanel {
+  background-color: #2d251a;
+  border: 3px solid #8b7355;
+  padding: 20px;
+  text-align: center;
+}
+
+.lockIconLarge {
+  color: #8b7355;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 12px;
+}
+
+/* ── FOOTER NAVIGATION ─────────────────────────────────────────────────── */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background-color: #2d251a;
+  border-top: 3px solid #8b7355;
+}
+
+.navButton {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 2px solid #8b7355;
+  color: #c9a66b;
+}
+
+.navButton:hover {
+  border-color: #c9a66b;
+  color: #e8dcc5;
+}
+
+.navIcon {
+  width: 18px;
+  height: 18px;
+}
+
+.skillNumber {
+  font-size: 14px;
+  color: #d4c5b0;
+  margin: 0 20px;
+}
+
+.closeButton {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 2px solid #8b7355;
+  color: #c9a66b;
+}
+
+.closeButton:hover {
+  border-color: #c9a66b;
+  color: #e8dcc5;
+}
+
+.closeIcon {
+  width: 18px;
+  height: 18px;
+}
