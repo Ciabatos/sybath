@@ -9,7 +9,7 @@ tools:
   edit: false
   bash: false
   "shadcn-ui-server*": true
-  "React Icons MCP*": true
+  "React-Icons-MCP*": true
 color: "#ff1b1b"
 permission:
   skill:

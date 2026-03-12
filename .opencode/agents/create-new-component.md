@@ -8,7 +8,7 @@ tools:
   write: true
   edit: false
   "shadcn-ui-server*": true
-  "React Icons MCP*": true
+  "React-Icons-MCP*": true
 color: "#1b9b34"
 permission:
   skill:
@@ -40,3 +40,5 @@ You will receive a COMPONENT_SPEC from the Commander. Use the `ui-component-crea
 - Sections: `// ── UI STATE`, `// ── MOCK`, `// ── DERIVED`, `// ── HANDLERS (stubs)`, `// ── RENDER`
 - Import CSS module via `styles/ComponentName.module.css` — never inline styles.
 - Do not ask questions — infer sensible defaults and proceed.
+- Add primitives components using mcp `shadcn-ui-server*`.
+- Add icons using mcp `React-Icons-MCP*`.
