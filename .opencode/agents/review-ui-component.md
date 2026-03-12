@@ -9,6 +9,7 @@ tools:
   edit: false
   bash: false
   "shadcn": true
+  "React Icons MCP": true
 color: "#ff1b1b"
 permission:
   skill:

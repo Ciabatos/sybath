@@ -4,12 +4,12 @@
   "mcp": {
     "shadcn": {
       "type": "local",
-      "command": [
-        "npx",
-        "shadcn@latest",
-        "mcp"
-      ],
+      "command": ["npx", "-y", "shadcn@latest", "mcp"],
       "enabled": true
+    },
+    "React Icons MCP": {
+      "command": "npx",
+      "args": ["-y", "react-icons-mcp", "--stdio"]
     }
   },
   "provider": {

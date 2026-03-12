@@ -8,6 +8,7 @@ tools:
   write: false
   edit: true
   "shadcn": false
+  "React Icons MCP": false
 color: "#ff643b"
 permission:
   task:

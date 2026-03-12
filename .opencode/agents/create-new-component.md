@@ -8,6 +8,7 @@ tools:
   write: true
   edit: false
   "shadcn": true
+  "React Icons MCP": true
 color: "#1b9b34"
 permission:
   skill:
