@@ -1,7 +1,7 @@
 ---
 description: Create component UI
 mode: subagent
-model: lmstudio2/qwen_qwen3.5-27b
+model: qwen_qwen3.5-9b
 temperature: 0.4
 tools:
   write: true
