@@ -7,14 +7,14 @@ Medieval/fantasy multiplayer turn-based game with real-time elements.
 - **Framework**: Next.js 16+ (App Router)
 - **Language**: TypeScript
 - **Styling**: CSS Modules (per-component)
-- **Icons**: `lucide-react`
-- **UI Primitives**: shadcn/ui
+- **Icons**: `lucide-react` `react-icons/gi`
+- **UI Primitives**: shadcn/ui, kibo-ui
 
 ## Project Structure
 
 - `components/` - Contains all components
-- `components/ui` - Contains reusable primitives. To add new primitives use shadcn. This is only for shadcn library, we
-  dont make components here, only install them from shadcn mcp
+- `components/ui` - Contains reusable primitives. To add new primitives use shadcn,kibo-ui . This is only for shadcn
+  library, we dont make components here, only install them from shadcn mcp
 
 ## Component Rules
 

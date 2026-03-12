@@ -2,14 +2,15 @@
   "$schema": "https://opencode.ai/config.json",
   "model": "lmstudio2/qwen_qwen3.5-9b",
   "mcp": {
-    "shadcn": {
+    "kibo-ui": {
       "type": "local",
-      "command": ["npx", "-y", "shadcn@latest", "mcp"],
+      "command": ["npx", "-y", "mcp-remote", "https://www.kibo-ui.com/api/mcp/mcp"],
       "enabled": true
     },
     "React Icons MCP": {
-      "command": "npx",
-      "args": ["-y", "react-icons-mcp", "--stdio"]
+      "type": "local",
+      "command": ["npx", "-y", "react-icons-mcp"],
+      "enabled": true
     }
   },
   "provider": {
