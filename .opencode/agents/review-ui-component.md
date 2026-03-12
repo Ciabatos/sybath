@@ -1,5 +1,6 @@
 ---
 description: Reviews code for quality and best practices
+name: review-ui-component
 mode: subagent
 model: lmstudio2/qwen_qwen3.5-9b
 temperature: 0.1
