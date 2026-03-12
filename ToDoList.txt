@@ -1,3 +1,4 @@
+Update nodejs
 Środowisko do robienia UI przez agenta AI
 Mock data zebym napisal sql
 Dyad port to 32100 ?
