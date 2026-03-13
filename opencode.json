@@ -11,6 +11,10 @@
       "type": "local",
       "command": ["cmd.exe", "/c", "npx", "-y", "react-icons-mcp", "--stdio"],
       "enabled": true
+    },
+    "game-db": {
+      "type": "http",
+      "url": "http://localhost:3000/mcp"
     }
   },
   "provider": {
