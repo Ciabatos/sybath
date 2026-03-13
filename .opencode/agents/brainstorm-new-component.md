@@ -23,9 +23,31 @@ You will receive a description of a new UI component to plan.
 
 Your job is to think creatively about what this component needs and return a structured COMPONENT_SPEC.
 
-Think what kind of primitives components using mcp `shadcn-ui-server*` you can use.
+You are also responsible for the **visual mood** of the component.
 
-Think what kind of icons using mcp `React-Icons-MCP*` you can use.
+The theme should feel like it belongs in a **fantasy strategy game UI** similar to:
+
+- kingdom management panels
+- RPG inventory interfaces
+- medieval parchment dashboards
+- castle management screens
+
+The theme should include:
+
+- primary colors
+- accent colors
+- background colors
+- border styles
+- typography suggestions
+- spacing and layout hints
+- hover / active state ideas
+- fantasy / medieval styling ideas
+
+You may use primitives from `shadcn-ui-server*`.
+
+You may use icons from `React-Icons-MCP*`
+
+These should be returned in the Theme section of COMPONENT_SPEC.
 
 Do NOT generate any code. Do NOT return placeholder or example data — think from scratch based on the request.
 
@@ -46,11 +68,44 @@ Sections:
 Icons:
 
 - <lucide-react icon name>
-- <lucide-react icon name>
-  ...
+- <react-icons/gi icon name> ...
 
 Data:
 
 - <camelCase data field>
-- <camelCase data field>
-  ...
+- <camelCase data field>...
+
+Theme:
+
+Colors:
+
+- primary
+- secondary
+- accent
+- danger
+- background
+- panel
+- border
+
+Typography:
+
+- titleStyle
+- bodyStyle
+- numericStyle
+
+Effects:
+
+- hoverEffect
+- activeEffect
+- glowEffect
+- borderStyle
+
+Layout:
+
+- padding
+- gap
+- borderRadius
+
+Mood:
+
+- short description of visual fantasy vibe

@@ -1,8 +1,8 @@
 ---
 name: rpg-file-writer
 description: >
-  Rules for naming, structuring, and writing .sql migration files to the generatedSql/ folder.
-  Use this skill whenever the SQL Writer Agent is about to create or update a file.
+  Rules for naming, structuring, and writing .sql migration files to the generatedSql/ folder. Use this skill whenever
+  the SQL Writer Agent is about to create or update a file.
 ---
 
 # File Writer Skill
@@ -13,8 +13,7 @@ Everything about how migration files are named, structured, and written to disk.
 
 ## Output folder
 
-All files go to `generatedSql/` relative to the project root.
-Never write SQL to any other location.
+All files go to `generatedSql/` relative to the project root. Never write SQL to any other location.
 
 ```
 project-root/
@@ -30,17 +29,19 @@ project-root/
 
 Format: `<NNN>_<feature_slug>.sql`
 
-| Part | Rule |
-|------|------|
-| `NNN` | 3-digit zero-padded sequence number. Read existing files to determine next number. If `generatedSql/` is empty, start at `001`. |
-| `feature_slug` | `snake_case` short name from the spec's **Feature Name**. Strip articles and prepositions. Max 40 chars. |
+| Part           | Rule                                                                                                                            |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `NNN`          | 3-digit zero-padded sequence number. Read existing files to determine next number. If `generatedSql/` is empty, start at `001`. |
+| `feature_slug` | `snake_case` short name from the spec's **Feature Name**. Strip articles and prepositions. Max 40 chars.                        |
 
 Examples:
+
 - "Guild System" → `001_guild_system.sql`
 - "Player Inventory" → `002_player_inventory.sql`
 - "Map Fog of War Extension" → `003_map_fog_of_war.sql`
 
-**Before naming a new file:** list the contents of `generatedSql/` to find the current highest sequence number and increment by 1.
+**Before naming a new file:** list the contents of `generatedSql/` to find the current highest sequence number and
+increment by 1.
 
 ---
 
@@ -117,6 +118,7 @@ COMMIT;
 ```
 
 Rules:
+
 - Two blank lines between each top-level object (table or function definition)
 - One blank line between a function body and its `COMMENT ON FUNCTION`
 - The `COMMIT;` is the very last line — nothing after it
@@ -139,7 +141,9 @@ COMMENT ON FUNCTION schema.my_func(integer)
 -- wrong — don't put it inside the function or far away
 ```
 
-The argument list in `COMMENT ON FUNCTION` must match the actual parameter types exactly (no parameter names, just types):
+The argument list in `COMMENT ON FUNCTION` must match the actual parameter types exactly (no parameter names, just
+types):
+
 - `schema.my_func(integer)` ✓
 - `schema.my_func(p_id integer)` ✗
 - `schema.my_func(integer, text, jsonb)` ✓
@@ -149,11 +153,13 @@ The argument list in `COMMENT ON FUNCTION` must match the actual parameter types
 ## Handling multiple files from one spec
 
 Split into multiple files when the spec says so, OR when:
+
 - The migration touches more than 3 unrelated schemas
 - There are more than 15 functions total
 - The spec explicitly lists independent modules
 
 Naming when splitting one feature across files:
+
 ```
 001_guilds_core.sql          # tables + reference data
 002_guilds_reads.sql         # get_api functions
@@ -164,8 +170,8 @@ Naming when splitting one feature across files:
 
 ## File size guideline
 
-A single migration file should be readable in one sitting.
-If a file exceeds ~600 lines, split it by section (tables / reads / actions).
+A single migration file should be readable in one sitting. If a file exceeds ~600 lines, split it by section (tables /
+reads / actions).
 
 ---
 

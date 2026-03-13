@@ -1,7 +1,7 @@
 ---
 name: ui-component-create
 description: |
-  Generates complete Next.js React UI components for a medieval / fantasy strategy game.
+  Generates complete Next.js React UI components for a medieval / fantasy strategy/rpg game.
   Converts UI specifications, UI descriptions, or structured game interface definitions into
   fully functional React components with CSS Modules.
 
