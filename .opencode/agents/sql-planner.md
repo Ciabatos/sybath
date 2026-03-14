@@ -7,7 +7,7 @@ temperature: 1
 tools:
   write: false
   edit: false
-  "game-db*": true
+  "game-db": true
 color: "#1b9b34"
 permission:
   task:

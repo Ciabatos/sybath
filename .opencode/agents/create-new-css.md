@@ -7,8 +7,8 @@ temperature: 0.7
 tools:
   write: true
   edit: true
-  "8bitcn*": true
-  "React Icons MCP*": true
+  "shadcn_*": true
+  "React-Icons-MCP_*": true
 color: "#1b9b34"
 ---
 

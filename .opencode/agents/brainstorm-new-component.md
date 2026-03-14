@@ -7,8 +7,8 @@ temperature: 1
 tools:
   write: false
   edit: false
-  "8bitcn*": true
-  "React Icons MCP*": true
+  "shadcn_*": true
+  "React-Icons-MCP_*": false
 color: "#ff1b9b"
 permission:
   skill:
@@ -45,7 +45,7 @@ The theme should include:
 
 You may use primitives from `8bitcn*`.
 
-You may use icons from `React Icons MCP*` and look for game icons
+You may use icons from `React Icons MCP` and look for game icons
 
 These should be returned in the Theme section of COMPONENT_SPEC.
 

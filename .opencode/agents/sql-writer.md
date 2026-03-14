@@ -7,7 +7,7 @@ temperature: 0.4
 tools:
   write: true
   edit: false
-  "game-db*": true
+  "game-db": true
 color: "#1b9b34"
 permission:
   skill:

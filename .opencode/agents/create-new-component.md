@@ -7,8 +7,8 @@ temperature: 0.4
 tools:
   write: true
   edit: false
-  "8bitcn*": true
-  "React Icons MCP*": true
+  "shadcn_*": true
+  "React-Icons-MCP_*": true
 color: "#1b9b34"
 permission:
   skill:
@@ -48,4 +48,4 @@ You will receive a COMPONENT_SPEC from the Commander. Use the `ui-component-crea
 - DO NOT CREATE CSS MODULE for styling it will be created later basend on this component.
 - Do not ask questions — infer sensible defaults and proceed.
 - Add primitives components using mcp `8bitcn*`.
-- Add icons using mcp `React Icons MCP*`.
+- Add icons using mcp `React Icons MCP`.
