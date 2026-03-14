@@ -7,8 +7,8 @@ temperature: 1
 tools:
   write: false
   edit: false
-  "shadcn-ui-server*": true
-  "React-Icons-MCP*": true
+  "8bitcn*": true
+  "React Icons MCP*": true
 color: "#ff1b9b"
 permission:
   skill:
@@ -43,9 +43,9 @@ The theme should include:
 - hover / active state ideas
 - fantasy / medieval styling ideas
 
-You may use primitives from `shadcn-ui-server*`.
+You may use primitives from `8bitcn*`.
 
-You may use icons from `React-Icons-MCP*`
+You may use icons from `React Icons MCP*` and look for game icons
 
 These should be returned in the Theme section of COMPONENT_SPEC.
 

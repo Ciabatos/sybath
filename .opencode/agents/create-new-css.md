@@ -7,8 +7,8 @@ temperature: 0.7
 tools:
   write: true
   edit: true
-  "shadcn-ui-server*": true
-  "React-Icons-MCP*": true
+  "8bitcn*": true
+  "React Icons MCP*": true
 color: "#1b9b34"
 ---
 
@@ -26,7 +26,7 @@ styles.<className>
 
 from the component.
 
-Use a **medieval / fantasy UI style** suitable for:
+Use a **medieval / fantasy UI style** RETRO! suitable for:
 
 - strategy games
 - RPG inventory panels

@@ -1,20 +1,26 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "model": "lmstudio2/qwen_qwen3.5-9b",
+  "permission": {
+    "git *": "allow",
+    "npm *": "allow",
+    "grep *": "allow"
+  },
   "mcp": {
-    "shadcn-ui-server": {
+    "shadcn": {
       "type": "local",
-      "command": ["cmd.exe", "/c", "npx", "-y", "@heilgar/shadcn-ui-mcp-server"],
+      "command": ["cmd.exe", "/c", "npx", "-y", "shadcn@latest", "mcp"],
       "enabled": true
     },
-    "React-Icons-MCP": {
+    "React Icons MCP": {
       "type": "local",
       "command": ["cmd.exe", "/c", "npx", "-y", "react-icons-mcp", "--stdio"],
       "enabled": true
     },
     "game-db": {
-      "type": "http",
-      "url": "http://localhost:3000/mcp"
+      "type": "remote",
+      "url": "http://localhost:3000/mcp",
+      "enabled": true
     }
   },
   "provider": {
