@@ -1,0 +1,472 @@
+/* ── LAYOUT & CONTAINER ───────────────────────────────────────────────────── */
+.container {
+  background-color: #1A1512;
+  border-radius: 8px;
+  padding: 24px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border: 2px solid #4A3728;
+}
+
+/* ── HEADER SECTION ───────────────────────────────────────────────────────── */
+.header {
+  background: linear-gradient(135deg, #2D2622 0%, #3D322B 100%);
+  border-bottom: 3px solid #8B4513;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.titleSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.title {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 28px;
+  font-weight: bold;
+  color: #D4AF37;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+  text-shadow: 
+    0 0 5px rgba(212, 175, 55, 0.5),
+    0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.badgesContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.rarityBadge {
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.rarityIcon {
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+.typeBadge {
+  padding: 6px 12px;
+  background-color: #8B4513;
+  color: #F5E6C8;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.badgeIcon {
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+.requirementBadge {
+  padding: 5px 10px;
+  background-color: #8B0000;
+  color: #F5E6C8;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.infoBadge {
+  padding: 5px 10px;
+  background-color: #4A3728;
+  color: #E8DCC4;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.qualityBarContainer {
+  margin-top: 16px;
+}
+
+.qualityBar {
+  display: flex;
+  gap: 4px;
+  padding: 8px 12px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  border: 1px solid #4A3728;
+}
+
+.qualitySegment {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.qualityFilled {
+  box-shadow: 0 0 5px currentColor;
+}
+
+/* ── CONTENT SECTIONS ───────────────────────────────────────────────────── */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section {
+  background-color: #2D2622;
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid #4A3728;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.sectionTitle {
+  font-family: "Georgia", serif;
+  font-size: 16px;
+  color: #D4AF37;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #4A3728;
+}
+
+.sectionTitleSmall {
+  font-family: "Georgia", serif;
+  font-size: 14px;
+  color: #E8DCC4;
+  margin-bottom: 12px;
+}
+
+/* ── STATS GRID ─────────────────────────────────────────────────────────── */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.statCard {
+  background-color: rgba(45, 38, 34, 0.9);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid #4A3728;
+}
+
+.statCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    0 0 15px rgba(212, 175, 55, 0.3);
+  border-color: #D4AF37;
+}
+
+.statCard.positiveStat {
+  border-left: 3px solid #10B981;
+}
+
+.statIconContainer {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(74, 55, 40, 0.3);
+  border-radius: 6px;
+}
+
+.statIcon {
+  font-size: 20px;
+  color: #D4AF37;
+}
+
+.statInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.statLabel {
+  font-size: 12px;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statValue {
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 4px;
+}
+
+.positive {
+  color: #10B981 !important;
+}
+
+/* ── DESCRIPTION SECTION ───────────────────────────────────────────────── */
+.descriptionText {
+  font-family: "Georgia", serif;
+  line-height: 1.6;
+  color: #E8DCC4;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+.loreContainer {
+  background-color: rgba(74, 55, 40, 0.2);
+  border-left: 3px solid #8B4513;
+  padding: 16px;
+  margin-bottom: 20px;
+  border-radius: 0 8px 8px 0;
+}
+
+.loreIcon {
+  color: #D4AF37;
+  font-size: 20px;
+  margin-right: 12px;
+}
+
+.loreText {
+  font-family: "Georgia", serif;
+  font-style: italic;
+  line-height: 1.8;
+  color: #F5E6C8;
+  font-size: 14px;
+}
+
+.abilitiesContainer {
+  margin-top: 20px;
+}
+
+.abilitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.abilityCard {
+  background-color: rgba(45, 38, 34, 0.9);
+  border-radius: 6px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #4A3728;
+  transition: all 0.3s ease;
+}
+
+.abilityCard:hover {
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+  border-color: #D4AF37;
+}
+
+.abilityIcon {
+  color: #D4AF37;
+  font-size: 18px;
+}
+
+.abilityName {
+  font-weight: bold;
+  color: #F5E6C8;
+  font-size: 14px;
+}
+
+.abilityDescription {
+  font-size: 12px;
+  color: #9CA3AF;
+  line-height: 1.4;
+}
+
+.propertiesContainer {
+  margin-top: 20px;
+}
+
+.propertiesGrid {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.propertyBadge {
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: help;
+  position: relative;
+}
+
+.propertyIcon {
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+.enchanted {
+  background-color: rgba(139, 69, 19, 0.3);
+  color: #D4AF37;
+  border: 1px solid #8B4513;
+}
+
+.cursed {
+  background-color: rgba(139, 0, 0, 0.3);
+  color: #EF4444;
+  border: 1px solid #8B0000;
+}
+
+.unique {
+  background-color: rgba(212, 175, 55, 0.3);
+  color: #F5E6C8;
+  border: 1px solid #D4AF37;
+}
+
+/* ── FOOTER ACTIONS ─────────────────────────────────────────────────────── */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 2px solid #4A3728;
+  margin-top: 16px;
+}
+
+.actionButton {
+  flex: 1;
+  min-width: 150px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.equipButton {
+  background-color: #8B4513;
+  color: #F5E6C8;
+  border: 2px solid #D4AF37;
+}
+
+.equipButton:hover {
+  background-color: #A0522D;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+.inspectButton {
+  flex: 1;
+  min-width: 150px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 6px;
+}
+
+.buttonIcon {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.sellValueContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background-color: rgba(45, 38, 34, 0.9);
+  border-radius: 6px;
+  border: 1px solid #4A3728;
+}
+
+.sellLabel {
+  font-size: 14px;
+  color: #9CA3AF;
+}
+
+.sellAmount {
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  font-size: 16px;
+  color: #D4AF37;
+}
+
+/* ── RESPONSIVE ADJUSTMENTS ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .badgesContainer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer {
+    flex-direction: column;
+  }
+
+  .actionButton,
+  .sellValueContainer {
+    width: 100%;
+  }
+}
+
+/* ── HOVER EFFECTS & ANIMATIONS ─────────────────────────────────────────── */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px #D4AF37, inset 0 0 15px rgba(212, 175, 55, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 25px #D4AF37, inset 0 0 20px rgba(212, 175, 55, 0.6);
+  }
+}
+
+.legendary:hover {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes borderGlow {
+  0%, 100% {
+    border-color: #4A3728;
+  }
+  50% {
+    border-color: #D4AF37;
+  }
+}
+
+.statCard:hover {
+  animation: borderGlow 1.5s ease-in-out infinite;
+}

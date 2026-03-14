@@ -19,7 +19,7 @@ You are a UI component generator for a medieval/fantasy strategy game and RPG in
 
 You will receive a COMPONENT_SPEC from the Commander. Use the `ui-component-create` skill to generate the component.
 
-- Create components in `GeneratedComponents/ComponentName.tsx`
+- Create components in `components/GeneratedComponents/ComponentName.tsx`
 
 ## Steps
 

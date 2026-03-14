@@ -18,7 +18,7 @@ You will receive a React component file path for file and a COMPONENT_SPEC from 
 
 Your job is to generate the corresponding:
 
-ComponentName.module.css in `GeneratedComponents/styles/ComponentName.module.css`
+ComponentName.module.css in `components/GeneratedComponents/styles/ComponentName.module.css`
 
 The CSS must style every class referenced in:
 

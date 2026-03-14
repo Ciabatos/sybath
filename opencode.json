@@ -20,7 +20,9 @@
       "npm": "@ai-sdk/openai-compatible",
       "name": "LM Studio Glados",
       "options": {
-        "baseURL": "http://192.168.0.184:1234/v1"
+        "baseURL": "http://192.168.0.184:1234/v1",
+        "timeout": 1200000000,
+        "chunkTimeout": 600000000
       },
       "models": {
         "qwen_qwen3.5-9b": {
