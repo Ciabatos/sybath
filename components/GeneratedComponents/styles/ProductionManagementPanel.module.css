@@ -1,0 +1,750 @@
+/* ProductionManagementPanel - Medieval Fantasy UI Styles */
+
+/* ============================================
+   ROOT & BASE STYLES
+   ============================================ */
+.root {
+  background-color: #f5deb3; /* wheat/parchment */
+  padding: 16px;
+  color: #5d4e37;
+  font-family: "VT323", monospace;
+}
+
+/* ============================================
+   PANEL CONTAINER - Ancient parchment with leather frame
+   ============================================ */
+.panel {
+  box-shadow:
+    inset 0 0 10px rgba(93, 78, 55, 0.6),
+    0 4px 8px rgba(0, 0, 0, 0.4);
+  border: 4px solid #a0522d; /* sienna - leather straps */
+  background-color: #daa520; /* goldenrod - treasure chest interior */
+  padding: 12px;
+}
+
+/* ============================================
+   TITLE STYLES - Press Start 2P pixelated font
+   ============================================ */
+.title {
+  margin-bottom: 16px;
+  border-bottom: 3px solid #a0522d;
+  padding-bottom: 8px;
+  color: #daa520; /* goldenrod */
+  font-weight: bold;
+  font-family: "Press Start 2P", cursive;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
+  text-transform: uppercase;
+}
+
+/* ============================================
+   SECTION STYLES - Separated with subtle borders
+   ============================================ */
+.section {
+  margin-bottom: 16px;
+  border: 2px solid #a0522d;
+  background-color: rgba(93, 78, 55, 0.1); /* subtle parchment tint */
+  padding: 12px;
+}
+
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.section-title {
+  margin-bottom: 12px;
+  padding-left: 6px;
+  color: #8b4513; /* saddle brown */
+  font-size: 12px;
+  font-family: "Press Start 2P", cursive;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   BUILDING SELECTOR TAB - Chunky medieval buttons
+   ============================================ */
+.buildingSelectorTab {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tabButton {
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+  box-shadow:
+    inset 0 0 4px rgba(93, 78, 55, 0.3),
+    2px 2px 0 rgba(0, 0, 0, 0.4);
+  border: 3px solid #a0522d; /* sienna */
+  background-color: #daa520; /* goldenrod */
+  padding: 8px 16px;
+  color: #5d4e37;
+  font-family: "VT323", monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.tabButton:hover {
+  transform: scale(1.02);
+  box-shadow:
+    inset 0 0 4px rgba(93, 78, 55, 0.3),
+    2px 2px 0 rgba(0, 0, 0, 0.4),
+    0 0 6px rgba(212, 105, 30, 0.5);
+  border-color: #b8860b; /* darker gold */
+}
+
+.tabButton:active {
+  transform: scale(0.98);
+  box-shadow:
+    inset 0 0 6px rgba(93, 78, 55, 0.5),
+    1px 1px 0 rgba(0, 0, 0, 0.4);
+  border-color: #5d4e37; /* darker brown */
+}
+
+.tabButton.active {
+  box-shadow:
+    inset 0 0 6px rgba(93, 78, 55, 0.5),
+    2px 2px 0 rgba(0, 0, 0, 0.4);
+  border-color: #8b4513; /* saddle brown */
+  background-color: #c0c0c0; /* silver - metal tools */
+}
+
+/* ============================================
+   BUILDING CARD - Individual building display
+   ============================================ */
+.buildingCard {
+  transition: all 0.2s ease-in-out;
+  border: 3px solid #a0522d; /* sienna */
+  background-color: #f5deb3; /* wheat/parchment */
+  padding: 12px;
+}
+
+.buildingCard:hover {
+  transform: scale(1.02);
+  box-shadow:
+    0 4px 8px rgba(93, 78, 55, 0.3),
+    inset 0 0 4px rgba(212, 105, 30, 0.3);
+  border-color: #b8860b; /* darker gold */
+}
+
+.buildingCard:active {
+  transform: scale(0.98);
+  box-shadow: inset 0 0 6px rgba(93, 78, 55, 0.5);
+  border-color: #5d4e37; /* darker brown */
+}
+
+.buildingCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #a0522d;
+  padding-bottom: 8px;
+}
+
+.buildingIcon {
+  color: #8b4513; /* saddle brown */
+  font-size: 24px;
+}
+
+.buildingName {
+  margin: 0;
+  color: #daa520; /* goldenrod */
+  font-size: 10px;
+  font-family: "Press Start 2P", cursive;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.buildingCardContent {
+  display: grid;
+  gap: 8px;
+}
+
+/* ============================================
+   WORKER CONTROL PANEL - Resource management UI
+   ============================================ */
+.workerControlPanel {
+  border: 2px solid #a0522d; /* sienna */
+  background-color: rgba(93, 78, 55, 0.1); /* subtle parchment tint */
+  padding: 12px;
+}
+
+.workerCountDisplay {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.workerIcon {
+  color: #c0c0c0; /* silver */
+  font-size: 16px;
+}
+
+.workerCountLabel {
+  margin: 0;
+  color: #5d4e37;
+  font-family: "VT323", monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.workerControls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.controlButton {
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+  border: 2px solid #8b4513; /* saddle brown */
+  background-color: #a0522d; /* sienna */
+  padding: 6px 12px;
+  color: #f5deb3; /* wheat/parchment */
+  font-family: "VT323", monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.controlButton:hover {
+  box-shadow: 0 0 4px rgba(212, 105, 30, 0.5);
+  border-color: #daa520; /* goldenrod */
+  background-color: #b8860b; /* darker gold */
+}
+
+.controlButton:active {
+  box-shadow: inset 0 0 4px rgba(93, 78, 55, 0.5);
+  border-color: #a0522d; /* sienna */
+  background-color: #8b4513; /* saddle brown */
+}
+
+.controlButton:disabled {
+  cursor: not-allowed;
+  border-color: #a0522d; /* sienna */
+  background-color: #6b5e4c; /* muted brown */
+  color: #8b7355; /* lighter brown */
+}
+
+/* ============================================
+   PRODUCTION STATS SUMMARY - Stat panel display
+   ============================================ */
+.productionStatsSummary {
+  border: 2px solid #a0522d; /* sienna */
+  background-color: rgba(93, 78, 55, 0.1); /* subtle parchment tint */
+  padding: 12px;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+}
+
+.statItem {
+  border: 2px solid #a0522d; /* sienna */
+  background-color: #f5deb3; /* wheat/parchment */
+  padding: 8px;
+  text-align: center;
+}
+
+.statLabel {
+  margin-bottom: 4px;
+  color: #5d4e37;
+  font-size: 16px;
+  font-family: "VT323", monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.statValue {
+  margin: 0;
+  color: #daa520; /* goldenrod */
+  font-weight: bold;
+  font-family: "Press Start 2P", cursive;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   RESOURCE OUTPUT INDICATOR - Resource display
+   ============================================ */
+.resourceOutputIndicator {
+  border: 2px solid #a0522d; /* sienna */
+  background-color: rgba(93, 78, 55, 0.1); /* subtle parchment tint */
+  padding: 12px;
+}
+
+.resourceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  border-left: 4px solid transparent;
+  background-color: #f5deb3; /* wheat/parchment */
+  padding: 6px 8px;
+}
+
+.resourceRow:last-child {
+  margin-bottom: 0;
+}
+
+.resourceType {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #5d4e37;
+  font-family: "VT323", monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.resourceIcon {
+  color: #c0c0c0; /* silver */
+  font-size: 18px;
+}
+
+.resourceAmount {
+  color: #daa520; /* goldenrod */
+  font-weight: bold;
+  font-family: "Press Start 2P", cursive;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   EFFICIENCY METER - Progress bar with glow effects
+   ============================================ */
+.efficiencyMeter {
+  border: 2px solid #a0522d; /* sienna */
+  background-color: rgba(93, 78, 55, 0.1); /* subtle parchment tint */
+  padding: 12px;
+}
+
+.efficiencyLabel {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  color: #5d4e37;
+  font-family: "VT323", monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.efficiencyBarContainer {
+  position: relative;
+  border: 2px solid #a0522d; /* sienna */
+  background-color: rgba(93, 78, 55, 0.2); /* darker tint */
+  height: 16px;
+}
+
+.efficiencyBar {
+  position: relative;
+  transition: width 0.5s ease-in-out;
+  background-color: linear-gradient(90deg, #8b4513, #c0c0c0);
+  height: 100%;
+}
+
+.efficiencyBar::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.1) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 8px 8px;
+  content: "";
+}
+
+/* ============================================
+   EFFICIENCY LEVEL COLORS - Magical rune glow effects
+   ============================================ */
+.efficiency-low {
+  box-shadow: 0 0 4px rgba(139, 0, 0, 0.5);
+  background-color: #8b0000 !important; /* dark red - blood/war */
+}
+
+.efficiency-medium {
+  box-shadow: 0 0 4px rgba(210, 105, 30, 0.5);
+  background-color: linear-gradient(90deg, #8b4513, #d2691e) !important; /* chocolate */
+}
+
+.efficiency-high {
+  box-shadow: 0 0 6px rgba(192, 192, 192, 0.5);
+  background-color: linear-gradient(90deg, #daa520, #c0c0c0) !important; /* goldenrod to silver */
+}
+
+.efficiency-optimal {
+  box-shadow:
+    0 0 8px rgba(212, 105, 30, 0.6),
+    inset 0 0 4px rgba(255, 255, 255, 0.3);
+  background-color: linear-gradient(90deg, #c0c0c0, #daa520) !important; /* silver to goldenrod */
+}
+
+/* ============================================
+   PRODUCTION CYCLE TIMER - Clock display
+   ============================================ */
+.productionCycleTimer {
+  border: 2px solid #a0522d; /* sienna */
+  background-color: rgba(93, 78, 55, 0.1); /* subtle parchment tint */
+  padding: 12px;
+  text-align: center;
+}
+
+.timerLabel {
+  margin-bottom: 8px;
+  color: #5d4e37;
+  font-family: "VT323", monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.timerDisplay {
+  border: 2px solid #a0522d;
+  background-color: rgba(93, 78, 55, 0.2);
+  padding: 8px;
+  color: #c0c0c0; /* silver */
+  font-weight: bold;
+  font-family: "Press Start 2P", cursive;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.timerDisplay.isProducing {
+  box-shadow: inset 0 0 4px rgba(93, 78, 55, 0.5);
+  color: #daa520; /* goldenrod */
+}
+
+/* ============================================
+   PROGRESS PERCENTAGE - Circular or linear progress
+   ============================================ */
+.progressPercentage {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.progressIcon {
+  color: #c0c0c0; /* silver */
+  font-size: 20px;
+}
+
+.progressValue {
+  color: #daa520; /* goldenrod */
+  font-weight: bold;
+  font-family: "Press Start 2P", cursive;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   TOTAL PRODUCTION - Summary display
+   ============================================ */
+.totalProduction {
+  border: 2px solid #a0522d; /* sienna */
+  background-color: rgba(93, 78, 55, 0.1); /* subtle parchment tint */
+  padding: 12px;
+}
+
+.productionTypeGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.productionTypeItem {
+  border: 2px solid #a0522d; /* sienna */
+  background-color: #f5deb3; /* wheat/parchment */
+  padding: 8px;
+  text-align: center;
+}
+
+.productionTypeName {
+  margin-bottom: 4px;
+  color: #5d4e37;
+  font-size: 16px;
+  font-family: "VT323", monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.productionTypeValue {
+  margin: 0;
+  color: #daa520; /* goldenrod */
+  font-weight: bold;
+  font-family: "Press Start 2P", cursive;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   ICON STYLES - Consistent sizing and alignment
+   ============================================ */
+.icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-small {
+  color: #c0c0c0; /* silver */
+  font-size: 14px;
+}
+
+.icon-medium {
+  color: #a0522d; /* sienna */
+  font-size: 18px;
+}
+
+.icon-large {
+  color: #8b4513; /* saddle brown */
+  font-size: 24px;
+}
+
+/* ============================================
+   HOVER & ACTIVE EFFECTS - Tactile button feedback
+   ============================================ */
+.hoverEffect {
+  transition: all 0.15s ease-in-out;
+}
+
+.hoverEffect:hover {
+  transform: scale(1.02);
+  box-shadow:
+    0 0 4px rgba(212, 105, 30, 0.5),
+    inset 0 0 4px rgba(93, 78, 55, 0.3);
+  border-color: #b8860b; /* darker gold */
+}
+
+.activeEffect {
+  transition: all 0.1s ease-in-out;
+}
+
+.activeEffect:active {
+  transform: scale(0.98);
+  box-shadow: inset 0 0 6px rgba(93, 78, 55, 0.5);
+  border-color: #5d4e37; /* darker brown */
+}
+
+/* ============================================
+   GLOW EFFECT - Magical rune glow for optimal efficiency
+   ============================================ */
+.glowEffect {
+  transition: all 0.3s ease-in-out;
+}
+
+.glowEffect.optimal {
+  box-shadow:
+    0 0 8px rgba(212, 105, 30, 0.6),
+    inset 0 0 4px rgba(255, 255, 255, 0.3);
+}
+
+.glowEffect.high {
+  box-shadow: 0 0 6px rgba(192, 192, 192, 0.5);
+}
+
+.glowEffect.medium {
+  box-shadow: 0 0 4px rgba(210, 105, 30, 0.5);
+}
+
+.glowEffect.low {
+  box-shadow: 0 0 4px rgba(139, 0, 0, 0.5);
+}
+
+/* ============================================
+   BORDER STYLES - Sharp corners for retro feel
+   ============================================ */
+.borderStyle {
+  box-shadow:
+    inset 2px 2px 0 rgba(93, 78, 55, 0.4),
+    inset -2px -2px 0 rgba(160, 82, 45, 0.3);
+  border-width: 4px;
+  border-style: solid;
+}
+
+.borderStyle-sm {
+  box-shadow:
+    inset 1px 1px 0 rgba(93, 78, 55, 0.3),
+    inset -1px -1px 0 rgba(160, 82, 45, 0.2);
+  border-width: 2px;
+}
+
+.borderStyle-none {
+  border: none;
+}
+
+/* ============================================
+   EMPTY STATE - Centered faded message
+   ============================================ */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.emptyIcon {
+  opacity: 0.6;
+  margin-bottom: 8px;
+  color: #a0522d; /* sienna */
+  font-size: 32px;
+}
+
+.emptyMessage {
+  opacity: 0.7;
+  margin: 0;
+  color: #5d4e37;
+  font-family: "VT323", monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   ALERT & STATUS INDICATORS - Warning and success states
+   ============================================ */
+.alertCircle {
+  color: #8b0000; /* dark red - blood/war */
+  font-size: 16px;
+}
+
+.checkCircle {
+  color: #c0c0c0; /* silver */
+  font-size: 16px;
+}
+
+.alertContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-left: 4px solid #8b0000;
+  background-color: rgba(139, 0, 0, 0.1);
+  padding: 6px 8px;
+}
+
+.successContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-left: 4px solid #c0c0c0;
+  background-color: rgba(192, 192, 192, 0.1);
+  padding: 6px 8px;
+}
+
+/* ============================================
+   SETTINGS & NAVIGATION - Control elements
+   ============================================ */
+.settingsButton {
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+  border: 2px solid #8b4513; /* saddle brown */
+  background-color: #a0522d; /* sienna */
+  padding: 6px 12px;
+  color: #f5deb3; /* wheat/parchment */
+  font-family: "VT323", monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.settingsButton:hover {
+  box-shadow: 0 0 4px rgba(212, 105, 30, 0.5);
+  border-color: #daa520; /* goldenrod */
+  background-color: #b8860b; /* darker gold */
+}
+
+.settingsButton:active {
+  box-shadow: inset 0 0 4px rgba(93, 78, 55, 0.5);
+  border-color: #a0522d; /* sienna */
+  background-color: #8b4513; /* saddle brown */
+}
+
+/* ============================================
+   CHEVRON & ARROW INDICATORS - Navigation arrows
+   ============================================ */
+.chevronRight {
+  transition: transform 0.2s ease-in-out;
+  color: #a0522d; /* sienna */
+  font-size: 16px;
+}
+
+.chevronRight:hover {
+  transform: translateX(4px);
+  color: #c0c0c0; /* silver */
+}
+
+/* ============================================
+   ACTIVITY & STATUS ICONS - Status indicators
+   ============================================ */
+.activityIcon {
+  color: #c0c0c0; /* silver */
+  font-size: 16px;
+}
+
+.zapIcon {
+  color: #daa520; /* goldenrod */
+  font-size: 14px;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS - Mobile-friendly layout
+   ============================================ */
+@media (max-width: 768px) {
+  .root {
+    padding: 12px;
+  }
+
+  .panel {
+    padding: 8px;
+  }
+
+  .statsGrid,
+  .productionTypeGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .buildingSelectorTab {
+    flex-direction: column;
+  }
+
+  .tabButton {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .root {
+    padding: 8px;
+  }
+
+  .panel {
+    padding: 6px;
+  }
+
+  .section-title {
+    font-size: 10px;
+  }
+
+  .statsGrid,
+  .productionTypeGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .buildingCardHeader {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}

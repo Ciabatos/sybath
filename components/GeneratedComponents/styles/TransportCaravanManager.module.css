@@ -1,0 +1,1064 @@
+/* Transport Caravan Manager Component Styles */
+/* Medieval Logistics Interface - Parchment & Leather Theme */
+
+/* =============================================================================
+   MAIN CONTAINER
+   ============================================================================= */
+.container {
+  position: relative;
+  margin: 0 auto;
+  box-shadow:
+    inset 0 0 25px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(200, 154, 74, 0.1),
+    0 6px 20px rgba(0, 0, 0, 0.7);
+  border: 3px solid #8b5a2b;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #f5e6d3 0%, #e6c288 50%, #f5e6d3 100%);
+  padding: 24px;
+  max-width: 1200px;
+  overflow: hidden;
+  color: #4a3728;
+  font-family: "Georgia", serif;
+}
+
+/* Parchment texture overlay */
+.container::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+  pointer-events: none;
+  content: "";
+}
+
+/* =============================================================================
+   HEADER PANEL
+   ============================================================================= */
+.headerPanel {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 24px;
+  border: 2px solid #6b4f3a;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #d4b48c 0%, #c8a574 50%, #d4b48c 100%);
+  padding: 16px 20px;
+  text-align: center;
+}
+
+.titleRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.icon {
+  color: #c89a4a;
+  font-size: 1.5rem;
+  text-shadow: 0 0 6px rgba(200, 154, 74, 0.4);
+}
+
+.title {
+  margin: 0;
+  color: #8b4513;
+  font-size: 1.4rem;
+  letter-spacing: 0.6px;
+  text-shadow:
+    -1px -1px 0 rgba(255, 255, 255, 0.3),
+    1px -1px 0 rgba(255, 255, 255, 0.3),
+    -1px 1px 0 rgba(255, 255, 255, 0.3),
+    1px 1px 0 rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+}
+
+/* =============================================================================
+   SECTION PANELS
+   ============================================================================= */
+.sectionPanel {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 16px;
+  border: 2px solid #a0522d;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #e6c288 0%, #d4b48c 100%);
+  padding: 16px;
+}
+
+.sectionPanel::before {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  left: -2px;
+  opacity: 0.3;
+  border: 2px solid transparent;
+  border-top-color: #c89a4a;
+  border-radius: 6px;
+  content: "";
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  border-bottom: 2px solid #a0522d;
+  padding-bottom: 8px;
+}
+
+.sectionIcon {
+  color: #c89a4a;
+  font-size: 1.2rem;
+  text-shadow: 0 0 4px rgba(200, 154, 74, 0.3);
+}
+
+.sectionTitle h3 {
+  margin: 0;
+  color: #8b4513;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* =============================================================================
+   ROUTE SELECTION - Origin/Destination
+   ============================================================================= */
+.routeSelection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.locationCard {
+  transition: all 0.3s ease;
+  border: 2px solid #8b5a2b;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #f5e6d3 0%, #e6c288 100%);
+  padding: 14px;
+}
+
+.locationCard:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: #c89a4a;
+}
+
+.locationCard.selected {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 0 15px rgba(200, 154, 74, 0.3);
+  border-color: #c89a4a;
+}
+
+.locationHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #a0522d;
+  padding-bottom: 6px;
+}
+
+.locationName {
+  color: #8b4513;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.locationCoordinates {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+  color: #6b4f3a;
+  font-size: 0.85rem;
+}
+
+.resourceTypes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.resourceTag {
+  border: 1px solid #a0522d;
+  border-radius: 3px;
+  background: rgba(160, 82, 45, 0.1);
+  padding: 2px 8px;
+  color: #8b4513;
+  font-size: 0.75rem;
+}
+
+/* =============================================================================
+   CARGO CONFIGURATION
+   ============================================================================= */
+.cargoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.resourceRow {
+  transition: all 0.2s ease;
+  border: 1px solid #a0522d;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #f5e6d3 0%, #e6c288 100%);
+  padding: 10px;
+}
+
+.resourceRow:hover {
+  border-color: #c89a4a;
+  background: linear-gradient(90deg, #f5e6d3 0%, #d4b48c 100%);
+}
+
+.resourceRow.selected {
+  box-shadow:
+    inset 0 0 0 2px rgba(200, 154, 74, 0.3),
+    0 0 10px rgba(200, 154, 74, 0.2);
+  border-color: #c89a4a;
+}
+
+.resourceInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.resourceName {
+  color: #8b4513;
+  font-weight: 500;
+}
+
+.resourceQuantity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quantityInput {
+  border: 2px solid #a0522d;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #f5e6d3 0%, #e6c288 100%);
+  padding: 4px 8px;
+  width: 60px;
+  color: #4a3728;
+  font-family: "Courier New", monospace;
+  text-align: center;
+}
+
+.quantityInput:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(200, 154, 74, 0.3);
+  border-color: #c89a4a;
+}
+
+.capacityBar {
+  border-radius: 3px;
+  background: linear-gradient(90deg, #a0522d 0%, #8b4513 100%);
+  height: 6px;
+  overflow: hidden;
+}
+
+.capacityFill {
+  transition: width 0.3s ease;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #c89a4a 0%, #d4a574 100%);
+  height: 100%;
+}
+
+/* =============================================================================
+   CARAVAN OPTIONS - Transport Methods
+   ============================================================================= */
+.transportMethods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.methodCard {
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 2px solid #a0522d;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #f5e6d3 0%, #e6c288 100%);
+  padding: 14px;
+}
+
+.methodCard:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: #c89a4a;
+}
+
+.methodCard.selected {
+  box-shadow:
+    inset 0 0 0 3px rgba(200, 154, 74, 0.3),
+    0 0 20px rgba(200, 154, 74, 0.2);
+  border-color: #c89a4a;
+}
+
+.methodIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #d4b48c 0%, #c8a574 100%);
+  width: 48px;
+  height: 48px;
+}
+
+.methodName {
+  margin-bottom: 8px;
+  color: #8b4513;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.methodStats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #6b4f3a;
+  font-size: 0.85rem;
+}
+
+.statLabel {
+  opacity: 0.8;
+}
+
+/* =============================================================================
+   RISK ASSESSMENT
+   ============================================================================= */
+.riskContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.riskItem {
+  border: 1px solid #a0522d;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #f5e6d3 0%, #e6c288 100%);
+  padding: 10px;
+}
+
+.riskIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1.2rem;
+}
+
+.riskIcon.bandit {
+  background: linear-gradient(135deg, #8b4513 0%, #6b4f3a 100%);
+  color: #c89a4a;
+}
+
+.riskIcon.weather {
+  background: linear-gradient(135deg, #d4b48c 0%, #c8a574 100%);
+  color: #8b4513;
+}
+
+.riskLabel {
+  margin-bottom: 4px;
+  color: #8b4513;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.riskProbability {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.probabilityBar {
+  flex: 1;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #a0522d 0%, #8b4513 100%);
+  height: 8px;
+  overflow: hidden;
+}
+
+.probabilityFill {
+  transition: width 0.3s ease;
+  background: linear-gradient(90deg, #c89a4a 0%, #d4a574 100%);
+  height: 100%;
+}
+
+/* =============================================================================
+   INSURANCE PANEL
+   ============================================================================= */
+.insuranceOptions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.insuranceToggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.insuranceCheckbox {
+  border: 2px solid #a0522d;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #f5e6d3 0%, #e6c288 100%);
+  width: 20px;
+  height: 20px;
+}
+
+.insuranceCheckbox.checked {
+  border-color: #c89a4a;
+  background: linear-gradient(135deg, #c89a4a 0%, #b48f47 100%);
+}
+
+.insuranceLabel {
+  color: #6b4f3a;
+  font-size: 0.9rem;
+}
+
+.insuranceCost {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #c89a4a;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #d4b48c 0%, #c8a574 100%);
+  padding: 8px 12px;
+  color: #8b4513;
+  font-weight: 600;
+}
+
+/* =============================================================================
+   FEE CALCULATOR
+   ============================================================================= */
+.feeBreakdown {
+  display: grid;
+  gap: 10px;
+}
+
+.feeRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(160, 82, 45, 0.3);
+  padding: 8px 12px;
+}
+
+.feeRow:last-child {
+  border-bottom: none;
+  background: linear-gradient(90deg, rgba(200, 154, 74, 0.1) 0%, transparent 100%);
+  color: #c89a4a;
+  font-weight: 700;
+}
+
+.feeLabel {
+  color: #6b4f3a;
+}
+
+.feeValue {
+  color: #8b4513;
+  font-family: "Courier New", monospace;
+}
+
+.totalFee {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  border: 2px solid #c89a4a;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #d4b48c 0%, #c8a574 100%);
+  padding: 12px 16px;
+}
+
+.totalFeeLabel {
+  color: #8b4513;
+  font-weight: 600;
+}
+
+.totalFeeValue {
+  color: #c89a4a;
+  font-size: 1.1rem;
+  font-family: "Courier New", monospace;
+  text-shadow: 0 0 4px rgba(200, 154, 74, 0.3);
+}
+
+/* =============================================================================
+   ACTIVE TRANSPORTS - Real-time Tracking
+   ============================================================================= */
+.activeTransports {
+  display: grid;
+  gap: 12px;
+}
+
+.transportCard {
+  border: 2px solid #a0522d;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #f5e6d3 0%, #e6c288 100%);
+  padding: 14px;
+}
+
+.transportCard.active {
+  box-shadow:
+    inset 0 0 0 2px rgba(200, 154, 74, 0.3),
+    0 0 15px rgba(200, 154, 74, 0.2);
+  border-color: #c89a4a;
+}
+
+.transportHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.transportStatus {
+  border-radius: 4px;
+  padding: 3px 10px;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.transportStatus.in-transit {
+  background: linear-gradient(90deg, #c89a4a 0%, #b48f47 100%);
+  color: #4a3728;
+}
+
+.transportStatus.completed {
+  background: linear-gradient(90deg, #6b8e23 0%, #556b2f 100%);
+  color: white;
+}
+
+.transportStatus.delayed {
+  background: linear-gradient(90deg, #a0522d 0%, #8b4513 100%);
+  color: white;
+}
+
+.routeLine {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.locationDot {
+  border: 2px solid #c89a4a;
+  border-radius: 50%;
+  background: #8b4513;
+  width: 12px;
+  height: 12px;
+}
+
+.routeLine.active .locationDot {
+  box-shadow: 0 0 8px rgba(200, 154, 74, 0.6);
+}
+
+.routePath {
+  position: relative;
+  flex: 1;
+  background: linear-gradient(90deg, #a0522d 0%, transparent 50%, #a0522d 100%);
+  height: 2px;
+}
+
+.routeProgress {
+  position: absolute;
+  top: -3px;
+  left: 0;
+  transition: width 0.3s ease;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #c89a4a 0%, #d4a574 100%);
+  height: 8px;
+}
+
+.transportDetails {
+  display: grid;
+  gap: 6px;
+  font-size: 0.85rem;
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* =============================================================================
+   DELIVERY HISTORY
+   ============================================================================= */
+.historyList {
+  display: grid;
+  gap: 10px;
+}
+
+.historyItem {
+  border: 1px solid #a0522d;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #f5e6d3 0%, #e6c288 100%);
+  padding: 10px 14px;
+}
+
+.historyItem.success {
+  border-left-color: #6b8e23;
+}
+
+.historyItem.failed {
+  border-left-color: #a0522d;
+}
+
+.historyDate {
+  margin-bottom: 4px;
+  color: #6b4f3a;
+  font-size: 0.75rem;
+}
+
+.historyProfit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.profit-positive {
+  color: #6b8e23;
+}
+
+.profit-negative {
+  color: #a0522d;
+}
+
+.historyMethod {
+  display: inline-block;
+  margin-top: 6px;
+  border-radius: 3px;
+  padding: 2px 8px;
+  font-size: 0.7rem;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.historyMethod.horse {
+  background: rgba(139, 69, 19, 0.2);
+  color: #8b4513;
+}
+
+.historyMethod.wagon {
+  background: rgba(160, 82, 45, 0.2);
+  color: #a0522d;
+}
+
+.historyMethod.ship {
+  background: rgba(70, 130, 180, 0.2);
+  color: #4682b4;
+}
+
+/* =============================================================================
+   BUTTONS - Medieval Style
+   ============================================================================= */
+.medievalButton {
+  position: relative;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.4);
+  border: 2px solid #8b5a2b;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, #d4b48c 0%, #c8a574 100%);
+  color: #4a3728;
+  font-family: "Georgia", serif;
+}
+
+.medievalButton:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    0 0 10px rgba(200, 154, 74, 0.3);
+  border-color: #c89a4a;
+}
+
+.medievalButton:active {
+  transform: translateY(0);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.medievalButton.primary {
+  border-color: #c89a4a;
+  background: linear-gradient(to bottom, #d4b48c 0%, #c8a574 100%);
+}
+
+.medievalButton.primary:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    0 0 15px rgba(200, 154, 74, 0.4);
+}
+
+.medievalButton.danger {
+  border-color: #a0522d;
+  background: linear-gradient(to bottom, #e6c288 0%, #d4b48c 100%);
+  color: #8b4513;
+}
+
+.medievalButton.danger:hover {
+  border-color: #a0522d;
+  background: linear-gradient(to bottom, #f5e6d3 0%, #e6c288 100%);
+}
+
+/* =============================================================================
+   INPUTS - Medieval Style
+   ============================================================================= */
+.medievalInput {
+  border: 2px solid #a0522d;
+  background: linear-gradient(180deg, #f5e6d3 0%, #e6c288 100%);
+  color: #4a3728;
+  font-family: "Georgia", serif;
+}
+
+.medievalInput::placeholder {
+  color: #a0522d;
+}
+
+.medievalInput:focus {
+  outline: none;
+  box-shadow:
+    0 0 10px rgba(200, 154, 74, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  border-color: #c89a4a;
+}
+
+/* =============================================================================
+   BADGES & STATUS INDICATORS
+   ============================================================================= */
+.medievalBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 3px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.medievalBadge.safe {
+  border-color: #6b8e23;
+  background: rgba(107, 142, 35, 0.2);
+  color: #6b8e23;
+}
+
+.medievalBadge.risky {
+  border-color: #a0522d;
+  background: rgba(160, 82, 45, 0.2);
+  color: #a0522d;
+}
+
+.medievalBadge.dangerous {
+  border-color: #8b0000;
+  background: rgba(139, 0, 0, 0.2);
+  color: #8b0000;
+}
+
+/* =============================================================================
+   PROGRESS BARS - Caravan Progress
+   ============================================================================= */
+.medievalProgress {
+  position: relative;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #a0522d 0%, #8b4513 100%);
+  height: 10px;
+  overflow: hidden;
+}
+
+.medievalProgressFill {
+  position: relative;
+  transition: width 0.3s ease;
+  background: linear-gradient(90deg, #c89a4a 0%, #d4a574 100%);
+  height: 100%;
+}
+
+.medievalProgressFill::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  animation: shimmer 2s infinite;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  content: "";
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* =============================================================================
+   EMPTY STATES
+   ============================================================================= */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 24px;
+  color: #a0522d;
+  text-align: center;
+}
+
+.emptyIcon {
+  opacity: 0.6;
+  margin-bottom: 12px;
+  font-size: 2.5rem;
+}
+
+.emptyMessage {
+  color: #8b4f3a;
+  font-size: 0.95rem;
+}
+
+/* =============================================================================
+   LOADING SPINNER
+   ============================================================================= */
+.spinnerMedieval {
+  animation: spin 1s linear infinite;
+  border: 3px solid rgba(200, 154, 74, 0.1);
+  border-top-color: #c89a4a;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =============================================================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================================================= */
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+
+  .headerPanel {
+    padding: 12px 14px;
+  }
+
+  .title {
+    font-size: 1.1rem;
+  }
+
+  .sectionPanel {
+    padding: 12px;
+  }
+
+  .routeSelection,
+  .cargoGrid,
+  .transportMethods {
+    grid-template-columns: 1fr;
+  }
+
+  .feeBreakdown {
+    gap: 6px;
+  }
+
+  .feeRow {
+    padding: 6px 8px;
+  }
+}
+
+/* =============================================================================
+   DECORATIVE CORNER ACCENTS
+   ============================================================================= */
+.container::before,
+.container::after {
+  position: absolute;
+  transition: all 0.3s ease;
+  border: 2px solid #c89a4a;
+  width: 16px;
+  height: 16px;
+  content: "";
+}
+
+.container::before {
+  top: -1px;
+  left: -1px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.container::after {
+  right: -1px;
+  bottom: -1px;
+  border-top: none;
+  border-left: none;
+}
+
+/* =============================================================================
+   HOVER EFFECTS ON CONTAINER
+   ============================================================================= */
+.container:hover::before,
+.container:hover::after {
+  width: 20px;
+  height: 20px;
+}
+
+/* =============================================================================
+   NUMERIC GLOW EFFECT FOR STATISTICS
+   ============================================================================= */
+.numericGlow {
+  color: #c89a4a;
+  font-family: "Courier New", monospace;
+  text-shadow:
+    0 0 2px rgba(200, 154, 74, 0.3),
+    0 0 4px rgba(200, 154, 74, 0.2);
+}
+
+/* =============================================================================
+   GLOW EFFECT FOR SELECTED ITEMS
+   ============================================================================= */
+.glowEffect {
+  box-shadow:
+    inset 0 0 0 2px rgba(200, 154, 74, 0.3),
+    0 0 15px rgba(200, 154, 74, 0.2);
+}
+
+/* =============================================================================
+   TEXT SHADOW FOR TITLES
+   ============================================================================= */
+.titleShadow {
+  text-shadow:
+    -1px -1px 0 rgba(255, 255, 255, 0.3),
+    1px -1px 0 rgba(255, 255, 255, 0.3),
+    -1px 1px 0 rgba(255, 255, 255, 0.3),
+    1px 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* =============================================================================
+   UTILITY CLASSES
+   ============================================================================= */
+.flex {
+  display: flex;
+}
+
+.itemsCenter {
+  align-items: center;
+}
+
+.justifyBetween {
+  justify-content: space-between;
+}
+
+.gap8 {
+  gap: 8px;
+}
+
+.gap12 {
+  gap: 12px;
+}
+
+.gap16 {
+  gap: 16px;
+}
+
+.mt4 {
+  margin-top: 4px;
+}
+
+.mb4 {
+  margin-bottom: 4px;
+}
+
+.mt8 {
+  margin-top: 8px;
+}
+
+.mb8 {
+  margin-bottom: 8px;
+}
+
+.mt12 {
+  margin-top: 12px;
+}
+
+.mb12 {
+  margin-bottom: 12px;
+}
+
+.mt16 {
+  margin-top: 16px;
+}
+
+.mb16 {
+  margin-bottom: 16px;
+}
+
+.p8 {
+  padding: 8px;
+}
+
+.p10 {
+  padding: 10px;
+}
+
+.p12 {
+  padding: 12px;
+}
+
+.p14 {
+  padding: 14px;
+}
+
+.p16 {
+  padding: 16px;
+}
+
+.textSmall {
+  font-size: 0.85rem;
+}
+
+.textMedium {
+  font-size: 1rem;
+}
+
+.textLarge {
+  font-size: 1.1rem;
+}

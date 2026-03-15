@@ -1,305 +1,243 @@
 "use client"
 
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import {
-  Anchor,
-  Box,
-  Crown,
-  Eye,
-  Gem,
-  Lock,
-  Package,
-  Scroll,
-  Shield,
-  Sparkles,
-  Star,
-  Sword,
-  Target,
-  Wind,
-} from "lucide-react"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Separator } from "@/components/ui/separator"
+import { Crown, Gem, Sparkles } from "lucide-react"
 import { useState } from "react"
-import { GiFizzingFlask, GiHearts, GiPiercingSword, GiShield } from "react-icons/gi"
+
+import { GiMagicShield, GiShield, GiSwordWound } from "react-icons/gi"
+import { MdBatteryCharging20, MdBatteryCharging30, MdBatteryCharging50, MdBatteryCharging90 } from "react-icons/md"
 import styles from "./styles/ItemDetail.module.css"
-
-type RarityColors = {
-  common: string
-  uncommon: string
-  rare: string
-  epic: string
-  legendary: string
-}
-
 export default function ItemDetail() {
   // ── UI STATE ───────────────────────────────────────────────────────────────
-  const [isExpanded, setIsExpanded] = useState<boolean>(false)
-  const [showTooltip, setShowTooltip] = useState<string | null>(null)
+  const [isHovered, setIsHovered] = useState<boolean>(false)
+  const [selectedStat, setSelectedStat] = useState<string | null>(null)
+  const [showEnchantDetails, setShowEnchantDetails] = useState<boolean>(false)
 
   // ── MOCK ───────────────────────────────────────────────────────────────────
   const MOCK = {
-    itemId: "item_001",
-    itemName: "Blade of the Fallen King",
-    rarity: "legendary",
-    type: "Weapon",
-    subType: "Sword",
-    description:
-      "A legendary blade forged in the fires of ancient battle, this sword once belonged to a king who fell defending his realm.",
-    loreText:
-      "The blade hums with power when held by worthy hands. Legends say it was tempered in dragon's breath and blessed by the gods themselves. Its edge never dulls, for it is said to be forged from the very essence of victory.",
-    abilities: [
-      { abilityName: "Dragon's Breath", abilityDescription: "Deals additional fire damage on critical hits" },
-      { abilityName: "Royal Authority", abilityDescription: "Intimidates enemies, reducing their attack power by 15%" },
-      { abilityName: "Unyielding Edge", abilityDescription: "Cannot be broken or damaged in any way" },
-    ],
-    properties: {
-      isEnchanted: true,
-      isCursed: false,
-      isUnique: true,
+    itemName: "Dragonbane Longsword",
+    itemDescription:
+      "A legendary blade forged in the fires of Mount Doom. The dragon's scales crumble before its edge, and ancient runes glow with power when darkness approaches.",
+    itemStats: {
+      strength: 45,
+      defense: 12,
+      magicPower: 89,
+      speed: 34,
+      vitality: 28,
     },
-    stats: [
-      { statName: "Attack Power", value: "+150", isPositive: true },
-      { statName: "Critical Chance", value: "+25%", isPositive: true },
-      { statName: "Speed", value: "-10%", isPositive: false },
-      { statName: "Defense", value: "+15", isPositive: true },
-    ],
-    levelRequirement: 45,
-    weight: 8.5,
-    slotType: "MainHand",
-    sellValue: 2500,
-    isEquipable: true,
-    qualityLevel: 5,
+    itemRarity: "legendary",
+    levelRequirement: 42,
+    itemIconUrl: null,
+    itemType: "weapon",
+    enchantmentLevel: 5,
   }
 
   // ── DERIVED ────────────────────────────────────────────────────────────────
   const rarityColors = {
     common: "#9CA3AF",
-    uncommon: "#10B981",
-    rare: "#3B82F6",
-    epic: "#A855F7",
-    legendary: "#D4AF37",
+    rare: "#10B981",
+    epic: "#8B5CF6",
+    legendary: "#F59E0B",
+    mythic: "#EF4444",
   }
 
-  const rarityGlow = {
-    common: "",
-    uncommon: "",
-    rare: "box-shadow: 0 0 10px #3B82F6;",
-    epic: "box-shadow: 0 0 15px #A855F7, inset 0 0 10px rgba(168, 85, 247, 0.3);",
-    legendary: "box-shadow: 0 0 20px #D4AF37, inset 0 0 15px rgba(212, 175, 55, 0.4);",
+  const rarityIcons = {
+    common: MdBatteryCharging20,
+    rare: MdBatteryCharging90,
+    epic: MdBatteryCharging30,
+    legendary: MdBatteryCharging50,
+    mythic: Crown,
   }
 
-  const qualityColors = ["#6B7280", "#9CA3AF", "#D4AF37", "#A855F7", "#FFD700"]
+  const statLabels = {
+    strength: "Strength",
+    defense: "Defense",
+    magicPower: "Magic Power",
+    speed: "Speed",
+    vitality: "Vitality",
+  }
+
+  const statIcons = {
+    strength: <GiSwordWound />,
+    defense: <GiShield />,
+    magicPower: <GiMagicShield />,
+    speed: <Sparkles />,
+    vitality: <Gem />,
+  }
+
+  const getRarityColor = (rarity: string) => rarityColors[rarity as keyof typeof rarityColors] || "#9CA3AF"
 
   // ── HANDLERS (stubs) ───────────────────────────────────────────────────────
+  function handleStatClick(statKey: string) {
+    setSelectedStat(selectedStat === statKey ? null : statKey)
+  }
+
+  function handleEnchantToggle() {
+    setShowEnchantDetails(!showEnchantDetails)
+  }
+
   function handleEquip() {
     console.log("Equipping item:", MOCK.itemName)
   }
 
-  function handleInspectFullDetails() {
-    setIsExpanded(!isExpanded)
-  }
-
-  function handleSellItem() {
-    console.log("Selling item for", MOCK.sellValue, "gold")
+  function handleInspect() {
+    console.log("Inspecting item details")
   }
 
   // ── RENDER ─────────────────────────────────────────────────────────────────
   return (
     <div className={styles.container}>
       {/* HEADER */}
-      <div className={`${styles.header} ${rarityGlow[MOCK.rarity as keyof RarityColors]}`}>
-        <div className={styles.titleSection}>
-          <h2 className={styles.title}>{MOCK.itemName}</h2>
-
-          <div className={styles.badgesContainer}>
-            {/* Rarity Badge */}
-            <span
-              className={`${styles.rarityBadge} ${styles[MOCK.rarity]}`}
-              style={{
-                background: `linear-gradient(135deg, ${rarityColors[MOCK.rarity as keyof RarityColors]}, ${rarityColors[MOCK.rarity as keyof RarityColors]})`,
-              }}
-            >
-              {MOCK.rarity === "legendary" && <Sparkles className={styles.rarityIcon} />}
-              {MOCK.rarity === "epic" && <Star className={styles.rarityIcon} />}
-              {MOCK.rarity === "rare" && <Gem className={styles.rarityIcon} />}
-              {MOCK.rarity === "uncommon" && <Crown className={styles.rarityIcon} />}
-              {MOCK.rarity === "common" && <Box className={styles.rarityIcon} />}
-            </span>
-
-            {/* Type Badge */}
-            <span className={`${styles.typeBadge}`}>
-              {MOCK.type === "Weapon" && <Sword className={styles.badgeIcon} />}
-              {MOCK.type === "Armor" && <Shield className={styles.badgeIcon} />}
-              {MOCK.type === "Consumable" && <GiFizzingFlask className={styles.badgeIcon} />}
-              {MOCK.type === "Accessory" && <Anchor className={styles.badgeIcon} />}
-              {MOCK.type}
-            </span>
-
-            {/* Level Requirement */}
-            {MOCK.levelRequirement > 0 && (
-              <span className={`${styles.requirementBadge}`}>
-                <Lock className={styles.badgeIcon} />
-                Lvl {MOCK.levelRequirement}
-              </span>
-            )}
-
-            {/* Weight/Slot Info */}
-            <span className={`${styles.infoBadge}`}>
-              <Package className={styles.badgeIcon} />
-              {MOCK.weight}kg · {MOCK.slotType}
-            </span>
-          </div>
-        </div>
-
-        {/* Quality Indicator Bar */}
-        <div className={styles.qualityBarContainer}>
-          <div className={styles.qualityBar}>
-            {[...Array(5)].map((_, index) => (
-              <div
-                key={index}
-                className={`${styles.qualitySegment} ${index < MOCK.qualityLevel ? styles.qualityFilled : ""}`}
-                style={{ background: qualityColors[MOCK.qualityLevel - 1] || "#6B7280" }}
-              />
-            ))}
-          </div>
-        </div>
+      <div className={styles.header}>
+        <h2 className={styles.title}>{MOCK.itemName}</h2>
+        <p className={styles.subTitle}>{statLabels[MOCK.itemType as keyof typeof statLabels]}</p>
+        <span className={styles.rarityBadge}>
+          {rarityIcons[MOCK.itemRarity]}
+          <span className={styles.rarityText}>{MOCK.itemRarity.toUpperCase()}</span>
+        </span>
       </div>
 
       {/* CONTENT */}
-      <div className={styles.content}>
-        {/* Stats Grid */}
-        <section className={styles.section}>
-          <h3 className={styles.sectionTitle}>Item Statistics</h3>
-          <div className={styles.statsGrid}>
-            {MOCK.stats.map(function (stat) {
-              return (
-                <div
-                  key={stat.statName}
-                  className={`${styles.statCard} ${stat.isPositive ? styles.positiveStat : ""}`}
-                  onMouseEnter={() => setShowTooltip(stat.statName)}
-                  onMouseLeave={() => setShowTooltip(null)}
-                >
-                  <div className={styles.statIconContainer}>
-                    {stat.statName.includes("Attack") && <GiPiercingSword className={styles.statIcon} />}
-                    {stat.statName.includes("Defense") && <GiShield className={styles.statIcon} />}
-                    {stat.statName.includes("Health") && <GiHearts className={styles.statIcon} />}
-                    {stat.statName.includes("Mana") && <GiFizzingFlask className={styles.statIcon} />}
-                    {stat.statName.includes("Speed") && <Wind className={styles.statIcon} />}
-                    {stat.statName.includes("Critical") && <Target className={styles.statIcon} />}
-                  </div>
-                  <div className={styles.statInfo}>
-                    <span className={styles.statLabel}>{stat.statName}</span>
-                    <span
-                      className={`${styles.statValue} ${stat.isPositive ? styles.positive : ""}`}
-                      style={{ color: stat.isPositive ? "#10B981" : "#EF4444" }}
-                    >
-                      {stat.value}
+      <ScrollArea className={styles.scrollArea}>
+        <div className={styles.content}>
+          {/* Item Icon & Basic Info */}
+          <section className={styles.section}>
+            <div className={styles.itemIconContainer}>
+              {MOCK.itemIconUrl ? (
+                <img
+                  src={MOCK.itemIconUrl}
+                  alt={MOCK.itemName}
+                  className={styles.itemIcon}
+                />
+              ) : (
+                <div className={`${styles.itemIconPlaceholder} ${styles[`itemIcon_${MOCK.itemType}`]}`}>
+                  {statIcons[MOCK.itemType as keyof typeof statIcons]}
+                </div>
+              )}
+            </div>
+            <div className={styles.basicInfo}>
+              <Badge
+                variant='outline'
+                className={styles.typeBadge}
+              >
+                {MOCK.itemType.toUpperCase()}
+              </Badge>
+              <span className={styles.enchantLevel}>Enchantment Lvl {MOCK.enchantmentLevel}</span>
+            </div>
+          </section>
+
+          {/* Description */}
+          <section className={styles.section}>
+            <h3 className={styles.sectionTitle}>Description</h3>
+            <p className={styles.description}>{MOCK.itemDescription}</p>
+          </section>
+
+          {/* Stats Grid */}
+          <section className={styles.section}>
+            <div className={styles.statsHeader}>
+              <h3 className={styles.sectionTitle}>Statistics</h3>
+              <span className={styles.levelReq}>Level {MOCK.levelRequirement}+</span>
+            </div>
+            <div className={styles.statsGrid}>
+              {(Object.keys(MOCK.itemStats) as Array<keyof typeof MOCK.itemStats>).map(function (statKey, index) {
+                const statValue = MOCK.itemStats[statKey]
+                return (
+                  <div
+                    key={statKey}
+                    className={`${styles.statRow} ${selectedStat === statKey ? styles.selected : ""}`}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                    onClick={() => handleStatClick(statKey)}
+                  >
+                    <div className={styles.statIconContainer}>{statIcons[statKey]}</div>
+                    <span className={styles.statLabel}>{statLabels[statKey]}</span>
+                    <span className={`${styles.statValue} ${selectedStat === statKey ? styles.selectedText : ""}`}>
+                      {statValue}
                     </span>
                   </div>
-                </div>
-              )
-            })}
-          </div>
-        </section>
-
-        {/* Description Section */}
-        <section className={styles.section}>
-          <h3 className={styles.sectionTitle}>Description</h3>
-          <p className={styles.descriptionText}>{MOCK.description}</p>
-
-          {MOCK.loreText && (
-            <div className={styles.loreContainer}>
-              <Scroll className={styles.loreIcon} />
-              <p className={styles.loreText}>{MOCK.loreText}</p>
+                )
+              })}
             </div>
-          )}
+          </section>
 
-          {/* Special Abilities */}
-          {MOCK.abilities.length > 0 && (
-            <div className={styles.abilitiesContainer}>
-              <h4 className={styles.sectionTitleSmall}>Special Abilities</h4>
-              <div className={styles.abilitiesGrid}>
-                {MOCK.abilities.map(function (ability) {
-                  return (
-                    <div
-                      key={ability.abilityName}
-                      className={styles.abilityCard}
-                    >
-                      <Sparkles className={styles.abilityIcon} />
-                      <span className={styles.abilityName}>{ability.abilityName}</span>
-                      <span className={styles.abilityDescription}>{ability.abilityDescription}</span>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-          )}
-
-          {/* Properties */}
-          {Object.values(MOCK.properties).some(Boolean) && (
-            <div className={styles.propertiesContainer}>
-              <h4 className={styles.sectionTitleSmall}>Properties</h4>
-              <div className={styles.propertiesGrid}>
-                {MOCK.properties.isEnchanted && (
-                  <span
-                    className={`${styles.propertyBadge} ${styles.enchanted}`}
-                    onMouseEnter={() => setShowTooltip("This item is enchanted with magical properties")}
-                    onMouseLeave={() => setShowTooltip(null)}
-                  >
-                    <Sparkles className={styles.propertyIcon} />
-                    Enchanted
-                  </span>
-                )}
-                {MOCK.properties.isCursed && (
-                  <span
-                    className={`${styles.propertyBadge} ${styles.cursed}`}
-                    onMouseEnter={() => setShowTooltip("This item is cursed and may cause misfortune")}
-                    onMouseLeave={() => setShowTooltip(null)}
-                  >
-                    <Lock className={styles.propertyIcon} />
-                    Cursed
-                  </span>
-                )}
-                {MOCK.properties.isUnique && (
-                  <span
-                    className={`${styles.propertyBadge} ${styles.unique}`}
-                    onMouseEnter={() => setShowTooltip("This is a unique item with special properties")}
-                    onMouseLeave={() => setShowTooltip(null)}
-                  >
-                    <Crown className={styles.propertyIcon} />
-                    Unique
-                  </span>
-                )}
-              </div>
-            </div>
-          )}
-        </section>
-
-        {/* Action Footer */}
-        <footer className={styles.footer}>
-          {MOCK.isEquipable && (
+          {/* Enchantment Details */}
+          <section className={styles.section}>
             <Button
-              className={`${styles.actionButton} ${styles.equipButton}`}
-              onClick={handleEquip}
+              variant='ghost'
+              size='sm'
+              onClick={handleEnchantToggle}
+              className={styles.enchantButton}
             >
-              <GiShield className={styles.buttonIcon} />
-              Equip Item
+              {showEnchantDetails ? "Hide Enchantments" : "View Enchantments"}
+              <Sparkles />
             </Button>
-          )}
+            {showEnchantDetails && (
+              <div className={styles.enchantmentContainer}>
+                <h4 className={styles.enchantmentTitle}>Active Enchantments</h4>
+                <div className={styles.enchantmentList}>
+                  <div className={styles.enchantmentItem}>
+                    <span className={styles.enchantmentIcon}>⚔️</span>
+                    <span className={styles.enchantmentName}>Sharpness</span>
+                    <span className={styles.enchantmentValue}>+15% Damage</span>
+                  </div>
+                  <div className={styles.enchantmentItem}>
+                    <span className={styles.enchantmentIcon}>🛡️</span>
+                    <span className={styles.enchantmentName}>Fortification</span>
+                    <span className={styles.enchantmentValue}>+8% Defense</span>
+                  </div>
+                  <div className={styles.enchantmentItem}>
+                    <span className={styles.enchantmentIcon}>✨</span>
+                    <span className={styles.enchantmentName}>Arcane Warding</span>
+                    <span className={styles.enchantmentValue}>+12 Magic Power</span>
+                  </div>
+                </div>
+              </div>
+            )}
+          </section>
 
-          <Button
-            className={`${styles.actionButton} ${styles.inspectButton}`}
-            variant='outline'
-            onClick={handleInspectFullDetails}
-          >
-            <Eye className={styles.buttonIcon} />
-            {isExpanded ? "Hide Details" : "Show Full Details"}
-          </Button>
+          {/* Action Buttons */}
+          <section className={styles.section}>
+            <h3 className={styles.sectionTitle}>Actions</h3>
+            <div className={styles.actionButtons}>
+              <Button
+                onClick={handleEquip}
+                variant='default'
+                className={styles.actionButton}
+              >
+                Equip Item
+              </Button>
+              <Button
+                onClick={handleInspect}
+                variant='outline'
+                className={styles.actionButton}
+              >
+                Inspect Details
+              </Button>
+            </div>
+          </section>
 
-          <div className={styles.sellValueContainer}>
-            <span className={styles.sellLabel}>Sell Value:</span>
-            <span className={styles.sellAmount}>{MOCK.sellValue} gp</span>
-          </div>
-        </footer>
-      </div>
+          {/* Footer Info */}
+          <section className={styles.section}>
+            <Separator />
+            <div className={styles.footerInfo}>
+              <span className={styles.footerLabel}>Item ID:</span>
+              <span className={styles.footerValue}>ITEM_{MOCK.itemName.replace(/\s+/g, "_").toUpperCase()}</span>
+              <span className={styles.footerLabel}>Owner:</span>
+              <span className={styles.footerValue}>Player</span>
+            </div>
+          </section>
+        </div>
+      </ScrollArea>
+
+      {/* Hover Effects */}
+      {isHovered && (
+        <div className={styles.hoverOverlay}>
+          <div className={styles.rarityGlow}>{rarityIcons[MOCK.itemRarity]}</div>
+        </div>
+      )}
     </div>
   )
 }

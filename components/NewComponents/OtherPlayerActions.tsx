@@ -21,7 +21,7 @@ import {
   Trophy,
   UserPlus,
   Users,
-  Zap
+  Zap,
 } from "lucide-react"
 import { useState } from "react"
 import styles from "./styles/OtherPlayerActions.module.css"

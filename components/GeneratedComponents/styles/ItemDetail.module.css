@@ -1,472 +1,368 @@
-/* ── LAYOUT & CONTAINER ───────────────────────────────────────────────────── */
+/* ── THEME COLORS ─────────────────────────────────────────────────────────── */
+:root {
+  --primary: #8b4513;
+  --secondary: #daa520;
+  --accent: #c0c0c0;
+  --danger: #8b0000;
+  --background: #1a1a2e;
+  --panel: #2d2d44;
+  --border: #6b4423;
+}
+
+/* ── TYPOGRAPHY (assumed fonts) ───────────────────────────────────────────── */
+.title {
+  color: var(--secondary);
+  font-weight: bold;
+  font-family: "Press Start 2P", monospace;
+  letter-spacing: 2px;
+  text-shadow:
+    2px 2px 0px #000,
+    -1px -1px 0px rgba(0, 0, 0, 0.5),
+    1px -1px 0px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+}
+
+.subTitle {
+  color: var(--accent);
+  font-size: 1.2rem;
+  font-family: "VT323", monospace;
+  letter-spacing: 1px;
+}
+
+/* ── CONTAINER & LAYOUT ───────────────────────────────────────────────────── */
 .container {
-  background-color: #1A1512;
-  border-radius: 8px;
-  padding: 24px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  box-shadow: 
-    0 4px 6px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  border: 2px solid #4A3728;
-}
-
-/* ── HEADER SECTION ───────────────────────────────────────────────────────── */
-.header {
-  background: linear-gradient(135deg, #2D2622 0%, #3D322B 100%);
-  border-bottom: 3px solid #8B4513;
-  padding: 20px 24px;
-  margin-bottom: 20px;
   position: relative;
+  border: 4px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--background);
+  padding: 24px;
+  overflow: hidden;
 }
 
-.titleSection {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
+  margin-bottom: 16px;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 12px;
 }
 
 .title {
-  font-family: "Georgia", "Times New Roman", serif;
-  font-size: 28px;
-  font-weight: bold;
-  color: #D4AF37;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin: 0;
-  text-shadow: 
-    0 0 5px rgba(212, 175, 55, 0.5),
-    0 2px 4px rgba(0, 0, 0, 0.8);
+  background: linear-gradient(180deg, #ffd700, #b8860b);
+  -webkit-background-clip: text;
+  font-size: 14px;
+  line-height: 1.8;
+  -webkit-text-fill-color: transparent;
 }
 
-.badgesContainer {
+.subTitle {
+  margin-top: 4px;
+  font-size: 1rem;
+}
+
+/* ── RARITY BADGE ─────────────────────────────────────────────────────────── */
+.rarityBadge {
   display: flex;
   align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.rarityBadge {
-  padding: 6px 14px;
+  gap: 8px;
+  border: 2px solid var(--secondary);
   border-radius: 4px;
-  font-weight: bold;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.rarityIcon {
-  margin-right: 6px;
-  font-size: 14px;
-}
-
-.typeBadge {
+  background-color: var(--panel);
   padding: 6px 12px;
-  background-color: #8B4513;
-  color: #F5E6C8;
+}
+
+.rarityText {
+  color: var(--secondary);
+  font-size: 10px;
+  font-family: "Press Start 2P", monospace;
+  text-shadow: 0 0 8px var(--secondary);
+}
+
+/* ── SCROLL AREA & CONTENT ────────────────────────────────────────────────── */
+.scrollArea {
   border-radius: 4px;
-  font-weight: 600;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-.badgeIcon {
-  margin-right: 6px;
-  font-size: 14px;
-}
-
-.requirementBadge {
-  padding: 5px 10px;
-  background-color: #8B0000;
-  color: #F5E6C8;
-  border-radius: 4px;
-  font-weight: bold;
-  font-size: 12px;
-}
-
-.infoBadge {
-  padding: 5px 10px;
-  background-color: #4A3728;
-  color: #E8DCC4;
-  border-radius: 4px;
-  font-weight: 600;
-  font-size: 12px;
-}
-
-.qualityBarContainer {
-  margin-top: 16px;
-}
-
-.qualityBar {
-  display: flex;
-  gap: 4px;
-  padding: 8px 12px;
   background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
-  border: 1px solid #4A3728;
+  height: calc(100% - 60px);
 }
 
-.qualitySegment {
-  width: 24px;
-  height: 24px;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-}
-
-.qualityFilled {
-  box-shadow: 0 0 5px currentColor;
-}
-
-/* ── CONTENT SECTIONS ───────────────────────────────────────────────────── */
 .content {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  padding: 8px;
 }
 
 .section {
-  background-color: #2D2622;
-  border-radius: 8px;
-  padding: 16px;
-  border: 1px solid #4A3728;
-  box-shadow: 
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    0 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 12px;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  background-color: var(--panel);
+  padding: 12px;
 }
 
 .sectionTitle {
-  font-family: "Georgia", serif;
-  font-size: 16px;
-  color: #D4AF37;
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #4A3728;
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-size: 10px;
+  font-family: "Press Start 2P", monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-.sectionTitleSmall {
-  font-family: "Georgia", serif;
-  font-size: 14px;
-  color: #E8DCC4;
+/* ── ITEM ICON & BASIC INFO ───────────────────────────────────────────────── */
+.itemIconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 12px;
 }
 
-/* ── STATS GRID ─────────────────────────────────────────────────────────── */
+.itemIconPlaceholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid var(--secondary);
+  border-radius: 4px;
+  background-color: var(--background);
+  width: 80px;
+  height: 80px;
+  font-size: 2rem;
+}
+
+.itemIcon_weapon {
+  border-color: #c0c0c0;
+}
+
+.itemIcon_armor {
+  border-color: #8b4513;
+}
+
+.itemIcon_accessory {
+  border-color: #daa520;
+}
+
+.itemIcon_consumable {
+  border-color: #ef4444;
+}
+
+.itemIcon_artifact {
+  border-color: #a855f7;
+}
+
+.basicInfo {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.typeBadge {
+  border-radius: 3px;
+  background-color: var(--border);
+  padding: 4px 8px;
+  color: var(--accent);
+  font-size: 0.7rem;
+}
+
+.enchantLevel {
+  color: var(--secondary);
+  font-size: 9px;
+  font-family: "Press Start 2P", monospace;
+}
+
+/* ── DESCRIPTION ──────────────────────────────────────────────────────────── */
+.description {
+  color: #e5e7eb;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  font-family: "VT323", monospace;
+}
+
+/* ── STATS GRID ───────────────────────────────────────────────────────────── */
+.statsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.levelReq {
+  color: var(--danger);
+  font-size: 9px;
+  font-family: "Press Start 2P", monospace;
+}
+
 .statsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
 }
 
-.statCard {
-  background-color: rgba(45, 38, 34, 0.9);
-  border-radius: 8px;
-  padding: 16px;
+.statRow {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 12px;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   cursor: pointer;
-  border: 1px solid #4A3728;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 6px 8px;
 }
 
-.statCard:hover {
-  transform: translateY(-2px);
-  box-shadow: 
-    0 4px 8px rgba(0, 0, 0, 0.4),
-    0 0 15px rgba(212, 175, 55, 0.3);
-  border-color: #D4AF37;
+.statRow:hover {
+  transform: scale(1.02);
+  border: 1px solid var(--secondary);
+  background-color: rgba(218, 165, 32, 0.1);
 }
 
-.statCard.positiveStat {
-  border-left: 3px solid #10B981;
+.statRow.selected {
+  border: 2px solid var(--secondary);
+  background-color: rgba(245, 158, 11, 0.2);
 }
 
 .statIconContainer {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(74, 55, 40, 0.3);
-  border-radius: 6px;
-}
-
-.statIcon {
-  font-size: 20px;
-  color: #D4AF37;
-}
-
-.statInfo {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+  color: var(--accent);
+  font-size: 1.2rem;
 }
 
 .statLabel {
-  font-size: 12px;
-  color: #9CA3AF;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  color: #9ca3af;
+  font-size: 0.9rem;
+  font-family: "VT323", monospace;
 }
 
 .statValue {
-  font-family: "Courier New", monospace;
-  font-weight: bold;
-  font-size: 16px;
-  margin-top: 4px;
+  color: var(--accent);
+  font-size: 11px;
+  font-family: "Press Start 2P", monospace;
+  text-shadow: 0 0 6px rgba(192, 192, 192, 0.5);
 }
 
-.positive {
-  color: #10B981 !important;
+.statRow.selected .statValue {
+  color: var(--secondary);
+  text-shadow: 0 0 8px var(--secondary);
 }
 
-/* ── DESCRIPTION SECTION ───────────────────────────────────────────────── */
-.descriptionText {
-  font-family: "Georgia", serif;
-  line-height: 1.6;
-  color: #E8DCC4;
-  margin-bottom: 20px;
-  font-size: 15px;
+/* ── ENCHANTMENT SECTION ─────────────────────────────────────────────────── */
+.enchantButton {
+  border-color: var(--border);
+  width: 100%;
+  color: var(--accent);
+  font-family: "VT323", monospace;
 }
 
-.loreContainer {
-  background-color: rgba(74, 55, 40, 0.2);
-  border-left: 3px solid #8B4513;
-  padding: 16px;
-  margin-bottom: 20px;
-  border-radius: 0 8px 8px 0;
-}
-
-.loreIcon {
-  color: #D4AF37;
-  font-size: 20px;
-  margin-right: 12px;
-}
-
-.loreText {
-  font-family: "Georgia", serif;
-  font-style: italic;
-  line-height: 1.8;
-  color: #F5E6C8;
-  font-size: 14px;
-}
-
-.abilitiesContainer {
-  margin-top: 20px;
-}
-
-.abilitiesGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 12px;
-}
-
-.abilityCard {
-  background-color: rgba(45, 38, 34, 0.9);
-  border-radius: 6px;
-  padding: 14px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  border: 1px solid #4A3728;
-  transition: all 0.3s ease;
-}
-
-.abilityCard:hover {
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
-  border-color: #D4AF37;
-}
-
-.abilityIcon {
-  color: #D4AF37;
-  font-size: 18px;
-}
-
-.abilityName {
-  font-weight: bold;
-  color: #F5E6C8;
-  font-size: 14px;
-}
-
-.abilityDescription {
-  font-size: 12px;
-  color: #9CA3AF;
-  line-height: 1.4;
-}
-
-.propertiesContainer {
-  margin-top: 20px;
-}
-
-.propertiesGrid {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.propertyBadge {
-  padding: 6px 12px;
+.enchantmentContainer {
+  margin-top: 8px;
+  border-left: 3px solid var(--secondary);
   border-radius: 4px;
-  font-size: 12px;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  cursor: help;
-  position: relative;
+  background-color: rgba(192, 192, 192, 0.05);
+  padding: 8px;
 }
 
-.propertyIcon {
-  margin-right: 6px;
-  font-size: 14px;
+.enchantmentTitle {
+  margin-bottom: 8px;
+  color: var(--secondary);
+  font-size: 9px;
+  font-family: "Press Start 2P", monospace;
 }
 
-.enchanted {
-  background-color: rgba(139, 69, 19, 0.3);
-  color: #D4AF37;
-  border: 1px solid #8B4513;
-}
-
-.cursed {
-  background-color: rgba(139, 0, 0, 0.3);
-  color: #EF4444;
-  border: 1px solid #8B0000;
-}
-
-.unique {
-  background-color: rgba(212, 175, 55, 0.3);
-  color: #F5E6C8;
-  border: 1px solid #D4AF37;
-}
-
-/* ── FOOTER ACTIONS ─────────────────────────────────────────────────────── */
-.footer {
+.enchantmentList {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.enchantmentItem {
+  display: flex;
   justify-content: space-between;
-  gap: 16px;
-  padding-top: 20px;
-  border-top: 2px solid #4A3728;
-  margin-top: 16px;
+  align-items: center;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 4px 8px;
+}
+
+.enchantmentIcon {
+  font-size: 1rem;
+}
+
+.enchantmentName {
+  color: var(--accent);
+  font-size: 0.95rem;
+  font-family: "VT323", monospace;
+}
+
+.enchantmentValue {
+  color: var(--secondary);
+  font-size: 8px;
+  font-family: "Press Start 2P", monospace;
+}
+
+/* ── ACTION BUTTONS ───────────────────────────────────────────────────────── */
+.actionButtons {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
 }
 
 .actionButton {
-  flex: 1;
-  min-width: 150px;
-  padding: 12px 20px;
-  font-size: 14px;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  border-radius: 6px;
-  transition: all 0.3s ease;
+  border-color: var(--border);
+  min-width: 100px;
+  color: var(--accent);
+  font-family: "VT323", monospace;
 }
 
-.equipButton {
-  background-color: #8B4513;
-  color: #F5E6C8;
-  border: 2px solid #D4AF37;
-}
-
-.equipButton:hover {
-  background-color: #A0522D;
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-}
-
-.inspectButton {
-  flex: 1;
-  min-width: 150px;
-  padding: 12px 20px;
-  font-size: 14px;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  border-radius: 6px;
-}
-
-.buttonIcon {
-  margin-right: 8px;
-  font-size: 16px;
-}
-
-.sellValueContainer {
+/* ── FOOTER INFO ──────────────────────────────────────────────────────────── */
+.footerInfo {
   display: flex;
+  justify-content: space-between;
+  padding-top: 8px;
+  font-size: 0.8rem;
+}
+
+.footerLabel {
+  color: var(--accent);
+}
+
+.footerValue {
+  color: #9ca3af;
+  font-family: "VT323", monospace;
+}
+
+/* ── HOVER EFFECTS ────────────────────────────────────────────────────────── */
+.hoverOverlay {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  justify-content: center;
   align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
-  background-color: rgba(45, 38, 34, 0.9);
-  border-radius: 6px;
-  border: 1px solid #4A3728;
+  background-color: rgba(0, 0, 0, 0.4);
+  pointer-events: none;
 }
 
-.sellLabel {
-  font-size: 14px;
-  color: #9CA3AF;
+.rarityGlow {
+  color: var(--secondary);
+  font-size: 3rem;
+  text-shadow:
+    0 0 10px var(--secondary),
+    0 0 20px var(--secondary),
+    0 0 30px var(--secondary);
 }
 
-.sellAmount {
-  font-family: "Courier New", monospace;
-  font-weight: bold;
-  font-size: 16px;
-  color: #D4AF37;
+/* ── SEPARATOR (pixelated) ───────────────────────────────────────────────── */
+.Separator {
+  margin: 16px 0;
+  border: none;
+  background-color: var(--border);
+  height: 2px;
 }
 
-/* ── RESPONSIVE ADJUSTMENTS ─────────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .container {
-    padding: 16px;
-  }
-
-  .title {
-    font-size: 22px;
-  }
-
-  .badgesContainer {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .statsGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .footer {
-    flex-direction: column;
-  }
-
-  .actionButton,
-  .sellValueContainer {
-    width: 100%;
-  }
+/* ── BUTTON STYLES (overrides for retro feel) ─────────────────────────────── */
+.Button {
+  border-radius: 4px !important;
+  font-family: "VT323", monospace !important;
 }
 
-/* ── HOVER EFFECTS & ANIMATIONS ─────────────────────────────────────────── */
-@keyframes glowPulse {
-  0%, 100% {
-    box-shadow: 0 0 20px #D4AF37, inset 0 0 15px rgba(212, 175, 55, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 25px #D4AF37, inset 0 0 20px rgba(212, 175, 55, 0.6);
-  }
-}
-
-.legendary:hover {
-  animation: glowPulse 2s ease-in-out infinite;
-}
-
-@keyframes borderGlow {
-  0%, 100% {
-    border-color: #4A3728;
-  }
-  50% {
-    border-color: #D4AF37;
-  }
-}
-
-.statCard:hover {
-  animation: borderGlow 1.5s ease-in-out infinite;
+.Badge {
+  font-size: 8px !important;
+  font-family: "Press Start 2P", monospace !important;
 }

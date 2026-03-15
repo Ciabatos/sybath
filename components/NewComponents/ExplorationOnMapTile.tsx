@@ -1,30 +1,21 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { useState } from "react"
 import {
-  Castle,
-  Flame,
-  Tent,
-  Sword,
-  Shield,
-  Heart,
-  Coins,
   Backpack,
-  Thermometer,
-  Moon,
-  Sun,
-  Clock,
-  MapPin,
-  Skull,
-  Crosshair,
-  WandSparkles,
-  Apple,
-  Wheat,
-  FlaskConical,
   Binoculars,
+  Castle,
+  Clock,
   Compass,
+  Crosshair,
+  Flame,
+  Heart,
+  Moon,
+  Shield,
+  Tent,
+  Thermometer,
 } from "lucide-react"
+import { useState } from "react"
 
 import styles from "./styles/ExplorationOnMapTile.module.css"
 

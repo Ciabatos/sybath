@@ -60,7 +60,7 @@ Informacje o tile: zasoby, surowce, eksploracja, knowledge.
 BuildUI
 Wybór budynków, ich produkcja i ulepszenia.
 
-ProductionPanel
+Production UI FOR DISTRICT LIKE FARM, MINE, QUARY, GRANARY
 Pokazuje produkcję w districcie, ilości produktów, interwały.
 
 TransportUI

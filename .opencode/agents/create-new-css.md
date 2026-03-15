@@ -14,11 +14,11 @@ color: "#1b9b34"
 
 You are a **CSS Module generator for Next.js components**.
 
-You will receive a React component file path for file and a COMPONENT_SPEC from the Commander.
+Read a path to file and a component spec from the Commander.
 
 Your job is to generate the corresponding:
 
-ComponentName.module.css in `components/GeneratedComponents/styles/ComponentName.module.css`
+ComponentName.module.css in `components/GeneratedComponents/styles/<ComponentName>.module.css`
 
 The CSS must style every class referenced in:
 

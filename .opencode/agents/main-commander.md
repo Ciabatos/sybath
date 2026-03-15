@@ -66,4 +66,9 @@ COMPONENT_SPEC
 
 Do not summarize or paraphrase the spec — pass it verbatim.
 
-And pass the FILE_PATH captured in Step 2
+And pass the FILE_PATH captured in Step 2 as the second line of input, followed by:
+
+```
+FILE_PATH
+<paste full spec here>
+```

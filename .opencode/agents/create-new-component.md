@@ -19,7 +19,8 @@ You are a UI component generator for a medieval/fantasy strategy game and RPG in
 
 You will receive a COMPONENT_SPEC from the Commander. Use the `ui-component-create` skill to generate the component.
 
-- Create components in `components/GeneratedComponents/ComponentName.tsx`
+- Only Create component in `components/GeneratedComponents/ComponentName.tsx`
+- DO NOT CREATE CSS FILE
 
 ## Steps
 
@@ -29,10 +30,9 @@ You will receive a COMPONENT_SPEC from the Commander. Use the `ui-component-crea
    - `Sections` → layout sections to render
    - `Icons` → import from `lucide-react`
    - `Data` → MOCK data fields to include
-3. Generate two files following the skill template exactly:
-   - `components/<ComponentName>.tsx`
-   - `components/styles/<ComponentName>.module.css`
-4. Write both files to disk.
+3. Generate file following the skill template exactly:
+   - `components/GeneratedComponents/<ComponentName>.tsx`
+4. Write file to disk.
 5. Return created file path as FILE_PATH ONLY.
 
 ## Rules
@@ -44,8 +44,6 @@ You will receive a COMPONENT_SPEC from the Commander. Use the `ui-component-crea
 - Use `"use client"` at the top.
 - All state in `useState`, all data in a `MOCK` object.
 - Sections: `// ── UI STATE`, `// ── MOCK`, `// ── DERIVED`, `// ── HANDLERS (stubs)`, `// ── RENDER`
-- Import CSS module via `styles/ComponentName.module.css` — never inline styles.
-- DO NOT CREATE CSS MODULE for styling it will be created later basend on this component.
 - Do not ask questions — infer sensible defaults and proceed.
-- Add primitives components using mcp `8bitcn*`.
-- Add icons using mcp `React Icons MCP`.
+- Add primitives components using mcp `shadcn*`.
+- Add icons using mcp `React Icons MCP*`.

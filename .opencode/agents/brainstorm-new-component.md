@@ -43,7 +43,7 @@ The theme should include:
 - hover / active state ideas
 - fantasy / medieval styling ideas
 
-You may use primitives from `8bitcn*`.
+You may use primitives from `shadcn`.
 
 You may use icons from `React Icons MCP` and look for game icons
 

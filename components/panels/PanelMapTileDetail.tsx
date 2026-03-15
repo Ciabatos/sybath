@@ -1,6 +1,6 @@
 "use client"
 
-import SkillDetailsModal from "@/components/GeneratedComponents/SkillDetailsModal"
+import ItemDetail from "@/components/GeneratedComponents/ItemDetail"
 import GatherResource from "@/components/items/GatherResource"
 import { Button } from "@/components/ui/button"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
@@ -112,7 +112,7 @@ export default function PanelMapTileDetail() {
 
   return (
     <div className={styles.overlay}>
-      <SkillDetailsModal></SkillDetailsModal>
+      <ItemDetail></ItemDetail>
       <GatherResource
         isOpen={!!selectedResource}
         onClose={handleCloseGather}
