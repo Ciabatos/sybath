@@ -1,6 +1,8 @@
 Atom Family DLA ATOMÓW i useStore - must have
 derived tile atom
 
+dodatkowe hooki tylko do odcztu atomu w tym samym pliku
+
 Update nodejs
 Środowisko do robienia UI przez agenta AI
 Mock data zebym napisal sql
