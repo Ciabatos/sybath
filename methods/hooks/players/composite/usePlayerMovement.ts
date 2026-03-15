@@ -8,7 +8,7 @@ import { useMapTilesPathFromPointToPoint } from "@/methods/hooks/world/composite
 import { useFetchPlayerMovement } from "@/methods/hooks/world/core/useFetchPlayerMovement"
 import { useFetchPlayerPosition } from "@/methods/hooks/world/core/useFetchPlayerPosition"
 import { useMutatePlayerMovement } from "@/methods/hooks/world/core/useMutatePlayerMovement"
-import { playerMovementPlannedAtom, playerPositionAtom } from "@/store/atoms"
+import { playerMovementAtom, playerMovementPlannedAtom, playerPositionAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { toast } from "sonner"
 
@@ -37,6 +37,7 @@ export function usePlayerMovement() {
   const { mutatePlayerMovement } = useMutatePlayerMovement({ playerId })
 
   useFetchPlayerMovement({ playerId })
+  const playerMovement = useAtomValue(playerMovementAtom)
 
   function selectPlayerPath(params: TPlayerMovementParams) {
     const path = getPathFromPointToPoint(params)
@@ -127,6 +128,7 @@ export function usePlayerMovement() {
   }
 
   return {
+    playerMovement,
     selectPlayerPath,
     selectPlayerPathToClickedTile,
     selectPlayerPathAndMovePlayer,

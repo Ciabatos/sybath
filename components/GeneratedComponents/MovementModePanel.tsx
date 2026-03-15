@@ -4,8 +4,6 @@ import { Button } from "@/components/ui/button"
 import { usePlayerExploration } from "@/methods/hooks/players/composite/usePlayerExploration"
 import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMovement"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
-import { playerMovementAtom } from "@/store/atoms"
-import { useAtomValue } from "jotai"
 import { Hand, X } from "lucide-react"
 import { useEffect, useState } from "react"
 import { GiBigDiamondRing, GiCrystalBall, GiDropWeapon } from "react-icons/gi"
@@ -22,7 +20,7 @@ export default function MovementModePanel({ isOpen, onClose }: MovementModePanel
     usePlayerMovement()
   const { exploreClickedTile } = usePlayerExploration()
   const { clickedMapTile } = useMapTileActions()
-  const playerMovement = useAtomValue(playerMovementAtom)
+  const { playerMovement } = usePlayerMovement()
   // ── UI STATE ───────────────────────────────────────────────────────────────
   const [progressPercentage, setProgressPercentage] = useState<number>(0)
   const [isMoving, setIsMoving] = useState(false)
