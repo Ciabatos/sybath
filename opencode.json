@@ -2,6 +2,11 @@
   "$schema": "https://opencode.ai/config.json",
   "model": "lmstudio2/qwen_qwen3.5-9b",
   "mcp": {
+    "rpg-db": {
+      "type": "local",
+      "command": ["cmd.exe", "/c", "node", "rpg-db-mcp-server/dist/index.js"],
+      "enabled": true
+    },
     "shadcn": {
       "type": "local",
       "command": ["cmd.exe", "/c", "npx", "-y", "shadcn@latest", "mcp"],

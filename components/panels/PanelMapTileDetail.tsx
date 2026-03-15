@@ -1,11 +1,10 @@
 "use client"
 
+import MovementModePanel from "@/components/GeneratedComponents/MovementModePanel"
 import GatherResource from "@/components/items/GatherResource"
 import { Button } from "@/components/ui/button"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
-import { usePlayerExploration } from "@/methods/hooks/players/composite/usePlayerExploration"
-import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMovement"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { TMapTileResource, useMapTileDetail } from "@/methods/hooks/world/composite/useMapTileDetail"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
@@ -17,14 +16,12 @@ export default function PanelMapTileDetail() {
   const { resetModalRightCenter } = useModalRightCenter()
   const { openModalTopCenter } = useModalTopCenter()
   const { clickedMapTile } = useMapTileActions()
+  const [isMovementPanelOpen, setIsMovementPanelOpen] = useState(false)
   const { combinedKnownMapTilesResourcesOnTile } = useMapTileDetail()
-  const { selectPlayerPathToClickedTile, selectPlayerPathAndMovePlayerToClickedTile, resetPlayerMovementPlanned } =
-    usePlayerMovement()
-  const { exploreClickedTile } = usePlayerExploration()
-  const [selectedResource, setSelectedResource] = useState<TMapTileResource | null>(null)
+  const [clickedResource, setClickedResource] = useState<TMapTileResource | null>(null)
 
   useEffect(() => {
-    setSelectedResource(null)
+    setClickedResource(null)
   }, [clickedMapTile])
 
   if (!clickedMapTile) {
@@ -35,75 +32,27 @@ export default function PanelMapTileDetail() {
     resetModalRightCenter()
   }
 
-  const [isMoving, setIsMoving] = useState(false)
-  const [isExploring, setIsExploring] = useState(false)
-
-  useEffect(() => {
-    if (isMoving || isExploring) {
-      selectPlayerPathToClickedTile()
-    }
-  }, [clickedMapTile])
-
   function handlePlayersListOnTile() {
     openModalTopCenter(EPanelsTopCenter.PanelPlayersOnTile)
   }
 
-  function handleMove() {
-    if (!isMoving) {
-      setIsMoving(true)
-      selectPlayerPathToClickedTile()
-    }
-  }
-
-  function handleConfirmMove() {
-    if (isMoving) {
-      setIsMoving(false)
-      selectPlayerPathAndMovePlayerToClickedTile()
-    }
-  }
-
-  function handleCancelMove() {
-    setIsMoving(false)
-    resetPlayerMovementPlanned()
-  }
-
-  function handleExplore() {
-    if (!isExploring) {
-      setIsExploring(true)
-      selectPlayerPathToClickedTile()
-    }
-  }
-
-  function handleConfirmExplore() {
-    if (isExploring) {
-      setIsExploring(false)
-      exploreClickedTile()
-      resetPlayerMovementPlanned()
-    }
-  }
-
-  function handleCancelExplore() {
-    setIsExploring(false)
-    resetPlayerMovementPlanned()
-  }
-
   function handleResourceOnTile(resource: TMapTileResource) {
-    setSelectedResource(resource)
+    setClickedResource(resource)
     // openModalTopCenter(EPanelsTopCenter.PanelGatherResource)
   }
 
   function handleCloseGather() {
-    setSelectedResource(null)
+    setClickedResource(null)
   }
-  const terrainName = clickedMapTile?.terrainTypes?.name
 
+  // ── DERIVED ────────────────────────────────────────────────────────────────
+  const terrainName = clickedMapTile?.terrainTypes?.name
   const terrainTypesMoveCost = clickedMapTile?.terrainTypes?.moveCost
   const landscapeTypesMoveCost = clickedMapTile?.landscapeTypes?.moveCost
   const citiesMoveCost = clickedMapTile?.cities?.moveCost
   const districtTypesMoveCost = clickedMapTile?.districtTypes?.moveCost
   const totalMoveCost =
     (terrainTypesMoveCost || 0) + (landscapeTypesMoveCost || 0) + (citiesMoveCost || 0) + (districtTypesMoveCost || 0)
-
   const landscapeName = clickedMapTile?.landscapeTypes?.name
   const cityName = clickedMapTile?.cities?.name
   const districtName = clickedMapTile?.districts?.name
@@ -111,10 +60,14 @@ export default function PanelMapTileDetail() {
 
   return (
     <div className={styles.overlay}>
+      <MovementModePanel
+        isOpen={isMovementPanelOpen}
+        onClose={() => setIsMovementPanelOpen(false)}
+      />
       <GatherResource
-        isOpen={!!selectedResource}
+        isOpen={!!clickedResource}
         onClose={handleCloseGather}
-        resource={selectedResource}
+        resource={clickedResource}
       />
       <div className={styles.panel}>
         <div className={styles.header}>
@@ -263,6 +216,7 @@ export default function PanelMapTileDetail() {
               </div>
             </div>
           </section>
+
           <section className={styles.section}>
             <div className={styles.actionButtons}>
               <Button
@@ -272,63 +226,13 @@ export default function PanelMapTileDetail() {
                 Set Camp
               </Button>
 
-              {/* Ruch */}
-              {isMoving ? (
-                <>
-                  <Button
-                    className={styles.actionButton}
-                    variant='outline'
-                    onClick={handleConfirmMove}
-                  >
-                    Confirm Move
-                  </Button>
-                  <Button
-                    className={styles.actionButton}
-                    variant='outline'
-                    onClick={handleCancelMove}
-                  >
-                    Cancel Move
-                  </Button>
-                </>
-              ) : !isExploring ? (
-                // Pokaż Move Here tylko jeśli NIE eksplorujemy
-                <Button
-                  className={styles.actionButton}
-                  variant='outline'
-                  onClick={handleMove}
-                >
-                  Move Here
-                </Button>
-              ) : null}
-
-              {/* Eksploracja */}
-              {isExploring ? (
-                <>
-                  <Button
-                    className={styles.actionButton}
-                    variant='outline'
-                    onClick={handleConfirmExplore}
-                  >
-                    Confirm Explore
-                  </Button>
-                  <Button
-                    className={styles.actionButton}
-                    variant='outline'
-                    onClick={handleCancelExplore}
-                  >
-                    Cancel Explore
-                  </Button>
-                </>
-              ) : !isMoving ? (
-                // Pokaż Explore Here tylko jeśli NIE ruszamy się
-                <Button
-                  className={styles.actionButton}
-                  variant='outline'
-                  onClick={handleExplore}
-                >
-                  Explore Here
-                </Button>
-              ) : null}
+              <Button
+                className={styles.actionButton}
+                variant='outline'
+                onClick={() => setIsMovementPanelOpen(true)}
+              >
+                Move / Explore
+              </Button>
             </div>
           </section>
         </div>

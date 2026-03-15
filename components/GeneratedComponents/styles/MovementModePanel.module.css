@@ -1,0 +1,697 @@
+/* Movement Mode Panel - Medieval Fantasy Theme */
+/* Ancient parchment scroll with carved wooden borders, golden magical runes */
+
+/* ============================================
+   CORE PANEL STYLES
+   ============================================ */
+
+.panel {
+  position: relative;
+  box-shadow:
+    0 8px 24px rgba(101, 67, 33, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border: 4px solid #654321; /* dark brown carved wood frame */
+  border-radius: 0.5rem;
+  background-image:
+    linear-gradient(180deg, rgba(245, 222, 179, 0.9) 0%, rgba(245, 222, 179, 0.95) 100%),
+    url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d4c5a9' fill-opacity='0.4'%3E%3Cpath d='M5.5 1.3L1.8 5 0 3.2l1.8-1.7L5.5 1.3z'/%3E%3C/g%3E%3C/svg%3E");
+  background-color: #f5deb3; /* wheat/parchment base */
+  padding: 1.5rem;
+  font-family: "Georgia", "Times New Roman", serif;
+}
+
+.panel::before {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  bottom: -4px;
+  left: -4px;
+  border: 2px solid #daa520; /* goldenrod magical accent */
+  border-radius: 0.75rem;
+  pointer-events: none;
+  content: "";
+}
+
+.panel::after {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  bottom: 4px;
+  left: 4px;
+  border: 2px solid #8b4513; /* saddle brown */
+  border-radius: 0.25rem;
+  pointer-events: none;
+  content: "";
+}
+
+/* ============================================
+   HEADER SECTION
+   ============================================ */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  border-bottom: 4px solid #8b4513; /* carved wood divider */
+  padding-bottom: 1rem;
+}
+
+.titleSection {
+  text-align: left;
+}
+
+.title {
+  font-family: "Georgia", serif;
+  tracking: wide;
+  margin: 0 0 0.25rem 0;
+  border-bottom: 2px solid #8b4513;
+  padding-bottom: 0.5rem;
+  color: #8b4513; /* saddle brown */
+  font-size: 1.25rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.subTitle {
+  margin: 0;
+  color: #5a4a3a; /* aged parchment */
+  font-size: 0.75rem;
+  line-height: 1.6;
+  font-family: "Georgia", serif;
+}
+
+.coordinates {
+  display: inline-block;
+  border: 1px solid rgba(101, 67, 33, 0.3);
+  border-radius: 0.25rem;
+  background-color: #d2b48c; /* tan panel */
+  padding: 0.25rem 0.5rem;
+  color: #654321; /* dark brown */
+  font-size: 0.75rem;
+  font-family: "Courier New", monospace, "Consolas", monospace;
+}
+
+.closeButton {
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  padding: 0.25rem;
+  color: #8b4513;
+}
+
+.closeButton:hover {
+  color: #daa520; /* goldenrod on hover */
+}
+
+.closeIcon {
+  font-size: 1.25rem;
+}
+
+/* ============================================
+   CONTENT LAYOUT
+   ============================================ */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.section {
+  position: relative;
+  transition: all 0.2s ease;
+  border: 2px solid #8b4513; /* saddle brown border */
+  border-radius: 0.375rem;
+  background-color: rgba(210, 180, 140, 0.3); /* tan with transparency */
+  padding: 1rem;
+}
+
+.section::before {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  left: -2px;
+  border: 1px solid rgba(218, 165, 32, 0.3); /* subtle gold glow */
+  border-radius: 0.5rem;
+  pointer-events: none;
+  content: "";
+}
+
+.section:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 4px 8px rgba(139, 69, 19, 0.15),
+    inset 0 0 4px rgba(218, 165, 32, 0.1);
+  border-color: #daa520; /* goldenrod accent on hover */
+}
+
+.sectionTitle {
+  margin: 0 0 0.75rem 0;
+  border-bottom: 1px solid #8b4513;
+  padding-bottom: 0.25rem;
+  color: #654321; /* dark brown */
+  font-size: 0.875rem;
+  font-family: "Georgia", serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   PROGRESS BAR (Animation Progress)
+   ============================================ */
+
+.progressContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.statusIndicator {
+  border: 1px solid rgba(139, 69, 19, 0.3);
+  border-radius: 0.25rem;
+  background-color: #cd5c5c; /* indian red */
+  padding: 0.25rem 0.5rem;
+  color: white;
+  font-size: 0.75rem;
+  font-family: "Courier New", monospace, "Consolas", monospace;
+}
+
+.progressBar {
+  position: relative;
+  flex: 1;
+  box-shadow: inset 0 0 4px rgba(139, 69, 19, 0.2);
+  border: 1px solid #654321; /* dark brown frame */
+  border-radius: 0.25rem;
+  background-color: #d2b48c; /* tan base */
+  height: 8px;
+  overflow: hidden;
+}
+
+.progressBar::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(139, 69, 19, 0.1) 2px,
+      rgba(139, 69, 19, 0.1) 4px
+    );
+  content: "";
+}
+
+.progressFill {
+  transition: width 0.3s ease;
+  box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+  background-color: #daa520; /* goldenrod */
+  height: 100%;
+}
+
+.progressFill.walk {
+  background-color: #8b4513; /* saddle brown */
+}
+
+.progressFill.run {
+  background-color: #daa520; /* goldenrod */
+}
+
+.progressFill.sprint {
+  background-color: #cd5c5c; /* indian red */
+}
+
+.progressInfo {
+  display: flex;
+  gap: 0.75rem;
+  color: #654321; /* dark brown */
+  font-size: 0.75rem;
+  font-family: "Courier New", monospace, "Consolas", monospace;
+}
+
+/* ============================================
+   SPEED CONTROLS
+   ============================================ */
+
+.speedControlsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.speedButton {
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 2px solid #654321; /* dark brown */
+  background-color: #d2b48c; /* tan */
+  padding: 0.5rem 0.75rem;
+  color: #654321;
+  font-size: 0.875rem;
+  font-family: "Georgia", serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.speedButton:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 2px 4px rgba(139, 69, 19, 0.2),
+    inset 0 0 8px rgba(218, 165, 32, 0.1);
+  border-color: #daa520; /* goldenrod */
+}
+
+.speedButton:active {
+  transform: scale(0.98);
+  box-shadow:
+    0 1px 2px rgba(139, 69, 19, 0.2),
+    inset 0 0 4px rgba(139, 69, 19, 0.3);
+}
+
+.activeSpeedButton {
+  box-shadow:
+    inset 0 0 4px rgba(139, 69, 19, 0.2),
+    0 0 8px rgba(218, 165, 32, 0.1);
+  border-color: #daa520;
+  background-color: rgba(218, 165, 32, 0.2); /* goldenrod tint */
+}
+
+/* ============================================
+   COSTS SECTION
+   ============================================ */
+
+.costsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.costItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid #8b4513; /* saddle brown */
+  border-radius: 0.25rem;
+  background-color: rgba(139, 69, 19, 0.1); /* subtle brown tint */
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  font-family: "Courier New", monospace, "Consolas", monospace;
+}
+
+.costItem.goldText {
+  color: #daa520; /* goldenrod */
+  text-shadow: 0 0 4px rgba(218, 165, 32, 0.3);
+}
+
+.costItem.manaText {
+  color: #4169e1; /* royal blue for mana */
+  text-shadow: 0 0 4px rgba(65, 105, 225, 0.3);
+}
+
+.costItem.staminaText {
+  color: #228b22; /* forest green */
+  text-shadow: 0 0 4px rgba(34, 139, 34, 0.3);
+}
+
+/* ============================================
+   PLAYER STATE (Resources)
+   ============================================ */
+
+.resourcesContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.75rem;
+}
+
+.resourceItem {
+  border: 1px solid #daa520; /* goldenrod */
+  border-radius: 0.25rem;
+  background-color: rgba(218, 165, 32, 0.1); /* goldenrod tint */
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.resourceLabel {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #654321; /* dark brown */
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.resourceValue {
+  display: block;
+  color: #8b4513; /* saddle brown */
+  font-size: 1rem;
+  font-family: "Courier New", monospace, "Consolas", monospace;
+}
+
+.manaResource {
+  color: #4169e1; /* royal blue */
+}
+
+/* ============================================
+   TERRAIN EFFECTS
+   ============================================ */
+
+.terrainContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.terrainItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid #8b4513; /* saddle brown */
+  border-radius: 0.25rem;
+  background-color: rgba(139, 69, 19, 0.1); /* brown tint */
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.terrainModifier {
+  border-radius: 0.25rem;
+  background-color: rgba(218, 165, 32, 0.2); /* goldenrod tint */
+  padding: 0.125rem 0.375rem;
+  font-size: 0.75rem;
+  font-family: "Courier New", monospace, "Consolas", monospace;
+}
+
+/* ============================================
+   COMPAIONS SECTION
+   ============================================ */
+
+.companionsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.followerItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid #daa520; /* goldenrod */
+  border-radius: 0.25rem;
+  background-color: rgba(218, 165, 32, 0.1); /* goldenrod tint */
+  padding: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.followerHealth {
+  color: #228b22; /* forest green */
+}
+
+.followerStamina {
+  color: #ffd700; /* gold */
+}
+
+.totalFollowers {
+  margin-top: 0.5rem;
+  color: #654321; /* dark brown */
+  font-size: 0.75rem;
+  font-family: "Courier New", monospace, "Consolas", monospace;
+}
+
+/* ============================================
+   COMBAT WARNINGS (Danger)
+   ============================================ */
+
+.dangerContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+}
+
+.danger_safe {
+  border: 1px solid #2e8b57; /* medium sea green */
+  background-color: rgba(46, 139, 87, 0.2); /* green tint */
+}
+
+.danger_cautious {
+  border: 1px solid #daa520; /* goldenrod */
+  background-color: rgba(218, 165, 32, 0.2); /* goldenrod tint */
+}
+
+.danger_dangerous {
+  border: 1px solid #cd5c5c; /* indian red */
+  background-color: rgba(205, 92, 92, 0.2); /* indian red tint */
+}
+
+.encounterChance {
+  font-size: 0.75rem;
+  font-family: "Courier New", monospace, "Consolas", monospace;
+}
+
+.warningMessage {
+  color: #654321; /* dark brown */
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* ============================================
+   MOVEMENT DATA SECTION
+   ============================================ */
+
+.movementDataContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+
+.dataItem {
+  border-left: 3px solid #8b4513; /* saddle brown accent */
+  border-radius: 0 0.25rem 0.25rem 0;
+  background-color: rgba(245, 222, 179, 0.5); /* light parchment */
+  padding: 0.625rem;
+}
+
+.dataLabel {
+  margin-bottom: 0.25rem;
+  color: #8b4513; /* saddle brown */
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.dataValue {
+  color: #654321; /* dark brown */
+  font-weight: bold;
+  font-size: 1rem;
+  font-family: "Courier New", monospace, "Consolas", monospace;
+}
+
+/* ============================================
+   ACTION BUTTONS
+   ============================================ */
+
+.actionButtons {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.cancelButton,
+.startButton {
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  background-color: #8b4513; /* saddle brown */
+  padding: 0.75rem 1.25rem;
+  color: white;
+  font-size: 0.875rem;
+  font-family: "Georgia", serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.cancelButton:hover,
+.startButton:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 4px 8px rgba(139, 69, 19, 0.3),
+    inset 0 0 8px rgba(255, 255, 255, 0.1);
+  background-color: #6b3410; /* darker brown */
+}
+
+.cancelButton:active,
+.startButton:active {
+  transform: translateY(0);
+  box-shadow:
+    0 2px 4px rgba(139, 69, 19, 0.3),
+    inset 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   GLOW EFFECTS & HIGHLIGHTS
+   ============================================ */
+
+.glowEffect {
+  box-shadow:
+    inset 0 0 8px rgba(139, 69, 19, 0.2),
+    0 0 12px rgba(218, 165, 32, 0.1);
+}
+
+.glowBorder {
+  box-shadow:
+    inset 0 0 4px rgba(218, 165, 32, 0.2),
+    0 0 8px rgba(218, 165, 32, 0.1);
+  border-color: #daa520; /* goldenrod */
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  .panel {
+    padding: 1rem;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .content {
+    gap: 0.75rem;
+  }
+
+  .costsContainer,
+  .resourcesContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .actionButtons {
+    flex-direction: column;
+  }
+
+  .cancelButton,
+  .startButton {
+    width: 100%;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.text-primary {
+  color: #8b4513; /* saddle brown */
+}
+
+.text-secondary {
+  color: #daa520; /* goldenrod */
+}
+
+.text-accent {
+  color: #cd5c5c; /* indian red */
+}
+
+.text-danger {
+  color: #8b0000; /* dark red */
+}
+
+.bg-panel {
+  background-color: #d2b48c; /* tan */
+}
+
+.border-primary {
+  border-color: #8b4513; /* saddle brown */
+}
+
+.border-secondary {
+  border-color: #daa520; /* goldenrod */
+}
+
+.font-serif {
+  font-family: "Georgia", "Times New Roman", serif;
+}
+
+.font-mono {
+  font-family: "Courier New", monospace, "Consolas", monospace;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.tracking-wide {
+  letter-spacing: 0.1em;
+}
+
+.leading-relaxed {
+  line-height: 1.625;
+}
+
+/* ============================================
+   ANIMATION STATES
+   ============================================ */
+
+.isAnimating .progressBar {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* ============================================
+   EMPTY STATES & PLACEHOLDERS
+   ============================================ */
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  color: #8b4513; /* saddle brown */
+  font-style: italic;
+}
+
+.emptyIcon {
+  opacity: 0.6;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+
+/* ============================================
+   SCROLLBAR STYLING (for long content)
+   ============================================ */
+
+.panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.panel::-webkit-scrollbar-track {
+  background: #d2b48c; /* tan */
+}
+
+.panel::-webkit-scrollbar-thumb {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  background-color: #8b4513; /* saddle brown */
+}
+
+.panel::-webkit-scrollbar-thumb:hover {
+  background-color: #6b3410; /* darker brown */
+}
