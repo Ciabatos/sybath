@@ -80,10 +80,8 @@ export default function MovementModePanel({ isOpen, onClose }: MovementModePanel
   }
 
   // ── DERIVED ────────────────────────────────────────────────────────────────
-  Object.values(playerMovement).forEach(function (movement) {
-    const progress = (movement.totalMoveCost / Object.keys(playerMovement).length) * 100
-    setProgressPercentage(progress)
-  })
+
+  const nextMove = Object.values(playerMovement).sort((a, b) => a.order - b.order)[0]
 
   const totalMoveCost = Object.values(playerMovement).reduce((acc, movement) => acc + movement.totalMoveCost, 0)
   // ── GUARD ──────────────────────────────────────────────────────────────────
@@ -96,8 +94,10 @@ export default function MovementModePanel({ isOpen, onClose }: MovementModePanel
       <div className={styles.header}>
         <div className={styles.titleSection}>
           <h2 className={styles.title}>Movement Mode</h2>
-          <p className={styles.subTitle}>Travel Journal · {totalMoveCost} minutes to destination</p>
-          <span className={styles.coordinates}>{MOCK.destinationId}</span>
+          <p className={styles.subTitle}>Travel Journal · {nextMove.moveCost} minutes to destination</p>
+          <span className={styles.coordinates}>
+            {nextMove.x}, {nextMove.y}
+          </span>
         </div>
         <Button
           onClick={onClose}
@@ -115,12 +115,10 @@ export default function MovementModePanel({ isOpen, onClose }: MovementModePanel
         <section className={styles.section}>
           <h3 className={styles.sectionTitle}>Journey Progress</h3>
           <div className={styles.progressContainer}>
-            {MOCK.isAnimating && <span className={styles.statusIndicator}>In Transit</span>}
+            <span className={styles.statusIndicator}>In Transit</span>
             <div className={styles.progressBar}></div>
             <div className={styles.progressInfo}>
-              <span>
-                {MOCK.totalDistance - MOCK.remainingDistance}/{MOCK.totalDistance} units
-              </span>
+              <span>{/* {MOCK.totalDistance - MOCK.remainingDistance}/{MOCK.totalDistance} units */}</span>
               <span>{Math.round(progressPercentage)}%</span>
             </div>
           </div>
@@ -132,19 +130,19 @@ export default function MovementModePanel({ isOpen, onClose }: MovementModePanel
           <div className={styles.costsContainer}>
             <div className={styles.costItem}>
               <GiDropWeapon />
-              <span>Movement: {MOCK.movementCost} pts</span>
+              <span>Movement: 4 pts</span>
             </div>
             <div className={`${styles.costItem} ${styles.goldText}`}>
               <GiBigDiamondRing />
-              <span>Gold: {MOCK.goldSpent}</span>
+              <span>Gold: 4</span>
             </div>
             <div className={`${styles.costItem} ${styles.manaText}`}>
               <GiCrystalBall />
-              <span>Mana: {MOCK.manaSpent}</span>
+              <span>Mana: 4</span>
             </div>
             <div className={`${styles.costItem} ${styles.staminaText}`}>
               <Hand />
-              <span>Stamina: {MOCK.staminaSpent}</span>
+              <span>Stamina: 4</span>
             </div>
           </div>
         </section>
@@ -153,20 +151,18 @@ export default function MovementModePanel({ isOpen, onClose }: MovementModePanel
         <section className={styles.section}>
           <h3 className={styles.sectionTitle}>Terrain Effects</h3>
           <div className={styles.terrainContainer}>
-            {MOCK.terrainTypes.map(function (terrain) {
-              const Icon = terrainIcons[terrain as keyof typeof terrainIcons]
+            {Object.values(playerMovement).map(function (terrain) {
               return (
                 <div
-                  key={terrain}
+                  key={terrain.order + `terrainEffect`}
                   className={styles.terrainItem}
                 >
-                  <Icon />
-                  <span>{terrain}</span>
+                  <span>dasdad</span>
                   <span className={styles.terrainModifier}>
-                    {terrain === "mountain" && `${MOCK.mountainModifier}x`}
-                    {terrain === "forest" && `${MOCK.forestModifier}x`}
-                    {terrain === "plain" && `${MOCK.plainModifier}x`}
-                    {terrain === "GiDesert" && `+${MOCK.GiDesertModifier}x`}
+                    {`2x`}
+                    {`3x`}
+                    {`3x`}
+                    {`+3x`}
                   </span>
                 </div>
               )
