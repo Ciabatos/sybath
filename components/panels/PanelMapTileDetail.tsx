@@ -1,6 +1,5 @@
 "use client"
 
-import ItemDetail from "@/components/GeneratedComponents/ItemDetail"
 import GatherResource from "@/components/items/GatherResource"
 import { Button } from "@/components/ui/button"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
@@ -112,7 +111,6 @@ export default function PanelMapTileDetail() {
 
   return (
     <div className={styles.overlay}>
-      <ItemDetail></ItemDetail>
       <GatherResource
         isOpen={!!selectedResource}
         onClose={handleCloseGather}
