@@ -4,7 +4,7 @@
 import { {{indexTypeName}}, {{methodTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 import { {{indexMethodName}} } from "@/methods/functions/util/converters"
 import { {{tableCamelName}}Atom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -19,4 +19,8 @@ export function useFetch{{schemaTablePascalName}}() {
       set{{schemaTablePascalName}}({{tableCamelName}})
     }
   }, [data, set{{schemaTablePascalName}}])
+}
+
+export function use{{schemaTablePascalName}}() {
+  return useAtomValue({{tableCamelName}}Atom)
 }

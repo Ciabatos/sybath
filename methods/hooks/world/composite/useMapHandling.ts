@@ -14,7 +14,10 @@ import { useFetchDistrictsDistrictTypes } from "@/methods/hooks/districts/core/u
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { useMapId } from "@/methods/hooks/world/composite/useMapId"
 import { useFetchKnownMapTiles } from "@/methods/hooks/world/core/useFetchKnownMapTiles"
-import { useFetchKnownPlayersPositions } from "@/methods/hooks/world/core/useFetchKnownPlayersPositions"
+import {
+  useFetchKnownPlayersPositions,
+  useKnownPlayersPositions,
+} from "@/methods/hooks/world/core/useFetchKnownPlayersPositions"
 import { useFetchPlayerPosition } from "@/methods/hooks/world/core/useFetchPlayerPosition"
 import { useFetchWorldLandscapeTypes } from "@/methods/hooks/world/core/useFetchWorldLandscapeTypes"
 import { useFetchWorldTerrainTypes } from "@/methods/hooks/world/core/useFetchWorldTerrainTypes"
@@ -23,7 +26,6 @@ import {
   districtsAtom,
   districtTypesAtom,
   knownMapTilesAtom,
-  knownPlayersPositionsAtom,
   landscapeTypesAtom,
   playerPositionAtom,
   terrainTypesAtom,
@@ -55,7 +57,8 @@ export function useMapHandling() {
   const playerPosition = useAtomValue(playerPositionAtom)
 
   useFetchKnownPlayersPositions({ mapId, playerId })
-  const knownPlayersPositions = useAtomValue(knownPlayersPositionsAtom)
+  // const knownPlayersPositions = useAtomValue(knownPlayersPositionsAtom)
+  const knownPlayersPositions = useKnownPlayersPositions()
 
   useFetchDistrictsDistrictsByKey({ mapId })
   const districts = useAtomValue(districtsAtom)

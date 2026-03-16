@@ -2,13 +2,13 @@
 
 "use client"
 import {
-  TKnownPlayersPositionsRecordByXY,
   TKnownPlayersPositions,
   TKnownPlayersPositionsParams,
+  TKnownPlayersPositionsRecordByXY,
 } from "@/db/postgresMainDatabase/schemas/world/knownPlayersPositions"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { knownPlayersPositionsAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -26,4 +26,8 @@ export function useFetchKnownPlayersPositions(params: TKnownPlayersPositionsPara
       setKnownPlayersPositions(knownPlayersPositions)
     }
   }, [data, setKnownPlayersPositions])
+}
+
+export function useKnownPlayersPositions() {
+  return useAtomValue(knownPlayersPositionsAtom)
 }
