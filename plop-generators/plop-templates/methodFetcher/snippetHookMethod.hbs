@@ -3,7 +3,7 @@
     "prefix": "hook_{{schema}}_core_use{{methodPascalName}}",
     "body": [
       "useFetch{{methodPascalName}}({{#if methodParamsColumns}}{ {{#each methodParamsColumns}}{{camelName}}{{#unless @last}}, {{/unless}}{{/each}} }{{/if}})",
-      "const {{methodCamelName}} = useAtomValue({{methodCamelName}}Atom)"
+      "const {{methodCamelName}} = use{{methodPascalName}}()"
     ],
     "description": "Destructuring use{{methodPascalName}} hook"
   },

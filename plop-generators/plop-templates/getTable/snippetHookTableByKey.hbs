@@ -3,7 +3,7 @@
     "prefix": "hook_{{schema}}_core_use{{schemaTablePascalName}}ByKey",
     "body": [
       "useFetch{{schemaTablePascalName}}ByKey({{#if methodParamsColumns}}{ {{#each methodParamsColumns}}{{camelName}}{{#unless @last}}, {{/unless}}{{/each}} }{{/if}})",
-      "const {{tableCamelName}} = useAtomValue({{tableCamelName}}Atom)"
+      "const {{tableCamelName}} = use{{schemaTablePascalName}}()"
     ],
     "description": "Destructuring use{{schemaTablePascalName}}ByKey hook"
   },
