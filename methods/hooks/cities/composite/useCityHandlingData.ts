@@ -1,29 +1,42 @@
-import { useFetchBuildingsBuildingsByKey } from "@/methods/hooks/buildings/core/useFetchBuildingsBuildingsByKey"
-import { useFetchBuildingsBuildingTypes } from "@/methods/hooks/buildings/core/useFetchBuildingsBuildingTypes"
+import {
+  useBuildingsBuildingsState,
+  useFetchBuildingsBuildingsByKey,
+} from "@/methods/hooks/buildings/core/useFetchBuildingsBuildingsByKey"
+import {
+  useBuildingsBuildingTypesState,
+  useFetchBuildingsBuildingTypes,
+} from "@/methods/hooks/buildings/core/useFetchBuildingsBuildingTypes"
 import { useCityId } from "@/methods/hooks/cities/composite/useCityId"
-import { useFetchCitiesCityTilesByKey } from "@/methods/hooks/cities/core/useFetchCitiesCityTilesByKey"
-import { useFetchWorldLandscapeTypes } from "@/methods/hooks/world/core/useFetchWorldLandscapeTypes"
-import { useFetchWorldTerrainTypes } from "@/methods/hooks/world/core/useFetchWorldTerrainTypes"
-import { buildingsAtom, buildingTypesAtom, cityTilesAtom, landscapeTypesAtom, terrainTypesAtom } from "@/store/atoms"
-import { useAtomValue } from "jotai"
+import {
+  useCitiesCityTilesState,
+  useFetchCitiesCityTilesByKey,
+} from "@/methods/hooks/cities/core/useFetchCitiesCityTilesByKey"
+import {
+  useFetchWorldLandscapeTypes,
+  useWorldLandscapeTypesState,
+} from "@/methods/hooks/world/core/useFetchWorldLandscapeTypes"
+import {
+  useFetchWorldTerrainTypes,
+  useWorldTerrainTypesState,
+} from "@/methods/hooks/world/core/useFetchWorldTerrainTypes"
 
 export function useCityHandlingData() {
   const { cityId } = useCityId()
 
   useFetchCitiesCityTilesByKey({ cityId })
-  const cityTiles = useAtomValue(cityTilesAtom)
+  const cityTiles = useCitiesCityTilesState()
 
   useFetchBuildingsBuildingsByKey({ cityId })
-  const buildings = useAtomValue(buildingsAtom)
+  const buildings = useBuildingsBuildingsState()
 
   useFetchWorldTerrainTypes()
-  const terrainTypes = useAtomValue(terrainTypesAtom)
+  const terrainTypes = useWorldTerrainTypesState()
 
   useFetchWorldLandscapeTypes()
-  const landscapeTypes = useAtomValue(landscapeTypesAtom)
+  const landscapeTypes = useWorldLandscapeTypesState()
 
   useFetchBuildingsBuildingTypes()
-  const buildingTypes = useAtomValue(buildingTypesAtom)
+  const buildingTypes = useBuildingsBuildingTypesState()
 
   return { cityTiles, cityId, terrainTypes, landscapeTypes, buildings, buildingTypes }
 }

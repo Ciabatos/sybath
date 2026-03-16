@@ -1,9 +1,10 @@
-import { useFetchItemsItems } from "@/methods/hooks/items/core/useFetchItemsItems"
+import { useFetchItemsItems, useItemsItemsState } from "@/methods/hooks/items/core/useFetchItemsItems"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
-import { useFetchKnownMapTilesResourcesOnTile } from "@/methods/hooks/world/core/useFetchKnownMapTilesResourcesOnTile"
-import { itemsAtom, knownMapTilesResourcesOnTileAtom } from "@/store/atoms"
-import { useAtomValue } from "jotai"
+import {
+  useFetchKnownMapTilesResourcesOnTile,
+  useKnownMapTilesResourcesOnTileState,
+} from "@/methods/hooks/world/core/useFetchKnownMapTilesResourcesOnTile"
 
 export type TMapTileResource = {
   mapTilesResourceId: number
@@ -28,10 +29,10 @@ export function useMapTileDetail() {
   const mapTileY = clickedMapTile.mapTiles.y
 
   useFetchKnownMapTilesResourcesOnTile({ mapId, mapTileX, mapTileY, playerId })
-  const knownMapTilesResourcesOnTile = useAtomValue(knownMapTilesResourcesOnTileAtom)
+  const knownMapTilesResourcesOnTile = useKnownMapTilesResourcesOnTileState()
 
   useFetchItemsItems()
-  const items = useAtomValue(itemsAtom)
+  const items = useItemsItemsState()
 
   const combinedKnownMapTilesResourcesOnTile = Object.values(knownMapTilesResourcesOnTile).map(
     (knownMapTilesResourcesOnTile) => ({

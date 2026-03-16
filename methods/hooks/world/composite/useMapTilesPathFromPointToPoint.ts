@@ -3,23 +3,26 @@
 import { TPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
 import { pathFromPointToPoint } from "@/methods/functions/map/pathFromPointToPoint"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
-import { useFetchCitiesCitiesByKey } from "@/methods/hooks/cities/core/useFetchCitiesCitiesByKey"
-import { useFetchDistrictsDistrictsByKey } from "@/methods/hooks/districts/core/useFetchDistrictsDistrictsByKey"
-import { useFetchDistrictsDistrictTypes } from "@/methods/hooks/districts/core/useFetchDistrictsDistrictTypes"
+import { useCitiesCitiesState, useFetchCitiesCitiesByKey } from "@/methods/hooks/cities/core/useFetchCitiesCitiesByKey"
+import {
+  useDistrictsDistrictsState,
+  useFetchDistrictsDistrictsByKey,
+} from "@/methods/hooks/districts/core/useFetchDistrictsDistrictsByKey"
+import {
+  useDistrictsDistrictTypesState,
+  useFetchDistrictsDistrictTypes,
+} from "@/methods/hooks/districts/core/useFetchDistrictsDistrictTypes"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { useMapId } from "@/methods/hooks/world/composite/useMapId"
-import { useFetchKnownMapTiles } from "@/methods/hooks/world/core/useFetchKnownMapTiles"
-import { useFetchWorldLandscapeTypes } from "@/methods/hooks/world/core/useFetchWorldLandscapeTypes"
-import { useFetchWorldTerrainTypes } from "@/methods/hooks/world/core/useFetchWorldTerrainTypes"
+import { useFetchKnownMapTiles, useKnownMapTilesState } from "@/methods/hooks/world/core/useFetchKnownMapTiles"
 import {
-  citiesAtom,
-  districtsAtom,
-  districtTypesAtom,
-  knownMapTilesAtom,
-  landscapeTypesAtom,
-  terrainTypesAtom,
-} from "@/store/atoms"
-import { useAtomValue } from "jotai"
+  useFetchWorldLandscapeTypes,
+  useWorldLandscapeTypesState,
+} from "@/methods/hooks/world/core/useFetchWorldLandscapeTypes"
+import {
+  useFetchWorldTerrainTypes,
+  useWorldTerrainTypesState,
+} from "@/methods/hooks/world/core/useFetchWorldTerrainTypes"
 
 type TGetPathFromPointToPointParams = {
   startX: number
@@ -33,22 +36,22 @@ export function useMapTilesPathFromPointToPoint() {
   const { mapId } = useMapId()
 
   useFetchKnownMapTiles({ mapId, playerId })
-  const knownMapTiles = useAtomValue(knownMapTilesAtom)
+  const knownMapTiles = useKnownMapTilesState()
 
   useFetchWorldTerrainTypes()
-  const terrainTypes = useAtomValue(terrainTypesAtom)
+  const terrainTypes = useWorldTerrainTypesState()
 
   useFetchWorldLandscapeTypes()
-  const landscapeTypes = useAtomValue(landscapeTypesAtom)
+  const landscapeTypes = useWorldLandscapeTypesState()
 
   useFetchCitiesCitiesByKey({ mapId })
-  const cities = useAtomValue(citiesAtom)
+  const cities = useCitiesCitiesState()
 
   useFetchDistrictsDistrictsByKey({ mapId })
-  const districts = useAtomValue(districtsAtom)
+  const districts = useDistrictsDistrictsState()
 
   useFetchDistrictsDistrictTypes()
-  const districtTypes = useAtomValue(districtTypesAtom)
+  const districtTypes = useDistrictsDistrictTypesState()
 
   function getPathFromPointToPoint(params: TGetPathFromPointToPointParams) {
     const movementPath = pathFromPointToPoint({

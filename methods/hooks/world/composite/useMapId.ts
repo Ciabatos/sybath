@@ -1,13 +1,11 @@
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
-import { useFetchPlayerMap } from "@/methods/hooks/world/core/useFetchPlayerMap"
-import { playerMapAtom } from "@/store/atoms"
-import { useAtomValue } from "jotai"
+import { useFetchPlayerMap, usePlayerMapState } from "@/methods/hooks/world/core/useFetchPlayerMap"
 
 export function useMapId() {
   const { playerId } = usePlayerId()
 
   useFetchPlayerMap({ playerId })
-  const playerMap = useAtomValue(playerMapAtom)
+  const playerMap = usePlayerMapState()
 
   const [playerMapData] = Object.values(playerMap)
 

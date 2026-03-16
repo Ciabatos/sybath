@@ -5,11 +5,11 @@ import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { useMapId } from "@/methods/hooks/world/composite/useMapId"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { useMapTilesPathFromPointToPoint } from "@/methods/hooks/world/composite/useMapTilesPathFromPointToPoint"
-import { useFetchPlayerMovement } from "@/methods/hooks/world/core/useFetchPlayerMovement"
-import { useFetchPlayerPosition } from "@/methods/hooks/world/core/useFetchPlayerPosition"
+import { useFetchPlayerMovement, usePlayerMovementState } from "@/methods/hooks/world/core/useFetchPlayerMovement"
+import { useFetchPlayerPosition, usePlayerPositionState } from "@/methods/hooks/world/core/useFetchPlayerPosition"
 import { useMutatePlayerMovement } from "@/methods/hooks/world/core/useMutatePlayerMovement"
-import { playerMovementAtom, playerMovementPlannedAtom, playerPositionAtom } from "@/store/atoms"
-import { useAtomValue, useSetAtom } from "jotai"
+import { playerMovementPlannedAtom } from "@/store/atoms"
+import { useSetAtom } from "jotai"
 import { toast } from "sonner"
 
 type TPlayerMovementParams = {
@@ -29,7 +29,7 @@ export function usePlayerMovement() {
   const { mapId } = useMapId()
 
   useFetchPlayerPosition({ mapId, playerId })
-  const playerPosition = useAtomValue(playerPositionAtom)
+  const playerPosition = usePlayerPositionState()
   const [playerPos] = Object.values(playerPosition)
 
   const { clickedMapTile } = useMapTileActions()
@@ -37,7 +37,7 @@ export function usePlayerMovement() {
   const { mutatePlayerMovement } = useMutatePlayerMovement({ playerId })
 
   useFetchPlayerMovement({ playerId })
-  const playerMovement = useAtomValue(playerMovementAtom)
+  const playerMovement = usePlayerMovementState()
 
   function selectPlayerPath(params: TPlayerMovementParams) {
     const path = getPathFromPointToPoint(params)

@@ -74,6 +74,14 @@
     ],
     "description": "ModalTopCenterBar Open",
   },
+  "Destructure useActivePlayer": {
+    "prefix": "hook_players_core_useActivePlayer",
+    "body": [
+      "useFetchActivePlayer()",
+      "const activePlayer = useActivePlayerState()"
+    ],
+    "description": "Destructuring useActivePlayer hook"
+  },
   //Dodane automatycznie - start
   "Destructure useAttributesAbilities": {
     "prefix": "hook_attributes_core_useAttributesAbilities",
@@ -514,5 +522,6 @@
       "const playerPosition = usePlayerPositionState()"
     ],
     "description": "Destructuring usePlayerPosition hook"
-  }, //Automatic Snippets
+  },
+  //Automatic Snippets
 }

@@ -1,19 +1,20 @@
 "use client"
 
-import { useFetchAttributesStats } from "@/methods/hooks/attributes/core/useFetchAttributesStats"
-import { useFetchPlayerStats } from "@/methods/hooks/attributes/core/useFetchPlayerStats"
+import {
+  useAttributesStatsState,
+  useFetchAttributesStats,
+} from "@/methods/hooks/attributes/core/useFetchAttributesStats"
+import { useFetchPlayerStats, usePlayerStatsState } from "@/methods/hooks/attributes/core/useFetchPlayerStats"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
-import { playerStatsAtom, statsAtom } from "@/store/atoms"
-import { useAtomValue } from "jotai"
 
 export function usePlayerStats() {
   const { playerId } = usePlayerId()
 
   useFetchAttributesStats()
-  const stats = useAtomValue(statsAtom)
+  const stats = useAttributesStatsState()
 
   useFetchPlayerStats({ playerId })
-  const playerStats = useAtomValue(playerStatsAtom)
+  const playerStats = usePlayerStatsState()
 
   const combinedPlayerStats = Object.entries(playerStats).map(([key, playerStat]) => ({
     ...playerStat,

@@ -1,15 +1,16 @@
 "use client"
 
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
-import { useFetchActivePlayerSquadPlayersProfiles } from "@/methods/hooks/squad/core/useFetchActivePlayerSquadPlayersProfiles"
-import { activePlayerSquadPlayersProfilesAtom } from "@/store/atoms"
-import { useAtomValue } from "jotai"
+import {
+  useActivePlayerSquadPlayersProfilesState,
+  useFetchActivePlayerSquadPlayersProfiles,
+} from "@/methods/hooks/squad/core/useFetchActivePlayerSquadPlayersProfiles"
 
 export default function useActivePlayerSquadPlayersProfiles() {
   const { playerId } = usePlayerId()
 
   useFetchActivePlayerSquadPlayersProfiles({ playerId })
-  const activePlayerSquadPlayersProfiles = useAtomValue(activePlayerSquadPlayersProfilesAtom)
+  const activePlayerSquadPlayersProfiles = useActivePlayerSquadPlayersProfilesState()
 
   return { activePlayerSquadPlayersProfiles }
 }

@@ -1,21 +1,25 @@
 "use client"
 
-import { useFetchAttributesSkills } from "@/methods/hooks/attributes/core/useFetchAttributesSkills"
-import { useFetchOtherPlayerSkills } from "@/methods/hooks/attributes/core/useFetchOtherPlayerSkills"
+import {
+  useAttributesSkillsState,
+  useFetchAttributesSkills,
+} from "@/methods/hooks/attributes/core/useFetchAttributesSkills"
+import {
+  useFetchOtherPlayerSkills,
+  useOtherPlayerSkillsState,
+} from "@/methods/hooks/attributes/core/useFetchOtherPlayerSkills"
 import { useOtherPlayerId } from "@/methods/hooks/players/composite/useOtherPlayerId"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
-import { otherPlayerSkillsAtom, skillsAtom } from "@/store/atoms"
-import { useAtomValue } from "jotai"
 
 export function useOtherPlayerSkills() {
   const { playerId } = usePlayerId()
   const otherPlayerId = useOtherPlayerId()
 
   useFetchAttributesSkills()
-  const skills = useAtomValue(skillsAtom)
+  const skills = useAttributesSkillsState()
 
   useFetchOtherPlayerSkills({ playerId, otherPlayerId })
-  const otherPlayerSkills = useAtomValue(otherPlayerSkillsAtom)
+  const otherPlayerSkills = useOtherPlayerSkillsState()
 
   const combinedOtherPlayerSkills = Object.entries(otherPlayerSkills).map(([key, playerSkill]) => ({
     ...playerSkill,

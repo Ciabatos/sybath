@@ -1,22 +1,23 @@
 "use client"
 
 import { TInventorySlot } from "@/components/inventory/InventorySlot"
-import { useFetchOtherPlayerInventory } from "@/methods/hooks/inventory/core/useFetchOtherPlayerInventory"
-import { useFetchItemsItems } from "@/methods/hooks/items/core/useFetchItemsItems"
+import {
+  useFetchOtherPlayerInventory,
+  useOtherPlayerInventoryState,
+} from "@/methods/hooks/inventory/core/useFetchOtherPlayerInventory"
+import { useFetchItemsItems, useItemsItemsState } from "@/methods/hooks/items/core/useFetchItemsItems"
 import { useOtherPlayerId } from "@/methods/hooks/players/composite/useOtherPlayerId"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
-import { itemsAtom, otherPlayerInventoryAtom } from "@/store/atoms"
-import { useAtomValue } from "jotai"
 
 export function useOtherPlayerInventory() {
   const { playerId } = usePlayerId()
   const otherPlayerId = useOtherPlayerId()
 
   useFetchItemsItems()
-  const items = useAtomValue(itemsAtom)
+  const items = useItemsItemsState()
 
   useFetchOtherPlayerInventory({ playerId, otherPlayerId })
-  const otherPlayerInventory = useAtomValue(otherPlayerInventoryAtom)
+  const otherPlayerInventory = useOtherPlayerInventoryState()
 
   const combinedOtherPlayerInventory = Object.values(otherPlayerInventory).map(
     (otherPlayerInventory): TInventorySlot => ({

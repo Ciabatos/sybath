@@ -4,7 +4,7 @@
 import { TActivePlayer, TActivePlayerRecordById } from "@/db/postgresMainDatabase/schemas/players/activePlayer"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { activePlayerAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -21,4 +21,8 @@ export function useFetchActivePlayer() {
       setActivePlayer(activePlayer)
     }
   }, [data, setActivePlayer])
+}
+
+export function useActivePlayerState() {
+  return useAtomValue(activePlayerAtom)
 }

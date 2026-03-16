@@ -1,11 +1,9 @@
 "use client"
-import { useFetchActivePlayer } from "@/methods/hooks/players/core/useFetchActivePlayer"
-import { activePlayerAtom } from "@/store/atoms"
-import { useAtomValue } from "jotai"
+import { useActivePlayerState, useFetchActivePlayer } from "@/methods/hooks/players/core/useFetchActivePlayer"
 
 export function usePlayerId() {
   useFetchActivePlayer()
-  const activePlayerData = useAtomValue(activePlayerAtom)
+  const activePlayerData = useActivePlayerState()
 
   const [activePlayer] = Object.values(activePlayerData)
 

@@ -8,29 +8,31 @@ import { TKnownPlayersPositions } from "@/db/postgresMainDatabase/schemas/world/
 import { TWorldLandscapeTypes } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { TPlayerPosition } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 import { TWorldTerrainTypes } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
-import { useFetchCitiesCitiesByKey } from "@/methods/hooks/cities/core/useFetchCitiesCitiesByKey"
-import { useFetchDistrictsDistrictsByKey } from "@/methods/hooks/districts/core/useFetchDistrictsDistrictsByKey"
-import { useFetchDistrictsDistrictTypes } from "@/methods/hooks/districts/core/useFetchDistrictsDistrictTypes"
+import { useCitiesCitiesState, useFetchCitiesCitiesByKey } from "@/methods/hooks/cities/core/useFetchCitiesCitiesByKey"
+import {
+  useDistrictsDistrictsState,
+  useFetchDistrictsDistrictsByKey,
+} from "@/methods/hooks/districts/core/useFetchDistrictsDistrictsByKey"
+import {
+  useDistrictsDistrictTypesState,
+  useFetchDistrictsDistrictTypes,
+} from "@/methods/hooks/districts/core/useFetchDistrictsDistrictTypes"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { useMapId } from "@/methods/hooks/world/composite/useMapId"
-import { useFetchKnownMapTiles } from "@/methods/hooks/world/core/useFetchKnownMapTiles"
+import { useFetchKnownMapTiles, useKnownMapTilesState } from "@/methods/hooks/world/core/useFetchKnownMapTiles"
 import {
   useFetchKnownPlayersPositions,
-  useKnownPlayersPositions,
+  useKnownPlayersPositionsState,
 } from "@/methods/hooks/world/core/useFetchKnownPlayersPositions"
-import { useFetchPlayerPosition } from "@/methods/hooks/world/core/useFetchPlayerPosition"
-import { useFetchWorldLandscapeTypes } from "@/methods/hooks/world/core/useFetchWorldLandscapeTypes"
-import { useFetchWorldTerrainTypes } from "@/methods/hooks/world/core/useFetchWorldTerrainTypes"
+import { useFetchPlayerPosition, usePlayerPositionState } from "@/methods/hooks/world/core/useFetchPlayerPosition"
 import {
-  citiesAtom,
-  districtsAtom,
-  districtTypesAtom,
-  knownMapTilesAtom,
-  landscapeTypesAtom,
-  playerPositionAtom,
-  terrainTypesAtom,
-} from "@/store/atoms"
-import { useAtomValue } from "jotai"
+  useFetchWorldLandscapeTypes,
+  useWorldLandscapeTypesState,
+} from "@/methods/hooks/world/core/useFetchWorldLandscapeTypes"
+import {
+  useFetchWorldTerrainTypes,
+  useWorldTerrainTypesState,
+} from "@/methods/hooks/world/core/useFetchWorldTerrainTypes"
 
 export type TMapTile = {
   mapTiles: TKnownMapTiles
@@ -48,29 +50,28 @@ export function useMapHandling() {
   const { mapId } = useMapId()
 
   useFetchKnownMapTiles({ mapId, playerId })
-  const knownMapTiles = useAtomValue(knownMapTilesAtom)
+  const knownMapTiles = useKnownMapTilesState()
 
   useFetchCitiesCitiesByKey({ mapId })
-  const cities = useAtomValue(citiesAtom)
+  const cities = useCitiesCitiesState()
 
   useFetchPlayerPosition({ mapId, playerId })
-  const playerPosition = useAtomValue(playerPositionAtom)
+  const playerPosition = usePlayerPositionState()
 
   useFetchKnownPlayersPositions({ mapId, playerId })
-  // const knownPlayersPositions = useAtomValue(knownPlayersPositionsAtom)
-  const knownPlayersPositions = useKnownPlayersPositions()
+  const knownPlayersPositions = useKnownPlayersPositionsState()
 
   useFetchDistrictsDistrictsByKey({ mapId })
-  const districts = useAtomValue(districtsAtom)
+  const districts = useDistrictsDistrictsState()
 
   useFetchWorldTerrainTypes()
-  const terrainTypes = useAtomValue(terrainTypesAtom)
+  const terrainTypes = useWorldTerrainTypesState()
 
   useFetchWorldLandscapeTypes()
-  const landscapeTypes = useAtomValue(landscapeTypesAtom)
+  const landscapeTypes = useWorldLandscapeTypesState()
 
   useFetchDistrictsDistrictTypes()
-  const districtTypes = useAtomValue(districtTypesAtom)
+  const districtTypes = useDistrictsDistrictTypesState()
 
   const combinedMap: TMapTile[] = Object.entries(knownMapTiles).map(([key, tile]) => {
     const tileKey = `${tile.x},${tile.y}`
