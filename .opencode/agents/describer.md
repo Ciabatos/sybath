@@ -27,3 +27,5 @@ How it interacts with atoms, SWR fetchers, and other hooks
 How it fetches and uses data from PostgreSQL
 
 The structure of the application code that supports it
+
+It will be used for ai instructions, how to use and what this hook do
