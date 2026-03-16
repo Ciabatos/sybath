@@ -25,6 +25,6 @@ export function useFetchCitiesCitiesByKey(params: TCitiesCitiesParams) {
   }, [data, setCitiesCities])
 }
 
-export function useCitiesCities() {
+export function useCitiesCitiesState() {
   return useAtomValue(citiesAtom)
 }

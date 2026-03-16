@@ -21,6 +21,6 @@ export function useFetchItemsItems() {
   }, [data, setItemsItems])
 }
 
-export function useItemsItems() {
+export function useItemsItemsState() {
   return useAtomValue(itemsAtom)
 }

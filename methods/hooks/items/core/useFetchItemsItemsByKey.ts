@@ -21,6 +21,6 @@ export function useFetchItemsItemsByKey(params: TItemsItemsParams) {
   }, [data, setItemsItems])
 }
 
-export function useItemsItems() {
+export function useItemsItemsState() {
   return useAtomValue(itemsAtom)
 }

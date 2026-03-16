@@ -25,6 +25,6 @@ export function useFetchAttributesSkillsByKey(params: TAttributesSkillsParams) {
   }, [data, setAttributesSkills])
 }
 
-export function useAttributesSkills() {
+export function useAttributesSkillsState() {
   return useAtomValue(skillsAtom)
 }

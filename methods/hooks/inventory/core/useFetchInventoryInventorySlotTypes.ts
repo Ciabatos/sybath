@@ -26,6 +26,6 @@ export function useFetchInventoryInventorySlotTypes() {
   }, [data, setInventoryInventorySlotTypes])
 }
 
-export function useInventoryInventorySlotTypes() {
+export function useInventoryInventorySlotTypesState() {
   return useAtomValue(inventorySlotTypesAtom)
 }

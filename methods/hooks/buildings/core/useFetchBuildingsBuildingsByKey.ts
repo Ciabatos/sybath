@@ -28,6 +28,6 @@ export function useFetchBuildingsBuildingsByKey(params: TBuildingsBuildingsParam
   }, [data, setBuildingsBuildings])
 }
 
-export function useBuildingsBuildings() {
+export function useBuildingsBuildingsState() {
   return useAtomValue(buildingsAtom)
 }

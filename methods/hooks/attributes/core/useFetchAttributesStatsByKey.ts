@@ -25,6 +25,6 @@ export function useFetchAttributesStatsByKey(params: TAttributesStatsParams) {
   }, [data, setAttributesStats])
 }
 
-export function useAttributesStats() {
+export function useAttributesStatsState() {
   return useAtomValue(statsAtom)
 }

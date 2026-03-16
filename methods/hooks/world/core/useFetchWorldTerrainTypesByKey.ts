@@ -25,6 +25,6 @@ export function useFetchWorldTerrainTypesByKey(params: TWorldTerrainTypesParams)
   }, [data, setWorldTerrainTypes])
 }
 
-export function useWorldTerrainTypes() {
+export function useWorldTerrainTypesState() {
   return useAtomValue(terrainTypesAtom)
 }

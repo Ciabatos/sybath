@@ -27,6 +27,6 @@ export function useFetchBuildingsBuildingTypesByKey(params: TBuildingsBuildingTy
   }, [data, setBuildingsBuildingTypes])
 }
 
-export function useBuildingsBuildingTypes() {
+export function useBuildingsBuildingTypesState() {
   return useAtomValue(buildingTypesAtom)
 }

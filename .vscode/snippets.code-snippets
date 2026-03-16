@@ -295,7 +295,7 @@
     "prefix": "hook_attributes_core_useAttributesAbilities",
     "body": [
       "useFetchAttributesAbilities()",
-      "const abilities = useAttributesAbilities()"
+      "const abilities = useAttributesAbilitiesState()"
     ],
     "description": "Destructuring useAttributesAbilities hook"
   },
@@ -303,7 +303,7 @@
     "prefix": "hook_attributes_core_useAttributesAbilitiesByKey",
     "body": [
       "useFetchAttributesAbilitiesByKey({ id })",
-      "const abilities = useAttributesAbilities()"
+      "const abilities = useAttributesAbilitiesState()"
     ],
     "description": "Destructuring useAttributesAbilitiesByKey hook"
   },
@@ -311,7 +311,7 @@
     "prefix": "hook_attributes_core_useAttributesSkills",
     "body": [
       "useFetchAttributesSkills()",
-      "const skills = useAttributesSkills()"
+      "const skills = useAttributesSkillsState()"
     ],
     "description": "Destructuring useAttributesSkills hook"
   },
@@ -319,7 +319,7 @@
     "prefix": "hook_attributes_core_useAttributesSkillsByKey",
     "body": [
       "useFetchAttributesSkillsByKey({ id })",
-      "const skills = useAttributesSkills()"
+      "const skills = useAttributesSkillsState()"
     ],
     "description": "Destructuring useAttributesSkillsByKey hook"
   },
@@ -327,7 +327,7 @@
     "prefix": "hook_attributes_core_useAttributesStats",
     "body": [
       "useFetchAttributesStats()",
-      "const stats = useAttributesStats()"
+      "const stats = useAttributesStatsState()"
     ],
     "description": "Destructuring useAttributesStats hook"
   },
@@ -335,7 +335,7 @@
     "prefix": "hook_attributes_core_useAttributesStatsByKey",
     "body": [
       "useFetchAttributesStatsByKey({ id })",
-      "const stats = useAttributesStats()"
+      "const stats = useAttributesStatsState()"
     ],
     "description": "Destructuring useAttributesStatsByKey hook"
   },
@@ -343,7 +343,7 @@
     "prefix": "hook_buildings_core_useBuildingsBuildings",
     "body": [
       "useFetchBuildingsBuildings()",
-      "const buildings = useBuildingsBuildings()"
+      "const buildings = useBuildingsBuildingsState()"
     ],
     "description": "Destructuring useBuildingsBuildings hook"
   },
@@ -351,7 +351,7 @@
     "prefix": "hook_buildings_core_useBuildingsBuildingsByKey",
     "body": [
       "useFetchBuildingsBuildingsByKey({ cityId })",
-      "const buildings = useBuildingsBuildings()"
+      "const buildings = useBuildingsBuildingsState()"
     ],
     "description": "Destructuring useBuildingsBuildingsByKey hook"
   },
@@ -359,7 +359,7 @@
     "prefix": "hook_buildings_core_useBuildingsBuildingTypes",
     "body": [
       "useFetchBuildingsBuildingTypes()",
-      "const buildingTypes = useBuildingsBuildingTypes()"
+      "const buildingTypes = useBuildingsBuildingTypesState()"
     ],
     "description": "Destructuring useBuildingsBuildingTypes hook"
   },
@@ -367,7 +367,7 @@
     "prefix": "hook_buildings_core_useBuildingsBuildingTypesByKey",
     "body": [
       "useFetchBuildingsBuildingTypesByKey({ id })",
-      "const buildingTypes = useBuildingsBuildingTypes()"
+      "const buildingTypes = useBuildingsBuildingTypesState()"
     ],
     "description": "Destructuring useBuildingsBuildingTypesByKey hook"
   },
@@ -375,7 +375,7 @@
     "prefix": "hook_cities_core_useCitiesCities",
     "body": [
       "useFetchCitiesCities()",
-      "const cities = useCitiesCities()"
+      "const cities = useCitiesCitiesState()"
     ],
     "description": "Destructuring useCitiesCities hook"
   },
@@ -383,7 +383,7 @@
     "prefix": "hook_cities_core_useCitiesCitiesByKey",
     "body": [
       "useFetchCitiesCitiesByKey({ mapId })",
-      "const cities = useCitiesCities()"
+      "const cities = useCitiesCitiesState()"
     ],
     "description": "Destructuring useCitiesCitiesByKey hook"
   },
@@ -391,7 +391,7 @@
     "prefix": "hook_cities_core_useCitiesCityTiles",
     "body": [
       "useFetchCitiesCityTiles()",
-      "const cityTiles = useCitiesCityTiles()"
+      "const cityTiles = useCitiesCityTilesState()"
     ],
     "description": "Destructuring useCitiesCityTiles hook"
   },
@@ -399,7 +399,7 @@
     "prefix": "hook_cities_core_useCitiesCityTilesByKey",
     "body": [
       "useFetchCitiesCityTilesByKey({ cityId })",
-      "const cityTiles = useCitiesCityTiles()"
+      "const cityTiles = useCitiesCityTilesState()"
     ],
     "description": "Destructuring useCitiesCityTilesByKey hook"
   },
@@ -407,7 +407,7 @@
     "prefix": "hook_districts_core_useDistrictsDistricts",
     "body": [
       "useFetchDistrictsDistricts()",
-      "const districts = useDistrictsDistricts()"
+      "const districts = useDistrictsDistrictsState()"
     ],
     "description": "Destructuring useDistrictsDistricts hook"
   },
@@ -415,7 +415,7 @@
     "prefix": "hook_districts_core_useDistrictsDistrictsByKey",
     "body": [
       "useFetchDistrictsDistrictsByKey({ mapId })",
-      "const districts = useDistrictsDistricts()"
+      "const districts = useDistrictsDistrictsState()"
     ],
     "description": "Destructuring useDistrictsDistrictsByKey hook"
   },
@@ -423,7 +423,7 @@
     "prefix": "hook_districts_core_useDistrictsDistrictTypes",
     "body": [
       "useFetchDistrictsDistrictTypes()",
-      "const districtTypes = useDistrictsDistrictTypes()"
+      "const districtTypes = useDistrictsDistrictTypesState()"
     ],
     "description": "Destructuring useDistrictsDistrictTypes hook"
   },
@@ -431,7 +431,7 @@
     "prefix": "hook_districts_core_useDistrictsDistrictTypesByKey",
     "body": [
       "useFetchDistrictsDistrictTypesByKey({ id })",
-      "const districtTypes = useDistrictsDistrictTypes()"
+      "const districtTypes = useDistrictsDistrictTypesState()"
     ],
     "description": "Destructuring useDistrictsDistrictTypesByKey hook"
   },
@@ -439,7 +439,7 @@
     "prefix": "hook_inventory_core_useInventoryInventorySlotTypes",
     "body": [
       "useFetchInventoryInventorySlotTypes()",
-      "const inventorySlotTypes = useInventoryInventorySlotTypes()"
+      "const inventorySlotTypes = useInventoryInventorySlotTypesState()"
     ],
     "description": "Destructuring useInventoryInventorySlotTypes hook"
   },
@@ -447,7 +447,7 @@
     "prefix": "hook_inventory_core_useInventoryInventorySlotTypesByKey",
     "body": [
       "useFetchInventoryInventorySlotTypesByKey({ id })",
-      "const inventorySlotTypes = useInventoryInventorySlotTypes()"
+      "const inventorySlotTypes = useInventoryInventorySlotTypesState()"
     ],
     "description": "Destructuring useInventoryInventorySlotTypesByKey hook"
   },
@@ -455,7 +455,7 @@
     "prefix": "hook_items_core_useItemsItems",
     "body": [
       "useFetchItemsItems()",
-      "const items = useItemsItems()"
+      "const items = useItemsItemsState()"
     ],
     "description": "Destructuring useItemsItems hook"
   },
@@ -463,7 +463,7 @@
     "prefix": "hook_items_core_useItemsItemsByKey",
     "body": [
       "useFetchItemsItemsByKey({ id })",
-      "const items = useItemsItems()"
+      "const items = useItemsItemsState()"
     ],
     "description": "Destructuring useItemsItemsByKey hook"
   },
@@ -471,7 +471,7 @@
     "prefix": "hook_world_core_useWorldLandscapeTypes",
     "body": [
       "useFetchWorldLandscapeTypes()",
-      "const landscapeTypes = useWorldLandscapeTypes()"
+      "const landscapeTypes = useWorldLandscapeTypesState()"
     ],
     "description": "Destructuring useWorldLandscapeTypes hook"
   },
@@ -479,7 +479,7 @@
     "prefix": "hook_world_core_useWorldLandscapeTypesByKey",
     "body": [
       "useFetchWorldLandscapeTypesByKey({ id })",
-      "const landscapeTypes = useWorldLandscapeTypes()"
+      "const landscapeTypes = useWorldLandscapeTypesState()"
     ],
     "description": "Destructuring useWorldLandscapeTypesByKey hook"
   },
@@ -487,7 +487,7 @@
     "prefix": "hook_world_core_useWorldMapTiles",
     "body": [
       "useFetchWorldMapTiles()",
-      "const mapTiles = useWorldMapTiles()"
+      "const mapTiles = useWorldMapTilesState()"
     ],
     "description": "Destructuring useWorldMapTiles hook"
   },
@@ -495,7 +495,7 @@
     "prefix": "hook_world_core_useWorldMapTilesByKey",
     "body": [
       "useFetchWorldMapTilesByKey({ mapId })",
-      "const mapTiles = useWorldMapTiles()"
+      "const mapTiles = useWorldMapTilesState()"
     ],
     "description": "Destructuring useWorldMapTilesByKey hook"
   },
@@ -503,7 +503,7 @@
     "prefix": "hook_world_core_useWorldTerrainTypes",
     "body": [
       "useFetchWorldTerrainTypes()",
-      "const terrainTypes = useWorldTerrainTypes()"
+      "const terrainTypes = useWorldTerrainTypesState()"
     ],
     "description": "Destructuring useWorldTerrainTypes hook"
   },
@@ -511,7 +511,7 @@
     "prefix": "hook_world_core_useWorldTerrainTypesByKey",
     "body": [
       "useFetchWorldTerrainTypesByKey({ id })",
-      "const terrainTypes = useWorldTerrainTypes()"
+      "const terrainTypes = useWorldTerrainTypesState()"
     ],
     "description": "Destructuring useWorldTerrainTypesByKey hook"
   }, //Automatic Snippets

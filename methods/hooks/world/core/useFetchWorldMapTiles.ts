@@ -21,6 +21,6 @@ export function useFetchWorldMapTiles() {
   }, [data, setWorldMapTiles])
 }
 
-export function useWorldMapTiles() {
+export function useWorldMapTilesState() {
   return useAtomValue(mapTilesAtom)
 }

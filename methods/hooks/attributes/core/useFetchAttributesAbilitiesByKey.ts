@@ -25,6 +25,6 @@ export function useFetchAttributesAbilitiesByKey(params: TAttributesAbilitiesPar
   }, [data, setAttributesAbilities])
 }
 
-export function useAttributesAbilities() {
+export function useAttributesAbilitiesState() {
   return useAtomValue(abilitiesAtom)
 }

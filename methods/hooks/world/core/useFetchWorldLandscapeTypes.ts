@@ -24,6 +24,6 @@ export function useFetchWorldLandscapeTypes() {
   }, [data, setWorldLandscapeTypes])
 }
 
-export function useWorldLandscapeTypes() {
+export function useWorldLandscapeTypesState() {
   return useAtomValue(landscapeTypesAtom)
 }

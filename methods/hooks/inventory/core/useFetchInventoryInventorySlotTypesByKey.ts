@@ -27,6 +27,6 @@ export function useFetchInventoryInventorySlotTypesByKey(params: TInventoryInven
   }, [data, setInventoryInventorySlotTypes])
 }
 
-export function useInventoryInventorySlotTypes() {
+export function useInventoryInventorySlotTypesState() {
   return useAtomValue(inventorySlotTypesAtom)
 }

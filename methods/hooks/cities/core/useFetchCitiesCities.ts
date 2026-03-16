@@ -21,6 +21,6 @@ export function useFetchCitiesCities() {
   }, [data, setCitiesCities])
 }
 
-export function useCitiesCities() {
+export function useCitiesCitiesState() {
   return useAtomValue(citiesAtom)
 }

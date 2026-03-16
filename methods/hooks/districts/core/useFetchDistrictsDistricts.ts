@@ -24,6 +24,6 @@ export function useFetchDistrictsDistricts() {
   }, [data, setDistrictsDistricts])
 }
 
-export function useDistrictsDistricts() {
+export function useDistrictsDistrictsState() {
   return useAtomValue(districtsAtom)
 }

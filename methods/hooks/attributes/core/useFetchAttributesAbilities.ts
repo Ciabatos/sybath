@@ -24,6 +24,6 @@ export function useFetchAttributesAbilities() {
   }, [data, setAttributesAbilities])
 }
 
-export function useAttributesAbilities() {
+export function useAttributesAbilitiesState() {
   return useAtomValue(abilitiesAtom)
 }

@@ -21,6 +21,6 @@ export function useFetchAttributesStats() {
   }, [data, setAttributesStats])
 }
 
-export function useAttributesStats() {
+export function useAttributesStatsState() {
   return useAtomValue(statsAtom)
 }

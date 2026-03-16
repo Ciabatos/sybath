@@ -21,6 +21,6 @@ export function useFetchCitiesCityTiles() {
   }, [data, setCitiesCityTiles])
 }
 
-export function useCitiesCityTiles() {
+export function useCitiesCityTilesState() {
   return useAtomValue(cityTilesAtom)
 }

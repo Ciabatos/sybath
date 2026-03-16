@@ -21,6 +21,6 @@ export function useFetchAttributesSkills() {
   }, [data, setAttributesSkills])
 }
 
-export function useAttributesSkills() {
+export function useAttributesSkillsState() {
   return useAtomValue(skillsAtom)
 }
