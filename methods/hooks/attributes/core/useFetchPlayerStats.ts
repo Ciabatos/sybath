@@ -8,7 +8,7 @@ import {
 } from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { playerStatsAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -25,4 +25,8 @@ export function useFetchPlayerStats(params: TPlayerStatsParams) {
       setPlayerStats(playerStats)
     }
   }, [data, setPlayerStats])
+}
+
+export function usePlayerStats() {
+  return useAtomValue(playerStatsAtom)
 }

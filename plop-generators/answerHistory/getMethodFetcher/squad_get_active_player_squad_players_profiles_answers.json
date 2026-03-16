@@ -86,5 +86,8 @@
   "apiPath": "app/api/squad/rpc/get-active-player-squad-players-profiles/[playerId]/route.ts",
   "apiPathParams": "/api/squad/rpc/get-active-player-squad-players-profiles/${params.playerId}",
   "generateMutation": true,
-  "mutationMergeOldData": true
+  "mutationMergeOldData": true,
+  "selectedGenerators": [
+    "getMethodFetcher"
+  ]
 }

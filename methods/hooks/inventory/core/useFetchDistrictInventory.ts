@@ -8,7 +8,7 @@ import {
 } from "@/db/postgresMainDatabase/schemas/inventory/districtInventory"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { districtInventoryAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -25,4 +25,8 @@ export function useFetchDistrictInventory(params: TDistrictInventoryParams) {
       setDistrictInventory(districtInventory)
     }
   }, [data, setDistrictInventory])
+}
+
+export function useDistrictInventory() {
+  return useAtomValue(districtInventoryAtom)
 }

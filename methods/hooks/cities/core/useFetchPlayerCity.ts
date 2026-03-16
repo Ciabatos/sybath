@@ -8,7 +8,7 @@ import {
 } from "@/db/postgresMainDatabase/schemas/cities/playerCity"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { playerCityAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -25,4 +25,8 @@ export function useFetchPlayerCity(params: TPlayerCityParams) {
       setPlayerCity(playerCity)
     }
   }, [data, setPlayerCity])
+}
+
+export function usePlayerCity() {
+  return useAtomValue(playerCityAtom)
 }

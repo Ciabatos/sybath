@@ -91,5 +91,8 @@
   "apiPath": "app/api/squad/rpc/get-other-squad-players-profiles/[playerId]/[squadId]/route.ts",
   "apiPathParams": "/api/squad/rpc/get-other-squad-players-profiles/${params.playerId}/${params.squadId}",
   "generateMutation": true,
-  "mutationMergeOldData": true
+  "mutationMergeOldData": true,
+  "selectedGenerators": [
+    "getMethodFetcher"
+  ]
 }

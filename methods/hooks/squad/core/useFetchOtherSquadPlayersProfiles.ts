@@ -8,7 +8,7 @@ import {
 } from "@/db/postgresMainDatabase/schemas/squad/otherSquadPlayersProfiles"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { otherSquadPlayersProfilesAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -29,4 +29,8 @@ export function useFetchOtherSquadPlayersProfiles(params: TOtherSquadPlayersProf
       setOtherSquadPlayersProfiles(otherSquadPlayersProfiles)
     }
   }, [data, setOtherSquadPlayersProfiles])
+}
+
+export function useOtherSquadPlayersProfiles() {
+  return useAtomValue(otherSquadPlayersProfilesAtom)
 }

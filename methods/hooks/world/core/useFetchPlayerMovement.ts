@@ -8,7 +8,7 @@ import {
 } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { playerMovementAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -25,4 +25,8 @@ export function useFetchPlayerMovement(params: TPlayerMovementParams) {
       setPlayerMovement(playerMovement)
     }
   }, [data, setPlayerMovement])
+}
+
+export function usePlayerMovement() {
+  return useAtomValue(playerMovementAtom)
 }

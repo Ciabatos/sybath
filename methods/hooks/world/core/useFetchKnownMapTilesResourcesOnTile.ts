@@ -8,7 +8,7 @@ import {
 } from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnTile"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { knownMapTilesResourcesOnTileAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -29,4 +29,8 @@ export function useFetchKnownMapTilesResourcesOnTile(params: TKnownMapTilesResou
       setKnownMapTilesResourcesOnTile(knownMapTilesResourcesOnTile)
     }
   }, [data, setKnownMapTilesResourcesOnTile])
+}
+
+export function useKnownMapTilesResourcesOnTile() {
+  return useAtomValue(knownMapTilesResourcesOnTileAtom)
 }

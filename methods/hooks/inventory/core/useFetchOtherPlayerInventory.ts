@@ -8,7 +8,7 @@ import {
 } from "@/db/postgresMainDatabase/schemas/inventory/otherPlayerInventory"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { otherPlayerInventoryAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -26,4 +26,8 @@ export function useFetchOtherPlayerInventory(params: TOtherPlayerInventoryParams
       setOtherPlayerInventory(otherPlayerInventory)
     }
   }, [data, setOtherPlayerInventory])
+}
+
+export function useOtherPlayerInventory() {
+  return useAtomValue(otherPlayerInventoryAtom)
 }

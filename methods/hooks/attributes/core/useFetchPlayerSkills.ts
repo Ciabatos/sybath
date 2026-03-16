@@ -8,7 +8,7 @@ import {
 } from "@/db/postgresMainDatabase/schemas/attributes/playerSkills"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { playerSkillsAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -25,4 +25,8 @@ export function useFetchPlayerSkills(params: TPlayerSkillsParams) {
       setPlayerSkills(playerSkills)
     }
   }, [data, setPlayerSkills])
+}
+
+export function usePlayerSkills() {
+  return useAtomValue(playerSkillsAtom)
 }

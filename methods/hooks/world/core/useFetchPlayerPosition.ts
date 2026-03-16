@@ -8,7 +8,7 @@ import {
 } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { playerPositionAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -25,4 +25,8 @@ export function useFetchPlayerPosition(params: TPlayerPositionParams) {
       setPlayerPosition(playerPosition)
     }
   }, [data, setPlayerPosition])
+}
+
+export function usePlayerPosition() {
+  return useAtomValue(playerPositionAtom)
 }

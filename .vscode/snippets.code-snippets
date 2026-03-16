@@ -75,54 +75,6 @@
     "description": "ModalTopCenterBar Open",
   },
   //Dodane automatycznie - start
-  "Destructure usePlayerCity": {
-    "prefix": "hook_cities_core_usePlayerCity",
-    "body": [
-      "useFetchPlayerCity({ playerId })",
-      "const playerCity = useAtomValue(playerCityAtom)"
-    ],
-    "description": "Destructuring usePlayerCity hook"
-  },
-  "Destructure usePlayerInventory": {
-    "prefix": "hook_inventory_core_usePlayerInventory",
-    "body": [
-      "useFetchPlayerInventory({ playerId })",
-      "const playerInventory = useAtomValue(playerInventoryAtom)"
-    ],
-    "description": "Destructuring usePlayerInventory hook"
-  },
-  "Destructure usePlayerMap": {
-    "prefix": "hook_world_core_usePlayerMap",
-    "body": [
-      "useFetchPlayerMap({ playerId })",
-      "const playerMap = useAtomValue(playerMapAtom)"
-    ],
-    "description": "Destructuring usePlayerMap hook"
-  },
-  "Destructure usePlayerMovement": {
-    "prefix": "hook_world_core_usePlayerMovement",
-    "body": [
-      "useFetchPlayerMovement({ playerId })",
-      "const playerMovement = useAtomValue(playerMovementAtom)"
-    ],
-    "description": "Destructuring usePlayerMovement hook"
-  },
-  "Destructure usePlayerPosition": {
-    "prefix": "hook_world_core_usePlayerPosition",
-    "body": [
-      "useFetchPlayerPosition({ mapId, playerId })",
-      "const playerPosition = useAtomValue(playerPositionAtom)"
-    ],
-    "description": "Destructuring usePlayerPosition hook"
-  },
-  "Destructure useActivePlayerProfile": {
-    "prefix": "hook_players_core_useActivePlayerProfile",
-    "body": [
-      "useFetchActivePlayerProfile({ playerId })",
-      "const activePlayerProfile = useAtomValue(activePlayerProfileAtom)"
-    ],
-    "description": "Destructuring useActivePlayerProfile hook"
-  },
   "Destructure useAttributesAbilities": {
     "prefix": "hook_attributes_core_useAttributesAbilities",
     "body": [
@@ -315,46 +267,6 @@
     ],
     "description": "Destructuring useWorldTerrainTypesByKey hook"
   },
-  "Destructure useActivePlayerSwitchProfiles": {
-    "prefix": "hook_players_core_useActivePlayerSwitchProfiles",
-    "body": [
-      "useFetchActivePlayerSwitchProfiles({ playerId })",
-      "const activePlayerSwitchProfiles = useAtomValue(activePlayerSwitchProfilesAtom)"
-    ],
-    "description": "Destructuring useActivePlayerSwitchProfiles hook"
-  },
-  "Destructure useDistrictInventory": {
-    "prefix": "hook_inventory_core_useDistrictInventory",
-    "body": [
-      "useFetchDistrictInventory({ districtId })",
-      "const districtInventory = useAtomValue(districtInventoryAtom)"
-    ],
-    "description": "Destructuring useDistrictInventory hook"
-  },
-  "Destructure useBuildingInventory": {
-    "prefix": "hook_inventory_core_useBuildingInventory",
-    "body": [
-      "useFetchBuildingInventory({ buildingId })",
-      "const buildingInventory = useAtomValue(buildingInventoryAtom)"
-    ],
-    "description": "Destructuring useBuildingInventory hook"
-  },
-  "Destructure usePlayerSkills": {
-    "prefix": "hook_attributes_core_usePlayerSkills",
-    "body": [
-      "useFetchPlayerSkills({ playerId })",
-      "const playerSkills = useAtomValue(playerSkillsAtom)"
-    ],
-    "description": "Destructuring usePlayerSkills hook"
-  },
-  "Destructure usePlayerStats": {
-    "prefix": "hook_attributes_core_usePlayerStats",
-    "body": [
-      "useFetchPlayerStats({ playerId })",
-      "const playerStats = useAtomValue(playerStatsAtom)"
-    ],
-    "description": "Destructuring usePlayerStats hook"
-  },
   "Destructure useInventoryInventorySlotTypes": {
     "prefix": "hook_inventory_core_useInventoryInventorySlotTypes",
     "body": [
@@ -370,30 +282,6 @@
       "const inventorySlotTypes = useAtomValue(inventorySlotTypesAtom)"
     ],
     "description": "Destructuring useInventoryInventorySlotTypesByKey hook"
-  },
-  "Destructure useKnownPlayersPositions": {
-    "prefix": "hook_world_core_useKnownPlayersPositions",
-    "body": [
-      "useFetchKnownPlayersPositions({ mapId, playerId })",
-      "const knownPlayersPositions = useAtomValue(knownPlayersPositionsAtom)"
-    ],
-    "description": "Destructuring useKnownPlayersPositions hook"
-  },
-  "Destructure useKnownMapRegion": {
-    "prefix": "hook_world_core_useKnownMapRegion",
-    "body": [
-      "useFetchKnownMapRegion({ mapId, playerId, regionType })",
-      "const knownMapRegion = useAtomValue(knownMapRegionAtom)"
-    ],
-    "description": "Destructuring useKnownMapRegion hook"
-  },
-  "Destructure useKnownMapTiles": {
-    "prefix": "hook_world_core_useKnownMapTiles",
-    "body": [
-      "useFetchKnownMapTiles({ mapId, playerId })",
-      "const knownMapTiles = useAtomValue(knownMapTilesAtom)"
-    ],
-    "description": "Destructuring useKnownMapTiles hook"
   },
   "Destructure useWorldMapTiles": {
     "prefix": "hook_world_core_useWorldMapTiles",
@@ -411,75 +299,11 @@
     ],
     "description": "Destructuring useWorldMapTilesByKey hook"
   },
-  "Destructure usePlayersOnTile": {
-    "prefix": "hook_world_core_usePlayersOnTile",
-    "body": [
-      "useFetchPlayersOnTile({ mapId, mapTileX, mapTileY, playerId })",
-      "const playersOnTile = useAtomValue(playersOnTileAtom)"
-    ],
-    "description": "Destructuring usePlayersOnTile hook"
-  },
-  "Destructure usePlayerGearInventory": {
-    "prefix": "hook_inventory_core_usePlayerGearInventory",
-    "body": [
-      "useFetchPlayerGearInventory({ playerId })",
-      "const playerGearInventory = useAtomValue(playerGearInventoryAtom)"
-    ],
-    "description": "Destructuring usePlayerGearInventory hook"
-  },
-  "Destructure useActivePlayerSquad": {
-    "prefix": "hook_squad_core_useActivePlayerSquad",
-    "body": [
-      "useFetchActivePlayerSquad({ playerId })",
-      "const activePlayerSquad = useAtomValue(activePlayerSquadAtom)"
-    ],
-    "description": "Destructuring useActivePlayerSquad hook"
-  },
-  "Destructure useActivePlayerSquadPlayersProfiles": {
-    "prefix": "hook_squad_core_useActivePlayerSquadPlayersProfiles",
-    "body": [
-      "useFetchActivePlayerSquadPlayersProfiles({ playerId })",
-      "const activePlayerSquadPlayersProfiles = useAtomValue(activePlayerSquadPlayersProfilesAtom)"
-    ],
-    "description": "Destructuring useActivePlayerSquadPlayersProfiles hook"
-  },
-  "Destructure useOtherSquadPlayersProfiles": {
-    "prefix": "hook_squad_core_useOtherSquadPlayersProfiles",
-    "body": [
-      "useFetchOtherSquadPlayersProfiles({ playerId, squadId })",
-      "const otherSquadPlayersProfiles = useAtomValue(otherSquadPlayersProfilesAtom)"
-    ],
-    "description": "Destructuring useOtherSquadPlayersProfiles hook"
-  },
-  "Destructure useOtherPlayerProfile": {
-    "prefix": "hook_players_core_useOtherPlayerProfile",
-    "body": [
-      "useFetchOtherPlayerProfile({ playerId, otherPlayerId })",
-      "const otherPlayerProfile = useAtomValue(otherPlayerProfileAtom)"
-    ],
-    "description": "Destructuring useOtherPlayerProfile hook"
-  },
-  "Destructure useOtherPlayerInventory": {
-    "prefix": "hook_inventory_core_useOtherPlayerInventory",
-    "body": [
-      "useFetchOtherPlayerInventory({ playerId, otherPlayerId })",
-      "const otherPlayerInventory = useAtomValue(otherPlayerInventoryAtom)"
-    ],
-    "description": "Destructuring useOtherPlayerInventory hook"
-  },
-  "Destructure useOtherPlayerGearInventory": {
-    "prefix": "hook_inventory_core_useOtherPlayerGearInventory",
-    "body": [
-      "useFetchOtherPlayerGearInventory({ playerId, otherPlayerId })",
-      "const otherPlayerGearInventory = useAtomValue(otherPlayerGearInventoryAtom)"
-    ],
-    "description": "Destructuring useOtherPlayerGearInventory hook"
-  },
   "Destructure useOtherPlayerAbilities": {
     "prefix": "hook_attributes_core_useOtherPlayerAbilities",
     "body": [
       "useFetchOtherPlayerAbilities({ playerId, otherPlayerId })",
-      "const otherPlayerAbilities = useAtomValue(otherPlayerAbilitiesAtom)"
+      "const otherPlayerAbilities = useOtherPlayerAbilities()"
     ],
     "description": "Destructuring useOtherPlayerAbilities hook"
   },
@@ -487,7 +311,7 @@
     "prefix": "hook_attributes_core_useOtherPlayerSkills",
     "body": [
       "useFetchOtherPlayerSkills({ playerId, otherPlayerId })",
-      "const otherPlayerSkills = useAtomValue(otherPlayerSkillsAtom)"
+      "const otherPlayerSkills = useOtherPlayerSkills()"
     ],
     "description": "Destructuring useOtherPlayerSkills hook"
   },
@@ -495,17 +319,200 @@
     "prefix": "hook_attributes_core_useOtherPlayerStats",
     "body": [
       "useFetchOtherPlayerStats({ playerId, otherPlayerId })",
-      "const otherPlayerStats = useAtomValue(otherPlayerStatsAtom)"
+      "const otherPlayerStats = useOtherPlayerStats()"
     ],
     "description": "Destructuring useOtherPlayerStats hook"
   },
-    
+  "Destructure usePlayerAbilities": {
+    "prefix": "hook_attributes_core_usePlayerAbilities",
+    "body": [
+      "useFetchPlayerAbilities({ playerId })",
+      "const playerAbilities = usePlayerAbilities()"
+    ],
+    "description": "Destructuring usePlayerAbilities hook"
+  },
+  "Destructure usePlayerSkills": {
+    "prefix": "hook_attributes_core_usePlayerSkills",
+    "body": [
+      "useFetchPlayerSkills({ playerId })",
+      "const playerSkills = usePlayerSkills()"
+    ],
+    "description": "Destructuring usePlayerSkills hook"
+  },
+  "Destructure usePlayerStats": {
+    "prefix": "hook_attributes_core_usePlayerStats",
+    "body": [
+      "useFetchPlayerStats({ playerId })",
+      "const playerStats = usePlayerStats()"
+    ],
+    "description": "Destructuring usePlayerStats hook"
+  },
+  "Destructure usePlayerCity": {
+    "prefix": "hook_cities_core_usePlayerCity",
+    "body": [
+      "useFetchPlayerCity({ playerId })",
+      "const playerCity = usePlayerCity()"
+    ],
+    "description": "Destructuring usePlayerCity hook"
+  },
+  "Destructure useBuildingInventory": {
+    "prefix": "hook_inventory_core_useBuildingInventory",
+    "body": [
+      "useFetchBuildingInventory({ buildingId })",
+      "const buildingInventory = useBuildingInventory()"
+    ],
+    "description": "Destructuring useBuildingInventory hook"
+  },
+  "Destructure useDistrictInventory": {
+    "prefix": "hook_inventory_core_useDistrictInventory",
+    "body": [
+      "useFetchDistrictInventory({ districtId })",
+      "const districtInventory = useDistrictInventory()"
+    ],
+    "description": "Destructuring useDistrictInventory hook"
+  },
+  "Destructure useOtherPlayerGearInventory": {
+    "prefix": "hook_inventory_core_useOtherPlayerGearInventory",
+    "body": [
+      "useFetchOtherPlayerGearInventory({ playerId, otherPlayerId })",
+      "const otherPlayerGearInventory = useOtherPlayerGearInventory()"
+    ],
+    "description": "Destructuring useOtherPlayerGearInventory hook"
+  },
+  "Destructure useOtherPlayerInventory": {
+    "prefix": "hook_inventory_core_useOtherPlayerInventory",
+    "body": [
+      "useFetchOtherPlayerInventory({ playerId, otherPlayerId })",
+      "const otherPlayerInventory = useOtherPlayerInventory()"
+    ],
+    "description": "Destructuring useOtherPlayerInventory hook"
+  },
+  "Destructure usePlayerGearInventory": {
+    "prefix": "hook_inventory_core_usePlayerGearInventory",
+    "body": [
+      "useFetchPlayerGearInventory({ playerId })",
+      "const playerGearInventory = usePlayerGearInventory()"
+    ],
+    "description": "Destructuring usePlayerGearInventory hook"
+  },
+  "Destructure usePlayerInventory": {
+    "prefix": "hook_inventory_core_usePlayerInventory",
+    "body": [
+      "useFetchPlayerInventory({ playerId })",
+      "const playerInventory = usePlayerInventory()"
+    ],
+    "description": "Destructuring usePlayerInventory hook"
+  },
+  "Destructure useActivePlayerProfile": {
+    "prefix": "hook_players_core_useActivePlayerProfile",
+    "body": [
+      "useFetchActivePlayerProfile({ playerId })",
+      "const activePlayerProfile = useActivePlayerProfile()"
+    ],
+    "description": "Destructuring useActivePlayerProfile hook"
+  },
+  "Destructure useActivePlayerSwitchProfiles": {
+    "prefix": "hook_players_core_useActivePlayerSwitchProfiles",
+    "body": [
+      "useFetchActivePlayerSwitchProfiles({ playerId })",
+      "const activePlayerSwitchProfiles = useActivePlayerSwitchProfiles()"
+    ],
+    "description": "Destructuring useActivePlayerSwitchProfiles hook"
+  },
+  "Destructure useOtherPlayerProfile": {
+    "prefix": "hook_players_core_useOtherPlayerProfile",
+    "body": [
+      "useFetchOtherPlayerProfile({ playerId, otherPlayerId })",
+      "const otherPlayerProfile = useOtherPlayerProfile()"
+    ],
+    "description": "Destructuring useOtherPlayerProfile hook"
+  },
+  "Destructure useActivePlayerSquad": {
+    "prefix": "hook_squad_core_useActivePlayerSquad",
+    "body": [
+      "useFetchActivePlayerSquad({ playerId })",
+      "const activePlayerSquad = useActivePlayerSquad()"
+    ],
+    "description": "Destructuring useActivePlayerSquad hook"
+  },
+  "Destructure useActivePlayerSquadPlayersProfiles": {
+    "prefix": "hook_squad_core_useActivePlayerSquadPlayersProfiles",
+    "body": [
+      "useFetchActivePlayerSquadPlayersProfiles({ playerId })",
+      "const activePlayerSquadPlayersProfiles = useActivePlayerSquadPlayersProfiles()"
+    ],
+    "description": "Destructuring useActivePlayerSquadPlayersProfiles hook"
+  },
+  "Destructure useOtherSquadPlayersProfiles": {
+    "prefix": "hook_squad_core_useOtherSquadPlayersProfiles",
+    "body": [
+      "useFetchOtherSquadPlayersProfiles({ playerId, squadId })",
+      "const otherSquadPlayersProfiles = useOtherSquadPlayersProfiles()"
+    ],
+    "description": "Destructuring useOtherSquadPlayersProfiles hook"
+  },
+  "Destructure useKnownMapRegion": {
+    "prefix": "hook_world_core_useKnownMapRegion",
+    "body": [
+      "useFetchKnownMapRegion({ mapId, playerId, regionType })",
+      "const knownMapRegion = useKnownMapRegion()"
+    ],
+    "description": "Destructuring useKnownMapRegion hook"
+  },
+  "Destructure useKnownMapTiles": {
+    "prefix": "hook_world_core_useKnownMapTiles",
+    "body": [
+      "useFetchKnownMapTiles({ mapId, playerId })",
+      "const knownMapTiles = useKnownMapTiles()"
+    ],
+    "description": "Destructuring useKnownMapTiles hook"
+  },
   "Destructure useKnownMapTilesResourcesOnTile": {
     "prefix": "hook_world_core_useKnownMapTilesResourcesOnTile",
     "body": [
       "useFetchKnownMapTilesResourcesOnTile({ mapId, mapTileX, mapTileY, playerId })",
-      "const knownMapTilesResourcesOnTile = useAtomValue(knownMapTilesResourcesOnTileAtom)"
+      "const knownMapTilesResourcesOnTile = useKnownMapTilesResourcesOnTile()"
     ],
     "description": "Destructuring useKnownMapTilesResourcesOnTile hook"
-  },//Automatic Snippets
+  },
+  "Destructure useKnownPlayersPositions": {
+    "prefix": "hook_world_core_useKnownPlayersPositions",
+    "body": [
+      "useFetchKnownPlayersPositions({ mapId, playerId })",
+      "const knownPlayersPositions = useKnownPlayersPositions()"
+    ],
+    "description": "Destructuring useKnownPlayersPositions hook"
+  },
+  "Destructure usePlayersOnTile": {
+    "prefix": "hook_world_core_usePlayersOnTile",
+    "body": [
+      "useFetchPlayersOnTile({ mapId, mapTileX, mapTileY, playerId })",
+      "const playersOnTile = usePlayersOnTile()"
+    ],
+    "description": "Destructuring usePlayersOnTile hook"
+  },
+  "Destructure usePlayerMap": {
+    "prefix": "hook_world_core_usePlayerMap",
+    "body": [
+      "useFetchPlayerMap({ playerId })",
+      "const playerMap = usePlayerMap()"
+    ],
+    "description": "Destructuring usePlayerMap hook"
+  },
+  "Destructure usePlayerMovement": {
+    "prefix": "hook_world_core_usePlayerMovement",
+    "body": [
+      "useFetchPlayerMovement({ playerId })",
+      "const playerMovement = usePlayerMovement()"
+    ],
+    "description": "Destructuring usePlayerMovement hook"
+  },
+  "Destructure usePlayerPosition": {
+    "prefix": "hook_world_core_usePlayerPosition",
+    "body": [
+      "useFetchPlayerPosition({ mapId, playerId })",
+      "const playerPosition = usePlayerPosition()"
+    ],
+    "description": "Destructuring usePlayerPosition hook"
+  }, //Automatic Snippets
 }

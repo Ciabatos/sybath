@@ -8,7 +8,7 @@ import {
 } from "@/db/postgresMainDatabase/schemas/world/playersOnTile"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { playersOnTileAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -26,4 +26,8 @@ export function useFetchPlayersOnTile(params: TPlayersOnTileParams) {
       setPlayersOnTile(playersOnTile)
     }
   }, [data, setPlayersOnTile])
+}
+
+export function usePlayersOnTile() {
+  return useAtomValue(playersOnTileAtom)
 }

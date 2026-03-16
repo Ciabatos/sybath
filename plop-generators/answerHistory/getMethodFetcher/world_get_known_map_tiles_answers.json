@@ -92,5 +92,8 @@
   "apiPath": "app/api/world/rpc/get-known-map-tiles/[mapId]/[playerId]/route.ts",
   "apiPathParams": "/api/world/rpc/get-known-map-tiles/${params.mapId}/${params.playerId}",
   "generateMutation": true,
-  "mutationMergeOldData": true
+  "mutationMergeOldData": true,
+  "selectedGenerators": [
+    "getMethodFetcher"
+  ]
 }

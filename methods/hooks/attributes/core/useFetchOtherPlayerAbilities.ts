@@ -8,7 +8,7 @@ import {
 } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerAbilities"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { otherPlayerAbilitiesAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -26,4 +26,8 @@ export function useFetchOtherPlayerAbilities(params: TOtherPlayerAbilitiesParams
       setOtherPlayerAbilities(otherPlayerAbilities)
     }
   }, [data, setOtherPlayerAbilities])
+}
+
+export function useOtherPlayerAbilities() {
+  return useAtomValue(otherPlayerAbilitiesAtom)
 }

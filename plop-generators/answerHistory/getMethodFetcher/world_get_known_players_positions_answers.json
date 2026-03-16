@@ -85,5 +85,8 @@
   "apiPath": "app/api/world/rpc/get-known-players-positions/[mapId]/[playerId]/route.ts",
   "apiPathParams": "/api/world/rpc/get-known-players-positions/${params.mapId}/${params.playerId}",
   "generateMutation": true,
-  "mutationMergeOldData": true
+  "mutationMergeOldData": true,
+  "selectedGenerators": [
+    "getMethodFetcher"
+  ]
 }

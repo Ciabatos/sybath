@@ -8,7 +8,7 @@ import {
 } from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { knownMapRegionAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -26,4 +26,8 @@ export function useFetchKnownMapRegion(params: TKnownMapRegionParams) {
       setKnownMapRegion(knownMapRegion)
     }
   }, [data, setKnownMapRegion])
+}
+
+export function useKnownMapRegion() {
+  return useAtomValue(knownMapRegionAtom)
 }

@@ -111,5 +111,8 @@
   "apiPath": "app/api/world/rpc/get-known-map-region/[mapId]/[playerId]/[regionType]/route.ts",
   "apiPathParams": "/api/world/rpc/get-known-map-region/${params.mapId}/${params.playerId}/${params.regionType}",
   "generateMutation": true,
-  "mutationMergeOldData": true
+  "mutationMergeOldData": true,
+  "selectedGenerators": [
+    "getMethodFetcher"
+  ]
 }

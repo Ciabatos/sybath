@@ -70,5 +70,8 @@
   "apiPath": "app/api/attributes/rpc/get-other-player-stats/[playerId]/[otherPlayerId]/route.ts",
   "apiPathParams": "/api/attributes/rpc/get-other-player-stats/${params.playerId}/${params.otherPlayerId}",
   "generateMutation": true,
-  "mutationMergeOldData": true
+  "mutationMergeOldData": true,
+  "selectedGenerators": [
+    "getMethodFetcher"
+  ]
 }

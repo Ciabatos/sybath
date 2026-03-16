@@ -8,7 +8,7 @@ import {
 } from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { buildingInventoryAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -25,4 +25,8 @@ export function useFetchBuildingInventory(params: TBuildingInventoryParams) {
       setBuildingInventory(buildingInventory)
     }
   }, [data, setBuildingInventory])
+}
+
+export function useBuildingInventory() {
+  return useAtomValue(buildingInventoryAtom)
 }

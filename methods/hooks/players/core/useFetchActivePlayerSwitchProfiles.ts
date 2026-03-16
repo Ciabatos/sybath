@@ -8,7 +8,7 @@ import {
 } from "@/db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { activePlayerSwitchProfilesAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -26,4 +26,8 @@ export function useFetchActivePlayerSwitchProfiles(params: TActivePlayerSwitchPr
       setActivePlayerSwitchProfiles(activePlayerSwitchProfiles)
     }
   }, [data, setActivePlayerSwitchProfiles])
+}
+
+export function useActivePlayerSwitchProfiles() {
+  return useAtomValue(activePlayerSwitchProfilesAtom)
 }

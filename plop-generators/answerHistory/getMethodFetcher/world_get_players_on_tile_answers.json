@@ -94,5 +94,8 @@
   "apiPath": "app/api/world/rpc/get-players-on-tile/[mapId]/[mapTileX]/[mapTileY]/[playerId]/route.ts",
   "apiPathParams": "/api/world/rpc/get-players-on-tile/${params.mapId}/${params.mapTileX}/${params.mapTileY}/${params.playerId}",
   "generateMutation": true,
-  "mutationMergeOldData": true
+  "mutationMergeOldData": true,
+  "selectedGenerators": [
+    "getMethodFetcher"
+  ]
 }

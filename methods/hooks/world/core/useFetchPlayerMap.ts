@@ -8,7 +8,7 @@ import {
 } from "@/db/postgresMainDatabase/schemas/world/playerMap"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { playerMapAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -23,4 +23,8 @@ export function useFetchPlayerMap(params: TPlayerMapParams) {
       setPlayerMap(playerMap)
     }
   }, [data, setPlayerMap])
+}
+
+export function usePlayerMap() {
+  return useAtomValue(playerMapAtom)
 }
