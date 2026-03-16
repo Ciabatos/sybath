@@ -5,7 +5,7 @@ mode: primary
 model: lmstudio2/qwen_qwen3.5-9b
 temperature: 1
 tools:
-  write: false
+  write: true
   edit: false
   "shadcn*": false
   "React-Icons-MCP*": false
@@ -18,7 +18,7 @@ permission:
 ---
 
 Analyze a Next.js custom hook, trace all dependencies from the app and the PostgreSQL database (game-db), and generate a
-structured .md file describing:
+structured .md file in the same path, describing:
 
 What the hook does
 
