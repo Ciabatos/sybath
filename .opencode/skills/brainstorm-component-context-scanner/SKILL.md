@@ -1,5 +1,5 @@
 ---
-name: component-context-scanner
+name: brainstorm-component-context-scanner
 description: |
   Scans existing UI components in the project and extracts design,
   structure, and architectural patterns. The result is used as context

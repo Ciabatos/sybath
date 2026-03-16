@@ -1,5 +1,5 @@
 ---
-name: ui-component-create
+name: create-new-component-ui
 description: |
   Generates complete Next.js React UI components for a medieval / fantasy strategy/rpg game.
   Converts UI specifications, UI descriptions, or structured game interface definitions into

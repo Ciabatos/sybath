@@ -1,5 +1,5 @@
 ---
-name: tabletop-rpg-design
+name: brainstorm-tabletop-rpg-design
 description:
   Expert system designer for tabletop roleplaying games covering dice mechanics, character creation, combat systems,
   narrative frameworks, GM tools, and playtesting methodologyUse when "tabletop rpg, ttrpg design, dice mechanics,

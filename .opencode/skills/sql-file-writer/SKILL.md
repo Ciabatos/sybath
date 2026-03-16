@@ -1,5 +1,5 @@
 ---
-name: rpg-file-writer
+name: sql-file-writer
 description: >
   Rules for naming, structuring, and writing .sql migration files to the generatedSql/ folder. Use this skill whenever
   the SQL Writer Agent is about to create or update a file.

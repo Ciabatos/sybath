@@ -1,5 +1,5 @@
 ---
-name: game-development
+name: brainstorm-game-development
 description:
   Building interactive experiences that engage, challenge, and delight playersUse when "game, gamedev, game development,
   phaser, unity, unreal, godot, gameplay, game loop, sprites, collision, physics, player, level, tilemap, games,

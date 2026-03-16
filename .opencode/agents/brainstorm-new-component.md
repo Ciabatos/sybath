@@ -7,14 +7,14 @@ temperature: 1
 tools:
   write: false
   edit: false
-  "shadcn_*": true
-  "React-Icons-MCP_*": false
+  "shadcn*": true
+  "React-Icons-MCP*": false
 color: "#ff1b9b"
 permission:
   skill:
-    "game-development": "allow"
-    "tabletop-rpg-design": "allow"
-    "component-context-scanner": "allow"
+    "brainstorm-game-development": "allow"
+    "brainstorm-tabletop-rpg-design": "allow"
+    "brainstorm-component-context-scanner": "allow"
 ---
 
 You are a UI planner for a medieval/fantasy strategy game.

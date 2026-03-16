@@ -1,32 +1,30 @@
 ---
-name: rpg-sql-conventions
+name: sql-file-conventions
 description: >
-  All SQL style rules, patterns, and templates for the RPG game database.
-  Use this skill when writing any SQL for the RPG project to ensure
-  consistency with the existing codebase.
+  All SQL style rules, patterns, and templates for the RPG game database. Use this skill when writing any SQL for the
+  RPG project to ensure consistency with the existing codebase.
 ---
 
 # SQL Conventions Skill
 
-Complete reference for every SQL pattern used in the RPG database.
-Read this before writing a single line of SQL.
+Complete reference for every SQL pattern used in the RPG database. Read this before writing a single line of SQL.
 
 ---
 
 ## Naming rules
 
-| Object | Convention | Example |
-|--------|-----------|---------|
-| Schemas | `snake_case` | `inventory`, `world` |
-| Tables | `snake_case`, plural | `guild_members`, `item_slots` |
-| Columns | `snake_case` | `player_id`, `created_at` |
-| Primary key | always `id` | `id SERIAL PRIMARY KEY` |
-| Foreign keys | `<referenced_table_singular>_id` | `player_id`, `item_id`, `guild_id` |
-| Function params | `p_` prefix | `p_player_id`, `p_amount` |
-| Local variables | `v_` prefix | `v_guild_record`, `v_count` |
-| Indexes | `idx_<table>_<column(s)>` | `idx_guild_members_player_id` |
-| Unique constraints | `uq_<table>_<columns>` | `uq_guild_members_player_id` |
-| Check constraints | `chk_<table>_<description>` | `chk_slots_amount_positive` |
+| Object             | Convention                       | Example                            |
+| ------------------ | -------------------------------- | ---------------------------------- |
+| Schemas            | `snake_case`                     | `inventory`, `world`               |
+| Tables             | `snake_case`, plural             | `guild_members`, `item_slots`      |
+| Columns            | `snake_case`                     | `player_id`, `created_at`          |
+| Primary key        | always `id`                      | `id SERIAL PRIMARY KEY`            |
+| Foreign keys       | `<referenced_table_singular>_id` | `player_id`, `item_id`, `guild_id` |
+| Function params    | `p_` prefix                      | `p_player_id`, `p_amount`          |
+| Local variables    | `v_` prefix                      | `v_guild_record`, `v_count`        |
+| Indexes            | `idx_<table>_<column(s)>`        | `idx_guild_members_player_id`      |
+| Unique constraints | `uq_<table>_<columns>`           | `uq_guild_members_player_id`       |
+| Check constraints  | `chk_<table>_<description>`      | `chk_slots_amount_positive`        |
 
 ---
 
@@ -60,6 +58,7 @@ CREATE INDEX IF NOT EXISTS idx_table_name_is_active   ON schema.table_name(is_ac
 ```
 
 Rules:
+
 - `IF NOT EXISTS` always
 - One column per line, aligned
 - FK `ON DELETE` behaviour must be explicit (`CASCADE`, `SET NULL`, or `RESTRICT`)
@@ -118,6 +117,7 @@ COMMENT ON FUNCTION schema.get_<name>_by_key(integer)
 ```
 
 Rules:
+
 - Always create the pair — never just one
 - `LANGUAGE sql` (not plpgsql) for simple selects
 - `STABLE` — safe to cache
@@ -195,6 +195,7 @@ COMMENT ON FUNCTION schema.get_player_<name>(integer)
 ```
 
 Rules:
+
 - First parameter always `p_player_id integer`
 - `LANGUAGE plpgsql` (allows control flow)
 - `STABLE` unless the function logs access
@@ -271,6 +272,7 @@ COMMENT ON FUNCTION schema.do_<action>(integer, integer)
 ```
 
 Rules:
+
 - Returns `TABLE(status boolean, message text)` — always, no exceptions
 - Each validation step: `IF NOT FOUND / IF condition THEN RETURN QUERY SELECT false, '...' RETURN; END IF;`
 - `RETURN;` (bare) after every early exit — mandatory
@@ -342,8 +344,8 @@ VALUES (
 );
 ```
 
-Task type string must be `snake_case` and match what the task runner expects.
-Always document the payload structure in a SQL comment above the INSERT.
+Task type string must be `snake_case` and match what the task runner expects. Always document the payload structure in a
+SQL comment above the INSERT.
 
 ---
 

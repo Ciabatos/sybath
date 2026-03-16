@@ -7,8 +7,8 @@ temperature: 0.7
 tools:
   write: false
   edit: true
-  "shadcn_*": false
-  "React-Icons-MCP_*": false
+  "shadcn*": false
+  "React-Icons-MCP*": false
 color: "#ff643b"
 permission:
   task:

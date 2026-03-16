@@ -1,8 +1,8 @@
 ---
-name: rpg-game-design
+name: sql-game-design
 description: >
-  How to analyse and decompose RPG game feature requests into database-level components.
-  Use this skill during Phase 2 of planning to ensure nothing is missed.
+  How to analyse and decompose RPG game feature requests into database-level components. Use this skill during Phase 2
+  of planning to ensure nothing is missed.
 ---
 
 # RPG Game Design Skill
@@ -20,22 +20,26 @@ Things that are defined once and rarely change. Players read these to populate d
 Examples: item types, terrain types, building categories, skill trees, rank definitions, recipe lists.
 
 **For each reference data set, create:**
+
 - One dictionary table in the relevant schema
 - `get_X()` — returns all rows
 - `get_X_by_key(p_id)` — returns one row by primary key
 - Both tagged `automatic_get_api`
 
-**Ask yourself:** Does this feature introduce any new categories, types, or configuration that multiple rows of data will reference?
+**Ask yourself:** Does this feature introduce any new categories, types, or configuration that multiple rows of data
+will reference?
 
 ---
 
 ### 2. State tables (→ `get_api` reads)
 
-The persistent state of the game world related to this feature. Usually one "main" table per feature, sometimes supporting tables.
+The persistent state of the game world related to this feature. Usually one "main" table per feature, sometimes
+supporting tables.
 
 Examples: player guild membership, inventory slots, quest progress, known recipes.
 
 **For each state table:**
+
 - Identify all columns and their types (check MCP for FK targets)
 - Add `created_at`, `updated_at` if rows change over time
 - Add `deleted_at` (soft delete) if history matters
@@ -51,12 +55,14 @@ Examples: player guild membership, inventory slots, quest progress, known recipe
 What can a player see about this feature? Design one function per logical "view".
 
 Rules:
+
 - First parameter always `p_player_id integer`
 - Returns NULL fields (not missing rows) for data the player hasn't discovered
 - Check `knowledge.*` tables for fog-of-war constraints when returning world/position data
 - Use `STABLE` if no side effects, `VOLATILE` if it logs access
 
 **Ask yourself:**
+
 - What does the player's own UI need to display?
 - What can they see about other players? (check fog-of-war)
 - What aggregate/summary data is useful? (e.g. total weight, slot count)
@@ -68,6 +74,7 @@ Rules:
 What can a player DO in this feature? Design one function per atomic action.
 
 Rules:
+
 - Returns `TABLE(status boolean, message text)` — always
 - First validate all inputs, return `(false, reason)` for every failure case
 - List ALL failure cases explicitly in the spec
@@ -75,6 +82,7 @@ Rules:
 - If the operation is slow or affects other players, queue a task in `tasks.tasks`
 
 **Ask yourself:**
+
 - Create / join / build / craft?
 - Delete / leave / destroy / consume?
 - Transfer / trade / move?
@@ -87,6 +95,7 @@ Rules:
 Some actions don't complete instantly — movement, exploration, crafting timers, scheduled events.
 
 If an `action_api` function should queue work:
+
 - Define the task type name (string key used in `tasks.tasks`)
 - Define the JSONB payload structure
 - Define what happens when the task completes
@@ -97,9 +106,11 @@ If an `action_api` function should queue work:
 
 ### 6. Fog-of-war updates (→ `knowledge.*`)
 
-If the feature reveals world information to the player, a corresponding row must be inserted into the appropriate `knowledge.*` table.
+If the feature reveals world information to the player, a corresponding row must be inserted into the appropriate
+`knowledge.*` table.
 
-**Ask yourself:** Does this feature let a player discover a location, another player, a building, or a resource? If yes, add a `knowledge.*` insert.
+**Ask yourself:** Does this feature let a player discover a location, another player, a building, or a resource? If yes,
+add a `knowledge.*` insert.
 
 ---
 
