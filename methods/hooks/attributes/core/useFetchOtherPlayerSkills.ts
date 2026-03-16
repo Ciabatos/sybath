@@ -28,6 +28,6 @@ export function useFetchOtherPlayerSkills(params: TOtherPlayerSkillsParams) {
   }, [data, setOtherPlayerSkills])
 }
 
-export function useOtherPlayerSkills() {
+export function useOtherPlayerSkillsState() {
   return useAtomValue(otherPlayerSkillsAtom)
 }

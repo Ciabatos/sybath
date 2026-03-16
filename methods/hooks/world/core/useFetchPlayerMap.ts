@@ -25,6 +25,6 @@ export function useFetchPlayerMap(params: TPlayerMapParams) {
   }, [data, setPlayerMap])
 }
 
-export function usePlayerMap() {
+export function usePlayerMapState() {
   return useAtomValue(playerMapAtom)
 }

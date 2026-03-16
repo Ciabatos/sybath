@@ -27,6 +27,6 @@ export function useFetchDistrictInventory(params: TDistrictInventoryParams) {
   }, [data, setDistrictInventory])
 }
 
-export function useDistrictInventory() {
+export function useDistrictInventoryState() {
   return useAtomValue(districtInventoryAtom)
 }

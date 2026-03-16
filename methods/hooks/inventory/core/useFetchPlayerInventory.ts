@@ -27,6 +27,6 @@ export function useFetchPlayerInventory(params: TPlayerInventoryParams) {
   }, [data, setPlayerInventory])
 }
 
-export function usePlayerInventory() {
+export function usePlayerInventoryState() {
   return useAtomValue(playerInventoryAtom)
 }

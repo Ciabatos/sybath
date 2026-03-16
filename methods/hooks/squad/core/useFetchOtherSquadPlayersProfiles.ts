@@ -31,6 +31,6 @@ export function useFetchOtherSquadPlayersProfiles(params: TOtherSquadPlayersProf
   }, [data, setOtherSquadPlayersProfiles])
 }
 
-export function useOtherSquadPlayersProfiles() {
+export function useOtherSquadPlayersProfilesState() {
   return useAtomValue(otherSquadPlayersProfilesAtom)
 }

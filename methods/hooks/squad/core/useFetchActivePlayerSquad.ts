@@ -27,6 +27,6 @@ export function useFetchActivePlayerSquad(params: TActivePlayerSquadParams) {
   }, [data, setActivePlayerSquad])
 }
 
-export function useActivePlayerSquad() {
+export function useActivePlayerSquadState() {
   return useAtomValue(activePlayerSquadAtom)
 }

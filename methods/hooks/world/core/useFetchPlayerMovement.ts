@@ -27,6 +27,6 @@ export function useFetchPlayerMovement(params: TPlayerMovementParams) {
   }, [data, setPlayerMovement])
 }
 
-export function usePlayerMovement() {
+export function usePlayerMovementState() {
   return useAtomValue(playerMovementAtom)
 }

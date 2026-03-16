@@ -27,6 +27,6 @@ export function useFetchActivePlayerProfile(params: TActivePlayerProfileParams) 
   }, [data, setActivePlayerProfile])
 }
 
-export function useActivePlayerProfile() {
+export function useActivePlayerProfileState() {
   return useAtomValue(activePlayerProfileAtom)
 }

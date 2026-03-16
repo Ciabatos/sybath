@@ -27,6 +27,6 @@ export function useFetchPlayerSkills(params: TPlayerSkillsParams) {
   }, [data, setPlayerSkills])
 }
 
-export function usePlayerSkills() {
+export function usePlayerSkillsState() {
   return useAtomValue(playerSkillsAtom)
 }

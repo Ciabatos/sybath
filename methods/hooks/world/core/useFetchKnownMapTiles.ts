@@ -27,6 +27,6 @@ export function useFetchKnownMapTiles(params: TKnownMapTilesParams) {
   }, [data, setKnownMapTiles])
 }
 
-export function useKnownMapTiles() {
+export function useKnownMapTilesState() {
   return useAtomValue(knownMapTilesAtom)
 }

@@ -27,6 +27,6 @@ export function useFetchPlayerGearInventory(params: TPlayerGearInventoryParams) 
   }, [data, setPlayerGearInventory])
 }
 
-export function usePlayerGearInventory() {
+export function usePlayerGearInventoryState() {
   return useAtomValue(playerGearInventoryAtom)
 }

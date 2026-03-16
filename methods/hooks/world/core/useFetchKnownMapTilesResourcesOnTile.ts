@@ -31,6 +31,6 @@ export function useFetchKnownMapTilesResourcesOnTile(params: TKnownMapTilesResou
   }, [data, setKnownMapTilesResourcesOnTile])
 }
 
-export function useKnownMapTilesResourcesOnTile() {
+export function useKnownMapTilesResourcesOnTileState() {
   return useAtomValue(knownMapTilesResourcesOnTileAtom)
 }

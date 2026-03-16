@@ -28,6 +28,6 @@ export function useFetchKnownPlayersPositions(params: TKnownPlayersPositionsPara
   }, [data, setKnownPlayersPositions])
 }
 
-export function useKnownPlayersPositions() {
+export function useKnownPlayersPositionsState() {
   return useAtomValue(knownPlayersPositionsAtom)
 }

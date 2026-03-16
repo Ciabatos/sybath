@@ -28,6 +28,6 @@ export function useFetchOtherPlayerProfile(params: TOtherPlayerProfileParams) {
   }, [data, setOtherPlayerProfile])
 }
 
-export function useOtherPlayerProfile() {
+export function useOtherPlayerProfileState() {
   return useAtomValue(otherPlayerProfileAtom)
 }

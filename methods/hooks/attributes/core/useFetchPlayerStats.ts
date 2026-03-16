@@ -27,6 +27,6 @@ export function useFetchPlayerStats(params: TPlayerStatsParams) {
   }, [data, setPlayerStats])
 }
 
-export function usePlayerStats() {
+export function usePlayerStatsState() {
   return useAtomValue(playerStatsAtom)
 }

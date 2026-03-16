@@ -28,6 +28,6 @@ export function useFetchOtherPlayerInventory(params: TOtherPlayerInventoryParams
   }, [data, setOtherPlayerInventory])
 }
 
-export function useOtherPlayerInventory() {
+export function useOtherPlayerInventoryState() {
   return useAtomValue(otherPlayerInventoryAtom)
 }

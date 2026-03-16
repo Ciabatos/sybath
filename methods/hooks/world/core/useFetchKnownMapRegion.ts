@@ -28,6 +28,6 @@ export function useFetchKnownMapRegion(params: TKnownMapRegionParams) {
   }, [data, setKnownMapRegion])
 }
 
-export function useKnownMapRegion() {
+export function useKnownMapRegionState() {
   return useAtomValue(knownMapRegionAtom)
 }

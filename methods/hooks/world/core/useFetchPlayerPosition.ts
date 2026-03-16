@@ -27,6 +27,6 @@ export function useFetchPlayerPosition(params: TPlayerPositionParams) {
   }, [data, setPlayerPosition])
 }
 
-export function usePlayerPosition() {
+export function usePlayerPositionState() {
   return useAtomValue(playerPositionAtom)
 }

@@ -27,6 +27,6 @@ export function useFetchBuildingInventory(params: TBuildingInventoryParams) {
   }, [data, setBuildingInventory])
 }
 
-export function useBuildingInventory() {
+export function useBuildingInventoryState() {
   return useAtomValue(buildingInventoryAtom)
 }

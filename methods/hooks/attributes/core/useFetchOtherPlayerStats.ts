@@ -28,6 +28,6 @@ export function useFetchOtherPlayerStats(params: TOtherPlayerStatsParams) {
   }, [data, setOtherPlayerStats])
 }
 
-export function useOtherPlayerStats() {
+export function useOtherPlayerStatsState() {
   return useAtomValue(otherPlayerStatsAtom)
 }

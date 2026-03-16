@@ -28,6 +28,6 @@ export function useFetchOtherPlayerGearInventory(params: TOtherPlayerGearInvento
   }, [data, setOtherPlayerGearInventory])
 }
 
-export function useOtherPlayerGearInventory() {
+export function useOtherPlayerGearInventoryState() {
   return useAtomValue(otherPlayerGearInventoryAtom)
 }

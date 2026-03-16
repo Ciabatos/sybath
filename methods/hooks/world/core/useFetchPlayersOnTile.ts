@@ -28,6 +28,6 @@ export function useFetchPlayersOnTile(params: TPlayersOnTileParams) {
   }, [data, setPlayersOnTile])
 }
 
-export function usePlayersOnTile() {
+export function usePlayersOnTileState() {
   return useAtomValue(playersOnTileAtom)
 }

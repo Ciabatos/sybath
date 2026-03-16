@@ -28,6 +28,6 @@ export function useFetchActivePlayerSwitchProfiles(params: TActivePlayerSwitchPr
   }, [data, setActivePlayerSwitchProfiles])
 }
 
-export function useActivePlayerSwitchProfiles() {
+export function useActivePlayerSwitchProfilesState() {
   return useAtomValue(activePlayerSwitchProfilesAtom)
 }

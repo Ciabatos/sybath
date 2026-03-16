@@ -27,6 +27,6 @@ export function useFetchPlayerCity(params: TPlayerCityParams) {
   }, [data, setPlayerCity])
 }
 
-export function usePlayerCity() {
+export function usePlayerCityState() {
   return useAtomValue(playerCityAtom)
 }
