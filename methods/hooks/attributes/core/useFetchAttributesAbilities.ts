@@ -7,7 +7,7 @@ import {
 } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { abilitiesAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -22,4 +22,8 @@ export function useFetchAttributesAbilities() {
       setAttributesAbilities(abilities)
     }
   }, [data, setAttributesAbilities])
+}
+
+export function useAttributesAbilities() {
+  return useAtomValue(abilitiesAtom)
 }

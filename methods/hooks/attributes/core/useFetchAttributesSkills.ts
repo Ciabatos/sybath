@@ -4,7 +4,7 @@
 import { TAttributesSkillsRecordById, TAttributesSkills } from "@/db/postgresMainDatabase/schemas/attributes/skills"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { skillsAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -19,4 +19,8 @@ export function useFetchAttributesSkills() {
       setAttributesSkills(skills)
     }
   }, [data, setAttributesSkills])
+}
+
+export function useAttributesSkills() {
+  return useAtomValue(skillsAtom)
 }

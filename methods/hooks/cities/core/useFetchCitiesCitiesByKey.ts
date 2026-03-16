@@ -8,7 +8,7 @@ import {
 } from "@/db/postgresMainDatabase/schemas/cities/cities"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { citiesAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -23,4 +23,8 @@ export function useFetchCitiesCitiesByKey(params: TCitiesCitiesParams) {
       setCitiesCities(cities)
     }
   }, [data, setCitiesCities])
+}
+
+export function useCitiesCities() {
+  return useAtomValue(citiesAtom)
 }

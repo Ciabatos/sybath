@@ -93,5 +93,8 @@
   "apiPathParamsByKey": "/api/world/map-tiles/${params.mapId}",
   "generateMutation": false,
   "fetcherName": "fetchWorldMapTiles",
-  "fetcherNameByKey": "fetchWorldMapTilesByKey"
+  "fetcherNameByKey": "fetchWorldMapTilesByKey",
+  "selectedGenerators": [
+    "getTable"
+  ]
 }

@@ -7,7 +7,7 @@ import {
 } from "@/db/postgresMainDatabase/schemas/inventory/inventorySlotTypes"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { inventorySlotTypesAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -24,4 +24,8 @@ export function useFetchInventoryInventorySlotTypes() {
       setInventoryInventorySlotTypes(inventorySlotTypes)
     }
   }, [data, setInventoryInventorySlotTypes])
+}
+
+export function useInventoryInventorySlotTypes() {
+  return useAtomValue(inventorySlotTypesAtom)
 }

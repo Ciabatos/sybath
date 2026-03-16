@@ -7,7 +7,7 @@ import {
 } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { buildingsAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -25,4 +25,8 @@ export function useFetchBuildingsBuildings() {
       setBuildingsBuildings(buildings)
     }
   }, [data, setBuildingsBuildings])
+}
+
+export function useBuildingsBuildings() {
+  return useAtomValue(buildingsAtom)
 }

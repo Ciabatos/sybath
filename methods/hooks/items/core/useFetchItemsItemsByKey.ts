@@ -4,7 +4,7 @@
 import { TItemsItemsRecordById, TItemsItems, TItemsItemsParams } from "@/db/postgresMainDatabase/schemas/items/items"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { itemsAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -19,4 +19,8 @@ export function useFetchItemsItemsByKey(params: TItemsItemsParams) {
       setItemsItems(items)
     }
   }, [data, setItemsItems])
+}
+
+export function useItemsItems() {
+  return useAtomValue(itemsAtom)
 }

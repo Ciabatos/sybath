@@ -8,7 +8,7 @@ import {
 } from "@/db/postgresMainDatabase/schemas/districts/districts"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { districtsAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -23,4 +23,8 @@ export function useFetchDistrictsDistrictsByKey(params: TDistrictsDistrictsParam
       setDistrictsDistricts(districts)
     }
   }, [data, setDistrictsDistricts])
+}
+
+export function useDistrictsDistricts() {
+  return useAtomValue(districtsAtom)
 }

@@ -7,7 +7,7 @@ import {
 } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { landscapeTypesAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -22,4 +22,8 @@ export function useFetchWorldLandscapeTypes() {
       setWorldLandscapeTypes(landscapeTypes)
     }
   }, [data, setWorldLandscapeTypes])
+}
+
+export function useWorldLandscapeTypes() {
+  return useAtomValue(landscapeTypesAtom)
 }

@@ -8,7 +8,7 @@ import {
 } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { terrainTypesAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
@@ -23,4 +23,8 @@ export function useFetchWorldTerrainTypesByKey(params: TWorldTerrainTypesParams)
       setWorldTerrainTypes(terrainTypes)
     }
   }, [data, setWorldTerrainTypes])
+}
+
+export function useWorldTerrainTypes() {
+  return useAtomValue(terrainTypesAtom)
 }
