@@ -3,7 +3,7 @@
     "prefix": "hook_{{schema}}_core_use{{methodPascalName}}",
     "body": [
       "useFetch{{methodPascalName}}({{#if methodParamsColumns}}{ {{#each methodParamsColumns}}{{camelName}}{{#unless @last}}, {{/unless}}{{/each}} }{{/if}})",
-      "const {{methodCamelName}} = use{{methodPascalName}}()"
+      "const {{methodCamelName}} = use{{methodPascalName}}State()"
     ],
     "description": "Destructuring use{{methodPascalName}} hook"
   },

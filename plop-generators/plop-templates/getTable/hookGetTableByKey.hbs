@@ -21,6 +21,6 @@ export function useFetch{{schemaTablePascalName}}ByKey({{#if methodParamsColumns
   }, [data, set{{schemaTablePascalName}}])
 }
 
-export function use{{schemaTablePascalName}}() {
+export function use{{schemaTablePascalName}}State() {
   return useAtomValue({{tableCamelName}}Atom)
 }

@@ -3,7 +3,7 @@
     "prefix": "hook_{{schema}}_core_use{{schemaTablePascalName}}",
     "body": [
       "useFetch{{schemaTablePascalName}}()",
-      "const {{tableCamelName}} = use{{schemaTablePascalName}}()"
+      "const {{tableCamelName}} = use{{schemaTablePascalName}}State()"
     ],
     "description": "Destructuring use{{schemaTablePascalName}} hook"
   },

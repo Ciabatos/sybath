@@ -21,6 +21,6 @@ export function useFetch{{methodPascalName}}({{#if methodParamsColumns}} params:
   }, [data, set{{methodPascalName}}])
 }
 
-export function use{{methodPascalName}}() {
+export function use{{methodPascalName}}State() {
   return useAtomValue({{methodCamelName}}Atom)
 }
