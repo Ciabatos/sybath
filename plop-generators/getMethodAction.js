@@ -135,6 +135,12 @@ export default function getMethodAction(plop) {
       },
       {
         type: "add",
+        path: "../.opencode/skills/ai-{{methodName}}-description/SKILL.md",
+        templateFile: "plop-templates/methodAction/skillCreatorAction.hbs",
+        force: true,
+      },
+      {
+        type: "add",
         path: "../db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}.ts",
         templateFile: "plop-templates/methodAction/dbGetMethodAction.hbs",
         force: true,

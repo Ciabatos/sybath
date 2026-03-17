@@ -1,0 +1,69 @@
+---
+name: ai-useFetch{{methodPascalName}}-description
+description: |
+  Hook useFetch{{methodPascalName}} description, workflow.
+
+  Use when:
+  When using hook useFetch{{methodPascalName}} or trying to understand it.
+---
+
+
+
+# useFetch{{methodPascalName}} hook Documentation
+# function path :`methods/hooks/{{schema}}/core/useFetch{{methodPascalName}}.ts` 
+# function useFetch{{methodPascalName}}({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}})
+# Jotai atom name: const {{methodCamelName}}Atom = atom<{{indexTypeName}}>({})
+
+
+### Data Flow
+```
+# function GET(request: NextRequest{{#if methodParamsColumns}}, { params }: { params: TApiParams } {{/if}})
+# path: `{{apiPath}}` 
+# TypeScript Types:
+type TApiParams = Record<string, string>
+
+const typeParamsSchema = z.object({
+  {{#each methodParamsColumns}}
+  {{camelName}}: z.coerce.{{tsType}}(),
+  {{/each}}
+}) satisfies z.ZodType<{{methodParamsTypeName}}>
+
+# function {{methodName}}Server({{#if methodParamsColumns}} params: {{methodParamsTypeName}}, {{/if}}options?: { forceFresh?: boolean },): Promise<TResult>
+# path: `methods/server-fetchers/{{schema}}/core/{{methodName}}Server.ts` 
+# TypeScript Types:
+
+type TResult = {
+  raw: {{methodTypeName}}[]
+  byKey: {{indexTypeName}}
+  apiPath: string
+  atomName: string
+}
+
+# function {{methodName}}(params: {{methodParamsTypeName}})
+# path: `db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}.ts` 
+# TypeScript Types:
+
+{{#if methodParamsColumns}}
+export type {{methodParamsTypeName}} = {
+{{#each methodParamsColumns}}
+  {{camelName}}: {{tsType}}
+{{/each}}
+}{{/if}}
+
+export type {{methodTypeName}} = {
+{{#each methodColumns}}
+  {{camelName}}{{optional}}: {{tsType}}
+{{/each}}
+}
+
+export type {{indexTypeName}} = Record<string, {{methodTypeName}}>
+
+Hook for mutate data using SWR
+# function path :`methods/hooks/{{schema}}/core/useMutate{{methodPascalName}}.ts` 
+# function useMutate{{methodPascalName}}({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}})
+
+#### PostgreSQL Database
+# "schema": "{{schema}}"
+# "method": "{{method}}"
+You have more information in mcp `game-db`
+```

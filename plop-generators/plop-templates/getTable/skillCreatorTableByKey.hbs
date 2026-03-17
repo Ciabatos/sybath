@@ -1,0 +1,75 @@
+---
+name: ai-useFetch{{schemaTablePascalName}}ByKey-description
+description: |
+  Hook useFetch{{schemaTablePascalName}}ByKey description, workflow.
+
+  Use when:
+  When using hook useFetch{{schemaTablePascalName}}ByKey or trying to understand it.
+---
+
+
+
+# useFetch{{schemaTablePascalName}}ByKey hook Documentation
+# function path :`methods/hooks/{{schema}}/core/useFetch{{schemaTablePascalName}}ByKey.ts` 
+# function useFetch{{schemaTablePascalName}}ByKey({{#if methodParamsColumns}} params: {{methodParamsTypeName}} {{/if}})
+# Jotai atom name: const {{tableCamelName}}Atom = atom<{{indexTypeName}}>({})
+
+
+### Data Flow
+```
+# function GET(request: NextRequest{{#if methodParamsColumns}}, { params }: { params: TApiParams }{{/if}})
+# path: `{{apiPathByKey}}` 
+# TypeScript Types:
+type TApiParams = Record<string, string>
+
+const typeParamsSchema = z.object({
+  {{#each methodParamsColumns}}
+  {{camelName}}: z.coerce.{{tsType}}(),
+  {{/each}}
+}) satisfies z.ZodType<{{methodParamsTypeName}}>
+
+# function {{fetcherNameByKey}}Service({{#if methodParamsColumns}}params: {{methodParamsTypeName}}{{/if}},options?: { clientEtag?: string; forceFresh?: boolean }): Promise<TFetchResult>
+# path: `methods/services/{{schema}}/{{fetcherNameByKey}}Service.ts` 
+# TypeScript Types:
+
+type TCacheRecord = {
+  raw: {{methodTypeName}}[]
+  byKey: {{indexTypeName}}
+  etag: string
+}
+
+type TFetchResult = {
+  record?: TCacheRecord
+  etag: string
+  cacheHit: boolean
+  etagMatched: boolean
+}
+
+# function function {{methodNameByKey}}(params: {{methodParamsTypeName}})
+# path: `db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}.ts` 
+# TypeScript Types:
+
+{{#if methodParamsColumns}}
+export type {{methodParamsTypeName}} = {
+{{#each methodParamsColumns}}
+  {{camelName}}: {{tsType}}
+{{/each}}
+}{{/if}}
+
+export type {{methodTypeName}} = {
+{{#each methodColumns}}
+  {{camelName}}{{optional}}: {{tsType}}
+{{/each}}
+}
+
+export type {{indexTypeName}} = Record<string, {{methodTypeName}}>
+
+Hook for mutate data using SWR
+# function path :`methods/hooks/{{schema}}/core/useMutate{{schemaTablePascalName}}ByKey.ts` 
+# function useMutate{{schemaTablePascalName}}({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}})
+
+#### PostgreSQL Database
+# "schema": "{{schema}}"
+# "method": "{{methodRecordsByKey}}"
+You have more information in mcp `game-db`
+```

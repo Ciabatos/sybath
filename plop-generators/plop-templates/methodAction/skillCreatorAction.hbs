@@ -1,0 +1,58 @@
+---
+name: ai-{{methodName}}-description
+description: |
+  Action {{methodName}} description, workflow.
+
+  Use when:
+  When using action {{methodName}} or trying to understand it.
+---
+
+
+
+# {{methodName}} Action Documentation
+# function path :`methods/actions/{{schema}}/{{methodName}}.ts` 
+# function {{methodName}}(params: T{{methodPascalName}}ActionParams)
+# TypeScript Types:
+type T{{methodPascalName}}ActionParams = Omit<T{{methodPascalName}}ServiceParams, "sessionUserId"></T>
+
+### Data Flow
+```
+# function {{methodCamelName}}Service(params: T{{methodPascalName}}ServiceParams)
+path: `methods/services/{{schema}}/{{methodCamelName}}Service.ts` 
+# TypeScript Types:
+
+export type T{{methodPascalName}}ServiceParams = {
+sessionUserId: number
+playerId: number
+}
+
+
+ Database function {{methodCamelName}}({{#if methodParamsColumns}}params: {{methodParamsTypeName}}{{/if}}) 
+# path: `db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}.ts` 
+# TypeScript Types:
+
+{{#if methodParamsColumns}}
+export type {{methodParamsTypeName}} = {
+{{#each methodParamsColumns}}
+  {{camelName}}: {{tsType}}
+{{/each}}
+}{{/if}}
+
+export type {{methodTypeName}} = {
+{{#each methodColumns}}
+  {{camelName}}{{optional}}: {{tsType}}
+{{/each}}
+}
+
+#### PostgreSQL Database
+# "schema": "{{schema}}"
+# "method": "{{method}}"
+You have more information in mcp `game-db`
+```
+
+Note: {{methodName}} is a Next.js Server Action
+A Next.js Server Action is a function that:
+Runs on the server
+Can be called directly from a React component
+Is typically triggered by form submissions or user interactions
+Eliminates the need for manual API endpoints

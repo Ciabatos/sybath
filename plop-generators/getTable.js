@@ -399,6 +399,18 @@ export default function getTable(plop) {
         force: true,
       },
       {
+        type: "add",
+        path: "../.opencode/skills/ai-useFetch{{schemaTablePascalName}}-description/SKILL.md",
+        templateFile: "plop-templates/getTable/skillCreatorTable.hbs",
+        force: true,
+      },
+      {
+        type: "add",
+        path: "../.opencode/skills/ai-useFetch{{schemaTablePascalName}}ByKey-description/SKILL.md",
+        templateFile: "plop-templates/getTable/skillCreatorTableByKey.hbs",
+        force: true,
+      },
+      {
         type: "PrettierFormat",
       },
     ],

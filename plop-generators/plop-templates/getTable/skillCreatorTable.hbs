@@ -1,0 +1,68 @@
+---
+name: ai-useFetch{{schemaTablePascalName}}-description
+description: |
+  Hook useFetch{{schemaTablePascalName}} description, workflow.
+
+  Use when:
+  When using hook useFetch{{schemaTablePascalName}} or trying to understand it.
+---
+
+
+
+# useFetch{{schemaTablePascalName}} hook Documentation
+# function path :`methods/hooks/{{schema}}/core/useFetch{{schemaTablePascalName}}.ts` 
+# function function useFetch{{schemaTablePascalName}}()
+# Jotai atom name: const {{tableCamelName}}Atom = atom<{{indexTypeName}}>({})
+
+
+### Data Flow
+```
+# function GET(request: NextRequest)
+# path: `{{apiPath}}` 
+
+
+# function {{fetcherName}}Service(options?: { clientEtag?: string; forceFresh?: boolean }): Promise<TFetchResult> 
+# path: `methods/services/{{schema}}/{{fetcherName}}Service.ts` 
+# TypeScript Types:
+
+type TCacheRecord = {
+  raw: {{methodTypeName}}[]
+  byKey: {{indexTypeName}}
+  etag: string
+}
+
+type TFetchResult = {
+  record?: TCacheRecord
+  etag: string
+  cacheHit: boolean
+  etagMatched: boolean
+}
+
+# function {{methodName}}()
+# path: `db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}.ts` 
+# TypeScript Types:
+
+{{#if methodParamsColumns}}
+export type {{methodParamsTypeName}} = {
+{{#each methodParamsColumns}}
+  {{camelName}}: {{tsType}}
+{{/each}}
+}{{/if}}
+
+export type {{methodTypeName}} = {
+{{#each methodColumns}}
+  {{camelName}}{{optional}}: {{tsType}}
+{{/each}}
+}
+
+export type {{indexTypeName}} = Record<string, {{methodTypeName}}>
+
+Hook for mutate data using SWR
+# function path :`methods/hooks/{{schema}}/core/useMutate{{schemaTablePascalName}}.ts` 
+# function useMutate{{schemaTablePascalName}}()
+
+#### PostgreSQL Database
+# "schema": "{{schema}}"
+# "method": "{{methodRecords}}"
+You have more information in mcp `game-db`
+```

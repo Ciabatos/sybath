@@ -11,7 +11,10 @@ description: |
 
 Input: Hook name (string) Goal: Find out:
 
-Where the hook is defined in the codebase
+- Locate the hook definition in the codebase.
+- Analyse its internal logic (fetching, processing, combining atoms).
+- Identify which other hooks or functions it calls (e.g., fetchers, `useAtomValue`).
+- List the atoms or state it depends on. Where the hook is defined in the codebase
 
 What its internal logic is (fetching, processing, combining atoms)
 

@@ -303,6 +303,12 @@ export default function getMethodFetcher(plop) {
         force: true,
       },
       {
+        type: "add",
+        path: "../.opencode/skills/ai-useFetch{{methodPascalName}}-description/SKILL.md",
+        templateFile: "plop-templates/methodFetcher/skillCreatorMethod.hbs",
+        force: true,
+      },
+      {
         type: "PrettierFormat",
       },
     ],
