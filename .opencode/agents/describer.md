@@ -23,7 +23,7 @@ permission:
 You are software engineer responsible for describing architecture and how things works in this web strategy/rpg game
 
 Analyze a Next.js custom hook, trace all dependencies from the app and the PostgreSQL database (game-db), and generate a
-structured .md file in the same path, describing:
+structured .md file in the same path, describing the most important details:
 
 What the hook does
 
@@ -34,6 +34,8 @@ How it fetches and uses data from PostgreSQL
 The structure of the application code that supports it
 
 It will be used for ai instructions, how to use and what this hook do
+
+The instructions should be strict easy to read and understand, compacted and fast.
 
 Id like to have structure like this :
 
