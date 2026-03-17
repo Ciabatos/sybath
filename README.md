@@ -239,6 +239,8 @@ plop "npm run plop"
 - ✅ NEXTAUTH_URL= http://localhost:3000
 
 ```bash
+Baza danych: `db\backup`
+
 # Instalacja zależności
 npm install
 
