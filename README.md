@@ -1,7 +1,8 @@
-# 🎮 Sybath - Masywnie Multiplayer Online RPG
+# 🎮 Sybath - Multiplayer Online RPG/STRATEGY
 
 Projekt zaawansowanej gry online (MMO) napisanej w **Next.js** z architekturą **database-driven** i automatycznym
-generowaniem backendu za pomocą **PlopJS**.
+generowaniem backendu za pomocą **PlopJS**. Dodatkowo implementuję Localnego agenta AI na modelu QWEN 3.5 aby wspomógł
+pracę.
 
 ## 🎯 O Projekcie
 
@@ -11,9 +12,7 @@ generowaniem backendu za pomocą **PlopJS**.
 
 ## 🏗️ Architektura
 
-### Database-Driven Development
-
-Cała logika biznesowa jest oparta na bazie danych PostgreSQL:
+### Data-Driven Development
 
 ```
 Definicja w PostgreSQL
@@ -23,8 +22,10 @@ PlopJS Generator
 Automatyczne tworzenie:
 ├── TypeScript schematów typów
 ├── API Routes (GET/POST)
-├── React Hooks (useFetch*)
+├── React Hooks
+├── SWR Mutate Hooks
 ├── Server-side Fetchers
+├── Server actions
 └── Atom State (Jotai)
 ```
 
@@ -83,6 +84,7 @@ src/
 | **PlopJS**             | Latest | Code generation    |
 | **Auth.js**            | Latest | Authentication     |
 | **Zod**                | Latest | Schema validation  |
+| **Qwen 3.5**           | Latest | Ai helpers         |
 
 ---
 
@@ -116,12 +118,7 @@ src/
 - System progresji
 - Atrybuty charakteru
 
-### ⚔️ Walka (w trakcie)
-
-- Inspiracja: Slay the Spire
-- System akcji turowych
-- Karty akcji (Attack, Parry, Riposte)
-- Replay systemu rund
+### ⚔️ Walka i wiele innych (w trakcie)
 
 ---
 
@@ -129,10 +126,10 @@ src/
 
 ### PlopJS Generatory
 
-Jeden wybór z CLI generuje 8+ w pełni funkcjonalnych plików:
+Jeden wybór z CLI generuje pliki:
 
 ```bash
-plop "Get Data From Table"
+plop "npm run plop"
   ↓
 ```
 
@@ -171,27 +168,9 @@ plop "Get Data From Table"
 
 ## 📊 Wzorce Programowania
 
-### 1️⃣ Server Actions z Type Safety
+### Server Actions z Type Safety
 
-```typescript
-export async function addItemToInventoryAction({ playerId, item_id, quantity }: TAddItemToInventory) {
-  // Direct database mutation
-}
-```
-
-### 2️⃣ Destrukturyzacja w Funkcjach
-
-```typescript
-// Jawnie pokazuje używane pola, zachowując elastyczność typu
-function addItemToInventory({ playerId, item_id, quantity }: TAddItemToInventory)
-```
-
-### 3️⃣ Atom-based State Management
-
-```typescript
-export const districtAtom = atom<TDistrictRecordById>({})
-export const selectedHeroAtom = atom<number | null>(null)
-```
+### Atom-based State Management
 
 ---
 
@@ -199,15 +178,15 @@ export const selectedHeroAtom = atom<number | null>(null)
 
 ### Demonstrowane Umiejętności
 
-| Umiejętność               | Level        | Opis                        |
-| ------------------------- | ------------ | --------------------------- |
-| **Full-Stack TypeScript** | Expert       | End-to-end type safety      |
-| **Database Design**       | Advanced     | PostgreSQL, RLS, procedures |
-| **Code Generation**       | Advanced     | PlopJS automation           |
-| **Architecture**          | Senior       | Scalable, maintainable      |
-| **Performance**           | Advanced     | ETag caching, SWR           |
-| **Security**              | Advanced     | RLS, validation, auth       |
-| **MMO Architecture**      | Intermediate | Game systems design         |
+| Umiejętność               | Opis                   |
+| ------------------------- | ---------------------- |
+| **Full-Stack TypeScript** | End-to-end type safety |
+| **Database Design**       | PostgreSQL, procedures |
+| **Code Generation**       | PlopJS automation      |
+| **Architecture**          | Scalable, maintainable |
+| **Performance**           | ETag caching, SWR      |
+| **Security**              | validation, auth       |
+| **MMO Architecture**      | Game systems design    |
 
 ---
 
@@ -215,20 +194,20 @@ export const selectedHeroAtom = atom<number | null>(null)
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│                    Frontend Layer                     │
-│  React 18+ │ TypeScript │ Jotai │ SWR │ TailwindCSS │
+│                    Frontend Layer                   │
+│  React 18+ │ TypeScript │ Jotai │ SWR               │
 └──────────────────────┬──────────────────────────────┘
                        │
                   API Layer
                        │
 ┌──────────────────────┴──────────────────────────────┐
-│                    Backend Layer                     │
-│  Next.js API Routes │ Auth.js │ Zod Validation     │
+│                    Backend Layer                    │
+│  Next.js API Routes │ Auth.js │ Zod Validation      │
 └──────────────────────┬──────────────────────────────┘
                        │
 ┌──────────────────────┴──────────────────────────────┐
-│                  Database Layer                      │
-│    PostgreSQL 17 │ RLS │ Procedures │ PL/pgSQL      │
+│                  Database Layer                     │
+│    PostgreSQL  │ Procedures │ PL/pgSQL              │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -248,6 +227,17 @@ export const selectedHeroAtom = atom<number | null>(null)
 
 ## 📝 Quick Start
 
+.env
+
+- ✅ NEXT_PUBLIC_BASE_URL= http://localhost:3000
+- ✅ PG_MAIN_HOST = 127.0.0.1
+- ✅ PG_MAIN_USER = postgres
+- ✅ PG_MAIN_PASSWORD =
+- ✅ PG_MAIN_PORT = 5432
+- ✅ PG_MAIN_DATABASE =
+- ✅ NEXTAUTH_SECRET= my_ultra_secure_nextauth_secret
+- ✅ NEXTAUTH_URL= http://localhost:3000
+
 ```bash
 # Instalacja zależności
 npm install
@@ -258,6 +248,10 @@ npm run dev
 # Code generation
 npx run plop
 ```
+
+## 📝 Swerwer MCP
+
+- w tej chwili nie udostępniony
 
 ## 📞 O Projekcie
 
