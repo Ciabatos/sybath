@@ -1,1 +1,9 @@
-look at component components\GeneratedComponents\CraftingTree.tsx and try to create sql tables and functions who can i use to get all information needed for that component to work   
+look at component components\GeneratedComponents\CraftingTree.tsx and try to create sql tables and functions which can i use to get all information needed for that component to work   
+
+
+
+look at component components\items\GatherResource.tsx and try to create sql tables and functions which can i use to get all information needed for that component to work   
+
+look at table items.items and try to create me various items for rpg/strategy game  
+
+look at component components\GeneratedComponents\MovementModePanel.tsx and try to create sql tables and functions which can i use to get all information needed for that component to work   

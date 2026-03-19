@@ -1,10 +1,5 @@
 MCP dodac mozliwosc query funckcji co robia
 
-dodatkowe hooki tylko do odcztu atomu w tym samym pliku: PLOPJS RECALIBRACJA!
- useFetchKnownPlayersPositions({ mapId, playerId })
-  // const knownPlayersPositions = useAtomValue(knownPlayersPositionsAtom)
-  const knownPlayersPositions = useKnownPlayersPositions()
-
 Zbieranie gathering i dokladanie itemow do inventory
 trzeba dodac surowce podstawowe
 poprawic algorytm tworzenia mapy o dokladanie surowcow
