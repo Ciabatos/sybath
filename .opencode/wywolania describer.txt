@@ -1,12 +1,12 @@
-describe me hook named useFetchKnownMapRegion.ts in path methods\hooks\world\core\useFetchKnownMapRegion.ts
 describe me hook named useFetchKnownMapTiles.ts in path methods\hooks\world\core\useFetchKnownMapTiles.ts
-describe me hook named useFetchKnownMapTilesResourcesOnTile.ts in path methods\hooks\world\core\useFetchKnownMapTilesResourcesOnTile.ts
-describe me hook named useFetchKnownPlayersPositions.ts in path methods\hooks\world\core\useFetchKnownPlayersPositions.ts
-describe me hook named useFetchPlayerMap.ts in path methods\hooks\world\core\useFetchPlayerMap.ts
-describe me hook named useFetchPlayerMovement.ts in path methods\hooks\world\core\useFetchPlayerMovement.ts
-describe me hook named useFetchPlayerPosition.ts in path methods\hooks\world\core\useFetchPlayerPosition.ts
-describe me hook named useFetchPlayersOnTile.ts in path methods\hooks\world\core\useFetchPlayersOnTile.ts
-describe me hook named ________ in path _________________
+then start new session and describe me hook named useFetchKnownMapRegion.ts in path methods\hooks\world\core\useFetchKnownMapRegion.ts
+then start new session and describe me hook named useFetchKnownMapTilesResourcesOnTile.ts in path methods\hooks\world\core\useFetchKnownMapTilesResourcesOnTile.ts
+then start new session and describe me hook named useFetchKnownPlayersPositions.ts in path methods\hooks\world\core\useFetchKnownPlayersPositions.ts
+then start new session and describe me hook named useFetchPlayerMap.ts in path methods\hooks\world\core\useFetchPlayerMap.ts
+then start new session and describe me hook named useFetchPlayerMovement.ts in path methods\hooks\world\core\useFetchPlayerMovement.ts
+then start new session and describe me hook named useFetchPlayerPosition.ts in path methods\hooks\world\core\useFetchPlayerPosition.ts
+then start new session and describe me hook named useFetchPlayersOnTile.ts in path methods\hooks\world\core\useFetchPlayersOnTile.ts
+then start new session and escribe me hook named ________ in path _________________
 
 
 opencode run `describe me hook named useFetchKnownMapRegion.ts in path methods\hooks\world\core\useFetchKnownMapRegion.ts`

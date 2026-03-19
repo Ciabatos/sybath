@@ -98,12 +98,12 @@ decide reasonably (e.g. default values, index names).
 
 ### Phase 4 — Write the specification
 
-Produce the full spec in the format defined in skill `sql-game-design-spec`.
+Produce the full spec in the format defined in skill `@sql-game-design-spec`.
 
 ### Phase 5 — Hand off to SQL agent
 
-After the spec, write the exact prompt to pass to the `sql-writer` agent. Use the handoff format from skill
-`sql-game-design-spec`.
+After the spec, write the exact prompt to pass to the `@sql-writer` agent at `.opencode\agents\sql-planner.md`. Use the
+handoff format from skill `@sql-game-design-spec`.
 
 ---
 

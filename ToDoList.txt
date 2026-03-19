@@ -1,4 +1,4 @@
-
+MCP dodac mozliwosc query funckcji co robia
 
 dodatkowe hooki tylko do odcztu atomu w tym samym pliku: PLOPJS RECALIBRACJA!
  useFetchKnownPlayersPositions({ mapId, playerId })

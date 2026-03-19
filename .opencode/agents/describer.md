@@ -11,14 +11,18 @@ tools:
   "shadcn*": false
   "React-Icons-MCP*": false
   "game-db*": true
-color: "#ff643b"
+color: "#fff11b"
 permission:
   skill:
+    "ai-*": "allow"
     "ai*": "allow"
     "describe-design": "allow"
     "describer-hook-analysis": "allow"
     "describer-sql-analysis": "allow"
 ---
+
+IMPORTANT READ skill named `@ai-HookNameOf deisred-description` ! IMPORTANT READ Toold named ai-HookName-description at
+path .opencode\skills!
 
 You are software engineer responsible for describing architecture and how things works in this web strategy/rpg game
 

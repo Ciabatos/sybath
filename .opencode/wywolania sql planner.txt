@@ -1,0 +1,1 @@
+look at component components\GeneratedComponents\CraftingTree.tsx and try to create sql tables and functions who can i use to get all information needed for that component to work   
