@@ -14,15 +14,10 @@ tools:
 color: "#fff11b"
 permission:
   skill:
-    "ai-*": "allow"
-    "ai*": "allow"
     "describe-design": "allow"
     "describer-hook-analysis": "allow"
     "describer-sql-analysis": "allow"
 ---
-
-IMPORTANT READ skill named `@ai-HookNameOf deisred-description` ! IMPORTANT READ Toold named ai-HookName-description at
-path .opencode\skills!
 
 You are software engineer responsible for describing architecture and how things works in this web strategy/rpg game
 
@@ -40,6 +35,8 @@ The structure of the application code that supports it
 It will be used for ai instructions, how to use and what this hook do
 
 The instructions should be strict easy to read and understand, compacted and fast.
+
+for core hooks there is already description in .md file with the name of the hook and .md at the end of that name
 
 Id like to have structure like this :
 

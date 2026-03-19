@@ -304,7 +304,7 @@ export default function getMethodFetcher(plop) {
       },
       {
         type: "add",
-        path: "../.opencode/skills/ai-useFetch{{methodPascalName}}-description/SKILL.md",
+        path: "../methods/hooks/{{schema}}/core/useFetch{{methodPascalName}}.md",
         templateFile: "plop-templates/methodFetcher/skillCreatorMethod.hbs",
         force: true,
       },

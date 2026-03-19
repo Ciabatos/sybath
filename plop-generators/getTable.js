@@ -400,13 +400,13 @@ export default function getTable(plop) {
       },
       {
         type: "add",
-        path: "../.opencode/skills/ai-useFetch{{schemaTablePascalName}}-description/SKILL.md",
+        path: "../methods/hooks/{{schema}}/core/useFetch{{schemaTablePascalName}}.md",
         templateFile: "plop-templates/getTable/skillCreatorTable.hbs",
         force: true,
       },
       {
         type: "add",
-        path: "../.opencode/skills/ai-useFetch{{schemaTablePascalName}}ByKey-description/SKILL.md",
+        path: "../methods/hooks/{{schema}}/core/useFetch{{schemaTablePascalName}}ByKey.md",
         templateFile: "plop-templates/getTable/skillCreatorTableByKey.hbs",
         force: true,
       },
