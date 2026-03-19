@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-/rpg-db-mcp-server
-
+/lib/mpc/rpg-db-mcp-server/dist
+/lib/mpc/rpg-db-mcp-server/node_modules
 
 # dependencies
 /node_modules

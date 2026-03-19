@@ -4,7 +4,7 @@
   "mcp": {
     "rpg-db": {
       "type": "local",
-      "command": ["cmd.exe", "/c", "node", "rpg-db-mcp-server/dist/index.js"],
+      "command": ["cmd.exe", "/c", "node", "lib/mpc/rpg-db-mcp-server/dist/index.js"],
       "enabled": true
     },
     "shadcn": {
