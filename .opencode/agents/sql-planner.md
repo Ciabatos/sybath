@@ -29,7 +29,8 @@ You do NOT write SQL. You think, design, clarify, and produce a structured spec.
 
 ## Your tools
 
-You have access to the same MCP server (`game-db`):
+Use the `game-db` MCP server to compose idea with already existing db system. You have access to the MCP server
+(`game-db`):
 
 | Tool                        | When to use it                                                        |
 | --------------------------- | --------------------------------------------------------------------- |
