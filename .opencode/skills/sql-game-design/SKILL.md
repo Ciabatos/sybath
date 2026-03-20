@@ -7,214 +7,169 @@ description: >
 
 # RPG Game Design Skill
 
-## Feature anatomy
+## API type definitions
 
-Every RPG feature decomposes into the same building blocks. Work through each one.
+| Tag                 | Naming                           | What it does                                                                                                                                                                |
+| ------------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `automatic_get_api` | `get_X()` / `get_X_by_key(p_id)` | Simple `SELECT * FROM one_table` — no joins, no logic. Read-only reference data.                                                                                            |
+| `get_api`           | `get_X(p_player_id, ...)`        | Any read function with logic, joins, or fog-of-war filtering. First param always `p_player_id integer`.                                                                     |
+| `action_api`        | `do_X(p_player_id, ...)`         | **Next.js Server Action.** Validates inputs, then inserts a row into `tasks.tasks` queue. Returns `TABLE(status boolean, message text)`. Never mutates game state directly. |
 
----
+### tasks.tasks schema
 
-### 1. Reference data (→ `automatic_get_api`)
-
-Things that are defined once and rarely change. Players read these to populate dropdowns, show names, check limits.
-
-Examples: item types, terrain types, building categories, skill trees, rank definitions, recipe lists.
-
-**For each reference data set, create:**
-
-- One dictionary table in the relevant schema
-- `get_X()` — returns all rows
-- `get_X_by_key(p_id)` — returns one row by primary key
-- Both tagged `automatic_get_api`
-
-**Ask yourself:** Does this feature introduce any new categories, types, or configuration that multiple rows of data
-will reference?
-
----
-
-### 2. State tables (→ `get_api` reads)
-
-The persistent state of the game world related to this feature. Usually one "main" table per feature, sometimes
-supporting tables.
-
-Examples: player guild membership, inventory slots, quest progress, known recipes.
-
-**For each state table:**
-
-- Identify all columns and their types (check MCP for FK targets)
-- Add `created_at`, `updated_at` if rows change over time
-- Add `deleted_at` (soft delete) if history matters
-- Define foreign keys to existing tables — always verify exact column names via MCP
-- Define indexes for every FK column and every column used in WHERE clauses
-
-**Ask yourself:** What data does the game need to persist? What does it need to look up quickly?
-
----
-
-### 3. Player read functions (→ `get_api`)
-
-What can a player see about this feature? Design one function per logical "view".
-
-Rules:
-
-- First parameter always `p_player_id integer`
-- Returns NULL fields (not missing rows) for data the player hasn't discovered
-- Check `knowledge.*` tables for fog-of-war constraints when returning world/position data
-- Use `STABLE` if no side effects, `VOLATILE` if it logs access
-
-**Ask yourself:**
-
-- What does the player's own UI need to display?
-- What can they see about other players? (check fog-of-war)
-- What aggregate/summary data is useful? (e.g. total weight, slot count)
-
----
-
-### 4. Player action functions (→ `action_api`)
-
-What can a player DO in this feature? Design one function per atomic action.
-
-Rules:
-
-- Returns `TABLE(status boolean, message text)` — always
-- First validate all inputs, return `(false, reason)` for every failure case
-- List ALL failure cases explicitly in the spec
-- Wrap everything in `BEGIN ... EXCEPTION WHEN OTHERS THEN RETURN QUERY SELECT false, SQLERRM`
-- If the operation is slow or affects other players, queue a task in `tasks.tasks`
-
-**Ask yourself:**
-
-- Create / join / build / craft?
-- Delete / leave / destroy / consume?
-- Transfer / trade / move?
-- What can go wrong? (at capacity, not enough resources, wrong state, not owner, cooldown)
-
----
-
-### 5. Async tasks (→ `tasks.tasks`)
-
-Some actions don't complete instantly — movement, exploration, crafting timers, scheduled events.
-
-If an `action_api` function should queue work:
-
-- Define the task type name (string key used in `tasks.tasks`)
-- Define what happens when the task completes
-
-**Ask yourself:** Does this action take time? Does it trigger follow-up effects?
-
----
-
-### 6. Fog-of-war updates (→ `knowledge.*`)
-
-If the feature reveals world information to the player, a corresponding row must be inserted into the appropriate
-`knowledge.*` table.
-
-**Ask yourself:** Does this feature let a player discover a location, another player, a building, or a resource? If yes,
-add a `knowledge.*` insert.
-
----
-
-## Common feature patterns
-
-### Pattern: Membership system (guilds, squads, factions)
-
-```
-Tables:
-  schema.entities          — the guild/squad/faction itself
-  schema.memberships        — player ↔ entity join table with rank/role
-
-Reference data:
-  schema.ranks              — rank definitions
-  get_ranks() / get_rank_by_key(p_id)   [automatic_get_api]
-
-Player reads:
-  get_player_membership(p_player_id)     [get_api]  — own guild info
-  get_entity_members(p_player_id, p_entity_id)  [get_api]  — who's in it
-
-Actions:
-  do_create_entity(p_player_id, p_name)  [action_api]
-  do_join_entity(p_player_id, p_entity_id)   [action_api]
-  do_leave_entity(p_player_id)           [action_api]
-  do_kick_member(p_player_id, p_target_player_id)  [action_api]
-  do_promote_member(p_player_id, p_target_player_id, p_rank_id)  [action_api]
+```sql
+CREATE TABLE tasks.tasks (
+  id             int4 GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+  player_id      int4        NOT NULL,
+  status         int4        NOT NULL,
+  created_at     timestamp   NOT NULL,
+  scheduled_at   timestamp   NOT NULL,
+  last_executed_at timestamp NULL,
+  error          text        NULL,
+  method_name    varchar(100) NULL,   -- name of the PG function to call
+  method_parameters jsonb    NULL    -- arguments passed to that function
+);
 ```
 
+`do_*` functions insert a row here. A `pg_cron` job polls the table periodically, calls `method_name` with
+`method_parameters`, and executes the actual game-state mutation (e.g. updating player position, consuming resources,
+completing a craft).
+
 ---
 
-### Pattern: Inventory / container system
+## Feature anatomy — work through each block
+
+### 1. Reference data → `automatic_get_api`
+
+Static config: item types, terrain types, rank definitions, recipe lists, building categories.
+
+- One dictionary table per concept
+- `get_X()` — all rows
+- `get_X_by_key(p_id)` — one row by PK
+- Pure `SELECT * FROM table` — no logic
+
+**Ask:** Does this feature introduce new categories or types that other tables will FK into?
+
+---
+
+### 2. State tables (read via `get_api`)
+
+Persistent game-world state: memberships, inventory slots, quest progress, known recipes.
+
+- Identify all columns and types (verify FK targets via MCP)
+- Add `created_at`, `updated_at` when rows change over time
+- Add `deleted_at` for soft deletes if history matters
+- Index every FK column and every column used in WHERE
+
+**Ask:** What needs to persist? What will be queried frequently?
+
+---
+
+### 3. Player read functions → `get_api`
+
+One function per logical UI view. May join multiple tables and apply fog-of-war.
+
+- First param: `p_player_id integer`
+- Return NULL fields (not missing rows) for undiscovered data
+- Check `knowledge.*` tables for fog-of-war constraints
+- Mark `STABLE` if no side effects
+
+**Ask:** What does the player's UI display? What can they see about others?
+
+---
+
+### 4. Player action functions → `action_api`
+
+One function per atomic player action. **Does not mutate state directly** — inserts into `tasks.tasks`.
+
+```sql
+-- Template
+CREATE OR REPLACE FUNCTION do_move_player(p_player_id integer, p_target_x integer, p_target_y integer)
+RETURNS TABLE(status boolean, message text)
+LANGUAGE plpgsql AS $$
+BEGIN
+  -- 1. Validate all inputs
+  IF NOT EXISTS (SELECT 1 FROM players WHERE id = p_player_id) THEN
+    RETURN QUERY SELECT false, 'Player not found';
+    RETURN;
+  END IF;
+  -- ... more validations ...
+
+  -- 2. Queue the task
+  INSERT INTO tasks.tasks (player_id, status, created_at, scheduled_at, method_name, method_parameters)
+  VALUES (p_player_id, 0, now(), now(), 'execute_move_player',
+          jsonb_build_object('player_id', p_player_id, 'x', p_target_x, 'y', p_target_y));
+
+  RETURN QUERY SELECT true, 'Move queued';
+EXCEPTION WHEN OTHERS THEN
+  RETURN QUERY SELECT false, SQLERRM;
+END;
+$$;
+```
+
+**Ask:** Create / join / move / craft / trade / destroy? What can go wrong?
+
+---
+
+### 5. Async task handlers (called by pg_cron)
+
+The functions listed in `tasks.tasks.method_name` — these do the actual state mutation.
+
+- Named `execute_X` or similar (not `do_X`, not exposed as action_api)
+- Receive parameters from `method_parameters` jsonb
+- Update game state tables directly
+- Mark the task row complete / error when done
+
+**Ask:** What state changes when the task fires? What follow-up effects trigger?
+
+---
+
+### 6. Fog-of-war → `knowledge.*`
+
+If the feature reveals world info, insert into the appropriate `knowledge.*` table.
+
+**Ask:** Does this action let the player discover a location, player, building, or resource?
+
+---
+
+## Common patterns (quick reference)
 
 ```
-Tables:
-  schema.containers         — a container (backpack, chest, shop)
-  schema.slots              — item instance in a slot within a container
+Membership (guilds, factions)
+  Tables:   schema.entities, schema.memberships
+  Ref data: schema.ranks  [automatic_get_api]
+  Reads:    get_player_membership, get_entity_members  [get_api]
+  Actions:  do_create_entity, do_join_entity, do_leave_entity, do_kick_member  [action_api]
 
-Reference data:
-  schema.container_types    — type definitions (backpack, chest, …)
-  get_container_types() / get_container_type_by_key(p_id)  [automatic_get_api]
+Inventory / containers
+  Tables:   schema.containers, schema.slots
+  Ref data: schema.container_types  [automatic_get_api]
+  Reads:    get_player_containers, get_container_contents  [get_api]
+  Actions:  do_add_item, do_remove_item, do_move_item  [action_api]
 
-Player reads:
-  get_player_containers(p_player_id)         [get_api]
-  get_container_contents(p_player_id, p_container_id)  [get_api]
+Crafting
+  Tables:   schema.recipes, schema.recipe_ingredients
+  Ref data: get_recipes, get_recipe_by_key, get_recipe_ingredients  [automatic_get_api]
+  Reads:    get_player_known_recipes  [get_api]
+  Actions:  do_learn_recipe, do_craft_item  [action_api]
 
-Actions:
-  do_add_item(p_player_id, p_container_id, p_item_id, p_amount)   [action_api]
-  do_remove_item(p_player_id, p_container_id, p_slot_id, p_amount) [action_api]
-  do_move_item(p_player_id, p_from_slot_id, p_to_container_id)     [action_api]
+Economy / trading
+  Tables:   schema.listings, schema.transactions
+  Reads:    get_market_listings, get_player_transactions  [get_api]
+  Actions:  do_create_listing, do_buy_listing, do_cancel_listing  [action_api]
 ```
 
 ---
 
-### Pattern: Resource / crafting system
-
-```
-Tables:
-  schema.recipes            — recipe definitions
-  schema.recipe_ingredients — ingredient ↔ recipe join
-  schema.craft_queue        — in-progress crafts (if async)
-
-Reference data:
-  get_recipes() / get_recipe_by_key(p_id)         [automatic_get_api]
-  get_recipe_ingredients(p_recipe_id)             [automatic_get_api]
-
-Player reads:
-  get_player_known_recipes(p_player_id)           [get_api]
-
-Actions:
-  do_learn_recipe(p_player_id, p_recipe_id)       [action_api]
-  do_craft_item(p_player_id, p_recipe_id)         [action_api]  — queues task if slow
-```
-
----
-
-### Pattern: Economy / trading
-
-```
-Tables:
-  schema.listings           — active trade offers
-  schema.transactions       — completed trade history
-
-Player reads:
-  get_market_listings(p_player_id)                [get_api]
-  get_player_transactions(p_player_id)            [get_api]
-
-Actions:
-  do_create_listing(p_player_id, p_item_id, p_amount, p_price)  [action_api]
-  do_buy_listing(p_player_id, p_listing_id, p_amount)            [action_api]
-  do_cancel_listing(p_player_id, p_listing_id)                   [action_api]
-```
-
----
-
-## Failure case checklist
-
-For every `action_api` function, explicitly list ALL cases that return `(false, reason)`:
+## Failure case checklist (every `action_api`)
 
 - [ ] Player does not exist / is not active
 - [ ] Target entity does not exist
 - [ ] Player lacks required permissions / rank
-- [ ] Player is already in the required state (already member, already has item)
-- [ ] Player is not in the required state (not a member, doesn't own item)
+- [ ] Player already in required state (already member, already owns item)
+- [ ] Player not in required state (not a member, doesn't own item)
 - [ ] Capacity exceeded (inventory full, guild at max members)
-- [ ] Insufficient resources (not enough gold, materials, energy)
-- [ ] Cooldown active (action was done too recently)
+- [ ] Insufficient resources (gold, materials, energy)
+- [ ] Cooldown active
 - [ ] Target player not found or blocked
 - [ ] Concurrent modification (someone else acted first)

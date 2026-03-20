@@ -1,6 +1,6 @@
 ---
 description: Create component styling css module
-name: create-new-css
+name: create-new-ui-css
 mode: subagent
 model: lmstudio2/qwen_qwen3.5-9b
 temperature: 0.7

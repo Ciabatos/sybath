@@ -1,6 +1,6 @@
 ---
 description: Brainstorm new ideas for component UI
-name: brainstorm-new-component
+name: create-new-ui-brainstorm
 mode: subagent
 model: lmstudio2/qwen_qwen3.5-9b
 temperature: 1

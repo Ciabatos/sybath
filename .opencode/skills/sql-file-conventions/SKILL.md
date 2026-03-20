@@ -74,56 +74,37 @@ Rules:
 ```sql
 -- ── <Name> dictionary ─────────────────────────────────────────────────────────
 
-CREATE OR REPLACE FUNCTION schema.get_<name>s()
-RETURNS TABLE (
-    id          integer,
-    name        text,
-    description text
-    -- mirror all columns the client needs
-)
-LANGUAGE sql
-STABLE
-SECURITY DEFINER
-AS $$
-    SELECT
-        id,
-        name,
-        description
-    FROM schema.<name>s
-    ORDER BY id;
-$$;
-COMMENT ON FUNCTION schema.get_<name>s()
-    IS 'automatic_get_api';
+CREATE OR REPLACE FUNCTION world.get_landscape_types()
+ RETURNS SETOF world.landscape_types
+ LANGUAGE plpgsql
+AS $function$
+      BEGIN
+      -- GENERATED CODE - DO NOT EDIT MANUALLY - getTable.js
+          RETURN QUERY
+          SELECT * FROM world.landscape_types;
+      END;
+      $function$
+;
 
-CREATE OR REPLACE FUNCTION schema.get_<name>_by_key(p_id integer)
-RETURNS TABLE (
-    id          integer,
-    name        text,
-    description text
-)
-LANGUAGE sql
-STABLE
-SECURITY DEFINER
-AS $$
-    SELECT
-        id,
-        name,
-        description
-    FROM schema.<name>s
-    WHERE id = p_id;
-$$;
-COMMENT ON FUNCTION schema.get_<name>_by_key(integer)
-    IS 'automatic_get_api';
+COMMENT ON FUNCTION world.get_landscape_types() IS 'automatic_get_api';
+
+
+CREATE OR REPLACE FUNCTION world.get_landscape_types_by_key(p_id integer)
+ RETURNS SETOF world.landscape_types
+ LANGUAGE plpgsql
+AS $function$
+      BEGIN
+      -- GENERATED CODE - DO NOT EDIT MANUALLY - getTable.js
+          RETURN QUERY
+          SELECT * FROM world.landscape_types
+          WHERE "id" = p_id;
+      END;
+      $function$
+;
+
+COMMENT ON FUNCTION world.get_landscape_types_by_key(int4) IS 'automatic_get_api';
+
 ```
-
-Rules:
-
-- Always create the pair — never just one
-- `LANGUAGE sql` (not plpgsql) for simple selects
-- `STABLE` — safe to cache
-- `SECURITY DEFINER` — consistent privilege model
-- `ORDER BY id` on the list function
-- Column list in `RETURNS TABLE` must name every column explicitly
 
 ---
 
@@ -159,7 +140,7 @@ COMMENT ON FUNCTION schema.get_player_<name>(integer)
     IS 'get_api';
 ```
 
-Fog-of-war variant (when returning world/positional data):
+Knowledge variant (when returning data that is within knowledge schema):
 
 ```sql
 CREATE OR REPLACE FUNCTION schema.get_player_<name>(
@@ -199,7 +180,7 @@ Rules:
 - First parameter always `p_player_id integer`
 - `LANGUAGE plpgsql` (allows control flow)
 - `STABLE` unless the function logs access
-- Never filter out rows the player "shouldn't see" — return NULL fields instead, or join `knowledge.*`
+- Never filter out rows the player "shouldn't known about" — return NULL fields instead, or join `knowledge.*`
 - `RETURN QUERY SELECT ...` — never `RETURN NEXT`
 
 ---
@@ -209,134 +190,47 @@ Rules:
 ```sql
 -- ── Do <action> ───────────────────────────────────────────────────────────────
 
-CREATE OR REPLACE FUNCTION schema.do_<action>(
-    p_player_id  integer,
-    p_target_id  integer
-    -- more params...
-)
-RETURNS TABLE (
-    status   boolean,
-    message  text
-)
-LANGUAGE plpgsql
-SECURITY DEFINER
-AS $$
+CREATE OR REPLACE FUNCTION world.do_player_movement(p_player_id integer, p_path jsonb)
+ RETURNS TABLE(status boolean, message text)
+ LANGUAGE plpgsql
+AS $function$
 DECLARE
-    v_player   record;
-    v_target   record;
-    -- more local vars...
-BEGIN
-    -- ── 1. Load and validate player ──────────────────────────────────────────
-    SELECT * INTO v_player
-    FROM players.players
-    WHERE id = p_player_id;
-
-    IF NOT FOUND THEN
-        RETURN QUERY SELECT false, 'Player not found'::text;
-        RETURN;
-    END IF;
-
-    -- ── 2. Load and validate target ──────────────────────────────────────────
-    SELECT * INTO v_target
-    FROM schema.targets
-    WHERE id = p_target_id;
-
-    IF NOT FOUND THEN
-        RETURN QUERY SELECT false, 'Target not found'::text;
-        RETURN;
-    END IF;
-
-    -- ── 3. Business rule checks ──────────────────────────────────────────────
-    IF <condition> THEN
-        RETURN QUERY SELECT false, 'Descriptive reason'::text;
-        RETURN;
-    END IF;
-
-    -- ── 4. Apply changes ─────────────────────────────────────────────────────
-    INSERT INTO schema.table (...) VALUES (...);
-    -- or UPDATE / DELETE
-
-    -- ── 5. Queue async task (if needed) ──────────────────────────────────────
-
-
-    -- ── 6. Success ───────────────────────────────────────────────────────────
-    RETURN QUERY SELECT true, 'Action completed successfully'::text;
-
-EXCEPTION WHEN OTHERS THEN
-    RETURN QUERY SELECT false, SQLERRM::text;
-END;
-$$;
-COMMENT ON FUNCTION schema.do_<action>(integer, integer)
-    IS 'action_api';
-```
-
-Rules:
-
-- Returns `TABLE(status boolean, message text)` — always, no exceptions
-- Each validation step: `IF NOT FOUND / IF condition THEN RETURN QUERY SELECT false, '...' RETURN; END IF;`
-- `RETURN;` (bare) after every early exit — mandatory
-- `EXCEPTION WHEN OTHERS THEN RETURN QUERY SELECT false, SQLERRM::text;` — always last
-- No `SECURITY DEFINER` unless elevated access is required
-- Variable naming: `v_<noun>` for local, `p_<noun>` for params
-- Use `record` type for SELECT INTO when you need multiple columns
-- Success message: short, present tense, specific (`'Guild created'`, not `'success'`)
-- Failure messages: start with capital letter, no trailing punctuation
-
----
-
-## JSONB action params (complex step arrays)
-
-When an action takes a list of steps (movement path, batch operations):
-
-```sql
-CREATE OR REPLACE FUNCTION schema.do_<action>(
-    p_player_id  integer,
-)
-RETURNS TABLE(status boolean, message text)
-LANGUAGE plpgsql SECURITY DEFINER AS $$
-DECLARE
+    param jsonb;
+    base_time timestamp;
+    scheduled_at timestamp;
 BEGIN
 
+/* MUTEX */
+PERFORM 1
+FROM players.players
+WHERE id = p_player_id
+FOR UPDATE;
 
+    PERFORM tasks.cancel_task(p_player_id, 'world.player_movement');
 
-    RETURN QUERY SELECT true, 'Steps applied'::text;
-EXCEPTION WHEN OTHERS THEN
-    RETURN QUERY SELECT false, SQLERRM::text;
+SELECT COALESCE(MAX(t1.scheduled_at), NOW())
+INTO base_time
+FROM tasks.tasks t1
+WHERE t1.player_id = p_player_id
+  AND t1.status IN (1, 2);
+
+    FOR param IN
+        SELECT * FROM jsonb_array_elements(p_path)
+    LOOP
+          scheduled_at := base_time
+               + ((param->>'totalMoveCost')::int * interval '1 minute');
+
+        PERFORM tasks.insert_task(p_player_id, scheduled_at , 'world.player_movement', param);
+    END LOOP;
+
+    RETURN QUERY SELECT true, 'Movement actions assigned';
 END;
-$$;
+$function$
+;
+
+COMMENT ON FUNCTION world.do_player_movement(int4, jsonb) IS 'action_api';
+
 ```
-
----
-
-## async task queuing
-
-When an action should schedule deferred work:
-
-```sql
--- Inside an action_api function body:
-INSERT INTO tasks.tasks (
-    task_type,
-    player_id,
-    payload,
-    execute_at,
-    created_at
-)
-VALUES (
-    'guild_invite_expire',
-    p_player_id,
-    jsonb_build_object(
-        'guild_id',  v_guild.id,
-        'invite_id', v_invite.id
-    ),
-    now() + interval '48 hours',
-    now()
-);
-```
-
-Task type string must be `snake_case` and match what the task runner expects. Always document the payload structure in a
-SQL comment above the INSERT.
-
----
 
 ## General SQL style
 
