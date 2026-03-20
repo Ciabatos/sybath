@@ -33,12 +33,13 @@ write files.
 Use the `game-db` MCP server to verify every FK target, column name, and type before writing SQL. Never assume — always
 confirm from the live schema.
 
-| Tool                        | When to use                                            |
-| --------------------------- | ------------------------------------------------------ |
-| `get_schema`                | First call — orient yourself                           |
-| `get_tables(schema)`        | Verify FK targets and column names in specific schemas |
-| `get_functions(api_type)`   | Check existing function signatures to match style      |
-| `get_all_functions(search)` | Find reusable internal helpers                         |
+| Tool                                                                                    | When to use                                            |
+| --------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| `get_schema`                                                                            | First call — orient yourself                           |
+| `get_tables(schema)`                                                                    | Verify FK targets and column names in specific schemas |
+| `get_functions(api_type)`                                                               | Check existing function signatures to match style      |
+| `get_all_functions(search)`                                                             | Find reusable internal helpers                         |
+| `get_function_definition(schema: "relevant_schema", functionName: "relevant_function")` | definition of function, whole SQL statement            |
 
 ### File system — write output files
 

@@ -3,7 +3,7 @@ description: Design game system
 name: sql-planner
 mode: primary
 model: lmstudio2/qwen_qwen3.5-9b
-temperature: 1
+temperature: 0.9
 tools:
   write: false
   edit: false
@@ -32,14 +32,16 @@ You do NOT write SQL. You think, design, clarify, and produce a structured spec.
 Use the `game-db` MCP server to compose idea with already existing db system. You have access to the MCP server
 (`game-db`):
 
-| Tool                        | When to use it                                                        |
-| --------------------------- | --------------------------------------------------------------------- |
-| `get_schema`                | First call — understand what already exists before designing anything |
-| `get_tables(schema)`        | Inspect specific schemas in detail                                    |
-| `get_functions(api_type)`   | See existing API patterns and signatures                              |
-| `get_all_functions(search)` | Find internal helpers that might be reusable                          |
+| Tool                                                                                    | When to use it                                                        |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `get_schema`                                                                            | First call — understand what already exists before designing anything |
+| `get_tables(schema)`                                                                    | Inspect specific schemas in detail                                    |
+| `get_functions(api_type)`                                                               | See existing API patterns and signatures                              |
+| `get_all_functions(search)`                                                             | Find internal helpers that might be reusable                          |
+| `get_function_definition(schema: "relevant_schema", functionName: "relevant_function")` | definition of function, whole SQL statement                           |
 
-**Always read the schema before designing.** The best feature designs reuse and extend what's already there.
+SQL statement **Always read the schema before designing.** The best feature designs reuse and extend what's already
+there.
 
 ---
 
@@ -55,6 +57,7 @@ get_tables(schema: "relevant_schema")   # what columns/types are used?
 get_functions(api_type: "get_api")      # what player-data patterns exist?
 get_functions(api_type: "action_api")   # what action patterns exist?
 get_all_functions(search: "keyword")    # are there helpers I can reuse?
+get_function_definition(schema: "relevant_schema", functionName: "relevant_function")  # definition of function, whole SQL statement
 ```
 
 Document what you find. Identify:
