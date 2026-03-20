@@ -1,4 +1,9 @@
-MCP dodac mozliwosc query funckcji co robia
+ZOD do do_action
+Przemielic plopjs
+Mam tworzenie UI 
+potem na bazie UI chce zrobic hooki ?
+potem chce zrobic actions ?
+i na koncu napisac procedury sql ?
 
 Zbieranie gathering i dokladanie itemow do inventory
 trzeba dodac surowce podstawowe
