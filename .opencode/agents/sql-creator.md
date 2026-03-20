@@ -1,6 +1,6 @@
 ---
 description: Design game system
-name: sql-planner
+name: sql-creator
 mode: primary
 model: lmstudio2/qwen_qwen3.5-9b
 temperature: 0.9
@@ -106,7 +106,7 @@ Produce the full spec in the format defined in skill `@sql-game-design-spec`.
 
 ### Phase 5 — Hand off to SQL agent
 
-After the spec, write the exact prompt to pass to the `@sql-writer` agent at `.opencode\agents\sql-planner.md`. Use the
+After the spec, write the exact prompt to pass to the `@sql-writer` agent at `.opencode\agents\sql-writer.md`. Use the
 handoff format from skill `@sql-game-design-spec`.
 
 ---

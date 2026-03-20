@@ -1,6 +1,6 @@
 ---
 description: software engineer responsible for making decisions and executing solutions
-name: main-commander
+name: create-new-ui
 mode: primary
 model: lmstudio2/qwen_qwen3.5-9b
 temperature: 0.7
