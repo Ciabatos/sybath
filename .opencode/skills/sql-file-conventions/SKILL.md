@@ -257,8 +257,7 @@ BEGIN
     -- or UPDATE / DELETE
 
     -- ── 5. Queue async task (if needed) ──────────────────────────────────────
-    -- INSERT INTO tasks.tasks (task_type, player_id, payload, execute_at)
-    -- VALUES ('task_type_name', p_player_id, jsonb_build_object(...), now() + interval '5 seconds');
+
 
     -- ── 6. Success ───────────────────────────────────────────────────────────
     RETURN QUERY SELECT true, 'Action completed successfully'::text;
@@ -292,23 +291,13 @@ When an action takes a list of steps (movement path, batch operations):
 ```sql
 CREATE OR REPLACE FUNCTION schema.do_<action>(
     p_player_id  integer,
-    p_steps      jsonb   -- '[{"order":1,"targetId":5,"cost":2}]'
 )
 RETURNS TABLE(status boolean, message text)
 LANGUAGE plpgsql SECURITY DEFINER AS $$
 DECLARE
-    v_step jsonb;
 BEGIN
-    -- Validate array
-    IF jsonb_typeof(p_steps) <> 'array' OR jsonb_array_length(p_steps) = 0 THEN
-        RETURN QUERY SELECT false, 'Steps must be a non-empty array'::text;
-        RETURN;
-    END IF;
 
-    -- Iterate
-    FOR v_step IN SELECT jsonb_array_elements(p_steps) LOOP
-        -- process (v_step->>'order')::integer, (v_step->>'targetId')::integer, ...
-    END LOOP;
+
 
     RETURN QUERY SELECT true, 'Steps applied'::text;
 EXCEPTION WHEN OTHERS THEN

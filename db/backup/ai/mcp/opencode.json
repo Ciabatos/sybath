@@ -1,9 +1,0 @@
-{
-  "agent": "agent.md",
-  "mcp": {
-    "game-db": {
-      "type": "http",
-      "url": "http://localhost:3000/mcp"
-    }
-  }
-}

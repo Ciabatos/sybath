@@ -146,7 +146,7 @@ types):
 
 - `schema.my_func(integer)` ✓
 - `schema.my_func(p_id integer)` ✗
-- `schema.my_func(integer, text, jsonb)` ✓
+- `schema.my_func(integer, text)` ✓
 
 ---
 

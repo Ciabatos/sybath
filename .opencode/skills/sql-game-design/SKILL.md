@@ -97,7 +97,6 @@ Some actions don't complete instantly — movement, exploration, crafting timers
 If an `action_api` function should queue work:
 
 - Define the task type name (string key used in `tasks.tasks`)
-- Define the JSONB payload structure
 - Define what happens when the task completes
 
 **Ask yourself:** Does this action take time? Does it trigger follow-up effects?

@@ -132,7 +132,7 @@ _(repeat for each get_api function)_
 - **Failure cases:** | Condition | Returns | |-----------|---------| | Player not found | `(false, 'Player not found')`
   | | Already a member | `(false, 'Already a member of a guild')` | | Guild at capacity | `(false, 'Guild is full')` | |
   ... | |
-- **Async:** yes/no — if yes, describe task type and JSONB payload structure
+- **Async:** yes/no — if yes, describe task type
 - **Side effects:** list any inserts into `knowledge.*`, `tasks.tasks`, or other schemas
 
 _(repeat for each action_api function)_
