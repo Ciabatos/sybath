@@ -7,6 +7,14 @@ temperature: 0.6
 tools:
   write: true
   edit: true
+  grep: true
+  glob: true
+  read: true
+  bash: true
+  list: true
+  todowrite: true
+  todoread: true
+  question: true
   "game-db*": true
 color: "#1b9b34"
 permission:
