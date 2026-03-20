@@ -5,7 +5,8 @@
     "rpg-db": {
       "type": "local",
       "command": ["cmd.exe", "/c", "node", "lib/mpc/rpg-db-mcp-server/dist/index.js"],
-      "enabled": true
+      "enabled": true,
+      "timeout": 640000
     },
     "shadcn": {
       "type": "local",
