@@ -1,6 +1,6 @@
 ---
 description: SQL writer
-name: sql-writer
+name: sql-creator
 mode: subagent
 model: lmstudio2/qwen_qwen3.5-9b
 temperature: 0.6

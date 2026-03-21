@@ -11,7 +11,7 @@ tools:
 color: "#1b9b34"
 permission:
   task:
-    "sql-writer": "allow"
+    "sql-creator": "allow"
     "sql-brainstorm": "allow"
 ---
 
@@ -38,7 +38,7 @@ Capture the full SPEC from its output. Do not modify it.
 
 ### Step 2 — Execute
 
-Call and use agent @sql-writer and pass the SPEC captured in Step 1 as the first line of input, followed by:
+Call and use agent @sql-creator and pass the SPEC captured in Step 1 as the first line of input, followed by:
 
 ```
 SPEC
