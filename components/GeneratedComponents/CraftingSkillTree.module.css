@@ -1,0 +1,632 @@
+.CraftingSkillTree {
+  position: relative;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.5);
+  border: 2px solid #5c4a36;
+  background-image:
+    repeating-linear-gradient(90deg, transparent 0 29px, rgba(92, 74, 54, 0.3) 30px),
+    radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%235c4a36' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-color: #1a1410;
+  width: 100%;
+  min-height: 600px;
+  overflow: hidden;
+}
+
+.CraftingSkillTree__Canvas {
+  position: relative;
+  cursor: grab;
+  box-sizing: border-box;
+  padding: 32px;
+  width: 100%;
+  height: 100%;
+}
+
+.CraftingSkillTree__Canvas:active {
+  cursor: grabbing;
+}
+
+.CraftingSkillTree__BranchLabel {
+  position: absolute;
+  z-index: 10;
+  box-shadow:
+    inset 0 1px 0 rgba(201, 162, 39, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.5);
+  border: 1px solid #5c4a36;
+  border-radius: 4px;
+  background-color: rgba(45, 35, 25, 0.9);
+  padding: 8px 16px;
+  pointer-events: none;
+  color: #c9a227;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: "Cinzel", serif;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.CraftingSkillTree__BranchLabel--weapons {
+  top: 50%;
+  left: 32px;
+  transform: translateY(-50%);
+}
+.CraftingSkillTree__BranchLabel--armor {
+  top: 50%;
+  right: 32px;
+  transform: translateY(-50%);
+}
+.CraftingSkillTree__BranchLabel--potions {
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.CraftingSkillTree__BranchLabel--enchantments {
+  right: 50%;
+  bottom: 16px;
+  transform: translateX(50%);
+}
+
+/* Connection Lines */
+.CraftingSkillTree__ConnectionLine {
+  position: absolute;
+  box-shadow:
+    0 0 4px rgba(201, 162, 39, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  background: linear-gradient(90deg, transparent, #c9a227, transparent);
+  height: 2px;
+}
+
+.CraftingSkillTree__ConnectionLine--active {
+  box-shadow:
+    0 0 8px rgba(218, 165, 32, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: linear-gradient(90deg, #c9a227, #daa520, #c9a227);
+}
+
+/* Skill Nodes */
+.CraftingSkillTree__Node {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Locked Node - Square */
+.CraftingSkillTree__Node--locked {
+  box-shadow:
+    inset 0 1px 0 rgba(92, 74, 54, 0.5),
+    0 4px 8px rgba(0, 0, 0, 0.6);
+  border: 3px solid #5c4a36;
+  background-color: #8b0000;
+  width: 72px;
+  height: 72px;
+}
+
+.CraftingSkillTree__Node--locked:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(201, 162, 39, 0.3),
+    0 0 8px rgba(201, 162, 39, 0.4);
+  border-color: #c9a227;
+}
+
+.CraftingSkillTree__Node--locked svg {
+  opacity: 0.7;
+  color: #5c4a36;
+}
+
+/* Unlocked Node - Circular */
+.CraftingSkillTree__Node--unlocked {
+  box-shadow:
+    inset 0 1px 0 rgba(201, 162, 39, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.5);
+  border: 3px solid #c9a227;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #2d2319, #1a1410);
+  width: 80px;
+  height: 80px;
+}
+
+.CraftingSkillTree__Node--unlocked:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(218, 165, 32, 0.4),
+    0 0 8px rgba(218, 165, 32, 0.4);
+  border-color: #daa520;
+}
+
+.CraftingSkillTree__Node--unlocked svg {
+  filter: drop-shadow(0 0 2px rgba(201, 162, 39, 0.5));
+  color: #c9a227;
+}
+
+/* Partially Unlocked */
+.CraftingSkillTree__Node--partially-unlocked {
+  opacity: 0.6;
+  border: 3px solid #c9a227;
+  border-radius: 50%;
+  background-color: #2d2319;
+  width: 80px;
+  height: 80px;
+}
+
+.CraftingSkillTree__Node--partially-unlocked svg {
+  color: #8b4513;
+}
+
+/* Selected Node */
+.CraftingSkillTree__Node--selected {
+  box-shadow:
+    inset 0 0 15px rgba(201, 162, 39, 0.8),
+    0 0 20px rgba(218, 165, 32, 0.6);
+}
+
+.CraftingSkillTree__Node--selected svg {
+  filter: drop-shadow(0 0 4px rgba(218, 165, 32, 0.8));
+  color: #daa520;
+}
+
+/* XP Badge */
+.CraftingSkillTree__XPBadge {
+  display: flex;
+  position: absolute;
+  right: -8px;
+  bottom: -8px;
+  justify-content: center;
+  align-items: center;
+  box-shadow:
+    inset 0 1px 0 rgba(201, 162, 39, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.5);
+  border: 2px solid #c9a227;
+  border-radius: 50%;
+  background-color: #1a1410;
+  min-width: 24px;
+  height: 24px;
+  color: #daa520;
+  font-weight: 600;
+  font-size: 10px;
+  font-family: "Cinzel", serif;
+}
+
+.CraftingSkillTree__XPProgress {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  background-color: #2d2319;
+  width: 40px;
+  height: 4px;
+  overflow: hidden;
+}
+
+.CraftingSkillTree__XPProgress__Bar {
+  box-shadow: 0 0 4px rgba(218, 165, 32, 0.5);
+  background: linear-gradient(to right, #c9a227, #daa520);
+  width: var(--progress, 50%);
+  height: 100%;
+}
+
+/* Crafting Panel */
+.CraftingSkillTree__CraftingPanel {
+  position: absolute;
+  top: 50%;
+  right: 32px;
+  transform: translateY(-50%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 8px 16px rgba(0, 0, 0, 0.6);
+  border: 2px solid #5c4a36;
+  background-color: #2d2319;
+  width: 360px;
+}
+
+.CraftingSkillTree__CraftingPanel__Header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #5c4a36;
+  padding: 16px;
+  color: #c9a227;
+  font-weight: 700;
+  font-size: 18px;
+  font-family: "Cinzel", serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.CraftingSkillTree__CraftingPanel__Header svg {
+  color: #c9a227;
+}
+
+/* Recipe Viewer */
+.CraftingSkillTree__RecipeViewer {
+  border-bottom: 1px solid #5c4a36;
+  padding: 16px;
+}
+
+.CraftingSkillTree__RecipeViewer__Title {
+  margin-bottom: 8px;
+  color: #d4c5a8;
+  font-size: 14px;
+  font-family: "Crimson Text", serif;
+}
+
+.CraftingSkillTree__RecipeViewer__Stats {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.CraftingSkillTree__RecipeViewer__Stat {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #daa520;
+  font-weight: 600;
+  font-size: 12px;
+  font-family: "Cinzel", serif;
+}
+
+.CraftingSkillTree__RecipeViewer__Stat svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Ingredient Slots */
+.CraftingSkillTree__IngredientSlots {
+  padding: 16px;
+}
+
+.CraftingSkillTree__IngredientSlotRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.CraftingSkillTree__IngredientSlot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 2px solid #5c4a36;
+  border-radius: 4px;
+  background-color: #1a1410;
+  width: 56px;
+  height: 56px;
+}
+
+.CraftingSkillTree__IngredientSlot:hover {
+  box-shadow: 0 0 8px rgba(201, 162, 39, 0.4);
+  border-color: #c9a227;
+}
+
+.CraftingSkillTree__IngredientSlot--filled {
+  border-color: #c9a227;
+  background-color: #3d2f25;
+}
+
+.CraftingSkillTree__IngredientSlot svg {
+  color: #8b4513;
+}
+
+.CraftingSlot__Quantity {
+  position: absolute;
+  right: 6px;
+  bottom: 4px;
+  color: #daa520;
+  font-weight: 600;
+  font-size: 10px;
+  font-family: "Cinzel", serif;
+}
+
+.CraftingSkillTree__IngredientSlot--validated {
+  box-shadow:
+    inset 0 1px 0 rgba(76, 175, 80, 0.2),
+    0 0 4px rgba(76, 175, 80, 0.3);
+  border-color: #4caf50;
+}
+
+.CraftingSkillTree__IngredientSlot--validated svg {
+  color: #4caf50;
+}
+
+/* Resource Inventory */
+.CraftingSkillTree__ResourceInventory {
+  border-top: 1px solid #5c4a36;
+  padding: 16px;
+}
+
+.CraftingSkillTree__ResourceInventory__SearchBar {
+  margin-bottom: 12px;
+  border: 1px solid #5c4a36;
+  background-color: #1a1410;
+  padding: 8px 12px;
+  width: 100%;
+  color: #d4c5a8;
+  font-size: 13px;
+  font-family: "Crimson Text", serif;
+}
+
+.CraftingSkillTree__ResourceInventory__SearchBar:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(201, 162, 39, 0.4);
+  border-color: #c9a227;
+}
+
+.CraftingSkillTree__ResourceInventory__Grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.CraftingSkillTree__ResourceItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 2px solid #5c4a36;
+  border-radius: 4px;
+  background-color: #1a1410;
+  aspect-ratio: 1;
+}
+
+.CraftingSkillTree__ResourceItem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 8px rgba(201, 162, 39, 0.4);
+  border-color: #c9a227;
+}
+
+.CraftingSkillTree__ResourceItem svg {
+  margin-bottom: 4px;
+  color: #8b4513;
+}
+
+.CraftingSkillTree__ResourceItem__Quantity {
+  color: #daa520;
+  font-weight: 600;
+  font-size: 11px;
+  font-family: "Cinzel", serif;
+}
+
+/* Progress Tracker */
+.CraftingSkillTree__ProgressTracker {
+  border-top: 1px solid #5c4a36;
+  padding: 16px;
+}
+
+.CraftingSkillTree__ProgressRow {
+  margin-bottom: 12px;
+}
+
+.CraftingSkillTree__ProgressLabel {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  color: #d4c5a8;
+  font-size: 13px;
+  font-family: "Crimson Text", serif;
+}
+
+.CraftingSkillTree__ProgressLabel--level {
+  color: #c9a227;
+  font-weight: 600;
+}
+
+.CraftingSkillTree__ProgressBar {
+  border: 1px solid #5c4a36;
+  border-radius: 4px;
+  background-color: #1a1410;
+  height: 8px;
+  overflow: hidden;
+}
+
+.CraftingSkillTree__ProgressBar__Fill {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 0 4px rgba(218, 165, 32, 0.5);
+  background: linear-gradient(to right, #c9a227, #daa520);
+  width: var(--progress, 50%);
+  height: 100%;
+}
+
+.CraftingSkillTree__ProgressInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  color: #daa520;
+  font-size: 11px;
+  font-family: "Cinzel", serif;
+}
+
+/* Unlock Indicator */
+.CraftingSkillTree__UnlockIndicator {
+  display: flex;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  justify-content: center;
+  align-items: center;
+  box-shadow:
+    0 0 10px rgba(201, 162, 39, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  background-color: #c9a227;
+  width: 20px;
+  height: 20px;
+}
+
+.CraftingSkillTree__UnlockIndicator svg {
+  width: 12px;
+  height: 12px;
+  color: #1a1410;
+}
+
+/* Pulse Animation for Newly Unlocked */
+@keyframes pulse-glow {
+  0% {
+    box-shadow:
+      inset 0 0 15px rgba(201, 162, 39, 0.8),
+      0 0 20px rgba(218, 165, 32, 0.6);
+  }
+  50% {
+    box-shadow:
+      inset 0 0 20px rgba(201, 162, 39, 1),
+      0 0 30px rgba(218, 165, 32, 0.8);
+  }
+  100% {
+    box-shadow:
+      inset 0 0 15px rgba(201, 162, 39, 0.8),
+      0 0 20px rgba(218, 165, 32, 0.6);
+  }
+}
+
+.CraftingSkillTree__Node--newly-unlocked {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Craft Button */
+.CraftingSkillTree__CraftButton {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  background: linear-gradient(180deg, #c9a227, #daa520);
+  padding: 14px;
+  width: 100%;
+  color: #1a1410;
+  font-weight: 700;
+  font-size: 16px;
+  font-family: "Cinzel", serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.CraftingSkillTree__CraftButton:hover:not(:disabled) {
+  box-shadow:
+    inset 0 1px 0 rgba(26, 20, 16, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(180deg, #daa520, #c9a227);
+}
+
+.CraftingSkillTree__CraftButton:disabled {
+  cursor: not-allowed;
+  background: linear-gradient(180deg, #5c4a36, #2d2319);
+  color: #5c4a36;
+}
+
+/* Tooltip */
+.CraftingSkillTree__Tooltip {
+  position: absolute;
+  z-index: 100;
+  box-shadow:
+    inset 0 1px 0 rgba(201, 162, 39, 0.2),
+    0 8px 16px rgba(0, 0, 0, 0.5);
+  border: 1px solid #c9a227;
+  border-radius: 4px;
+  background-color: rgba(45, 35, 25, 0.98);
+  padding: 12px;
+  max-width: 280px;
+}
+
+.CraftingSkillTree__Tooltip__Title {
+  margin-bottom: 6px;
+  color: #c9a227;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: "Cinzel", serif;
+}
+
+.CraftingSkillTree__Tooltip__Description {
+  margin-bottom: 6px;
+  color: #d4c5a8;
+  font-size: 13px;
+  line-height: 1.5;
+  font-family: "Crimson Text", serif;
+}
+
+.CraftingSkillTree__Tooltip__Cost {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #daa520;
+  font-size: 12px;
+  font-family: "Cinzel", serif;
+}
+
+.CraftingSkillTree__Tooltip__Cost svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Quality Indicators */
+.CraftingSkillTree__QualityIndicator {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  border-radius: 3px;
+  background-color: #c9a227;
+  padding: 2px 6px;
+  color: #1a1410;
+  font-weight: 700;
+  font-size: 9px;
+  font-family: "Cinzel", serif;
+}
+
+.CraftingSkillTree__QualityIndicator--rare {
+  box-shadow: 0 0 4px rgba(218, 165, 32, 0.5);
+  background-color: #daa520;
+}
+
+/* Branch Category Colors */
+.CraftingSkillTree__Node--weapons svg {
+  color: #c9a227;
+}
+.CraftingSkillTree__Node--armor svg {
+  color: #daa520;
+}
+.CraftingSkillTree__Node--potions svg {
+  color: #4caf50;
+}
+.CraftingSkillTree__Node--enchantments svg {
+  color: #9c27b0;
+}
+.CraftingSkillTree__Node--misc svg {
+  color: #ff9800;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .CraftingSkillTree__CraftingPanel {
+    right: 16px;
+    width: 300px;
+  }
+
+  .CraftingSkillTree__Node--unlocked,
+  .CraftingSkillTree__Node--locked {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+@media (max-width: 768px) {
+  .CraftingSkillTree__Canvas {
+    padding: 16px;
+  }
+
+  .CraftingSkillTree__CraftingPanel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transform: none;
+    z-index: 100;
+    width: 85%;
+    max-width: 320px;
+  }
+}

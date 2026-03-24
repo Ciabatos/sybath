@@ -1,0 +1,600 @@
+/* ── RETRO STYLE THEME ───────────────────────────────────────────────────── */
+
+.panel {
+  background-color: #F5DEB3; /* wheat - parchment base */
+  border: 4px solid #654321; /* dark brown - frame borders */
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* CRT Scanline Effect Overlay */
+.panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(139, 69, 19, 0.03),
+    rgba(139, 69, 19, 0.03) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ── HEADER ──────────────────────────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid #DAA520; /* goldenrod - brass accents */
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  font-family: "Press Start 2P", "Courier New", monospace;
+  font-size: 18px;
+  color: #DAA520; /* goldenrod */
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-shadow: 2px 2px 0px rgba(139, 69, 19, 0.5);
+  margin: 0;
+}
+
+.subTitle {
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  color: #654321; /* dark brown */
+  margin: 0;
+}
+
+.coordinates {
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  color: #8B4513; /* saddle brown */
+  background-color: rgba(218, 165, 32, 0.2);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.closeButton {
+  color: #A52A2A; /* brown red */
+}
+
+.closeIcon {
+  font-size: 18px;
+}
+
+/* ── CONTENT ─────────────────────────────────────────────────────────────── */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section {
+  background-color: #D2B48C; /* tan - darker wood panels */
+  border: 3px double #654321; /* dark brown - frame borders */
+  padding: 8px;
+  position: relative;
+}
+
+/* Corner embellishments */
+.section::before,
+.section::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #DAA520; /* goldenrod */
+  transition: all 0.3s ease;
+}
+
+.section::before {
+  top: -3px;
+  left: -3px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.section::after {
+  bottom: -3px;
+  right: -3px;
+  border-left: none;
+  border-top: none;
+}
+
+.section:hover {
+  box-shadow: 0 0 15px rgba(218, 165, 32, 0.4); /* brass glow */
+}
+
+.sectionTitle {
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  color: #8B4513; /* saddle brown */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0 8px 0;
+  border-bottom: 1px solid #654321;
+  padding-bottom: 4px;
+}
+
+/* ── TABS ─────────────────────────────────────────────────────────────────── */
+
+.tabsList {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  background-color: rgba(109, 67, 33, 0.2);
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.tabTrigger {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  color: #8B4513;
+  padding: 6px 12px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tabTrigger:hover {
+  background-color: rgba(218, 165, 32, 0.3);
+  color: #DAA520;
+}
+
+.tabTrigger[data-state="active"] {
+  background-color: #DAA520;
+  color: #654321;
+  font-weight: bold;
+  box-shadow: 0 0 8px rgba(218, 165, 32, 0.6);
+}
+
+.recipeIcon {
+  display: inline-block;
+  margin-right: 6px;
+  color: #DAA520;
+}
+
+/* ── RECIPE DETAILS ──────────────────────────────────────────────────────── */
+
+.recipeDetails {
+  background-color: rgba(139, 69, 19, 0.1);
+  padding: 8px;
+  border-radius: 4px;
+  border-left: 3px solid #DAA520;
+}
+
+.recipeName {
+  font-family: "Courier New", monospace;
+  font-size: 16px;
+  color: #A52A2A; /* brown red */
+  margin: 0 0 4px 0;
+}
+
+.recipeDescription {
+  font-family: "Georgia", serif;
+  font-size: 13px;
+  color: #654321;
+  line-height: 1.5;
+  margin: 0 0 8px 0;
+}
+
+.recipeStats {
+  display: flex;
+  gap: 12px;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+}
+
+.statItem {
+  color: #8B4513;
+  background-color: rgba(218, 165, 32, 0.2);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.statIcon {
+  display: inline-block;
+  margin-right: 4px;
+  color: #DAA520;
+}
+
+/* ── MATERIALS CONTAINER ─────────────────────────────────────────────────── */
+
+.materialsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.materialRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px;
+  background-color: rgba(109, 67, 33, 0.15);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.materialRow:hover {
+  background-color: rgba(139, 69, 19, 0.2);
+  transform: translateX(4px);
+}
+
+.materialIcon {
+  font-size: 18px;
+  color: #DAA520;
+  margin-right: 8px;
+}
+
+.materialInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.materialName {
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  color: #654321;
+}
+
+.materialQuantity {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  color: #8B4513;
+}
+
+.materialAvailable,
+.materialMissing {
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.materialAvailable {
+  color: #2E8B57; /* sea green */
+  background-color: rgba(46, 139, 87, 0.2);
+}
+
+.materialMissing {
+  color: #A52A2A; /* brown red */
+  background-color: rgba(165, 42, 42, 0.2);
+}
+
+/* ── INVENTORY CONTAINER ─────────────────────────────────────────────────── */
+
+.inventoryContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.inventoryRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
+  background-color: rgba(139, 69, 19, 0.1);
+  border-radius: 4px;
+}
+
+.inventoryIcon {
+  font-size: 16px;
+  color: #DAA520;
+  margin-right: 8px;
+}
+
+.inventoryName {
+  flex: 1;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  color: #654321;
+}
+
+.inventoryQuantity,
+.inventoryRequired {
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.inventoryQuantity {
+  color: #2E8B57; /* sea green */
+  background-color: rgba(46, 139, 87, 0.2);
+}
+
+.inventoryRequired {
+  color: #A52A2A; /* brown red */
+  background-color: rgba(165, 42, 42, 0.2);
+}
+
+/* ── CONTROLS CONTAINER ──────────────────────────────────────────────────── */
+
+.controlsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.craftingActive {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background-color: rgba(218, 165, 32, 0.3);
+  border-radius: 4px;
+  animation: pulseAmber 2s ease-in-out infinite;
+}
+
+@keyframes pulseAmber {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(218, 165, 32, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(218, 165, 32, 0.7);
+  }
+}
+
+.craftingIcon {
+  font-size: 24px;
+  color: #DAA520;
+}
+
+.progressText {
+  margin-left: auto;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  font-size: 16px;
+  color: #A52A2A;
+}
+
+.craftButton {
+  background-color: #8B4513; /* saddle brown */
+  border: 3px solid #DAA520; /* goldenrod */
+  color: #F5DEB3; /* wheat */
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.craftButton:hover:not(:disabled) {
+  background-color: #A0522D;
+  box-shadow: 0 0 12px rgba(218, 165, 32, 0.6);
+  transform: translateY(-2px);
+}
+
+.craftButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cancelButton {
+  background-color: #A52A2A; /* brown red */
+  border: 3px solid #8B4513;
+  color: #F5DEB3;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  padding: 6px 12px;
+}
+
+.cancelButton:hover {
+  background-color: #8B0000;
+}
+
+.alertMissing,
+.alertCost {
+  border-left: 4px solid #A52A2A; /* brown red */
+}
+
+.alertIcon {
+  color: #A52A2A;
+}
+
+/* ── PREVIEW CARD ────────────────────────────────────────────────────────── */
+
+.previewCard {
+  background-color: rgba(139, 69, 19, 0.1);
+  border: 3px solid #DAA520; /* goldenrod */
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #654321;
+}
+
+.previewTitle {
+  font-family: "Courier New", monospace;
+  font-size: 16px;
+  color: #A52A2A; /* brown red */
+  margin: 0;
+}
+
+.previewCategory {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  color: #8B4513;
+  background-color: rgba(218, 165, 32, 0.2);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  background-color: rgba(109, 67, 33, 0.1);
+  border-radius: 4px;
+}
+
+.statLabel {
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  color: #8B4513;
+}
+
+.statValue {
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  font-size: 13px;
+  color: #DAA520; /* goldenrod */
+  text-shadow: 1px 1px 0px rgba(109, 67, 33, 0.3);
+}
+
+/* ── WORKBENCH FOOTER ───────────────────────────────────────────────────── */
+
+.workbenchFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+  border-top: 2px solid #DAA520; /* goldenrod */
+  margin-top: 8px;
+}
+
+.workbenchText {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  color: #654321;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.workbenchIcon {
+  color: #DAA520; /* goldenrod */
+}
+
+/* ── BUTTONS (Custom for retro feel) ─────────────────────────────────────── */
+
+button {
+  font-family: "Courier New", monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ── PROGRESS BAR (Custom styling) ───────────────────────────────────────── */
+
+.progress {
+  flex: 1;
+  height: 8px !important;
+  background-color: rgba(109, 67, 33, 0.5);
+  border-radius: 4px;
+}
+
+.progress__indicator {
+  background-color: #DAA520 !important; /* goldenrod */
+  box-shadow: 0 0 8px rgba(218, 165, 32, 0.6);
+}
+
+/* ── ALERTS (Custom styling) ─────────────────────────────────────────────── */
+
+.alertSuccess {
+  border-left-color: #2E8B57; /* sea green */
+}
+
+.alertFailure {
+  border-left-color: #A52A2A; /* brown red */
+}
+
+/* ── HOVER EFFECTS ──────────────────────────────────────────────────────── */
+
+.panel:hover .section {
+  transform: translateY(-1px);
+}
+
+.section:hover {
+  box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+}
+
+/* ── NUMERIC STYLE (Bold monospace with gold outline) ───────────────────── */
+
+.materialQuantity,
+.materialAvailable,
+.materialMissing,
+.inventoryQuantity,
+.inventoryRequired,
+.progressText,
+.statValue {
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  text-shadow: 
+    -1px -1px 0 #654321,
+    1px -1px 0 #654321,
+    -1px 1px 0 #654321,
+    1px 1px 0 #654321;
+}
+
+/* ── RETRO PIXEL ART FLOURISHES ─────────────────────────────────────────── */
+
+.title::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #DAA520;
+  margin-top: 4px;
+}
+
+/* ── RESPONSIVE ADJUSTMENTS ─────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .panel {
+    padding: 12px;
+  }
+
+  .title {
+    font-size: 14px;
+  }
+
+  .tabsList {
+    flex-wrap: wrap;
+  }
+
+  .tabTrigger {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  .workbenchFooter {
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+  }
+}

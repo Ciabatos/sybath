@@ -1,0 +1,1062 @@
+/* ============================================
+   CraftingWorkbench - Medieval Fantasy RPG Style
+   RETRO AESTHETIC: Aged wood, brass fittings, parchment textures
+   ============================================ */
+
+/* ============================================
+   COLOR VARIABLES & THEME
+   ============================================ */
+
+:root {
+  --primary-color: #8b4513; /* Saddle brown - aged wood */
+  --secondary-color: #daa520; /* Goldenrod - brass accents */
+  --accent-color: #cd853f; /* Peru - copper highlights */
+  --danger-color: #a52a2a; /* Brown red - error states */
+  --background-color: #f5deb3; /* Wheat - parchment base */
+  --panel-color: #d2b48c; /* Tan - darker wood panels */
+  --border-color: #654321; /* Dark brown - frame borders */
+  --text-primary: #3e2723; /* Deep brown text */
+  --text-secondary: #5d4037; /* Medium brown text */
+  --gold-light: #f4c430; /* Light gold for highlights */
+  --parchment-highlight: #fff8dc; /* Cream highlight */
+}
+
+/* ============================================
+   ANIMATION KEYFRAMES
+   ============================================ */
+
+@keyframes craftProgress {
+  0% {
+    background-position: 0% center;
+    width: 0%;
+  }
+  50% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: 0% center;
+    width: var(--progress);
+  }
+}
+
+@keyframes pulsingGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 8px rgba(218, 165, 32, 0.4),
+      inset 0 0 10px rgba(218, 165, 32, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 16px rgba(218, 165, 32, 0.7),
+      inset 0 0 20px rgba(218, 165, 32, 0.4);
+  }
+}
+
+@keyframes borderPulse {
+  0%,
+  100% {
+    border-color: var(--secondary-color);
+  }
+  50% {
+    border-color: var(--gold-light);
+  }
+}
+
+@keyframes scanlineMove {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    transform: translateY(-5px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* ============================================
+   CRT SCANLINE OVERLAY EFFECT
+   ============================================ */
+
+.crt-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  background:
+    linear-gradient(rgba(255, 248, 220, 0.03) 50%, transparent 50%),
+    linear-gradient(90deg, rgba(255, 248, 220, 0.03) 50%, transparent 50%);
+  background-size:
+    100% 4px,
+    6px 100%;
+  pointer-events: none;
+}
+
+/* ============================================
+   WORKBENCH LAYOUT - MAIN CONTAINER
+   ============================================ */
+
+.workbenchLayout {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow:
+    0 4px 12px rgba(101, 67, 33, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background-color: var(--background-color);
+  padding: 16px;
+  overflow: hidden;
+}
+
+.workbenchLayout::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  background: linear-gradient(
+    90deg,
+    var(--border-color) 25%,
+    transparent 25%,
+    transparent 75%,
+    var(--border-color) 75%
+  );
+  height: 4px;
+  content: "";
+}
+
+.workbenchLayout::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(
+    90deg,
+    var(--border-color) 25%,
+    transparent 25%,
+    transparent 75%,
+    var(--border-color) 75%
+  );
+  height: 4px;
+  content: "";
+}
+
+/* ============================================
+   DOUBLE BORDER FRAME
+   ============================================ */
+
+.doubleBorder {
+  position: relative;
+  border: 3px solid var(--border-color);
+}
+
+.doubleBorder::before {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  left: -2px;
+  border: 2px solid var(--secondary-color);
+  pointer-events: none;
+  content: "";
+}
+
+.doubleBorder::after {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  bottom: 4px;
+  left: 4px;
+  border: 1px solid var(--border-color);
+  pointer-events: none;
+  content: "";
+}
+
+/* Corner embellishments */
+.corner-decoration {
+  position: absolute;
+  background:
+    linear-gradient(45deg, transparent 50%, var(--secondary-color) 50%),
+    linear-gradient(-45deg, transparent 50%, var(--secondary-color) 50%);
+  width: 12px;
+  height: 12px;
+}
+
+.corner-tl {
+  top: -2px;
+  left: -2px;
+}
+.corner-tr {
+  top: -2px;
+  right: -2px;
+  background:
+    linear-gradient(135deg, transparent 50%, var(--secondary-color) 50%),
+    linear-gradient(45deg, transparent 50%, var(--secondary-color) 50%);
+}
+.corner-bl {
+  bottom: -2px;
+  left: -2px;
+  background:
+    linear-gradient(-135deg, transparent 50%, var(--secondary-color) 50%),
+    linear-gradient(45deg, transparent 50%, var(--secondary-color) 50%);
+}
+.corner-br {
+  right: -2px;
+  bottom: -2px;
+  background:
+    linear-gradient(-135deg, transparent 50%, var(--secondary-color) 50%),
+    linear-gradient(135deg, transparent 50%, var(--secondary-color) 50%);
+}
+
+/* ============================================
+   PANEL STYLING
+   ============================================ */
+
+.panel {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(101, 67, 33, 0.2);
+  border-radius: 4px;
+  background-color: var(--panel-color);
+  padding: 8px;
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 4px;
+  color: var(--secondary-color);
+  font-weight: bold;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.panel-title::before {
+  display: inline-block;
+  box-shadow: 0 0 4px rgba(218, 165, 32, 0.6);
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  width: 8px;
+  height: 8px;
+  content: "";
+}
+
+/* ============================================
+   RECIPE SELECTION SECTION
+   ============================================ */
+
+.recipeSelection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.recipeCard {
+  position: relative;
+  flex: 1;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--background-color);
+  padding: 10px;
+}
+
+.recipeCard:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 4px 8px rgba(139, 69, 19, 0.3),
+    0 0 12px rgba(218, 165, 32, 0.3);
+  border-color: var(--secondary-color);
+}
+
+.recipeCard.selected {
+  box-shadow:
+    inset 0 2px 4px rgba(101, 67, 33, 0.2),
+    0 0 8px rgba(205, 133, 63, 0.4);
+  border-color: var(--accent-color);
+  background-color: #e8dcc4;
+}
+
+.recipeCard::after {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  width: 8px;
+  height: 8px;
+  content: "";
+}
+
+.recipeCard.selected::after {
+  box-shadow: 0 0 6px rgba(218, 165, 32, 0.8);
+}
+
+.recipeIcon {
+  margin-bottom: 4px;
+  color: var(--primary-color);
+  font-size: 24px;
+}
+
+.recipeName {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-primary);
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.recipeDescription {
+  margin-top: 4px;
+  color: var(--text-secondary);
+  font-style: italic;
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.category-badge {
+  display: inline-block;
+  margin-left: auto;
+  border-radius: 3px;
+  background-color: rgba(101, 67, 33, 0.2);
+  padding: 2px 6px;
+  color: var(--primary-color);
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   MATERIAL REQUIREMENTS SECTION
+   ============================================ */
+
+.materialRequirements {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.materialRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 3px;
+  background-color: rgba(139, 69, 19, 0.05);
+  padding: 4px 8px;
+}
+
+.materialRow.missing {
+  border-left: 3px solid var(--danger-color);
+  background-color: rgba(165, 42, 42, 0.1);
+}
+
+.materialIcon {
+  margin-right: 8px;
+  color: var(--primary-color);
+  font-size: 18px;
+}
+
+.materialInfo {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 6px;
+}
+
+.materialName {
+  color: var(--text-primary);
+  font-size: 13px;
+}
+
+.materialQuantity {
+  display: inline-block;
+  border-radius: 3px;
+  background-color: rgba(218, 165, 32, 0.1);
+  padding: 2px 6px;
+  min-width: 40px;
+  color: var(--text-primary);
+  font-weight: bold;
+  font-size: 13px;
+  font-family: "Courier New", monospace;
+  text-align: right;
+}
+
+.materialQuantity.required {
+  border: 1px solid var(--secondary-color);
+  background-color: rgba(218, 165, 32, 0.2);
+}
+
+.materialQuantity.available {
+  color: #2e7d32;
+}
+
+.materialQuantity.missing {
+  border: 1px solid var(--danger-color);
+  background-color: rgba(165, 42, 42, 0.2);
+  color: var(--danger-color);
+}
+
+/* ============================================
+   PLAYER INVENTORY SECTION
+   ============================================ */
+
+.playerInventory {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.inventorySlot {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  border: 2px solid var(--border-color);
+  border-radius: 3px;
+  background-color: var(--background-color);
+  width: 40px;
+  height: 40px;
+}
+
+.inventorySlot:hover {
+  box-shadow: 0 2px 4px rgba(139, 69, 19, 0.2);
+  border-color: var(--accent-color);
+  background-color: #fff8dc;
+}
+
+.inventorySlot.selected {
+  box-shadow:
+    inset 0 2px 4px rgba(101, 67, 33, 0.2),
+    0 0 6px rgba(218, 165, 32, 0.4);
+  border-color: var(--secondary-color);
+  background-color: #e8dcc4;
+}
+
+.inventorySlot::after {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  bottom: 2px;
+  left: 2px;
+  border: 1px dashed var(--border-color);
+  border-radius: 2px;
+  content: "";
+}
+
+.inventorySlot.selected::after {
+  border-color: var(--secondary-color);
+}
+
+/* ============================================
+   CRAFTING CONTROLS SECTION
+   ============================================ */
+
+.craftingControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.costDisplay {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 3px;
+  background-color: rgba(218, 165, 32, 0.1);
+  padding: 4px 10px;
+  color: var(--text-primary);
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.costIcon {
+  color: var(--secondary-color);
+}
+
+.craftButton {
+  position: relative;
+  flex: 1;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  background: linear-gradient(180deg, #c4a574 0%, #b8935f 100%);
+  padding: 10px 16px;
+  max-width: 200px;
+  overflow: hidden;
+  color: var(--text-primary);
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.craftButton::before {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: linear-gradient(45deg, transparent, rgba(218, 165, 32, 0.2), transparent);
+  width: 200%;
+  height: 200%;
+  content: "";
+}
+
+.craftButton:hover:not(:disabled) {
+  box-shadow:
+    0 4px 8px rgba(139, 69, 19, 0.3),
+    0 0 12px rgba(218, 165, 32, 0.3);
+  border-color: var(--secondary-color);
+  background: linear-gradient(180deg, #d4b574 0%, #c4a574 100%);
+}
+
+.craftButton:hover:not(:disabled)::before {
+  opacity: 1;
+}
+
+.craftButton:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow:
+    0 2px 4px rgba(139, 69, 19, 0.3),
+    inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.craftButton:disabled {
+  cursor: not-allowed;
+  border-color: var(--border-color);
+  background: linear-gradient(180deg, #a5745f 0%, #956b53 100%);
+  color: var(--text-secondary);
+}
+
+.craftButton.isCrafting {
+  animation: pulsingGlow 2s ease-in-out infinite;
+  border-color: var(--secondary-color);
+  background: linear-gradient(180deg, #e8c474 0%, #d4b56f 100%);
+}
+
+.durationDisplay {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 3px;
+  background-color: rgba(139, 69, 19, 0.1);
+  padding: 4px 8px;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.durationIcon {
+  color: var(--accent-color);
+}
+
+/* ============================================
+   ITEM PREVIEW SECTION
+   ============================================ */
+
+.itemPreview {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-left: 3px solid var(--secondary-color);
+  border-radius: 4px;
+  background-color: rgba(255, 248, 220, 0.3);
+  padding: 10px;
+}
+
+.previewIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--background-color);
+  width: 48px;
+  height: 48px;
+  color: var(--primary-color);
+  font-size: 28px;
+}
+
+.previewInfo {
+  flex: 1;
+}
+
+.previewName {
+  margin-bottom: 4px;
+  color: var(--text-primary);
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.previewStats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3px;
+  font-size: 12px;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-secondary);
+}
+
+.statValue {
+  color: var(--primary-color);
+  font-weight: bold;
+  font-family: "Courier New", monospace;
+}
+
+/* ============================================
+   FEEDBACK SYSTEM SECTION
+   ============================================ */
+
+.feedbackSystem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 4px;
+  padding: 10px;
+  min-height: 56px;
+}
+
+.feedbackSuccess {
+  border: 2px solid #4caf50;
+  background-color: rgba(76, 175, 80, 0.1);
+  color: #2e7d32;
+}
+
+.feedbackError {
+  border: 2px solid var(--danger-color);
+  background-color: rgba(191, 124, 66, 0.1);
+  color: var(--danger-color);
+}
+
+.feedbackInfo {
+  border: 2px solid #2196f3;
+  background-color: rgba(33, 150, 243, 0.1);
+  color: #1565c0;
+}
+
+.feedbackMessage {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.feedbackIcon {
+  font-size: 20px;
+}
+
+/* ============================================
+   PROGRESS BAR (CRAFTING)
+   ============================================ */
+
+.progressContainer {
+  margin-top: 8px;
+  border-radius: 4px;
+  background-color: rgba(139, 69, 19, 0.2);
+  height: 8px;
+  overflow: hidden;
+}
+
+.progressBar {
+  position: relative;
+  transition: width 0.3s ease;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #daa520 0%, #f4c430 50%, #8b4513 100%);
+  width: var(--progress, 0%);
+  height: 100%;
+}
+
+.progressBar::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image:
+    linear-gradient(90deg, transparent 50%, rgba(255, 255, 255, 0.3) 50%),
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(139, 69, 19, 0.1) 2px,
+      rgba(139, 69, 19, 0.1) 4px
+    );
+  content: "";
+}
+
+/* ============================================
+   WORKBENCH HEADER
+   ============================================ */
+
+.workbenchHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 8px;
+}
+
+.headerIcon {
+  color: var(--secondary-color);
+  font-size: 32px;
+}
+
+.workbenchTitle {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-primary);
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.workbenchTitle::before {
+  display: inline-block;
+  border-radius: 2px;
+  background-color: var(--secondary-color);
+  width: 4px;
+  height: 20px;
+  content: "";
+}
+
+/* ============================================
+   NUMERIC DISPLAY STYLES
+   ============================================ */
+
+.numericDisplay {
+  display: inline-block;
+  border-radius: 3px;
+  background-color: rgba(218, 165, 32, 0.1);
+  padding: 2px 6px;
+  min-width: 48px;
+  color: var(--text-primary);
+  font-weight: bold;
+  font-size: 14px;
+  font-family: "Courier New", monospace;
+  text-align: center;
+}
+
+.numericDisplay.gold {
+  border: 1px solid var(--secondary-color);
+  background-color: rgba(218, 165, 32, 0.2);
+  color: #b8860b;
+}
+
+/* ============================================
+   EMPTY STATE
+   ============================================ */
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 32px 16px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.emptyStateIcon {
+  opacity: 0.5;
+  font-size: 48px;
+}
+
+.emptyStateText {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* ============================================
+   HOVER & ACTIVE EFFECTS
+   ============================================ */
+
+.hover-lift {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 4px 8px rgba(139, 69, 19, 0.3),
+    0 0 12px rgba(218, 165, 32, 0.3);
+}
+
+.hover-glow {
+  transition: box-shadow 0.2s ease;
+}
+
+.hover-glow:hover {
+  box-shadow:
+    0 0 12px rgba(218, 165, 32, 0.4),
+    inset 0 0 8px rgba(218, 165, 32, 0.2);
+}
+
+.active-pulse {
+  animation: pulsingGlow 2s ease-in-out infinite;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  .workbenchLayout {
+    padding: 12px;
+  }
+
+  .recipeSelection {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .craftingControls {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .costDisplay,
+  .durationDisplay {
+    justify-content: center;
+  }
+
+  .itemPreview {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .previewIcon {
+    width: 100%;
+    height: 64px;
+  }
+
+  .materialRow {
+    flex-wrap: wrap;
+  }
+
+  .materialQuantity {
+    min-width: auto;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY FEATURES
+   ============================================ */
+
+:focus-visible {
+  outline: 2px solid var(--secondary-color);
+  outline-offset: 2px;
+}
+
+.craftButton:focus-visible,
+.recipeCard:focus-visible,
+.inventorySlot:focus-visible {
+  outline-width: 3px;
+  box-shadow:
+    0 0 8px rgba(218, 165, 32, 0.6),
+    inset 0 0 4px rgba(218, 165, 32, 0.3);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .workbenchLayout {
+    border-width: 4px;
+  }
+
+  .doubleBorder::before {
+    border-width: 3px;
+  }
+
+  .craftButton:not(:disabled):hover {
+    background-color: var(--secondary-color);
+    color: #000;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .craftButton.isCrafting {
+    animation: none;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.text-gold {
+  color: var(--secondary-color);
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.bg-parchment {
+  background-color: var(--background-color);
+}
+
+.bg-panel {
+  background-color: var(--panel-color);
+}
+
+.border-gold {
+  border-color: var(--secondary-color);
+}
+
+.border-accent {
+  border-color: var(--accent-color);
+}
+
+.border-danger {
+  border-color: var(--danger-color);
+}
+
+/* ============================================
+   SECTION SPACING & LAYOUT HELPERS
+   ============================================ */
+
+.section-gap-8 {
+  margin-bottom: 8px;
+}
+
+.section-gap-12 {
+  margin-bottom: 12px;
+}
+
+.section-gap-16 {
+  margin-bottom: 16px;
+}
+
+.flex-row {
+  display: flex;
+  gap: 8px;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+/* ============================================
+   STAT PANEL STYLING
+   ============================================ */
+
+.statPanel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+  border-radius: 4px;
+  background-color: rgba(139, 69, 19, 0.05);
+  padding: 8px;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 3px;
+  background-color: var(--background-color);
+  padding: 4px;
+  font-size: 12px;
+}
+
+.statLabel {
+  color: var(--text-secondary);
+}
+
+.statValue {
+  color: var(--primary-color);
+  font-weight: bold;
+  font-family: "Courier New", monospace;
+}
+
+/* ============================================
+   LOADING / CRAFTING INDICATOR
+   ============================================ */
+
+.craftingIndicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 4px;
+  background-color: rgba(218, 165, 32, 0.1);
+  padding: 6px 12px;
+  color: var(--text-primary);
+  font-size: 13px;
+}
+
+.craftingSpinner {
+  animation: spin 1s linear infinite;
+  border: 2px solid rgba(218, 165, 32, 0.3);
+  border-top-color: var(--secondary-color);
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

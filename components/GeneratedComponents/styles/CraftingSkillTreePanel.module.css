@@ -1,0 +1,914 @@
+/* ────────────────────────────────────────────────────────────────────── */
+/* CRAFTING SKILL TREE PANEL - Medieval/Fantasy RETRO STYLE              */
+/* Aged parchment interface with golden magical runes                    */
+/* Leather-bound panels and 8-bit pixel accents                          */
+/* ────────────────────────────────────────────────────────────────────── */
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* COLOR PALETTE                                                         */
+/* ────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Primary colors - leather/wood theme */
+  --primary-color: #8b4513;
+  --secondary-color: #d2691e;
+
+  /* Accent colors - magical glow */
+  --accent-gold: #ffd700;
+  --accent-glow: rgba(255, 215, 0, 0.3);
+
+  /* State colors */
+  --danger-color: #cd5c5c;
+  --success-green: #2e8b57;
+
+  /* Backgrounds - parchment feel */
+  --bg-parchment: #f5deb3;
+  --bg-panel: #faebd7;
+  --bg-dark-panel: #daa68a;
+
+  /* Borders */
+  --border-medieval: #8b0000;
+  --border-gold: #ffd700;
+  --border-subtle: rgba(139, 69, 19, 0.2);
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* BASE PANEL STYLES                                                    */
+/* ────────────────────────────────────────────────────────────────────── */
+
+.panel {
+  position: relative;
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.3),
+    inset 0 1px 2px rgba(255, 215, 0, 0.1);
+  border: 3px double var(--border-medieval);
+  border-radius: 0.5rem;
+  background: var(--bg-parchment);
+  padding: 1.5rem;
+  overflow: hidden;
+}
+
+/* Subtle parchment texture overlay */
+.panel::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(139, 69, 19, 0.03) 2px,
+      rgba(139, 69, 19, 0.03) 4px
+    ),
+    radial-gradient(circle at center, transparent 50%, rgba(139, 69, 19, 0.05));
+  pointer-events: none;
+  content: "";
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* HEADER                                                               */
+/* ────────────────────────────────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--border-medieval);
+  padding-bottom: 1rem;
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Title with gold outline effect */
+.title {
+  margin: 0;
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 1.25rem;
+  font-family: "Georgia", "Times New Roman", serif;
+  letter-spacing: 0.1em;
+  text-shadow:
+    -1px -1px 0 rgba(255, 215, 0, 0.3),
+    1px -1px 0 rgba(255, 215, 0, 0.3),
+    -1px 1px 0 rgba(255, 215, 0, 0.3),
+    1px 1px 0 rgba(255, 215, 0, 0.3);
+  text-transform: uppercase;
+}
+
+/* Subtitle with italic description */
+.subTitle {
+  margin: 0;
+  color: var(--secondary-color);
+  font-style: italic;
+  font-size: 0.875rem;
+  font-family: "Georgia", serif;
+}
+
+/* Coordinates display */
+.coordinates {
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.25rem;
+  background: rgba(139, 69, 19, 0.1);
+  padding: 0.25rem 0.5rem;
+  color: var(--primary-color);
+  font-size: 0.75rem;
+  font-family: "Courier New", monospace;
+}
+
+/* Close button with medieval styling */
+.closeButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  border: 2px solid var(--primary-color) !important;
+  background: transparent !important;
+  width: 3rem;
+  height: 3rem;
+  color: var(--primary-color) !important;
+}
+
+.closeButton:hover {
+  box-shadow: 0 0 10px rgba(139, 69, 19, 0.5);
+  background: var(--primary-color) !important;
+  color: #fff !important;
+}
+
+.closeIcon {
+  font-size: 1.25rem;
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* CONTENT AREA                                                        */
+/* ────────────────────────────────────────────────────────────────────── */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* TABS NAVIGATION                                                     */
+/* ────────────────────────────────────────────────────────────────────── */
+
+.tabsContainer {
+  border: 2px solid var(--border-medieval);
+  border-radius: 0.5rem;
+  background: var(--bg-dark-panel);
+  padding: 1rem;
+}
+
+.tabsList {
+  display: flex;
+  gap: 0.75rem;
+  margin: 0;
+  border-bottom: 2px solid var(--border-medieval);
+  background: transparent;
+  padding: 0;
+  list-style: none;
+}
+
+.tabsList .shadcn-tabs-trigger {
+  transition: all 0.3s ease;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  padding: 0.75rem 1.25rem !important;
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 0.875rem;
+  font-family: "Georgia", serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.tabsList .shadcn-tabs-trigger:hover {
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: rgba(139, 69, 19, 0.1) !important;
+}
+
+.tabsList .shadcn-tabs-trigger[data-state="active"] {
+  box-shadow:
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, var(--primary-color), #6b350d) !important;
+  color: #fff !important;
+}
+
+/* Tab content with parchment styling */
+.tabContent {
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.5rem;
+  background: var(--bg-panel);
+  padding: 1rem;
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* SCROLL AREA                                                         */
+/* ────────────────────────────────────────────────────────────────────── */
+
+.scrollArea {
+  border-radius: 0.25rem;
+  background: transparent;
+  padding: 0.5rem;
+}
+
+/* Custom scrollbar styling */
+.scrollArea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollArea::-webkit-scrollbar-track {
+  background: var(--bg-parchment);
+}
+
+.scrollArea::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: var(--primary-color);
+}
+
+.scrollArea::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color);
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* SKILL TREE GRID                                                     */
+/* ────────────────────────────────────────────────────────────────────── */
+
+.skillTreeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* SKILL NODES                                                         */
+/* ────────────────────────────────────────────────────────────────────── */
+
+.skillNode {
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid var(--border-medieval);
+  border-radius: 0.5rem;
+  background: var(--bg-panel);
+  padding: 1rem;
+  overflow: hidden;
+}
+
+/* Unlocked node - glowing crystal effect */
+.skillNode.unlocked {
+  box-shadow:
+    0 0 15px rgba(255, 215, 0, 0.3),
+    inset 0 1px 2px rgba(255, 215, 0, 0.2);
+  border-color: var(--accent-gold);
+}
+
+.skillNode.unlocked:hover {
+  transform: scale(1.02);
+  box-shadow:
+    0 0 20px rgba(255, 215, 0, 0.4),
+    inset 0 1px 2px rgba(255, 215, 0, 0.3);
+}
+
+/* Available but locked node - dark stone tablet */
+.skillNode.available {
+  opacity: 0.9;
+  border-color: var(--secondary-color);
+  background: #c0a080;
+}
+
+.skillNode.available:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Locked node - dark stone */
+.skillNode.locked {
+  opacity: 0.7;
+  cursor: not-allowed;
+  border-color: var(--danger-color);
+  background: #5a4a42;
+}
+
+.skillNode.locked:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Selected node highlight */
+.skillNode.selected {
+  outline: 3px solid var(--accent-gold);
+  outline-offset: -2px;
+  box-shadow:
+    0 0 15px rgba(255, 215, 0, 0.4),
+    inset 0 0 10px rgba(255, 215, 0, 0.1);
+}
+
+/* Node icon container */
+.nodeIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.25rem;
+  background: rgba(139, 69, 19, 0.1);
+  width: 3rem;
+  height: 3rem;
+}
+
+.skillNode.unlocked .nodeIcon {
+  border-color: var(--accent-gold);
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.05));
+}
+
+.skillNode.unlocked .nodeIcon svg {
+  filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.5));
+  color: var(--accent-gold);
+}
+
+/* Node content */
+.nodeContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.nodeName {
+  margin: 0;
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 0.875rem;
+  line-height: 1.3;
+  font-family: "Georgia", serif;
+}
+
+.nodeDescription {
+  margin: 0;
+  color: #6b4226;
+  font-style: italic;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  font-family: "Georgia", serif;
+}
+
+/* Level badge */
+.levelBadge {
+  align-self: flex-start;
+  margin-top: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 0.25rem;
+  background: linear-gradient(135deg, var(--accent-gold), #daa520) !important;
+  padding: 0.25rem 0.5rem !important;
+  color: #fff !important;
+  font-size: 0.625rem;
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* PROGRESS SECTION                                                    */
+/* ────────────────────────────────────────────────────────────────────── */
+
+.progressSection {
+  border: 2px solid var(--border-medieval);
+  border-radius: 0.5rem;
+  background: var(--bg-dark-panel);
+  padding: 1rem;
+}
+
+.sectionTitle {
+  margin: 0 0 1rem 0;
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 0.875rem;
+  font-family: "Georgia", serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.progressContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.progressBar {
+  flex: 1;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.25rem;
+  background: var(--bg-parchment);
+  height: 0.75rem;
+  overflow: hidden;
+}
+
+.progressBar .shadcn-progress-indicator {
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+  background: linear-gradient(90deg, var(--accent-gold), #daa520) !important;
+}
+
+.progressText {
+  color: var(--primary-color);
+  font-size: 0.75rem;
+  font-family: "Courier New", monospace;
+  white-space: nowrap;
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* MATERIALS SECTION                                                   */
+/* ────────────────────────────────────────────────────────────────────── */
+
+.materialsSection {
+  border: 2px solid var(--border-medieval);
+  border-radius: 0.5rem;
+  background: var(--bg-dark-panel);
+  padding: 1rem;
+}
+
+.materialsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 0.75rem;
+}
+
+.materialCard {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  border: 2px solid var(--border-subtle);
+  border-radius: 0.375rem;
+  background: var(--bg-panel);
+  padding: 0.75rem 0.5rem;
+}
+
+.materialCard:hover {
+  box-shadow:
+    0 0 10px rgba(255, 215, 0, 0.3),
+    inset 0 1px 2px rgba(255, 215, 0, 0.1);
+  border-color: var(--accent-gold);
+}
+
+.materialCard svg {
+  flex-shrink: 0;
+  color: var(--primary-color);
+}
+
+.materialCard span {
+  color: #6b4226;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  font-family: "Georgia", serif;
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* CRAFTING SLOTS                                                      */
+/* ────────────────────────────────────────────────────────────────────── */
+
+.slotsSection {
+  border: 2px solid var(--border-medieval);
+  border-radius: 0.5rem;
+  background: var(--bg-dark-panel);
+  padding: 1rem;
+}
+
+.slotsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.craftingSlot {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.2s ease;
+  border: 2px solid var(--secondary-color);
+  border-radius: 0.375rem;
+  background: linear-gradient(135deg, #c0a080, #a08060);
+  padding: 0.75rem 1rem;
+  color: #fff;
+  font-size: 0.875rem;
+  font-family: "Courier New", monospace;
+}
+
+.craftingSlot:hover {
+  transform: scale(1.02);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.craftingSlot svg {
+  flex-shrink: 0;
+  color: var(--accent-gold);
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* CRAFTING QUEUE                                                      */
+/* ────────────────────────────────────────────────────────────────────── */
+
+.queueSection {
+  border: 2px solid var(--border-medieval);
+  border-radius: 0.5rem;
+  background: var(--bg-dark-panel);
+  padding: 1rem;
+}
+
+.queueContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.queueItem {
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.375rem;
+  background: var(--bg-panel);
+  overflow: hidden;
+}
+
+.queueContent {
+  padding: 0.75rem !important;
+}
+
+.queueHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.queueHeader h4 {
+  margin: 0;
+  color: var(--primary-color);
+  font-size: 0.875rem;
+  font-family: "Georgia", serif;
+}
+
+.queueProgress {
+  border-radius: 0.1875rem !important;
+  background: var(--bg-parchment) !important;
+  height: 0.375rem !important;
+  overflow: hidden !important;
+}
+
+.queueProgress .shadcn-progress-indicator {
+  background: linear-gradient(90deg, var(--secondary-color), #b8860b) !important;
+}
+
+.queueTime {
+  color: var(--primary-color);
+  font-size: 0.75rem;
+  font-family: "Courier New", monospace;
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* ACTION BUTTONS                                                      */
+/* ────────────────────────────────────────────────────────────────────── */
+
+.actionButtons {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.actionButtons .shadcn-button {
+  transition: all 0.2s ease;
+  border-radius: 0.375rem !important;
+  padding: 0.75rem 1.5rem !important;
+  font-weight: bold;
+  font-size: 0.875rem;
+  font-family: "Georgia", serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.actionButtons .shadcn-button:not(:disabled) {
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+.actionButtons .shadcn-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.actionButtons .shadcn-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Primary craft button */
+.actionButtons .shadcn-button[data-variant="default"] {
+  border: none !important;
+  background: linear-gradient(to bottom, var(--primary-color), #6b350d) !important;
+  color: #fff !important;
+}
+
+/* Outline button */
+.actionButtons .shadcn-button[data-variant="outline"] {
+  border: 2px solid var(--primary-color) !important;
+  background: transparent !important;
+  color: var(--primary-color) !important;
+}
+
+.actionButtons .shadcn-button[data-variant="outline"]:hover:not(:disabled) {
+  border-color: var(--accent-gold) !important;
+  background: rgba(139, 69, 19, 0.1) !important;
+  color: var(--primary-color) !important;
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* HINT TEXT                                                           */
+/* ────────────────────────────────────────────────────────────────────── */
+
+.hintText {
+  margin-top: 1rem;
+  color: var(--secondary-color);
+  font-style: italic;
+  font-size: 0.75rem;
+  font-family: "Georgia", serif;
+  text-align: center;
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* RECIPE SECTION                                                      */
+/* ────────────────────────────────────────────────────────────────────── */
+
+.recipeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.recipeCard {
+  transition: all 0.3s ease;
+  border: 2px solid var(--border-medieval);
+  border-radius: 0.5rem;
+  background: var(--bg-panel);
+  overflow: hidden;
+}
+
+.recipeCard:hover {
+  transform: scale(1.02);
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.2),
+    inset 0 1px 2px rgba(255, 215, 0, 0.1);
+}
+
+.recipeName {
+  margin: 0 !important;
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 0.875rem;
+  font-family: "Georgia", serif;
+}
+
+.recipeDescription {
+  margin: 0.5rem 0 1rem 0 !important;
+  color: #6b4226;
+  font-style: italic;
+  font-size: 0.75rem;
+  font-family: "Georgia", serif;
+}
+
+.recipeRequirements {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  color: var(--secondary-color);
+  font-size: 0.75rem;
+}
+
+.recipeRequirements span {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.recipeButton {
+  padding: 0.5rem !important;
+  width: 100%;
+  font-weight: bold;
+  font-size: 0.75rem;
+  font-family: "Georgia", serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* QUEUE FULL LIST                                                     */
+/* ────────────────────────────────────────────────────────────────────── */
+
+.queueFullList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.queueItemFull {
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.375rem;
+  background: var(--bg-panel);
+  overflow: hidden;
+}
+
+.queueContentFull {
+  padding: 0.75rem !important;
+}
+
+.queueHeaderFull {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.queueHeaderFull h4 {
+  margin: 0;
+  color: var(--primary-color);
+  font-size: 0.875rem;
+  font-family: "Georgia", serif;
+}
+
+.queueProgressFull {
+  border-radius: 0.1875rem !important;
+  background: var(--bg-parchment) !important;
+  height: 0.375rem !important;
+  overflow: hidden !important;
+}
+
+.queueProgressFull .shadcn-progress-indicator {
+  background: linear-gradient(90deg, var(--secondary-color), #b8860b) !important;
+}
+
+.queueTimeFull {
+  color: var(--primary-color);
+  font-size: 0.75rem;
+  font-family: "Courier New", monospace;
+}
+
+/* Queue controls */
+.queueControls {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.queueControls .shadcn-button {
+  padding: 0.5rem 1rem !important;
+  font-weight: bold;
+  font-size: 0.75rem;
+  font-family: "Georgia", serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Empty state */
+.emptyStateText {
+  opacity: 0.6;
+  padding: 2rem;
+  color: var(--secondary-color);
+  font-size: 0.875rem;
+  font-family: "Georgia", serif;
+  text-align: center;
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* FOOTER                                                              */
+/* ────────────────────────────────────────────────────────────────────── */
+
+.footer {
+  margin-top: 1.5rem;
+  border-top: 2px solid var(--border-medieval);
+  padding-top: 1rem;
+}
+
+.separator {
+  opacity: 0.3;
+  background: linear-gradient(to right, transparent, var(--border-medieval), transparent) !important;
+}
+
+.footerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--primary-color);
+  font-size: 0.75rem;
+  font-family: "Georgia", serif;
+}
+
+.footerContent span {
+  opacity: 0.8;
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* TOOLTIP STYLES                                                      */
+/* ────────────────────────────────────────────────────────────────────── */
+
+.tooltipPrereq {
+  color: var(--secondary-color) !important;
+  font-style: italic;
+  font-size: 0.75rem !important;
+}
+
+.costInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 0.25rem;
+  background: rgba(139, 69, 19, 0.1);
+  padding: 0.5rem;
+}
+
+.costLabel {
+  color: var(--primary-color) !important;
+  font-size: 0.75rem !important;
+}
+
+.costValue {
+  color: var(--accent-gold);
+  font-weight: bold;
+  font-size: 0.875rem !important;
+  font-family: "Courier New", monospace;
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* RESPONSIVE ADJUSTMENTS                                             */
+/* ────────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .panel {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.125rem;
+  }
+
+  .skillTreeGrid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .actionButtons {
+    flex-direction: column;
+  }
+
+  .footerContent {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* ANIMATIONS                                                          */
+/* ────────────────────────────────────────────────────────────────────── */
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.shimmer-effect {
+  animation: shimmer 2s infinite linear;
+  background-size: 200% auto;
+}
+
+/* ────────────────────────────────────────────────────────────────────── */
+/* UTILITY CLASSES                                                     */
+/* ────────────────────────────────────────────────────────────────────── */
+
+.text-gold {
+  color: var(--accent-gold);
+}
+
+.bg-parchment-light {
+  background-color: rgba(255, 215, 0, 0.05);
+}
+
+.border-medieval {
+  border-color: var(--border-medieval) !important;
+}
+
+/* Pixelated numeric style */
+.pixel-text {
+  font-family: "Courier New", monospace;
+  letter-spacing: -0.02em;
+}

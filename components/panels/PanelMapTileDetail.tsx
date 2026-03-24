@@ -1,6 +1,6 @@
 "use client"
 
-import MovementModePanel from "@/components/GeneratedComponents/MovementModePanel"
+import CraftingSkillTreePanel from "@/components/GeneratedComponents/CraftingSkillTreePanel"
 import GatherResource from "@/components/items/GatherResource"
 import { Button } from "@/components/ui/button"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
@@ -60,10 +60,7 @@ export default function PanelMapTileDetail() {
 
   return (
     <div className={styles.overlay}>
-      <MovementModePanel
-        isOpen={isMovementPanelOpen}
-        onClose={() => setIsMovementPanelOpen(false)}
-      />
+      <CraftingSkillTreePanel />
       <GatherResource
         isOpen={!!clickedResource}
         onClose={handleCloseGather}
