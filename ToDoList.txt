@@ -1,12 +1,8 @@
 ZOD do do_action
 Przemielic plopjs
-Mam tworzenie UI 
-potem na bazie UI chce zrobic hooki ?
-potem chce zrobic actions ?
-i na koncu napisac procedury sql ?
+
 
 Zbieranie gathering i dokladanie itemow do inventory
-trzeba dodac surowce podstawowe
 poprawic algorytm tworzenia mapy o dokladanie surowcow
 poprawic algorytm tworzenia new player ze zna wszystkich swoich playerow po 1 userem
 dodatkowa zakladka na skill details, item details taki słownik z opisami i levelami co odblokowuje co mozna zrobic etc
