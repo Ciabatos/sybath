@@ -4,6 +4,7 @@ import GatherResource from "@/components/items/GatherResource"
 import { Button } from "@/components/ui/button"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
+import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMovement"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { TMapTileResource, useMapTileDetail } from "@/methods/hooks/world/composite/useMapTileDetail"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
@@ -15,20 +16,48 @@ export default function PanelMapTileDetail() {
   const { resetModalRightCenter } = useModalRightCenter()
   const { openModalTopCenter } = useModalTopCenter()
   const { clickedMapTile } = useMapTileActions()
-  const [isMovementPanelOpen, setIsMovementPanelOpen] = useState(false)
+
+  // ── MOVEMENT LOGIC  ──────────────────────────────────────────
+  const { selectPlayerPathToClickedTile, selectPlayerPathAndMovePlayerToClickedTile, resetPlayerMovementPlanned } =
+    usePlayerMovement()
+  const [isMoving, setIsMoving] = useState(false)
+
+  // ── GATHER LOGIC  ──────────────────────────────────────────
   const { combinedKnownMapTilesResourcesOnTile } = useMapTileDetail()
   const [clickedResource, setClickedResource] = useState<TMapTileResource | null>(null)
-
-  useEffect(() => {
-    setClickedResource(null)
-  }, [clickedMapTile])
 
   if (!clickedMapTile) {
     return null
   }
 
+  useEffect(() => {
+    setClickedResource(null)
+    if (isMoving) {
+      selectPlayerPathToClickedTile()
+    }
+  }, [clickedMapTile])
+
   const onClose = () => {
     resetModalRightCenter()
+  }
+
+  function handleMove() {
+    if (!isMoving) {
+      setIsMoving(true)
+      selectPlayerPathToClickedTile()
+    }
+  }
+
+  function handleConfirmMove() {
+    if (isMoving) {
+      setIsMoving(false)
+      selectPlayerPathAndMovePlayerToClickedTile()
+    }
+  }
+
+  function handleCancelMove() {
+    setIsMoving(false)
+    resetPlayerMovementPlanned()
   }
 
   function handlePlayersListOnTile() {
@@ -221,25 +250,50 @@ export default function PanelMapTileDetail() {
                 Set Camp
               </Button>
 
-              <Button
-                className={styles.actionButton}
-                variant='outline'
-                onClick={() => setIsMovementPanelOpen(true)}
-              >
-                Move
-              </Button>
+              {/*  MOVEMENT LOGIC */}
+              {!isMoving ? (
+                <Button
+                  className={styles.actionButton}
+                  variant='outline'
+                  onClick={handleMove}
+                >
+                  Move
+                </Button>
+              ) : (
+                <>
+                  <Button
+                    className={styles.actionButton}
+                    variant='default'
+                    onClick={handleConfirmMove}
+                  >
+                    Confirm Move
+                  </Button>
+
+                  <Button
+                    className={styles.actionButton}
+                    variant='destructive'
+                    onClick={handleCancelMove}
+                  >
+                    Cancel Move
+                  </Button>
+                </>
+              )}
+
+              {/*  HUNT LOGIC */}
               <Button
                 className={styles.actionButton}
                 variant='outline'
               >
                 Hunt
               </Button>
+
               <Button
                 className={styles.actionButton}
                 variant='outline'
               >
                 Explore
               </Button>
+
               <Button
                 className={styles.actionButton}
                 variant='outline'

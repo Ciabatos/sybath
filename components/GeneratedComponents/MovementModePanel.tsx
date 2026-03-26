@@ -14,15 +14,12 @@ interface MovementModePanelProps {
 }
 
 export default function MovementModePanel({ isOpen, onClose }: MovementModePanelProps) {
-  // ── MOVEMENT / EXPLORATION LOGIC  ──────────────────────────────────────────
-  const { selectPlayerPathToClickedTile, selectPlayerPathAndMovePlayerToClickedTile, resetPlayerMovementPlanned } =
-    usePlayerMovement()
   const { exploreClickedTile } = usePlayerExploration()
   const { clickedMapTile } = useMapTileActions()
   const { playerMovement } = usePlayerMovement()
   // ── UI STATE ───────────────────────────────────────────────────────────────
   const [progressPercentage, setProgressPercentage] = useState<number>(0)
-  const [isMoving, setIsMoving] = useState(false)
+
   const [isExploring, setIsExploring] = useState(false)
 
   useEffect(() => {
@@ -38,25 +35,6 @@ export default function MovementModePanel({ isOpen, onClose }: MovementModePanel
       selectPlayerPathToClickedTile()
     }
   }, [clickedMapTile, playerMovement])
-
-  function handleMove() {
-    if (!isMoving) {
-      setIsMoving(true)
-      selectPlayerPathToClickedTile()
-    }
-  }
-
-  function handleConfirmMove() {
-    if (isMoving) {
-      setIsMoving(false)
-      selectPlayerPathAndMovePlayerToClickedTile()
-    }
-  }
-
-  function handleCancelMove() {
-    setIsMoving(false)
-    resetPlayerMovementPlanned()
-  }
 
   function handleExplore() {
     if (!isExploring) {

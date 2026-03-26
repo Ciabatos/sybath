@@ -5,9 +5,7 @@ import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { useMapId } from "@/methods/hooks/world/composite/useMapId"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { useMapTilesPathFromPointToPoint } from "@/methods/hooks/world/composite/useMapTilesPathFromPointToPoint"
-import { useFetchPlayerMovement, usePlayerMovementState } from "@/methods/hooks/world/core/useFetchPlayerMovement"
 import { useFetchPlayerPosition, usePlayerPositionState } from "@/methods/hooks/world/core/useFetchPlayerPosition"
-import { useMutatePlayerMovement } from "@/methods/hooks/world/core/useMutatePlayerMovement"
 import { playerMovementPlannedAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 import { toast } from "sonner"
@@ -33,11 +31,6 @@ export function usePlayerMovement() {
   const [playerPos] = Object.values(playerPosition)
 
   const { clickedMapTile } = useMapTileActions()
-
-  const { mutatePlayerMovement } = useMutatePlayerMovement({ playerId })
-
-  useFetchPlayerMovement({ playerId })
-  const playerMovement = usePlayerMovementState()
 
   function selectPlayerPath(params: TPlayerMovementParams) {
     const path = getPathFromPointToPoint(params)
@@ -84,8 +77,6 @@ export function usePlayerMovement() {
     resetPlayerMovementPlanned()
     const result = await doPlayerMovementAction({ path: path, ...params })
 
-    mutatePlayerMovement(Object.values(path))
-
     if (!result?.status) {
       return toast.error(result?.message)
     }
@@ -118,8 +109,6 @@ export function usePlayerMovement() {
       return toast.error(result?.message)
     }
 
-    mutatePlayerMovement(Object.values(path))
-
     return toast.success(`You are moving to destination`)
   }
 
@@ -128,7 +117,6 @@ export function usePlayerMovement() {
   }
 
   return {
-    playerMovement,
     selectPlayerPath,
     selectPlayerPathToClickedTile,
     selectPlayerPathAndMovePlayer,
