@@ -1,8 +1,8 @@
 ZOD do do_action
-Przemielic plopjs
 zmienic z real time na tury co 30 min repleninsh energy i natychmiastowe akcje
 react flow - drzewko craftu
 Dwarf Fortress
+Dodac funkcje do dodawania access do inventory
 
 Zbieranie gathering i dokladanie itemow do inventory
 poprawic algorytm tworzenia mapy o dokladanie surowcow
