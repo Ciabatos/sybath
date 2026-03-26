@@ -2,6 +2,7 @@
 "use client"
 
 import { useSWRConfig } from "swr"
+import { fetchFresh } from "@/providers/swr-fetchers"
 import {
   TActivePlayerProfileRecordByName,
   TActivePlayerProfileParams,
@@ -18,7 +19,7 @@ export function useMutateActivePlayerProfile(params: TActivePlayerProfileParams)
 
   function mutateActivePlayerProfile(optimisticParams?: Partial<TActivePlayerProfile>[]) {
     if (!optimisticParams) {
-      mutate(key)
+      mutate(key, () => fetchFresh(key))
       return
     }
 
@@ -48,7 +49,7 @@ export function useMutateActivePlayerProfile(params: TActivePlayerProfileParams)
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(key, optimisticDataMergeWithOldDataArray, {
+    mutate(key, () => fetchFresh(key), {
       optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,

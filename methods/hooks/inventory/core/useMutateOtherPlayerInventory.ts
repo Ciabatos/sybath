@@ -2,6 +2,7 @@
 "use client"
 
 import { useSWRConfig } from "swr"
+import { fetchFresh } from "@/providers/swr-fetchers"
 import {
   TOtherPlayerInventoryRecordBySlotId,
   TOtherPlayerInventoryParams,
@@ -18,7 +19,7 @@ export function useMutateOtherPlayerInventory(params: TOtherPlayerInventoryParam
 
   function mutateOtherPlayerInventory(optimisticParams?: Partial<TOtherPlayerInventory>[]) {
     if (!optimisticParams) {
-      mutate(key)
+      mutate(key, () => fetchFresh(key))
       return
     }
 
@@ -50,7 +51,7 @@ export function useMutateOtherPlayerInventory(params: TOtherPlayerInventoryParam
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(key, optimisticDataMergeWithOldDataArray, {
+    mutate(key, () => fetchFresh(key), {
       optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,

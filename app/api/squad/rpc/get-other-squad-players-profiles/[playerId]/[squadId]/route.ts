@@ -27,9 +27,10 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
     const parsedParams = typeParamsSchema.parse(paramsFromPromise)
 
     const clientEtag = request.headers.get("if-none-match") ?? undefined
+    const forceFresh = request.headers.get("x-force-fresh") ?? undefined
 
     const { record, etag, cacheHit, etagMatched } = await fetchOtherSquadPlayersProfilesService(parsedParams, {
-      clientEtag,
+      ...(forceFresh ? { forceFresh: true } : { clientEtag }),
     })
 
     if (cacheHit || etagMatched) {

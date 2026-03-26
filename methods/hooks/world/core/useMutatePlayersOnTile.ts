@@ -2,6 +2,7 @@
 "use client"
 
 import { useSWRConfig } from "swr"
+import { fetchFresh } from "@/providers/swr-fetchers"
 import {
   TPlayersOnTileRecordByOtherPlayerId,
   TPlayersOnTileParams,
@@ -18,7 +19,7 @@ export function useMutatePlayersOnTile(params: TPlayersOnTileParams) {
 
   function mutatePlayersOnTile(optimisticParams?: Partial<TPlayersOnTile>[]) {
     if (!optimisticParams) {
-      mutate(key)
+      mutate(key, () => fetchFresh(key))
       return
     }
 
@@ -48,7 +49,7 @@ export function useMutatePlayersOnTile(params: TPlayersOnTileParams) {
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(key, optimisticDataMergeWithOldDataArray, {
+    mutate(key, () => fetchFresh(key), {
       optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,

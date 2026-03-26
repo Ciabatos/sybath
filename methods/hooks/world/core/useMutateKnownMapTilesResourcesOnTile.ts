@@ -1,16 +1,16 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
-import {
-  TKnownMapTilesResourcesOnTile,
-  TKnownMapTilesResourcesOnTileParams,
-  TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId,
-} from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnTile"
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
+import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
+import {
+  TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId,
+  TKnownMapTilesResourcesOnTileParams,
+  TKnownMapTilesResourcesOnTile,
+} from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnTile"
 import { knownMapTilesResourcesOnTileAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import { useSWRConfig } from "swr"
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateKnownMapTilesResourcesOnTile(params: TKnownMapTilesResourcesOnTileParams) {
   const { mutate } = useSWRConfig()
@@ -19,7 +19,7 @@ export function useMutateKnownMapTilesResourcesOnTile(params: TKnownMapTilesReso
 
   function mutateKnownMapTilesResourcesOnTile(optimisticParams?: Partial<TKnownMapTilesResourcesOnTile>[]) {
     if (!optimisticParams) {
-      mutate(key, () => fetchFresh(key), { revalidate: true })
+      mutate(key, () => fetchFresh(key))
       return
     }
 

@@ -2,6 +2,7 @@
 "use client"
 
 import { useSWRConfig } from "swr"
+import { fetchFresh } from "@/providers/swr-fetchers"
 import {
   TActivePlayerSwitchProfilesParams,
   TActivePlayerSwitchProfiles,
@@ -13,7 +14,7 @@ export function useMutateActivePlayerSwitchProfiles(params: TActivePlayerSwitchP
 
   function mutateActivePlayerSwitchProfiles(optimisticParams?: Partial<TActivePlayerSwitchProfiles>[]) {
     if (!optimisticParams) {
-      mutate(key)
+      mutate(key, () => fetchFresh(key))
       return
     }
 
@@ -34,7 +35,7 @@ export function useMutateActivePlayerSwitchProfiles(params: TActivePlayerSwitchP
       ...val,
     }))
 
-    mutate(key, dataWithDefaults, {
+    mutate(key, () => fetchFresh(key), {
       optimisticData: dataWithDefaults,
       rollbackOnError: true,
       revalidate: false,

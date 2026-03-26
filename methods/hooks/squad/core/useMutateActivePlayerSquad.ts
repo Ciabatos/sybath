@@ -2,6 +2,7 @@
 "use client"
 
 import { useSWRConfig } from "swr"
+import { fetchFresh } from "@/providers/swr-fetchers"
 import { TActivePlayerSquadParams, TActivePlayerSquad } from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquad"
 
 export function useMutateActivePlayerSquad(params: TActivePlayerSquadParams) {
@@ -10,7 +11,7 @@ export function useMutateActivePlayerSquad(params: TActivePlayerSquadParams) {
 
   function mutateActivePlayerSquad(optimisticParams?: Partial<TActivePlayerSquad>[]) {
     if (!optimisticParams) {
-      mutate(key)
+      mutate(key, () => fetchFresh(key))
       return
     }
 
@@ -27,7 +28,7 @@ export function useMutateActivePlayerSquad(params: TActivePlayerSquadParams) {
       ...val,
     }))
 
-    mutate(key, dataWithDefaults, {
+    mutate(key, () => fetchFresh(key), {
       optimisticData: dataWithDefaults,
       rollbackOnError: true,
       revalidate: false,

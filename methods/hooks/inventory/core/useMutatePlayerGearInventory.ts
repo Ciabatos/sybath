@@ -2,6 +2,7 @@
 "use client"
 
 import { useSWRConfig } from "swr"
+import { fetchFresh } from "@/providers/swr-fetchers"
 import {
   TPlayerGearInventoryRecordBySlotId,
   TPlayerGearInventoryParams,
@@ -18,7 +19,7 @@ export function useMutatePlayerGearInventory(params: TPlayerGearInventoryParams)
 
   function mutatePlayerGearInventory(optimisticParams?: Partial<TPlayerGearInventory>[]) {
     if (!optimisticParams) {
-      mutate(key)
+      mutate(key, () => fetchFresh(key))
       return
     }
 
@@ -50,7 +51,7 @@ export function useMutatePlayerGearInventory(params: TPlayerGearInventoryParams)
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(key, optimisticDataMergeWithOldDataArray, {
+    mutate(key, () => fetchFresh(key), {
       optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,

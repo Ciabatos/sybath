@@ -2,6 +2,7 @@
 "use client"
 
 import { useSWRConfig } from "swr"
+import { fetchFresh } from "@/providers/swr-fetchers"
 import {
   TBuildingInventoryRecordBySlotId,
   TBuildingInventoryParams,
@@ -18,7 +19,7 @@ export function useMutateBuildingInventory(params: TBuildingInventoryParams) {
 
   function mutateBuildingInventory(optimisticParams?: Partial<TBuildingInventory>[]) {
     if (!optimisticParams) {
-      mutate(key)
+      mutate(key, () => fetchFresh(key))
       return
     }
 
@@ -50,7 +51,7 @@ export function useMutateBuildingInventory(params: TBuildingInventoryParams) {
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(key, optimisticDataMergeWithOldDataArray, {
+    mutate(key, () => fetchFresh(key), {
       optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,

@@ -1,28 +1,17 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
-import { TPlayerPosition, TPlayerPositionParams } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
-import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
-import {
-  useActivePlayerProfileState,
-  useFetchActivePlayerProfile,
-} from "@/methods/hooks/players/core/useFetchActivePlayerProfile"
 import { useSWRConfig } from "swr"
+import { fetchFresh } from "@/providers/swr-fetchers"
+import { TPlayerPositionParams, TPlayerPosition } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 
 export function useMutatePlayerPosition(params: TPlayerPositionParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/world/rpc/get-player-position/${params.mapId}/${params.playerId}`
 
-  //MANUAL CODE - START
-  const { playerId } = usePlayerId()
-  useFetchActivePlayerProfile({ playerId })
-  const activePlayerProfile = useActivePlayerProfileState()
-  const activePlayerProfileData = Object.values(activePlayerProfile)[0]
-  //MANUAL CODE - END
-
   function mutatePlayerPosition(optimisticParams?: Partial<TPlayerPosition>[]) {
     if (!optimisticParams) {
-      mutate(key)
+      mutate(key, () => fetchFresh(key))
       return
     }
 
@@ -31,7 +20,7 @@ export function useMutatePlayerPosition(params: TPlayerPositionParams) {
     const defaultValues = {
       x: ``,
       y: ``,
-      imageMap: activePlayerProfileData.imageMap,
+      imageMap: ``,
     }
 
     //MANUAL CODE - END
@@ -41,7 +30,7 @@ export function useMutatePlayerPosition(params: TPlayerPositionParams) {
       ...val,
     }))
 
-    mutate(key, dataWithDefaults, {
+    mutate(key, () => fetchFresh(key), {
       optimisticData: dataWithDefaults,
       rollbackOnError: true,
       revalidate: false,

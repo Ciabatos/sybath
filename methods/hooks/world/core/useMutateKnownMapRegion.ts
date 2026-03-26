@@ -2,6 +2,7 @@
 "use client"
 
 import { useSWRConfig } from "swr"
+import { fetchFresh } from "@/providers/swr-fetchers"
 import {
   TKnownMapRegionRecordByMapTileXMapTileY,
   TKnownMapRegionParams,
@@ -18,7 +19,7 @@ export function useMutateKnownMapRegion(params: TKnownMapRegionParams) {
 
   function mutateKnownMapRegion(optimisticParams?: Partial<TKnownMapRegion>[]) {
     if (!optimisticParams) {
-      mutate(key)
+      mutate(key, () => fetchFresh(key))
       return
     }
 
@@ -53,7 +54,7 @@ export function useMutateKnownMapRegion(params: TKnownMapRegionParams) {
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(key, optimisticDataMergeWithOldDataArray, {
+    mutate(key, () => fetchFresh(key), {
       optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,

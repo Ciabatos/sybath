@@ -2,6 +2,7 @@
 "use client"
 
 import { useSWRConfig } from "swr"
+import { fetchFresh } from "@/providers/swr-fetchers"
 import {
   TKnownPlayersPositionsRecordByXY,
   TKnownPlayersPositionsParams,
@@ -18,7 +19,7 @@ export function useMutateKnownPlayersPositions(params: TKnownPlayersPositionsPar
 
   function mutateKnownPlayersPositions(optimisticParams?: Partial<TKnownPlayersPositions>[]) {
     if (!optimisticParams) {
-      mutate(key)
+      mutate(key, () => fetchFresh(key))
       return
     }
 
@@ -47,7 +48,7 @@ export function useMutateKnownPlayersPositions(params: TKnownPlayersPositionsPar
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(key, optimisticDataMergeWithOldDataArray, {
+    mutate(key, () => fetchFresh(key), {
       optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,

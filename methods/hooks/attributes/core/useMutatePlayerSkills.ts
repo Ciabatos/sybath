@@ -2,6 +2,7 @@
 "use client"
 
 import { useSWRConfig } from "swr"
+import { fetchFresh } from "@/providers/swr-fetchers"
 import {
   TPlayerSkillsRecordBySkillId,
   TPlayerSkillsParams,
@@ -18,7 +19,7 @@ export function useMutatePlayerSkills(params: TPlayerSkillsParams) {
 
   function mutatePlayerSkills(optimisticParams?: Partial<TPlayerSkills>[]) {
     if (!optimisticParams) {
-      mutate(key)
+      mutate(key, () => fetchFresh(key))
       return
     }
 
@@ -46,7 +47,7 @@ export function useMutatePlayerSkills(params: TPlayerSkillsParams) {
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(key, optimisticDataMergeWithOldDataArray, {
+    mutate(key, () => fetchFresh(key), {
       optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,
