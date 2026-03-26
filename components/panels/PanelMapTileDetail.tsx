@@ -2,6 +2,8 @@
 
 import GatherResource from "@/components/items/GatherResource"
 import { Button } from "@/components/ui/button"
+import { Field, FieldLabel } from "@/components/ui/field"
+import { Progress } from "@/components/ui/progress"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
 import { usePlayerExploration } from "@/methods/hooks/players/composite/usePlayerExploration"
@@ -191,7 +193,6 @@ export default function PanelMapTileDetail() {
           )}
 
           <section className={styles.section}>
-            <h3 className={styles.sectionTitle}>Resources</h3>
             <div className={styles.resourceList}>
               {combinedKnownMapTilesResourcesOnTile
                 ?.filter((resource) => resource.itemId !== null)
@@ -210,15 +211,32 @@ export default function PanelMapTileDetail() {
 
               {combinedKnownMapTilesResourcesOnTile && (
                 <div className={styles.resourceStats}>
-                  {`${
-                    combinedKnownMapTilesResourcesOnTile.length === 0
-                      ? 100
-                      : Math.round(
-                          (combinedKnownMapTilesResourcesOnTile.filter((r) => r.itemId !== null).length /
-                            combinedKnownMapTilesResourcesOnTile.length) *
-                            100,
-                        )
-                  }%`}
+                  <Field className='w-full max-w-sm'>
+                    <FieldLabel htmlFor='progress-upload'>
+                      <span>Exploration progress</span>
+                      <span className='ml-auto'>{`${
+                        combinedKnownMapTilesResourcesOnTile.length === 0
+                          ? 100
+                          : Math.round(
+                              (combinedKnownMapTilesResourcesOnTile.filter((r) => r.itemId !== null).length /
+                                combinedKnownMapTilesResourcesOnTile.length) *
+                                100,
+                            )
+                      }%`}</span>
+                    </FieldLabel>
+                    <Progress
+                      value={
+                        combinedKnownMapTilesResourcesOnTile.length === 0
+                          ? 100
+                          : Math.round(
+                              (combinedKnownMapTilesResourcesOnTile.filter((r) => r.itemId !== null).length /
+                                combinedKnownMapTilesResourcesOnTile.length) *
+                                100,
+                            )
+                      }
+                      id='progress-upload'
+                    />
+                  </Field>
                 </div>
               )}
             </div>
