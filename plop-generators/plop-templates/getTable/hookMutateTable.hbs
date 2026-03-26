@@ -2,6 +2,7 @@
 "use client"
 
 import { useSWRConfig } from "swr"
+import { fetchFresh } from "@/providers/swr-fetchers"
 import { {{#if mutationMergeOldData}}{{indexTypeName}}, {{/if}}{{methodTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
 {{#if mutationMergeOldData}}import { {{tableCamelName}}Atom } from "@/store/atoms"{{/if}}
 {{#if mutationMergeOldData}}import { useAtomValue } from "jotai"{{/if}}
@@ -14,7 +15,7 @@ export function useMutate{{schemaTablePascalName}}() {
 
   function mutate{{schemaTablePascalName}}(optimisticParams?: Partial<{{methodTypeName}}>[]) {
     if (!optimisticParams) {
-      mutate(key)
+      mutate(key, () => fetchFresh(key))
       return
     }
     
@@ -44,7 +45,7 @@ export function useMutate{{schemaTablePascalName}}() {
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 {{/if}}
 
-    mutate(key, {{#if mutationMergeOldData}}optimisticDataMergeWithOldDataArray{{else}}dataWithDefaults{{/if}}, {
+    mutate(key, () => fetchFresh(key), {
       optimisticData: {{#if mutationMergeOldData}}optimisticDataMergeWithOldDataArray{{else}}dataWithDefaults{{/if}},
       rollbackOnError: true,
       revalidate: false,

@@ -1,15 +1,16 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - hookMutateMethodFetcher.hbs
 "use client"
 
-import { useSWRConfig } from "swr"
 import {
-  TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId,
-  TKnownMapTilesResourcesOnTileParams,
   TKnownMapTilesResourcesOnTile,
+  TKnownMapTilesResourcesOnTileParams,
+  TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId,
 } from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnTile"
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
+import { fetchFresh } from "@/providers/swr-fetchers"
 import { knownMapTilesResourcesOnTileAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
+import { useSWRConfig } from "swr"
 
 export function useMutateKnownMapTilesResourcesOnTile(params: TKnownMapTilesResourcesOnTileParams) {
   const { mutate } = useSWRConfig()
@@ -18,7 +19,7 @@ export function useMutateKnownMapTilesResourcesOnTile(params: TKnownMapTilesReso
 
   function mutateKnownMapTilesResourcesOnTile(optimisticParams?: Partial<TKnownMapTilesResourcesOnTile>[]) {
     if (!optimisticParams) {
-      mutate(key)
+      mutate(key, () => fetchFresh(key), { revalidate: true })
       return
     }
 
@@ -49,7 +50,7 @@ export function useMutateKnownMapTilesResourcesOnTile(params: TKnownMapTilesReso
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(key, optimisticDataMergeWithOldDataArray, {
+    mutate(key, () => fetchFresh(key), {
       optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,
