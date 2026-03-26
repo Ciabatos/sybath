@@ -36,6 +36,7 @@ playerId: number
 
 export type TDoMapTileExplorationParams = {
   playerId: number
+  mapId: number
   x: number
   y: number
   explorationLevel: number

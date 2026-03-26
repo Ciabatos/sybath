@@ -18,6 +18,11 @@
       "tsType": "number"
     },
     {
+      "name": "p_map_id",
+      "camelName": "mapId",
+      "tsType": "number"
+    },
+    {
       "name": "p_x",
       "camelName": "x",
       "tsType": "number"
@@ -49,5 +54,5 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2, $3, $4"
+  "sqlParamsPlaceholders": "$1, $2, $3, $4, $5"
 }
