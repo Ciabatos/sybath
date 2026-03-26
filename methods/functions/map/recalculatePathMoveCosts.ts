@@ -3,9 +3,9 @@ import { TDistrictsDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDa
 import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
 import { TKnownMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/knownMapTiles"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
-import { TPlayerMovement, TPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { calculateTileMoveCost } from "@/methods/functions/map/calculateTileMoveCost"
+import { TPlayerMovement, TPlayerMovementRecordByXY } from "@/methods/functions/map/pathFromPointToPoint"
 
 type TPathFromPointToPointParams = {
   path: TPlayerMovementRecordByXY

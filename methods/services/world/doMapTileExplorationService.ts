@@ -7,7 +7,8 @@ import {
 } from "@/db/postgresMainDatabase/schemas/world/doMapTileExploration"
 import { getPlayerAbilitiesServer } from "@/methods/server-fetchers/attributes/core/getPlayerAbilitiesServer"
 import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
-import { getPlayerMovementServer } from "@/methods/server-fetchers/world/core/getPlayerMovementServer"
+import { getPlayerMapServer } from "@/methods/server-fetchers/world/core/getPlayerMapServer"
+import { getPlayerPositionServer } from "@/methods/server-fetchers/world/core/getPlayerPositionServer"
 
 //MANUAL CODE - START
 
@@ -34,9 +35,11 @@ export async function doMapTileExplorationService(params: TDoMapTileExplorationS
     }
 
     //MANUAL CODE - START
-    const [playerAbilities, playerMovement] = await Promise.all([
+    const mapId = (await getPlayerMapServer({ playerId })).raw[0].mapId
+
+    const [playerAbilities, playerPosition] = await Promise.all([
       getPlayerAbilitiesServer({ playerId }),
-      getPlayerMovementServer({ playerId }),
+      getPlayerPositionServer({ mapId, playerId }, { forceFresh: true }),
     ])
 
     if (!playerAbilities.byKey[2]?.value) {
@@ -46,7 +49,7 @@ export async function doMapTileExplorationService(params: TDoMapTileExplorationS
       }
     }
 
-    if (!playerMovement.byKey[`${params.targetTileX},${params.targetTileY}`]) {
+    if (!playerPosition.byKey[`${params.targetTileX},${params.targetTileY}`]) {
       return {
         status: false,
         message: "Player cannot move to destination tile, cannot explore",

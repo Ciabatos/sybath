@@ -3,8 +3,6 @@ import { TDistrictsDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDa
 import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
 import { TKnownMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/knownMapTiles"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
-
-import { TPlayerMovement } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { astar, Graph } from "@/methods/functions/map/astar.cjs"
 import { calculateTileMoveCost } from "@/methods/functions/map/calculateTileMoveCost"
@@ -33,6 +31,17 @@ type TPathFromPointToPointParams = {
   districts: TDistrictsDistrictsRecordByMapTileXMapTileY
   districtTypes: TDistrictsDistrictTypesRecordById
 }
+
+export type TPlayerMovement = {
+  order: number
+  moveCost: number
+  mapId: number
+  x: number
+  y: number
+  totalMoveCost: number
+}
+
+export type TPlayerMovementRecordByXY = Record<string, TPlayerMovement>
 
 export function pathFromPointToPoint(params: TPathFromPointToPointParams): TPlayerMovement[] | null {
   if (!params) {

@@ -507,14 +507,6 @@
     ],
     "description": "Destructuring usePlayerMap hook"
   },
-  "Destructure usePlayerMovement": {
-    "prefix": "hook_world_core_usePlayerMovement",
-    "body": [
-      "useFetchPlayerMovement({ playerId })",
-      "const playerMovement = usePlayerMovementState()"
-    ],
-    "description": "Destructuring usePlayerMovement hook"
-  },
   "Destructure usePlayerPosition": {
     "prefix": "hook_world_core_usePlayerPosition",
     "body": [

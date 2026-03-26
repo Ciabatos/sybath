@@ -6,7 +6,8 @@ import {
   doGatherResourcesOnMapTile,
 } from "@/db/postgresMainDatabase/schemas/items/doGatherResourcesOnMapTile"
 import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
-import { getPlayerMovementServer } from "@/methods/server-fetchers/world/core/getPlayerMovementServer"
+import { getPlayerMapServer } from "@/methods/server-fetchers/world/core/getPlayerMapServer"
+import { getPlayerPositionServer } from "@/methods/server-fetchers/world/core/getPlayerPositionServer"
 
 //MANUAL CODE - START
 
@@ -36,9 +37,11 @@ export async function doGatherResourcesOnMapTileService(params: TDoGatherResourc
 
     //MANUAL CODE - START
 
-    const [playerMovement] = await Promise.all([getPlayerMovementServer({ playerId })])
+    const mapId = (await getPlayerMapServer({ playerId })).raw[0].mapId
 
-    if (!playerMovement.byKey[`${params.targetTileX},${params.targetTileY}`]) {
+    const [playerPosition] = await Promise.all([getPlayerPositionServer({ mapId, playerId }, { forceFresh: true })])
+
+    if (!playerPosition.byKey[`${params.targetTileX},${params.targetTileY}`]) {
       return {
         status: false,
         message: "Player cannot move to destination tile, cannot gather resources",

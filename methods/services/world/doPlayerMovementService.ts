@@ -2,7 +2,7 @@
 "use server"
 
 import { TDoPlayerMovementParams, doPlayerMovement } from "@/db/postgresMainDatabase/schemas/world/doPlayerMovement"
-import { TPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
+import { TPlayerMovementRecordByXY } from "@/methods/functions/map/pathFromPointToPoint"
 import { recalculatePathMoveCosts } from "@/methods/functions/map/recalculatePathMoveCosts"
 import { getCitiesCitiesByKeyServer } from "@/methods/server-fetchers/cities/core/getCitiesCitiesByKeyServer"
 import { getDistrictsDistrictsByKeyServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictsByKeyServer"
