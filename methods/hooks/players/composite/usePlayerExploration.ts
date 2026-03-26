@@ -7,6 +7,7 @@ import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMo
 import { useMapId } from "@/methods/hooks/world/composite/useMapId"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { useFetchPlayerPosition, usePlayerPositionState } from "@/methods/hooks/world/core/useFetchPlayerPosition"
+import { useMutateKnownMapTilesResourcesOnTile } from "@/methods/hooks/world/core/useMutateKnownMapTilesResourcesOnTile"
 import { toast } from "sonner"
 
 export function usePlayerExploration() {
@@ -18,6 +19,13 @@ export function usePlayerExploration() {
   useFetchPlayerPosition({ mapId, playerId })
   const playerPosition = usePlayerPositionState()
 
+  const { mutateKnownMapTilesResourcesOnTile } = useMutateKnownMapTilesResourcesOnTile({
+    mapId,
+    mapTileX: clickedMapTile!.mapTiles.x,
+    mapTileY: clickedMapTile!.mapTiles.y,
+    playerId,
+  })
+
   async function exploreClickedTile() {
     if (!clickedMapTile) return toast.error("No tile selected")
 
@@ -25,7 +33,7 @@ export function usePlayerExploration() {
       if (!playerAbilities[2]?.value) {
         return toast.error("Player does not have exploration ability")
       }
-      console.log(playerPosition[`${clickedMapTile.mapTiles.x},${clickedMapTile.mapTiles.y}`])
+
       if (!playerPosition[`${clickedMapTile.mapTiles.x},${clickedMapTile.mapTiles.y}`]) {
         const resultMovement = await selectPlayerPathAndMovePlayerToClickedTile()
 
@@ -43,6 +51,8 @@ export function usePlayerExploration() {
       if (!result.status) {
         return toast.error(result.message)
       }
+
+      mutateKnownMapTilesResourcesOnTile()
 
       toast.success(`You are exploring destination tile`)
     } catch (error) {
