@@ -6,10 +6,10 @@ dotenv.config({ path: path.resolve(process.cwd(), ".env.development") })
 
 export function createClient() {
   return new Client({
-    host: process.env.PG_MAIN_HOST,
-    user: process.env.PG_MAIN_USER,
-    password: process.env.PG_MAIN_PASSWORD ?? "",
-    database: process.env.PG_MAIN_DATABASE,
-    port: process.env.PG_MAIN_PORT ? Number(process.env.PG_MAIN_PORT) : undefined,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD ?? "",
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT ? Number(process.env.DB_PORT) : undefined,
   })
 }
