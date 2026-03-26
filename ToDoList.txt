@@ -1,6 +1,8 @@
 ZOD do do_action
 Przemielic plopjs
-
+zmienic z real time na tury co 30 min repleninsh energy i natychmiastowe akcje
+react flow - drzewko craftu
+Dwarf Fortress
 
 Zbieranie gathering i dokladanie itemow do inventory
 poprawic algorytm tworzenia mapy o dokladanie surowcow
@@ -120,18 +122,6 @@ Squady z duzym cohesion beda idealnie ustawione a te z malym beda nachodzic jedn
 
 Squad leader ustawia w jakiego rodzaju zolnierzy zamienia sie AI jednostki i jaki ekwipunek wymagaja
 -to nam daje ze robisz szybki replenish w wiosce kupujesz pop i ekwipunek masz juz w squadzie/army lub tez dokupujesz
-
-UI i flow dla „systemu informacji”
-
-Nie wiem czy to dodawac bo tak na serio to twarz czlowieka jest ta sama ? ale kaptur mozna zalozyc
-efemeryczne (zmienne) tokeny po stronie backendu
-🧠 Wariant 2 (idealny): middleware podmienia URL automatycznie
-Możesz nawet zrobić tak, że middleware zamieni efemeryczny token na prawdziwe ID w URL i endpointy będą działać 1:1 bez żadnych zmian:
-Przykład
-Frontend woła:
-/api/playerInventory/9f21a2dc-3f16-4b77-a3b9-ab1234567891
-Middleware zamienia to na:
-/api/playerInventory/123   <— prawdziwe ID
 
 
 --Religia
