@@ -44,7 +44,7 @@ export function usePlayerMovement() {
 
     setPlayerMovementPlanned(path)
 
-    return toast.success(`Path selected confirm to move`)
+    return toast.success(`Action selected confirm to proceed`)
   }
 
   function selectPlayerPathToClickedTile() {
@@ -67,7 +67,7 @@ export function usePlayerMovement() {
 
     setPlayerMovementPlanned(path)
 
-    return toast.success(`Path selected confirm to move`)
+    return toast.success(`Action selected confirm to proceed`)
   }
 
   async function selectPlayerPathAndMovePlayer(params: TPlayerMovementParams) {
