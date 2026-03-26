@@ -1,7 +1,6 @@
 "use client"
 
-import { TPlayerMovementRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerMovement"
-import { pathFromPointToPoint } from "@/methods/functions/map/pathFromPointToPoint"
+import { pathFromPointToPoint, TPlayerMovementRecordByXY } from "@/methods/functions/map/pathFromPointToPoint"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { useCitiesCitiesState, useFetchCitiesCitiesByKey } from "@/methods/hooks/cities/core/useFetchCitiesCitiesByKey"
 import {

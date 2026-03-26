@@ -6,6 +6,7 @@ import { useMapId } from "@/methods/hooks/world/composite/useMapId"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { useMapTilesPathFromPointToPoint } from "@/methods/hooks/world/composite/useMapTilesPathFromPointToPoint"
 import { useFetchPlayerPosition, usePlayerPositionState } from "@/methods/hooks/world/core/useFetchPlayerPosition"
+import { useMutatePlayerPosition } from "@/methods/hooks/world/core/useMutatePlayerPosition"
 import { playerMovementPlannedAtom } from "@/store/atoms"
 import { useSetAtom } from "jotai"
 import { toast } from "sonner"
@@ -31,6 +32,8 @@ export function usePlayerMovement() {
   const [playerPos] = Object.values(playerPosition)
 
   const { clickedMapTile } = useMapTileActions()
+
+  const { mutatePlayerPosition } = useMutatePlayerPosition({ mapId, playerId })
 
   function selectPlayerPath(params: TPlayerMovementParams) {
     const path = getPathFromPointToPoint(params)
@@ -80,6 +83,11 @@ export function usePlayerMovement() {
     if (!result?.status) {
       return toast.error(result?.message)
     }
+
+    const lastStep = Object.values(path).reduce((max, curr) => (curr.order > max.order ? curr : max))
+
+    mutatePlayerPosition([{ x: lastStep.x, y: lastStep.y }])
+
     return toast.success(`You are moving to destination`)
   }
 
@@ -108,6 +116,10 @@ export function usePlayerMovement() {
     if (!result?.status) {
       return toast.error(result?.message)
     }
+
+    const lastStep = Object.values(path).reduce((max, curr) => (curr.order > max.order ? curr : max))
+
+    mutatePlayerPosition([{ x: lastStep.x, y: lastStep.y }])
 
     return toast.success(`You are moving to destination`)
   }
