@@ -4,6 +4,7 @@ import GatherResource from "@/components/items/GatherResource"
 import { Button } from "@/components/ui/button"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
+import { usePlayerExploration } from "@/methods/hooks/players/composite/usePlayerExploration"
 import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMovement"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { TMapTileResource, useMapTileDetail } from "@/methods/hooks/world/composite/useMapTileDetail"
@@ -22,6 +23,10 @@ export default function PanelMapTileDetail() {
     usePlayerMovement()
   const [isMoving, setIsMoving] = useState(false)
 
+  // ── EXPLORATION LOGIC  ──────────────────────────────────────────
+  const { exploreClickedTile } = usePlayerExploration()
+  const [isExploring, setIsExploring] = useState(false)
+
   // ── GATHER LOGIC  ──────────────────────────────────────────
   const { combinedKnownMapTilesResourcesOnTile } = useMapTileDetail()
   const [clickedResource, setClickedResource] = useState<TMapTileResource | null>(null)
@@ -32,7 +37,7 @@ export default function PanelMapTileDetail() {
 
   useEffect(() => {
     setClickedResource(null)
-    if (isMoving) {
+    if (isMoving || isExploring) {
       selectPlayerPathToClickedTile()
     }
   }, [clickedMapTile])
@@ -57,6 +62,26 @@ export default function PanelMapTileDetail() {
 
   function handleCancelMove() {
     setIsMoving(false)
+    resetPlayerMovementPlanned()
+  }
+
+  function handleExplore() {
+    if (!isExploring) {
+      setIsExploring(true)
+      selectPlayerPathToClickedTile()
+    }
+  }
+
+  function handleConfirmExplore() {
+    if (isExploring) {
+      setIsExploring(false)
+      exploreClickedTile()
+      resetPlayerMovementPlanned()
+    }
+  }
+
+  function handleCancelExplore() {
+    setIsExploring(false)
     resetPlayerMovementPlanned()
   }
 
@@ -243,18 +268,12 @@ export default function PanelMapTileDetail() {
 
           <section className={styles.section}>
             <div className={styles.actionButtons}>
-              <Button
-                className={styles.actionButton}
-                variant='outline'
-              >
-                Set Camp
-              </Button>
+              <Button className={styles.actionButton}>Set Camp</Button>
 
               {/*  MOVEMENT LOGIC */}
               {!isMoving ? (
                 <Button
                   className={styles.actionButton}
-                  variant='outline'
                   onClick={handleMove}
                 >
                   Move
@@ -263,7 +282,6 @@ export default function PanelMapTileDetail() {
                 <>
                   <Button
                     className={styles.actionButton}
-                    variant='default'
                     onClick={handleConfirmMove}
                   >
                     Confirm Move
@@ -271,7 +289,6 @@ export default function PanelMapTileDetail() {
 
                   <Button
                     className={styles.actionButton}
-                    variant='destructive'
                     onClick={handleCancelMove}
                   >
                     Cancel Move
@@ -280,26 +297,35 @@ export default function PanelMapTileDetail() {
               )}
 
               {/*  HUNT LOGIC */}
-              <Button
-                className={styles.actionButton}
-                variant='outline'
-              >
-                Hunt
-              </Button>
+              <Button className={styles.actionButton}>Hunt</Button>
 
-              <Button
-                className={styles.actionButton}
-                variant='outline'
-              >
-                Explore
-              </Button>
+              {/*  EXPLORATION LOGIC */}
+              {!isExploring ? (
+                <Button
+                  className={styles.actionButton}
+                  onClick={handleExplore}
+                >
+                  Explore
+                </Button>
+              ) : (
+                <>
+                  <Button
+                    className={styles.actionButton}
+                    onClick={handleConfirmExplore}
+                  >
+                    Confirm Exploration
+                  </Button>
 
-              <Button
-                className={styles.actionButton}
-                variant='outline'
-              >
-                Gather
-              </Button>
+                  <Button
+                    className={styles.actionButton}
+                    onClick={handleCancelExplore}
+                  >
+                    Cancel Exploration
+                  </Button>
+                </>
+              )}
+
+              <Button className={styles.actionButton}>Gather</Button>
             </div>
           </section>
         </div>
