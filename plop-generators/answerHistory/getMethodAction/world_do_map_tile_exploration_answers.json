@@ -18,9 +18,19 @@
       "tsType": "number"
     },
     {
-      "name": "parameters",
-      "camelName": "parameters",
-      "tsType": "any"
+      "name": "p_x",
+      "camelName": "x",
+      "tsType": "number"
+    },
+    {
+      "name": "p_y",
+      "camelName": "y",
+      "tsType": "number"
+    },
+    {
+      "name": "p_exploration_level",
+      "camelName": "explorationLevel",
+      "tsType": "number"
     }
   ],
   "methodColumns": [
@@ -39,5 +49,5 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2"
+  "sqlParamsPlaceholders": "$1, $2, $3, $4"
 }

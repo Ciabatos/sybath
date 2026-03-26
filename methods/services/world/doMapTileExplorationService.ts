@@ -56,19 +56,13 @@ export async function doMapTileExplorationService(params: TDoMapTileExplorationS
       }
     }
 
-    const parameters = [
-      {
-        x: params.targetTileX,
-        y: params.targetTileY,
-        explorationLevel: playerAbilities.byKey[2].value,
-      },
-    ]
-
     //MANUAL CODE - END
 
     const data: TDoMapTileExplorationParams = {
       playerId: playerId,
-      parameters: parameters,
+      x: params.targetTileX,
+      y: params.targetTileY,
+      explorationLevel: playerAbilities.byKey[2].value,
     }
 
     const result = await doMapTileExploration(data)

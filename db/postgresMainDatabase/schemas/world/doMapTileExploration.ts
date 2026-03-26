@@ -5,7 +5,9 @@ import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 
 export type TDoMapTileExplorationParams = {
   playerId: number
-  parameters: any
+  x: number
+  y: number
+  explorationLevel: number
 }
 
 export type TDoMapTileExploration = {
@@ -15,8 +17,8 @@ export type TDoMapTileExploration = {
 
 export async function doMapTileExploration(params: TDoMapTileExplorationParams) {
   try {
-    const sqlParams = [params.playerId, JSON.stringify(params.parameters)]
-    const sql = `SELECT * FROM world.do_map_tile_exploration($1, $2);`
+    const sqlParams = Object.values(params)
+    const sql = `SELECT * FROM world.do_map_tile_exploration($1, $2, $3, $4);`
     const result = await query(sql, sqlParams)
 
     return result.rows[0] as TDoMapTileExploration
