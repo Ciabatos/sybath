@@ -342,8 +342,6 @@ export default function PanelMapTileDetail() {
                   </Button>
                 </>
               )}
-
-              <Button className={styles.actionButton}>Gather</Button>
             </div>
           </section>
         </div>
