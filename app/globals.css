@@ -1,712 +1,178 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-
 @custom-variant dark (&:is(.dark *));
 
-/* =============================================================================
-   COLOR PALETTE - Medieval Dark Theme
-   ============================================================================= */
 :root {
-  /* Primary Golds & Ambers */
-  --gold-primary: #c89a4a;
-  --gold-secondary: #d4a574;
-  --gold-tertiary: #e6c998;
-  --gold-dimmed: #a68062;
-
-  /* Deep Browns & Woods */
-  --wood-dark: #1a0f08;
-  --wood-medium: #2b1810;
-  --wood-light: #3d2415;
-  --wood-highlight: #4a3728;
-  --wood-emboss: #6b4f3a;
-
-  /* Backgrounds */
-  --bg-primary: #0c0a09;
-  --bg-secondary: #1a1410;
-  --bg-muted: #292524;
-  --bg-panel: linear-gradient(135deg, var(--wood-dark) 0%, var(--wood-medium) 50%, var(--wood-dark) 100%);
-
-  /* Accents */
-  --accent-red: #8b3a3a;
-  --accent-green: #4a6b3d;
-  --accent-blue: #3a4a7c;
-  --accent-purple: #5a3a7c;
-
-  /* Text Colors */
-  --text-primary: var(--gold-tertiary);
-  --text-secondary: var(--gold-dimmed);
-  --text-muted: rgba(200, 154, 74, 0.6);
-  --text-inverse: #e6c998;
-
-  /* Borders */
-  --border-gold: var(--gold-primary);
-  --border-dimmed: rgba(200, 154, 74, 0.3);
-  --border-inner: rgba(0, 0, 0, 0.5);
-
-  /* Shadows */
-  --shadow-panel-inset-top: inset 0 4px 8px rgba(0, 0, 0, 0.6);
-  --shadow-panel-inset-bottom: inset 0 -2px 8px rgba(0, 0, 0, 0.4);
-  --shadow-panel-outer: 0 12px 40px rgba(0, 0, 0, 0.95);
-  --shadow-gold-glow: 0 0 20px rgba(200, 154, 74, 0.3);
-
-  /* Gradients */
-  --gradient-panel: linear-gradient(180deg, var(--wood-dark) 0%, var(--wood-medium) 100%);
-  --gradient-gold: linear-gradient(
-    135deg,
-    var(--gold-secondary) 0%,
-    var(--gold-primary) 50%,
-    var(--gold-tertiary) 100%
-  );
-  --gradient-bevel-top: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), transparent);
-  --gradient-bevel-bottom: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
-
-  /* Progress Bars */
-  --progress-health: #4ade80;
-  --progress-stamina: #facc15;
-  --progress-mana: #60a5fa;
-  --progress-reputation: #fbbf24;
+  /* Medieval dark wood and golden theme */
+  --background: #1a0f08;
+  --foreground: #e6c998;
+  --card: #2b1810;
+  --card-foreground: #e6c998;
+  --popover: #3d2415;
+  --popover-foreground: #e6c998;
+  --primary: #c89a4a;
+  --primary-foreground: #2b1810;
+  --secondary: #5c3a28;
+  --secondary-foreground: #e6c998;
+  --muted: #3d2415;
+  --muted-foreground: #a08560;
+  --accent: #d4a574;
+  --accent-foreground: #2b1810;
+  --destructive: #8b2e24;
+  --destructive-foreground: #e6c998;
+  --border: #5c3a28;
+  --input: #3d2415;
+  --ring: #c89a4a;
+  --chart-1: #c89a4a;
+  --chart-2: #d4a574;
+  --chart-3: #8b6f47;
+  --chart-4: #5c3a28;
+  --chart-5: #3d2415;
+  --radius: 0.625rem;
+  --sidebar: #2b1810;
+  --sidebar-foreground: #e6c998;
+  --sidebar-primary: #c89a4a;
+  --sidebar-primary-foreground: #2b1810;
+  --sidebar-accent: #d4a574;
+  --sidebar-accent-foreground: #2b1810;
+  --sidebar-border: #5c3a28;
+  --sidebar-ring: #c89a4a;
 }
 
 .dark {
-  --bg-primary: var(--wood-dark);
-  --bg-secondary: var(--wood-medium);
-  --bg-muted: var(--wood-light);
+  --background: #0d0705;
+  --foreground: #f5e6d3;
+  --card: #1f1209;
+  --card-foreground: #f5e6d3;
+  --popover: #2b1810;
+  --popover-foreground: #f5e6d3;
+  --primary: #d4a574;
+  --primary-foreground: #1a0f08;
+  --secondary: #4a2f1f;
+  --secondary-foreground: #f5e6d3;
+  --muted: #2b1810;
+  --muted-foreground: #8b7355;
+  --accent: #e6b85c;
+  --accent-foreground: #1a0f08;
+  --destructive: #a23830;
+  --destructive-foreground: #f5e6d3;
+  --border: #4a2f1f;
+  --input: #2b1810;
+  --ring: #d4a574;
+  --chart-1: #d4a574;
+  --chart-2: #e6b85c;
+  --chart-3: #9a7a57;
+  --chart-4: #4a2f1f;
+  --chart-5: #2b1810;
+  --sidebar: #1f1209;
+  --sidebar-foreground: #f5e6d3;
+  --sidebar-primary: #d4a574;
+  --sidebar-primary-foreground: #1a0f08;
+  --sidebar-accent: #e6b85c;
+  --sidebar-accent-foreground: #1a0f08;
+  --sidebar-border: #4a2f1f;
+  --sidebar-ring: #d4a574;
 }
 
-/* =============================================================================
-   WOOD TEXTURE PATTERNS
-   ============================================================================= */
+@theme inline {
+  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
+  --font-sans: var(--font-sans);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Medieval wood texture pattern */
 .wood-texture {
   background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.15) 1px, transparent 1px),
-    linear-gradient(rgba(0, 0, 0, 0.15) 1px, transparent 1px),
-    radial-gradient(ellipse at center, var(--wood-highlight) 0%, var(--wood-medium) 70%);
+    linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(92, 58, 40, 0.3) 0%, rgba(61, 36, 21, 0.3) 100%);
   background-size:
-    120px 120px,
-    120px 120px,
+    100px 100px,
+    100px 100px,
     100%;
 }
 
-.wood-texture-vertical {
-  background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.15) 1px, transparent 1px),
-    linear-gradient(var(--wood-highlight), var(--wood-light)),
-    radial-gradient(ellipse at center, var(--wood-medium) 0%, var(--wood-dark) 70%);
-  background-size:
-    80px 120px,
-    100%,
-    100%;
-}
-
-.ornate-border {
-  border-image: linear-gradient(
-      45deg,
-      var(--gold-primary),
-      var(--gold-secondary),
-      var(--gold-tertiary),
-      var(--gold-primary)
-    )
-    1;
-}
-
-/* =============================================================================
-   PANEL & CONTAINER STYLES
-   ============================================================================= */
-.medieval-panel {
+/* Medieval button emboss effect */
+.medieval-emboss {
   box-shadow:
-    inset 0 4px 8px rgba(0, 0, 0, 0.6),
-    inset 0 -2px 8px rgba(0, 0, 0, 0.4),
-    0 12px 40px rgba(0, 0, 0, 0.95);
-  border: 3px solid var(--border-gold);
-  border-radius: 0.75rem;
-  background: var(--gradient-panel);
-}
-
-.medieval-panel-header {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  margin-bottom: 1.75rem;
-  border-bottom: 2px solid var(--border-gold);
-  padding-bottom: 1.25rem;
-}
-
-.medieval-panel-close {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
-  z-index: 10;
-  transition: all 0.3s ease;
-  border: 2px solid var(--border-gold);
-  border-radius: 0.5rem;
-  background-color: rgba(200, 154, 74, 0.1);
-}
-
-.medieval-panel-close:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(200, 154, 74, 0.3);
-  background-color: var(--border-gold);
-}
-
-/* =============================================================================
-   TYPOGRAPHY ENHANCEMENTS
-   ============================================================================= */
-.text-medieval {
-  font-family: var(--font-display);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.text-medieval-subtitle {
-  color: var(--text-secondary);
-  font-family: var(--font-body);
-  letter-spacing: 0.08em;
-}
-
-.title-shadow {
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
-}
-
-/* =============================================================================
-   BUTTON STYLES - Medieval Embossed Buttons
-   ============================================================================= */
-.medieval-button {
-  position: relative;
-  transition: all 0.2s ease;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1),
     inset 0 -2px 4px rgba(0, 0, 0, 0.4),
     0 2px 8px rgba(0, 0, 0, 0.5);
-  border: 2px solid var(--wood-highlight);
-  border-radius: 6px;
-  background: linear-gradient(to bottom, var(--wood-light) 0%, var(--wood-dark) 100%);
 }
 
-.medieval-button::before {
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  bottom: -2px;
-  left: -2px;
-  opacity: 0.3;
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  border-radius: inherit;
-  background: linear-gradient(45deg, var(--gold-primary), transparent, var(--gold-secondary));
-  padding: 2px;
-  content: "";
+/* Adding custom medieval scrollbar styles */
+* {
+  scrollbar-color: #8b6d3a #2b1810;
+  scrollbar-width: thin;
 }
 
-.medieval-button:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 4px 8px rgba(0, 0, 0, 0.6),
-    0 0 12px rgba(200, 154, 74, 0.3);
-  border-color: var(--border-gold);
-}
-
-.medieval-button:active {
-  transform: translateY(0);
-  box-shadow:
-    inset 0 2px 4px rgba(0, 0, 0, 0.4),
-    0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.medieval-button-gold {
-  border-color: var(--gold-primary);
-  background: linear-gradient(to bottom, #8b6d3a 0%, #6b4f3a 100%);
-}
-
-.medieval-button-gold:hover {
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 4px 8px rgba(0, 0, 0, 0.6),
-    0 0 15px rgba(200, 154, 74, 0.4);
-  border-color: var(--gold-secondary);
-}
-
-/* =============================================================================
-   INPUT & FORM STYLES
-   ============================================================================= */
-.medieval-input {
-  border: 2px solid var(--wood-highlight);
-  background: linear-gradient(to bottom, #2b1810, #1a0f08);
-  color: var(--text-primary);
-  font-family: var(--font-body);
-}
-
-.medieval-input::placeholder {
-  color: var(--text-muted);
-}
-
-.medieval-input:focus {
-  outline: none;
-  box-shadow:
-    0 0 15px rgba(200, 154, 74, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  border-color: var(--border-gold);
-}
-
-.medieval-textarea {
-  border: 2px solid var(--wood-highlight);
-  background: linear-gradient(to bottom, #2b1810, #1a0f08);
-  color: var(--text-primary);
-  font-family: var(--font-body);
-}
-
-.medieval-textarea:focus {
-  outline: none;
-  box-shadow:
-    0 0 15px rgba(200, 154, 74, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  border-color: var(--border-gold);
-}
-
-/* =============================================================================
-   BADGES & STATUS INDICATORS
-   ============================================================================= */
-.medieval-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  border: 2px solid;
-  border-radius: 4px;
-  padding: 6px 12px;
-  font-size: 0.75rem;
-  font-family: var(--font-body);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.medieval-badge-safe {
-  border-color: #4ade80;
-  background: rgba(74, 222, 128, 0.1);
-  color: #4ade80;
-}
-
-.medieval-badge-easy {
-  border-color: #86efac;
-  background: rgba(134, 239, 172, 0.1);
-  color: #86efac;
-}
-
-.medieval-badge-medium {
-  border-color: #facc15;
-  background: rgba(250, 204, 21, 0.1);
-  color: #facc15;
-}
-
-.medieval-badge-hard {
-  border-color: #f87171;
-  background: rgba(248, 113, 113, 0.1);
-  color: #f87171;
-}
-
-.medieval-badge-danger {
-  border-color: var(--accent-red);
-  background: rgba(139, 58, 58, 0.1);
-  color: var(--accent-red);
-}
-
-/* =============================================================================
-   PROGRESS BARS - RPG Style
-   ============================================================================= */
-.medieval-progress {
-  border: 1px solid var(--wood-highlight);
-  border-radius: 4px;
-  background: linear-gradient(to right, #2b1810, #1a0f08);
-  height: 8px;
-  overflow: hidden;
-}
-
-.medieval-progress-fill {
-  position: relative;
-  transition: width 0.5s ease;
-  height: 100%;
-}
-
-.medieval-progress-fill::after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  animation: shimmer 2s infinite;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  content: "";
-}
-
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-.progress-health-fill {
-  box-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
-  background: linear-gradient(to right, #2d5a3d, #4ade80);
-}
-
-.progress-stamina-fill {
-  box-shadow: 0 0 10px rgba(250, 204, 21, 0.3);
-  background: linear-gradient(to right, #b45309, #facc15);
-}
-
-.progress-mana-fill {
-  box-shadow: 0 0 10px rgba(96, 165, 250, 0.3);
-  background: linear-gradient(to right, #1e3a8a, #60a5fa);
-}
-
-.progress-reputation-fill {
-  box-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
-  background: linear-gradient(to right, #7c2d12, #fbbf24);
-}
-
-/* =============================================================================
-   SCROLLBARS - Medieval Theme
-   ============================================================================= */
-.medieval-scrollbar::-webkit-scrollbar {
+*::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 
-.medieval-scrollbar::-webkit-scrollbar-track {
-  border: 1px solid var(--wood-highlight);
+*::-webkit-scrollbar-track {
+  border: 1px solid #5a4022;
   border-radius: 4px;
-  background: linear-gradient(to bottom, #2b1810, #1a0f08);
-}
-
-.medieval-scrollbar::-webkit-scrollbar-thumb {
-  border: 1px solid var(--wood-highlight);
-  border-radius: 4px;
-  background: linear-gradient(180deg, var(--gold-primary) 0%, var(--gold-dimmed) 100%);
-}
-
-.medieval-scrollbar::-webkit-scrollbar-thumb:hover {
-  box-shadow: 0 0 6px rgba(200, 154, 74, 0.5);
-  background: linear-gradient(180deg, var(--gold-secondary) 0%, var(--gold-primary) 100%);
-}
-
-.medieval-scrollbar::-webkit-scrollbar-corner {
   background: #2b1810;
 }
 
-/* =============================================================================
-   MAP & TILE STYLES
-   ============================================================================= */
-.map-container {
-  background-color: #7b7e3d;
-  overflow: hidden;
+*::-webkit-scrollbar-thumb {
+  border: 1px solid #5a4022;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #c89a4a 0%, #8b6d3a 100%);
 }
 
-.tile-base {
-  transform: rotate(-45deg) skew(15deg, 15deg);
-  transform-origin: center center;
-  border: 2px solid rgba(0, 0, 0, 0.3);
-  background: linear-gradient(135deg, #8f9442, #7b7e3d);
+*::-webkit-scrollbar-thumb:hover {
+  box-shadow: 0 0 6px rgba(200, 154, 74, 0.5);
+  background: linear-gradient(180deg, #d4a574 0%, #9a7a57 100%);
 }
 
-.tile-forest {
-  background: linear-gradient(135deg, #3d5a3d, #2d4a2d);
-}
-
-.tile-desert {
-  background: linear-gradient(135deg, #c89a4a, #b47e26);
-}
-
-.tile-snow {
-  background: linear-gradient(135deg, #e8e8e8, #d0d0d0);
-}
-
-.tile-water {
-  background: linear-gradient(135deg, #3a5a7c, #2a4a6c);
-}
-
-.tile-mountain {
-  background: linear-gradient(135deg, #5a5a5a, #404040);
-}
-
-/* =============================================================================
-   ANIMATIONS - Medieval Theme
-   ============================================================================= */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideInDown {
-  from {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes pulse-gold {
-  0%,
-  100% {
-    box-shadow: 0 0 20px rgba(200, 154, 74, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(200, 154, 74, 0.5);
-  }
-}
-
-@keyframes glow-gold {
-  0%,
-  100% {
-    text-shadow:
-      0 0 10px rgba(200, 154, 74, 0.3),
-      0 0 20px rgba(200, 154, 74, 0.2);
-  }
-  50% {
-    text-shadow:
-      0 0 20px rgba(200, 154, 74, 0.5),
-      0 0 30px rgba(200, 154, 74, 0.3);
-  }
-}
-
-@keyframes border-pulse {
-  0%,
-  100% {
-    border-color: var(--gold-primary);
-  }
-  50% {
-    border-color: var(--gold-secondary);
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out;
-}
-
-.animate-slide-in-down {
-  animation: slideInDown 0.4s ease-out;
-}
-
-.animate-pulse-gold {
-  animation: pulse-gold 2s infinite;
-}
-
-.animate-glow-gold {
-  animation: glow-gold 3s infinite;
-}
-
-.animate-border-pulse {
-  animation: border-pulse 3s infinite;
-}
-
-/* =============================================================================
-   UTILITY CLASSES
-   ============================================================================= */
-.border-medieval {
-  border-color: var(--border-gold);
-}
-
-.bg-medieval-panel {
-  background: var(--gradient-panel);
-}
-
-.text-medieval-primary {
-  color: var(--text-primary);
-}
-
-.text-medieval-secondary {
-  color: var(--text-secondary);
-}
-
-.text-medieval-muted {
-  color: var(--text-muted);
-}
-
-.shadow-medieval {
-  box-shadow: var(--shadow-panel-outer);
-}
-
-.shadow-medieval-gold {
-  box-shadow: var(--shadow-panel-outer), var(--shadow-gold-glow);
-}
-
-/* =============================================================================
-   AVATAR & PORTRAIT STYLES
-   ============================================================================= */
-.avatar-medieval {
-  box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.7),
-    inset 0 2px 4px rgba(200, 154, 74, 0.2);
-  border: 3px solid var(--border-gold);
-}
-
-.avatar-medieval-fallback {
-  background-color: var(--bg-muted);
-  color: var(--gold-primary);
-  font-family: var(--font-display);
-}
-
-/* =============================================================================
-   TABS & NAVIGATION
-   ============================================================================= */
-.tabs-medieval {
-  border: 2px solid var(--border-gold);
-  background-color: rgba(12, 10, 9, 0.9);
-}
-
-.tab-trigger-medieval {
-  transition: all 0.3s ease;
-  color: var(--gold-dimmed);
-  font-family: var(--font-display);
-}
-
-.tab-trigger-medieval:hover {
-  background-color: rgba(200, 154, 74, 0.15);
-  color: var(--gold-secondary);
-}
-
-.tab-trigger-medieval-active {
-  box-shadow: 0 4px 12px rgba(200, 154, 74, 0.3);
-  background-color: var(--border-gold);
-  color: var(--wood-dark);
-  font-weight: 600;
-}
-
-/* =============================================================================
-   STAT & ATTRIBUTE DISPLAYS
-   ============================================================================= */
-.stat-item-medieval {
-  border: 2px solid #4a3426;
-  border-radius: 6px;
-  background: linear-gradient(135deg, var(--wood-light) 0%, var(--wood-dark) 100%);
-}
-
-.stat-item-medieval:hover {
-  transform: translateX(4px);
-  border-color: var(--border-gold);
-  background: linear-gradient(135deg, var(--wood-highlight) 0%, var(--wood-dark) 100%);
-}
-
-.stat-icon-medieval {
-  box-shadow:
-    inset 0 2px 4px rgba(0, 0, 0, 0.5),
-    0 4px 8px rgba(0, 0, 0, 0.3);
-  border: 3px solid var(--wood-emboss);
-  background: radial-gradient(circle, var(--wood-highlight) 0%, var(--wood-dark) 100%);
-}
-
-.stat-label-medieval {
-  color: var(--gold-secondary);
-  font-family: var(--font-body);
-}
-
-.stat-value-medieval {
-  color: var(--text-inverse);
-  font-weight: 700;
-  font-family: var(--font-display);
-}
-
-/* =============================================================================
-   LOADING & SPINNER STYLES
-   ============================================================================= */
-.spinner-medieval {
-  animation: spin 1s linear infinite;
-  border: 3px solid rgba(200, 154, 74, 0.1);
-  border-top-color: var(--border-gold);
-  border-radius: 50%;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* =============================================================================
-   MODAL OVERLAYS
-   ============================================================================= */
-.modal-overlay-medieval {
-  backdrop-filter: blur(4px);
-  background-color: rgba(0, 0, 0, 0.7);
-}
-
-.modal-container-medieval {
-  box-shadow:
-    var(--shadow-panel-outer),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  border: 3px solid var(--border-gold);
-}
-
-/* =============================================================================
-   CURSOR & POINTER STATES
-   ============================================================================= */
-.cursor-medieval {
-  cursor:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23c89a4a' d='M5.5 3.21l2.79 2.78L6.9 8.5H12v1h-5.1l-1.71 1.71L5.5 10.5V3.21zm13 0l-.71.71 1.71 1.71H21v1h-5.1l-1.71 1.71 1.79 1.79L18.5 10.5V3.21zM6.9 14.5h5.1l1.71 1.71-1.79 1.79L12.5 17.5v7H6.9v-7l1.71-1.71z'/%3E%3C/svg%3E"),
-    auto;
-}
-
-/* =============================================================================
-   RESPONSIVE ADJUSTMENTS
-   ============================================================================= */
-@media (max-width: 768px) {
-  .medieval-panel {
-    border-width: 2px;
-    padding: 1rem;
-  }
-
-  .medieval-button {
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-  }
-}
-
-/* =============================================================================
-   ACCESSIBILITY - High Contrast Mode Support
-   ============================================================================= */
-@media (prefers-contrast: high) {
-  .medieval-panel {
-    box-shadow: none;
-    border-width: 4px;
-  }
-
-  .medieval-button {
-    border-width: 3px;
-  }
-
-  :root {
-    --border-gold: #fff;
-    --text-primary: #fff;
-  }
-}
-
-/* =============================================================================
-   PRINT STYLES
-   ============================================================================= */
-@media print {
-  .medieval-panel {
-    box-shadow: none;
-    border: 1px solid #000;
-  }
-
-  .medieval-button {
-    box-shadow: none !important;
-    background: none !important;
-    color: #000 !important;
-  }
+*::-webkit-scrollbar-corner {
+  background: #2b1810;
 }
