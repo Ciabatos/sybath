@@ -2,6 +2,7 @@
 "use client"
 
 import { useSWRConfig } from "swr"
+import { fetchFresh } from "@/providers/swr-fetchers"
 import { TWorldTerrainTypesRecordById, TWorldTerrainTypes } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { terrainTypesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
@@ -14,7 +15,7 @@ export function useMutateWorldTerrainTypes() {
 
   function mutateWorldTerrainTypes(optimisticParams?: Partial<TWorldTerrainTypes>[]) {
     if (!optimisticParams) {
-      mutate(key)
+      mutate(key, () => fetchFresh(key))
       return
     }
 
@@ -43,7 +44,7 @@ export function useMutateWorldTerrainTypes() {
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(key, optimisticDataMergeWithOldDataArray, {
+    mutate(key, () => fetchFresh(key), {
       optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,

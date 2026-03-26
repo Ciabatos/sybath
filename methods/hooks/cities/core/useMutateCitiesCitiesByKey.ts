@@ -2,6 +2,7 @@
 "use client"
 
 import { useSWRConfig } from "swr"
+import { fetchFresh } from "@/providers/swr-fetchers"
 import { TCitiesCitiesParams, TCitiesCities } from "@/db/postgresMainDatabase/schemas/cities/cities"
 
 export function useMutateCitiesCities(params: TCitiesCitiesParams) {
@@ -10,7 +11,7 @@ export function useMutateCitiesCities(params: TCitiesCitiesParams) {
 
   function mutateCitiesCities(optimisticParams?: Partial<TCitiesCities>[]) {
     if (!optimisticParams) {
-      mutate(key)
+      mutate(key, () => fetchFresh(key))
       return
     }
 
@@ -33,7 +34,7 @@ export function useMutateCitiesCities(params: TCitiesCitiesParams) {
       ...val,
     }))
 
-    mutate(key, dataWithDefaults, {
+    mutate(key, () => fetchFresh(key), {
       optimisticData: dataWithDefaults,
       rollbackOnError: true,
       revalidate: false,

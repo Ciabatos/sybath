@@ -2,6 +2,7 @@
 "use client"
 
 import { useSWRConfig } from "swr"
+import { fetchFresh } from "@/providers/swr-fetchers"
 import { TDistrictsDistricts } from "@/db/postgresMainDatabase/schemas/districts/districts"
 
 export function useMutateDistrictsDistricts() {
@@ -10,7 +11,7 @@ export function useMutateDistrictsDistricts() {
 
   function mutateDistrictsDistricts(optimisticParams?: Partial<TDistrictsDistricts>[]) {
     if (!optimisticParams) {
-      mutate(key)
+      mutate(key, () => fetchFresh(key))
       return
     }
 
@@ -32,7 +33,7 @@ export function useMutateDistrictsDistricts() {
       ...val,
     }))
 
-    mutate(key, dataWithDefaults, {
+    mutate(key, () => fetchFresh(key), {
       optimisticData: dataWithDefaults,
       rollbackOnError: true,
       revalidate: false,

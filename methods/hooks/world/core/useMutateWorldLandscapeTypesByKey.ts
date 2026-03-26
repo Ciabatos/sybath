@@ -2,6 +2,7 @@
 "use client"
 
 import { useSWRConfig } from "swr"
+import { fetchFresh } from "@/providers/swr-fetchers"
 import {
   TWorldLandscapeTypesRecordById,
   TWorldLandscapeTypesParams,
@@ -18,7 +19,7 @@ export function useMutateWorldLandscapeTypes(params: TWorldLandscapeTypesParams)
 
   function mutateWorldLandscapeTypes(optimisticParams?: Partial<TWorldLandscapeTypes>[]) {
     if (!optimisticParams) {
-      mutate(key)
+      mutate(key, () => fetchFresh(key))
       return
     }
 
@@ -47,7 +48,7 @@ export function useMutateWorldLandscapeTypes(params: TWorldLandscapeTypesParams)
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(key, optimisticDataMergeWithOldDataArray, {
+    mutate(key, () => fetchFresh(key), {
       optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,

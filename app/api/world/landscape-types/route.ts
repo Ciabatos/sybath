@@ -14,8 +14,11 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     }
 
     const clientEtag = request.headers.get("if-none-match") ?? undefined
+    const forceFresh = request.headers.get("x-force-fresh") ?? undefined
 
-    const { record, etag, cacheHit, etagMatched } = await fetchWorldLandscapeTypesService({ clientEtag })
+    const { record, etag, cacheHit, etagMatched } = await fetchWorldLandscapeTypesService({
+      ...(forceFresh ? { forceFresh: true } : { clientEtag }),
+    })
 
     if (cacheHit || etagMatched) {
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })

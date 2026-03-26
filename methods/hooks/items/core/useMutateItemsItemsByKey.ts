@@ -2,6 +2,7 @@
 "use client"
 
 import { useSWRConfig } from "swr"
+import { fetchFresh } from "@/providers/swr-fetchers"
 import { TItemsItemsRecordById, TItemsItemsParams, TItemsItems } from "@/db/postgresMainDatabase/schemas/items/items"
 import { itemsAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
@@ -14,7 +15,7 @@ export function useMutateItemsItems(params: TItemsItemsParams) {
 
   function mutateItemsItems(optimisticParams?: Partial<TItemsItems>[]) {
     if (!optimisticParams) {
-      mutate(key)
+      mutate(key, () => fetchFresh(key))
       return
     }
 
@@ -43,7 +44,7 @@ export function useMutateItemsItems(params: TItemsItemsParams) {
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
 
-    mutate(key, optimisticDataMergeWithOldDataArray, {
+    mutate(key, () => fetchFresh(key), {
       optimisticData: optimisticDataMergeWithOldDataArray,
       rollbackOnError: true,
       revalidate: false,

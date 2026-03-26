@@ -2,6 +2,7 @@
 "use client"
 
 import { useSWRConfig } from "swr"
+import { fetchFresh } from "@/providers/swr-fetchers"
 import { TBuildingsBuildings } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
 
 export function useMutateBuildingsBuildings() {
@@ -10,7 +11,7 @@ export function useMutateBuildingsBuildings() {
 
   function mutateBuildingsBuildings(optimisticParams?: Partial<TBuildingsBuildings>[]) {
     if (!optimisticParams) {
-      mutate(key)
+      mutate(key, () => fetchFresh(key))
       return
     }
 
@@ -32,7 +33,7 @@ export function useMutateBuildingsBuildings() {
       ...val,
     }))
 
-    mutate(key, dataWithDefaults, {
+    mutate(key, () => fetchFresh(key), {
       optimisticData: dataWithDefaults,
       rollbackOnError: true,
       revalidate: false,
