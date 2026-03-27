@@ -5,7 +5,11 @@ import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 
 export type TDoGatherResourcesOnMapTileParams = {
   playerId: number
-  parameters: any
+  mapId: number
+  x: number
+  y: number
+  mapTilesResourceId: number
+  gatherAmount: number
 }
 
 export type TDoGatherResourcesOnMapTile = {
@@ -15,8 +19,8 @@ export type TDoGatherResourcesOnMapTile = {
 
 export async function doGatherResourcesOnMapTile(params: TDoGatherResourcesOnMapTileParams) {
   try {
-    const sqlParams = [params.playerId, JSON.stringify(params.parameters)]
-    const sql = `SELECT * FROM items.do_gather_resources_on_map_tile($1, $2);`
+    const sqlParams = Object.values(params)
+    const sql = `SELECT * FROM items.do_gather_resources_on_map_tile($1, $2, $3, $4, $5, $6);`
     const result = await query(sql, sqlParams)
 
     return result.rows[0] as TDoGatherResourcesOnMapTile

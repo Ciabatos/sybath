@@ -49,20 +49,15 @@ export async function doGatherResourcesOnMapTileService(params: TDoGatherResourc
       }
     }
 
-    const parameters = [
-      {
-        x: params.targetTileX,
-        y: params.targetTileY,
-        mapTilesResourceId: params.mapTilesResourceId,
-        gatherAmount: 1,
-      },
-    ]
-
     //MANUAL CODE - END
 
     const data: TDoGatherResourcesOnMapTileParams = {
       playerId: playerId,
-      parameters: parameters,
+      mapId: mapId,
+      x: params.targetTileX,
+      y: params.targetTileY,
+      mapTilesResourceId: params.mapTilesResourceId,
+      gatherAmount: 1,
     }
 
     const result = await doGatherResourcesOnMapTile(data)
