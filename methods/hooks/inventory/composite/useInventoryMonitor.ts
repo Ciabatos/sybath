@@ -43,12 +43,6 @@ type TInventoryUpdate = {
   quantity: number
 }
 
-// containerTypeId → mutator key
-const CONTAINER_TYPE_TO_MUTATOR = {
-  1: "inventory",
-  2: "gearInventory",
-} as const
-
 export function useInventoryMonitor() {
   const { playerId } = usePlayerId()
   const otherPlayerId = useOtherPlayerId()
