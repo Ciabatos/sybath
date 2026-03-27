@@ -44,6 +44,7 @@ export function usePlayerExploration() {
 
       const result = await doMapTileExplorationAction({
         playerId,
+        mapId: mapId,
         targetTileX: clickedMapTile.mapTiles.x,
         targetTileY: clickedMapTile.mapTiles.y,
       })

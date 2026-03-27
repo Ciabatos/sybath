@@ -15,6 +15,7 @@ import { getPlayerPositionServer } from "@/methods/server-fetchers/world/core/ge
 export type TDoMapTileExplorationServiceParams = {
   sessionUserId: number
   playerId: number
+  mapId: number
   targetTileX: number
   targetTileY: number
 }

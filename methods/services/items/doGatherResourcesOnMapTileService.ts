@@ -14,6 +14,7 @@ import { getPlayerPositionServer } from "@/methods/server-fetchers/world/core/ge
 export type TDoGatherResourcesOnMapTileServiceParams = {
   sessionUserId: number
   playerId: number
+  mapId: number
   targetTileX: number
   targetTileY: number
   mapTilesResourceId: number
@@ -53,7 +54,7 @@ export async function doGatherResourcesOnMapTileService(params: TDoGatherResourc
         x: params.targetTileX,
         y: params.targetTileY,
         mapTilesResourceId: params.mapTilesResourceId,
-        gatherAmount: params.gatherAmount,
+        gatherAmount: 1,
       },
     ]
 

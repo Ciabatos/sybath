@@ -1,11 +1,11 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Slider } from "@/components/ui/slider"
 import { useGatherResourcesOnMapTile } from "@/methods/hooks/items/composite/useGatherResourcesOnMapTile"
 import { TMapTileResource } from "@/methods/hooks/world/composite/useMapTileDetail"
-import { Package, Pickaxe, X } from "lucide-react"
-import { useEffect, useState } from "react"
+import { Package, X } from "lucide-react"
+import { useState } from "react"
+import { GiCardPickup } from "react-icons/gi"
 import styles from "./styles/GatherResource.module.css"
 
 type Props = {
@@ -23,22 +23,10 @@ export default function GatherResource({ isOpen, onClose, resource }: Props) {
   }
   const { gatherClickedResource } = useGatherResourcesOnMapTile(gatherResourcesOnMapTileParams)
 
-  useEffect(() => {
-    if (resource) {
-      setGatherAmount(1)
-    }
-  }, [resource])
-
   if (!isOpen || !resource) return null
-
-  const maxAmount = resource.quantity
 
   function handleGather() {
     gatherClickedResource()
-  }
-
-  function handleSliderChange(value: number[]) {
-    setGatherAmount(value[0])
   }
 
   return (
@@ -49,8 +37,6 @@ export default function GatherResource({ isOpen, onClose, resource }: Props) {
           onClick={() => {
             onClose()
           }}
-          variant='ghost'
-          size='icon'
           className={styles.closeButton}
         >
           <X className={styles.closeIcon} />
@@ -70,47 +56,12 @@ export default function GatherResource({ isOpen, onClose, resource }: Props) {
           </div>
         </div>
 
-        <div className={styles.sliderSection}>
-          <label className={styles.sliderLabel}>
-            Amount to gather:
-            <span className={styles.sliderValue}>{gatherAmount}</span>
-          </label>
-          <Slider
-            defaultValue={[1]}
-            min={1}
-            max={maxAmount}
-            step={1}
-            value={[gatherAmount]}
-            onValueChange={(value) => {
-              handleSliderChange(value)
-            }}
-            className={styles.slider}
-          />
-          <div className={styles.sliderRange}>
-            <span>1</span>
-            <span>{maxAmount}</span>
-          </div>
-        </div>
-
-        <div className={styles.summary}>
-          <div className={styles.summaryRow}>
-            <span className={styles.summaryLabel}>Gathering</span>
-            <span className={styles.summaryValue}>
-              {gatherAmount}x {resource.name}
-            </span>
-          </div>
-          <div className={styles.summaryRow}>
-            <span className={styles.summaryLabel}>Remaining</span>
-            <span className={styles.summaryValue}>{maxAmount - gatherAmount}</span>
-          </div>
-        </div>
-
         <Button
           className={styles.gatherButton}
           onClick={handleGather}
         >
-          <Pickaxe className={styles.gatherIcon} />
-          Gather Resources
+          <GiCardPickup className={styles.gatherIcon} />
+          Gather Resource
         </Button>
       </div>
     </div>
