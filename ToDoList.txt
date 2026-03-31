@@ -1,3 +1,5 @@
+Do_action zmienic tylko na shallow funkcje a caly logic przeniuesc do procedury bez DO_ przedrostka tak zeby moc wywolywac to normlanie w innej procedurze
+
 ZOD do do_action
 zmienic z real time na tury co 30 min repleninsh energy i natychmiastowe akcje
 react flow - drzewko craftu
