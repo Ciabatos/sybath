@@ -49,7 +49,7 @@ export async function doPlayerMovementService(params: TDoPlayerMovementServicePa
         getCitiesCitiesByKeyServer({ mapId }),
         getDistrictsDistrictsByKeyServer({ mapId }),
         getDistrictsDistrictTypesServer(),
-        getPlayerPositionServer({ mapId, playerId }),
+        getPlayerPositionServer({ mapId, playerId }, { forceFresh: true }),
       ])
 
     if (!mapTiles) {

@@ -14,7 +14,7 @@ export type TKnownMapTiles = {
   x: number
   y: number
   terrainTypeId: number
-  landscapeTypeId: number
+  landscapeTypeId?: number
 }
 
 export type TKnownMapTilesRecordByXY = Record<string, TKnownMapTiles>
