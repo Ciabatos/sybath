@@ -1,14 +1,7 @@
-Do_action zmienic tylko na shallow funkcje a caly logic przeniuesc do procedury bez DO_ przedrostka tak zeby moc wywolywac to normlanie w innej procedurze
-
 ZOD do do_action
-zmienic z real time na tury co 30 min repleninsh energy i natychmiastowe akcje
 react flow - drzewko craftu
-Dwarf Fortress
-Dodac funkcje do dodawania access do inventory
 
-Zbieranie gathering i dokladanie itemow do inventory
-poprawic algorytm tworzenia mapy o dokladanie surowcow
-poprawic algorytm tworzenia new player ze zna wszystkich swoich playerow po 1 userem
+
 dodatkowa zakladka na skill details, item details taki słownik z opisami i levelami co odblokowuje co mozna zrobic etc
 knowledge tree
 dodatkowa zakladka na otherplayer z akcjami np zapros do squadu
@@ -112,6 +105,7 @@ Gry:
 -potionmics
 -stoneshard
 -victoria3
+-Dwarf Fortress
 
 --https://www.youtube.com/watch?v=B9B9y0KcgD0
 Zagrywane są karty akcji co turę (5 minut) i odpalane w sekwencji - potem tylko ogladasz replay rundy
