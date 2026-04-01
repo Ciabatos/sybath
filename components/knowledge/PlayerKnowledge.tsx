@@ -1,7 +1,12 @@
+import { Avatar, AvatarImage } from "@/components/ui/avatar"
+import { createImage } from "@/methods/functions/util/createImage"
+import usePlayerKnownPlayers from "@/methods/hooks/knowledge/composite/usePlayerKnownPlayers"
 import { MapPin, Skull } from "lucide-react"
 import styles from "./styles/PlayerKnowledge.module.css"
 
 export function PlayerKnowledge() {
+  const { createPlayerPortrait } = createImage()
+  const { playerKnownPlayers } = usePlayerKnownPlayers()
   const crimesKnowledge = [
     {
       icon: <Skull />,
@@ -51,20 +56,31 @@ export function PlayerKnowledge() {
       <div className={styles.category}>
         <h3 className={styles.categoryTitle}>Heroes</h3>
         <div className={styles.categoryItems}>
-          {crimesKnowledge.map((item, index) => (
+          {Object.values(playerKnownPlayers).map((player, index) => (
             <div
               key={index}
               className={styles.knowledgeItem}
             >
-              <div className={styles.knowledgeIcon}>
-                <MapPin />
-              </div>
               <div className={styles.knowledgeInfo}>
                 <div className={styles.knowledgeHeader}>
-                  <h4 className={styles.knowledgeTitle}>{item.title}</h4>
-                  <span className={`${styles.knowledgeLevel} ${styles[`level${item.level}`]}`}>{item.level}</span>
+                  <h4 className={styles.knowledgeTitle}>
+                    {player.name
+                      ? player.name + (player.nickname ? ` (${player.nickname})` : "") + " " + player.secondName
+                      : player.otherPlayerId}
+                  </h4>
+                  <div className={styles.knowledgeIcon}>{player.x ? <MapPin /> : ""}</div>
                 </div>
-                <p className={styles.knowledgeDescription}>{item.description}</p>
+                <Avatar className={styles.avatar}>
+                  <AvatarImage
+                    src={
+                      player.imagePortrait && player.imagePortrait.trim() !== ""
+                        ? createPlayerPortrait(player.imagePortrait)
+                        : createPlayerPortrait("masked.png")
+                    }
+                    alt='Hero avatar'
+                    className={styles.avatarImage}
+                  />
+                </Avatar>
               </div>
             </div>
           ))}

@@ -515,5 +515,13 @@
     ],
     "description": "Destructuring usePlayerPosition hook"
   },
-  //Automatic Snippets
+    
+  "Destructure usePlayerKnownPlayers": {
+    "prefix": "hook_knowledge_core_usePlayerKnownPlayers",
+    "body": [
+      "useFetchPlayerKnownPlayers({ playerId })",
+      "const playerKnownPlayers = usePlayerKnownPlayersState()"
+    ],
+    "description": "Destructuring usePlayerKnownPlayers hook"
+  },//Automatic Snippets
 }
