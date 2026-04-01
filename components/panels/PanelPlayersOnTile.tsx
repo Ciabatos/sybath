@@ -44,9 +44,12 @@ export default function PanelPlayersOnTile() {
         </Button>
         {Object.entries(playersOnTile).map(([key, otherPlayer]) => (
           <div key={key}>
-            <div>{otherPlayer.name}</div>
-            <div>{otherPlayer.secondName}</div>
-            <div>{otherPlayer.nickname}</div>
+            {otherPlayer.name
+              ? otherPlayer.name +
+                (otherPlayer.nickname ? ` (${otherPlayer.nickname})` : "") +
+                " " +
+                otherPlayer.secondName
+              : otherPlayer.otherPlayerId}
             <Button
               onClick={() => handleClickPlayerPortrait(otherPlayer.otherPlayerId)}
               className={styles.heroButton}

@@ -1,11 +1,15 @@
-import { Avatar, AvatarImage } from "@/components/ui/avatar"
-import { createImage } from "@/methods/functions/util/createImage"
+import PlayerPortrait from "@/components/players/PlayerPortrait"
+import { Button } from "@/components/ui/button"
 import usePlayerKnownPlayers from "@/methods/hooks/knowledge/composite/usePlayerKnownPlayers"
+import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
+import { useSetOtherPlayerId } from "@/methods/hooks/players/composite/useOtherPlayerId"
+import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { MapPin, Skull } from "lucide-react"
 import styles from "./styles/PlayerKnowledge.module.css"
 
 export function PlayerKnowledge() {
-  const { createPlayerPortrait } = createImage()
+  const { openModalRightCenter } = useModalRightCenter()
+  const setOtherPlayerId = useSetOtherPlayerId()
   const { playerKnownPlayers } = usePlayerKnownPlayers()
   const crimesKnowledge = [
     {
@@ -21,6 +25,11 @@ export function PlayerKnowledge() {
       level: "Partial" as const,
     },
   ]
+
+  function handleClickPlayerPortrait(otherPlayerId: string) {
+    setOtherPlayerId(otherPlayerId)
+    openModalRightCenter(EPanelsRightCenter.PanelOtherPlayerPanel)
+  }
 
   return (
     <div className={styles.container}>
@@ -56,9 +65,9 @@ export function PlayerKnowledge() {
       <div className={styles.category}>
         <h3 className={styles.categoryTitle}>Heroes</h3>
         <div className={styles.categoryItems}>
-          {Object.values(playerKnownPlayers).map((player, index) => (
+          {Object.entries(playerKnownPlayers).map(([key, player]) => (
             <div
-              key={index}
+              key={key}
               className={styles.knowledgeItem}
             >
               <div className={styles.knowledgeInfo}>
@@ -70,17 +79,12 @@ export function PlayerKnowledge() {
                   </h4>
                   <div className={styles.knowledgeIcon}>{player.x ? <MapPin /> : ""}</div>
                 </div>
-                <Avatar className={styles.avatar}>
-                  <AvatarImage
-                    src={
-                      player.imagePortrait && player.imagePortrait.trim() !== ""
-                        ? createPlayerPortrait(player.imagePortrait)
-                        : createPlayerPortrait("masked.png")
-                    }
-                    alt='Hero avatar'
-                    className={styles.avatarImage}
-                  />
-                </Avatar>
+                <Button
+                  onClick={() => handleClickPlayerPortrait(player.otherPlayerId)}
+                  className={styles.heroButton}
+                >
+                  <PlayerPortrait imagePortrait={player.imagePortrait} />
+                </Button>
               </div>
             </div>
           ))}
