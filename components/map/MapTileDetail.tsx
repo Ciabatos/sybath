@@ -13,9 +13,9 @@ import { TMapTileResource, useMapTileDetail } from "@/methods/hooks/world/compos
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { X } from "lucide-react"
 import { Activity, useEffect, useState } from "react"
-import styles from "./styles/PanelMapTileDetail.module.css"
+import styles from "./styles/MapTileDetail.module.css"
 
-export default function PanelMapTileDetail() {
+export default function MapTileDetail() {
   const { resetModalRightCenter } = useModalRightCenter()
   const { openModalTopCenter } = useModalTopCenter()
   const { clickedMapTile } = useMapTileActions()

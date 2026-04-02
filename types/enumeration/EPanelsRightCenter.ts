@@ -2,7 +2,7 @@
 
 export enum EPanelsRightCenter {
   Inactive = "Inactive",
-  PanelMapTileDetail = "PanelMapTileDetail",
   PanelOtherPlayerPanel = "PanelOtherPlayerPanel",
   AllSkills = "AllSkills",
+  MapTileDetail = "MapTileDetail",
 }

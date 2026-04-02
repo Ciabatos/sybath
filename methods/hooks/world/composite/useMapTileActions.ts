@@ -13,7 +13,7 @@ export function useMapTileActions() {
   function handleClickOnMapTile(params: TMapTile) {
     setClickedMapTile(params)
     if (!ModalRightCenter) {
-      openModalRightCenter(EPanelsRightCenter.PanelMapTileDetail)
+      openModalRightCenter(EPanelsRightCenter.MapTileDetail)
     }
   }
 
