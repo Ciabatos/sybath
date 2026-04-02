@@ -5,4 +5,5 @@ export enum EPanelsRightCenter {
   PanelMapTileDetail = "PanelMapTileDetail",
   PanelOtherPlayerPanel = "PanelOtherPlayerPanel",
   PanelAllSkills = "PanelAllSkills",
+  AllSkills = "AllSkills",
 }
