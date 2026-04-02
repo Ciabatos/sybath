@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
 import { Backpack, LandPlot, X } from "lucide-react"
-import styles from "./styles/PanelPlayerSquad.module.css"
+import styles from "./styles/PlayerSquad.module.css"
 
-export default function PanelPlayerSquad() {
+export default function PlayerSquad() {
   const { openModalLeftTopBar } = useModalLeftTopBar()
 
   function onClose() {

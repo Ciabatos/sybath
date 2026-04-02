@@ -19,7 +19,7 @@ export default function PlayerRibbon() {
   }
 
   const handleClickPlayerSquadPortrait = () => {
-    openModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerSquad)
+    openModalLeftTopBar(EPanelsLeftTopBar.PlayerSquad)
   }
 
   return (
