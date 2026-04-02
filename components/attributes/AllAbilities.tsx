@@ -1,17 +1,17 @@
 "use client"
-import Skill from "@/components/attributes/Skill"
+import Ability from "@/components/attributes/Ability"
 import { Button } from "@/components/ui/button"
 import getIcon from "@/methods/functions/icons/getIcon"
-import { useAllSKills } from "@/methods/hooks/attributes/composite/useAllSkills"
+import { useAllAbilities } from "@/methods/hooks/attributes/composite/useAllAbilities"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { X } from "lucide-react"
-import styles from "./styles/AllSkills.module.css"
+import styles from "./styles/AllAbilities.module.css"
 
-export default function AllSkills() {
-  const { skills } = useAllSKills()
+export default function AllAbilities() {
+  const { abilities } = useAllAbilities()
   const { resetModalRightCenter } = useModalRightCenter()
 
-  function closeAllSkills() {
+  function closeAllAbilities() {
     resetModalRightCenter()
   }
 
@@ -20,18 +20,18 @@ export default function AllSkills() {
       <div className={styles.skillsContainer}>
         <div className={styles.skillsGrid}>
           <Button
-            onClick={() => closeAllSkills()}
+            onClick={() => closeAllAbilities()}
             variant='ghost'
             size='icon'
           >
             <X />
           </Button>
-          {Object.values(skills).map((skill) => (
-            <Skill
-              key={skill.id}
-              icon={getIcon(skill.image)}
-              name={skill.name}
-              description={skill.description}
+          {Object.values(abilities).map((ability) => (
+            <Ability
+              key={ability.id}
+              icon={getIcon(ability.image)}
+              name={ability.name}
+              description={ability.description}
             />
           ))}
         </div>
