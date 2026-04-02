@@ -23,7 +23,7 @@ export default function PanelPlayersOnTile() {
 
   function handleClickPlayerPortrait(otherPlayerId: string) {
     setOtherPlayerId(otherPlayerId)
-    openModalRightCenter(EPanelsRightCenter.PanelOtherPlayerPanel)
+    openModalRightCenter(EPanelsRightCenter.OtherPlayerPanel)
   }
 
   const onClose = () => {

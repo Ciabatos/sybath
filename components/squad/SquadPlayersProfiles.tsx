@@ -15,7 +15,7 @@ export default function SquadPlayersProfiles() {
 
   function handleClickDetails(otherPlayerId: string) {
     setOtherPlayerId(otherPlayerId)
-    openModalRightCenter(EPanelsRightCenter.PanelOtherPlayerPanel)
+    openModalRightCenter(EPanelsRightCenter.OtherPlayerPanel)
   }
 
   return (

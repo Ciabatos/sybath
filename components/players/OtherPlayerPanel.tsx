@@ -1,3 +1,4 @@
+"use client"
 import { OtherPlayerAbilities } from "@/components/attributes/OtherPlayerAbilities"
 import { OtherPlayerSkills } from "@/components/attributes/OtherPlayerSkills"
 import OtherPlayerStats from "@/components/attributes/OtherPlayerStats"
@@ -11,9 +12,9 @@ import { useOtherPlayerId } from "@/methods/hooks/players/composite/useOtherPlay
 import { useOtherPlayerProfile } from "@/methods/hooks/players/composite/useOtherPlayerProfile"
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar"
 import { X } from "lucide-react"
-import styles from "./styles/PanelOtherPlayerPanel.module.css"
+import styles from "./styles/OtherPlayerPanel.module.css"
 
-export default function PanelOtherPlayerPanel() {
+export default function OtherPlayerPanel() {
   const { resetModalRightCenter } = useModalRightCenter()
   const { createPlayerPortrait } = createImage()
   const { otherPlayerProfile } = useOtherPlayerProfile()
