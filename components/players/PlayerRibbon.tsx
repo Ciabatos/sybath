@@ -15,7 +15,7 @@ export default function PlayerRibbon() {
   if (!activePlayerProfile) return null
 
   const handleClickPlayerPortrait = () => {
-    openModalLeftTopBar(EPanelsLeftTopBar.PanelPlayerPanel)
+    openModalLeftTopBar(EPanelsLeftTopBar.PlayerPanel)
   }
 
   const handleClickPlayerSquadPortrait = () => {

@@ -1,3 +1,4 @@
+"use client"
 import { PlayerAbilities } from "@/components/attributes/PlayerAbilities"
 import { PlayerSkills } from "@/components/attributes/PlayerSkills"
 import PlayerStats from "@/components/attributes/PlayerStats"
@@ -12,9 +13,9 @@ import { useActivePlayerProfile } from "@/methods/hooks/players/composite/useAct
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
 import { X } from "lucide-react"
-import styles from "./styles/PanelPlayerPanel.module.css"
+import styles from "./styles/PlayerPanel.module.css"
 
-export default function PanelPlayerPanel() {
+export default function PlayerPanel() {
   const { openModalLeftTopBar } = useModalLeftTopBar()
   const { createPlayerPortrait } = createImage()
   const { activePlayerProfile } = useActivePlayerProfile()
