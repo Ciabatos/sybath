@@ -41,13 +41,13 @@ export default function createPanels(plop) {
       actions.push(
         {
           type: "add",
-          path: "../components/panels/{{newPanelName}}.tsx",
+          path: "../components/{{choosenPath}}/{{newPanelName}}.tsx",
           templateFile: "plop-templates/createPanels/panel.hbs",
           force: true,
         },
         {
           type: "add",
-          path: "../components/panels/styles/{{newPanelName}}.module.css",
+          path: "../components/{{choosenPath}}/styles/{{newPanelName}}.module.css",
           templateFile: "plop-templates/createPanels/panelStyle.hbs",
           force: true,
         },
