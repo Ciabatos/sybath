@@ -10,7 +10,7 @@ export default function createPanels(plop) {
       {
         type: "input",
         name: "newPanelName",
-        message: "Panel name",
+        message: "Panel name with prefix Panel... without .tsx extension",
       },
       {
         type: "checkbox",
