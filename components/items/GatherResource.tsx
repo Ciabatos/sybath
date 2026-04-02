@@ -9,12 +9,11 @@ import { GiCardPickup } from "react-icons/gi"
 import styles from "./styles/GatherResource.module.css"
 
 type Props = {
-  isOpen: boolean
   onClose: () => void
   resource: TMapTileResource | null
 }
 
-export default function GatherResource({ isOpen, onClose, resource }: Props) {
+export default function GatherResource({ onClose, resource }: Props) {
   const [gatherAmount, setGatherAmount] = useState(1)
 
   const gatherResourcesOnMapTileParams = {
@@ -23,7 +22,7 @@ export default function GatherResource({ isOpen, onClose, resource }: Props) {
   }
   const { gatherClickedResource } = useGatherResourcesOnMapTile(gatherResourcesOnMapTileParams)
 
-  if (!isOpen || !resource) return null
+  if (!resource) return null
 
   function handleGather() {
     gatherClickedResource()

@@ -12,7 +12,7 @@ import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileAct
 import { TMapTileResource, useMapTileDetail } from "@/methods/hooks/world/composite/useMapTileDetail"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { X } from "lucide-react"
-import { useEffect, useState } from "react"
+import { Activity, useEffect, useState } from "react"
 import styles from "./styles/PanelMapTileDetail.module.css"
 
 export default function PanelMapTileDetail() {
@@ -96,10 +96,6 @@ export default function PanelMapTileDetail() {
     // openModalTopCenter(EPanelsTopCenter.PanelGatherResource)
   }
 
-  function handleCloseGather() {
-    setClickedResource(null)
-  }
-
   // ── DERIVED ────────────────────────────────────────────────────────────────
   const terrainName = clickedMapTile?.terrainTypes?.name
   const terrainTypesMoveCost = clickedMapTile?.terrainTypes?.moveCost
@@ -115,11 +111,12 @@ export default function PanelMapTileDetail() {
 
   return (
     <div className={styles.overlay}>
-      <GatherResource
-        isOpen={!!clickedResource}
-        onClose={handleCloseGather}
-        resource={clickedResource}
-      />
+      <Activity mode={!!clickedResource ? "visible" : "hidden"}>
+        <GatherResource
+          onClose={() => setClickedResource(null)}
+          resource={clickedResource}
+        />
+      </Activity>
       <div className={styles.panel}>
         <div className={styles.header}>
           <div className={styles.titleSection}>
