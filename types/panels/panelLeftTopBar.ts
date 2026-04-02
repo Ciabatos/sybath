@@ -5,5 +5,5 @@ export const panelLeftTopBar: Record<EPanelsLeftTopBar, React.LazyExoticComponen
   [EPanelsLeftTopBar.Inactive]: null,
   [EPanelsLeftTopBar.PlayerRibbon]: React.lazy(() => import("@/components/players/PlayerRibbon")),
   [EPanelsLeftTopBar.PlayerPanel]: React.lazy(() => import("@/components/players/PlayerPanel")),
-  [EPanelsLeftTopBar.PlayerSquad]: React.lazy(() => import("@/components/players/PlayerSquad")),
+  [EPanelsLeftTopBar.PlayerSquad]: React.lazy(() => import("@/components/squad/PlayerSquad")),
 }
