@@ -20,7 +20,7 @@ export default function PanelPlayerPanel() {
   const { activePlayerProfile } = useActivePlayerProfile()
 
   function onClose() {
-    openModalLeftTopBar(EPanelsLeftTopBar.PanelLeftSidebarPlayerMenu)
+    openModalLeftTopBar(EPanelsLeftTopBar.PlayerRibbon)
   }
 
   const name = activePlayerProfile?.name

@@ -24,6 +24,7 @@ import { TOtherPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/s
 import { TPlayerGearInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/playerGearInventory"
 import { TPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
 import { TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/items"
+import { TPlayerKnownPlayersRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/knowledge/playerKnownPlayers"
 import { TActivePlayerRecordById } from "@/db/postgresMainDatabase/schemas/players/activePlayer"
 import { TActivePlayerProfileRecordByName } from "@/db/postgresMainDatabase/schemas/players/activePlayerProfile"
 import { TActivePlayerSwitchProfilesRecordById } from "@/db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles"
@@ -51,11 +52,10 @@ import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { EPanelsTopCenterBar } from "@/types/enumeration/EPanelsTopCenterBar"
 import { atom } from "jotai"
-import { TPlayerKnownPlayersRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/knowledge/playerKnownPlayers"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBottomCenterBar.Inactive)
-export const modalLeftTopBarAtom = atom<EPanelsLeftTopBar>(EPanelsLeftTopBar.PanelLeftSidebarPlayerMenu)
+export const modalLeftTopBarAtom = atom<EPanelsLeftTopBar>(EPanelsLeftTopBar.PlayerRibbon)
 export const modalRightCenterAtom = atom<EPanelsRightCenter>(EPanelsRightCenter.Inactive)
 export const modalTopCenterAtom = atom<EPanelsTopCenter>(EPanelsTopCenter.Inactive)
 export const modalTopCenterBarAtom = atom<EPanelsTopCenterBar>(EPanelsTopCenterBar.Inactive)

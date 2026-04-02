@@ -1,5 +1,4 @@
 "use client"
-
 import PlayerPortrait from "@/components/players/PlayerPortrait"
 import PlayerSquadPortrait from "@/components/players/PlayerSquadPortrait"
 import PlayerSwitchButton from "@/components/players/PlayerSwitchButton"
@@ -7,9 +6,9 @@ import { Button } from "@/components/ui/button"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { useActivePlayerProfile } from "@/methods/hooks/players/composite/useActivePlayerProfile"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
-import styles from "./styles/PanelLeftSidebarPlayerMenu.module.css"
+import styles from "./styles/PlayerRibbon.module.css"
 
-export default function PanelLeftSidebarPlayerMenu() {
+export default function PlayerRibbon() {
   const { openModalLeftTopBar } = useModalLeftTopBar()
   const { activePlayerProfile } = useActivePlayerProfile()
 
