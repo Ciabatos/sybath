@@ -60,7 +60,7 @@ export default function createPanels(plop) {
         actions.push({
           type: "modify",
           path: `../types/panels/${panelName}.ts`,
-          pattern: new RegExp(`(export const ${panelName}[\\s\\S]*?=\\s*\\{[\\s\\S]*?)(\\n\\})`),
+          pattern: new RegExp(`(export const ${panelName}[\\s\\S]*?=\\s*\\{[\\s\\S]*?)(\\n\\s*\\})`),
           template: `$1
   [${enumName}.{{newPanelName}}]: React.lazy(() => import("@/components/panels/{{newPanelName}}")),$2`,
         })

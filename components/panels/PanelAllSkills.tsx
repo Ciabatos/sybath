@@ -1,7 +1,7 @@
 "use client"
-import styles from "./styles/AllSkills.module.css"
+import styles from "./styles/PanelAllSkills.module.css"
 
-export default function AllSkills() {
+export default function PanelAllSkills() {
   return (
     <div className={styles.panel}>
       <div className={styles.header}>dada</div>
