@@ -5,7 +5,6 @@ import style from "@/components/map/styles/Tile.module.css"
 import { createImage } from "@/methods/functions/util/createImage"
 import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
-import { motion } from "framer-motion"
 
 export default function Map(props: TMapTile) {
   const { handleClickOnMapTile } = useMapTileActions()
@@ -73,18 +72,12 @@ export default function Map(props: TMapTile) {
         ></div>
       )}
       {playerImage && (
-        <motion.div
-          layoutId='player'
+        <div
           className={style.PlayerImage}
           style={{
             backgroundImage: playerImage,
           }}
-          transition={{
-            type: "spring",
-            stiffness: 300,
-            damping: 25,
-          }}
-        />
+        ></div>
       )}
       {otherPlayerImage && (
         <div
