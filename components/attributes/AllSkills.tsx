@@ -11,12 +11,16 @@ export default function AllSkills() {
   const { skills } = useAllSKills()
   const { resetModalRightCenter } = useModalRightCenter()
 
+  function closeAllSkills() {
+    resetModalRightCenter()
+  }
+
   return (
     <>
       <div className={styles.skillsContainer}>
         <div className={styles.skillsGrid}>
           <Button
-            onClick={() => resetModalRightCenter()}
+            onClick={() => closeAllSkills()}
             variant='ghost'
             size='icon'
             className={styles.closeButton}
