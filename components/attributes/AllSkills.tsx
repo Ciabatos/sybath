@@ -3,12 +3,14 @@ import Skill from "@/components/attributes/Skill"
 import { Button } from "@/components/ui/button"
 import getIcon from "@/methods/functions/icons/getIcon"
 import { useAllSKills } from "@/methods/hooks/attributes/composite/useAllSkills"
+import { usePlayerSkills } from "@/methods/hooks/attributes/composite/usePlayerSkills"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { X } from "lucide-react"
 import styles from "./styles/AllSkills.module.css"
 
 export default function AllSkills() {
   const { skills } = useAllSKills()
+  const { combinedPlayerSkills } = usePlayerSkills()
   const { resetModalRightCenter } = useModalRightCenter()
 
   function closeAllSkills() {
@@ -31,8 +33,6 @@ export default function AllSkills() {
               key={skill.id}
               icon={getIcon(skill.image)}
               name={skill.name}
-              value={0}
-              maxValue={10}
               description={skill.description}
             />
           ))}

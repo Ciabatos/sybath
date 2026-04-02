@@ -4,13 +4,13 @@ import styles from "./styles/Skill.module.css"
 interface TSkillProps {
   icon: React.ReactNode
   name: string
-  value: number
+  value?: number
   maxValue?: number
   description?: string
 }
 
 export default function Skill({ icon, name, value, maxValue, description }: TSkillProps) {
-  const hasMax = maxValue !== undefined
+  const hasMax = maxValue !== undefined && value !== undefined
   const percentage = hasMax ? (value / maxValue) * 100 : 0
 
   return (
@@ -26,12 +26,14 @@ export default function Skill({ icon, name, value, maxValue, description }: TSki
               {value}
               {hasMax && <span className={styles.statMax}>/{maxValue}</span>}
             </span>
-            <div className={styles.levelBar}>
-              <div
-                className={styles.levelProgress}
-                style={{ width: `${percentage}%` }}
-              />
-            </div>
+            {hasMax && (
+              <div className={styles.levelBar}>
+                <div
+                  className={styles.levelProgress}
+                  style={{ width: `${percentage}%` }}
+                />
+              </div>
+            )}
           </div>
         </div>
         <p className={styles.skillDescription}>{description}</p>
