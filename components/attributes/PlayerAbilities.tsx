@@ -19,8 +19,6 @@ export function PlayerAbilities() {
             key={playerAbility.id}
             icon={getIcon(playerAbility.image)}
             name={playerAbility.name}
-            value={playerAbility.value}
-            maxValue={10}
             description={playerAbility.description}
           />
         ))}
