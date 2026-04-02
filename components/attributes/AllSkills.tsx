@@ -23,9 +23,8 @@ export default function AllSkills() {
             onClick={() => closeAllSkills()}
             variant='ghost'
             size='icon'
-            className={styles.closeButton}
           >
-            <X className={styles.closeButtonIcon} />
+            <X />
           </Button>
           {Object.values(skills).map((skill) => (
             <Skill
