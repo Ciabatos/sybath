@@ -3,15 +3,16 @@ import Skill from "@/components/attributes/Skill"
 import { Button } from "@/components/ui/button"
 import getIcon from "@/methods/functions/icons/getIcon"
 import { usePlayerSkills } from "@/methods/hooks/attributes/composite/usePlayerSkills"
-import { useState } from "react"
+import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
+import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import styles from "./styles/PlayerSkills.module.css"
 
 export function PlayerSkills() {
   const { combinedPlayerSkills } = usePlayerSkills()
-  const [isShowingAllSkills, setIsShowingAllSkills] = useState(false)
+  const { openModalRightCenter } = useModalRightCenter()
 
   function showAllSkills() {
-    setIsShowingAllSkills(!isShowingAllSkills)
+    openModalRightCenter(EPanelsRightCenter.AllSkills)
   }
 
   return (

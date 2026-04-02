@@ -54,8 +54,8 @@ export type TAttributesSkillsParams = {
 
 export type TAttributesSkills = {
   id: number
-  name?: string
-  description?: string
+  name: string
+  description: string
   image: string
 }
 

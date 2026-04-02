@@ -54,8 +54,8 @@ export type TAttributesStatsParams = {
 
 export type TAttributesStats = {
   id: number
-  name?: string
-  description?: string
+  name: string
+  description: string
   image: string
 }
 
