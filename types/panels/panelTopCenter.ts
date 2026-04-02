@@ -3,5 +3,5 @@ import React from "react"
 
 export const panelTopCenter: Record<EPanelsTopCenter, React.LazyExoticComponent<React.ComponentType<any>> | null> = {
   [EPanelsTopCenter.Inactive]: null,
-  [EPanelsTopCenter.PanelPlayersOnTile]: React.lazy(() => import("@/components/panels/PanelPlayersOnTile")),
+  [EPanelsTopCenter.PlayersOnTile]: React.lazy(() => import("@/components/players/PlayersOnTile")),
 }

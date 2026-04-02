@@ -2,5 +2,5 @@
 
 export enum EPanelsTopCenter {
   Inactive = "Inactive",
-  PanelPlayersOnTile = "PanelPlayersOnTile",
+  PlayersOnTile = "PlayersOnTile",
 }

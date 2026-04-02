@@ -8,9 +8,9 @@ import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileAct
 import usePlayersOnTile from "@/methods/hooks/world/composite/usePlayersOnTile"
 import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { X } from "lucide-react"
-import styles from "./styles/PanelPlayersOnTile.module.css"
+import styles from "./styles/PlayersOnTile.module.css"
 
-export default function PanelPlayersOnTile() {
+export default function PlayersOnTile() {
   const { resetModalTopCeneter } = useModalTopCenter()
   const { openModalRightCenter } = useModalRightCenter()
   const setOtherPlayerId = useSetOtherPlayerId()

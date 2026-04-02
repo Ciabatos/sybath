@@ -88,7 +88,7 @@ export default function MapTileDetail() {
   }
 
   function handlePlayersListOnTile() {
-    openModalTopCenter(EPanelsTopCenter.PanelPlayersOnTile)
+    openModalTopCenter(EPanelsTopCenter.PlayersOnTile)
   }
 
   function handleResourceOnTile(resource: TMapTileResource) {
