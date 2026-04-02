@@ -2,15 +2,24 @@ import fs from "fs"
 import path from "path"
 
 const MAIN_ROOT = path.resolve("types/enumeration")
+const COMPONENTS_ROOT = path.resolve("components")
 
 export default function createPanels(plop) {
   plop.setGenerator("createPanels", {
     description: "Create new panel",
     prompts: [
       {
+        type: "list",
+        name: "choosenPath",
+        message: "Wybierz folder w components",
+        choices: fs
+          .readdirSync(COMPONENTS_ROOT)
+          .filter((f) => fs.statSync(path.join(COMPONENTS_ROOT, f)).isDirectory()),
+      },
+      {
         type: "input",
         name: "newPanelName",
-        message: "Panel name with prefix Panel... without .tsx extension",
+        message: "Panel name without .tsx extension :",
       },
       {
         type: "checkbox",
@@ -62,7 +71,7 @@ export default function createPanels(plop) {
           path: `../types/panels/${panelName}.ts`,
           pattern: new RegExp(`(export const ${panelName}[\\s\\S]*?=\\s*\\{[\\s\\S]*?)(\\n\\s*\\})`),
           template: `$1
-  [${enumName}.{{newPanelName}}]: React.lazy(() => import("@/components/panels/{{newPanelName}}")),$2`,
+  [${enumName}.{{newPanelName}}]: React.lazy(() => import("@/components/{{choosenPath}}/{{newPanelName}}")),$2`,
         })
       })
 
