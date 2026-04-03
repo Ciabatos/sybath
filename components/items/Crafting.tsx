@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import getIcon from "@/methods/functions/icons/getIcon"
 import usePlayerRecipes from "@/methods/hooks/items/composite/usePlayerRecipes"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
-import { X } from "lucide-react"
+import { Activity, X } from "lucide-react"
 import { useState } from "react"
 import style from "./styles/Crafting.module.css"
 
@@ -24,11 +24,11 @@ export default function Crafting() {
 
   return (
     <div className={style.craftingContainer}>
-      {clickedRecipeId !== null && (
+      <Activity mode={clickedRecipeId !== null ? "visible" : "hidden"}>
         <div className={style.recipeMaterialsContainer}>
-          <RecipeMaterials recipeId={clickedRecipeId} />
+          {clickedRecipeId !== null && <RecipeMaterials recipeId={clickedRecipeId} />}
         </div>
-      )}
+      </Activity>
 
       <div>
         {Object.values(playerRecipes).map((recipe) => (

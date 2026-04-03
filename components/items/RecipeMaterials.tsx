@@ -9,7 +9,6 @@ type TRecipeMaterialsProps = { recipeId: number }
 
 export default function RecipeMaterials({ recipeId }: TRecipeMaterialsProps) {
   const { combinedRecipeMaterials } = useRecipeMaterials(recipeId)
-  console.log("combinedRecipeMaterials", combinedRecipeMaterials)
   return (
     <>
       <div className={styles.panel}>
