@@ -41,6 +41,7 @@ import { JSX } from "react"
 import {
   GiBelt,
   GiBigDiamondRing,
+  GiCardboardBoxClosed,
   GiChestArmor,
   GiCrafting,
   GiCrestedHelmet,
@@ -49,13 +50,20 @@ import {
   GiEmeraldNecklace,
   GiEyeTarget,
   GiFootsteps,
+  GiHighGrass,
+  GiMushroomGills,
   GiSteeltoeBoots,
   GiStoneAxe,
+  GiStoneBlock,
+  GiWoodPile,
 } from "react-icons/gi"
 import styles from "./icons.module.css"
 
 const iconMap: Record<string, JSX.Element> = {
   // Stats
+  GiMushroomGills: <GiMushroomGills className={styles.brown} />,
+  GiHighGrass: <GiHighGrass className={styles.green} />,
+  GiStoneBlock: <GiStoneBlock className={styles.gray} />,
   Heart: <Heart className={styles.red} />,
   Zap: <Zap className={styles.yellow} />,
   Shield: <Shield className={styles.blue} />,
@@ -117,6 +125,8 @@ const iconMap: Record<string, JSX.Element> = {
   GiCrafting: <GiCrafting className={styles.gray} />,
   GiFootsteps: <GiFootsteps className={styles.brown} />,
   GiStoneAxe: <GiStoneAxe className={styles.silver} />,
+  GiWoodPile: <GiWoodPile className={styles.brown} />,
+  default: <GiCardboardBoxClosed className={styles.brown} />,
 }
 
 export default function getIcon(iconKey?: string) {
