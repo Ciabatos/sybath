@@ -1,0 +1,83 @@
+{
+  "promptAnswers": {
+    "schema": "attributes",
+    "method": "get_all_skills",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "id"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "attributes",
+  "method": "get_all_skills",
+  "methodCamelName": "allSkills",
+  "methodPascalName": "AllSkills",
+  "methodKebabName": "get-all-skills",
+  "methodName": "getAllSkills",
+  "methodTypeName": "TAllSkills",
+  "methodParamsTypeName": "TAllSkillsParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "pascalName": "Id",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "pascalName": "Name",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "description",
+      "camelName": "description",
+      "pascalName": "Description",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "image",
+      "camelName": "image",
+      "pascalName": "Image",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "value",
+      "camelName": "value",
+      "pascalName": "Value",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"id\"]",
+  "indexParamsColumns": "playerId",
+  "indexTypeMethodName": "Id",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TAllSkillsRecordById",
+  "indexColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "pascalName": "Id",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1",
+  "apiPath": "app/api/attributes/rpc/get-all-skills/[playerId]/route.ts",
+  "apiPathParams": "/api/attributes/rpc/get-all-skills/${params.playerId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true
+}

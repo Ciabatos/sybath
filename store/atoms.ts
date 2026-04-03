@@ -1,6 +1,8 @@
 "use client"
 
 import { TAttributesAbilitiesRecordById } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
+import { TAllAbilitiesRecordById } from "@/db/postgresMainDatabase/schemas/attributes/allAbilities"
+import { TAllSkillsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/allSkills"
 import { TOtherPlayerAbilitiesRecordByAbilityId } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerAbilities"
 import { TOtherPlayerSkillsRecordBySkillId } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerSkills"
 import { TOtherPlayerStatsRecordByStatId } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerStats"
@@ -91,6 +93,8 @@ export const terrainTypesAtom = atom<TWorldTerrainTypesRecordById>({})
 export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
 
 //Functions
+export const allSkillsAtom = atom<TAllSkillsRecordById>({})
+export const allAbilitiesAtom = atom<TAllAbilitiesRecordById>({})
 export const playerKnownPlayersAtom = atom<TPlayerKnownPlayersRecordByOtherPlayerId>({})
 export const knownMapTilesResourcesOnTileAtom = atom<TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId>({})
 export const otherSquadPlayersProfilesAtom = atom<TOtherSquadPlayersProfilesRecordByOtherPlayerId>({})

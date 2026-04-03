@@ -1,13 +1,12 @@
 "use client"
 
-import {
-  useAttributesSkillsState,
-  useFetchAttributesSkills,
-} from "@/methods/hooks/attributes/core/useFetchAttributesSkills"
+import { useAllSkillsState, useFetchAllSkills } from "@/methods/hooks/attributes/core/useFetchAllSkills"
+import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 
 export function useAllSKills() {
-  useFetchAttributesSkills()
-  const skills = useAttributesSkillsState()
+  const { playerId } = usePlayerId()
+  useFetchAllSkills({ playerId })
+  const allSkills = useAllSkillsState()
 
-  return { skills }
+  return { allSkills }
 }

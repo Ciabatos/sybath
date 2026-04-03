@@ -8,7 +8,7 @@ import { X } from "lucide-react"
 import styles from "./styles/AllSkills.module.css"
 
 export default function AllSkills() {
-  const { skills } = useAllSKills()
+  const { allSkills } = useAllSKills()
   const { resetModalRightCenter } = useModalRightCenter()
 
   function closeAllSkills() {
@@ -26,7 +26,7 @@ export default function AllSkills() {
           >
             <X />
           </Button>
-          {Object.values(skills).map((skill) => (
+          {Object.values(allSkills).map((skill) => (
             <Skill
               key={skill.id}
               icon={getIcon(skill.image)}

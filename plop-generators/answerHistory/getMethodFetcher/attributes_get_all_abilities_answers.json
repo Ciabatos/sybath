@@ -1,0 +1,83 @@
+{
+  "promptAnswers": {
+    "schema": "attributes",
+    "method": "get_all_abilities",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "id"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "attributes",
+  "method": "get_all_abilities",
+  "methodCamelName": "allAbilities",
+  "methodPascalName": "AllAbilities",
+  "methodKebabName": "get-all-abilities",
+  "methodName": "getAllAbilities",
+  "methodTypeName": "TAllAbilities",
+  "methodParamsTypeName": "TAllAbilitiesParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "pascalName": "Id",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "pascalName": "Name",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "description",
+      "camelName": "description",
+      "pascalName": "Description",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "image",
+      "camelName": "image",
+      "pascalName": "Image",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "value",
+      "camelName": "value",
+      "pascalName": "Value",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"id\"]",
+  "indexParamsColumns": "playerId",
+  "indexTypeMethodName": "Id",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TAllAbilitiesRecordById",
+  "indexColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "pascalName": "Id",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1",
+  "apiPath": "app/api/attributes/rpc/get-all-abilities/[playerId]/route.ts",
+  "apiPathParams": "/api/attributes/rpc/get-all-abilities/${params.playerId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true
+}

@@ -75,12 +75,19 @@
     "description": "ModalTopCenterBar Open",
   },
   "Destructure useActivePlayer": {
-    "prefix": "hook_players_core_useActivePlayer",
+    "prefix": "hook_player_profile",
     "body": [
       "useFetchActivePlayer()",
       "const activePlayer = useActivePlayerState()"
     ],
     "description": "Destructuring useActivePlayer hook"
+  },
+  "Destructure usePlayerId": {
+    "prefix": "hook_player",
+    "body": [
+      "const { playerId } = usePlayerId()"
+    ],
+    "description": "Destructuring usePlayerId hook"
   },
   //Dodane automatycznie - start
   "Destructure useAttributesAbilities": {
@@ -515,7 +522,6 @@
     ],
     "description": "Destructuring usePlayerPosition hook"
   },
-    
   "Destructure usePlayerKnownPlayers": {
     "prefix": "hook_knowledge_core_usePlayerKnownPlayers",
     "body": [
@@ -523,5 +529,21 @@
       "const playerKnownPlayers = usePlayerKnownPlayersState()"
     ],
     "description": "Destructuring usePlayerKnownPlayers hook"
-  },//Automatic Snippets
+  },
+  "Destructure useAllAbilities": {
+    "prefix": "hook_attributes_core_useAllAbilities",
+    "body": [
+      "useFetchAllAbilities({ playerId })",
+      "const allAbilities = useAllAbilitiesState()"
+    ],
+    "description": "Destructuring useAllAbilities hook"
+  },
+  "Destructure useAllSkills": {
+    "prefix": "hook_attributes_core_useAllSkills",
+    "body": [
+      "useFetchAllSkills({ playerId })",
+      "const allSkills = useAllSkillsState()"
+    ],
+    "description": "Destructuring useAllSkills hook"
+  }, //Automatic Snippets
 }

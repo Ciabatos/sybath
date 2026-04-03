@@ -8,8 +8,8 @@ import { X } from "lucide-react"
 import styles from "./styles/AllAbilities.module.css"
 
 export default function AllAbilities() {
-  const { abilities } = useAllAbilities()
   const { resetModalRightCenter } = useModalRightCenter()
+  const { allAbilities } = useAllAbilities()
 
   function closeAllAbilities() {
     resetModalRightCenter()
@@ -26,7 +26,7 @@ export default function AllAbilities() {
           >
             <X />
           </Button>
-          {Object.values(abilities).map((ability) => (
+          {Object.values(allAbilities).map((ability) => (
             <Ability
               key={ability.id}
               icon={getIcon(ability.image)}
