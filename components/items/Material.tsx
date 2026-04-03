@@ -17,7 +17,9 @@ export default function Material({ icon, itemId, quantity, name, description }: 
       </div>
       <div className={styles.skillContent}>
         <div className={styles.skillHeader}>
-          <h3 className={styles.skillName}>{name}</h3>
+          <h3 className={styles.skillName}>
+            {name} x {quantity}
+          </h3>
         </div>
         <p className={styles.skillDescription}>{description}</p>
       </div>

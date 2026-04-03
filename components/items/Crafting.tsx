@@ -7,6 +7,7 @@ import usePlayerRecipes from "@/methods/hooks/items/composite/usePlayerRecipes"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { X } from "lucide-react"
 import { useState } from "react"
+import style from "./styles/Crafting.module.css"
 
 export default function Crafting() {
   const { playerRecipes } = usePlayerRecipes()
@@ -22,7 +23,7 @@ export default function Crafting() {
   }
 
   return (
-    <>
+    <div className={style.panel}>
       <div>
         {clickedRecipeId !== null && <RecipeMaterials recipeId={clickedRecipeId} />}
         <Button
@@ -50,6 +51,6 @@ export default function Crafting() {
           </div>
         ))}
       </div>
-    </>
+    </div>
   )
 }
