@@ -3,14 +3,14 @@
 
 import type {
   TItemsRecipeMaterials,
-  TItemsRecipeMaterialsRecordByRecipeId,
+  TItemsRecipeMaterialsRecordById,
 } from "@/db/postgresMainDatabase/schemas/items/recipeMaterials"
 import type { TItemsRecipeMaterialsParams } from "@/db/postgresMainDatabase/schemas/items/recipeMaterials"
 import { fetchItemsRecipeMaterialsByKeyService } from "@/methods/services/items/fetchItemsRecipeMaterialsByKeyService"
 
 type TResult = {
   raw: TItemsRecipeMaterials[]
-  byKey: TItemsRecipeMaterialsRecordByRecipeId
+  byKey: TItemsRecipeMaterialsRecordById
   apiPath: string
   atomName: string
 }

@@ -4,7 +4,7 @@
     "table": "recipe_materials",
     "usePrevious": false,
     "selectedColumnsIndex": [
-      "recipe_id"
+      "id"
     ],
     "paramsColumns": [
       "recipe_id"
@@ -37,14 +37,14 @@
       "name": "id",
       "camelName": "id",
       "tsType": "number",
-      "optional": ""
+      "optional": "",
+      "pascalName": "Id"
     },
     {
       "name": "recipe_id",
       "camelName": "recipeId",
       "tsType": "number",
-      "optional": "",
-      "pascalName": "RecipeId"
+      "optional": ""
     },
     {
       "name": "item_id",
@@ -59,18 +59,18 @@
       "optional": ""
     }
   ],
-  "indexMethodParams": "[\"recipeId\"]",
+  "indexMethodParams": "[\"id\"]",
   "indexParamsColumns": "recipeId",
-  "indexTypeMethodName": "RecipeId",
+  "indexTypeMethodName": "Id",
   "indexMethodName": "arrayToObjectKey",
-  "indexTypeName": "TItemsRecipeMaterialsRecordByRecipeId",
+  "indexTypeName": "TItemsRecipeMaterialsRecordById",
   "indexColumns": [
     {
-      "name": "recipe_id",
-      "camelName": "recipeId",
+      "name": "id",
+      "camelName": "id",
       "tsType": "number",
       "optional": "",
-      "pascalName": "RecipeId"
+      "pascalName": "Id"
     }
   ],
   "apiPath": "app/api/items/recipe-materials/route.ts",

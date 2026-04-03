@@ -545,7 +545,7 @@
       "const allSkills = useAllSkillsState()"
     ],
     "description": "Destructuring useAllSkills hook"
-  },   
+  },
   "Destructure usePlayerRecipes": {
     "prefix": "hook_items_core_usePlayerRecipes",
     "body": [
@@ -569,5 +569,5 @@
       "const recipeMaterials = useItemsRecipeMaterialsState()"
     ],
     "description": "Destructuring useItemsRecipeMaterialsByKey hook"
-  },//Automatic Snippets
+  }, //Automatic Snippets
 }

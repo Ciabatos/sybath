@@ -26,6 +26,8 @@ import { TOtherPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/s
 import { TPlayerGearInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/playerGearInventory"
 import { TPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
 import { TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/items"
+import { TPlayerRecipesRecordByItemId } from "@/db/postgresMainDatabase/schemas/items/playerRecipes"
+import { TItemsRecipeMaterialsRecordById } from "@/db/postgresMainDatabase/schemas/items/recipeMaterials"
 import { TPlayerKnownPlayersRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/knowledge/playerKnownPlayers"
 import { TActivePlayerRecordById } from "@/db/postgresMainDatabase/schemas/players/activePlayer"
 import { TActivePlayerProfileRecordByName } from "@/db/postgresMainDatabase/schemas/players/activePlayerProfile"
@@ -54,8 +56,6 @@ import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { EPanelsTopCenterBar } from "@/types/enumeration/EPanelsTopCenterBar"
 import { atom } from "jotai"
-import { TPlayerRecipesRecordByItemId } from "@/db/postgresMainDatabase/schemas/items/playerRecipes"
-import { TItemsRecipeMaterialsRecordByRecipeId } from "@/db/postgresMainDatabase/schemas/items/recipeMaterials"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBottomCenterBar.Inactive)
@@ -79,7 +79,7 @@ export const playerMapTilesGuardAreaAtom = atom<TAreaRecordByXY>({})
 //Panels
 
 //Tables
-export const recipeMaterialsAtom = atom<TItemsRecipeMaterialsRecordByRecipeId>({})
+export const recipeMaterialsAtom = atom<TItemsRecipeMaterialsRecordById>({})
 export const mapTilesAtom = atom<TWorldMapTilesRecordByXY>({})
 export const inventorySlotTypesAtom = atom<TInventoryInventorySlotTypesRecordById>({})
 export const itemsAtom = atom<TItemsItemsRecordById>({})

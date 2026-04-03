@@ -15,7 +15,7 @@ export type TItemsRecipeMaterials = {
   quantity: number
 }
 
-export type TItemsRecipeMaterialsRecordByRecipeId = Record<string, TItemsRecipeMaterials>
+export type TItemsRecipeMaterialsRecordById = Record<string, TItemsRecipeMaterials>
 
 export async function getItemsRecipeMaterials() {
   try {

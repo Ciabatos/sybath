@@ -7,7 +7,7 @@ import { useFetchItemsRecipeMaterialsByKey } from "@/methods/hooks/items/core/us
 export default function useRecipeMaterials(recipeId: number) {
   useFetchItemsRecipeMaterialsByKey({ recipeId })
   const recipeMaterials = useItemsRecipeMaterialsState()
-
+  console.log("recipeMaterials", recipeMaterials)
   useFetchItemsItems()
   const items = useItemsItemsState()
 

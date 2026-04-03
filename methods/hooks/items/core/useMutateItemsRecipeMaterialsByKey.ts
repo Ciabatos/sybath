@@ -4,7 +4,7 @@
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
 import {
-  TItemsRecipeMaterialsRecordByRecipeId,
+  TItemsRecipeMaterialsRecordById,
   TItemsRecipeMaterialsParams,
   TItemsRecipeMaterials,
 } from "@/db/postgresMainDatabase/schemas/items/recipeMaterials"
@@ -39,9 +39,9 @@ export function useMutateItemsRecipeMaterials(params: TItemsRecipeMaterialsParam
       ...val,
     }))
 
-    const newObj = arrayToObjectKey(["recipeId"], dataWithDefaults) as TItemsRecipeMaterialsRecordByRecipeId
+    const newObj = arrayToObjectKey(["id"], dataWithDefaults) as TItemsRecipeMaterialsRecordById
 
-    const optimisticDataMergeWithOldData: TItemsRecipeMaterialsRecordByRecipeId = {
+    const optimisticDataMergeWithOldData: TItemsRecipeMaterialsRecordById = {
       ...recipeMaterials,
       ...newObj,
     }

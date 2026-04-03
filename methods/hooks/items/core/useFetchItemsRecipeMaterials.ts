@@ -2,7 +2,7 @@
 
 "use client"
 import {
-  TItemsRecipeMaterialsRecordByRecipeId,
+  TItemsRecipeMaterialsRecordById,
   TItemsRecipeMaterials,
 } from "@/db/postgresMainDatabase/schemas/items/recipeMaterials"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -18,7 +18,7 @@ export function useFetchItemsRecipeMaterials() {
 
   useEffect(() => {
     if (data) {
-      const recipeMaterials = arrayToObjectKey(["recipeId"], data) as TItemsRecipeMaterialsRecordByRecipeId
+      const recipeMaterials = arrayToObjectKey(["id"], data) as TItemsRecipeMaterialsRecordById
       setItemsRecipeMaterials(recipeMaterials)
     }
   }, [data, setItemsRecipeMaterials])

@@ -13,7 +13,7 @@ description: |
 
 # function function useFetchItemsRecipeMaterials()
 
-# Jotai atom name: const recipeMaterialsAtom = atom<TItemsRecipeMaterialsRecordByRecipeId>({})
+# Jotai atom name: const recipeMaterialsAtom = atom<TItemsRecipeMaterialsRecordById>({})
 
 ### Data Flow
 
@@ -28,7 +28,7 @@ description: |
 
 type TCacheRecord = {
   raw: TItemsRecipeMaterials[]
-  byKey: TItemsRecipeMaterialsRecordByRecipeId
+  byKey: TItemsRecipeMaterialsRecordById
   etag: string
 }
 
@@ -54,7 +54,7 @@ export type TItemsRecipeMaterials = {
   quantity: number
 }
 
-export type TItemsRecipeMaterialsRecordByRecipeId = Record<string, TItemsRecipeMaterials>
+export type TItemsRecipeMaterialsRecordById = Record<string, TItemsRecipeMaterials>
 
 Hook for mutate data using SWR
 # function path :`methods/hooks/items/core/useMutateItemsRecipeMaterials.ts`

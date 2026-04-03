@@ -2,7 +2,7 @@
 
 import type {
   TItemsRecipeMaterials,
-  TItemsRecipeMaterialsRecordByRecipeId,
+  TItemsRecipeMaterialsRecordById,
 } from "@/db/postgresMainDatabase/schemas/items/recipeMaterials"
 import { getItemsRecipeMaterials } from "@/db/postgresMainDatabase/schemas/items/recipeMaterials"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
@@ -11,7 +11,7 @@ import crypto from "crypto"
 
 type TCacheRecord = {
   raw: TItemsRecipeMaterials[]
-  byKey: TItemsRecipeMaterialsRecordByRecipeId
+  byKey: TItemsRecipeMaterialsRecordById
   etag: string
 }
 
@@ -63,7 +63,7 @@ export async function fetchItemsRecipeMaterialsService(options?: {
     }
   }
 
-  const byKey = arrayToObjectKey(["recipeId"], raw) as TItemsRecipeMaterialsRecordByRecipeId
+  const byKey = arrayToObjectKey(["id"], raw) as TItemsRecipeMaterialsRecordById
 
   const record: TCacheRecord = {
     raw,

@@ -13,7 +13,7 @@ description: |
 
 # function useFetchItemsRecipeMaterialsByKey( params: TItemsRecipeMaterialsParams )
 
-# Jotai atom name: const recipeMaterialsAtom = atom<TItemsRecipeMaterialsRecordByRecipeId>({})
+# Jotai atom name: const recipeMaterialsAtom = atom<TItemsRecipeMaterialsRecordById>({})
 
 ### Data Flow
 
@@ -33,7 +33,7 @@ const typeParamsSchema = z.object({
 
 type TCacheRecord = {
   raw: TItemsRecipeMaterials[]
-  byKey: TItemsRecipeMaterialsRecordByRecipeId
+  byKey: TItemsRecipeMaterialsRecordById
   etag: string
 }
 
@@ -59,7 +59,7 @@ export type TItemsRecipeMaterials = {
   quantity: number
 }
 
-export type TItemsRecipeMaterialsRecordByRecipeId = Record<string, TItemsRecipeMaterials>
+export type TItemsRecipeMaterialsRecordById = Record<string, TItemsRecipeMaterials>
 
 Hook for mutate data using SWR
 # function path :`methods/hooks/items/core/useMutateItemsRecipeMaterialsByKey.ts`
