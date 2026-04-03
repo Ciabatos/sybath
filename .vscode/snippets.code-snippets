@@ -553,5 +553,21 @@
       "const playerRecipes = usePlayerRecipesState()"
     ],
     "description": "Destructuring usePlayerRecipes hook"
+  },
+  "Destructure useItemsRecipeMaterials": {
+    "prefix": "hook_items_core_useItemsRecipeMaterials",
+    "body": [
+      "useFetchItemsRecipeMaterials()",
+      "const recipeMaterials = useItemsRecipeMaterialsState()"
+    ],
+    "description": "Destructuring useItemsRecipeMaterials hook"
+  },
+  "Destructure useItemsRecipeMaterialsByKey": {
+    "prefix": "hook_items_core_useItemsRecipeMaterialsByKey",
+    "body": [
+      "useFetchItemsRecipeMaterialsByKey({ recipeId })",
+      "const recipeMaterials = useItemsRecipeMaterialsState()"
+    ],
+    "description": "Destructuring useItemsRecipeMaterialsByKey hook"
   },//Automatic Snippets
 }

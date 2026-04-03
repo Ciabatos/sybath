@@ -55,6 +55,7 @@ import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { EPanelsTopCenterBar } from "@/types/enumeration/EPanelsTopCenterBar"
 import { atom } from "jotai"
 import { TPlayerRecipesRecordByItemId } from "@/db/postgresMainDatabase/schemas/items/playerRecipes"
+import { TItemsRecipeMaterialsRecordByRecipeId } from "@/db/postgresMainDatabase/schemas/items/recipeMaterials"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBottomCenterBar.Inactive)
@@ -78,6 +79,7 @@ export const playerMapTilesGuardAreaAtom = atom<TAreaRecordByXY>({})
 //Panels
 
 //Tables
+export const recipeMaterialsAtom = atom<TItemsRecipeMaterialsRecordByRecipeId>({})
 export const mapTilesAtom = atom<TWorldMapTilesRecordByXY>({})
 export const inventorySlotTypesAtom = atom<TInventoryInventorySlotTypesRecordById>({})
 export const itemsAtom = atom<TItemsItemsRecordById>({})

@@ -1,0 +1,84 @@
+{
+  "promptAnswers": {
+    "schema": "items",
+    "table": "recipe_materials",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "recipe_id"
+    ],
+    "paramsColumns": [
+      "recipe_id"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "items",
+  "table": "recipe_materials",
+  "tableCamelName": "recipeMaterials",
+  "tablePascalName": "RecipeMaterials",
+  "tableKebabName": "recipe-materials",
+  "schemaTablePascalName": "ItemsRecipeMaterials",
+  "methodTypeName": "TItemsRecipeMaterials",
+  "methodParamsTypeName": "TItemsRecipeMaterialsParams",
+  "methodParamsColumns": [
+    {
+      "name": "recipe_id",
+      "camelName": "recipeId",
+      "tsType": "number"
+    }
+  ],
+  "methodName": "getItemsRecipeMaterials",
+  "methodNameByKey": "getItemsRecipeMaterialsByKey",
+  "methodRecords": "get_recipe_materials",
+  "methodRecordsByKey": "get_recipe_materials_by_key",
+  "sqlParamsPlaceholders": "$1",
+  "methodColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "recipe_id",
+      "camelName": "recipeId",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "RecipeId"
+    },
+    {
+      "name": "item_id",
+      "camelName": "itemId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "quantity",
+      "camelName": "quantity",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"recipeId\"]",
+  "indexParamsColumns": "recipeId",
+  "indexTypeMethodName": "RecipeId",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TItemsRecipeMaterialsRecordByRecipeId",
+  "indexColumns": [
+    {
+      "name": "recipe_id",
+      "camelName": "recipeId",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "RecipeId"
+    }
+  ],
+  "apiPath": "app/api/items/recipe-materials/route.ts",
+  "apiPathParams": "/api/items/recipe-materials",
+  "apiPathByKey": "app/api/items/recipe-materials/[recipeId]/route.ts",
+  "apiPathParamsByKey": "/api/items/recipe-materials/${params.recipeId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true,
+  "fetcherName": "fetchItemsRecipeMaterials",
+  "fetcherNameByKey": "fetchItemsRecipeMaterialsByKey"
+}
