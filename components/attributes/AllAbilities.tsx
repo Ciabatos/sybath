@@ -32,6 +32,7 @@ export default function AllAbilities() {
               icon={getIcon(ability.image)}
               name={ability.name}
               description={ability.description}
+              value={ability.value}
             />
           ))}
         </div>

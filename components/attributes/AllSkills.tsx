@@ -31,6 +31,8 @@ export default function AllSkills() {
               key={skill.id}
               icon={getIcon(skill.image)}
               name={skill.name}
+              value={skill.value}
+              maxValue={10}
               description={skill.description}
             />
           ))}

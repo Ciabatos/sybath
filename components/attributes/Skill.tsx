@@ -4,9 +4,9 @@ import styles from "./styles/Skill.module.css"
 interface TSkillProps {
   icon: React.ReactNode
   name: string
-  value?: number
-  maxValue?: number
-  description?: string
+  value: number
+  maxValue: number
+  description: string
 }
 
 export default function Skill({ icon, name, value, maxValue, description }: TSkillProps) {
@@ -14,7 +14,7 @@ export default function Skill({ icon, name, value, maxValue, description }: TSki
   const percentage = hasMax ? (value / maxValue) * 100 : 0
 
   return (
-    <div className={styles.skillItem}>
+    <div className={`${styles.skillItem} ${value > 0 ? "" : styles.disabled}`}>
       <div className={styles.skillIcon}>
         <span className={styles.iconEmoji}>{icon}</span>
       </div>

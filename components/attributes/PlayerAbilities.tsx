@@ -29,6 +29,7 @@ export function PlayerAbilities() {
             icon={getIcon(playerAbility.image)}
             name={playerAbility.name}
             description={playerAbility.description}
+            value={playerAbility.value}
           />
         ))}
       </div>

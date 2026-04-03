@@ -7,13 +7,20 @@
   background: linear-gradient(135deg, #2b1810 0%, #1a0f08 100%);
   padding: 0.75rem;
 }
-
+.disabled {
+  filter: grayscale(100%);
+  pointer-events: none;
+}
 .abilityItem:hover {
   transform: translateX(4px);
   border-color: #c89a4a;
   background: linear-gradient(135deg, #3d2415 0%, #2b1810 100%);
 }
-
+.abilityItem.disabled:hover {
+  transform: none;
+  border-color: #4a3426;
+  background: linear-gradient(135deg, #2b1810 0%, #1a0f08 100%);
+}
 .abilityIcon {
   display: flex;
   position: relative;
