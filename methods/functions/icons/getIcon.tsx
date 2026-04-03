@@ -50,6 +50,7 @@ import {
   GiEyeTarget,
   GiFootsteps,
   GiSteeltoeBoots,
+  GiStoneAxe,
 } from "react-icons/gi"
 import styles from "./icons.module.css"
 
@@ -115,6 +116,7 @@ const iconMap: Record<string, JSX.Element> = {
   GiCrystalBall: <GiCrystalBall className={styles.gold} />,
   GiCrafting: <GiCrafting className={styles.gray} />,
   GiFootsteps: <GiFootsteps className={styles.brown} />,
+  GiStoneAxe: <GiStoneAxe className={styles.silver} />,
 }
 
 export default function getIcon(iconKey?: string) {
