@@ -52,6 +52,7 @@ import {
   GiFootsteps,
   GiHighGrass,
   GiMushroomGills,
+  GiRopeCoil,
   GiSteeltoeBoots,
   GiStoneAxe,
   GiStoneBlock,
@@ -61,6 +62,7 @@ import styles from "./icons.module.css"
 
 const iconMap: Record<string, JSX.Element> = {
   // Stats
+  GiRopeCoil: <GiRopeCoil className={styles.brown} />,
   GiMushroomGills: <GiMushroomGills className={styles.brown} />,
   GiHighGrass: <GiHighGrass className={styles.green} />,
   GiStoneBlock: <GiStoneBlock className={styles.gray} />,
