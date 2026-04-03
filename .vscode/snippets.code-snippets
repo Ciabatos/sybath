@@ -545,5 +545,13 @@
       "const allSkills = useAllSkillsState()"
     ],
     "description": "Destructuring useAllSkills hook"
-  }, //Automatic Snippets
+  },   
+  "Destructure usePlayerRecipes": {
+    "prefix": "hook_items_core_usePlayerRecipes",
+    "body": [
+      "useFetchPlayerRecipes({ playerId })",
+      "const playerRecipes = usePlayerRecipesState()"
+    ],
+    "description": "Destructuring usePlayerRecipes hook"
+  },//Automatic Snippets
 }

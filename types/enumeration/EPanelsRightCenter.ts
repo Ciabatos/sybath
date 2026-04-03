@@ -6,4 +6,5 @@ export enum EPanelsRightCenter {
   MapTileDetail = "MapTileDetail",
   OtherPlayerPanel = "OtherPlayerPanel",
   AllAbilities = "AllAbilities",
+  Crafting = "Crafting",
 }

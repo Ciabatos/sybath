@@ -1,0 +1,90 @@
+{
+  "promptAnswers": {
+    "schema": "items",
+    "method": "get_player_recipes",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "itemId"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "items",
+  "method": "get_player_recipes",
+  "methodCamelName": "playerRecipes",
+  "methodPascalName": "PlayerRecipes",
+  "methodKebabName": "get-player-recipes",
+  "methodName": "getPlayerRecipes",
+  "methodTypeName": "TPlayerRecipes",
+  "methodParamsTypeName": "TPlayerRecipesParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "pascalName": "Id",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "item_id",
+      "camelName": "itemId",
+      "pascalName": "ItemId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "description",
+      "camelName": "description",
+      "pascalName": "Description",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "image",
+      "camelName": "image",
+      "pascalName": "Image",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "skill_id",
+      "camelName": "skillId",
+      "pascalName": "SkillId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "value",
+      "camelName": "value",
+      "pascalName": "Value",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"itemId\"]",
+  "indexParamsColumns": "playerId",
+  "indexTypeMethodName": "ItemId",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TPlayerRecipesRecordByItemId",
+  "indexColumns": [
+    {
+      "name": "item_id",
+      "camelName": "itemId",
+      "pascalName": "ItemId",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1",
+  "apiPath": "app/api/items/rpc/get-player-recipes/[playerId]/route.ts",
+  "apiPathParams": "/api/items/rpc/get-player-recipes/${params.playerId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true
+}

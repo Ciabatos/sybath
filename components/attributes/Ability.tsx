@@ -1,4 +1,6 @@
 "use client"
+import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
+import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import styles from "./styles/Ability.module.css"
 
 interface TAbilityProps {
@@ -9,8 +11,19 @@ interface TAbilityProps {
 }
 
 export default function Ability({ icon, name, description, value }: TAbilityProps) {
+  const { openModalRightCenter } = useModalRightCenter()
+
+  function openAbility(name: string) {
+    if (name === "Craft") {
+      openModalRightCenter(EPanelsRightCenter.Crafting)
+    }
+  }
+
   return (
-    <div className={`${styles.abilityItem} ${value > 0 ? "" : styles.disabled}`}>
+    <div
+      onClick={() => openAbility(name)}
+      className={`${styles.abilityItem} ${value > 0 ? "" : styles.disabled}`}
+    >
       <div className={styles.abilityIcon}>
         <span className={styles.iconEmoji}>{icon}</span>
         <div className={styles.cooldownBadge}>{`X`}</div>
