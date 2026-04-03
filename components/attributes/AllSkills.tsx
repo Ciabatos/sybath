@@ -5,6 +5,7 @@ import getIcon from "@/methods/functions/icons/getIcon"
 import { useAllSKills } from "@/methods/hooks/attributes/composite/useAllSkills"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { X } from "lucide-react"
+import styles from "./styles/AllSkills.module.css"
 
 export default function AllSkills() {
   const { allSkills } = useAllSKills()
@@ -15,15 +16,8 @@ export default function AllSkills() {
   }
 
   return (
-    <>
+    <div className={styles.allSkillsContainer}>
       <div>
-        <Button
-          onClick={() => closeAllSkills()}
-          variant='ghost'
-          size='icon'
-        >
-          <X />
-        </Button>
         {Object.values(allSkills).map((skill) => (
           <Skill
             key={skill.id}
@@ -35,6 +29,13 @@ export default function AllSkills() {
           />
         ))}
       </div>
-    </>
+      <Button
+        onClick={() => closeAllSkills()}
+        variant='ghost'
+        size='icon'
+      >
+        <X />
+      </Button>
+    </div>
   )
 }

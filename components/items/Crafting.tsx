@@ -23,25 +23,20 @@ export default function Crafting() {
   }
 
   return (
-    <div className={style.panel}>
+    <div className={style.craftingContainer}>
+      {clickedRecipeId !== null && (
+        <div className={style.recipeMaterialsContainer}>
+          <RecipeMaterials recipeId={clickedRecipeId} />
+        </div>
+      )}
+
       <div>
-        {clickedRecipeId !== null && <RecipeMaterials recipeId={clickedRecipeId} />}
-        <Button
-          onClick={() => closeCrafting()}
-          variant='ghost'
-          size='icon'
-        >
-          <X />
-        </Button>
         {Object.values(playerRecipes).map((recipe) => (
           <div
             key={recipe.id}
-            onClick={() => {
-              clickRecipeMaterials(recipe.id)
-            }}
+            onClick={() => clickRecipeMaterials(recipe.id)}
           >
             <Recipe
-              key={recipe.id}
               icon={getIcon(recipe.image)}
               name={recipe.description}
               value={recipe.value}
@@ -51,6 +46,14 @@ export default function Crafting() {
           </div>
         ))}
       </div>
+
+      <Button
+        onClick={closeCrafting}
+        variant='ghost'
+        size='icon'
+      >
+        <X />
+      </Button>
     </div>
   )
 }

@@ -17,15 +17,8 @@ export default function AllAbilities() {
 
   return (
     <>
-      <div className={styles.skillsContainer}>
-        <div className={styles.skillsGrid}>
-          <Button
-            onClick={() => closeAllAbilities()}
-            variant='ghost'
-            size='icon'
-          >
-            <X />
-          </Button>
+      <div className={styles.allAbilitiesContainer}>
+        <div>
           {Object.values(allAbilities).map((ability) => (
             <Ability
               key={ability.id}
@@ -36,6 +29,13 @@ export default function AllAbilities() {
             />
           ))}
         </div>
+        <Button
+          onClick={() => closeAllAbilities()}
+          variant='ghost'
+          size='icon'
+        >
+          <X />
+        </Button>
       </div>
     </>
   )
