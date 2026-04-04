@@ -53,6 +53,7 @@ export type TPlayerRecipes = {
   image: string
   skillId: number
   value: number
+  canCraft: boolean
 }
 
 export type TPlayerRecipesRecordByItemId = Record<string, TPlayerRecipes>

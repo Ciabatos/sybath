@@ -66,6 +66,13 @@
       "pascalName": "Value",
       "tsType": "number",
       "optional": ""
+    },
+    {
+      "name": "can_craft",
+      "camelName": "canCraft",
+      "pascalName": "CanCraft",
+      "tsType": "boolean",
+      "optional": ""
     }
   ],
   "indexMethodParams": "[\"itemId\"]",

@@ -32,6 +32,7 @@ export function useMutatePlayerRecipes(params: TPlayerRecipesParams) {
       image: ``,
       skillId: ``,
       value: ``,
+      canCraft: ``,
     }
 
     //MANUAL CODE - END
