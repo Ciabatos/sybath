@@ -16,6 +16,7 @@ export type TPlayerRecipeMaterials = {
   quantity: number
   ownedQuantity: number
   missingQuantity: number
+  canCraftMissing: boolean
 }
 
 export type TPlayerRecipeMaterialsRecordById = Record<string, TPlayerRecipeMaterials>

@@ -24,6 +24,7 @@ export default function RecipeMaterials({ recipeId }: TRecipeMaterialsProps) {
             description={recipe.description}
             ownedQuantity={recipe.ownedQuantity}
             missingQuantity={recipe.missingQuantity}
+            canCraftMissing={recipe.canCraftMissing}
           />
         ))}
       </div>

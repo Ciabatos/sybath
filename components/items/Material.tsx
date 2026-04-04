@@ -9,6 +9,7 @@ interface TMaterialProps {
   description: string
   ownedQuantity: number
   missingQuantity: number
+  canCraftMissing: boolean
 }
 
 export default function Material({
@@ -19,6 +20,7 @@ export default function Material({
   description,
   ownedQuantity,
   missingQuantity,
+  canCraftMissing,
 }: TMaterialProps) {
   return (
     <div className={`${styles.skillItem} ${missingQuantity > 0 ? styles.disabled : ""}`}>
@@ -35,6 +37,7 @@ export default function Material({
         <div className={styles.skillName}>
           <p>Owned: {ownedQuantity}</p>
           <p>Missing: {missingQuantity}</p>
+          {missingQuantity > 0 && canCraftMissing && <p>Can craft missing</p>}
         </div>
       </div>
     </div>

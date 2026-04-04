@@ -71,6 +71,13 @@
       "pascalName": "MissingQuantity",
       "tsType": "number",
       "optional": ""
+    },
+    {
+      "name": "can_craft_missing",
+      "camelName": "canCraftMissing",
+      "pascalName": "CanCraftMissing",
+      "tsType": "boolean",
+      "optional": ""
     }
   ],
   "indexMethodParams": "[\"id\"]",

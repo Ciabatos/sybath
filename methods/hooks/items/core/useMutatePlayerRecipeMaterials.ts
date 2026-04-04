@@ -32,6 +32,7 @@ export function useMutatePlayerRecipeMaterials(params: TPlayerRecipeMaterialsPar
       quantity: ``,
       ownedQuantity: ``,
       missingQuantity: ``,
+      canCraftMissing: ``,
     }
 
     //MANUAL CODE - END
