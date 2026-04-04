@@ -1,6 +1,7 @@
 ZOD do do_action
 react flow - drzewko craftu
-
+Mozna miec ile sie chce campow, jeden na tile
+Look for hideout - i kradniesz
 
 dodatkowa zakladka na skill details, item details taki słownik z opisami i levelami co odblokowuje co mozna zrobic etc
 knowledge tree
@@ -80,6 +81,7 @@ Statusy spoleczne
   -Noble
 
 Walka:
+autobattler z programowalnym AI
 Gry: 
 -Millenia
 -Low Magic Age
@@ -108,6 +110,8 @@ Gry:
 -Dwarf Fortress
 
 --https://www.youtube.com/watch?v=B9B9y0KcgD0
+autobattler z programowalnym AI - reguly if then skill ...
+wojskowi z duza percepcja wyczajaja stan wroga i wykrzykuja go informujac reszte
 Zagrywane są karty akcji co turę (5 minut) i odpalane w sekwencji - potem tylko ogladasz replay rundy
 na przyklad atak, parry/rest, riposte
 --Blob na jednym tiles, kiedy jednostka jest przepchnięta jednostki mogą zajmować jeden tile ale mają ograniczony ruch (nie mogą atakować tylko movment/ucieczka z tile ich ratuje)
@@ -140,6 +144,7 @@ Użytkownik pisząc księge dostaje obrazki ładne z ai i odpowiada na pytania t
 --powstawanie nowych ras od bogow
 
 --Kultura
+--Kultura odblokowuje civic po ilosci osob ktora ja ma (monarhy etc)
 --podobnie do religii
 --Biblioteki, domy i inne budynki maja glowna kulture, wszystko w tym budynku nalezy do danej kultury i daje jej bonusy
 --Kulturowo dziedziczenie tradycji jak w CK3 - punkty na lvl up zalezy od peak max graczy
