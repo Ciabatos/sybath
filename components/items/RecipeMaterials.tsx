@@ -9,6 +9,8 @@ type TRecipeMaterialsProps = { recipeId: number }
 
 export default function RecipeMaterials({ recipeId }: TRecipeMaterialsProps) {
   const { combinedPlayerRecipeMaterials } = usePlayerRecipeMaterials(recipeId)
+
+  const hasMissingQuantity = Object.values(combinedPlayerRecipeMaterials).some((recipe) => recipe.missingQuantity <= 0)
   return (
     <>
       <div className={styles.panel}>
@@ -25,7 +27,7 @@ export default function RecipeMaterials({ recipeId }: TRecipeMaterialsProps) {
           />
         ))}
       </div>
-      <Button>Craft</Button>
+      {hasMissingQuantity && <Button>Craft</Button>}
     </>
   )
 }

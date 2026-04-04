@@ -21,7 +21,7 @@ export default function Material({
   missingQuantity,
 }: TMaterialProps) {
   return (
-    <div className={styles.skillItem}>
+    <div className={`${styles.skillItem} ${missingQuantity > 0 ? styles.disabled : ""}`}>
       <div className={styles.skillIcon}>
         <span className={styles.iconEmoji}>{icon}</span>
       </div>
