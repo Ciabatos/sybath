@@ -1,0 +1,95 @@
+{
+  "promptAnswers": {
+    "schema": "items",
+    "method": "get_player_recipe_materials",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "id"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "items",
+  "method": "get_player_recipe_materials",
+  "methodCamelName": "playerRecipeMaterials",
+  "methodPascalName": "PlayerRecipeMaterials",
+  "methodKebabName": "get-player-recipe-materials",
+  "methodName": "getPlayerRecipeMaterials",
+  "methodTypeName": "TPlayerRecipeMaterials",
+  "methodParamsTypeName": "TPlayerRecipeMaterialsParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    },
+    {
+      "name": "p_recipe_id",
+      "camelName": "recipeId",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "pascalName": "Id",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "recipe_id",
+      "camelName": "recipeId",
+      "pascalName": "RecipeId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "item_id",
+      "camelName": "itemId",
+      "pascalName": "ItemId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "quantity",
+      "camelName": "quantity",
+      "pascalName": "Quantity",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "owned_quantity",
+      "camelName": "ownedQuantity",
+      "pascalName": "OwnedQuantity",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "missing_quantity",
+      "camelName": "missingQuantity",
+      "pascalName": "MissingQuantity",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"id\"]",
+  "indexParamsColumns": "playerId, recipeId",
+  "indexTypeMethodName": "Id",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TPlayerRecipeMaterialsRecordById",
+  "indexColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "pascalName": "Id",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1, $2",
+  "apiPath": "app/api/items/rpc/get-player-recipe-materials/[playerId]/[recipeId]/route.ts",
+  "apiPathParams": "/api/items/rpc/get-player-recipe-materials/${params.playerId}/${params.recipeId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true
+}

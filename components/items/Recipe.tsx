@@ -7,14 +7,15 @@ interface TRecipeProps {
   value: number
   maxValue: number
   description: string
+  canCraft: boolean
 }
 
-export default function Recipe({ icon, name, value, maxValue, description }: TRecipeProps) {
+export default function Recipe({ icon, name, value, maxValue, description, canCraft }: TRecipeProps) {
   const hasMax = maxValue !== undefined && value !== undefined
   const percentage = hasMax ? (value / maxValue) * 100 : 0
 
   return (
-    <div className={`${styles.skillItem} ${value > 0 ? "" : styles.disabled}`}>
+    <div className={`${styles.skillItem} ${value > 0 && canCraft ? "" : styles.disabled}`}>
       <div className={styles.skillIcon}>
         <span className={styles.iconEmoji}>{icon}</span>
       </div>

@@ -42,6 +42,7 @@ export default function Crafting() {
               value={recipe.value}
               maxValue={10}
               description={recipe.description}
+              canCraft={recipe.canCraft}
             />
           </div>
         ))}

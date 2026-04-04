@@ -56,6 +56,7 @@ import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { EPanelsTopCenterBar } from "@/types/enumeration/EPanelsTopCenterBar"
 import { atom } from "jotai"
+import { TPlayerRecipeMaterialsRecordById } from "@/db/postgresMainDatabase/schemas/items/playerRecipeMaterials"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBottomCenterBar.Inactive)
@@ -96,6 +97,7 @@ export const terrainTypesAtom = atom<TWorldTerrainTypesRecordById>({})
 export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
 
 //Functions
+export const playerRecipeMaterialsAtom = atom<TPlayerRecipeMaterialsRecordById>({})
 export const playerRecipesAtom = atom<TPlayerRecipesRecordByItemId>({})
 export const allSkillsAtom = atom<TAllSkillsRecordById>({})
 export const allAbilitiesAtom = atom<TAllAbilitiesRecordById>({})

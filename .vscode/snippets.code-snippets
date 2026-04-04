@@ -569,5 +569,13 @@
       "const recipeMaterials = useItemsRecipeMaterialsState()"
     ],
     "description": "Destructuring useItemsRecipeMaterialsByKey hook"
-  }, //Automatic Snippets
+  },   
+  "Destructure usePlayerRecipeMaterials": {
+    "prefix": "hook_items_core_usePlayerRecipeMaterials",
+    "body": [
+      "useFetchPlayerRecipeMaterials({ playerId, recipeId })",
+      "const playerRecipeMaterials = usePlayerRecipeMaterialsState()"
+    ],
+    "description": "Destructuring usePlayerRecipeMaterials hook"
+  },//Automatic Snippets
 }

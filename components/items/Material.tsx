@@ -7,9 +7,19 @@ interface TMaterialProps {
   quantity: number
   name: string
   description: string
+  ownedQuantity: number
+  missingQuantity: number
 }
 
-export default function Material({ icon, itemId, quantity, name, description }: TMaterialProps) {
+export default function Material({
+  icon,
+  itemId,
+  quantity,
+  name,
+  description,
+  ownedQuantity,
+  missingQuantity,
+}: TMaterialProps) {
   return (
     <div className={styles.skillItem}>
       <div className={styles.skillIcon}>
@@ -22,6 +32,10 @@ export default function Material({ icon, itemId, quantity, name, description }: 
           </h3>
         </div>
         <p className={styles.skillDescription}>{description}</p>
+        <div className={styles.skillName}>
+          <p>Owned: {ownedQuantity}</p>
+          <p>Missing: {missingQuantity}</p>
+        </div>
       </div>
     </div>
   )
