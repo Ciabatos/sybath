@@ -5,14 +5,14 @@ import { Button } from "@/components/ui/button"
 import getIcon from "@/methods/functions/icons/getIcon"
 import usePlayerRecipes from "@/methods/hooks/items/composite/usePlayerRecipes"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
-import { Activity, X } from "lucide-react"
-import { useState } from "react"
+import { X } from "lucide-react"
+import { Activity, useState } from "react"
 import style from "./styles/Crafting.module.css"
 
 export default function Crafting() {
   const { playerRecipes } = usePlayerRecipes()
   const { resetModalRightCenter } = useModalRightCenter()
-  const [clickedRecipeId, setClickedRecipeId] = useState<number | null>(null)
+  const [clickedRecipeId, setClickedRecipeId] = useState<number>(0)
 
   function closeCrafting() {
     resetModalRightCenter()
@@ -21,12 +21,12 @@ export default function Crafting() {
   function clickRecipeMaterials(recipeId: number) {
     setClickedRecipeId(recipeId)
   }
-
+  console.log(clickedRecipeId)
   return (
     <div className={style.craftingContainer}>
-      <Activity mode={clickedRecipeId !== null ? "visible" : "hidden"}>
+      <Activity mode={clickedRecipeId > 0 ? "visible" : "hidden"}>
         <div className={style.recipeMaterialsContainer}>
-          {clickedRecipeId !== null && <RecipeMaterials recipeId={clickedRecipeId} />}
+          <RecipeMaterials recipeId={clickedRecipeId} />
         </div>
       </Activity>
 
