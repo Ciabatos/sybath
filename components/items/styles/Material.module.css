@@ -15,7 +15,6 @@
 }
 .disabled {
   filter: grayscale(100%);
-  pointer-events: none;
 }
 .skillItem.disabled:hover {
   transform: none;

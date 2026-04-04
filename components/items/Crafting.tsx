@@ -21,11 +21,11 @@ export default function Crafting() {
   function clickRecipeMaterials(recipeId: number) {
     setClickedRecipeId(recipeId)
   }
-  console.log(clickedRecipeId)
+
   return (
     <div className={style.craftingContainer}>
       <Activity mode={clickedRecipeId > 0 ? "visible" : "hidden"}>
-        <div className={style.recipeMaterialsContainer}>
+        <div>
           <RecipeMaterials recipeId={clickedRecipeId} />
         </div>
       </Activity>

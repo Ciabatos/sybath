@@ -1,7 +1,5 @@
 .craftingContainer {
   display: flex;
+  position: relative; /* dla z-index dzieci */
   flex-direction: row;
-  gap: 12px; /* odstęp między kolumnami */
-  width: 100%;
-  height: 100%;
 }

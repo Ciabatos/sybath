@@ -2,6 +2,7 @@
 import Material from "@/components/items/Material"
 import { Button } from "@/components/ui/button"
 import getIcon from "@/methods/functions/icons/getIcon"
+import { useCraftRecipe } from "@/methods/hooks/items/composite/useCraftRecipe"
 import usePlayerRecipeMaterials from "@/methods/hooks/items/composite/usePlayerRecipeMaterials"
 import styles from "./styles/RecipeMaterials.module.css"
 
@@ -9,12 +10,16 @@ type TRecipeMaterialsProps = { recipeId: number }
 
 export default function RecipeMaterials({ recipeId }: TRecipeMaterialsProps) {
   const { combinedPlayerRecipeMaterials } = usePlayerRecipeMaterials(recipeId)
+  const { craftRecipe } = useCraftRecipe({ recipeId })
 
   const hasMissingQuantity = Object.values(combinedPlayerRecipeMaterials).some((recipe) => recipe.missingQuantity > 0)
   const hasCanCraftMissing = Object.values(combinedPlayerRecipeMaterials).some(
     (recipe) => recipe.canCraftMissing === true,
   )
-
+  const handleClickCraft = () => {
+    console.log("CLICK", recipeId)
+    craftRecipe()
+  }
   return (
     <>
       <div className={styles.panel}>
@@ -31,8 +36,15 @@ export default function RecipeMaterials({ recipeId }: TRecipeMaterialsProps) {
             canCraftMissing={recipe.canCraftMissing}
           />
         ))}
+        <Button
+          onClick={handleClickCraft}
+          className={`${styles.craftButton} ${
+            hasMissingQuantity || hasCanCraftMissing ? styles.craftButtonDisabled : ""
+          }`}
+        >
+          Craft
+        </Button>
       </div>
-      {!hasMissingQuantity && !hasCanCraftMissing && <Button>Craft</Button>}
     </>
   )
 }
