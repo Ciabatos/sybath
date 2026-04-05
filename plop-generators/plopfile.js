@@ -1,3 +1,5 @@
+import createListPanels from "./createListPanels.js"
+import createNestedPanels from "./createNestedPanels.js"
 import createPanels from "./createPanels.js"
 import getMethodAction from "./getMethodAction.js"
 import getMethodFetcher from "./getMethodFetcher.js"
@@ -30,6 +32,8 @@ async function configurePlop(plop) {
     }
   })
   createPanels(plop)
+  createNestedPanels(plop)
+  createListPanels(plop)
 
   getMethodAction(plop)
 
