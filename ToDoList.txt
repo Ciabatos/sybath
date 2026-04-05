@@ -145,6 +145,7 @@ Użytkownik pisząc księge dostaje obrazki ładne z ai i odpowiada na pytania t
 
 --Kultura
 --Kultura odblokowuje civic po ilosci osob ktora ja ma (monarhy etc)
+-premia za ilosc ludzi jak w endless space 2 
 --podobnie do religii
 --Biblioteki, domy i inne budynki maja glowna kulture, wszystko w tym budynku nalezy do danej kultury i daje jej bonusy
 --Kulturowo dziedziczenie tradycji jak w CK3 - punkty na lvl up zalezy od peak max graczy

@@ -7,7 +7,7 @@ import usePlayerRecipes from "@/methods/hooks/items/composite/usePlayerRecipes"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { X } from "lucide-react"
 import { Activity, useState } from "react"
-import style from "./styles/Crafting.module.css"
+import styles from "./styles/Crafting.module.css"
 
 export default function Crafting() {
   const { playerRecipes } = usePlayerRecipes()
@@ -23,38 +23,38 @@ export default function Crafting() {
   }
 
   return (
-    <div className={style.craftingContainer}>
+    <div className={styles.overlay}>
       <Activity mode={clickedRecipeId > 0 ? "visible" : "hidden"}>
         <div>
           <RecipeMaterials recipeId={clickedRecipeId} />
         </div>
       </Activity>
-
-      <div>
-        {Object.values(playerRecipes).map((recipe) => (
-          <div
-            key={recipe.id}
-            onClick={() => clickRecipeMaterials(recipe.id)}
-          >
-            <Recipe
-              icon={getIcon(recipe.image)}
-              name={recipe.description}
-              value={recipe.value}
-              maxValue={10}
-              description={recipe.description}
-              canCraft={recipe.canCraft}
-            />
-          </div>
-        ))}
+      <div className={styles.panel}>
+        <Button
+          onClick={closeCrafting}
+          variant='ghost'
+          size='icon'
+        >
+          <X />
+        </Button>
+        <div>
+          {Object.values(playerRecipes).map((recipe) => (
+            <div
+              key={recipe.id}
+              onClick={() => clickRecipeMaterials(recipe.id)}
+            >
+              <Recipe
+                icon={getIcon(recipe.image)}
+                name={recipe.description}
+                value={recipe.value}
+                maxValue={10}
+                description={recipe.description}
+                canCraft={recipe.canCraft}
+              />
+            </div>
+          ))}
+        </div>
       </div>
-
-      <Button
-        onClick={closeCrafting}
-        variant='ghost'
-        size='icon'
-      >
-        <X />
-      </Button>
     </div>
   )
 }

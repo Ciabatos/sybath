@@ -1,7 +1,27 @@
 "use client"
 import styles from "./styles/{{newPanelName}}.module.css"
+import { Button } from "@/components/ui/button"
+import { X } from "lucide-react"
+import { useModal{{enumSuffix}} } from "@/methods/hooks/modals/useModal{{enumSuffix}}"
 
 export default function {{newPanelName}}() {
+  const { resetModal{{enumSuffix}} } = useModal{{enumSuffix}}()
 
+  function close{{newPanelName}}() {
+    resetModal{{enumSuffix}}()
+  }
 
+ return (
+    <div className={styles.overlay}>
+      <div className={styles.panel}>
+		<Button
+          onClick={ close{{newPanelName}} }
+          variant='ghost'
+          size='icon'
+        >
+          <X />
+        </Button>
+      </div>
+    </div>
+  )
 }

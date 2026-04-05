@@ -22,9 +22,9 @@ export default function createPanels(plop) {
         message: "Panel name without .tsx extension :",
       },
       {
-        type: "checkbox",
+        type: "list",
         name: "enumeration",
-        message: "Select modals to render the panels",
+        message: "Select modal to render the panels",
         choices: fs.readdirSync(MAIN_ROOT).filter((f) => fs.statSync(path.join(MAIN_ROOT, f)).isFile()),
         validate: (answer) => {
           if (answer.length < 1) {
@@ -37,6 +37,13 @@ export default function createPanels(plop) {
 
     actions(data) {
       const actions = []
+
+      const enumFileName = data.enumeration
+      const enumName = enumFileName.replace(/\.ts$/, "")
+      const enumSuffix = enumName.replace(/^EPanels/, "")
+      const panelName = `panel${enumSuffix}`
+
+      data.enumSuffix = enumSuffix
 
       actions.push(
         {
@@ -53,26 +60,20 @@ export default function createPanels(plop) {
         },
       )
 
-      data.enumeration.forEach((enumFileName) => {
-        const enumName = enumFileName.replace(/\.ts$/, "")
-        const enumSuffix = enumName.replace(/^EPanels/, "")
-        const panelName = `panel${enumSuffix}`
-
-        actions.push({
-          type: "modify",
-          path: `../types/enumeration/${enumFileName}`,
-          pattern: new RegExp(`(export enum ${enumName}\\s*\\{[\\s\\S]*?)(\\n\\})`),
-          template: `$1
+      actions.push({
+        type: "modify",
+        path: `../types/enumeration/${data.enumeration}`,
+        pattern: new RegExp(`(export enum ${enumName}\\s*\\{[\\s\\S]*?)(\\n\\})`),
+        template: `$1
   {{newPanelName}} = "{{newPanelName}}",$2`,
-        })
+      })
 
-        actions.push({
-          type: "modify",
-          path: `../types/panels/${panelName}.ts`,
-          pattern: new RegExp(`(export const ${panelName}[\\s\\S]*?=\\s*\\{[\\s\\S]*?)(\\n\\s*\\})`),
-          template: `$1
+      actions.push({
+        type: "modify",
+        path: `../types/panels/${panelName}.ts`,
+        pattern: new RegExp(`(export const ${panelName}[\\s\\S]*?=\\s*\\{[\\s\\S]*?)(\\n\\s*\\})`),
+        template: `$1
   [${enumName}.{{newPanelName}}]: React.lazy(() => import("@/components/{{choosenPath}}/{{newPanelName}}")),$2`,
-        })
       })
 
       return actions
