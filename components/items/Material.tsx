@@ -23,18 +23,18 @@ export default function Material({
   canCraftMissing,
 }: TMaterialProps) {
   return (
-    <div className={`${styles.skillItem} ${missingQuantity > 0 ? styles.disabled : ""}`}>
-      <div className={styles.skillIcon}>
-        <span className={styles.iconEmoji}>{icon}</span>
+    <div className={`${styles.listItem} ${missingQuantity > 0 ? styles.listItemDisabled : ""}`}>
+      <div className={styles.listItemIcon}>
+        <span className={styles.listItemIconEmoji}>{icon}</span>
       </div>
-      <div className={styles.skillContent}>
-        <div className={styles.skillHeader}>
-          <h3 className={styles.skillName}>
+      <div className={styles.listItemContent}>
+        <div className={styles.listItemHeader}>
+          <h3 className={styles.listItemName}>
             {name} x {quantity}
           </h3>
         </div>
-        <p className={styles.skillDescription}>{description}</p>
-        <div className={styles.skillName}>
+        <p className={styles.listItemDescription}>{description}</p>
+        <div className={styles.listItemStat}>
           <p>Owned: {ownedQuantity}</p>
           <p>Missing: {missingQuantity}</p>
           {missingQuantity > 0 && canCraftMissing && <p>Can craft missing</p>}
