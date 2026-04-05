@@ -1,3 +1,4 @@
+// GENERATED CODE - DO EDIT MANUALLY - createListPanels.hbs
 "use client"
 import styles from "./styles/{{newPanelName}}.module.css"
 
@@ -11,11 +12,17 @@ export default function {{newPanelName}}() {
       </div>
       <div className={styles.listItemContent}>
         <div className={styles.listItemHeader}>
-          <h3 className={styles.listItemName}>
-            name
-          </h3>
+          <h3 className={styles.listItemName}>name</h3>
         </div>
         <p className={styles.listItemDescription}>description</p>
+
+        <div className={styles.listItemBar}>
+          <div
+            className={styles.listItemBarFill}
+            style={{ width: `${50}%` }}
+          />
+        </div>
+
         <div className={styles.listItemStat}>
           <p>Owned: ownedQuantity</p>
           <p>Missing: missingQuantity</p>
