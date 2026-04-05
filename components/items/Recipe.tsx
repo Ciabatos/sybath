@@ -15,29 +15,29 @@ export default function Recipe({ icon, name, value, maxValue, description, canCr
   const percentage = hasMax ? (value / maxValue) * 100 : 0
 
   return (
-    <div className={`${styles.skillItem} ${value > 0 && canCraft ? "" : styles.disabled}`}>
-      <div className={styles.skillIcon}>
-        <span className={styles.iconEmoji}>{icon}</span>
+    <div className={`${styles.listItem} ${value > 0 && canCraft ? "" : styles.listItemDisabled}`}>
+      <div className={styles.listItemIcon}>
+        <span className={styles.listItemIconEmoji}>{icon}</span>
       </div>
-      <div className={styles.skillContent}>
-        <div className={styles.skillHeader}>
-          <h3 className={styles.skillName}>{name}</h3>
-          <div className={styles.skillLevel}>
-            <span className={styles.levelText}>
+      <div className={styles.listItemContent}>
+        <div className={styles.listItemHeader}>
+          <h3 className={styles.listItemName}>{name}</h3>
+          <div className={styles.listItemStat}>
+            <span>
               {value}
-              {hasMax && <span className={styles.statMax}>/{maxValue}</span>}
+              {hasMax && <span>/{maxValue}</span>}
             </span>
             {hasMax && (
-              <div className={styles.levelBar}>
+              <div className={styles.listItemBar}>
                 <div
-                  className={styles.levelProgress}
+                  className={styles.listItemBarFill}
                   style={{ width: `${percentage}%` }}
                 />
               </div>
             )}
           </div>
         </div>
-        <p className={styles.skillDescription}>{description}</p>
+        <p className={styles.listItemDescription}>{description}</p>
       </div>
     </div>
   )

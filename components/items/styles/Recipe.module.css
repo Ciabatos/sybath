@@ -1,36 +1,38 @@
-.skillItem {
+/* ─── Wrapper ───────────────────────────────────────────────────────────── */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* ─── Karta / wiersz ────────────────────────────────────────────────────── */
+.listItem {
   display: flex;
   gap: 1rem;
   transition: all 0.2s ease;
+  cursor: pointer;
   border: 2px solid #4a3426;
   border-radius: 6px;
   background: linear-gradient(135deg, #2b1810 0%, #1a0f08 100%);
   padding: 0.75rem;
 }
 
-.skillItem:hover {
-  transform: translateX(4px);
+.listItem:hover {
   border-color: #c89a4a;
   background: linear-gradient(135deg, #3d2415 0%, #2b1810 100%);
 }
-.disabled {
+
+.listItemDisabled {
   filter: grayscale(100%);
   pointer-events: none;
 }
-.skillItem.disabled:hover {
-  transform: none;
-  border-color: #4a3426;
-  background: linear-gradient(135deg, #2b1810 0%, #1a0f08 100%);
-}
-.skillIcon {
+
+/* ─── Ikona ─────────────────────────────────────────────────────────────── */
+.listItemIcon {
   display: flex;
   position: relative;
-  flex-shrink: 0;
   justify-content: center;
   align-items: center;
-  box-shadow:
-    inset 0 2px 4px rgba(0, 0, 0, 0.5),
-    0 4px 8px rgba(0, 0, 0, 0.3);
   border: 3px solid #6b4f3a;
   border-radius: 8px;
   background: radial-gradient(circle, #3d2415 0%, #1a0f08 100%);
@@ -38,29 +40,13 @@
   height: 44px;
 }
 
-.iconEmoji {
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+.listItemIconEmoji {
   font-size: 24px;
+  line-height: 1;
 }
 
-.categoryBadge {
-  position: absolute;
-  bottom: -6px;
-  left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  border: 2px solid #1a0f08;
-  border-radius: 12px;
-  padding: 2px 8px;
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 9px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.skillContent {
+/* ─── Lista lewa strona ───────────────────────────────────────────────────── */
+.listItemContent {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -68,7 +54,7 @@
   min-width: 0;
 }
 
-.skillHeader {
+.listItemHeader {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -76,7 +62,7 @@
   gap: 0.75rem;
 }
 
-.skillName {
+.listItemName {
   margin: 0;
   color: #d4a574;
   font-weight: 600;
@@ -84,14 +70,12 @@
   font-family: "Lora", serif;
 }
 
-.skillLevel {
+/* ─── Lista prawa strona ────────────────────────────────────────────────── */
+.listItemStat {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   min-width: 70px;
-}
-
-.levelText {
   color: #e6c998;
   font-weight: 700;
   font-size: 0.875rem;
@@ -99,12 +83,8 @@
   text-align: right;
 }
 
-.statMax {
-  color: rgba(230, 201, 152, 0.6);
-  font-weight: 400;
-}
-
-.levelBar {
+/* ─── Pasek ────────────────────────────────────────────────── */
+.listItemBar {
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
   border: 1px solid #4a3426;
   border-radius: 4px;
@@ -114,14 +94,15 @@
   overflow: hidden;
 }
 
-.levelProgress {
+.listItemBarFill {
   transition: width 0.3s ease;
   box-shadow: 0 0 8px rgba(200, 154, 74, 0.6);
   background: linear-gradient(90deg, #c89a4a 0%, #d4a574 50%, #e6c998 100%);
   height: 100%;
 }
 
-.skillDescription {
+/* ─── Lista dol ──────────────────────────────────────────────────────────────── */
+.listItemDescription {
   margin: 0;
   color: rgba(212, 165, 116, 0.8);
   font-style: italic;
@@ -130,32 +111,28 @@
   font-family: "Lora", serif;
 }
 
+/* ─── Responsive ────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .skillsContainer {
-    padding: 12px;
-  }
-
-  .skillItem {
+  .listItem {
     flex-direction: column;
     gap: 12px;
   }
 
-  .skillIcon {
+  .listItemIcon {
     width: 56px;
-    min-width: 56px;
     height: 56px;
   }
 
-  .iconEmoji {
+  .listItemIconEmoji {
     font-size: 28px;
   }
 
-  .skillHeader {
+  .listItemHeader {
     flex-direction: column;
     gap: 8px;
   }
 
-  .levelText {
+  .listItemStatValue {
     text-align: left;
   }
 }
