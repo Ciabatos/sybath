@@ -3,9 +3,9 @@ import path from "path"
 
 const COMPONENTS_ROOT = path.resolve("components")
 
-export default function createNestedPanel(plop) {
-  plop.setGenerator("createNestedPanel", {
-    description: "Create new nested panel",
+export default function createListPanels(plop) {
+  plop.setGenerator("createListPanels", {
+    description: "Create new list panels",
     prompts: [
       {
         type: "list",
@@ -29,13 +29,13 @@ export default function createNestedPanel(plop) {
         {
           type: "add",
           path: "../components/{{choosenPath}}/{{newPanelName}}.tsx",
-          templateFile: "plop-templates/createNestedPanels/panel.hbs",
+          templateFile: "plop-templates/createListPanels/panel.hbs",
           force: true,
         },
         {
           type: "add",
           path: "../components/{{choosenPath}}/styles/{{newPanelName}}.module.css",
-          templateFile: "plop-templates/createNestedPanels/panelStyle.hbs",
+          templateFile: "plop-templates/createListPanels/panelStyle.hbs",
           force: true,
         },
       )

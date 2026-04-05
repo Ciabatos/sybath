@@ -1,0 +1,26 @@
+"use client"
+import styles from "./styles/{{newPanelName}}.module.css"
+
+export default function {{newPanelName}}() {
+
+
+  return (
+    <div className={`${styles.listItem} ${missingQuantity > 0 ? styles.listItemDisabled : ""}`}>
+      <div className={styles.listItemIcon}>
+        <span className={styles.listItemIconEmoji}>icon</span>
+      </div>
+      <div className={styles.listItemContent}>
+        <div className={styles.listItemHeader}>
+          <h3 className={styles.listItemName}>
+            name
+          </h3>
+        </div>
+        <p className={styles.listItemDescription}>description</p>
+        <div className={styles.listItemStat}>
+          <p>Owned: ownedQuantity</p>
+          <p>Missing: missingQuantity</p>
+        </div>
+      </div>
+    </div>
+  )
+}
