@@ -37,10 +37,8 @@ export default function RecipeMaterials({ recipeId }: TRecipeMaterialsProps) {
           />
         ))}
         <Button
+          disabled={hasMissingQuantity || hasCanCraftMissing}
           onClick={handleClickCraft}
-          className={`${styles.craftButton} ${
-            hasMissingQuantity || hasCanCraftMissing ? styles.craftButtonDisabled : ""
-          }`}
         >
           Craft
         </Button>
