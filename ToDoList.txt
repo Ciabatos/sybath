@@ -1,7 +1,10 @@
 ZOD do do_action
-react flow - drzewko craftu
 Mozna miec ile sie chce campow, jeden na tile
 Look for hideout - i kradniesz
+Hideout like building - simple stash and hide bonus
+Spy on player
+Hidden Stance - minus to rest, movment speed slower
+Normal Stance
 
 dodatkowa zakladka na skill details, item details taki słownik z opisami i levelami co odblokowuje co mozna zrobic etc
 knowledge tree
@@ -39,6 +42,7 @@ Przywitanie Negatywne/Pozytwyne
 Negatywne daje nam mozliwosc zdobcyia bonusa np widok jego inventory
 Pozytywne daje nam mozliwosc prowadzenia negocjacji np zaproszenie do squadu w celu budowy tribeu
 --Nomadic
+  Daje możliwośc nowym graczom zrespawnowaniu sie w tej nomadic jezeli jest ustawiona na public/anyone can join vs only invite
   Unlock budowanie namiotu automatycznie czlonkowi, w nomadic sa tylko namioty
   Communal hall gdzie ludzie moga pracowac for free i np usatwic ze ucza skilla przez 5 godzin
   Bedac czlonkiem mozna oddawac knowledge o tilesach i exploracjach dla calego nomadic
@@ -144,6 +148,10 @@ Użytkownik pisząc księge dostaje obrazki ładne z ai i odpowiada na pytania t
 --powstawanie nowych ras od bogow
 
 --Kultura
+--Drzewko kultury jakie bonusy sie ma
+--RATIO USERS : PLAYERID - BARDZO WAZNE daje nam to block na multikonta !!! im mniej userow a wiecej playerow to lepszy bonus
+ale to dziala tylko z combo z kazdy nastepny PLAYER dla user jest gorszy przy tworzeniu kazdy nastepny przez pol 
+--Albo kazdy user ma interactionDiversity z innymi user id
 --Kultura odblokowuje civic po ilosci osob ktora ja ma (monarhy etc)
 -premia za ilosc ludzi jak w endless space 2 
 --podobnie do religii

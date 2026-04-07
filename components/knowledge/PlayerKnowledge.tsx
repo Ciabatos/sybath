@@ -1,15 +1,9 @@
-import PlayerPortrait from "@/components/players/PlayerPortrait"
-import { Button } from "@/components/ui/button"
+import OtherPlayerProfiles from "@/components/knowledge/OtherPlayerProfiles"
 import usePlayerKnownPlayers from "@/methods/hooks/knowledge/composite/usePlayerKnownPlayers"
-import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
-import { useSetOtherPlayerId } from "@/methods/hooks/players/composite/useOtherPlayerId"
-import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { MapPin, Skull } from "lucide-react"
 import styles from "./styles/PlayerKnowledge.module.css"
 
 export function PlayerKnowledge() {
-  const { openModalRightCenter } = useModalRightCenter()
-  const setOtherPlayerId = useSetOtherPlayerId()
   const { playerKnownPlayers } = usePlayerKnownPlayers()
   const crimesKnowledge = [
     {
@@ -25,11 +19,6 @@ export function PlayerKnowledge() {
       level: "Partial" as const,
     },
   ]
-
-  function handleClickPlayerPortrait(otherPlayerId: string) {
-    setOtherPlayerId(otherPlayerId)
-    openModalRightCenter(EPanelsRightCenter.OtherPlayerPanel)
-  }
 
   return (
     <div className={styles.container}>
@@ -66,26 +55,8 @@ export function PlayerKnowledge() {
         <h3 className={styles.categoryTitle}>Heroes</h3>
         <div className={styles.categoryItems}>
           {Object.entries(playerKnownPlayers).map(([key, player]) => (
-            <div
-              key={key}
-              className={styles.knowledgeItem}
-            >
-              <div className={styles.knowledgeInfo}>
-                <div className={styles.knowledgeHeader}>
-                  <h4 className={styles.knowledgeTitle}>
-                    {player.name
-                      ? player.name + (player.nickname ? ` (${player.nickname})` : "") + " " + player.secondName
-                      : player.otherPlayerId}
-                  </h4>
-                  <div className={styles.knowledgeIcon}>{player.x ? <MapPin /> : ""}</div>
-                </div>
-                <Button
-                  onClick={() => handleClickPlayerPortrait(player.otherPlayerId)}
-                  className={styles.heroButton}
-                >
-                  <PlayerPortrait imagePortrait={player.imagePortrait} />
-                </Button>
-              </div>
+            <div key={key}>
+              <OtherPlayerProfiles playerProfile={player} />
             </div>
           ))}
         </div>
