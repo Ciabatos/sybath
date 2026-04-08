@@ -1,0 +1,257 @@
+ZOD do do_action
+Mozna miec ile sie chce campow, jeden na tile Look for hideout - i kradniesz Hideout like building - simple stash and hide bonus
+Spy on player
+Hidden Stance - minus to rest, movment speed slower
+Normal Stance
+last seen - knowledge
+
+
+dodatkowa zakladka na otherplayer z akcjami np zapros do squadu
+Party teraz Squad 
+Movement w squadzie
+--wymiana inventory miedzy graczami, budynkami, squadami (ogolny panel trade na centrum ekranu ?)
+--pobieranie informacji o squad
+--zaproszenia/anulacje do squad
+--jezeli w squadzie jest wiecej niz 1 hero to zmiana ikony na mapie
+Podwalic pomysł od CK3 i CK2 interfejs, zwlaszcza familiy https://steamcommunity.com/sharedfiles/filedetails/?id=2838140104
+https://steamcommunity.com/sharedfiles/filedetails/?id=3276373926&searchtext=
+
+
+
+
+
+stability.ai Craiyon
+https://civitai.com/
+stable diffusion XL + 1.5 + stable-diffusion-webui 1111
+https://civitai.com/models/151297/game-scenes
+https://civitai.com/models/212451/fantasy-game-assets-grimoires-potions-swords-and-more
+https://civitai.com/models/97079/gameiconresearchcj2lora
+https://civitai.com/models/143301/game-icon-instituteanfgv3
+https://civitai.com/models/1857872/mobile-game-isometric-building-xl
+
+GENERATOR SPRITESHEETOW - https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/
+https://opengameart.org/
+https://www.spritefusion.com/editor
+https://itch.io/
+https://wareya.github.io/webtyler/
+https://steamcommunity.com/sharedfiles/filedetails/?id=756755380&searchtext=
+
+WEBGL - UNITY/PIXI/JSREACT - nie wydaje się takie trudne jak myślałem
+unityInstance.SendMessage - wysylanie danych do Unity i tam sa funkcje do przesylu do reacta
+
+
+WEB_SCOKETS/SSE
+POSTGRESQL NOTIFY LISTEN
+select * from pg_listening_channels();
+https://www.pedroalonso.net/blog/postgres-listen-notify-real-time/
+Triggery na bazie wysylaja NOTIFY LUB Backend przy akcjach wysyła Notify sprawdzając wszystkie playerID i tym playerom wysyła
+
+
+Odbiera go weboscket/SSE listener i rozdziela dla konkretnych graczy na backendzie
+na cliencie global websocket slucha i przekazuje do swr useeffect
+Przestaje w Hooku SWR robic pooling po 3 sekundy
+jak przyjdzie powiadomienie to robie mutateHooka i tyle 
+
+animacja bitwy w UNITY
+
+mam zrobione dane do wszystkich ruchow bitwy chce to przeslac do unity i stworzyc z tego filmik zgodnie z  ruchami z tych danych atakami itp jak to zrobic najprosciej
+ChatGPT said:
+
+Ok, jeśli masz wszystkie dane ruchów bitwy i chcesz zrobić z tego odtwarzanie w Unity (filmik/animacja bitwy), to najprostszy sposób to traktować te dane jak “timeline animacji”, czyli krok po kroku odtwarzać ruchy graczy, ataki, efekty itp. w scenie Unity.
+
+Oto prosty plan krok po kroku:
+
+1️⃣ Struktura danych
+
+Przykładowo możesz mieć JSON z ruchami bitwy:
+
+{
+  "turns": [
+    {
+      "playerId": 1,
+      "action": "move",
+      "to": {"x": 2, "y": 3},
+      "time": 0
+    },
+    {
+      "playerId": 2,
+      "action": "attack",
+      "targetId": 1,
+      "damage": 10,
+      "time": 1
+    },
+    ...
+  ]
+}
+
+
+time = kolejność / moment akcji
+
+action = typ akcji (move, attack, skill, effect)
+
+targetId / to = parametry akcji
+
+2️⃣ Skrypt BattleController w Unity
+
+W C# w Unity tworzysz coś w rodzaju odtwarzacza bitwy:
+
+using UnityEngine;
+using Newtonsoft.Json.Linq;
+using System.Collections;
+
+public class BattleController : MonoBehaviour
+{
+    public GameObject[] players; // tablica obiektów graczy
+
+    private JArray turns;
+
+    // Odbierasz dane JSON z React
+    public void LoadBattleData(string json)
+    {
+        turns = JArray.Parse(json);
+        StartCoroutine(PlayBattle());
+    }
+
+    private IEnumerator PlayBattle()
+    {
+        foreach (var turn in turns)
+        {
+            string action = (string)turn["action"];
+            int playerId = (int)turn["playerId"];
+            GameObject player = players[playerId];
+
+            if (action == "move")
+            {
+                float x = (float)turn["to"]["x"];
+                float y = (float)turn["to"]["y"];
+                // animacja ruchu
+                yield return StartCoroutine(MoveTo(player, new Vector3(x, 0, y), 0.5f));
+            }
+            else if (action == "attack")
+            {
+                int targetId = (int)turn["targetId"];
+                GameObject target = players[targetId];
+                // animacja ataku
+                yield return StartCoroutine(Attack(player, target));
+            }
+
+            yield return new WaitForSeconds(0.2f); // mała pauza między akcjami
+        }
+    }
+
+    private IEnumerator MoveTo(GameObject obj, Vector3 target, float duration)
+    {
+        Vector3 start = obj.transform.position;
+        float t = 0;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            obj.transform.position = Vector3.Lerp(start, target, t / duration);
+            yield return null;
+        }
+        obj.transform.position = target;
+    }
+
+    private IEnumerator Attack(GameObject attacker, GameObject target)
+    {
+        // prosty efekt: np. przesunięcie do celu i powrót
+        Vector3 start = attacker.transform.position;
+        Vector3 mid = target.transform.position + Vector3.back * 0.5f;
+        float t = 0;
+        float duration = 0.3f;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            attacker.transform.position = Vector3.Lerp(start, mid, t / duration);
+            yield return null;
+        }
+        attacker.transform.position = start;
+
+        // tu możesz dodać efekt trafienia, animację uderzenia itp.
+        yield return null;
+    }
+}
+
+3️⃣ Integracja z React / Next.js
+
+Wyślij JSON do Unity WebGL przez SendMessage:
+
+const battleData = { /* wszystkie ruchy bitwy */ }
+unityInstance.SendMessage(
+  "BattleController",
+  "LoadBattleData",
+  JSON.stringify(battleData)
+)
+
+
+Unity odbiera dane i odtwarza bitwę automatycznie.
+
+4️⃣ Rozbudowa animacji
+
+Możesz dodać efekty:
+
+ataki → animacja uderzenia, zmiana koloru
+
+heal → animacja leczenia
+
+spell → cząsteczki/efekty particle system
+
+Każda akcja w PlayBattle() wywołuje odpowiednią funkcję.
+
+5️⃣ Podsumowanie
+
+JSON = timeline bitwy
+
+Coroutine w Unity = odtwarzanie krok po kroku
+
+MoveTo / Attack = animacje ruchu i akcji
+
+React = tylko wysyła dane JSON do Unity
+
+💡 Tip: Jeśli chcesz nagrać “filmik” z bitwy w Unity WebGL:
+
+Możesz nagrać każdą klatkę do render texture → wyeksportować jako wideo.
+
+Albo użyć Unity Recorder (w edytorze) dla podglądu/developera.
+
+Jeżeli chcesz, mogę zrobić gotowy przykład w Unity WebGL, który:
+
+Ma 3 graczy
+
+Przyjmuje JSON bitwy z React
+
+Odtwarza wszystkie ruchy, ataki i animacje krok po kroku
+
+--Możliwe Poprawki WYDAJNOSCIOWE
+Jeżeli rerender jest za dlugi to :
+Atom Family DLA KAŻDEGO Z ATOMÓW + jakos tutaj można dodac deepEqual PRZYKŁAD:
+```
+export const knownMapTilesAtom = atom<TKnownMapTilesRecordByXY>({})
+export const knownMapTilesAtomFamily = atomFamily((tileKey: string) =>
+  atom((get): TKnownMapTiles | undefined => {
+    return get(knownMapTilesAtom)[tileKey]
+  })
+)
+```
+POTEM ATOMFAMILY DLA COMBINACJI ROZNYCH ATOMOW, PRZYKLAD:
+```
+export const combinedMapAtomFamily: TMapTile[] = atomFamily((tileKey: string) =>
+  atom((get): TMapTile | undefined => {
+    const tile = get(knownMapTilesAtomFamily(tileKey))
+    if (!tile) return undefined
+
+    const district = get(districtAtomFamily(tileKey))
+
+    return {
+      mapTiles: tile,
+      terrainTypes: tile.terrainTypeId ? get(terrainTypeAtomFamily(tile.terrainTypeId)) : undefined,
+      landscapeTypes: tile.landscapeTypeId ? get(landscapeTypeAtomFamily(tile.landscapeTypeId)) : undefined,
+      cities: get(citiesAtomFamily(tileKey)),
+      districts: district,
+      districtTypes: district?.districtTypeId ? get(districtTypeAtomFamily(district.districtTypeId)) : undefined,
+      playerPosition: get(playerPositionAtomFamily(tileKey)),
+      knownPlayersPositions: get(knownPlayersPositionAtomFamily(tileKey)),
+    }
+  }),
+)
+```

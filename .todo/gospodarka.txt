@@ -1,0 +1,35 @@
+Handel
+--Hanza !
+import/export
+--jezeli sie oplaca transport + cło z innego miasta to ludzie to wybieraja zamiast kupowac we wlasnym miescie
+
+
+
+Statusy spoleczne
+  -Niewolnik
+  -Pesant
+  -Citizen
+  -Noble
+
+--Manipulacja rynkiem przez graczy (PROBLEM)
+--Przynależność do nomadów gwarantuje żywność
+--Żywność samemu można zdobyć
+--Można niszczyć gospodarki miast takim czymś
+
+Inflacja i hiperinflacja(PROBLEM)
+--Waluty są wydawane przez państwa, ich podaż jest kontrolowana przez graczy wiec sami sa sobie winni
+
+Waluta(PROBLEM)
+--Waluta oficjalna tylko na danym terenie
+--Stworzyc kantor NPC do przeliczania wagi waluty, kupowanie i wymiana walut tylko kantorem
+--Podatek w walucie bazowej lub w innej walucie +15% różnica idzie do NPC (sink)
+--możliwośc niszczenia waluty
+drugi sposob :
+--Bank skupuje surowiec/walute i wydaje tyle coinsow po ile ustalil sobie cene
+--Banki ustalaja sobie kursy do innych walut tak samo jak do surowcow
+ np 1 drewno = 2 coinsy imperium
+    2 coinsy undead = 1 coins imperium
+--Banki moga nie wydawac depozytow
+
+Urzędnicy
+--Raporty, np dluznicy itp maja ten knowledge, chodzi mi o to, że samemu jeden gracz nie jest w stanie wszystkim zarządzać. Dlatego każde stanowisko będzie miało specjalne umiejętności

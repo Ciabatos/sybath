@@ -1,0 +1,23 @@
+
+--Kultura
+--Drzewko kultury jakie bonusy sie ma
+--RATIO USERS : PLAYERID - BARDZO WAZNE daje nam to block na multikonta !!! im mniej userow a wiecej playerow to lepszy bonus
+ale to dziala tylko z combo z kazdy nastepny PLAYER dla user jest gorszy przy tworzeniu kazdy nastepny przez pol 
+--Albo kazdy user ma interactionDiversity z innymi user id
+--Kultura odblokowuje civic po ilosci osob ktora ja ma (monarhy etc)
+-premia za ilosc ludzi jak w endless space 2 
+--podobnie do religii
+--Biblioteki, domy i inne budynki maja glowna kulture, wszystko w tym budynku nalezy do danej kultury i daje jej bonusy
+--Kulturowo dziedziczenie tradycji jak w CK3 - punkty na lvl up zalezy od peak max graczy
+--Kulturowo dziedziczenie wiedzy pernamentnej - jak w budynkach w danej kulturze jest dosc ksiazek w danej dziedzinie to ten skill jest od narodzin, jak ksiazki spalone to utracony bonus
+--Mozna do dziedziczenia wiedzy permanentnej doliczyc wiedze zywych graczy
+--Kulturowo dziedziczenie widoku mapy / wiedzy o lokacjach - to samo jak ksiazki ale mapy 
+
+
+Civics/Ustroje
+--Zaleznie od ludnosci?
+--Od kultury mieszkancow ?
+
+Przekazywanie dziedziczenie
+--punkty na rozdzielenie i np jak ojciec umial skill to moze wydac na to ze w dziecinstwie sie go nauczyl a jak nie to w co innego np sile wieksza
+--dziedziczy religie kulture nazwisko budynki kase

@@ -1,0 +1,6 @@
+--Crafting nowych surowcow (tworzenie indeksów IFS)
+--Z puli właściwości wybieramy kombinacje np 3
+--Tworzy się nowy surowiec 
+
+--Crafting itemów (Tworzenie marszrut i struktur IFS)
+--Kombinacja surowcow i/lub innych itemów w jeden następny
