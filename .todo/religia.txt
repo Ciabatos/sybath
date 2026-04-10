@@ -1,0 +1,18 @@
+--Religia
+--Biblioteki, domy i inne budynki maja glowna religie, wszystko w tym budynku nalezy do danej religi i daje jej punkty
+--Ilosc wiernych graczy tez moze dawac punkty jak relikwie z punktu wyzej
+--Promo konto - napisanie ksiegi coś jak księga z bibli
+Użytkownik pisząc księge dostaje obrazki ładne z ai i odpowiada na pytania tworząc:
+-nową religię, traity 
+-nowych bogow antagoniste i/lub dobrego
+--umiejetnosc nauczania religii
+--nowe miejsce na mapie/nowe regiony/nowa mape
+--nowe umiejetnosci
+--ksiege nazwana jego imieniem -- nie da sie jej zniszczyc a po przeczytaniu zna sie na 100% religie i mozna jej nauczac
+--historie z obrazkami co kazdy moze odtworzyc jak zna ta religie, musi byc fajna historia
+--artefakty, magie etc
+--wyprawy swiete ?
+--może dostęp do edytora nowej mapy i sam ja tworzy ? (tu duzo roboty)
+--dostep do edytora nowych surowcow ?
+--mega paywall/grind -- custom całej hitorii i wszystkiego (moze na punkty ?) -prawdziwa kasa i robota dla mnie jako DLC
+--powstawanie nowych ras od bogow

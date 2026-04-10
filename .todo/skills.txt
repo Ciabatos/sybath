@@ -1,0 +1,5 @@
+knowledge
+-- po 5 lvl mozna uczyc i budowac ulepszenie do budynku np warsztat etc
+--zbierasz inspiracje i odblokowujesz skill na 1 lvl knowledga co daje ci mozliwosc budoawania tych itemow w bardzo wolnym tempie
+--inspiracje zbieramy jak major i minior triumphs z civy, np zabij innego gracza, uzbieraj costam, stworz nowy material  
+-napisanie ksiazki na temat skilla (patrz co daje w kulturze)

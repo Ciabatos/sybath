@@ -1,0 +1,39 @@
+--Alone
+Przywitanie Negatywne/Pozytwyne 
+Negatywne daje nam mozliwosc zdobcyia bonusa np widok jego inventory
+Pozytywne daje nam mozliwosc prowadzenia negocjacji np zaproszenie do squadu w celu budowy tribeu
+--Nomadic
+  Daje możliwośc nowym graczom zrespawnowaniu sie w tej nomadic jezeli jest ustawiona na public/anyone can join vs only invite
+  Unlock budowanie namiotu automatycznie czlonkowi, w nomadic sa tylko namioty
+  Communal hall gdzie ludzie moga pracowac for free i np usatwic ze ucza skilla przez 5 godzin
+  Bedac czlonkiem mozna oddawac knowledge o tilesach i exploracjach dla calego nomadic
+  Trade normalny tylko ustawianie ceny dla citizens/obcy z czego AI zawsze bieze za darmo jedzenie jedyne ograniczenie to zakaz handlu foodem !
+  Ludzie AI nie posiadaja golda
+  Ludzie AI automatycznie przydzieleni do zbierania fooda wszyscy
+  Produkcja fooda ze zbieractwa zalezy od exploracji regionu w ktorym jest nomadic tribe
+  Mozna sprzedawac ludzi AI
+  Nie trzeba wyeksplorowac regionu do 100%, wystarczy hex na ktorym jest tribe
+  Sluzy do namnozenia ludzi, zachecenie do exploracji regionu, budowaniu najemnikow i stylu gry barbarzyncow pladrowania
+  Ilość ludzi zależy od FREE LAND - czyli tiles udostepnionych dla AI
+  Posiada tylko peasants
+--Wioska
+  -- Potrzebne jest waluta ! jeżeli waluta nie istnieje to natychmiast trzeba założyć (czyli potrzebne złoto jako gwarant)
+  decyduje sie na kingdome istniejacy lub zaklada nowy 
+  ma juz normalny targ
+  Ludzie AI posiadaja monete kingdoma
+  Ludzie AI automatycznie obsiadaja prace od najwyzej platynch do najmniej zgodnie ze statusem spolecznym
+  Prywatna ekonomia wioski wykupuje ziemie, żeby sie budować dla ludzi FREE LAND też pobieraja - czyli tiles udostepnionych dla AI
+  Posiada tylko peasants
+--Miasto
+  Posiada juz obywateli ktorzy moga pracowac w specjalistycznych warsztatach
+
+
+
+  -region
+  powstaje razem z province i kingdom lub przylacza sie do istniejacych
+-province
+  mozna przylaczyc regiony max 4
+-kingdome
+  Mozna wybic monety kingdoma lub przyjac inna monete istniejaca
+
+  w miescie nie mozna postaci zobaczyc, dopiero jak sie wejdzie w konkretny budynek

@@ -1,0 +1,47 @@
+Walka:
+autobattler z programowalnym AI
+Gry: 
+-Millenia
+-Low Magic Age
+-Slay the spire
+-Combo Card Clashers
+-Battle brothers
+-Dominions
+-Strategos
+-Imperator Rome
+-Shadow Empire
+-Pathbreakers: Roaming Blades
+-Neath
+-Folk Emerging
+-Songs of Syx
+-County of Fortune
+-loop hero
+-songs of conquest
+-mahokenshi
+-master of magic
+-hero hour
+-the iron oath
+-pathfinder - wrath of 
+-potionmics
+-stoneshard
+-victoria3
+-Dwarf Fortress
+-Humankind
+
+--https://www.youtube.com/watch?v=B9B9y0KcgD0
+autobattler z programowalnym AI - reguly if then skill ...
+wojskowi z duza percepcja wyczajaja stan wroga i wykrzykuja go informujac reszte
+Zagrywane są karty akcji co turę (5 minut) i odpalane w sekwencji - potem tylko ogladasz replay rundy
+na przyklad atak, parry/rest, riposte
+--Blob na jednym tiles, kiedy jednostka jest przepchnięta jednostki mogą zajmować jeden tile ale mają ograniczony ruch (nie mogą atakować tylko movment/ucieczka z tile ich ratuje)
+--utrata COHESION moze byc w taki sposob ze jednostka pozostaje na tilesie ale w CSS czyli wizualnie jest ona przemieszczona w strone innego tiles, w bazie danych to tez bedzie
+odwzorowane jakas statystyka ktora da minusa do cohesion tej jednostce i tez jednostce ktora stoi na tilesie na ktory nachodzi ta jednostka
+Bedzie to ladnie wygladalo jak wrog bedzie pushowal jednostki jedne na drugie blobowal, albo jak armia sie bedzie przemieszczac rozproszona
+Squady z duzym cohesion beda idealnie ustawione a te z malym beda nachodzic jedne na drugie
+
+Squad leader ustawia w jakiego rodzaju zolnierzy zamienia sie AI jednostki i jaki ekwipunek wymagaja
+-to nam daje ze robisz szybki replenish w wiosce kupujesz pop i ekwipunek masz juz w squadzie/army lub tez dokupujesz
+
+Jednostki moga chodzic luzno w obszarze zasiegu armii ?
+
+Zasieg armii to zone of control 
