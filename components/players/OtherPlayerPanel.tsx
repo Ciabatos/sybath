@@ -3,7 +3,6 @@ import { OtherPlayerAbilities } from "@/components/attributes/OtherPlayerAbiliti
 import { OtherPlayerSkills } from "@/components/attributes/OtherPlayerSkills"
 import OtherPlayerStats from "@/components/attributes/OtherPlayerStats"
 import { OtherPlayerCombinedInventory } from "@/components/inventory/OtherPlayerCombinedInventory"
-import { PlayerKnowledge } from "@/components/knowledge/PlayerKnowledge"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { createImage } from "@/methods/functions/util/createImage"
@@ -91,12 +90,6 @@ export default function OtherPlayerPanel() {
               >
                 Abilities
               </TabsTrigger>
-              <TabsTrigger
-                value='Knowledge'
-                className={styles.tabsTrigger}
-              >
-                Knowledge
-              </TabsTrigger>
             </TabsList>
 
             <TabsContent
@@ -125,13 +118,6 @@ export default function OtherPlayerPanel() {
               className={styles.tabsContent}
             >
               <OtherPlayerAbilities />
-            </TabsContent>
-
-            <TabsContent
-              value='Knowledge'
-              className={styles.tabsContent}
-            >
-              <PlayerKnowledge />
             </TabsContent>
           </Tabs>
         </div>

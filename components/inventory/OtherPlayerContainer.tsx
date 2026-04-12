@@ -9,19 +9,6 @@ export function OtherPlayerContainer() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.toolbar}>
-        <button
-          className={styles.sortButton}
-          title='Sortuj przedmioty'
-        >
-          🔄 Sortuj
-        </button>
-        <span className={styles.stats}>
-          Przedmioty: {combinedOtherPlayerInventory.filter((item) => item.itemId).length}/
-          {combinedOtherPlayerInventory.length}
-        </span>
-      </div>
-
       <div className={styles.grid}>
         {combinedOtherPlayerInventory.map((playerInventory) => (
           <InventorySlot

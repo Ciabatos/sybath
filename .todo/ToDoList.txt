@@ -19,7 +19,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3276373926&searchtext=
 
 
 
-
+ 
 stability.ai Craiyon
 https://civitai.com/
 stable diffusion XL + 1.5 + stable-diffusion-webui 1111

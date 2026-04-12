@@ -8,12 +8,14 @@ interface TAbilityProps {
   name: string
   description: string
   value: number
+  disabled?: boolean
 }
 
-export default function Ability({ icon, name, description, value }: TAbilityProps) {
+export default function Ability({ icon, name, description, value, disabled }: TAbilityProps) {
   const { openModalRightCenter } = useModalRightCenter()
 
-  function openAbility(name: string) {
+  function openAbility(name: string, disabled?: boolean) {
+    if (disabled) return
     if (name === "Craft") {
       openModalRightCenter(EPanelsRightCenter.Crafting)
     }
@@ -21,8 +23,8 @@ export default function Ability({ icon, name, description, value }: TAbilityProp
 
   return (
     <div
-      onClick={() => openAbility(name)}
-      className={`${styles.abilityItem} ${value > 0 ? "" : styles.disabled}`}
+      onClick={() => openAbility(name, disabled)}
+      className={`${styles.abilityItem} ${value <= 0 ? styles.disabled : ""}`}
     >
       <div className={styles.abilityIcon}>
         <span className={styles.iconEmoji}>{icon}</span>
