@@ -2,8 +2,9 @@ Handel
 --Hanza !
 import/export
 --jezeli sie oplaca transport + cło z innego miasta to ludzie to wybieraja zamiast kupowac we wlasnym miescie
-
-
+--w nomadzie i pozniej mozna utworzyc wlasny ryneczek tak zwany black market i wystawic przedmioty na sprzedaz
+ustawia barter wartosci tym czym chce handlowac automatycznie mini sklep
+wspolne pieniadze na konto - globalne - to sprawi ze mutlikonta to bullshit
 
 Statusy spoleczne
   -Niewolnik

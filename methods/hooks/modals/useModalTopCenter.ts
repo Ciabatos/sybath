@@ -13,9 +13,9 @@ export function useModalTopCenter() {
     setModalTopCenter(panel)
   }
 
-  function resetModalTopCeneter() {
+  function resetModalTopCenter() {
     setModalTopCenter(EPanelsTopCenter.Inactive)
   }
 
-  return { ModalTopCenter, openModalTopCenter, resetModalTopCeneter }
+  return { ModalTopCenter, openModalTopCenter, resetModalTopCenter }
 }

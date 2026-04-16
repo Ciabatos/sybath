@@ -4,13 +4,18 @@ import PlayerSquadPortrait from "@/components/players/PlayerSquadPortrait"
 import PlayerSwitchButton from "@/components/players/PlayerSwitchButton"
 import { Button } from "@/components/ui/button"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
+import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
 import { useActivePlayerProfile } from "@/methods/hooks/players/composite/useActivePlayerProfile"
+import { useActivePlayerSquad } from "@/methods/hooks/squad/composite/useActivePlayerSquad"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
+import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import styles from "./styles/PlayerRibbon.module.css"
 
 export default function PlayerRibbon() {
   const { openModalLeftTopBar } = useModalLeftTopBar()
   const { activePlayerProfile } = useActivePlayerProfile()
+  const { activePlayerSquad } = useActivePlayerSquad()
+  const { openModalTopCenter } = useModalTopCenter()
 
   if (!activePlayerProfile) return null
 
@@ -19,7 +24,11 @@ export default function PlayerRibbon() {
   }
 
   const handleClickPlayerSquadPortrait = () => {
-    openModalLeftTopBar(EPanelsLeftTopBar.PlayerSquad)
+    if (!activePlayerSquad) {
+      openModalTopCenter(EPanelsTopCenter.SquadControls)
+    } else {
+      openModalLeftTopBar(EPanelsLeftTopBar.PlayerSquad)
+    }
   }
 
   return (
