@@ -2,16 +2,21 @@
 "use client"
 import { Button } from "@/components/ui/button"
 import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
+import { useSquadControls } from "@/methods/hooks/squad/composite/useSquadControls"
 import { X } from "lucide-react"
 import styles from "./styles/SquadControls.module.css"
 
 export default function SquadControls() {
   const { resetModalTopCenter } = useModalTopCenter()
+  const { createSquad } = useSquadControls()
 
   function closeSquadControls() {
     resetModalTopCenter()
   }
 
+  function handleCreateSquad() {
+    createSquad()
+  }
   return (
     <div className={styles.overlay}>
       <div className={styles.panel}>
@@ -22,7 +27,7 @@ export default function SquadControls() {
         >
           <X />
         </Button>
-        <Button>Create Squad</Button>
+        <Button onClick={handleCreateSquad}>Create Squad</Button>
         <Button>Join Squad</Button>
       </div>
     </div>
