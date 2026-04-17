@@ -7,6 +7,7 @@ import {
   useFetchActivePlayerSwitchProfiles,
 } from "@/methods/hooks/players/core/useFetchActivePlayerSwitchProfiles"
 import { useMutateActivePlayer } from "@/methods/hooks/players/core/useMutateActivePlayer"
+import { toast } from "sonner"
 
 export function useActivePlayerSwitchProfiles() {
   const { playerId } = usePlayerId()
@@ -18,14 +19,14 @@ export function useActivePlayerSwitchProfiles() {
   async function switchPlayer(newPlayerId: number) {
     try {
       const result = await doSwitchActivePlayerAction({ playerId: playerId, switchToPlayerId: newPlayerId })
-      console.log(result)
+
       if (!result.status) {
-        return result.message
+        return toast.error(result?.message)
       }
 
       mutateActivePlayer([{ id: newPlayerId }])
 
-      return result.message
+      return toast.success(result?.message)
     } catch (err) {
       console.error("Unexpected error in switchPlayer:", err)
       return "Unexpected error occurred. Please refresh the page."

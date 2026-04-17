@@ -3,7 +3,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { createImage } from "@/methods/functions/util/createImage"
 import { useActivePlayerSwitchProfiles } from "@/methods/hooks/players/composite/useActivePlayerSwitchProfiles"
-import { toast } from "sonner"
+
 import styles from "./styles/PlayerSwitchList.module.css"
 
 export default function PlayerSwitchList() {
@@ -11,9 +11,8 @@ export default function PlayerSwitchList() {
   const { switchPlayer } = useActivePlayerSwitchProfiles()
   const { createPlayerPortrait } = createImage()
 
-  const handleClick = async (id: number) => {
-    const result = await switchPlayer(id)
-    toast.error(result)
+  function handleClick(id: number) {
+    switchPlayer(id)
   }
 
   return (
