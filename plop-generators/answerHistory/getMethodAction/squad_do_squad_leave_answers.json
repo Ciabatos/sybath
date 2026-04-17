@@ -1,0 +1,38 @@
+{
+  "promptAnswers": {
+    "schema": "squad",
+    "method": "do_squad_leave",
+    "usePrevious": false
+  },
+  "schema": "squad",
+  "method": "do_squad_leave",
+  "methodCamelName": "doSquadLeave",
+  "methodPascalName": "DoSquadLeave",
+  "methodName": "doSquadLeaveAction",
+  "methodTypeName": "TDoSquadLeave",
+  "methodParamsTypeName": "TDoSquadLeaveParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "status",
+      "camelName": "status",
+      "pascalName": "Status",
+      "tsType": "boolean",
+      "optional": ""
+    },
+    {
+      "name": "message",
+      "camelName": "message",
+      "pascalName": "Message",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1"
+}

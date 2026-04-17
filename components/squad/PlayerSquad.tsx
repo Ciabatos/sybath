@@ -10,14 +10,14 @@ import styles from "./styles/PlayerSquad.module.css"
 
 export default function PlayerSquad() {
   const { openModalLeftTopBar } = useModalLeftTopBar()
-  const { deleteSquad } = useSquadControls()
+  const { leaveSquad } = useSquadControls()
 
   function onClose() {
     openModalLeftTopBar(EPanelsLeftTopBar.PlayerRibbon)
   }
 
-  function handleDeleteSquad() {
-    deleteSquad()
+  function handleLeaveSquad() {
+    leaveSquad()
     openModalLeftTopBar(EPanelsLeftTopBar.PlayerRibbon)
   }
 
@@ -79,7 +79,7 @@ export default function PlayerSquad() {
             </div>
           </div>
         </div>
-        <Button onClick={handleDeleteSquad}>Delete Squad</Button>
+        <Button onClick={handleLeaveSquad}>Leave Squad</Button>
       </div>
     </div>
   )
