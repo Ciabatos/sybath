@@ -3,14 +3,21 @@
 import SquadPlayersProfiles from "@/components/squad/SquadPlayersProfiles"
 import { Button } from "@/components/ui/button"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
+import { useSquadControls } from "@/methods/hooks/squad/composite/useSquadControls"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
 import { Backpack, LandPlot, X } from "lucide-react"
 import styles from "./styles/PlayerSquad.module.css"
 
 export default function PlayerSquad() {
   const { openModalLeftTopBar } = useModalLeftTopBar()
+  const { deleteSquad } = useSquadControls()
 
   function onClose() {
+    openModalLeftTopBar(EPanelsLeftTopBar.PlayerRibbon)
+  }
+
+  function handleDeleteSquad() {
+    deleteSquad()
     openModalLeftTopBar(EPanelsLeftTopBar.PlayerRibbon)
   }
 
@@ -19,6 +26,7 @@ export default function PlayerSquad() {
       <div className={styles.panel}>
         <div className={styles.header}>
           <h2 className={styles.title}>Squad</h2>
+
           <Button
             onClick={onClose}
             variant='ghost'
@@ -71,6 +79,7 @@ export default function PlayerSquad() {
             </div>
           </div>
         </div>
+        <Button onClick={handleDeleteSquad}>Delete Squad</Button>
       </div>
     </div>
   )

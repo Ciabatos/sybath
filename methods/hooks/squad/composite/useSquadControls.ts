@@ -1,10 +1,13 @@
 "use client"
 
 import { doSquadCreateAction } from "@/methods/actions/squad/doSquadCreateAction"
+import { doSquadDeleteAction } from "@/methods/actions/squad/doSquadDeleteAction"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
+import { useMutateActivePlayerSquad } from "@/methods/hooks/squad/core/useMutateActivePlayerSquad"
 
 export function useSquadControls() {
   const { playerId } = usePlayerId()
+  const { mutateActivePlayerSquad } = useMutateActivePlayerSquad({ playerId })
 
   async function createSquad() {
     try {
@@ -14,6 +17,7 @@ export function useSquadControls() {
         return result.message
       }
 
+      mutateActivePlayerSquad()
       return result.message
     } catch (err) {
       console.error("Unexpected error in createSquad:", err)
@@ -23,12 +27,13 @@ export function useSquadControls() {
 
   async function deleteSquad() {
     try {
-      const result = await doSquadCreateAction({ playerId: playerId })
+      const result = await doSquadDeleteAction({ playerId: playerId })
 
       if (!result.status) {
         return result.message
       }
 
+      mutateActivePlayerSquad()
       return result.message
     } catch (err) {
       console.error("Unexpected error in deleteSquad:", err)
@@ -36,5 +41,5 @@ export function useSquadControls() {
     }
   }
 
-  return { createSquad }
+  return { createSquad, deleteSquad }
 }

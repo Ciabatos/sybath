@@ -16,6 +16,7 @@ export default function SquadControls() {
 
   function handleCreateSquad() {
     createSquad()
+    resetModalTopCenter()
   }
   return (
     <div className={styles.overlay}>
