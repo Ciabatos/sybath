@@ -1,0 +1,43 @@
+{
+  "promptAnswers": {
+    "schema": "squad",
+    "method": "do_squad_invite",
+    "usePrevious": false
+  },
+  "schema": "squad",
+  "method": "do_squad_invite",
+  "methodCamelName": "doSquadInvite",
+  "methodPascalName": "DoSquadInvite",
+  "methodName": "doSquadInviteAction",
+  "methodTypeName": "TDoSquadInvite",
+  "methodParamsTypeName": "TDoSquadInviteParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    },
+    {
+      "name": "p_invited_player_id",
+      "camelName": "invitedPlayerId",
+      "tsType": "string"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "status",
+      "camelName": "status",
+      "pascalName": "Status",
+      "tsType": "boolean",
+      "optional": ""
+    },
+    {
+      "name": "message",
+      "camelName": "message",
+      "pascalName": "Message",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1, $2"
+}

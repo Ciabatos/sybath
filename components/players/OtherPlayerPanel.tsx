@@ -9,6 +9,7 @@ import { createImage } from "@/methods/functions/util/createImage"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { useOtherPlayerId } from "@/methods/hooks/players/composite/useOtherPlayerId"
 import { useOtherPlayerProfile } from "@/methods/hooks/players/composite/useOtherPlayerProfile"
+import { useSquadControls } from "@/methods/hooks/squad/composite/useSquadControls"
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar"
 import { X } from "lucide-react"
 import styles from "./styles/OtherPlayerPanel.module.css"
@@ -18,6 +19,7 @@ export default function OtherPlayerPanel() {
   const { createPlayerPortrait } = createImage()
   const { otherPlayerProfile } = useOtherPlayerProfile()
   const otherPLayerId = useOtherPlayerId()
+  const { inviteToSquad } = useSquadControls()
 
   function onClose() {
     resetModalRightCenter()
@@ -59,7 +61,7 @@ export default function OtherPlayerPanel() {
             <p className={styles.heroTitle}>Inni głosują za nickiem lub nazywają{nickname}</p>
           </div>
         </div>
-
+        <Button onClick={inviteToSquad}>Invite to Squad</Button>
         <div className={styles.mainContent}>
           <Tabs
             defaultValue='Stats'
