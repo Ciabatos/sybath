@@ -54,11 +54,13 @@ export function useInventoryMonitor() {
     otherPlayerId,
   })
 
-  const mutators: Record<TInventoryType, (updates: TInventoryUpdate[]) => void> = {
-    playerInventory: mutatePlayerInventory,
-    playerGearInventory: mutatePlayerGearInventory,
-    otherPlayerInventory: mutateOtherPlayerInventory,
-    otherPlayerGearInventory: mutateOtherPlayerGearInventory,
+  const isSamePlayer = playerId === Number(otherPlayerId)
+
+  const mutators: Record<TInventoryType, ((updates: TInventoryUpdate[]) => void)[]> = {
+    playerInventory: [mutatePlayerInventory, ...(isSamePlayer ? [mutateOtherPlayerInventory] : [])],
+    playerGearInventory: [mutatePlayerGearInventory, ...(isSamePlayer ? [mutateOtherPlayerGearInventory] : [])],
+    otherPlayerInventory: [mutateOtherPlayerInventory, ...(isSamePlayer ? [mutatePlayerInventory] : [])],
+    otherPlayerGearInventory: [mutateOtherPlayerGearInventory, ...(isSamePlayer ? [mutatePlayerGearInventory] : [])],
   }
 
   useDragDropMonitor({
@@ -133,7 +135,7 @@ export function useInventoryMonitor() {
       const grouped = Object.groupBy(sides, (s) => s.type) as Partial<Record<TInventoryType, TInventoryUpdate[]>>
 
       for (const [type, updates] of Object.entries(grouped) as [TInventoryType, TInventoryUpdate[]][]) {
-        mutators[type]?.(updates)
+        mutators[type]?.forEach((fn) => fn(updates))
       }
 
       return result.message

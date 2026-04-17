@@ -11,7 +11,7 @@ import { X } from "lucide-react"
 import styles from "./styles/PlayersOnTile.module.css"
 
 export default function PlayersOnTile() {
-  const { resetModalTopCeneter } = useModalTopCenter()
+  const { resetModalTopCenter } = useModalTopCenter()
   const { openModalRightCenter } = useModalRightCenter()
   const setOtherPlayerId = useSetOtherPlayerId()
 
@@ -27,7 +27,7 @@ export default function PlayersOnTile() {
   }
 
   const onClose = () => {
-    resetModalTopCeneter()
+    resetModalTopCenter()
   }
 
   return (
