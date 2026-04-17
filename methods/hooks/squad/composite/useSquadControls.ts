@@ -18,7 +18,7 @@ export function useSquadControls() {
       const result = await doSquadCreateAction({ playerId: playerId })
 
       if (!result.status) {
-        toast.error(result?.message)
+        return toast.error(result?.message)
       }
 
       mutateActivePlayerSquad()
@@ -50,7 +50,7 @@ export function useSquadControls() {
       const result = await doSquadInviteAction({ playerId: playerId, invitedPlayerId: otherPlayerId })
 
       if (!result.status) {
-        toast.error(result?.message)
+        return toast.error(result?.message)
       }
 
       mutateActivePlayerSquad()
