@@ -2,6 +2,7 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
+import { createImage } from "@/methods/functions/util/createImage"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { useSetOtherPlayerId } from "@/methods/hooks/players/composite/useOtherPlayerId"
 import useActivePlayerSquadPlayersProfiles from "@/methods/hooks/squad/composite/useActivePlayerSquadPlayersProfiles"
@@ -12,6 +13,7 @@ export default function SquadPlayersProfiles() {
   const { openModalRightCenter } = useModalRightCenter()
   const { activePlayerSquadPlayersProfiles } = useActivePlayerSquadPlayersProfiles()
   const setOtherPlayerId = useSetOtherPlayerId()
+  const { createPlayerPortrait } = createImage()
 
   function handleClickDetails(otherPlayerId: string) {
     setOtherPlayerId(otherPlayerId)
@@ -26,12 +28,13 @@ export default function SquadPlayersProfiles() {
           className={styles.memberCard}
         >
           <div className={styles.memberHeader}>
-            <Avatar className={styles.memberAvatar}>
+            <Avatar className={styles.avatar}>
               <AvatarImage
-                src={player.imagePortrait || "/placeholder.svg"}
-                alt={player.name}
+                src={createPlayerPortrait(player?.imagePortrait)}
+                alt='Hero'
+                className={styles.avatarImage}
               />
-              <AvatarFallback className={styles.avatarFallback}>{player.name.substring(0, 2)}</AvatarFallback>
+              <AvatarFallback className={styles.avatarFallback}>{"VB"}</AvatarFallback>
             </Avatar>
             <div className={styles.memberInfo}>
               <h3 className={styles.memberName}>{player.name}</h3>

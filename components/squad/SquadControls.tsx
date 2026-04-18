@@ -29,7 +29,7 @@ export default function SquadControls() {
           <X />
         </Button>
         <Button onClick={handleCreateSquad}>Create Squad</Button>
-        <Button>Join Squad</Button>
+        <div>Pending Invites</div>
       </div>
     </div>
   )
