@@ -28,6 +28,14 @@ Gry:
 -Dwarf Fortress
 -Humankind
 
+fazy walki clashu (moze wiecej niz jedna runda do kazdego)
+attak / defend
+retret / counterattack
+np w ataku masz 2 ability a w defend 3 ability
+i potem retret 2 ability i counter 1 ability
+albo zamiast counter to restore albo prepare 
+commanderzy moga decydowac o fazach
+
 --https://www.youtube.com/watch?v=B9B9y0KcgD0
 autobattler z programowalnym AI - reguly if then skill ...
 wojskowi z duza percepcja wyczajaja stan wroga i wykrzykuja go informujac reszte
