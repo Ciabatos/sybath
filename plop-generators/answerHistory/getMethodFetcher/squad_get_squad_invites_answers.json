@@ -1,0 +1,90 @@
+{
+  "promptAnswers": {
+    "schema": "squad",
+    "method": "get_squad_invites",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "id"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "squad",
+  "method": "get_squad_invites",
+  "methodCamelName": "squadInvites",
+  "methodPascalName": "SquadInvites",
+  "methodKebabName": "get-squad-invites",
+  "methodName": "getSquadInvites",
+  "methodTypeName": "TSquadInvites",
+  "methodParamsTypeName": "TSquadInvitesParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number"
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "pascalName": "Id",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "description",
+      "camelName": "description",
+      "pascalName": "Description",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "pascalName": "Name",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "nickname",
+      "camelName": "nickname",
+      "pascalName": "Nickname",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "second_name",
+      "camelName": "secondName",
+      "pascalName": "SecondName",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "created_at",
+      "camelName": "createdAt",
+      "pascalName": "CreatedAt",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"id\"]",
+  "indexParamsColumns": "playerId",
+  "indexTypeMethodName": "Id",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TSquadInvitesRecordById",
+  "indexColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "pascalName": "Id",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1",
+  "apiPath": "app/api/squad/rpc/get-squad-invites/[playerId]/route.ts",
+  "apiPathParams": "/api/squad/rpc/get-squad-invites/${params.playerId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true
+}

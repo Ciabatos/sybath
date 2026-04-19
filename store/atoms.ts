@@ -26,6 +26,7 @@ import { TOtherPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/s
 import { TPlayerGearInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/playerGearInventory"
 import { TPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
 import { TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/items"
+import { TPlayerRecipeMaterialsRecordById } from "@/db/postgresMainDatabase/schemas/items/playerRecipeMaterials"
 import { TPlayerRecipesRecordByItemId } from "@/db/postgresMainDatabase/schemas/items/playerRecipes"
 import { TItemsRecipeMaterialsRecordById } from "@/db/postgresMainDatabase/schemas/items/recipeMaterials"
 import { TPlayerKnownPlayersRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/knowledge/playerKnownPlayers"
@@ -36,6 +37,7 @@ import { TOtherPlayerProfileRecordByName } from "@/db/postgresMainDatabase/schem
 import { TActivePlayerSquadRecordBySquadId } from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquad"
 import { TActivePlayerSquadPlayersProfilesRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquadPlayersProfiles"
 import { TOtherSquadPlayersProfilesRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/squad/otherSquadPlayersProfiles"
+import { TSquadInvitesRecordById } from "@/db/postgresMainDatabase/schemas/squad/squadInvites"
 import { TKnownMapRegionRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
 import { TKnownMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/knownMapTiles"
 import { TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId } from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnTile"
@@ -56,7 +58,6 @@ import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { EPanelsTopCenterBar } from "@/types/enumeration/EPanelsTopCenterBar"
 import { atom } from "jotai"
-import { TPlayerRecipeMaterialsRecordById } from "@/db/postgresMainDatabase/schemas/items/playerRecipeMaterials"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBottomCenterBar.Inactive)
@@ -97,6 +98,7 @@ export const terrainTypesAtom = atom<TWorldTerrainTypesRecordById>({})
 export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
 
 //Functions
+export const squadInvitesAtom = atom<TSquadInvitesRecordById>({})
 export const playerRecipeMaterialsAtom = atom<TPlayerRecipeMaterialsRecordById>({})
 export const playerRecipesAtom = atom<TPlayerRecipesRecordByItemId>({})
 export const allSkillsAtom = atom<TAllSkillsRecordById>({})

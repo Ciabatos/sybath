@@ -569,7 +569,7 @@
       "const recipeMaterials = useItemsRecipeMaterialsState()"
     ],
     "description": "Destructuring useItemsRecipeMaterialsByKey hook"
-  },   
+  },
   "Destructure usePlayerRecipeMaterials": {
     "prefix": "hook_items_core_usePlayerRecipeMaterials",
     "body": [
@@ -577,5 +577,13 @@
       "const playerRecipeMaterials = usePlayerRecipeMaterialsState()"
     ],
     "description": "Destructuring usePlayerRecipeMaterials hook"
-  },//Automatic Snippets
+  },
+  "Destructure useSquadInvites": {
+    "prefix": "hook_squad_core_useSquadInvites",
+    "body": [
+      "useFetchSquadInvites({ playerId })",
+      "const squadInvites = useSquadInvitesState()"
+    ],
+    "description": "Destructuring useSquadInvites hook"
+  }, //Automatic Snippets
 }
