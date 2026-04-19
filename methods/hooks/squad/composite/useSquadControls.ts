@@ -2,6 +2,7 @@
 
 import { doSquadCreateAction } from "@/methods/actions/squad/doSquadCreateAction"
 import { doSquadInviteAction } from "@/methods/actions/squad/doSquadInviteAction"
+import { doSquadJoinAction } from "@/methods/actions/squad/doSquadJoinAction"
 import { doSquadLeaveAction } from "@/methods/actions/squad/doSquadLeaveAction"
 import { useOtherPlayerId } from "@/methods/hooks/players/composite/useOtherPlayerId"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
@@ -61,5 +62,21 @@ export function useSquadControls() {
     }
   }
 
-  return { createSquad, leaveSquad, inviteToSquad }
+  async function joinSquad(squadInviteId: number) {
+    try {
+      const result = await doSquadJoinAction({ playerId: playerId, squadInviteId: squadInviteId })
+
+      if (!result.status) {
+        return toast.error(result?.message)
+      }
+
+      mutateActivePlayerSquad()
+      return toast.success(result?.message)
+    } catch (err) {
+      console.error("Unexpected error in joinSquad:", err)
+      return "Unexpected error occurred. Please refresh the page."
+    }
+  }
+
+  return { createSquad, leaveSquad, inviteToSquad, joinSquad }
 }

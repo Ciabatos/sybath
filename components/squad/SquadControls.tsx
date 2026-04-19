@@ -9,7 +9,7 @@ import styles from "./styles/SquadControls.module.css"
 
 export default function SquadControls() {
   const { resetModalTopCenter } = useModalTopCenter()
-  const { createSquad } = useSquadControls()
+  const { createSquad, joinSquad } = useSquadControls()
   const { squadInvites } = useSquadInvites()
 
   function closeSquadControls() {
@@ -20,6 +20,12 @@ export default function SquadControls() {
     createSquad()
     resetModalTopCenter()
   }
+
+  function handleJoinSquad(squadInviteId: number) {
+    joinSquad(squadInviteId)
+    resetModalTopCenter()
+  }
+
   return (
     <div className={styles.overlay}>
       <div className={styles.panel}>
@@ -33,7 +39,10 @@ export default function SquadControls() {
         <Button onClick={handleCreateSquad}>Create Squad</Button>
         <div>Pending Invites</div>
         {Object.values(squadInvites).map((invite) => (
-          <Button key={invite.id}>
+          <Button
+            key={invite.id}
+            onClick={() => handleJoinSquad(invite.id)}
+          >
             Invited to {invite.description} by {invite.name}
             {invite.nickname ? ` (${invite.nickname})` : ""} {invite.secondName}
           </Button>
