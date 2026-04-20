@@ -51,6 +51,13 @@
       "pascalName": "ImageMap",
       "tsType": "string",
       "optional": ""
+    },
+    {
+      "name": "in_squad",
+      "camelName": "inSquad",
+      "pascalName": "InSquad",
+      "tsType": "boolean",
+      "optional": ""
     }
   ],
   "indexMethodParams": "[\"x\", \"y\"]",
@@ -78,8 +85,5 @@
   "apiPath": "app/api/world/rpc/get-player-position/[mapId]/[playerId]/route.ts",
   "apiPathParams": "/api/world/rpc/get-player-position/${params.mapId}/${params.playerId}",
   "generateMutation": true,
-  "mutationMergeOldData": false,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ]
+  "mutationMergeOldData": false
 }

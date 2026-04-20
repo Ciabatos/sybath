@@ -30,6 +30,7 @@ export default function Map(props: TMapTile) {
 
   const {
     createPlayerImage,
+    createSquadImage,
     createLandscapeImage,
     createTerrainImage,
     createCitiesImage,
@@ -37,13 +38,19 @@ export default function Map(props: TMapTile) {
     combineImages,
   } = createImage()
 
+  const inSquad = props.playerPosition?.inSquad === true
+
+  const showPlayer = !inSquad
+  const showSquad = inSquad
   const backgroundImage = createTerrainImage(props.terrainTypes.imageUrl)
   const landscapeImage = createLandscapeImage(props.landscapeTypes?.imageUrl)
   const playerImage = createPlayerImage(props.playerPosition?.imageMap)
   const otherPlayerImage = createPlayerImage(props.knownPlayersPositions?.imageMap)
+  const squadImage = createSquadImage(props.playerPosition?.imageMap)
   const citiesImage = createCitiesImage(props.cities?.imageUrl)
   const districtsImage = creatDistrictsImage(props.districtTypes?.imageUrl)
   const combinedImages = combineImages(landscapeImage, backgroundImage)
+  console.log(props.playerPosition?.inSquad)
 
   return (
     <div
@@ -71,13 +78,18 @@ export default function Map(props: TMapTile) {
           }}
         ></div>
       )}
-      {playerImage && (
+      {showPlayer && (
         <div
           className={style.PlayerImage}
-          style={{
-            backgroundImage: playerImage,
-          }}
-        ></div>
+          style={{ backgroundImage: playerImage }}
+        />
+      )}
+
+      {showSquad && (
+        <div
+          className={style.PlayerImage}
+          style={{ backgroundImage: squadImage }}
+        />
       )}
       {otherPlayerImage && (
         <div

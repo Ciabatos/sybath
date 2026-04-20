@@ -21,6 +21,7 @@ export function useMutatePlayerPosition(params: TPlayerPositionParams) {
       x: ``,
       y: ``,
       imageMap: ``,
+      inSquad: ``,
     }
 
     //MANUAL CODE - END

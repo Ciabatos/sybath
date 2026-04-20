@@ -7,6 +7,10 @@ export function createImage() {
     return getImageUrlCss(imageUrl, "playersPicture")
   }
 
+  function createSquadImage(imageUrl: string | undefined) {
+    return getImageUrlCss(imageUrl, "squadPicture")
+  }
+
   function createLandscapeImage(imageUrl: string | undefined) {
     return getImageUrlCss(imageUrl, "landscapeTypePicture")
   }
@@ -37,6 +41,7 @@ export function createImage() {
 
   return {
     createPlayerImage,
+    createSquadImage,
     createLandscapeImage,
     createTerrainImage,
     createCitiesImage,

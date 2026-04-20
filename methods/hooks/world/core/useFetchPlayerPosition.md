@@ -52,6 +52,7 @@ export type TPlayerPosition = {
   x: number
   y: number
   imageMap: string
+  inSquad: boolean
 }
 
 export type TPlayerPositionRecordByXY = Record<string, TPlayerPosition>
