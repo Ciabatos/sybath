@@ -61,7 +61,8 @@ export default function OtherPlayerPanel() {
             <p className={styles.heroTitle}>Inni głosują za nickiem lub nazywają{nickname}</p>
           </div>
         </div>
-        <Button onClick={inviteToSquad}>Invite to Squad</Button>
+        <Button onClick={() => inviteToSquad(1, 2)}>Invite to Squad</Button>
+        <Button onClick={() => inviteToSquad(4, 2)}>Invite to Pernament</Button>
         <div className={styles.mainContent}>
           <Tabs
             defaultValue='Stats'

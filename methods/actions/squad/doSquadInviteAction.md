@@ -37,6 +37,8 @@ playerId: number
 export type TDoSquadInviteParams = {
   playerId: number
   invitedPlayerId: string
+  inviteType: number
+  squadRole: number
 }
 
 export type TDoSquadInvite = {

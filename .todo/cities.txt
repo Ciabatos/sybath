@@ -16,6 +16,7 @@ Pozytywne daje nam mozliwosc prowadzenia negocjacji np zaproszenie do squadu w c
   Sluzy do namnozenia ludzi, zachecenie do exploracji regionu, budowaniu najemnikow i stylu gry barbarzyncow pladrowania
   Ilość ludzi zależy od FREE LAND - czyli tiles udostepnionych dla AI
   Posiada tylko peasants
+  Minister of war - design modeli unitow
 --Wioska
   -- Potrzebne jest waluta ! jeżeli waluta nie istnieje to natychmiast trzeba założyć (czyli potrzebne złoto jako gwarant)
   decyduje sie na kingdome istniejacy lub zaklada nowy 

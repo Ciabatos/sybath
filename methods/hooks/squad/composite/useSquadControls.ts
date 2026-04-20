@@ -46,9 +46,14 @@ export function useSquadControls() {
     }
   }
 
-  async function inviteToSquad() {
+  async function inviteToSquad(inviteType: number, squadRole: number) {
     try {
-      const result = await doSquadInviteAction({ playerId: playerId, invitedPlayerId: otherPlayerId })
+      const result = await doSquadInviteAction({
+        playerId: playerId,
+        invitedPlayerId: otherPlayerId,
+        inviteType: inviteType,
+        squadRole: squadRole,
+      })
 
       if (!result.status) {
         return toast.error(result?.message)

@@ -21,6 +21,16 @@
       "name": "p_invited_player_id",
       "camelName": "invitedPlayerId",
       "tsType": "string"
+    },
+    {
+      "name": "p_invite_type",
+      "camelName": "inviteType",
+      "tsType": "number"
+    },
+    {
+      "name": "p_squad_role",
+      "camelName": "squadRole",
+      "tsType": "number"
     }
   ],
   "methodColumns": [
@@ -39,5 +49,5 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2"
+  "sqlParamsPlaceholders": "$1, $2, $3, $4"
 }

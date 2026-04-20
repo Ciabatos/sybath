@@ -10,6 +10,8 @@ export type TDoSquadInviteServiceParams = {
   sessionUserId: number
   playerId: number
   invitedPlayerId: string
+  inviteType: number
+  squadRole: number
 }
 
 //MANUAL CODE - END
@@ -30,12 +32,16 @@ export async function doSquadInviteService(params: TDoSquadInviteServiceParams) 
     //MANUAL CODE - START
 
     const invitedPlayerId = params.invitedPlayerId
+    const inviteType = params.inviteType
+    const squadRole = params.squadRole
 
     //MANUAL CODE - END
 
     const data: TDoSquadInviteParams = {
       playerId: playerId,
       invitedPlayerId: invitedPlayerId,
+      inviteType: inviteType,
+      squadRole: squadRole,
     }
 
     const result = await doSquadInvite(data)

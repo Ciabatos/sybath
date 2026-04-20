@@ -6,6 +6,8 @@ import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 export type TDoSquadInviteParams = {
   playerId: number
   invitedPlayerId: string
+  inviteType: number
+  squadRole: number
 }
 
 export type TDoSquadInvite = {
@@ -16,7 +18,7 @@ export type TDoSquadInvite = {
 export async function doSquadInvite(params: TDoSquadInviteParams) {
   try {
     const sqlParams = Object.values(params)
-    const sql = `SELECT * FROM squad.do_squad_invite($1, $2);`
+    const sql = `SELECT * FROM squad.do_squad_invite($1, $2, $3, $4);`
     const result = await query(sql, sqlParams)
 
     return result.rows[0] as TDoSquadInvite
