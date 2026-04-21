@@ -1,3 +1,6 @@
+
+DODAC JSONB - COMMENT NA KOLUMNIE
+
 ZOD do do_action
 Mozna miec ile sie chce campow, jeden na tile Look for hideout - i kradniesz Hideout like building - simple stash and hide bonus
 Spy on player
