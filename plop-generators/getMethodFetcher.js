@@ -1,17 +1,10 @@
 import fs from "fs"
 import path from "path"
-import {
-  getArgsArray,
-  parseParamsFields,
-  snakeToCamel,
-  snakeToKebab,
-  snakeToPascal,
-  stripPrefix,
-} from "./helpers/helpers.js"
+import { snakeToCamel, snakeToKebab, snakeToPascal, stripPrefix } from "./helpers/helpers.js"
 import {
   fetchCompositeType,
   fetchFunction,
-  fetchMethodFunctionArgs,
+  fetchMethodArgs,
   fetchMethodResultColumns,
   fetchSchemas,
 } from "./helpers/queries.js"
@@ -85,8 +78,7 @@ export default function getMethodFetcher(plop) {
       const methodTypeName = `T${methodPascalName}`
       const methodParamsTypeName = `${methodTypeName}Params`
 
-      // Zapewniamy że używamy parseParamsFields z helpers
-      const argsStr = await fetchMethodFunctionArgs(schema, method)
+      const { methodParamsColumns, argsArray, argsCompositeTypes } = await fetchMethodArgs(schema, method)
       const { resultColumns, compositeTypes } = await fetchMethodResultColumns(schema, method)
 
       // Ujednolicone pole methodColumns (tak jak w getTable)
@@ -113,9 +105,6 @@ export default function getMethodFetcher(plop) {
 
       // nazwa wrappera (funkcja generowanego get...)
       const methodName = snakeToCamel(method)
-      console.log(argsStr)
-      const methodParamsColumns = parseParamsFields(argsStr) // DRY, helpers version
-      const argsArray = getArgsArray(argsStr)
       const sqlParamsPlaceholders = argsArray.map((_, i) => `$${i + 1}`).join(", ")
 
       // Zapytaj użytkownika o wybór kolumn dla indexu

@@ -1,7 +1,7 @@
 import dotenv from "dotenv"
 import fs from "fs"
 import path from "path"
-import { camelToKebab, getArgsArray, mapSQLTypeToTS, snakeToCamel, snakeToPascal } from "./helpers/helpers.js"
+import { camelToKebab, mapSQLTypeToTS, snakeToCamel, snakeToPascal } from "./helpers/helpers.js"
 import {
   createMethodGetRecords,
   createMethodGetRecordsByKey,
@@ -173,8 +173,7 @@ export default function getTable(plop) {
       const methodRecords = `get_${table}`
       const methodRecordsByKey = `get_${table}_by_key`
 
-      const argsStr = await fetchMethodArgs(schema, methodRecordsByKey)
-      const argsArray = getArgsArray(argsStr)
+      const { argsArray } = await fetchMethodArgs(schema, methodRecordsByKey)
       const sqlParamsPlaceholders = argsArray.map((_, i) => `$${i + 1}`).join(", ")
 
       const apiParamPathSquareBrackets = methodParamsColumns.length
