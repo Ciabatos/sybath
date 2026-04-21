@@ -20,7 +20,7 @@ export const typeMap = {
   timestamptz: "string",
   time: "string",
   json: "any",
-  jsonb: "any",
+  jsonb: "jsonb",
   uuid: "string",
   bytea: "Buffer",
 }

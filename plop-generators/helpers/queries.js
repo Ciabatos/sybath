@@ -1,5 +1,5 @@
 import { createClient } from "./dbClient.js"
-import { mapSQLTypeToTS, snakeToCamel } from "./helpers.js"
+import { mapSQLTypeToTS, snakeToCamel, snakeToPascal } from "./helpers.js"
 
 export async function fetchSchemas() {
   const client = createClient()
@@ -116,6 +116,76 @@ export async function fetchFucntionForAction(schema) {
   }
 }
 
+export async function fetchCompositeTypeName(schema, method) {
+  const client = createClient()
+  await client.connect()
+
+  try {
+    const res = await client.query(
+      `
+      SELECT t.typname
+      FROM pg_type t
+      JOIN pg_namespace n
+          ON n.oid = t.typnamespace
+      JOIN pg_class c
+          ON c.oid = t.typrelid
+      JOIN pg_attribute a
+          ON a.attrelid = c.oid
+      LEFT JOIN pg_description d
+          ON d.objoid = t.oid
+      WHERE n.nspname = $1
+        AND d.description = $1 || '.' || $2
+        AND a.attnum > 0
+      ORDER BY t.typname
+      LIMIT 1;
+      `,
+      [schema, method],
+    )
+
+    return res.rows[0]?.typname || null
+  } finally {
+    await client.end()
+  }
+}
+
+export async function fetchCompositeType(schema, typeName) {
+  const client = createClient()
+  await client.connect()
+
+  try {
+    const res = await client.query(
+      `
+      SELECT
+          t.typname,
+          a.attname AS column_name,
+          format_type(a.atttypid, a.atttypmod) AS data_type
+      FROM pg_type t
+      JOIN pg_namespace n
+          ON n.oid = t.typnamespace
+      JOIN pg_class c
+          ON c.oid = t.typrelid
+      JOIN pg_attribute a
+          ON a.attrelid = c.oid
+      LEFT JOIN pg_description d
+          ON d.objoid = t.oid
+      WHERE n.nspname = $1
+        AND d.description = $1 || '.' || $2
+        AND a.attnum > 0
+      ORDER BY t.typname, a.attnum;
+    `,
+      [schema, typeName],
+    )
+
+    return res.rows.map((r) => ({
+      name: r.column_name,
+      camelName: snakeToCamel(r.column_name),
+      tsType: mapSQLTypeToTS(r.data_type),
+    }))
+  } finally {
+    await client.end()
+  }
+}
+
 export async function fetchMethodArgs(schema, method) {
   const client = createClient()
   await client.connect()
@@ -165,39 +235,68 @@ export async function fetchMethodResultColumns(schema, method) {
     const res = await client.query(
       `
       SELECT pg_get_function_result(p.oid) AS result
-      FROM pg_proc p
-      JOIN pg_namespace n ON p.pronamespace = n.oid
-      JOIN pg_description d ON d.objoid = p.oid
-      WHERE n.nspname = $1 AND p.proname = $2
-      AND d.description in ('get_api','action_api')
-    `,
+       FROM pg_proc p
+       JOIN pg_namespace n ON p.pronamespace = n.oid
+       JOIN pg_description d ON d.objoid = p.oid
+       WHERE n.nspname = $1 AND p.proname = $2
+       AND d.description in ('get_api','action_api')
+       `,
       [schema, method],
     )
     if (!res.rows[0]) throw new Error(`Function ${schema}.${method} not found`)
 
     const resultType = res.rows[0].result
     if (!resultType.startsWith("TABLE(")) {
-      return [{ name: "result", camelName: "result", type: mapSQLTypeToTS(resultType) }]
+      return {
+        columns: [{ name: "result", camelName: "result", type: mapSQLTypeToTS(resultType) }],
+        compositeTypes: [],
+      }
     }
 
     const tableMatch = resultType.match(/TABLE\((.*?)\)/)
-    if (!tableMatch) return [{ name: "result", camelName: "result", type: "any" }]
+    if (!tableMatch) {
+      return { columns: [{ name: "result", camelName: "result", type: "any" }], compositeTypes: [] }
+    }
 
-    return tableMatch[1]
-      .split(",")
-      .map((col) => {
+    const compositeTypes = []
+
+    const resultColumns = await Promise.all(
+      tableMatch[1].split(",").map(async (col) => {
         const [rawName, type] = col.trim().split(" ")
         const name = rawName.replace(/"/g, "")
+
+        let tsType = mapSQLTypeToTS(type)
+
+        // 🔥 JSONB handling
+        if (tsType === "jsonb") {
+          const baseTypeName = await fetchCompositeTypeName(schema, method)
+
+          if (baseTypeName) {
+            const tsName = "T" + snakeToPascal(baseTypeName) + "[]"
+
+            tsType = tsName
+
+            if (!compositeTypes.includes(baseTypeName)) {
+              compositeTypes.push(baseTypeName)
+            }
+          }
+        }
+
         return name && type
           ? {
               name,
               camelName: snakeToCamel(name),
-              pascalName: snakeToCamel(name),
-              type: mapSQLTypeToTS(type),
+              pascalName: snakeToPascal(name),
+              type: tsType,
             }
           : null
-      })
-      .filter(Boolean)
+      }),
+    )
+
+    return {
+      resultColumns: resultColumns.filter(Boolean),
+      compositeTypes,
+    }
   } finally {
     await client.end()
   }

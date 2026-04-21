@@ -11,6 +11,14 @@ export type {{methodParamsTypeName}} = {
 {{/each}}
 }{{/if}}
 
+{{#each compositeDefinitions}}
+export type {{typeName}} = {
+{{#each fields}}
+  {{camelName}}: {{tsType}}
+{{/each}}
+}
+{{/each}}
+
 export type {{methodTypeName}} = {
 {{#each methodColumns}}
   {{camelName}}{{optional}}: {{tsType}}

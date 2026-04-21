@@ -73,7 +73,7 @@ export default function getMethodAction(plop) {
 
       // Zapewniamy że używamy parseParamsFields z helpers
       const argsStr = await fetchMethodArgs(schema, method)
-      const resultColumns = await fetchMethodResultColumns(schema, method)
+      const { resultColumns, compositeTypes } = await fetchMethodResultColumns(schema, method)
 
       // Ujednolicone pole methodColumns (tak jak w getTable)
       const methodColumns = resultColumns.map((col) => ({
@@ -83,6 +83,19 @@ export default function getMethodAction(plop) {
         tsType: col.type,
         optional: "",
       }))
+
+      const compositeDefinitions = []
+
+      for (const typeName of compositeTypes) {
+        const fields = await fetchCompositeType(schema, method)
+
+        const pascal = snakeToPascal(typeName)
+
+        compositeDefinitions.push({
+          typeName: `T${pascal}`,
+          fields,
+        })
+      }
 
       // nazwa wrappera (funkcja generowanego get...)
       const methodName = `${methodCamelName}Action`
@@ -109,6 +122,7 @@ export default function getMethodAction(plop) {
         methodParamsColumns,
         methodColumns,
         sqlParamsPlaceholders,
+        compositeDefinitions,
       })
 
       return {
@@ -123,6 +137,7 @@ export default function getMethodAction(plop) {
         methodParamsColumns,
         methodColumns,
         sqlParamsPlaceholders,
+        compositeDefinitions,
       }
     },
 

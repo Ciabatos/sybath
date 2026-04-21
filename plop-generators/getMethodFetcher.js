@@ -8,7 +8,13 @@ import {
   snakeToPascal,
   stripPrefix,
 } from "./helpers/helpers.js"
-import { fetchFunction, fetchMethodFunctionArgs, fetchMethodResultColumns, fetchSchemas } from "./helpers/queries.js"
+import {
+  fetchCompositeType,
+  fetchFunction,
+  fetchMethodFunctionArgs,
+  fetchMethodResultColumns,
+  fetchSchemas,
+} from "./helpers/queries.js"
 
 // Generator plop
 export default function getMethodFetcher(plop) {
@@ -81,7 +87,7 @@ export default function getMethodFetcher(plop) {
 
       // Zapewniamy że używamy parseParamsFields z helpers
       const argsStr = await fetchMethodFunctionArgs(schema, method)
-      const resultColumns = await fetchMethodResultColumns(schema, method)
+      const { resultColumns, compositeTypes } = await fetchMethodResultColumns(schema, method)
 
       // Ujednolicone pole methodColumns (tak jak w getTable)
       const methodColumns = resultColumns.map((col) => ({
@@ -91,6 +97,19 @@ export default function getMethodFetcher(plop) {
         tsType: col.type,
         optional: "",
       }))
+
+      const compositeDefinitions = []
+
+      for (const typeName of compositeTypes) {
+        const fields = await fetchCompositeType(schema, method)
+
+        const pascal = snakeToPascal(typeName)
+
+        compositeDefinitions.push({
+          typeName: `T${pascal}`,
+          fields,
+        })
+      }
 
       // nazwa wrappera (funkcja generowanego get...)
       const methodName = snakeToCamel(method)
@@ -210,6 +229,7 @@ export default function getMethodFetcher(plop) {
         apiPathParams,
         generateMutation,
         mutationMergeOldData,
+        compositeDefinitions,
       })
 
       return {
@@ -235,6 +255,7 @@ export default function getMethodFetcher(plop) {
         apiPathParams,
         generateMutation,
         mutationMergeOldData,
+        compositeDefinitions,
       }
     },
 
