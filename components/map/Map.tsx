@@ -69,6 +69,7 @@ export default function Map(props: TMapTile) {
           }}
         ></div>
       )}
+
       {districtsImage && (
         <div
           className={style.DistrictsImage}
@@ -103,6 +104,7 @@ export default function Map(props: TMapTile) {
           style={{ backgroundImage: otherPlayerSquadImage }}
         />
       )}
+
       <div>
         {props.mapTiles.x}, {props.mapTiles.y}, {props.cities?.name}, {props.districts?.name}
         <TileLayersHandling {...props} />

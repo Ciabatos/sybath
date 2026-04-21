@@ -283,6 +283,7 @@ export default function MapTileDetail() {
 
           <section className={styles.section}>
             <div className={styles.actionButtons}>
+              <Button className={styles.actionButton}>Set Special Place Like TradePost or church</Button>
               <Button className={styles.actionButton}>Set Camp</Button>
 
               {/*  MOVEMENT LOGIC */}
