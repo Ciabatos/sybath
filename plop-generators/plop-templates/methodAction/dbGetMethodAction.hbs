@@ -3,6 +3,14 @@
 "use server"
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 
+{{#each compositeDefinitions}}
+export type {{typeName}} = {
+{{#each fields}}
+  {{camelName}}: {{tsType}}
+{{/each}}
+}
+{{/each}}
+
 {{#if methodParamsColumns}}
 export type {{methodParamsTypeName}} = {
 {{#each methodParamsColumns}}
@@ -19,7 +27,15 @@ export type {{methodTypeName}} = {
 export async function {{methodCamelName}}({{#if methodParamsColumns}}params: {{methodParamsTypeName}}{{/if}}) {
   try {
     {{#if methodParamsColumns}}
-    const sqlParams = Object.values(params)
+    const sqlParams = [
+{{#each methodParamsColumns}}
+      {{#if isJson}}
+      JSON.stringify(params.{{camelName}})
+      {{else}}
+      params.{{camelName}}
+      {{/if}}{{#unless @last}},{{/unless}}
+{{/each}}
+    ]
     const sql = `SELECT * FROM {{schema}}.{{method}}({{sqlParamsPlaceholders}});`
     const result = await query(sql, sqlParams)
     {{else}}

@@ -74,6 +74,8 @@ export function parseParamsFields(argsStr) {
       if (spaceIndex === -1) return null
       const name = trimmed.substring(0, spaceIndex)
       const sqlType = trimmed.substring(spaceIndex + 1)
+      const tsType = mapSQLTypeToTS(sqlType)
+
       return {
         name,
         camelName: snakeToCamel(name),

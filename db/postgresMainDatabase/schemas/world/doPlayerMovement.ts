@@ -3,9 +3,17 @@
 "use server"
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 
+export type TCtPath = {
+  order: number
+  mapId: number
+  x: number
+  y: number
+  totalMoveCost: number
+}
+
 export type TDoPlayerMovementParams = {
   playerId: number
-  path: any
+  path: TCtPath[]
 }
 
 export type TDoPlayerMovement = {

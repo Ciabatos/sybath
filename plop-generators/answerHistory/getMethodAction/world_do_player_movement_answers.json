@@ -15,12 +15,14 @@
     {
       "name": "p_player_id",
       "camelName": "playerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     },
     {
       "name": "p_path",
       "camelName": "path",
-      "tsType": "any"
+      "tsType": "TCtPath[]",
+      "isJson": true
     }
   ],
   "methodColumns": [
@@ -39,5 +41,37 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2"
+  "sqlParamsPlaceholders": "$1, $2",
+  "compositeDefinitions": [
+    {
+      "typeName": "TCtPath",
+      "fields": [
+        {
+          "name": "order",
+          "camelName": "order",
+          "tsType": "number"
+        },
+        {
+          "name": "map_id",
+          "camelName": "mapId",
+          "tsType": "number"
+        },
+        {
+          "name": "x",
+          "camelName": "x",
+          "tsType": "number"
+        },
+        {
+          "name": "y",
+          "camelName": "y",
+          "tsType": "number"
+        },
+        {
+          "name": "total_move_cost",
+          "camelName": "totalMoveCost",
+          "tsType": "number"
+        }
+      ]
+    }
+  ]
 }

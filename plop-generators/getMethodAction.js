@@ -1,7 +1,13 @@
 import fs from "fs"
 import path from "path"
-import { getArgsArray, parseParamsFields, snakeToCamel, snakeToPascal } from "./helpers/helpers.js"
-import { fetchFucntionForAction, fetchMethodArgs, fetchMethodResultColumns, fetchSchemas } from "./helpers/queries.js"
+import { snakeToCamel, snakeToPascal } from "./helpers/helpers.js"
+import {
+  fetchCompositeType,
+  fetchFucntionForAction,
+  fetchMethodArgs,
+  fetchMethodResultColumns,
+  fetchSchemas,
+} from "./helpers/queries.js"
 
 // Generator plop
 export default function getMethodAction(plop) {
@@ -71,8 +77,7 @@ export default function getMethodAction(plop) {
       const methodTypeName = `T${methodPascalName}`
       const methodParamsTypeName = `${methodTypeName}Params`
 
-      // Zapewniamy że używamy parseParamsFields z helpers
-      const argsStr = await fetchMethodArgs(schema, method)
+      const { methodParamsColumns, argsArray, argsCompositeTypes } = await fetchMethodArgs(schema, method)
       const { resultColumns, compositeTypes } = await fetchMethodResultColumns(schema, method)
 
       // Ujednolicone pole methodColumns (tak jak w getTable)
@@ -86,7 +91,7 @@ export default function getMethodAction(plop) {
 
       const compositeDefinitions = []
 
-      for (const typeName of compositeTypes) {
+      for (const typeName of argsCompositeTypes) {
         const fields = await fetchCompositeType(schema, method)
 
         const pascal = snakeToPascal(typeName)
@@ -100,8 +105,6 @@ export default function getMethodAction(plop) {
       // nazwa wrappera (funkcja generowanego get...)
       const methodName = `${methodCamelName}Action`
 
-      const methodParamsColumns = parseParamsFields(argsStr) // DRY, helpers version
-      const argsArray = getArgsArray(argsStr)
       const sqlParamsPlaceholders = argsArray.map((_, i) => `$${i + 1}`).join(", ")
 
       const promptAnswers = {

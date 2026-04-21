@@ -200,7 +200,57 @@ export async function fetchMethodArgs(schema, method) {
       [schema, method],
     )
     if (!res.rows[0]) throw new Error(`Function ${schema}.${method} not found`)
-    return res.rows[0].args || ""
+
+    const argsStr = res.rows[0].args
+    if (!argsStr) return { args: [], compositeTypes: [] }
+
+    const compositeTypes = []
+    let isJson = false
+    const methodParamsColumns = await Promise.all(
+      argsStr.split(",").map(async (arg) => {
+        const trimmed = arg.trim()
+        const spaceIndex = trimmed.indexOf(" ")
+        if (spaceIndex === -1) return null
+        const name = trimmed.substring(0, spaceIndex)
+        const sqlType = trimmed.substring(spaceIndex + 1)
+        let tsType = mapSQLTypeToTS(sqlType)
+
+        if (tsType === "jsonb") {
+          isJson = true
+          const baseTypeName = await fetchCompositeTypeName(schema, method)
+          if (baseTypeName) {
+            tsType = "T" + snakeToPascal(baseTypeName) + "[]"
+            if (!compositeTypes.includes(baseTypeName)) {
+              compositeTypes.push(baseTypeName)
+            }
+          }
+        }
+
+        return {
+          name,
+          camelName: snakeToCamel(name),
+          tsType,
+          isJson,
+        }
+      }),
+    )
+
+    const argsArray = await Promise.all(
+      argsStr
+        .split(",")
+        .map((arg) => {
+          const trimmed = arg.trim()
+          const spaceIndex = trimmed.indexOf(" ")
+          return spaceIndex === -1 ? trimmed : trimmed.substring(0, spaceIndex)
+        })
+        .filter(Boolean),
+    )
+
+    return {
+      methodParamsColumns: methodParamsColumns.filter(Boolean),
+      argsArray: argsArray,
+      argsCompositeTypes: compositeTypes,
+    }
   } finally {
     await client.end()
   }
@@ -266,11 +316,11 @@ export async function fetchMethodResultColumns(schema, method) {
         const name = rawName.replace(/"/g, "")
 
         let tsType = mapSQLTypeToTS(type)
-
+        let isJson = false
         // 🔥 JSONB handling
         if (tsType === "jsonb") {
           const baseTypeName = await fetchCompositeTypeName(schema, method)
-
+          isJson = true
           if (baseTypeName) {
             const tsName = "T" + snakeToPascal(baseTypeName) + "[]"
 
@@ -288,6 +338,7 @@ export async function fetchMethodResultColumns(schema, method) {
               camelName: snakeToCamel(name),
               pascalName: snakeToPascal(name),
               type: tsType,
+              isJson,
             }
           : null
       }),

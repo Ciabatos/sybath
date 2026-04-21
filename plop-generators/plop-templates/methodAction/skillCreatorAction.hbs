@@ -31,6 +31,14 @@ playerId: number
 # path: `db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}.ts` 
 # TypeScript Types:
 
+{{#each compositeDefinitions}}
+export type {{typeName}} = {
+{{#each fields}}
+  {{camelName}}: {{tsType}}
+{{/each}}
+}
+{{/each}}
+
 {{#if methodParamsColumns}}
 export type {{methodParamsTypeName}} = {
 {{#each methodParamsColumns}}
