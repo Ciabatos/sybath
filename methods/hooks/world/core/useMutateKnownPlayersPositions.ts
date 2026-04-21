@@ -26,11 +26,9 @@ export function useMutateKnownPlayersPositions(params: TKnownPlayersPositionsPar
     //MANUAL CODE - START
 
     const defaultValues = {
-      otherPlayerId: ``,
       x: ``,
       y: ``,
-      imageMap: ``,
-      inSquad: ``,
+      otherPlayers: ``,
     }
 
     //MANUAL CODE - END

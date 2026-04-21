@@ -32,13 +32,6 @@
   ],
   "methodColumns": [
     {
-      "name": "other_player_id",
-      "camelName": "otherPlayerId",
-      "pascalName": "OtherPlayerId",
-      "tsType": "string",
-      "optional": ""
-    },
-    {
       "name": "x",
       "camelName": "x",
       "pascalName": "X",
@@ -53,17 +46,10 @@
       "optional": ""
     },
     {
-      "name": "image_map",
-      "camelName": "imageMap",
-      "pascalName": "ImageMap",
-      "tsType": "string",
-      "optional": ""
-    },
-    {
-      "name": "in_squad",
-      "camelName": "inSquad",
-      "pascalName": "InSquad",
-      "tsType": "boolean",
+      "name": "other_players",
+      "camelName": "otherPlayers",
+      "pascalName": "OtherPlayers",
+      "tsType": "TCtOtherPlayer[]",
       "optional": ""
     }
   ],
@@ -92,5 +78,27 @@
   "apiPath": "app/api/world/rpc/get-known-players-positions/[mapId]/[playerId]/route.ts",
   "apiPathParams": "/api/world/rpc/get-known-players-positions/${params.mapId}/${params.playerId}",
   "generateMutation": true,
-  "mutationMergeOldData": true
+  "mutationMergeOldData": true,
+  "compositeDefinitions": [
+    {
+      "typeName": "TCtOtherPlayer",
+      "fields": [
+        {
+          "name": "other_player_id",
+          "camelName": "otherPlayerId",
+          "tsType": "string"
+        },
+        {
+          "name": "image_map",
+          "camelName": "imageMap",
+          "tsType": "string"
+        },
+        {
+          "name": "in_squad",
+          "camelName": "inSquad",
+          "tsType": "boolean"
+        }
+      ]
+    }
+  ]
 }
