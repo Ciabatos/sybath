@@ -53,6 +53,7 @@ export type TKnownPlayersPositions = {
   x: number
   y: number
   imageMap: string
+  inSquad: boolean
 }
 
 export type TKnownPlayersPositionsRecordByXY = Record<string, TKnownPlayersPositions>

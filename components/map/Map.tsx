@@ -39,18 +39,17 @@ export default function Map(props: TMapTile) {
   } = createImage()
 
   const inSquad = props.playerPosition?.inSquad === true
+  const otherInSquad = props.knownPlayersPositions?.inSquad === true
 
-  const showPlayer = !inSquad
-  const showSquad = inSquad
   const backgroundImage = createTerrainImage(props.terrainTypes.imageUrl)
   const landscapeImage = createLandscapeImage(props.landscapeTypes?.imageUrl)
   const playerImage = createPlayerImage(props.playerPosition?.imageMap)
+  const playerSquadImage = createSquadImage(props.playerPosition?.imageMap)
   const otherPlayerImage = createPlayerImage(props.knownPlayersPositions?.imageMap)
-  const squadImage = createSquadImage(props.playerPosition?.imageMap)
+  const otherPlayerSquadImage = createSquadImage(props.knownPlayersPositions?.imageMap)
   const citiesImage = createCitiesImage(props.cities?.imageUrl)
   const districtsImage = creatDistrictsImage(props.districtTypes?.imageUrl)
   const combinedImages = combineImages(landscapeImage, backgroundImage)
-  console.log(props.playerPosition?.inSquad)
 
   return (
     <div
@@ -78,26 +77,31 @@ export default function Map(props: TMapTile) {
           }}
         ></div>
       )}
-      {showPlayer && (
+      {!inSquad && (
         <div
           className={style.PlayerImage}
           style={{ backgroundImage: playerImage }}
         />
       )}
 
-      {showSquad && (
+      {inSquad && (
         <div
           className={style.PlayerImage}
-          style={{ backgroundImage: squadImage }}
+          style={{ backgroundImage: playerSquadImage }}
         />
       )}
-      {otherPlayerImage && (
+      {!otherInSquad && (
         <div
           className={style.PlayerImage}
-          style={{
-            backgroundImage: otherPlayerImage,
-          }}
-        ></div>
+          style={{ backgroundImage: otherPlayerImage }}
+        />
+      )}
+
+      {otherInSquad && (
+        <div
+          className={style.PlayerImage}
+          style={{ backgroundImage: otherPlayerSquadImage }}
+        />
       )}
       <div>
         {props.mapTiles.x}, {props.mapTiles.y}, {props.cities?.name}, {props.districts?.name}

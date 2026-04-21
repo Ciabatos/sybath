@@ -30,6 +30,7 @@ export function useMutateKnownPlayersPositions(params: TKnownPlayersPositionsPar
       x: ``,
       y: ``,
       imageMap: ``,
+      inSquad: ``,
     }
 
     //MANUAL CODE - END
