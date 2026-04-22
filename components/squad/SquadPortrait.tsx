@@ -4,12 +4,12 @@ import { Avatar, AvatarImage } from "@radix-ui/react-avatar"
 import styles from "./styles/SquadPortrait.module.css"
 
 type TPlayerPortrait = {
-  squadImagePortrait: string
+  squadImagePortrait: string | null
 }
 
 export default function SquadPortrait(props: TPlayerPortrait) {
+  if (!props.squadImagePortrait) return null
   const { createSquadPortrait } = createImage()
-
   const avatarUrl = createSquadPortrait(props.squadImagePortrait)
 
   return (

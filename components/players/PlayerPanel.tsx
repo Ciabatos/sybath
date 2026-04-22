@@ -42,8 +42,8 @@ export default function PlayerPanel() {
         </Button>
 
         <div className={styles.header}>
-          <SquadPortrait squadImagePortrait={activePlayerSquad?.squadImagePortrait} />
-          <PlayerPortrait imagePortrait={activePlayerProfile?.imagePortrait} />
+          <SquadPortrait squadImagePortrait={activePlayerSquad?.squadImagePortrait || null} />
+          <PlayerPortrait imagePortrait={activePlayerProfile?.imagePortrait || null} />
           <div className={styles.headerInfo}>
             <h2 className={styles.heroName}>
               {name} {secondName}
