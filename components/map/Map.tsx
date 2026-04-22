@@ -49,7 +49,7 @@ export default function Map(props: TMapTile) {
   const districtsImage = creatDistrictsImage(props.districtTypes?.imageUrl)
   const combinedImages = combineImages(landscapeImage, backgroundImage)
 
-  const playersCount = (props.playerPosition ? 1 : 0) + (knownPlayersPositions?.length || 0)
+  const playersCount = knownPlayersPositions?.length || 0
 
   return (
     <div

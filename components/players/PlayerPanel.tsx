@@ -51,6 +51,14 @@ export default function PlayerPanel() {
             />
             <AvatarFallback className={styles.avatarFallback}>{avatarFallback}</AvatarFallback>
           </Avatar>
+          <Avatar className={styles.avatar}>
+            <AvatarImage
+              src={avatarUrl}
+              alt='Hero'
+              className={styles.avatarImage}
+            />
+            <AvatarFallback className={styles.avatarFallback}>{avatarFallback}</AvatarFallback>
+          </Avatar>
           <div className={styles.headerInfo}>
             <h2 className={styles.heroName}>
               {name} {secondName}
