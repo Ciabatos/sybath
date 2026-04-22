@@ -53,3 +53,20 @@
   height: 100%;
   pointer-events: none; /* Ensure clicks pass through to the parent */
 }
+.PopulationBadge {
+  display: flex;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  align-items: center;
+  gap: 4px;
+  border-radius: 10px;
+
+  background: rgba(0, 0, 0, 0.7);
+  padding: 2px 6px;
+
+  pointer-events: none;
+  color: white;
+
+  font-size: 12px;
+}

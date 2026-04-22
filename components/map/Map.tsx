@@ -49,6 +49,8 @@ export default function Map(props: TMapTile) {
   const districtsImage = creatDistrictsImage(props.districtTypes?.imageUrl)
   const combinedImages = combineImages(landscapeImage, backgroundImage)
 
+  const playersCount = (props.playerPosition ? 1 : 0) + (knownPlayersPositions?.length || 0)
+
   return (
     <div
       className={style.BackgroundImage}
@@ -103,7 +105,7 @@ export default function Map(props: TMapTile) {
           />
         )
       })}
-
+      {playersCount > 0 && <div className={style.PopulationBadge}>👥 {playersCount}</div>}
       <div>
         {props.mapTiles.x}, {props.mapTiles.y}, {props.cities?.name}, {props.districts?.name}
         <TileLayersHandling {...props} />
