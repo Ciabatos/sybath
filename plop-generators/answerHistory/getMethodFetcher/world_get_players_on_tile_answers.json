@@ -21,22 +21,26 @@
     {
       "name": "p_map_id",
       "camelName": "mapId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     },
     {
       "name": "p_map_tile_x",
       "camelName": "mapTileX",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     },
     {
       "name": "p_map_tile_y",
       "camelName": "mapTileY",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     },
     {
       "name": "p_player_id",
       "camelName": "playerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -74,6 +78,27 @@
       "pascalName": "ImagePortrait",
       "tsType": "string",
       "optional": ""
+    },
+    {
+      "name": "squad_id",
+      "camelName": "squadId",
+      "pascalName": "SquadId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "squad_name",
+      "camelName": "squadName",
+      "pascalName": "SquadName",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "squad_image_portrait",
+      "camelName": "squadImagePortrait",
+      "pascalName": "SquadImagePortrait",
+      "tsType": "string",
+      "optional": ""
     }
   ],
   "indexMethodParams": "[\"otherPlayerId\"]",
@@ -95,7 +120,5 @@
   "apiPathParams": "/api/world/rpc/get-players-on-tile/${params.mapId}/${params.mapTileX}/${params.mapTileY}/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": true,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ]
+  "compositeDefinitions": []
 }

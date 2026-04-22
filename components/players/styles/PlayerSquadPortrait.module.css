@@ -1,28 +1,15 @@
-.iconWrapper {
-  display: flex;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+.avatar {
+  width: 5.5rem;
+  height: 5.5rem;
 }
 
-.squadIcon {
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
-  width: 2rem;
-  height: 2rem;
+.avatarImage {
+  object-fit: cover;
+}
+
+.avatarFallback {
+  background-color: #292524;
   color: #c89a4a;
-}
-
-.squadLabel {
-  position: absolute;
-  bottom: 20; /* przy dolnej krawędzi ikonki/buttona */
-  transform: translateY(50%); /* nachodzi na ikonę w górę */
-  pointer-events: none; /* żeby nie przeszkadzał w klikaniu */
-  color: #d4a574;
   font-size: 0.875rem;
   font-family: "Cinzel", serif;
-  letter-spacing: 0.05em;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-  text-transform: uppercase;
 }

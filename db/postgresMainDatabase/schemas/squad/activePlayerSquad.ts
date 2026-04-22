@@ -10,6 +10,8 @@ export type TActivePlayerSquadParams = {
 
 export type TActivePlayerSquad = {
   squadId: number
+  squadName: string
+  squadImagePortrait: string
 }
 
 export type TActivePlayerSquadRecordBySquadId = Record<string, TActivePlayerSquad>

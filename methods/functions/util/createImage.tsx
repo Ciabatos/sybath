@@ -35,6 +35,10 @@ export function createImage() {
     return getImageUrl(imageUrl, "heroPortrait")
   }
 
+  function createSquadPortrait(imageUrl: string | undefined) {
+    return getImageUrl(imageUrl, "squadPicture")
+  }
+
   const combineImages = (...images: string[]): string => {
     return images.filter(Boolean).join(", ")
   }
@@ -49,5 +53,6 @@ export function createImage() {
     creatBuildingsImage,
     combineImages,
     createPlayerPortrait,
+    createSquadPortrait,
   }
 }

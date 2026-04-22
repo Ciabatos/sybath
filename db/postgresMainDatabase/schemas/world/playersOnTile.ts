@@ -17,6 +17,9 @@ export type TPlayersOnTile = {
   secondName: string
   nickname: string
   imagePortrait: string
+  squadId: number
+  squadName: string
+  squadImagePortrait: string
 }
 
 export type TPlayersOnTileRecordByOtherPlayerId = Record<string, TPlayersOnTile>

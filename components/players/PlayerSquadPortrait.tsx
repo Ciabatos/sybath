@@ -1,12 +1,24 @@
 "use client"
-import { Users } from "lucide-react"
+import { createImage } from "@/methods/functions/util/createImage"
+import { Avatar, AvatarImage } from "@radix-ui/react-avatar"
 import styles from "./styles/PlayerSquadPortrait.module.css"
 
-export default function PlayerSquadPortrait() {
+type TPlayerPortrait = {
+  squadImagePortrait: string
+}
+
+export default function PlayerSquadPortrait(props: TPlayerPortrait) {
+  const { createSquadPortrait } = createImage()
+
+  const avatarUrl = createSquadPortrait(props.squadImagePortrait)
+
   return (
-    <div className={styles.iconWrapper}>
-      <Users className={styles.squadIcon} />
-      <span className={styles.squadLabel}>Squad</span>
-    </div>
+    <Avatar className={styles.avatar}>
+      <AvatarImage
+        src={avatarUrl}
+        alt='Hero avatar'
+        className={styles.avatarImage}
+      />
+    </Avatar>
   )
 }

@@ -52,12 +52,16 @@ export type TPlayersOnTileParams = {
   playerId: number
 }
 
+
 export type TPlayersOnTile = {
   otherPlayerId: string
   name: string
   secondName: string
   nickname: string
   imagePortrait: string
+  squadId: number
+  squadName: string
+  squadImagePortrait: string
 }
 
 export type TPlayersOnTileRecordByOtherPlayerId = Record<string, TPlayersOnTile>

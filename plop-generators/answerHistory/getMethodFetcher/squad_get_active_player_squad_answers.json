@@ -21,7 +21,8 @@
     {
       "name": "p_player_id",
       "camelName": "playerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -30,6 +31,20 @@
       "camelName": "squadId",
       "pascalName": "SquadId",
       "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "squad_name",
+      "camelName": "squadName",
+      "pascalName": "SquadName",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "squad_image_portrait",
+      "camelName": "squadImagePortrait",
+      "pascalName": "SquadImagePortrait",
+      "tsType": "string",
       "optional": ""
     }
   ],
@@ -52,7 +67,5 @@
   "apiPathParams": "/api/squad/rpc/get-active-player-squad/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": false,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ]
+  "compositeDefinitions": []
 }

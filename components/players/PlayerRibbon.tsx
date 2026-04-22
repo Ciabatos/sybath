@@ -47,7 +47,7 @@ export default function PlayerRibbon() {
           onClick={handleClickPlayerSquadPortrait}
           className={styles.squadButton}
         >
-          <PlayerSquadPortrait />
+          <PlayerSquadPortrait squadImagePortrait={activePlayerSquad?.squadImagePortrait} />
         </Button>
       </div>
     </>

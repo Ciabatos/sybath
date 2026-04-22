@@ -19,6 +19,8 @@ export function useMutateActivePlayerSquad(params: TActivePlayerSquadParams) {
 
     const defaultValues = {
       squadId: ``,
+      squadName: ``,
+      squadImagePortrait: ``,
     }
 
     //MANUAL CODE - END

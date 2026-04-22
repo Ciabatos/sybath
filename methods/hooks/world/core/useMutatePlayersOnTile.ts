@@ -31,6 +31,9 @@ export function useMutatePlayersOnTile(params: TPlayersOnTileParams) {
       secondName: ``,
       nickname: ``,
       imagePortrait: ``,
+      squadId: ``,
+      squadName: ``,
+      squadImagePortrait: ``,
     }
 
     //MANUAL CODE - END

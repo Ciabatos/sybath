@@ -4,21 +4,22 @@ import { PlayerSkills } from "@/components/attributes/PlayerSkills"
 import PlayerStats from "@/components/attributes/PlayerStats"
 import { PlayerCombinedInventory } from "@/components/inventory/PlayerCombinedInventory"
 import { PlayerKnowledge } from "@/components/knowledge/PlayerKnowledge"
+import PlayerPortrait from "@/components/players/PlayerPortrait"
+import PlayerSquadPortrait from "@/components/players/PlayerSquadPortrait"
 import PlayerSwitchButton from "@/components/players/PlayerSwitchButton"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { createImage } from "@/methods/functions/util/createImage"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { useActivePlayerProfile } from "@/methods/hooks/players/composite/useActivePlayerProfile"
+import { useActivePlayerSquad } from "@/methods/hooks/squad/composite/useActivePlayerSquad"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
 import { X } from "lucide-react"
 import styles from "./styles/PlayerPanel.module.css"
 
 export default function PlayerPanel() {
   const { openModalLeftTopBar } = useModalLeftTopBar()
-  const { createPlayerPortrait } = createImage()
   const { activePlayerProfile } = useActivePlayerProfile()
+  const { activePlayerSquad } = useActivePlayerSquad()
 
   function onClose() {
     openModalLeftTopBar(EPanelsLeftTopBar.PlayerRibbon)
@@ -27,8 +28,6 @@ export default function PlayerPanel() {
   const name = activePlayerProfile?.name
   const secondName = activePlayerProfile?.secondName
   const nickname = activePlayerProfile?.nickname
-  const avatarUrl = createPlayerPortrait(activePlayerProfile?.imagePortrait)
-  const avatarFallback = "VB"
 
   return (
     <div className={styles.panelsContainer}>
@@ -43,22 +42,8 @@ export default function PlayerPanel() {
         </Button>
 
         <div className={styles.header}>
-          <Avatar className={styles.avatar}>
-            <AvatarImage
-              src={avatarUrl}
-              alt='Hero'
-              className={styles.avatarImage}
-            />
-            <AvatarFallback className={styles.avatarFallback}>{avatarFallback}</AvatarFallback>
-          </Avatar>
-          <Avatar className={styles.avatar}>
-            <AvatarImage
-              src={avatarUrl}
-              alt='Hero'
-              className={styles.avatarImage}
-            />
-            <AvatarFallback className={styles.avatarFallback}>{avatarFallback}</AvatarFallback>
-          </Avatar>
+          <PlayerSquadPortrait squadImagePortrait={activePlayerSquad?.squadImagePortrait} />
+          <PlayerPortrait imagePortrait={activePlayerProfile?.imagePortrait} />
           <div className={styles.headerInfo}>
             <h2 className={styles.heroName}>
               {name} {secondName}
