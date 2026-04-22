@@ -5,8 +5,8 @@ import PlayerStats from "@/components/attributes/PlayerStats"
 import { PlayerCombinedInventory } from "@/components/inventory/PlayerCombinedInventory"
 import { PlayerKnowledge } from "@/components/knowledge/PlayerKnowledge"
 import PlayerPortrait from "@/components/players/PlayerPortrait"
-import PlayerSquadPortrait from "@/components/players/PlayerSquadPortrait"
 import PlayerSwitchButton from "@/components/players/PlayerSwitchButton"
+import SquadPortrait from "@/components/squad/SquadPortrait"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
@@ -42,7 +42,7 @@ export default function PlayerPanel() {
         </Button>
 
         <div className={styles.header}>
-          <PlayerSquadPortrait squadImagePortrait={activePlayerSquad?.squadImagePortrait} />
+          <SquadPortrait squadImagePortrait={activePlayerSquad?.squadImagePortrait} />
           <PlayerPortrait imagePortrait={activePlayerProfile?.imagePortrait} />
           <div className={styles.headerInfo}>
             <h2 className={styles.heroName}>

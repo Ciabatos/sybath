@@ -1,7 +1,7 @@
 "use client"
 import PlayerPortrait from "@/components/players/PlayerPortrait"
-import PlayerSquadPortrait from "@/components/players/PlayerSquadPortrait"
 import PlayerSwitchButton from "@/components/players/PlayerSwitchButton"
+import SquadPortrait from "@/components/squad/SquadPortrait"
 import { Button } from "@/components/ui/button"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
@@ -47,7 +47,7 @@ export default function PlayerRibbon() {
           onClick={handleClickPlayerSquadPortrait}
           className={styles.squadButton}
         >
-          <PlayerSquadPortrait squadImagePortrait={activePlayerSquad?.squadImagePortrait} />
+          <SquadPortrait squadImagePortrait={activePlayerSquad?.squadImagePortrait} />
         </Button>
       </div>
     </>

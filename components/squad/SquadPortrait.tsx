@@ -1,13 +1,13 @@
 "use client"
 import { createImage } from "@/methods/functions/util/createImage"
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar"
-import styles from "./styles/PlayerSquadPortrait.module.css"
+import styles from "./styles/SquadPortrait.module.css"
 
 type TPlayerPortrait = {
   squadImagePortrait: string
 }
 
-export default function PlayerSquadPortrait(props: TPlayerPortrait) {
+export default function SquadPortrait(props: TPlayerPortrait) {
   const { createSquadPortrait } = createImage()
 
   const avatarUrl = createSquadPortrait(props.squadImagePortrait)

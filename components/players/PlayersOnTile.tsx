@@ -1,5 +1,6 @@
 "use client"
 import PlayerPortrait from "@/components/players/PlayerPortrait"
+import SquadPortrait from "@/components/squad/SquadPortrait"
 import { Button } from "@/components/ui/button"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
@@ -55,6 +56,9 @@ export default function PlayersOnTile() {
               className={styles.heroButton}
             >
               <PlayerPortrait imagePortrait={otherPlayer.imagePortrait} />
+            </Button>
+            <Button className={styles.heroButton}>
+              <SquadPortrait squadImagePortrait={otherPlayer.squadImagePortrait} />
             </Button>
           </div>
         ))}
