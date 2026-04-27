@@ -52,6 +52,7 @@ import { TPlayerMovementRecordByXY } from "@/methods/functions/map/pathFromPoint
 import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
 import { TAreaRecordByXY } from "@/methods/hooks/world/composite/useMapTilesArea"
 import { EPanelsBottomCenterBar } from "@/types/enumeration/EPanelsBottomCenterBar"
+import { EPanelsBottomLeft } from "@/types/enumeration/EPanelsBottomLeft"
 import { EPanelsLeftCenter } from "@/types/enumeration/EPanelsLeftCenter"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
 import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
@@ -66,6 +67,7 @@ export const modalRightCenterAtom = atom<EPanelsRightCenter>(EPanelsRightCenter.
 export const modalTopCenterAtom = atom<EPanelsTopCenter>(EPanelsTopCenter.Inactive)
 export const modalTopCenterBarAtom = atom<EPanelsTopCenterBar>(EPanelsTopCenterBar.Inactive)
 export const modalLeftCenterAtom = atom<EPanelsLeftCenter>(EPanelsLeftCenter.Inactive)
+export const modalBottomLeftAtom = atom<EPanelsBottomLeft>(EPanelsBottomLeft.Inactive)
 
 //City
 export const clickedCityTileAtom = atom<number>(0)

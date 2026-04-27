@@ -1,0 +1,19 @@
+.modalOverlay {
+  z-index: 99;
+}
+
+.modalContainer {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 100;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
