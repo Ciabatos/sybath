@@ -260,24 +260,6 @@ export default function MapTileDetail() {
                   Players list on tile
                 </Button>
               </div>
-              <div
-                key={
-                  clickedMapTile?.mapTiles.mapId +
-                  clickedMapTile?.mapTiles.x +
-                  clickedMapTile?.mapTiles.y +
-                  "Players list on tile"
-                }
-                className={styles.encounterItem}
-              >
-                <Button
-                  className={styles.actionButton}
-                  // onClick={() => {
-                  //   handlePlayersListOnTile()
-                  // }}
-                >
-                  Squad list on tile
-                </Button>
-              </div>
             </div>
           </section>
 

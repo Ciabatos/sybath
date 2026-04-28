@@ -1,6 +1,7 @@
 "use client"
 
 import SquadPlayersProfiles from "@/components/squad/SquadPlayersProfiles"
+import SquadSwitchButton from "@/components/squad/SquadSwitchButton"
 import { Button } from "@/components/ui/button"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { useSquadControls } from "@/methods/hooks/squad/composite/useSquadControls"
@@ -80,6 +81,9 @@ export default function PlayerSquad() {
           </div>
         </div>
         <Button onClick={handleLeaveSquad}>Leave Squad</Button>
+      </div>
+      <div className={styles.switchButtonContainer}>
+        <SquadSwitchButton />
       </div>
     </div>
   )

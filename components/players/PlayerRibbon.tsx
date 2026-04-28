@@ -2,6 +2,7 @@
 import PlayerPortrait from "@/components/players/PlayerPortrait"
 import PlayerSwitchButton from "@/components/players/PlayerSwitchButton"
 import SquadPortrait from "@/components/squad/SquadPortrait"
+import SquadSwitchButton from "@/components/squad/SquadSwitchButton"
 import { Button } from "@/components/ui/button"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
@@ -39,7 +40,7 @@ export default function PlayerRibbon() {
       >
         <PlayerPortrait imagePortrait={activePlayerProfile.imagePortrait} />
       </Button>
-      <div className={styles.playerSwitchButtonContainer}>
+      <div className={styles.switchButtonContainer}>
         <PlayerSwitchButton />
       </div>
       <div className={styles.squadPortraitWrapper}>
@@ -49,6 +50,9 @@ export default function PlayerRibbon() {
         >
           <SquadPortrait squadImagePortrait={activePlayerSquad?.squadImagePortrait} />
         </Button>
+        <div className={styles.switchButtonContainer}>
+          <SquadSwitchButton />
+        </div>
       </div>
     </>
   )
