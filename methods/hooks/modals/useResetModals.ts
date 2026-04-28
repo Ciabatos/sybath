@@ -9,13 +9,13 @@ export function useResetModals() {
   const { resetModalBottomCenterBar } = useModalBottomCenterBar()
   const { resetModalLeftTopBar } = useModalLeftTopBar()
   const { resetModalRightCenter } = useModalRightCenter()
-  const { resetModalTopCeneter } = useModalTopCenter()
+  const { resetModalTopCenter } = useModalTopCenter()
 
   function resetModals() {
     resetModalBottomCenterBar()
     resetModalLeftTopBar()
     resetModalRightCenter()
-    resetModalTopCeneter()
+    resetModalTopCenter()
   }
 
   return { resetModals }

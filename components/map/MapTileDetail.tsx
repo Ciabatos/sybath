@@ -4,20 +4,20 @@ import GatherResource from "@/components/items/GatherResource"
 import { Button } from "@/components/ui/button"
 import { Field, FieldLabel } from "@/components/ui/field"
 import { Progress } from "@/components/ui/progress"
+import { useModalBottomLeft } from "@/methods/hooks/modals/useModalBottomLeft"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
-import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
 import { usePlayerExploration } from "@/methods/hooks/players/composite/usePlayerExploration"
 import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMovement"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { TMapTileResource, useMapTileDetail } from "@/methods/hooks/world/composite/useMapTileDetail"
-import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
+import { EPanelsBottomLeft } from "@/types/enumeration/EPanelsBottomLeft"
 import { X } from "lucide-react"
 import { Activity, useEffect, useState } from "react"
 import styles from "./styles/MapTileDetail.module.css"
 
 export default function MapTileDetail() {
   const { resetModalRightCenter } = useModalRightCenter()
-  const { openModalTopCenter } = useModalTopCenter()
+  const { openModalBottomLeft } = useModalBottomLeft()
   const { clickedMapTile } = useMapTileActions()
 
   // ── MOVEMENT LOGIC  ──────────────────────────────────────────
@@ -88,7 +88,7 @@ export default function MapTileDetail() {
   }
 
   function handlePlayersListOnTile() {
-    openModalTopCenter(EPanelsTopCenter.PlayersOnTile)
+    openModalBottomLeft(EPanelsBottomLeft.PlayersOnTile)
   }
 
   function handleResourceOnTile(resource: TMapTileResource) {

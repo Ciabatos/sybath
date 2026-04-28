@@ -2,4 +2,5 @@
 
 export enum EPanelsBottomLeft {
   Inactive = "Inactive",
+  PlayersOnTile = "PlayersOnTile",
 }

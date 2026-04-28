@@ -2,8 +2,8 @@
 import PlayerPortrait from "@/components/players/PlayerPortrait"
 import SquadPortrait from "@/components/squad/SquadPortrait"
 import { Button } from "@/components/ui/button"
+import { useModalBottomLeft } from "@/methods/hooks/modals/useModalBottomLeft"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
-import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
 import { useSetOtherPlayerId } from "@/methods/hooks/players/composite/useOtherPlayerId"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import usePlayersOnTile from "@/methods/hooks/world/composite/usePlayersOnTile"
@@ -12,7 +12,7 @@ import { X } from "lucide-react"
 import styles from "./styles/PlayersOnTile.module.css"
 
 export default function PlayersOnTile() {
-  const { resetModalTopCenter } = useModalTopCenter()
+  const { resetModalBottomLeft } = useModalBottomLeft()
   const { openModalRightCenter } = useModalRightCenter()
   const setOtherPlayerId = useSetOtherPlayerId()
 
@@ -28,7 +28,7 @@ export default function PlayersOnTile() {
   }
 
   const onClose = () => {
-    resetModalTopCenter()
+    resetModalBottomLeft()
   }
 
   return (

@@ -10,7 +10,7 @@ export default function ModalBottomLeft() {
 
   return (
     <div className={styles.modalOverlay}>
-      <div className={styles.modalContainerLeft}>
+      <div className={styles.modalContainer}>
         <ModalBottomLeft closePanel={resetModalBottomLeft} />
       </div>
     </div>

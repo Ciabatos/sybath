@@ -3,6 +3,5 @@ import React from "react"
 
 export const panelTopCenter: Record<EPanelsTopCenter, React.LazyExoticComponent<React.ComponentType<any>> | null> = {
   [EPanelsTopCenter.Inactive]: null,
-  [EPanelsTopCenter.PlayersOnTile]: React.lazy(() => import("@/components/players/PlayersOnTile")),
   [EPanelsTopCenter.SquadControls]: React.lazy(() => import("@/components/squad/SquadControls")),
 }
