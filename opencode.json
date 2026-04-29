@@ -1,6 +1,5 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "lmstudio2/qwen_qwen3.5-9b",
   "permission": {
     "grep": "allow",
     "glob": "allow",
@@ -43,6 +42,9 @@
       "models": {
         "qwen_qwen3.5-9b": {
           "name": "qwen_qwen3.5-9b"
+        },
+        "qwen3.6-27b": {
+          "name": "qwen3.6-27b"
         }
       }
     },
