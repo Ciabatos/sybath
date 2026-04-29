@@ -2,7 +2,6 @@
 description: Brainstorm improvements for an existing UI component based on current code and DB data
 name: improve-component-brainstorm
 mode: subagent
-model: lmstudio2/qwen_qwen3.5-9b
 temperature: 1
 tools:
   write: false

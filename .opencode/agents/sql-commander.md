@@ -2,7 +2,6 @@
 description: software engineer responsible for making decisions and executing solutions
 name: sql-commander
 mode: primary
-model: lmstudio2/qwen_qwen3.5-9b
 temperature: 0.7
 tools:
   write: false

@@ -2,7 +2,6 @@
 description: Create custom hook for component
 name: create-new-composite-hook
 mode: primary
-model: lmstudio2/qwen_qwen3.5-9b
 temperature: 0.8
 tools:
   write: true

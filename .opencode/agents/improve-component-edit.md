@@ -2,7 +2,6 @@
 description: Edit and improve an existing UI component based on IMPROVEMENT_SPEC
 name: improve-component-edit
 mode: subagent
-model: lmstudio2/qwen_qwen3.5-9b
 temperature: 0.4
 tools:
   write: false

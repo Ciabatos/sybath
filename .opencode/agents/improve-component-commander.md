@@ -2,7 +2,6 @@
 description: Senior engineer responsible for analyzing, improving, and evolving existing UI components
 name: improve-component-commander
 mode: primary
-model: lmstudio2/qwen_qwen3.5-9b
 temperature: 0.7
 tools:
   write: false

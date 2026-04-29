@@ -2,7 +2,6 @@
 description: Design game system component flow
 name: sql-brainstorm
 mode: primary
-model: lmstudio2/qwen_qwen3.5-9b
 temperature: 1
 tools:
   write: true

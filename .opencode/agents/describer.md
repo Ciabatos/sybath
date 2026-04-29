@@ -3,7 +3,6 @@ description:
   software engineer responsible for describing architecture and how things works in this web strategy/rpg game
 name: describer
 mode: primary
-model: lmstudio2/qwen_qwen3.5-9b
 temperature: 0.6
 tools:
   write: true
