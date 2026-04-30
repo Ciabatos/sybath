@@ -18,6 +18,25 @@ function truncateIfNeeded(json: string): string {
   )
 }
 
+// Lightweight: only table names grouped by schema — no columns
+function formatTableNamesAsMarkdown(tables: TableInfo[]): string {
+  if (tables.length === 0) return "_No tables found._"
+
+  const bySchema = new Map<string, string[]>()
+  for (const t of tables) {
+    const list = bySchema.get(t.schema) ?? []
+    list.push(t.table_name)
+    bySchema.set(t.schema, list)
+  }
+
+  const lines: string[] = []
+  for (const [schema, names] of bySchema) {
+    lines.push(`**${schema}**: ${names.join(", ")}`)
+  }
+  return lines.join("\n")
+}
+
+// Full column details — used by get_tables
 function formatTablesAsMarkdown(tables: TableInfo[]): string {
   if (tables.length === 0) return "_No tables found._"
 
@@ -38,10 +57,38 @@ function formatTablesAsMarkdown(tables: TableInfo[]): string {
   return lines.join("\n")
 }
 
+// Lightweight: only function names grouped by api_type — no arguments
+function formatFunctionNamesAsMarkdown(fns: FunctionInfo[]): string {
+  if (fns.length === 0) return "_No functions found._"
+
+  const groups: Record<string, FunctionInfo[]> = {}
+  for (const f of fns) {
+    ;(groups[f.api_type] ??= []).push(f)
+  }
+
+  const labels: Record<string, string> = {
+    automatic_get_api: "📋 automatic_get_api — dictionary / reference data",
+    get_api: "🔍 get_api — player-context, fog-of-war aware",
+    action_api: "⚡ action_api — modifies game state",
+  }
+
+  const lines: string[] = []
+  for (const apiType of ALLOWED_API_TYPES) {
+    const group = groups[apiType]
+    if (!group?.length) continue
+
+    lines.push(`**${labels[apiType]}** (${group.length})`)
+    lines.push(group.map((f) => `\`${f.schema}.${f.function_name}\``).join(", "))
+    lines.push("")
+  }
+
+  return lines.join("\n")
+}
+
+// Full argument details — used by get_functions
 function formatFunctionsAsMarkdown(fns: FunctionInfo[]): string {
   if (fns.length === 0) return "_No functions found._"
 
-  // Group by api_type for readability
   const groups: Record<string, FunctionInfo[]> = {}
   for (const f of fns) {
     ;(groups[f.api_type] ??= []).push(f)
@@ -84,6 +131,8 @@ export function registerSchemaTools(server: McpServer): void {
 }
 
 // ── get_schema ────────────────────────────────────────────────────────────────
+// Lightweight overview: table names + function names only. No columns, no args.
+// Use get_tables / get_functions to drill into details.
 
 const GetSchemaInputSchema = z
   .object({
@@ -98,10 +147,14 @@ function registerGetSchema(server: McpServer): void {
   server.registerTool(
     "get_schema",
     {
-      title: "Get Full Database Schema",
-      description: `Returns the complete schema of the RPG database: all user tables with their columns AND all API functions grouped by type.
+      title: "Get Database Overview (Lightweight Map)",
+      description: `Returns a compact overview of the RPG database: table names grouped by schema, and function names grouped by api_type.
 
-This is the primary discovery tool. Call it first to understand what data and operations are available before making any other calls.
+This is intentionally lightweight — no column definitions, no function arguments.
+Use it first to orient yourself, then drill into details with focused tools:
+  - get_tables(schema)           → columns for a specific schema
+  - get_functions(api_type)      → full argument list for a function group
+  - get_function_definition(...) → full SQL source for a specific function
 
 The database is divided into PostgreSQL schemas:
 - attributes  — abilities, skills, stats, player progression
@@ -119,18 +172,15 @@ The database is divided into PostgreSQL schemas:
 
 Functions are annotated with one of three API types:
 - automatic_get_api  Dictionary/reference data (terrain types, item catalog, etc.)
-- get_api            Player-context data that respects fog-of-war and knowledge tables
-- action_api         Game actions that modify state (movement, gathering, inventory ops)
+- get_api            Player-context data that respects fog-of-war
+- action_api         Game actions that modify state
 
 Args:
   - response_format ('markdown' | 'json'): Output format (default: 'markdown')
 
 Returns:
-  markdown: Formatted tables and function listings grouped by schema and api_type
-  json: { tables: TableInfo[], functions: FunctionInfo[] }
-    TableInfo  = { schema, table_name, columns: ColumnInfo[] }
-    ColumnInfo = { column_name, data_type, is_nullable, column_default }
-    FunctionInfo = { schema, function_name, arguments, return_type, api_type }`,
+  markdown: Table names grouped by schema + function names grouped by api_type
+  json: { tables: { schema, table_name }[], functions: { schema, function_name, api_type }[] }`,
       inputSchema: GetSchemaInputSchema,
       annotations: {
         readOnlyHint: true,
@@ -144,7 +194,10 @@ Returns:
         const [tables, functions] = await Promise.all([fetchTables(), fetchFunctions()])
 
         if (response_format === "json") {
-          const output = { tables, functions }
+          const output = {
+            tables: tables.map(({ schema, table_name }) => ({ schema, table_name })),
+            functions: functions.map(({ schema, function_name, api_type }) => ({ schema, function_name, api_type })),
+          }
           const json = JSON.stringify(output, null, 2)
           return {
             content: [{ type: "text", text: truncateIfNeeded(json) }],
@@ -153,20 +206,24 @@ Returns:
         }
 
         const md = [
-          "# RPG Database Schema",
+          "# RPG Database — Overview",
           "",
           `**Tables:** ${tables.length}   **API Functions:** ${functions.length}`,
           "",
+          "> 💡 This is a lightweight map. Use `get_tables(schema)` for column details,",
+          "> `get_functions(api_type)` for argument lists, `get_function_definition` for SQL source.",
+          "",
           "---",
           "",
-          "# Tables",
+          "## Tables by Schema",
           "",
-          formatTablesAsMarkdown(tables),
+          formatTableNamesAsMarkdown(tables),
+          "",
           "---",
           "",
-          "# API Functions",
+          "## API Functions by Type",
           "",
-          formatFunctionsAsMarkdown(functions),
+          formatFunctionNamesAsMarkdown(functions),
         ].join("\n")
 
         return { content: [{ type: "text", text: truncateIfNeeded(md) }] }
@@ -207,14 +264,16 @@ function registerGetTables(server: McpServer): void {
   server.registerTool(
     "get_tables",
     {
-      title: "Get Database Tables",
-      description: `Returns all base tables with their column definitions from the RPG database.
+      title: "Get Database Tables with Columns",
+      description: `Returns tables with full column definitions from the RPG database.
 Optionally filter to a single PostgreSQL schema.
 
 Use this tool when you need to:
 - Inspect the structure of a specific schema
 - Find which columns a table has before building a query
 - Understand data types and nullability constraints
+
+Tip: call get_schema first to see which schemas exist, then drill in here.
 
 Available schemas (never returns admin/util/system schemas):
   attributes, auth, buildings, cities, districts, inventory,
@@ -235,11 +294,11 @@ Returns:
       - column_default  Default expression or null if none
 
 Examples:
-  - "What columns does the players table have?"
+  - "What columns does the players schema have?"
     → call with schema: 'players'
-  - "Show me all world tables"
+  - "Show me all world tables with their columns"
     → call with schema: 'world'
-  - "Give me the full table list"
+  - "Give me the full table list with all columns"
     → call with no schema filter`,
       inputSchema: GetTablesInputSchema,
       annotations: {
@@ -319,9 +378,11 @@ function registerGetFunctions(server: McpServer): void {
   server.registerTool(
     "get_functions",
     {
-      title: "Get API Functions",
-      description: `Returns all PostgreSQL functions exposed as the RPG game API.
+      title: "Get API Functions with Arguments",
+      description: `Returns PostgreSQL functions exposed as the RPG game API, with full argument lists.
 Optionally filter by api_type (function category) and/or schema.
+
+Tip: call get_schema first to see function names, then use this tool when you need argument details.
 
 Functions are annotated with one of three API types via a SQL comment:
 
@@ -374,7 +435,6 @@ Examples:
       try {
         let functions = await fetchFunctions(api_type ?? null)
 
-        // Apply optional schema filter (done in-memory — functions query doesn't support it natively)
         if (schema) {
           functions = functions.filter((f) => f.schema === schema)
         }
@@ -547,6 +607,8 @@ Examples:
     },
   )
 }
+
+// ── get_all_functions ─────────────────────────────────────────────────────────
 
 function formatAllFunctionsAsMarkdown(fns: AnyFunctionInfo[]): string {
   if (fns.length === 0) return "_No functions found._"
