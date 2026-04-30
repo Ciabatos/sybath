@@ -1,0 +1,71 @@
+{
+  "promptAnswers": {
+    "schema": "attributes",
+    "method": "get_player_energy",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "lastRegeneratedAt"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "attributes",
+  "method": "get_player_energy",
+  "methodCamelName": "playerEnergy",
+  "methodPascalName": "PlayerEnergy",
+  "methodKebabName": "get-player-energy",
+  "methodName": "getPlayerEnergy",
+  "methodTypeName": "TPlayerEnergy",
+  "methodParamsTypeName": "TPlayerEnergyParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "current_energy",
+      "camelName": "currentEnergy",
+      "pascalName": "CurrentEnergy",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "max_energy",
+      "camelName": "maxEnergy",
+      "pascalName": "MaxEnergy",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "last_regenerated_at",
+      "camelName": "lastRegeneratedAt",
+      "pascalName": "LastRegeneratedAt",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"lastRegeneratedAt\"]",
+  "indexParamsColumns": "playerId",
+  "indexTypeMethodName": "LastRegeneratedAt",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TPlayerEnergyRecordByLastRegeneratedAt",
+  "indexColumns": [
+    {
+      "name": "last_regenerated_at",
+      "camelName": "lastRegeneratedAt",
+      "pascalName": "LastRegeneratedAt",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1",
+  "apiPath": "app/api/attributes/rpc/get-player-energy/[playerId]/route.ts",
+  "apiPathParams": "/api/attributes/rpc/get-player-energy/${params.playerId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true,
+  "compositeDefinitions": []
+}

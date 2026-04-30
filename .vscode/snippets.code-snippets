@@ -585,5 +585,13 @@
       "const squadInvites = useSquadInvitesState()"
     ],
     "description": "Destructuring useSquadInvites hook"
-  }, //Automatic Snippets
+  },   
+  "Destructure usePlayerEnergy": {
+    "prefix": "hook_attributes_core_usePlayerEnergy",
+    "body": [
+      "useFetchPlayerEnergy({ playerId })",
+      "const playerEnergy = usePlayerEnergyState()"
+    ],
+    "description": "Destructuring usePlayerEnergy hook"
+  },//Automatic Snippets
 }

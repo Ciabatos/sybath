@@ -59,6 +59,7 @@ import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { EPanelsTopCenterBar } from "@/types/enumeration/EPanelsTopCenterBar"
 import { atom } from "jotai"
+import { TPlayerEnergyRecordByLastRegeneratedAt } from "@/db/postgresMainDatabase/schemas/attributes/playerEnergy"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBottomCenterBar.Inactive)
@@ -100,6 +101,7 @@ export const terrainTypesAtom = atom<TWorldTerrainTypesRecordById>({})
 export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
 
 //Functions
+export const playerEnergyAtom = atom<TPlayerEnergyRecordByLastRegeneratedAt>({})
 export const squadInvitesAtom = atom<TSquadInvitesRecordById>({})
 export const playerRecipeMaterialsAtom = atom<TPlayerRecipeMaterialsRecordById>({})
 export const playerRecipesAtom = atom<TPlayerRecipesRecordByItemId>({})
