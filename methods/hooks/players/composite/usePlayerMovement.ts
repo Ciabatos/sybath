@@ -88,7 +88,7 @@ export function usePlayerMovement() {
 
     mutatePlayerPosition([{ x: lastStep.x, y: lastStep.y }])
 
-    return toast.success(`You are moving to destination`)
+    return toast.success(result?.message)
   }
 
   async function selectPlayerPathAndMovePlayerToClickedTile() {
@@ -121,7 +121,7 @@ export function usePlayerMovement() {
 
     mutatePlayerPosition([{ x: lastStep.x, y: lastStep.y }])
 
-    return toast.success(`You are moving to destination`)
+    return toast.success(result?.message)
   }
 
   function resetPlayerMovementPlanned() {
