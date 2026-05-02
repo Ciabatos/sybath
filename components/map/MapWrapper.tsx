@@ -64,6 +64,9 @@ export default function MapWrapper() {
           )
         }}
         minScale={0.4}
+        wheel={{
+          step: 0.005, // faster zoom
+        }}
         smooth={true}
         limitToBounds={false}
         doubleClick={{ disabled: true }}

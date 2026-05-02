@@ -78,16 +78,16 @@ export default function Map(props: TMapTile) {
           }}
         ></div>
       )}
-      {!inSquad && (
+      {!inSquad && props.playerPosition && (
         <div
-          className={style.PlayerImage}
+          className={`${style.PlayerImage} ${style.PlayerHighlight}`}
           style={{ backgroundImage: playerImage }}
         />
       )}
 
-      {inSquad && (
+      {inSquad && props.playerPosition && (
         <div
-          className={style.PlayerImage}
+          className={`${style.PlayerImage} ${style.PlayerHighlight}`}
           style={{ backgroundImage: playerSquadImage }}
         />
       )}
