@@ -3406,7 +3406,7 @@ designing the component flow spec.
 51: import { TPlayerMovementRecordByXY } from "@/methods/functions/map/pathFromPointToPoint"
 52: import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
 53: import { TAreaRecordByXY } from "@/methods/hooks/world/composite/useMapTilesArea"
-54: import { EPanelsBottomCenterBar } from "@/types/enumeration/EPanelsBottomCenterBar"
+54: import { EPanelsBottomCenter } from "@/types/enumeration/EPanelsBottomCenter"
 55: import { EPanelsBottomLeft } from "@/types/enumeration/EPanelsBottomLeft"
 56: import { EPanelsLeftCenter } from "@/types/enumeration/EPanelsLeftCenter"
 57: import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
@@ -3416,7 +3416,7 @@ designing the component flow spec.
 61: import { atom } from "jotai"
 62:
 63: //Modals
-64: export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBottomCenterBar.Inactive)
+64: export const modalBottomCenterBarAtom = atom<EPanelsBottomCenter>(EPanelsBottomCenter.Inactive)
 65: export const modalLeftTopBarAtom = atom<EPanelsLeftTopBar>(EPanelsLeftTopBar.PlayerRibbonTop)
 66: export const modalRightCenterAtom = atom<EPanelsRightCenter>(EPanelsRightCenter.Inactive)
 67: export const modalTopCenterAtom = atom<EPanelsTopCenter>(EPanelsTopCenter.Inactive)

@@ -52,7 +52,7 @@ import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/
 import { TPlayerMovementRecordByXY } from "@/methods/functions/map/pathFromPointToPoint"
 import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
 import { TAreaRecordByXY } from "@/methods/hooks/world/composite/useMapTilesArea"
-import { EPanelsBottomCenterBar } from "@/types/enumeration/EPanelsBottomCenterBar"
+import { EPanelsBottomCenter } from "@/types/enumeration/EPanelsBottomCenter"
 import { EPanelsBottomLeft } from "@/types/enumeration/EPanelsBottomLeft"
 import { EPanelsBottomRight } from "@/types/enumeration/EPanelsBottomRight"
 import { EPanelsLeftCenter } from "@/types/enumeration/EPanelsLeftCenter"
@@ -63,7 +63,7 @@ import { EPanelsTopCenterBar } from "@/types/enumeration/EPanelsTopCenterBar"
 import { atom } from "jotai"
 
 //Modals
-export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBottomCenterBar.Inactive)
+export const modalBottomCenterBarAtom = atom<EPanelsBottomCenter>(EPanelsBottomCenter.Inactive)
 export const modalLeftTopBarAtom = atom<EPanelsLeftTopBar>(EPanelsLeftTopBar.PlayerRibbonTop)
 export const modalRightCenterAtom = atom<EPanelsRightCenter>(EPanelsRightCenter.Inactive)
 export const modalTopCenterAtom = atom<EPanelsTopCenter>(EPanelsTopCenter.Inactive)

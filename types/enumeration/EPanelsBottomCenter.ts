@@ -1,5 +1,5 @@
 "use client"
 
-export enum EPanelsBottomCenterBar {
+export enum EPanelsBottomCenter {
   Inactive = "Inactive",
 }

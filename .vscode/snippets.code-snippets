@@ -14,15 +14,15 @@
     ],
     "description": "Separate useAtomValue and useSetAtom with proper setter name",
   },
-  "ModalBottomCenterBar": {
+  "ModalBottomCenter": {
     "prefix": "hook_ModalBottomCenterBar",
     "body": [
       "const { openModalBottomCenterBar } = useModalBottomCenterBar()",
       "// const { resetModalBottomCenterBar } = useModalBottomCenterBar()",
-      "openModalBottomCenterBar(EPanelsBottomCenterBar.${1})",
+      "openModalBottomCenterBar(EPanelsBottomCenter.${1})",
       "// resetModalBottomCenterBar()"
     ],
-    "description": "ModalBottomCenterBar Open",
+    "description": "ModalBottomCenter Open",
   },
   "ModalLeftCenter": {
     "prefix": "hook_ModalLeftCenter",

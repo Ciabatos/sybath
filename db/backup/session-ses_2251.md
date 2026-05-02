@@ -2632,7 +2632,7 @@ The agent didn't return output. Let me try directly exploring the components dir
 /mnt/c/GithubApps/Sybath/sybath/components/modals/ModalLeftTopBar.tsx
 /mnt/c/GithubApps/Sybath/sybath/components/city/CityHandling.tsx
 /mnt/c/GithubApps/Sybath/sybath/components/city/CityWrapper.tsx
-/mnt/c/GithubApps/Sybath/sybath/components/modals/ModalBottomCenterBar.tsx
+/mnt/c/GithubApps/Sybath/sybath/components/modals/ModalBottomCenter.tsx
 /mnt/c/GithubApps/Sybath/sybath/components/ui/custom/Inventory.tsx
 
 (Results are truncated: showing first 100 results. Consider using a more specific path or pattern.)

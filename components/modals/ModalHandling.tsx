@@ -1,6 +1,6 @@
 "use client"
 
-import ModalBottomCenterBar from "@/components/modals/ModalBottomCenterBar"
+import ModalBottomCenter from "@/components/modals/ModalBottomCenter"
 import ModalBottomLeft from "@/components/modals/ModalBottomLeft"
 import ModalBottomRight from "@/components/modals/ModalBottomRight"
 import { ModalLeftCenter } from "@/components/modals/ModalLeftCenter"
@@ -22,7 +22,7 @@ export function ModalHandling() {
       <ModalLeftTopBar />
       <ModalRightCenter />
       <ModalLeftCenter />
-      <ModalBottomCenterBar />
+      <ModalBottomCenter />
     </>
   )
 }
