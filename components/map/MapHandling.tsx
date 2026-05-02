@@ -1,6 +1,6 @@
 "use client"
 
-import Map from "@/components/map/Map"
+import MapTile from "@/components/map/MapTile"
 import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMovement"
 import { useMapHandling } from "@/methods/hooks/world/composite/useMapHandling"
 
@@ -11,7 +11,7 @@ export default function MapHandling() {
   return (
     <>
       {combinedMap.map(({ ...combinedMapProps }) => (
-        <Map
+        <MapTile
           key={`${combinedMapProps.mapTiles.x},${combinedMapProps.mapTiles.y}`}
           {...combinedMapProps}
         />

@@ -6,7 +6,7 @@ import { createImage } from "@/methods/functions/util/createImage"
 import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 
-export default function Map(props: TMapTile) {
+export default function MapTile(props: TMapTile) {
   const { handleClickOnMapTile } = useMapTileActions()
 
   const handleClick = () => {
