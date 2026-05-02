@@ -82,8 +82,14 @@ export default function getTable(plop) {
       // Pobierz kolumny z bazy
       const rows = await fetchColumns(schema, table)
 
-      if (rows.length === 0) {
-        throw new Error(`Brak kolumn w tabeli ${schema}.${table}`)
+      const jsonbColumns = rows.filter((col) => mapSQLTypeToTS(col.data_type) === "jsonb")
+
+      if (jsonbColumns.length > 0) {
+        const cols = jsonbColumns.map((c) => c.column_name).join(", ")
+
+        throw new Error(
+          `❌ Aborting generator: jsonb columns detected (${cols}). Please add data type for jsonb manually.`,
+        )
       }
 
       const methodColumns = rows.map((col) => ({

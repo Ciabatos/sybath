@@ -80,6 +80,16 @@ export default function getMethodAction(plop) {
       const { methodParamsColumns, argsArray, argsCompositeTypes } = await fetchMethodArgs(schema, method)
       const { resultColumns, compositeTypes } = await fetchMethodResultColumns(schema, method)
 
+      const jsonbColumns = resultColumns.filter((col) => col.type === "jsonb")
+
+      if (jsonbColumns.length > 0) {
+        const cols = jsonbColumns.map((c) => c.column_name).join(", ")
+
+        throw new Error(
+          `❌ Aborting generator: jsonb columns detected (${cols}). Please add data type for jsonb manually.`,
+        )
+      }
+
       // Ujednolicone pole methodColumns (tak jak w getTable)
       const methodColumns = resultColumns.map((col) => ({
         name: col.name || col.camelName,

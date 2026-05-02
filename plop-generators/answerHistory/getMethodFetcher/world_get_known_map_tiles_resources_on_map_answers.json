@@ -1,0 +1,96 @@
+{
+  "promptAnswers": {
+    "schema": "world",
+    "method": "get_known_map_tiles_resources_on_map",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "mapTileX",
+      "mapTileY"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "world",
+  "method": "get_known_map_tiles_resources_on_map",
+  "methodCamelName": "knownMapTilesResourcesOnMap",
+  "methodPascalName": "KnownMapTilesResourcesOnMap",
+  "methodKebabName": "get-known-map-tiles-resources-on-map",
+  "methodName": "getKnownMapTilesResourcesOnMap",
+  "methodTypeName": "TKnownMapTilesResourcesOnMap",
+  "methodParamsTypeName": "TKnownMapTilesResourcesOnMapParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_map_id",
+      "camelName": "mapId",
+      "tsType": "number",
+      "isJson": false
+    },
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "map_tile_x",
+      "camelName": "mapTileX",
+      "pascalName": "MapTileX",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "map_tile_y",
+      "camelName": "mapTileY",
+      "pascalName": "MapTileY",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "item_ids",
+      "camelName": "itemIds",
+      "pascalName": "ItemIds",
+      "tsType": "TCtItemIds[]",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"mapTileX\", \"mapTileY\"]",
+  "indexParamsColumns": "mapId, playerId",
+  "indexTypeMethodName": "MapTileXMapTileY",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TKnownMapTilesResourcesOnMapRecordByMapTileXMapTileY",
+  "indexColumns": [
+    {
+      "name": "map_tile_x",
+      "camelName": "mapTileX",
+      "pascalName": "MapTileX",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "map_tile_y",
+      "camelName": "mapTileY",
+      "pascalName": "MapTileY",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1, $2",
+  "apiPath": "app/api/world/rpc/get-known-map-tiles-resources-on-map/[mapId]/[playerId]/route.ts",
+  "apiPathParams": "/api/world/rpc/get-known-map-tiles-resources-on-map/${params.mapId}/${params.playerId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true,
+  "compositeDefinitions": [
+    {
+      "typeName": "TCtItemIds",
+      "fields": [
+        {
+          "name": "item_id",
+          "camelName": "itemId",
+          "tsType": "number"
+        }
+      ]
+    }
+  ]
+}
