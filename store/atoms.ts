@@ -7,6 +7,7 @@ import { TOtherPlayerAbilitiesRecordByAbilityId } from "@/db/postgresMainDatabas
 import { TOtherPlayerSkillsRecordBySkillId } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerSkills"
 import { TOtherPlayerStatsRecordByStatId } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerStats"
 import { TPlayerAbilitiesRecordByAbilityId } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
+import { TPlayerEnergyRecordByLastRegeneratedAt } from "@/db/postgresMainDatabase/schemas/attributes/playerEnergy"
 import { TPlayerSkillsRecordBySkillId } from "@/db/postgresMainDatabase/schemas/attributes/playerSkills"
 import { TPlayerStatsRecordByStatId } from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
 import { TAttributesSkillsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/skills"
@@ -53,13 +54,13 @@ import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
 import { TAreaRecordByXY } from "@/methods/hooks/world/composite/useMapTilesArea"
 import { EPanelsBottomCenterBar } from "@/types/enumeration/EPanelsBottomCenterBar"
 import { EPanelsBottomLeft } from "@/types/enumeration/EPanelsBottomLeft"
+import { EPanelsBottomRight } from "@/types/enumeration/EPanelsBottomRight"
 import { EPanelsLeftCenter } from "@/types/enumeration/EPanelsLeftCenter"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
 import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { EPanelsTopCenterBar } from "@/types/enumeration/EPanelsTopCenterBar"
 import { atom } from "jotai"
-import { TPlayerEnergyRecordByLastRegeneratedAt } from "@/db/postgresMainDatabase/schemas/attributes/playerEnergy"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBottomCenterBar.Inactive)
@@ -69,6 +70,7 @@ export const modalTopCenterAtom = atom<EPanelsTopCenter>(EPanelsTopCenter.Inacti
 export const modalTopCenterBarAtom = atom<EPanelsTopCenterBar>(EPanelsTopCenterBar.Inactive)
 export const modalLeftCenterAtom = atom<EPanelsLeftCenter>(EPanelsLeftCenter.Inactive)
 export const modalBottomLeftAtom = atom<EPanelsBottomLeft>(EPanelsBottomLeft.Inactive)
+export const modalBottomRightAtom = atom<EPanelsBottomRight>(EPanelsBottomRight.Inactive)
 
 //City
 export const clickedCityTileAtom = atom<number>(0)

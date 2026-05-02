@@ -2,6 +2,7 @@
 
 import ModalBottomCenterBar from "@/components/modals/ModalBottomCenterBar"
 import ModalBottomLeft from "@/components/modals/ModalBottomLeft"
+import ModalBottomRight from "@/components/modals/ModalBottomRight"
 import { ModalLeftCenter } from "@/components/modals/ModalLeftCenter"
 import ModalLeftTopBar from "@/components/modals/ModalLeftTopBar"
 import { ModalRightCenter } from "@/components/modals/ModalRightCenter"
@@ -15,6 +16,7 @@ export function ModalHandling() {
   return (
     <>
       <ModalTopCenterBar />
+      <ModalBottomRight />
       <ModalBottomLeft />
       <ModalTopCenter />
       <ModalLeftTopBar />
