@@ -14,12 +14,12 @@ export default function PlayerSquad() {
   const { leaveSquad } = useSquadControls()
 
   function onClose() {
-    openModalLeftTopBar(EPanelsLeftTopBar.PlayerRibbon)
+    openModalLeftTopBar(EPanelsLeftTopBar.PlayerRibbonTop)
   }
 
   function handleLeaveSquad() {
     leaveSquad()
-    openModalLeftTopBar(EPanelsLeftTopBar.PlayerRibbon)
+    openModalLeftTopBar(EPanelsLeftTopBar.PlayerRibbonTop)
   }
 
   return (

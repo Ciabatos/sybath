@@ -22,7 +22,7 @@ export default function PlayerPanel() {
   const { activePlayerSquad } = useActivePlayerSquad()
 
   function onClose() {
-    openModalLeftTopBar(EPanelsLeftTopBar.PlayerRibbon)
+    openModalLeftTopBar(EPanelsLeftTopBar.PlayerRibbonTop)
   }
 
   const name = activePlayerProfile?.name

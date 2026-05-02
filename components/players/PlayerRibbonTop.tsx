@@ -10,9 +10,9 @@ import { useActivePlayerProfile } from "@/methods/hooks/players/composite/useAct
 import { useActivePlayerSquad } from "@/methods/hooks/squad/composite/useActivePlayerSquad"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
-import styles from "./styles/PlayerRibbon.module.css"
+import styles from "./styles/PlayerRibbonTop.module.css"
 
-export default function PlayerRibbon() {
+export default function PlayerRibbonTop() {
   const { openModalLeftTopBar } = useModalLeftTopBar()
   const { activePlayerProfile } = useActivePlayerProfile()
   const { activePlayerSquad } = useActivePlayerSquad()

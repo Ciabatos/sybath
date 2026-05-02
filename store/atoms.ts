@@ -64,13 +64,13 @@ import { atom } from "jotai"
 
 //Modals
 export const modalBottomCenterBarAtom = atom<EPanelsBottomCenterBar>(EPanelsBottomCenterBar.Inactive)
-export const modalLeftTopBarAtom = atom<EPanelsLeftTopBar>(EPanelsLeftTopBar.PlayerRibbon)
+export const modalLeftTopBarAtom = atom<EPanelsLeftTopBar>(EPanelsLeftTopBar.PlayerRibbonTop)
 export const modalRightCenterAtom = atom<EPanelsRightCenter>(EPanelsRightCenter.Inactive)
 export const modalTopCenterAtom = atom<EPanelsTopCenter>(EPanelsTopCenter.Inactive)
 export const modalTopCenterBarAtom = atom<EPanelsTopCenterBar>(EPanelsTopCenterBar.Inactive)
 export const modalLeftCenterAtom = atom<EPanelsLeftCenter>(EPanelsLeftCenter.Inactive)
 export const modalBottomLeftAtom = atom<EPanelsBottomLeft>(EPanelsBottomLeft.Inactive)
-export const modalBottomRightAtom = atom<EPanelsBottomRight>(EPanelsBottomRight.Inactive)
+export const modalBottomRightAtom = atom<EPanelsBottomRight>(EPanelsBottomRight.PlayerRibbonBottom)
 
 //City
 export const clickedCityTileAtom = atom<number>(0)

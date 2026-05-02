@@ -54,6 +54,26 @@
     ],
     "description": "ModalRightCenter Open",
   },
+  "ModalBottomLeft": {
+    "prefix": "hook_ModalBottomLeft",
+    "body": [
+      "const { openModalBottomLeft } = useModalBottomLeft()",
+      "// const { resetModalBottomLeft } = useModalBottomLeft()",
+      "openModalBottomLeft(EPanelsBottomLeft.${1})",
+      "// resetModalBottomLeft()"
+    ],
+    "description": "ModalBottomLeft Open",
+  },
+  "ModalBottomRight": {
+    "prefix": "hook_ModalBottomRight",
+    "body": [
+      "const { openModalBottomRight } = useModalBottomRight()",
+      "// const { resetModalBottomRight } = useModalBottomRight()",
+      "openModalBottomRight(EPanelsBottomRight.${1})",
+      "// resetModalBottomRight()"
+    ],
+    "description": "ModalBottomRight Open",
+  },
   "ModalTopCenter": {
     "prefix": "hook_ModalTopCenter",
     "body": [
@@ -585,7 +605,7 @@
       "const squadInvites = useSquadInvitesState()"
     ],
     "description": "Destructuring useSquadInvites hook"
-  },   
+  },
   "Destructure usePlayerEnergy": {
     "prefix": "hook_attributes_core_usePlayerEnergy",
     "body": [
@@ -593,5 +613,5 @@
       "const playerEnergy = usePlayerEnergyState()"
     ],
     "description": "Destructuring usePlayerEnergy hook"
-  },//Automatic Snippets
+  }, //Automatic Snippets
 }
