@@ -27,6 +27,7 @@ Gry:
 -victoria3
 -Dwarf Fortress
 -Humankind
+-Total Battle - mobile game
 
 fazy walki clashu (moze wiecej niz jedna runda do kazdego)
 attak / defend
