@@ -1,14 +1,16 @@
 "use client"
 
+import ResourcesLayer from "@/components/map/layers/mapTileLayers/layers/ResourcesLayer"
 import MapTileLayerHandling from "@/components/map/layers/mapTileLayers/MapTileLayerHandling"
 import style from "@/components/map/styles/MapTile.module.css"
+import { TKnownMapTilesResourcesOnMap } from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnMap"
 import { createImage } from "@/methods/functions/util/createImage"
 import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 
 type TMapTilemapTile = {
   mapTile: TMapTile
-  knownMapTilesResourcesOnMap?: Record<string, any>
+  knownMapTilesResourcesOnMap?: TKnownMapTilesResourcesOnMap | null
 }
 
 export default function MapTile({ mapTile, knownMapTilesResourcesOnMap }: TMapTilemapTile) {
@@ -114,6 +116,7 @@ export default function MapTile({ mapTile, knownMapTilesResourcesOnMap }: TMapTi
       <div>
         {mapTile.mapTiles.x}, {mapTile.mapTiles.y}, {mapTile.cities?.name}, {mapTile.districts?.name}
         <MapTileLayerHandling {...mapTile} />
+        {knownMapTilesResourcesOnMap && <ResourcesLayer knownMapTilesResourcesOnMap={knownMapTilesResourcesOnMap} />}
       </div>
     </div>
   )

@@ -60,7 +60,6 @@ export function useMapHandling() {
 
   useFetchKnownPlayersPositions({ mapId, playerId })
   const knownPlayersPositions = useKnownPlayersPositionsState()
-  console.log("knownPlayersPositions", knownPlayersPositions)
   useFetchDistrictsDistrictsByKey({ mapId })
   const districts = useDistrictsDistrictsState()
 

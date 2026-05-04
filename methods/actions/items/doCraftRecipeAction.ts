@@ -7,7 +7,6 @@ import { TDoCraftRecipeServiceParams, doCraftRecipeService } from "@/methods/ser
 type TDoCraftRecipeActionParams = Omit<TDoCraftRecipeServiceParams, "sessionUserId">
 
 export async function doCraftRecipeAction(params: TDoCraftRecipeActionParams) {
-  console.log("doCraftRecipeAction - params:", params)
   try {
     const session = await auth()
     const sessionUserId = session?.user?.userId

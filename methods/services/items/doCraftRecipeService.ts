@@ -37,7 +37,6 @@ export async function doCraftRecipeService(params: TDoCraftRecipeServiceParams) 
       playerId: playerId,
       recipeId: recipeId,
     }
-    console.log("doCraftRecipeService - data:", data)
     const result = await doCraftRecipe(data)
     return result
   } catch (error) {

@@ -79,7 +79,7 @@ export const clickedCityTileAtom = atom<number>(0)
 //Map
 export const clickedMapTileAtom = atom<TMapTile>()
 export const activeLayerAtom = atom({
-  resources: false,
+  resources: true,
 })
 //Player
 export const clickedOtherPlayerMaskedIdAtom = atom<string>("")
