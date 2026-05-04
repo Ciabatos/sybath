@@ -1,6 +1,6 @@
 "use client"
 
-import TileLayersHandling from "@/components/map/layers/tileLayers/TileLayersHandling"
+import MapTileLayerHandling from "@/components/map/layers/mapTileLayers/MapTileLayerHandling"
 import style from "@/components/map/styles/MapTile.module.css"
 import { createImage } from "@/methods/functions/util/createImage"
 import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
@@ -23,7 +23,7 @@ export default function MapTile(props: TMapTile) {
           gridRowStart: props.mapTiles.y,
         }}
       >
-        <TileLayersHandling {...props} />
+        <MapTileLayerHandling {...props} />
       </div>
     )
   }
@@ -108,7 +108,7 @@ export default function MapTile(props: TMapTile) {
       {playersCount > 0 && <div className={style.PopulationBadge}>👥 {playersCount}</div>}
       <div>
         {props.mapTiles.x}, {props.mapTiles.y}, {props.cities?.name}, {props.districts?.name}
-        <TileLayersHandling {...props} />
+        <MapTileLayerHandling {...props} />
       </div>
     </div>
   )
