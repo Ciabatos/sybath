@@ -1,12 +1,12 @@
 "use client"
 
-import MapWrapperLayerHandling from "@/components/map/layers/mapWrapperLayers/MapWrapperLayerHandling"
-import Map from "@/components/map/Map"
+import RegionLayerProvince from "@/components/map/layers/mapWrapperLayers/RegionLayerProvince"
+import MapHandling from "@/components/map/MapHandling"
 import { useMapHandling } from "@/methods/hooks/world/composite/useMapHandling"
 import { useEffect, useRef, useState } from "react"
 import type { ReactZoomPanPinchContentRef } from "react-zoom-pan-pinch"
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
-import style from "./styles/Map.module.css"
+import style from "./styles/MapWrapper.module.css"
 
 const DEFAULT_TRANSFORM = { scale: 1, positionX: 0, positionY: 0 }
 
@@ -76,8 +76,8 @@ export default function MapWrapper() {
             id='MapTiles'
             className={style.Tiles}
           >
-            <Map />
-            <MapWrapperLayerHandling />
+            <MapHandling />
+            <RegionLayerProvince />
           </div>
         </TransformComponent>
       </TransformWrapper>

@@ -10,7 +10,7 @@ const TILE_SIZE = 64
 export default function RegionLayerProvince() {
   //zamienic na provincesRegion
   const { knownMapRegion } = useRegionLayerProvince()
-
+  console.log("knownMapRegion", knownMapRegion)
   const tilesByRegion: Record<number, TKnownMapRegion[]> = {}
 
   Object.values(knownMapRegion).forEach((tile) => {

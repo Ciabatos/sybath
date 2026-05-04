@@ -4,7 +4,7 @@ import CityHandling from "@/components/city/CityHandling"
 import { useCityHandlingData } from "@/methods/hooks/cities/composite/useCityHandlingData"
 import { useRef, useState } from "react"
 import { ReactZoomPanPinchContentRef, TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
-import style from "./styles/Map.module.css"
+import style from "./styles/MapWrapper.module.css"
 
 export default function CityWrapper() {
   const { cityId, cityTiles } = useCityHandlingData()

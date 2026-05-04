@@ -6,24 +6,29 @@ import { createImage } from "@/methods/functions/util/createImage"
 import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 
-export default function MapTile(props: TMapTile) {
+type TMapTilemapTile = {
+  mapTile: TMapTile
+  knownMapTilesResourcesOnMap?: Record<string, any>
+}
+
+export default function MapTile({ mapTile, knownMapTilesResourcesOnMap }: TMapTilemapTile) {
   const { handleClickOnMapTile } = useMapTileActions()
 
   const handleClick = () => {
-    handleClickOnMapTile(props)
+    handleClickOnMapTile(mapTile)
   }
 
-  if (!props.terrainTypes) {
+  if (!mapTile.terrainTypes) {
     return (
       <div
         className={style.BackgroundImage}
         onDoubleClick={handleClick}
         style={{
-          gridColumnStart: props.mapTiles.x,
-          gridRowStart: props.mapTiles.y,
+          gridColumnStart: mapTile.mapTiles.x,
+          gridRowStart: mapTile.mapTiles.y,
         }}
       >
-        <MapTileLayerHandling {...props} />
+        <MapTileLayerHandling {...mapTile} />
       </div>
     )
   }
@@ -38,15 +43,15 @@ export default function MapTile(props: TMapTile) {
     combineImages,
   } = createImage()
 
-  const inSquad = props.playerPosition?.inSquad === true
+  const inSquad = mapTile.playerPosition?.inSquad === true
 
-  const backgroundImage = createTerrainImage(props.terrainTypes.imageUrl)
-  const landscapeImage = createLandscapeImage(props.landscapeTypes?.imageUrl)
-  const playerImage = createPlayerImage(props.playerPosition?.imageMap)
-  const playerSquadImage = createSquadImage(props.playerPosition?.imageMap)
-  const knownPlayersPositions = props.knownPlayersPositions?.otherPlayers ?? []
-  const citiesImage = createCitiesImage(props.cities?.imageUrl)
-  const districtsImage = creatDistrictsImage(props.districtTypes?.imageUrl)
+  const backgroundImage = createTerrainImage(mapTile.terrainTypes.imageUrl)
+  const landscapeImage = createLandscapeImage(mapTile.landscapeTypes?.imageUrl)
+  const playerImage = createPlayerImage(mapTile.playerPosition?.imageMap)
+  const playerSquadImage = createSquadImage(mapTile.playerPosition?.imageMap)
+  const knownPlayersPositions = mapTile.knownPlayersPositions?.otherPlayers ?? []
+  const citiesImage = createCitiesImage(mapTile.cities?.imageUrl)
+  const districtsImage = creatDistrictsImage(mapTile.districtTypes?.imageUrl)
   const combinedImages = combineImages(landscapeImage, backgroundImage)
 
   const playersCount = knownPlayersPositions?.length || 0
@@ -56,8 +61,8 @@ export default function MapTile(props: TMapTile) {
       className={style.BackgroundImage}
       onDoubleClick={handleClick}
       style={{
-        gridColumnStart: props.mapTiles.x,
-        gridRowStart: props.mapTiles.y,
+        gridColumnStart: mapTile.mapTiles.x,
+        gridRowStart: mapTile.mapTiles.y,
         backgroundImage: combinedImages,
       }}
     >
@@ -78,14 +83,14 @@ export default function MapTile(props: TMapTile) {
           }}
         ></div>
       )}
-      {!inSquad && props.playerPosition && (
+      {!inSquad && mapTile.playerPosition && (
         <div
           className={`${style.PlayerImage} ${style.PlayerHighlight}`}
           style={{ backgroundImage: playerImage }}
         />
       )}
 
-      {inSquad && props.playerPosition && (
+      {inSquad && mapTile.playerPosition && (
         <div
           className={`${style.PlayerImage} ${style.PlayerHighlight}`}
           style={{ backgroundImage: playerSquadImage }}
@@ -107,8 +112,8 @@ export default function MapTile(props: TMapTile) {
       })}
       {playersCount > 0 && <div className={style.PopulationBadge}>👥 {playersCount}</div>}
       <div>
-        {props.mapTiles.x}, {props.mapTiles.y}, {props.cities?.name}, {props.districts?.name}
-        <MapTileLayerHandling {...props} />
+        {mapTile.mapTiles.x}, {mapTile.mapTiles.y}, {mapTile.cities?.name}, {mapTile.districts?.name}
+        <MapTileLayerHandling {...mapTile} />
       </div>
     </div>
   )
