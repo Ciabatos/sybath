@@ -7,7 +7,7 @@ type TProps = {
 }
 
 export default function MapResourcesLayer({ mapTiles }: TProps) {
-  const { knownMapTilesResourcesOnMap } = useResourcesLayer()
+  const { combinedResourcesOnMap } = useResourcesLayer()
 
   return (
     <>
@@ -18,7 +18,9 @@ export default function MapResourcesLayer({ mapTiles }: TProps) {
           <MapTile
             key={key}
             mapTile={tile}
-            knownMapTilesResourcesOnMap={knownMapTilesResourcesOnMap[key]}
+            knownMapTilesResourcesOnMap={combinedResourcesOnMap.filter(
+              (resource) => resource.mapTileX === tile.mapTiles.x && resource.mapTileY === tile.mapTiles.y,
+            )}
           />
         )
       })}

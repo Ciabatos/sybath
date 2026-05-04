@@ -1,9 +1,22 @@
+import { useFetchItemsItems, useItemsItemsState } from "@/methods/hooks/items/core/useFetchItemsItems"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { useMapId } from "@/methods/hooks/world/composite/useMapId"
 import {
   useFetchKnownMapTilesResourcesOnMap,
   useKnownMapTilesResourcesOnMapState,
 } from "@/methods/hooks/world/core/useFetchKnownMapTilesResourcesOnMap"
+
+export type TCombinedResourcesOnMap = {
+  mapTileX: number
+  mapTileY: number
+  itemIds: {
+    itemId: number
+    id: number
+    name: string
+    description: string
+    image: string
+  }[]
+}[]
 
 export function useResourcesLayer() {
   const { playerId } = usePlayerId()
@@ -12,5 +25,22 @@ export function useResourcesLayer() {
   useFetchKnownMapTilesResourcesOnMap({ mapId, playerId })
   const knownMapTilesResourcesOnMap = useKnownMapTilesResourcesOnMapState()
 
-  return { knownMapTilesResourcesOnMap }
+  useFetchItemsItems()
+  const items = useItemsItemsState()
+
+  const combinedResourcesOnMap = Object.entries(knownMapTilesResourcesOnMap).map(([key, tile]) => {
+    return {
+      mapTileX: tile.mapTileX,
+      mapTileY: tile.mapTileY,
+      itemIds: tile.itemIds.map((itemId) => ({
+        itemId: itemId.itemId,
+        id: items[`${itemId.itemId}`]?.id,
+        name: items[`${itemId.itemId}`]?.name,
+        description: items[`${itemId.itemId}`]?.description,
+        image: items[`${itemId.itemId}`]?.image,
+      })),
+    }
+  })
+
+  return { combinedResourcesOnMap }
 }

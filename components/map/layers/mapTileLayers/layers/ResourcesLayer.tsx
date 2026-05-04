@@ -1,7 +1,7 @@
-import { TKnownMapTilesResourcesOnMap } from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnMap"
+import { TCombinedResourcesOnMap } from "@/methods/hooks/world/composite/useResourcesLayer"
 
 type TProps = {
-  knownMapTilesResourcesOnMap?: TKnownMapTilesResourcesOnMap
+  knownMapTilesResourcesOnMap?: TCombinedResourcesOnMap
 }
 
 export default function ResourcesLayer({ knownMapTilesResourcesOnMap }: TProps) {
@@ -19,17 +19,20 @@ export default function ResourcesLayer({ knownMapTilesResourcesOnMap }: TProps) 
         pointerEvents: "none", // 👈 żeby klik przechodził do MapTile
       }}
     >
-      {knownMapTilesResourcesOnMap.itemIds.map((item) => (
-        <div
-          key={item.itemId}
-          style={{
-            position: "relative",
-            zIndex: 20,
-          }}
-        >
-          {item.itemId} RESOURCE
-        </div>
-      ))}
+      <div>
+        {Object.values(knownMapTilesResourcesOnMap).map((tile) =>
+          tile.itemIds.map((resource) => {
+            return (
+              <div
+                key={resource.itemId}
+                style={{ position: "relative", zIndex: 99999 }}
+              >
+                {resource.itemId} RESOURCE
+              </div>
+            )
+          }),
+        )}
+      </div>
     </div>
   )
 }

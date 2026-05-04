@@ -3,14 +3,14 @@
 import ResourcesLayer from "@/components/map/layers/mapTileLayers/layers/ResourcesLayer"
 import MapTileLayerHandling from "@/components/map/layers/mapTileLayers/MapTileLayerHandling"
 import style from "@/components/map/styles/MapTile.module.css"
-import { TKnownMapTilesResourcesOnMap } from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnMap"
 import { createImage } from "@/methods/functions/util/createImage"
 import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
+import { TCombinedResourcesOnMap } from "@/methods/hooks/world/composite/useResourcesLayer"
 
 type TMapTilemapTile = {
   mapTile: TMapTile
-  knownMapTilesResourcesOnMap?: TKnownMapTilesResourcesOnMap | null
+  knownMapTilesResourcesOnMap?: TCombinedResourcesOnMap | null
 }
 
 export default function MapTile({ mapTile, knownMapTilesResourcesOnMap }: TMapTilemapTile) {
