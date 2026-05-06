@@ -27,7 +27,7 @@ export default function ResourcesLayer({ knownMapTilesResourcesOnMap }: TProps) 
                 key={resource.itemId}
                 style={{ position: "relative", zIndex: 99999 }}
               >
-                {resource.itemId} RESOURCE
+                res_{resource.itemId}
               </div>
             )
           }),
