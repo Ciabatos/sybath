@@ -6,16 +6,19 @@ import {
   useKnownMapTilesResourcesOnMapState,
 } from "@/methods/hooks/world/core/useFetchKnownMapTilesResourcesOnMap"
 
-export type TCombinedResourcesOnMap = {
-  mapTileX: number
-  mapTileY: number
-  itemIds: {
-    itemId: number
-    name: string
-    description: string
-    image: string
-  }[]
-}[]
+export type TCombinedResourcesOnMap = Record<
+  string,
+  {
+    mapTileX: number
+    mapTileY: number
+    itemIds: {
+      itemId: number
+      name: string
+      description: string
+      image: string
+    }[]
+  }
+>
 
 export function useResourcesLayer() {
   const { playerId } = usePlayerId()
@@ -27,18 +30,21 @@ export function useResourcesLayer() {
   useFetchItemsItems()
   const items = useItemsItemsState()
 
-  const combinedResourcesOnMap = Object.entries(knownMapTilesResourcesOnMap).map(([key, tile]) => {
-    return {
-      mapTileX: tile.mapTileX,
-      mapTileY: tile.mapTileY,
-      itemIds: tile.itemIds.map((itemId) => ({
-        itemId: itemId.itemId,
-        name: items[`${itemId.itemId}`]?.name,
-        description: items[`${itemId.itemId}`]?.description,
-        image: items[`${itemId.itemId}`]?.image,
-      })),
-    }
-  })
+  const combinedResourcesOnMap: TCombinedResourcesOnMap = Object.fromEntries(
+    Object.entries(knownMapTilesResourcesOnMap).map(([key, tile]) => [
+      key,
+      {
+        mapTileX: tile.mapTileX,
+        mapTileY: tile.mapTileY,
+        itemIds: tile.itemIds.map((itemId) => ({
+          itemId: itemId.itemId,
+          name: items[`${itemId.itemId}`]?.name,
+          description: items[`${itemId.itemId}`]?.description,
+          image: items[`${itemId.itemId}`]?.image,
+        })),
+      },
+    ]),
+  )
 
   return { combinedResourcesOnMap }
 }

@@ -1,7 +1,7 @@
 import { TCombinedResourcesOnMap } from "@/methods/hooks/world/composite/useResourcesLayer"
 
 type TProps = {
-  knownMapTilesResourcesOnMap?: TCombinedResourcesOnMap
+  knownMapTilesResourcesOnMap?: TCombinedResourcesOnMap[string]
 }
 
 export default function ResourcesLayer({ knownMapTilesResourcesOnMap }: TProps) {
@@ -15,23 +15,19 @@ export default function ResourcesLayer({ knownMapTilesResourcesOnMap }: TProps) 
         left: 0,
         width: "100%",
         height: "100%",
-        zIndex: 999999999, // 👈 warstwa nad tile
-        pointerEvents: "none", // 👈 żeby klik przechodził do MapTile
+        zIndex: 999999999,
+        pointerEvents: "none",
       }}
     >
       <div>
-        {Object.values(knownMapTilesResourcesOnMap).map((tile) =>
-          tile.itemIds.map((resource) => {
-            return (
-              <div
-                key={resource.itemId}
-                style={{ position: "relative", zIndex: 99999 }}
-              >
-                res_{resource.itemId}
-              </div>
-            )
-          }),
-        )}
+        {knownMapTilesResourcesOnMap.itemIds.map((resource) => (
+          <div
+            key={resource.itemId}
+            style={{ position: "relative", zIndex: 99999 }}
+          >
+            res_{resource.itemId}
+          </div>
+        ))}
       </div>
     </div>
   )

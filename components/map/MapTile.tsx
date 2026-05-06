@@ -1,19 +1,18 @@
 "use client"
 
-import ResourcesLayer from "@/components/map/layers/mapTileLayers/layers/ResourcesLayer"
 import MapTileLayerHandling from "@/components/map/layers/mapTileLayers/MapTileLayerHandling"
 import style from "@/components/map/styles/MapTile.module.css"
 import { createImage } from "@/methods/functions/util/createImage"
 import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
-import { TCombinedResourcesOnMap } from "@/methods/hooks/world/composite/useResourcesLayer"
+import { ReactNode } from "react"
 
 type TMapTilemapTile = {
   mapTile: TMapTile
-  knownMapTilesResourcesOnMap?: TCombinedResourcesOnMap | null
+  layers?: ReactNode
 }
 
-export default function MapTile({ mapTile, knownMapTilesResourcesOnMap }: TMapTilemapTile) {
+export default function MapTile({ mapTile, layers }: TMapTilemapTile) {
   const { handleClickOnMapTile } = useMapTileActions()
 
   const handleClick = () => {
@@ -116,7 +115,7 @@ export default function MapTile({ mapTile, knownMapTilesResourcesOnMap }: TMapTi
       <div>
         {mapTile.mapTiles.x}, {mapTile.mapTiles.y}, {mapTile.cities?.name}, {mapTile.districts?.name}
         <MapTileLayerHandling {...mapTile} />
-        {knownMapTilesResourcesOnMap && <ResourcesLayer knownMapTilesResourcesOnMap={knownMapTilesResourcesOnMap} />}
+        {layers}
       </div>
     </div>
   )

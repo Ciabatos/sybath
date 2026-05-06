@@ -1,3 +1,4 @@
+import ResourcesLayer from "@/components/map/layers/mapTileLayers/layers/ResourcesLayer"
 import MapTile from "@/components/map/MapTile"
 import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
 import { useResourcesLayer } from "@/methods/hooks/world/composite/useResourcesLayer"
@@ -18,9 +19,7 @@ export default function MapResourcesLayer({ mapTiles }: TProps) {
           <MapTile
             key={key}
             mapTile={tile}
-            knownMapTilesResourcesOnMap={combinedResourcesOnMap.filter(
-              (resource) => resource.mapTileX === tile.mapTiles.x && resource.mapTileY === tile.mapTiles.y,
-            )}
+            layers={<ResourcesLayer knownMapTilesResourcesOnMap={combinedResourcesOnMap[key]} />}
           />
         )
       })}
