@@ -11,7 +11,6 @@ export type TCombinedResourcesOnMap = {
   mapTileY: number
   itemIds: {
     itemId: number
-    id: number
     name: string
     description: string
     image: string
@@ -34,7 +33,6 @@ export function useResourcesLayer() {
       mapTileY: tile.mapTileY,
       itemIds: tile.itemIds.map((itemId) => ({
         itemId: itemId.itemId,
-        id: items[`${itemId.itemId}`]?.id,
         name: items[`${itemId.itemId}`]?.name,
         description: items[`${itemId.itemId}`]?.description,
         image: items[`${itemId.itemId}`]?.image,
