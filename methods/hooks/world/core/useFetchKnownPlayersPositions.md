@@ -48,16 +48,17 @@ export type TKnownPlayersPositionsParams = {
   playerId: number
 }
 
-export type TCtOtherPlayer = {
+export type TCtOtherPlayers = {
   otherPlayerId: string
   imageMap: string
   inSquad: boolean
+  squadId: number
 }
 
 export type TKnownPlayersPositions = {
   x: number
   y: number
-  otherPlayers: TCtOtherPlayer[]
+  otherPlayers: TCtOtherPlayers[]
 }
 
 export type TKnownPlayersPositionsRecordByXY = Record<string, TKnownPlayersPositions>

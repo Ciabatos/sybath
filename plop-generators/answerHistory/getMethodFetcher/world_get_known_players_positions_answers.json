@@ -51,7 +51,7 @@
       "name": "other_players",
       "camelName": "otherPlayers",
       "pascalName": "OtherPlayers",
-      "tsType": "TCtOtherPlayer[]",
+      "tsType": "TCtOtherPlayers[]",
       "optional": ""
     }
   ],
@@ -83,7 +83,7 @@
   "mutationMergeOldData": true,
   "compositeDefinitions": [
     {
-      "typeName": "TCtOtherPlayer",
+      "typeName": "TCtOtherPlayers",
       "fields": [
         {
           "name": "other_player_id",
@@ -99,6 +99,11 @@
           "name": "in_squad",
           "camelName": "inSquad",
           "tsType": "boolean"
+        },
+        {
+          "name": "squad_id",
+          "camelName": "squadId",
+          "tsType": "number"
         }
       ]
     }
