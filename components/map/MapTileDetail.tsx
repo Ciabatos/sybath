@@ -21,9 +21,7 @@ export default function MapTileDetail() {
   const { clickedMapTile } = useMapTileActions()
 
   // ── MOVEMENT LOGIC  ──────────────────────────────────────────
-  const { selectPlayerPathToClickedTile, selectPlayerPathAndMovePlayerToClickedTile, resetPlayerMovementPlanned } =
-    usePlayerMovement()
-  const [isMoving, setIsMoving] = useState(false)
+  const { selectPlayerPathToClickedTile, resetPlayerMovementPlanned } = usePlayerMovement()
 
   // ── EXPLORATION LOGIC  ──────────────────────────────────────────s
   const { exploreClickedTile } = usePlayerExploration()
@@ -46,22 +44,7 @@ export default function MapTileDetail() {
   }
 
   function handleMove() {
-    if (!isMoving) {
-      setIsMoving(true)
-      selectPlayerPathToClickedTile()
-    }
-  }
-
-  function handleConfirmMove() {
-    if (isMoving) {
-      setIsMoving(false)
-      selectPlayerPathAndMovePlayerToClickedTile()
-    }
-  }
-
-  function handleCancelMove() {
-    setIsMoving(false)
-    resetPlayerMovementPlanned()
+    selectPlayerPathToClickedTile()
   }
 
   function handleExplore() {
@@ -266,30 +249,12 @@ export default function MapTileDetail() {
               <Button className={styles.actionButton}>Set Camp</Button>
 
               {/*  MOVEMENT LOGIC */}
-              {!isMoving ? (
-                <Button
-                  className={styles.actionButton}
-                  onClick={handleMove}
-                >
-                  Move
-                </Button>
-              ) : (
-                <>
-                  <Button
-                    className={styles.actionButton}
-                    onClick={handleConfirmMove}
-                  >
-                    Confirm Move
-                  </Button>
-
-                  <Button
-                    className={styles.actionButton}
-                    onClick={handleCancelMove}
-                  >
-                    Cancel Move
-                  </Button>
-                </>
-              )}
+              <Button
+                className={styles.actionButton}
+                onClick={handleMove}
+              >
+                Move
+              </Button>
 
               {/*  HUNT LOGIC */}
               <Button className={styles.actionButton}>Hunt</Button>
