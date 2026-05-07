@@ -2,8 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
-import { useSetOtherSquadId } from "@/methods/hooks/squad/composite/useOtherSquadId"
-import { useSquadControls } from "@/methods/hooks/squad/composite/useSquadControls"
+import { TJoinSquadParams, useSquadControls } from "@/methods/hooks/squad/composite/useSquadControls"
 import { useSquadInvites } from "@/methods/hooks/squad/composite/useSquadInvites"
 import styles from "./styles/SquadSwitchList.module.css"
 
@@ -11,11 +10,9 @@ export default function SquadSwitchList() {
   const { resetModalTopCenter } = useModalTopCenter()
   const { joinSquad } = useSquadControls()
   const { squadInvites } = useSquadInvites()
-  const setOtherSquadId = useSetOtherSquadId()
 
-  function handleJoinSquad(squadInviteId: number, squadId: number) {
-    setOtherSquadId(squadId)
-    joinSquad(squadInviteId)
+  function handleJoinSquad({ squadInviteId, mapId, mapTileX, mapTileY }: TJoinSquadParams) {
+    joinSquad({ squadInviteId, mapId, mapTileX, mapTileY })
     resetModalTopCenter()
   }
 
@@ -28,7 +25,14 @@ export default function SquadSwitchList() {
         {Object.values(squadInvites).map((invite) => (
           <Button
             key={invite.id}
-            onClick={() => handleJoinSquad(invite.id, invite.squadId)}
+            onClick={() =>
+              handleJoinSquad({
+                squadInviteId: invite.id,
+                mapId: invite.mapId,
+                mapTileX: invite.mapTileX,
+                mapTileY: invite.mapTileY,
+              })
+            }
           >
             Invited to {invite.secondName} by {invite.name}
             {invite.nickname ? ` (${invite.nickname})` : ""} {invite.secondName}
