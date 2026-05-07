@@ -1,0 +1,4 @@
+Dodac opcje scavange tiles
+
+Containers na tiles
+I Knowledge jak exploracja
