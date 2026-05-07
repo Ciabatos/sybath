@@ -1,6 +1,7 @@
 "use client"
 
 import { doPlayerMovementAction } from "@/methods/actions/world/doPlayerMovementAction"
+import { useModalBottomCenter } from "@/methods/hooks/modals/useModalBottomCenter"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { useMapId } from "@/methods/hooks/world/composite/useMapId"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
@@ -8,7 +9,8 @@ import { useMapTilesPathFromPointToPoint } from "@/methods/hooks/world/composite
 import { useFetchPlayerPosition, usePlayerPositionState } from "@/methods/hooks/world/core/useFetchPlayerPosition"
 import { useMutatePlayerPosition } from "@/methods/hooks/world/core/useMutatePlayerPosition"
 import { playerMovementPlannedAtom } from "@/store/atoms"
-import { useSetAtom } from "jotai"
+import { EPanelsBottomCenter } from "@/types/enumeration/EPanelsBottomCenter"
+import { useAtomValue, useSetAtom } from "jotai"
 import { toast } from "sonner"
 
 type TPlayerMovementParams = {
@@ -20,22 +22,20 @@ type TPlayerMovementParams = {
 }
 
 export function usePlayerMovement() {
-  const setPlayerMovementPlanned = useSetAtom(playerMovementPlannedAtom)
-
+  const setPlayerMovementPlanned = useSetPlayerMovementPlanned()
+  const playerMovementPlanned = usePlayerMovementPlanned()
   const { getPathFromPointToPoint } = useMapTilesPathFromPointToPoint()
-
   const { playerId } = usePlayerId()
   const { mapId } = useMapId()
-
   useFetchPlayerPosition({ mapId, playerId })
   const playerPosition = usePlayerPositionState()
   const [playerPos] = Object.values(playerPosition)
-
   const { clickedMapTile } = useMapTileActions()
-
   const { mutatePlayerPosition } = useMutatePlayerPosition({ mapId, playerId })
+  const { openModalBottomCenter } = useModalBottomCenter()
+  const { resetModalBottomCenter } = useModalBottomCenter()
 
-  function selectPlayerPath(params: TPlayerMovementParams) {
+  async function selectPlayerPath(params: TPlayerMovementParams) {
     const path = getPathFromPointToPoint(params)
 
     if (!path) {
@@ -44,10 +44,11 @@ export function usePlayerMovement() {
 
     setPlayerMovementPlanned(path)
 
+    openModalBottomCenter(EPanelsBottomCenter.MovementPanel)
     return toast.success(`Action selected confirm to proceed`)
   }
 
-  function selectPlayerPathToClickedTile() {
+  async function selectPlayerPathToClickedTile() {
     if (!clickedMapTile) {
       return toast.error("No tile selected")
     }
@@ -67,7 +68,27 @@ export function usePlayerMovement() {
 
     setPlayerMovementPlanned(path)
 
+    openModalBottomCenter(EPanelsBottomCenter.MovementPanel)
     return toast.success(`Action selected confirm to proceed`)
+  }
+
+  async function goSelectedPlayerPath() {
+    if (!playerMovementPlanned || Object.keys(playerMovementPlanned).length === 0) {
+      return toast.error("No path selected")
+    }
+
+    const result = await doPlayerMovementAction({ path: playerMovementPlanned, playerId: playerId })
+
+    if (!result?.status) {
+      return toast.error(result?.message)
+    }
+
+    const lastStep = Object.values(playerMovementPlanned).reduce((max, curr) => (curr.order > max.order ? curr : max))
+    resetPlayerMovementPlanned()
+    resetModalBottomCenter()
+    mutatePlayerPosition([{ x: lastStep.x, y: lastStep.y }])
+
+    return toast.success(result?.message)
   }
 
   async function selectPlayerPathAndMovePlayer(params: TPlayerMovementParams) {
@@ -85,7 +106,7 @@ export function usePlayerMovement() {
     }
 
     const lastStep = Object.values(path).reduce((max, curr) => (curr.order > max.order ? curr : max))
-
+    resetModalBottomCenter()
     mutatePlayerPosition([{ x: lastStep.x, y: lastStep.y }])
 
     return toast.success(result?.message)
@@ -118,7 +139,7 @@ export function usePlayerMovement() {
     }
 
     const lastStep = Object.values(path).reduce((max, curr) => (curr.order > max.order ? curr : max))
-
+    resetModalBottomCenter()
     mutatePlayerPosition([{ x: lastStep.x, y: lastStep.y }])
 
     return toast.success(result?.message)
@@ -134,5 +155,14 @@ export function usePlayerMovement() {
     selectPlayerPathAndMovePlayer,
     selectPlayerPathAndMovePlayerToClickedTile,
     resetPlayerMovementPlanned,
+    goSelectedPlayerPath,
   }
+}
+
+export function usePlayerMovementPlanned() {
+  return useAtomValue(playerMovementPlannedAtom)
+}
+
+export function useSetPlayerMovementPlanned() {
+  return useSetAtom(playerMovementPlannedAtom)
 }

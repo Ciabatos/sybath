@@ -1,12 +1,10 @@
 "use client"
 
+import { usePlayerMovementPlanned } from "@/methods/hooks/players/composite/usePlayerMovement"
 import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
-import { playerMovementPlannedAtom } from "@/store/atoms"
-import { useAtomValue } from "jotai"
 
 export default function TileLayerPlayerMovementPlanned(props: TMapTile) {
-  const playerMovementPlanned = useAtomValue(playerMovementPlannedAtom)
-
+  const playerMovementPlanned = usePlayerMovementPlanned()
   const layerData = playerMovementPlanned[`${props.mapTiles.x},${props.mapTiles.y}`]
 
   if (!layerData) {

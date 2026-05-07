@@ -25,7 +25,7 @@ export default function MapTileDetail() {
     usePlayerMovement()
   const [isMoving, setIsMoving] = useState(false)
 
-  // ── EXPLORATION LOGIC  ──────────────────────────────────────────
+  // ── EXPLORATION LOGIC  ──────────────────────────────────────────s
   const { exploreClickedTile } = usePlayerExploration()
   const [isExploring, setIsExploring] = useState(false)
 
@@ -39,9 +39,6 @@ export default function MapTileDetail() {
 
   useEffect(() => {
     setClickedResource(null)
-    if (isMoving || isExploring) {
-      selectPlayerPathToClickedTile()
-    }
   }, [clickedMapTile])
 
   const onClose = () => {
