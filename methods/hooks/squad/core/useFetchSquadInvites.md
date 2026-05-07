@@ -46,9 +46,11 @@ export type TSquadInvitesParams = {
   playerId: number
 }
 
+
 export type TSquadInvites = {
   id: number
-  description: string
+  squadId: number
+  squadName: string
   name: string
   nickname: string
   secondName: string

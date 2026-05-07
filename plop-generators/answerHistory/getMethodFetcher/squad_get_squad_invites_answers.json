@@ -21,7 +21,8 @@
     {
       "name": "p_player_id",
       "camelName": "playerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -33,9 +34,16 @@
       "optional": ""
     },
     {
-      "name": "description",
-      "camelName": "description",
-      "pascalName": "Description",
+      "name": "squad_id",
+      "camelName": "squadId",
+      "pascalName": "SquadId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "squad_name",
+      "camelName": "squadName",
+      "pascalName": "SquadName",
       "tsType": "string",
       "optional": ""
     },
@@ -86,5 +94,6 @@
   "apiPath": "app/api/squad/rpc/get-squad-invites/[playerId]/route.ts",
   "apiPathParams": "/api/squad/rpc/get-squad-invites/${params.playerId}",
   "generateMutation": true,
-  "mutationMergeOldData": true
+  "mutationMergeOldData": true,
+  "compositeDefinitions": []
 }
