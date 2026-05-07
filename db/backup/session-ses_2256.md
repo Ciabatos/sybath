@@ -3416,7 +3416,7 @@ designing the component flow spec.
 61: import { atom } from "jotai"
 62:
 63: //Modals
-64: export const modalBottomCenterBarAtom = atom<EPanelsBottomCenter>(EPanelsBottomCenter.Inactive)
+64: export const modalBottomCenterAtom = atom<EPanelsBottomCenter>(EPanelsBottomCenter.Inactive)
 65: export const modalLeftTopBarAtom = atom<EPanelsLeftTopBar>(EPanelsLeftTopBar.PlayerRibbonTop)
 66: export const modalRightCenterAtom = atom<EPanelsRightCenter>(EPanelsRightCenter.Inactive)
 67: export const modalTopCenterAtom = atom<EPanelsTopCenter>(EPanelsTopCenter.Inactive)

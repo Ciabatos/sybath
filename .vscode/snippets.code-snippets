@@ -15,12 +15,12 @@
     "description": "Separate useAtomValue and useSetAtom with proper setter name",
   },
   "ModalBottomCenter": {
-    "prefix": "hook_ModalBottomCenterBar",
+    "prefix": "hook_ModalBottomCenter",
     "body": [
-      "const { openModalBottomCenterBar } = useModalBottomCenterBar()",
-      "// const { resetModalBottomCenterBar } = useModalBottomCenterBar()",
-      "openModalBottomCenterBar(EPanelsBottomCenter.${1})",
-      "// resetModalBottomCenterBar()"
+      "const { openModalBottomCenter } = useModalBottomCenter()",
+      "// const { resetModalBottomCenter } = useModalBottomCenter()",
+      "openModalBottomCenter(EPanelsBottomCenter.${1})",
+      "// resetModalBottomCenter()"
     ],
     "description": "ModalBottomCenter Open",
   },
@@ -613,7 +613,7 @@
       "const playerEnergy = usePlayerEnergyState()"
     ],
     "description": "Destructuring usePlayerEnergy hook"
-  },   
+  },
   "Destructure useKnownMapTilesResourcesOnMap": {
     "prefix": "hook_world_core_useKnownMapTilesResourcesOnMap",
     "body": [
@@ -621,5 +621,5 @@
       "const knownMapTilesResourcesOnMap = useKnownMapTilesResourcesOnMapState()"
     ],
     "description": "Destructuring useKnownMapTilesResourcesOnMap hook"
-  },//Automatic Snippets
+  }, //Automatic Snippets
 }

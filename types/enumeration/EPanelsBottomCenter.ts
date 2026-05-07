@@ -2,4 +2,5 @@
 
 export enum EPanelsBottomCenter {
   Inactive = "Inactive",
+  MovementPanel = "MovementPanel",
 }
