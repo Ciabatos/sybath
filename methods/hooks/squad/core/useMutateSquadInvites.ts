@@ -27,6 +27,7 @@ export function useMutateSquadInvites(params: TSquadInvitesParams) {
 
     const defaultValues = {
       id: ``,
+      squadId: ``,
       squadName: ``,
       name: ``,
       nickname: ``,

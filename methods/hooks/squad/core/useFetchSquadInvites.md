@@ -49,6 +49,7 @@ export type TSquadInvitesParams = {
 
 export type TSquadInvites = {
   id: number
+  squadId: number
   squadName: string
   name: string
   nickname: string

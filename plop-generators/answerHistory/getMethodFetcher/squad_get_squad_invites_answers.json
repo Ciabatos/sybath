@@ -34,6 +34,13 @@
       "optional": ""
     },
     {
+      "name": "squad_id",
+      "camelName": "squadId",
+      "pascalName": "SquadId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
       "name": "squad_name",
       "camelName": "squadName",
       "pascalName": "SquadName",
