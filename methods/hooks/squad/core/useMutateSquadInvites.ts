@@ -27,12 +27,14 @@ export function useMutateSquadInvites(params: TSquadInvitesParams) {
 
     const defaultValues = {
       id: ``,
-      squadId: ``,
       squadName: ``,
       name: ``,
       nickname: ``,
       secondName: ``,
       createdAt: ``,
+      mapId: ``,
+      mapTileX: ``,
+      mapTileY: ``,
     }
 
     //MANUAL CODE - END

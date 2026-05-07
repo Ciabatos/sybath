@@ -10,12 +10,14 @@ export type TSquadInvitesParams = {
 
 export type TSquadInvites = {
   id: number
-  squadId: number
   squadName: string
   name: string
   nickname: string
   secondName: string
   createdAt: string
+  mapId: number
+  mapTileX: number
+  mapTileY: number
 }
 
 export type TSquadInvitesRecordById = Record<string, TSquadInvites>

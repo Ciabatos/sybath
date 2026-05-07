@@ -34,13 +34,6 @@
       "optional": ""
     },
     {
-      "name": "squad_id",
-      "camelName": "squadId",
-      "pascalName": "SquadId",
-      "tsType": "number",
-      "optional": ""
-    },
-    {
       "name": "squad_name",
       "camelName": "squadName",
       "pascalName": "SquadName",
@@ -73,6 +66,27 @@
       "camelName": "createdAt",
       "pascalName": "CreatedAt",
       "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "map_id",
+      "camelName": "mapId",
+      "pascalName": "MapId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "map_tile_x",
+      "camelName": "mapTileX",
+      "pascalName": "MapTileX",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "map_tile_y",
+      "camelName": "mapTileY",
+      "pascalName": "MapTileY",
+      "tsType": "number",
       "optional": ""
     }
   ],
