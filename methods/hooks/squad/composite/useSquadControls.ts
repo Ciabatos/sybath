@@ -6,13 +6,26 @@ import { doSquadJoinAction } from "@/methods/actions/squad/doSquadJoinAction"
 import { doSquadLeaveAction } from "@/methods/actions/squad/doSquadLeaveAction"
 import { useOtherPlayerId } from "@/methods/hooks/players/composite/useOtherPlayerId"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
+import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMovement"
+import { useOtherSquadId } from "@/methods/hooks/squad/composite/useOtherSquadId"
 import { useMutateActivePlayerSquad } from "@/methods/hooks/squad/core/useMutateActivePlayerSquad"
+import { useMapId } from "@/methods/hooks/world/composite/useMapId"
+import { useFetchPlayerPosition, usePlayerPositionState } from "@/methods/hooks/world/core/useFetchPlayerPosition"
 import { toast } from "sonner"
 
 export function useSquadControls() {
+  const { mapId } = useMapId()
   const { playerId } = usePlayerId()
-  const { mutateActivePlayerSquad } = useMutateActivePlayerSquad({ playerId })
   const otherPlayerId = useOtherPlayerId()
+  useFetchPlayerPosition({ mapId, playerId })
+  const playerPosition = usePlayerPositionState()
+  const [playerPos] = Object.values(playerPosition)
+
+  const otherSquadId = useOtherSquadId()
+  const { otherSquadPosition } = { otherSquadId }
+
+  const { selectPlayerPathAndMovePlayer } = usePlayerMovement()
+  const { mutateActivePlayerSquad } = useMutateActivePlayerSquad({ playerId })
 
   async function createSquad() {
     try {
@@ -69,6 +82,22 @@ export function useSquadControls() {
 
   async function joinSquad(squadInviteId: number) {
     try {
+      if (!squadInviteId) return toast.error("No squad selected")
+
+      if (!playerPosition[`${otherSquadPosition.x},${otherSquadPosition.y}`]) {
+        const resultMovement = await selectPlayerPathAndMovePlayer({
+          playerId: playerId,
+          startX: playerPos.x,
+          startY: playerPos.y,
+          endX: otherSquadPosition.x,
+          endY: otherSquadPosition.y,
+        })
+
+        if (!resultMovement) {
+          return toast.error("Failed to move to the tile, cannot join")
+        }
+      }
+
       const result = await doSquadJoinAction({ playerId: playerId, squadInviteId: squadInviteId })
 
       if (!result.status) {

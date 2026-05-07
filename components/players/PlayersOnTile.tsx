@@ -17,9 +17,8 @@ export default function PlayersOnTile() {
   const setOtherPlayerId = useSetOtherPlayerId()
 
   const { clickedMapTile } = useMapTileActions()
-  if (!clickedMapTile) return null
 
-  const { playersOnTile } = usePlayersOnTile(clickedMapTile.mapTiles.x, clickedMapTile.mapTiles.y)
+  const { playersOnTile } = usePlayersOnTile(clickedMapTile?.mapTiles.x ?? 0, clickedMapTile?.mapTiles.y ?? 0)
   if (!playersOnTile) return null
 
   function handleClickPlayerPortrait(otherPlayerId: string) {

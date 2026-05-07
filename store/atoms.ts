@@ -85,6 +85,8 @@ export const activeLayerAtom = atom({
 export const clickedOtherPlayerMaskedIdAtom = atom<string>("")
 export const playerMovementPlannedAtom = atom<TPlayerMovementRecordByXY>({})
 export const playerMapTilesGuardAreaAtom = atom<TAreaRecordByXY>({})
+//Squad
+export const clickedOtherSquadIdAtom = atom<number>(0)
 
 //Panels
 
