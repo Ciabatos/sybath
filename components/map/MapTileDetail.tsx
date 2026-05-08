@@ -11,8 +11,8 @@ import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMo
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { TMapTileResource, useMapTileDetail } from "@/methods/hooks/world/composite/useMapTileDetail"
 import { EPanelsBottomLeft } from "@/types/enumeration/EPanelsBottomLeft"
-import { X } from "lucide-react"
-import { Activity, useEffect, useState } from "react"
+import { Activity, X } from "lucide-react"
+import { useEffect, useState } from "react"
 import styles from "./styles/MapTileDetail.module.css"
 
 export default function MapTileDetail() {
