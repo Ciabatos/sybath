@@ -43,7 +43,6 @@ export function usePlayerMovement() {
     }
 
     setPlayerMovementPlanned(path)
-
     openModalBottomCenter(EPanelsBottomCenter.MovementPanel)
     return toast.success(`Action selected confirm to proceed`)
   }
@@ -67,7 +66,6 @@ export function usePlayerMovement() {
     }
 
     setPlayerMovementPlanned(path)
-
     openModalBottomCenter(EPanelsBottomCenter.MovementPanel)
     return toast.success(`Action selected confirm to proceed`)
   }
@@ -84,10 +82,9 @@ export function usePlayerMovement() {
     }
 
     const lastStep = Object.values(playerMovementPlanned).reduce((max, curr) => (curr.order > max.order ? curr : max))
+    mutatePlayerPosition([{ x: lastStep.x, y: lastStep.y }])
     resetPlayerMovementPlanned()
     resetModalBottomCenter()
-    mutatePlayerPosition([{ x: lastStep.x, y: lastStep.y }])
-
     return toast.success(result?.message)
   }
 
@@ -98,7 +95,6 @@ export function usePlayerMovement() {
       return toast.error(`Cannot move to this tile`)
     }
 
-    resetPlayerMovementPlanned()
     const result = await doPlayerMovementAction({ path: path, ...params })
 
     if (!result?.status) {
@@ -106,9 +102,9 @@ export function usePlayerMovement() {
     }
 
     const lastStep = Object.values(path).reduce((max, curr) => (curr.order > max.order ? curr : max))
-    resetModalBottomCenter()
     mutatePlayerPosition([{ x: lastStep.x, y: lastStep.y }])
-
+    resetPlayerMovementPlanned()
+    resetModalBottomCenter()
     return toast.success(result?.message)
   }
 
@@ -126,7 +122,6 @@ export function usePlayerMovement() {
     }
 
     const path = getPathFromPointToPoint(params)
-    resetPlayerMovementPlanned()
 
     if (!path) {
       return toast.error(`Cannot move to this tile`)
@@ -139,9 +134,9 @@ export function usePlayerMovement() {
     }
 
     const lastStep = Object.values(path).reduce((max, curr) => (curr.order > max.order ? curr : max))
-    resetModalBottomCenter()
     mutatePlayerPosition([{ x: lastStep.x, y: lastStep.y }])
-
+    resetPlayerMovementPlanned()
+    resetModalBottomCenter()
     return toast.success(result?.message)
   }
 
