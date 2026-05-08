@@ -13,7 +13,7 @@ export default function MovementPanel() {
   const playerMovementPlanned = usePlayerMovementPlanned()
   const { clickedMapTile } = useMapTileActions()
   const [isMoving, setIsMoving] = useState(true)
-  const { selectPlayerPathToClickedTile, goSelectedPlayerPath, resetPlayerMovementPlanned } = usePlayerMovement()
+  const { selectPlayerPathToClickedTile, moveSelectedPlayerPath, resetPlayerMovementPlanned } = usePlayerMovement()
 
   const [isMounted, setIsMounted] = useState(false)
 
@@ -29,7 +29,7 @@ export default function MovementPanel() {
 
   function handleConfirmMove() {
     if (isMoving) {
-      goSelectedPlayerPath()
+      moveSelectedPlayerPath()
       closeMovementPanel()
     }
   }

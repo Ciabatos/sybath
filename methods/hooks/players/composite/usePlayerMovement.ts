@@ -70,7 +70,7 @@ export function usePlayerMovement() {
     return toast.success(`Action selected confirm to proceed`)
   }
 
-  async function goSelectedPlayerPath() {
+  async function moveSelectedPlayerPath() {
     if (!playerMovementPlanned || Object.keys(playerMovementPlanned).length === 0) {
       return toast.error("No path selected")
     }
@@ -147,10 +147,10 @@ export function usePlayerMovement() {
   return {
     selectPlayerPath,
     selectPlayerPathToClickedTile,
+    moveSelectedPlayerPath,
     selectPlayerPathAndMovePlayer,
     selectPlayerPathAndMovePlayerToClickedTile,
     resetPlayerMovementPlanned,
-    goSelectedPlayerPath,
   }
 }
 
