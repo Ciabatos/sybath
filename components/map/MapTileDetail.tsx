@@ -31,14 +31,13 @@ export default function MapTileDetail() {
   const { combinedKnownMapTilesResourcesOnTile } = useMapTileDetail()
   const [clickedResource, setClickedResource] = useState<TMapTileResource | null>(null)
 
-  if (!clickedMapTile) {
-    return null
-  }
-
   useEffect(() => {
     setClickedResource(null)
   }, [clickedMapTile])
 
+  if (!clickedMapTile) {
+    return null
+  }
   const onClose = () => {
     resetModalRightCenter()
   }
