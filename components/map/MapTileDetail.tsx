@@ -12,8 +12,8 @@ import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMo
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { TMapTileResource, useMapTileDetail } from "@/methods/hooks/world/composite/useMapTileDetail"
 import { EPanelsBottomLeft } from "@/types/enumeration/EPanelsBottomLeft"
-import { Activity, X } from "lucide-react"
-import { useEffect, useState } from "react"
+import { X } from "lucide-react"
+import { Activity, useEffect, useState } from "react"
 import styles from "./styles/MapTileDetail.module.css"
 
 export default function MapTileDetail() {
@@ -50,7 +50,7 @@ export default function MapTileDetail() {
   function handleExplore() {
     if (!isExploring) {
       setIsExploring(true)
-      selectPlayerPathToClickedTile()
+      handleMove()
     }
   }
 
@@ -58,13 +58,11 @@ export default function MapTileDetail() {
     if (isExploring) {
       setIsExploring(false)
       exploreClickedTile()
-      resetPlayerMovementPlanned()
     }
   }
 
   function handleCancelExplore() {
     setIsExploring(false)
-    resetPlayerMovementPlanned()
   }
 
   function handlePlayersListOnTile() {
@@ -73,7 +71,6 @@ export default function MapTileDetail() {
 
   function handleResourceOnTile(resource: TMapTileResource) {
     setClickedResource(resource)
-    // openModalTopCenter(EPanelsTopCenter.PanelGatherResource)
   }
 
   // ── DERIVED ────────────────────────────────────────────────────────────────

@@ -14,7 +14,7 @@ export function usePlayerExploration() {
   const { playerId } = usePlayerId()
   const { mapId } = useMapId()
   const { clickedMapTile } = useMapTileActions()
-  const { selectPlayerPathAndMovePlayerToClickedTile } = usePlayerMovement()
+  const { selectPlayerPathAndMovePlayerToClickedTile, closeMovementPanel } = usePlayerMovement()
   const { playerAbilities } = usePlayerAbilities()
   useFetchPlayerPosition({ mapId, playerId })
   const playerPosition = usePlayerPositionState()
@@ -55,6 +55,7 @@ export function usePlayerExploration() {
 
       mutateKnownMapTilesResourcesOnTile()
 
+      closeMovementPanel()
       toast.success(`You are exploring destination tile`)
     } catch (error) {
       console.error("Error exploring tile:", error)
