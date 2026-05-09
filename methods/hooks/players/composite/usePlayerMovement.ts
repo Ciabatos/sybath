@@ -24,6 +24,7 @@ type TPlayerMovementParams = {
 export function usePlayerMovement() {
   const setPlayerMovementPlanned = useSetPlayerMovementPlanned()
   const playerMovementPlanned = usePlayerMovementPlanned()
+  const isMoving = Object.keys(playerMovementPlanned).length > 0
   const { getPathFromPointToPoint } = useMapTilesPathFromPointToPoint()
   const { playerId } = usePlayerId()
   const { mapId } = useMapId()
@@ -144,13 +145,20 @@ export function usePlayerMovement() {
     setPlayerMovementPlanned({})
   }
 
+  function closeMovementPanel() {
+    resetPlayerMovementPlanned()
+    resetModalBottomCenter()
+  }
+
   return {
+    isMoving,
     selectPlayerPath,
     selectPlayerPathToClickedTile,
     moveSelectedPlayerPath,
     selectPlayerPathAndMovePlayer,
     selectPlayerPathAndMovePlayerToClickedTile,
     resetPlayerMovementPlanned,
+    closeMovementPanel,
   }
 }
 

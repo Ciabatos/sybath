@@ -1,6 +1,7 @@
 "use client"
 
 import GatherResource from "@/components/items/GatherResource"
+import ConfirmMoveButton from "@/components/map/ConfirmMoveButton"
 import { Button } from "@/components/ui/button"
 import { Field, FieldLabel } from "@/components/ui/field"
 import { Progress } from "@/components/ui/progress"
@@ -21,7 +22,7 @@ export default function MapTileDetail() {
   const { clickedMapTile } = useMapTileActions()
 
   // ── MOVEMENT LOGIC  ──────────────────────────────────────────
-  const { selectPlayerPathToClickedTile, resetPlayerMovementPlanned } = usePlayerMovement()
+  const { isMoving, selectPlayerPathToClickedTile, resetPlayerMovementPlanned } = usePlayerMovement()
 
   // ── EXPLORATION LOGIC  ──────────────────────────────────────────s
   const { exploreClickedTile } = usePlayerExploration()
@@ -248,12 +249,16 @@ export default function MapTileDetail() {
               <Button className={styles.actionButton}>Set Camp</Button>
 
               {/*  MOVEMENT LOGIC */}
-              <Button
-                className={styles.actionButton}
-                onClick={handleMove}
-              >
-                Move
-              </Button>
+              {!isMoving ? (
+                <Button
+                  className={styles.actionButton}
+                  onClick={handleMove}
+                >
+                  Move
+                </Button>
+              ) : (
+                <ConfirmMoveButton />
+              )}
 
               {/*  HUNT LOGIC */}
               <Button className={styles.actionButton}>Hunt</Button>
