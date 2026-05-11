@@ -62,7 +62,7 @@ export default function OtherPlayerPanel() {
           </div>
         </div>
         <Button onClick={() => inviteToSquad(1, 2)}>Invite to Squad</Button>
-        <Button onClick={() => inviteToSquad(4, 2)}>Invite to Pernament</Button>
+        <Button onClick={() => inviteToSquad(2, 2)}>Invite to Permanent</Button>
         <div className={styles.mainContent}>
           <Tabs
             defaultValue='Stats'

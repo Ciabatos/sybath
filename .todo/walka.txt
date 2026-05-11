@@ -28,6 +28,9 @@ Gry:
 -Dwarf Fortress
 -Humankind
 -Total Battle - mobile game
+-Solium Infernum
+-Great Houses of Calderia 2
+-kenshi
 
 fazy walki clashu (moze wiecej niz jedna runda do kazdego)
 attak / defend

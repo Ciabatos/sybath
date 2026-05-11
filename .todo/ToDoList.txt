@@ -1,7 +1,9 @@
 ZOD do do_action
 
-Mozna miec ile sie chce campow, jeden na tile Look for hideout - i kradniesz Hideout like building - simple stash and hide bonus
 Spy on player
+Spy on squad
+W squad jestesmy jak nomadzi. Dodac prace dla uczestnikow squadu np jako pobieranie fooda
+Mozna miec ile sie chce campow, jeden na tile Look for hideout - i kradniesz Hideout like building - simple stash and hide bonus
 Hidden Stance - minus to rest, movment speed slower
 Normal Stance
 last seen - knowledge - nakladka na mape layer ktory pokazuje movmenty ostatnie, historie ruchow graczy
@@ -10,9 +12,7 @@ dodatkowa zakladka na otherplayer z akcjami np zapros do squadu
 Party teraz Squad 
 Movement w squadzie
 --wymiana inventory miedzy graczami, budynkami, squadami (ogolny panel trade na centrum ekranu ?)
---pobieranie informacji o squad
---zaproszenia/anulacje do squad
---jezeli w squadzie jest wiecej niz 1 hero to zmiana ikony na mapie
+
 Podwalic pomysł od CK3 i CK2 interfejs, zwlaszcza familiy https://steamcommunity.com/sharedfiles/filedetails/?id=2838140104
 https://steamcommunity.com/sharedfiles/filedetails/?id=3276373926&searchtext=
 
