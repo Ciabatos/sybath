@@ -1,5 +1,21 @@
 ZOD do do_action
 
+export const DoOtherPlayerKnowledgeRequestActionSchema = DoOtherPlayerKnowledgeRequestServiceSchema.omit({
+  sessionUserId: true,
+})
+export type TDoOtherPlayerKnowledgeRequestActionParams = z.infer<typeof DoOtherPlayerKnowledgeRequestActionSchema>
+
+
+
+export const DoOtherPlayerKnowledgeRequestServiceSchema = z.object({
+  sessionUserId: z.number(),
+  playerId: z.number(),
+  otherPlayerId: z.string(),
+  knowledgeTypeId: z.number(),
+})
+
+export type TDoOtherPlayerKnowledgeRequestServiceParams = z.infer<typeof DoOtherPlayerKnowledgeRequestServiceSchema>
+
 Spy on player
 Spy on squad
 dodatkowa zakladka na otherplayer z akcjami np zapros do squadu

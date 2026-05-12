@@ -1,0 +1,52 @@
+{
+  "promptAnswers": {
+    "schema": "players",
+    "method": "do_other_player_knowledge_request",
+    "usePrevious": false
+  },
+  "schema": "players",
+  "method": "do_other_player_knowledge_request",
+  "methodCamelName": "doOtherPlayerKnowledgeRequest",
+  "methodPascalName": "DoOtherPlayerKnowledgeRequest",
+  "methodName": "doOtherPlayerKnowledgeRequestAction",
+  "methodTypeName": "TDoOtherPlayerKnowledgeRequest",
+  "methodParamsTypeName": "TDoOtherPlayerKnowledgeRequestParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
+    },
+    {
+      "name": "p_other_player_id",
+      "camelName": "otherPlayerId",
+      "tsType": "string",
+      "isJson": false
+    },
+    {
+      "name": "p_knowledge_type_id",
+      "camelName": "knowledgeTypeId",
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "status",
+      "camelName": "status",
+      "pascalName": "Status",
+      "tsType": "boolean",
+      "optional": ""
+    },
+    {
+      "name": "message",
+      "camelName": "message",
+      "pascalName": "Message",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1, $2, $3",
+  "compositeDefinitions": []
+}
