@@ -15,7 +15,7 @@ SELECT      opkr.id
 			,opkr.knowledge_type_id
 			,opkr.created_at
 	FROM players.other_player_knowledge_requests opkr
-	JOIN players.players p ON opkr.player_id = p.id
+	JOIN players.players p ON opkr.inviter_player_id = p.id
 	LEFT JOIN knowledge.known_players_profiles kpp ON kpp.player_id = p_player_id
 	                                               AND kpp.other_player_id = p.id
 	WHERE invited_player_id = p_player_id

@@ -29,7 +29,7 @@ BEGIN
 
     INSERT INTO players.other_player_knowledge_requests
     (inviter_player_id, invited_player_id, knowledge_type_id, status, created_at, responded_at)
-    VALUES(p_player_id, p_other_player_id, p_knowledge_type_id, 1, now(), '');
+    VALUES(p_player_id, v_other_player_id, p_knowledge_type_id, 1, now(), NULL);
 
 END;
 $function$
