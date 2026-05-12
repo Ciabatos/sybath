@@ -19,7 +19,7 @@ export type TDoOtherPlayerKnowledgeRequestServiceParams = z.infer<typeof DoOther
 Spy on player
 Spy on squad
 mailbox
-
+spot na mounty, stackowalne w nieskonczonosc - daja bonus do ekwipunku ale minus do widocznosci stealtha i movmenta
 dodatkowa zakladka na otherplayer z akcjami np zapros do squadu
 Mozna miec ile sie chce campow, jeden na tile Look for hideout - i kradniesz Hideout like building - simple stash and hide bonus
 Hidden Stance - minus to rest, movment speed slower
