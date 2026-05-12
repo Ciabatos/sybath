@@ -621,5 +621,13 @@
       "const knownMapTilesResourcesOnMap = useKnownMapTilesResourcesOnMapState()"
     ],
     "description": "Destructuring useKnownMapTilesResourcesOnMap hook"
-  }, //Automatic Snippets
+  },   
+  "Destructure useOtherPlayerKnowledgeRequests": {
+    "prefix": "hook_players_core_useOtherPlayerKnowledgeRequests",
+    "body": [
+      "useFetchOtherPlayerKnowledgeRequests({ playerId })",
+      "const otherPlayerKnowledgeRequests = useOtherPlayerKnowledgeRequestsState()"
+    ],
+    "description": "Destructuring useOtherPlayerKnowledgeRequests hook"
+  },//Automatic Snippets
 }

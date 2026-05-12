@@ -1,0 +1,106 @@
+{
+  "promptAnswers": {
+    "schema": "players",
+    "method": "get_other_player_knowledge_requests",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "otherPlayerKnowledgeRequestId"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "players",
+  "method": "get_other_player_knowledge_requests",
+  "methodCamelName": "otherPlayerKnowledgeRequests",
+  "methodPascalName": "OtherPlayerKnowledgeRequests",
+  "methodKebabName": "get-other-player-knowledge-requests",
+  "methodName": "getOtherPlayerKnowledgeRequests",
+  "methodTypeName": "TOtherPlayerKnowledgeRequests",
+  "methodParamsTypeName": "TOtherPlayerKnowledgeRequestsParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "other_player_knowledge_request_id",
+      "camelName": "otherPlayerKnowledgeRequestId",
+      "pascalName": "OtherPlayerKnowledgeRequestId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "other_player_id",
+      "camelName": "otherPlayerId",
+      "pascalName": "OtherPlayerId",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "pascalName": "Name",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "second_name",
+      "camelName": "secondName",
+      "pascalName": "SecondName",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "nickname",
+      "camelName": "nickname",
+      "pascalName": "Nickname",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "image_portrait",
+      "camelName": "imagePortrait",
+      "pascalName": "ImagePortrait",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "knowledge_type_id",
+      "camelName": "knowledgeTypeId",
+      "pascalName": "KnowledgeTypeId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "created_at",
+      "camelName": "createdAt",
+      "pascalName": "CreatedAt",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"otherPlayerKnowledgeRequestId\"]",
+  "indexParamsColumns": "playerId",
+  "indexTypeMethodName": "OtherPlayerKnowledgeRequestId",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId",
+  "indexColumns": [
+    {
+      "name": "other_player_knowledge_request_id",
+      "camelName": "otherPlayerKnowledgeRequestId",
+      "pascalName": "OtherPlayerKnowledgeRequestId",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1",
+  "apiPath": "app/api/players/rpc/get-other-player-knowledge-requests/[playerId]/route.ts",
+  "apiPathParams": "/api/players/rpc/get-other-player-knowledge-requests/${params.playerId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true,
+  "compositeDefinitions": []
+}

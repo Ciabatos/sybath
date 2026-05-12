@@ -62,6 +62,7 @@ import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { EPanelsTopCenterBar } from "@/types/enumeration/EPanelsTopCenterBar"
 import { atom } from "jotai"
+import { TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId } from "@/db/postgresMainDatabase/schemas/players/otherPlayerKnowledgeRequests"
 
 //Modals
 export const modalBottomCenterAtom = atom<EPanelsBottomCenter>(EPanelsBottomCenter.Inactive)
@@ -108,6 +109,8 @@ export const terrainTypesAtom = atom<TWorldTerrainTypesRecordById>({})
 export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
 
 //Functions
+export const otherPlayerKnowledgeRequestsAtom =
+  atom<TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId>({})
 export const knownMapTilesResourcesOnMapAtom = atom<TKnownMapTilesResourcesOnMapRecordByMapTileXMapTileY>({})
 export const playerEnergyAtom = atom<TPlayerEnergyRecordByLastRegeneratedAt>({})
 export const squadInvitesAtom = atom<TSquadInvitesRecordById>({})
