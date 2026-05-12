@@ -20,6 +20,7 @@ Spy on player
 Spy on squad
 mailbox
 spot na mounty, stackowalne w nieskonczonosc - daja bonus do ekwipunku ale minus do widocznosci stealtha i movmenta
+Ekwipunek w squadzie dziala tak ze robi referencje z ekwipunku gracza do wspolnie dostepnego ekwipunku squadu plus capacity AI botowych postaci - nie da sie miec mountow na squad jedynie na postaci
 dodatkowa zakladka na otherplayer z akcjami np zapros do squadu
 Mozna miec ile sie chce campow, jeden na tile Look for hideout - i kradniesz Hideout like building - simple stash and hide bonus
 Hidden Stance - minus to rest, movment speed slower
