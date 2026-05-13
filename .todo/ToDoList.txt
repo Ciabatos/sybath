@@ -1,4 +1,5 @@
-
+snapshot tam gdzie dane po szpiegowaniu musza byc statyczne: skille staty etc
+expired_at tam gdzie dane po szpiegowaniu maja byc live dostepne przez pewien czas
 
 Spy on player
 Spy on squad
