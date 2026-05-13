@@ -1,3 +1,28 @@
+
+
+Spy on player
+Spy on squad
+mailbox - notyfikacje przychodzace
+Zaproszenia knowledge
+spot na mounty, stackowalne w nieskonczonosc - daja bonus do ekwipunku ale minus do widocznosci stealtha i movmenta
+Ekwipunek w squadzie dziala tak ze robi referencje z ekwipunku gracza do wspolnie dostepnego ekwipunku squadu plus capacity AI botowych postaci plus mounty przypisane do squadu 
+- Ogolnie squad to odrebny container zalezny od ai postaci i mountow ale z opcjonalnymi referncjami od inwentory graczy - proste
+dodatkowa zakladka na otherplayer z akcjami np zapros do squadu
+Mozna miec ile sie chce campow, jeden na tile Look for hideout - i kradniesz Hideout like building - simple stash and hide bonus
+Hidden Stance - minus to rest, movment speed slower
+Normal Stance
+W squad jestesmy jak nomadzi. Dodac prace dla uczestnikow squadu np jako pobieranie fooda
+last seen - knowledge - nakladka na mape layer ktory pokazuje movmenty ostatnie, historie ruchow graczy
+
+Movement w squadzie
+--wymiana inventory miedzy graczami, budynkami, squadami (ogolny panel trade na centrum ekranu ?)
+
+Podwalic pomysł od CK3 i CK2 interfejs, zwlaszcza familiy https://steamcommunity.com/sharedfiles/filedetails/?id=2838140104
+https://steamcommunity.com/sharedfiles/filedetails/?id=3276373926&searchtext=
+
+
+
+
 ZOD do do_action
 
 export const DoOtherPlayerKnowledgeRequestActionSchema = DoOtherPlayerKnowledgeRequestServiceSchema.omit({
@@ -16,23 +41,6 @@ export const DoOtherPlayerKnowledgeRequestServiceSchema = z.object({
 
 export type TDoOtherPlayerKnowledgeRequestServiceParams = z.infer<typeof DoOtherPlayerKnowledgeRequestServiceSchema>
 
-Spy on player
-Spy on squad
-mailbox
-spot na mounty, stackowalne w nieskonczonosc - daja bonus do ekwipunku ale minus do widocznosci stealtha i movmenta
-Ekwipunek w squadzie dziala tak ze robi referencje z ekwipunku gracza do wspolnie dostepnego ekwipunku squadu plus capacity AI botowych postaci plus mounty przypisane do squadu - Ogolnie squad to odrebny container zalezny od ai postaci i mountow ale z opcjonalnymi referncjami od inwentory graczy - proste
-dodatkowa zakladka na otherplayer z akcjami np zapros do squadu
-Mozna miec ile sie chce campow, jeden na tile Look for hideout - i kradniesz Hideout like building - simple stash and hide bonus
-Hidden Stance - minus to rest, movment speed slower
-Normal Stance
-W squad jestesmy jak nomadzi. Dodac prace dla uczestnikow squadu np jako pobieranie fooda
-last seen - knowledge - nakladka na mape layer ktory pokazuje movmenty ostatnie, historie ruchow graczy
-
-Movement w squadzie
---wymiana inventory miedzy graczami, budynkami, squadami (ogolny panel trade na centrum ekranu ?)
-
-Podwalic pomysł od CK3 i CK2 interfejs, zwlaszcza familiy https://steamcommunity.com/sharedfiles/filedetails/?id=2838140104
-https://steamcommunity.com/sharedfiles/filedetails/?id=3276373926&searchtext=
 
 
 
