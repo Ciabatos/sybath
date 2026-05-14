@@ -1,6 +1,8 @@
 snapshot tam gdzie dane po szpiegowaniu musza byc statyczne: skille staty etc
 expired_at tam gdzie dane po szpiegowaniu maja byc live dostepne przez pewien czas
 
+Zmienic nazwe procedury get_active_player_squad_players_profiles get_active_player_squad usunąc active z nazwy
+
 Spy on player
 Spy on squad
 mailbox - notyfikacje przychodzace

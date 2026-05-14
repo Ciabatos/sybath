@@ -5,18 +5,28 @@ AS $function$
 BEGIN
 
  RETURN QUERY
- SELECT 
-    t1.stat_id,
-    t1.value,
-    t2.name
-   FROM players.players p
-   JOIN attributes.player_stats t1 ON p.id = t1.player_id
+   SELECT 
+       t1.stat_id,
+       t1.value,
+       t2.name
+   FROM attributes.player_stats t1
    JOIN knowledge.known_players_stats kps ON kps.player_id = p_player_id
                                           AND kps.other_player_id = t1.player_id
    JOIN attributes.stats t2 ON t1.stat_id = t2.id
-WHERE p.id = players.get_real_player_id(p_other_player_id)
-AND ( kps.expires_at IS NULL OR kps.expires_at >= NOW() )
-ORDER BY t1.id;
+   WHERE t1.player_id = players.get_real_player_id(p_other_player_id)
+   AND kps.snapshot IS NULL
+
+   UNION ALL
+
+   SELECT
+       x.stat_id,
+       x.value,
+       x.name
+   FROM knowledge.known_players_stats kps,
+        jsonb_to_recordset(kps.snapshot) AS x(stat_id integer, value integer, name varchar)
+   WHERE kps.player_id = p_player_id
+   AND kps.other_player_id = players.get_real_player_id(p_other_player_id)
+   AND kps.snapshot IS NOT NULL;
 
 END;
 

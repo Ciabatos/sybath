@@ -15,7 +15,6 @@ BEGIN
 	END IF;
 
 	v_spy_level := 1;
-	v_expire_after := v_spy_level * interval '1 hour';
 
     -- nie można samego siebie
     IF p_player_id = v_other_player_id THEN
@@ -27,15 +26,15 @@ BEGIN
     END IF;
 
     IF p_knowledge_type_id = 2 THEN
-	    PERFORM players.discover_other_player_skills(p_player_id, v_other_player_id, v_expire_after);
+	    PERFORM players.discover_other_player_skills(p_player_id, v_other_player_id);
     END IF;
 
     IF p_knowledge_type_id = 3 THEN
-	    PERFORM players.discover_other_player_abilities(p_player_id, v_other_player_id, v_expire_after);
+	    PERFORM players.discover_other_player_abilities(p_player_id, v_other_player_id);
     END IF;
 
     IF p_knowledge_type_id = 4 THEN
-	    PERFORM players.discover_other_player_stats(p_player_id, v_other_player_id, v_expire_after);
+	    PERFORM players.discover_other_player_stats(p_player_id, v_other_player_id);
     END IF;
 
     IF p_knowledge_type_id = 5 THEN
@@ -43,6 +42,7 @@ BEGIN
     END IF;
 
     IF p_knowledge_type_id = 6 THEN
+    	v_expire_after := v_spy_level * interval '1 hour';
 	    PERFORM players.discover_other_player_positions(p_player_id, v_other_player_id, v_expire_after);
     END IF;
 
