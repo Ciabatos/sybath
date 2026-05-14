@@ -1,0 +1,1 @@
+zrobic world.world_objects

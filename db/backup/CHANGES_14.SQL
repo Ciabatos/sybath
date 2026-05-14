@@ -1,0 +1,1 @@
+DROP FUNCTION inventory.player_inventory_container(int4)
