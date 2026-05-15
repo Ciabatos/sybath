@@ -1,21 +1,18 @@
-CREATE OR REPLACE FUNCTION players.discover_other_player_abilities(p_player_id integer, p_other_player_id text)
+CREATE OR REPLACE FUNCTION players.discover_other_player_abilities(p_player_id integer, p_other_player_id integer)
  RETURNS void
  LANGUAGE plpgsql
 AS $function$
 DECLARE
-    v_other_player_id integer;
     v_snapshot jsonb;
 BEGIN
 
-    v_other_player_id := players.get_real_player_id(p_other_player_id);
-
     -- nieznany gracz
-    IF v_other_player_id IS NULL THEN
+    IF p_other_player_id IS NULL THEN
         RETURN;
     END IF;
 
     -- nie można odkrywać siebie
-    IF p_player_id = v_other_player_id THEN
+    IF p_player_id = p_other_player_id THEN
         RETURN;
     END IF;
 
@@ -24,9 +21,9 @@ BEGIN
      */
     SELECT jsonb_agg(row_to_json(t))
     INTO v_snapshot
-    FROM attributes.get_player_abilities(v_other_player_id) t;
+    FROM attributes.get_player_abilities(p_other_player_id) t;
 
-    INSERT INTO knowledge.known_players_abilities
+    INSERT INTO knowledge.known_players_abilities as t1
     (
         player_id,
         other_player_id,
@@ -36,7 +33,7 @@ BEGIN
     VALUES
     (
         p_player_id,
-        v_other_player_id,
+        p_other_player_id,
         now(),
         v_snapshot
     )
@@ -45,7 +42,7 @@ BEGIN
     SET
         updated_at = now(),
         snapshot = CASE
-    	    WHEN snapshot IS NULL THEN NULL
+    	    WHEN t1.snapshot IS NULL THEN NULL
     	    ELSE v_snapshot
 	    END;
 

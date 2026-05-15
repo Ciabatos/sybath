@@ -13,35 +13,16 @@ BEGIN
         RETURN;
     END IF;
 
-	SELECT inventory_container_type_id
-	INTO v_inventory_container_type_id
-	FROM inventory.inventory_containers
-	WHERE id = p_container_id;
-
     /*
      * Snapshot
      */
 
-TUTAJ DODAC FUNKCJE DLA KAZDEGO CONTENERA
-	IF v_inventory_container_type_id = 1 THEN
-	    SELECT jsonb_agg(row_to_json(t))
-	    INTO v_snapshot
-	    FROM attributes.get_player_abilities(v_other_player_id) t;
-	IF v_inventory_container_type_id = 2 THEN
-	    SELECT jsonb_agg(row_to_json(t))
-	    INTO v_snapshot
-	    FROM attributes.get_player_abilities(v_other_player_id) t;
-	IF v_inventory_container_type_id = 3 THEN
-	    SELECT jsonb_agg(row_to_json(t))
-	    INTO v_snapshot
-	    FROM attributes.get_player_abilities(v_other_player_id) t;
-	IF v_inventory_container_type_id = 4 THEN
-	    SELECT jsonb_agg(row_to_json(t))
-	    INTO v_snapshot
-	    FROM attributes.get_player_abilities(v_other_player_id) t;
-	ELSE RETURN;
+	SELECT jsonb_agg(row_to_json(t))
+	INTO v_snapshot
+	FROM inventory.get_container_inventory(p_container_id) t;
+	
 
-    INSERT INTO knowledge.known_players_containers
+    INSERT INTO knowledge.known_players_containers as t1
     (
         player_id,
         container_id,
@@ -60,7 +41,7 @@ TUTAJ DODAC FUNKCJE DLA KAZDEGO CONTENERA
     SET
         updated_at = now(),
         snapshot = CASE
-    	    WHEN snapshot IS NULL THEN NULL
+    	    WHEN t1.snapshot IS NULL THEN NULL
     	    ELSE v_snapshot
 	    END;
 

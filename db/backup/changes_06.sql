@@ -19,7 +19,7 @@ BEGIN
     INTO v_snapshot
     FROM squad.get_active_player_squad_players_profiles(p_other_squad_id) t;
 
-    INSERT INTO knowledge.known_players_squad_profiles
+    INSERT INTO knowledge.known_players_squad_profiles as t1
     (
         player_id,
         squad_id,
@@ -38,7 +38,7 @@ BEGIN
     SET
         updated_at = now(),
         snapshot = CASE
-    	    WHEN snapshot IS NULL THEN NULL
+    	    WHEN t1.snapshot IS NULL THEN NULL
     	    ELSE v_snapshot
 	    END;
 

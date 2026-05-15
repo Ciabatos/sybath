@@ -38,7 +38,7 @@ BEGIN
     END IF;
 
     IF p_knowledge_type_id = 5 THEN
-		RETURN;
+		PERFORM inventory.discover_container(p_player_id, inventory.player_inventory_container(v_other_player_id));
     END IF;
 
     IF p_knowledge_type_id = 6 THEN
