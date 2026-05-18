@@ -72,6 +72,10 @@ export function useInventoryMonitor() {
       const targetData = operation.target?.data as TInventorySlot
       if (!sourceData?.itemId) return
 
+      if (sourceData.type === "tradeInventory") {
+        return
+      }
+
       const result = await moveOrSwapItem({
         fromType: sourceData.type,
         toType: targetData.type,
