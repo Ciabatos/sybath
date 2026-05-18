@@ -11,7 +11,12 @@ import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { useDragDropMonitor } from "@dnd-kit/react"
 import { toast } from "sonner"
 
-type TInventoryType = "playerInventory" | "playerGearInventory" | "otherPlayerInventory" | "otherPlayerGearInventory"
+type TInventoryType =
+  | "playerInventory"
+  | "playerGearInventory"
+  | "otherPlayerInventory"
+  | "otherPlayerGearInventory"
+  | "tradeInventory"
 
 type TMoveOrSwapItem = {
   fromType: TInventoryType
