@@ -9,7 +9,7 @@ description: |
 
 # doOtherPlayerKnowledgeRequestAction Action Documentation
 
-# function path :`methods/actions/players/doOtherPlayerKnowledgeRequestAction.ts`
+# function path :`methods/actions/knowledge/doOtherPlayerKnowledgeRequestAction.ts`
 
 # function doOtherPlayerKnowledgeRequestAction(params: TDoOtherPlayerKnowledgeRequestActionParams)
 
@@ -21,7 +21,7 @@ type TDoOtherPlayerKnowledgeRequestActionParams = Omit<TDoOtherPlayerKnowledgeRe
 
 ```
 # function doOtherPlayerKnowledgeRequestService(params: TDoOtherPlayerKnowledgeRequestServiceParams)
-path: `methods/services/players/doOtherPlayerKnowledgeRequestService.ts`
+path: `methods/services/knowledge/doOtherPlayerKnowledgeRequestService.ts`
 # TypeScript Types:
 
 export type TDoOtherPlayerKnowledgeRequestServiceParams = {
@@ -31,7 +31,7 @@ playerId: number
 
 
  Database function doOtherPlayerKnowledgeRequest(params: TDoOtherPlayerKnowledgeRequestParams)
-# path: `db/postgresMainDatabase/schemas/players/doOtherPlayerKnowledgeRequest.ts`
+# path: `db/postgresMainDatabase/schemas/knowledge/doOtherPlayerKnowledgeRequest.ts`
 # TypeScript Types:
 
 
@@ -47,7 +47,7 @@ export type TDoOtherPlayerKnowledgeRequest = {
 }
 
 #### PostgreSQL Database
-# "schema": "players"
+# "schema": "knowledge"
 # "method": "do_other_player_knowledge_request"
 You have more information in mcp `game-db`
 ```

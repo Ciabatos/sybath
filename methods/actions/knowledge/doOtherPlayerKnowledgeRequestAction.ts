@@ -5,7 +5,7 @@ import { auth } from "@/auth"
 import {
   TDoOtherPlayerKnowledgeRequestServiceParams,
   doOtherPlayerKnowledgeRequestService,
-} from "@/methods/services/players/doOtherPlayerKnowledgeRequestService"
+} from "@/methods/services/knowledge/doOtherPlayerKnowledgeRequestService"
 
 type TDoOtherPlayerKnowledgeRequestActionParams = Omit<TDoOtherPlayerKnowledgeRequestServiceParams, "sessionUserId">
 

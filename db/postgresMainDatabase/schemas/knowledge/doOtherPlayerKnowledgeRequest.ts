@@ -17,7 +17,7 @@ export type TDoOtherPlayerKnowledgeRequest = {
 export async function doOtherPlayerKnowledgeRequest(params: TDoOtherPlayerKnowledgeRequestParams) {
   try {
     const sqlParams = [params.playerId, params.otherPlayerId, params.knowledgeTypeId]
-    const sql = `SELECT * FROM players.do_other_player_knowledge_request($1, $2, $3);`
+    const sql = `SELECT * FROM knowledge.do_other_player_knowledge_request($1, $2, $3);`
     const result = await query(sql, sqlParams)
 
     return result.rows[0] as TDoOtherPlayerKnowledgeRequest

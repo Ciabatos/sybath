@@ -1,10 +1,10 @@
 {
   "promptAnswers": {
-    "schema": "players",
+    "schema": "knowledge",
     "method": "do_other_player_knowledge_request",
     "usePrevious": false
   },
-  "schema": "players",
+  "schema": "knowledge",
   "method": "do_other_player_knowledge_request",
   "methodCamelName": "doOtherPlayerKnowledgeRequest",
   "methodPascalName": "DoOtherPlayerKnowledgeRequest",
