@@ -1,11 +1,15 @@
 import OtherPlayerProfiles from "@/components/knowledge/OtherPlayerProfiles"
 import { Button } from "@/components/ui/button"
 import usePlayerKnownPlayers from "@/methods/hooks/knowledge/composite/usePlayerKnownPlayers"
+import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
+import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { MapPin, Skull } from "lucide-react"
 import styles from "./styles/PlayerKnowledge.module.css"
 
 export function PlayerKnowledge() {
   const { playerKnownPlayers } = usePlayerKnownPlayers()
+  const { openModalTopCenter } = useModalTopCenter()
+
   const crimesKnowledge = [
     {
       icon: <Skull />,
@@ -20,7 +24,9 @@ export function PlayerKnowledge() {
       level: "Partial" as const,
     },
   ]
-
+  function openOtherPlayerKnowledgeRequests() {
+    openModalTopCenter(EPanelsTopCenter.OtherPlayerKnowledgeRequests)
+  }
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -29,7 +35,7 @@ export function PlayerKnowledge() {
         </p>
       </div>
 
-      <Button>Knowledge</Button>
+      <Button onClick={openOtherPlayerKnowledgeRequests}>Knowledge</Button>
 
       <div className={styles.category}>
         <h3 className={styles.categoryTitle}>Locations</h3>
