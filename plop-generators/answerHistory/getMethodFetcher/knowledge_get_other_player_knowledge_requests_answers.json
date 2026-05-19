@@ -1,6 +1,6 @@
 {
   "promptAnswers": {
-    "schema": "players",
+    "schema": "knowledge",
     "method": "get_other_player_knowledge_requests",
     "usePrevious": false,
     "selectedColumnsIndex": [
@@ -9,7 +9,7 @@
     "generateMutation": true,
     "mutationMergeOldData": true
   },
-  "schema": "players",
+  "schema": "knowledge",
   "method": "get_other_player_knowledge_requests",
   "methodCamelName": "otherPlayerKnowledgeRequests",
   "methodPascalName": "OtherPlayerKnowledgeRequests",
@@ -98,8 +98,8 @@
     }
   ],
   "sqlParamsPlaceholders": "$1",
-  "apiPath": "app/api/players/rpc/get-other-player-knowledge-requests/[playerId]/route.ts",
-  "apiPathParams": "/api/players/rpc/get-other-player-knowledge-requests/${params.playerId}",
+  "apiPath": "app/api/knowledge/rpc/get-other-player-knowledge-requests/[playerId]/route.ts",
+  "apiPathParams": "/api/knowledge/rpc/get-other-player-knowledge-requests/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": []

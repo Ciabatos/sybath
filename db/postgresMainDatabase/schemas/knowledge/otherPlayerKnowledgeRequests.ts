@@ -27,7 +27,7 @@ export type TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId =
 export async function getOtherPlayerKnowledgeRequests(params: TOtherPlayerKnowledgeRequestsParams) {
   try {
     const sqlParams = Object.values(params)
-    const sql = `SELECT * FROM players.get_other_player_knowledge_requests($1);`
+    const sql = `SELECT * FROM knowledge.get_other_player_knowledge_requests($1);`
 
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TOtherPlayerKnowledgeRequests[]

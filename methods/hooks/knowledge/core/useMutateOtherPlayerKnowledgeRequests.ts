@@ -7,14 +7,14 @@ import {
   TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId,
   TOtherPlayerKnowledgeRequestsParams,
   TOtherPlayerKnowledgeRequests,
-} from "@/db/postgresMainDatabase/schemas/players/otherPlayerKnowledgeRequests"
+} from "@/db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests"
 import { otherPlayerKnowledgeRequestsAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateOtherPlayerKnowledgeRequests(params: TOtherPlayerKnowledgeRequestsParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/players/rpc/get-other-player-knowledge-requests/${params.playerId}`
+  const key = `/api/knowledge/rpc/get-other-player-knowledge-requests/${params.playerId}`
   const otherPlayerKnowledgeRequests = useAtomValue(otherPlayerKnowledgeRequestsAtom)
 
   function mutateOtherPlayerKnowledgeRequests(optimisticParams?: Partial<TOtherPlayerKnowledgeRequests>[]) {

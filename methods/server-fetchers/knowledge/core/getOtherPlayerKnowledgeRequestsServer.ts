@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcherServer.hbs
 "use server"
 
-import type { TOtherPlayerKnowledgeRequestsParams } from "@/db/postgresMainDatabase/schemas/players/otherPlayerKnowledgeRequests"
+import type { TOtherPlayerKnowledgeRequestsParams } from "@/db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests"
 import type {
   TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId,
   TOtherPlayerKnowledgeRequests,
-} from "@/db/postgresMainDatabase/schemas/players/otherPlayerKnowledgeRequests"
-import { fetchOtherPlayerKnowledgeRequestsService } from "@/methods/services/players/fetchOtherPlayerKnowledgeRequestsService"
+} from "@/db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests"
+import { fetchOtherPlayerKnowledgeRequestsService } from "@/methods/services/knowledge/fetchOtherPlayerKnowledgeRequestsService"
 
 type TResult = {
   raw: TOtherPlayerKnowledgeRequests[]
@@ -24,7 +24,7 @@ export async function getOtherPlayerKnowledgeRequestsServer(
   return {
     raw: record!.raw,
     byKey: record!.byKey,
-    apiPath: `/api/players/rpc/get-other-player-knowledge-requests/${params.playerId}`,
+    apiPath: `/api/knowledge/rpc/get-other-player-knowledge-requests/${params.playerId}`,
     atomName: `otherPlayerKnowledgeRequestsAtom`,
   }
 }

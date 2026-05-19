@@ -1,9 +1,9 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetMethodFetcher.hbs
 
 import { auth } from "@/auth"
-import { TOtherPlayerKnowledgeRequestsParams } from "@/db/postgresMainDatabase/schemas/players/otherPlayerKnowledgeRequests"
+import { TOtherPlayerKnowledgeRequestsParams } from "@/db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests"
 import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
-import { fetchOtherPlayerKnowledgeRequestsService } from "@/methods/services/players/fetchOtherPlayerKnowledgeRequestsService"
+import { fetchOtherPlayerKnowledgeRequestsService } from "@/methods/services/knowledge/fetchOtherPlayerKnowledgeRequestsService"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
 

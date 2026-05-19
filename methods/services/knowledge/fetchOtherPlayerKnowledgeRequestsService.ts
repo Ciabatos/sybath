@@ -4,8 +4,8 @@ import type {
   TOtherPlayerKnowledgeRequests,
   TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId,
   TOtherPlayerKnowledgeRequestsParams,
-} from "@/db/postgresMainDatabase/schemas/players/otherPlayerKnowledgeRequests"
-import { getOtherPlayerKnowledgeRequests } from "@/db/postgresMainDatabase/schemas/players/otherPlayerKnowledgeRequests"
+} from "@/db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests"
+import { getOtherPlayerKnowledgeRequests } from "@/db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import crypto from "crypto"

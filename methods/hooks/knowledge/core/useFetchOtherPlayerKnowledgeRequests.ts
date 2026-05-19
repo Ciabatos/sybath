@@ -5,7 +5,7 @@ import {
   TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId,
   TOtherPlayerKnowledgeRequests,
   TOtherPlayerKnowledgeRequestsParams,
-} from "@/db/postgresMainDatabase/schemas/players/otherPlayerKnowledgeRequests"
+} from "@/db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { otherPlayerKnowledgeRequestsAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
@@ -16,7 +16,7 @@ export function useFetchOtherPlayerKnowledgeRequests(params: TOtherPlayerKnowled
   const setOtherPlayerKnowledgeRequests = useSetAtom(otherPlayerKnowledgeRequestsAtom)
 
   const { data } = useSWR<TOtherPlayerKnowledgeRequests[]>(
-    `/api/players/rpc/get-other-player-knowledge-requests/${params.playerId}`,
+    `/api/knowledge/rpc/get-other-player-knowledge-requests/${params.playerId}`,
     { refreshInterval: 3000 },
   )
 

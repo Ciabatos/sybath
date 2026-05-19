@@ -606,14 +606,6 @@
     ],
     "description": "Destructuring useKnownMapTilesResourcesOnMap hook"
   },
-  "Destructure useOtherPlayerKnowledgeRequests": {
-    "prefix": "hook_players_core_useOtherPlayerKnowledgeRequests",
-    "body": [
-      "useFetchOtherPlayerKnowledgeRequests({ playerId })",
-      "const otherPlayerKnowledgeRequests = useOtherPlayerKnowledgeRequestsState()"
-    ],
-    "description": "Destructuring useOtherPlayerKnowledgeRequests hook"
-  },
   "Destructure useSquad": {
     "prefix": "hook_squad_core_useSquad",
     "body": [
@@ -629,5 +621,13 @@
       "const squadPlayersProfiles = useSquadPlayersProfilesState()"
     ],
     "description": "Destructuring useSquadPlayersProfiles hook"
+  },
+  "Destructure useOtherPlayerKnowledgeRequests": {
+    "prefix": "hook_knowledge_core_useOtherPlayerKnowledgeRequests",
+    "body": [
+      "useFetchOtherPlayerKnowledgeRequests({ playerId })",
+      "const otherPlayerKnowledgeRequests = useOtherPlayerKnowledgeRequestsState()"
+    ],
+    "description": "Destructuring useOtherPlayerKnowledgeRequests hook"
   }, //Automatic Snippets
 }

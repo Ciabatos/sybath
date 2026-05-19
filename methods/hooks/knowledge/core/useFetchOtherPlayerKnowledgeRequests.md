@@ -9,7 +9,7 @@ description: |
 
 # useFetchOtherPlayerKnowledgeRequests hook Documentation
 
-# function path :`methods/hooks/players/core/useFetchOtherPlayerKnowledgeRequests.ts`
+# function path :`methods/hooks/knowledge/core/useFetchOtherPlayerKnowledgeRequests.ts`
 
 # function useFetchOtherPlayerKnowledgeRequests( params: TOtherPlayerKnowledgeRequestsParams)
 
@@ -19,7 +19,7 @@ description: |
 
 ```
 # function GET(request: NextRequest, { params }: { params: TApiParams } )
-# path: `app/api/players/rpc/get-other-player-knowledge-requests/[playerId]/route.ts`
+# path: `app/api/knowledge/rpc/get-other-player-knowledge-requests/[playerId]/route.ts`
 # TypeScript Types:
 type TApiParams = Record<string, string>
 
@@ -28,7 +28,7 @@ const typeParamsSchema = z.object({
 }) satisfies z.ZodType<TOtherPlayerKnowledgeRequestsParams>
 
 # function getOtherPlayerKnowledgeRequestsServer( params: TOtherPlayerKnowledgeRequestsParams, options?: { forceFresh?: boolean },): Promise<TResult>
-# path: `methods/server-fetchers/players/core/getOtherPlayerKnowledgeRequestsServer.ts`
+# path: `methods/server-fetchers/knowledge/core/getOtherPlayerKnowledgeRequestsServer.ts`
 # TypeScript Types:
 
 type TResult = {
@@ -39,7 +39,7 @@ type TResult = {
 }
 
 # function getOtherPlayerKnowledgeRequests(params: TOtherPlayerKnowledgeRequestsParams)
-# path: `db/postgresMainDatabase/schemas/players/otherPlayerKnowledgeRequests.ts`
+# path: `db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests.ts`
 # TypeScript Types:
 
 export type TOtherPlayerKnowledgeRequestsParams = {
@@ -61,11 +61,11 @@ export type TOtherPlayerKnowledgeRequests = {
 export type TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId = Record<string, TOtherPlayerKnowledgeRequests>
 
 Hook for mutate data using SWR
-# function path :`methods/hooks/players/core/useMutateOtherPlayerKnowledgeRequests.ts`
+# function path :`methods/hooks/knowledge/core/useMutateOtherPlayerKnowledgeRequests.ts`
 # function useMutateOtherPlayerKnowledgeRequests( params: TOtherPlayerKnowledgeRequestsParams)
 
 #### PostgreSQL Database
-# "schema": "players"
+# "schema": "knowledge"
 # "method": "get_other_player_knowledge_requests"
 You have more information in mcp `game-db`
 ```
