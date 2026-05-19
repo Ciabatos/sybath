@@ -3,7 +3,7 @@
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { useFetchSquad, useSquadState } from "@/methods/hooks/squad/core/useFetchSquad"
 
-export function useActivePlayerSquad() {
+export function usePlayerSquad() {
   const { playerId } = usePlayerId()
   useFetchSquad({ playerId })
   const activePlayerSquadData = useSquadState()

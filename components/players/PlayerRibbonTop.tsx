@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
 import { useActivePlayerProfile } from "@/methods/hooks/players/composite/useActivePlayerProfile"
-import { useActivePlayerSquad } from "@/methods/hooks/squad/composite/useActivePlayerSquad"
+import { usePlayerSquad } from "@/methods/hooks/squad/composite/usePlayerSquad"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import styles from "./styles/PlayerRibbonTop.module.css"
@@ -15,7 +15,7 @@ import styles from "./styles/PlayerRibbonTop.module.css"
 export default function PlayerRibbonTop() {
   const { openModalLeftTopBar } = useModalLeftTopBar()
   const { activePlayerProfile } = useActivePlayerProfile()
-  const { activePlayerSquad } = useActivePlayerSquad()
+  const { activePlayerSquad } = usePlayerSquad()
   const { openModalTopCenter } = useModalTopCenter()
 
   if (!activePlayerProfile) return null

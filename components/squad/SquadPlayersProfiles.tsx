@@ -5,13 +5,13 @@ import { Button } from "@/components/ui/button"
 import { createImage } from "@/methods/functions/util/createImage"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { useSetOtherPlayerId } from "@/methods/hooks/players/composite/useOtherPlayerId"
-import useActivePlayerSquadPlayersProfiles from "@/methods/hooks/squad/composite/useActivePlayerSquadPlayersProfiles"
+import usePlayerSquadPlayersProfiles from "@/methods/hooks/squad/composite/usePlayerSquadPlayersProfiles"
 import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import styles from "./styles/SquadPlayersProfiles.module.css"
 
 export default function SquadPlayersProfiles() {
   const { openModalRightCenter } = useModalRightCenter()
-  const { activePlayerSquadPlayersProfiles } = useActivePlayerSquadPlayersProfiles()
+  const { squadPlayersProfiles } = usePlayerSquadPlayersProfiles()
   const setOtherPlayerId = useSetOtherPlayerId()
   const { createPlayerPortrait } = createImage()
 
@@ -22,7 +22,7 @@ export default function SquadPlayersProfiles() {
 
   return (
     <div className={styles.squadGrid}>
-      {Object.values(activePlayerSquadPlayersProfiles).map((player) => (
+      {Object.values(squadPlayersProfiles).map((player) => (
         <div
           key={player.name + player.secondName}
           className={styles.memberCard}

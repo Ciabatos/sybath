@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
 import { useActivePlayerProfile } from "@/methods/hooks/players/composite/useActivePlayerProfile"
-import { useActivePlayerSquad } from "@/methods/hooks/squad/composite/useActivePlayerSquad"
+import { usePlayerSquad } from "@/methods/hooks/squad/composite/usePlayerSquad"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
 import { X } from "lucide-react"
 import styles from "./styles/PlayerPanel.module.css"
@@ -19,7 +19,7 @@ import styles from "./styles/PlayerPanel.module.css"
 export default function PlayerPanel() {
   const { openModalLeftTopBar } = useModalLeftTopBar()
   const { activePlayerProfile } = useActivePlayerProfile()
-  const { activePlayerSquad } = useActivePlayerSquad()
+  const { activePlayerSquad } = usePlayerSquad()
 
   function onClose() {
     openModalLeftTopBar(EPanelsLeftTopBar.PlayerRibbonTop)

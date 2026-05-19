@@ -1,18 +1,18 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
 import type {
-  TActivePlayerSquadPlayersProfiles,
-  TActivePlayerSquadPlayersProfilesRecordByOtherPlayerId,
-  TActivePlayerSquadPlayersProfilesParams,
-} from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquadPlayersProfiles"
-import { getActivePlayerSquadPlayersProfiles } from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquadPlayersProfiles"
+  TSquadPlayersProfiles,
+  TSquadPlayersProfilesRecordByOtherPlayerId,
+  TSquadPlayersProfilesParams,
+} from "@/db/postgresMainDatabase/schemas/squad/squadPlayersProfiles"
+import { getSquadPlayersProfiles } from "@/db/postgresMainDatabase/schemas/squad/squadPlayersProfiles"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import crypto from "crypto"
 
 type TCacheRecord = {
-  raw: TActivePlayerSquadPlayersProfiles[]
-  byKey: TActivePlayerSquadPlayersProfilesRecordByOtherPlayerId
+  raw: TSquadPlayersProfiles[]
+  byKey: TSquadPlayersProfilesRecordByOtherPlayerId
   etag: string
 }
 
@@ -26,11 +26,11 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchActivePlayerSquadPlayersProfilesService(
-  params: TActivePlayerSquadPlayersProfilesParams,
+export async function fetchSquadPlayersProfilesService(
+  params: TSquadPlayersProfilesParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
-  const cacheKey = makeCacheKey("getActivePlayerSquadPlayersProfiles", params)
+  const cacheKey = makeCacheKey("getSquadPlayersProfiles", params)
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
 
@@ -52,7 +52,7 @@ export async function fetchActivePlayerSquadPlayersProfilesService(
     }
   }
 
-  const raw = await getActivePlayerSquadPlayersProfiles(params)
+  const raw = await getSquadPlayersProfiles(params)
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
   if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
@@ -64,7 +64,7 @@ export async function fetchActivePlayerSquadPlayersProfilesService(
     }
   }
 
-  const byKey = arrayToObjectKey(["otherPlayerId"], raw) as TActivePlayerSquadPlayersProfilesRecordByOtherPlayerId
+  const byKey = arrayToObjectKey(["otherPlayerId"], raw) as TSquadPlayersProfilesRecordByOtherPlayerId
 
   const record: TCacheRecord = {
     raw,

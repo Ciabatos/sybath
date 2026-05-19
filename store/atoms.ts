@@ -36,10 +36,10 @@ import { TActivePlayerProfileRecordByName } from "@/db/postgresMainDatabase/sche
 import { TActivePlayerSwitchProfilesRecordById } from "@/db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles"
 import { TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId } from "@/db/postgresMainDatabase/schemas/players/otherPlayerKnowledgeRequests"
 import { TOtherPlayerProfileRecordByName } from "@/db/postgresMainDatabase/schemas/players/otherPlayerProfile"
-import { TActivePlayerSquadPlayersProfilesRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquadPlayersProfiles"
 import { TOtherSquadPlayersProfilesRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/squad/otherSquadPlayersProfiles"
 import { TSquadRecordBySquadId } from "@/db/postgresMainDatabase/schemas/squad/squad"
 import { TSquadInvitesRecordById } from "@/db/postgresMainDatabase/schemas/squad/squadInvites"
+import { TSquadPlayersProfilesRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/squad/squadPlayersProfiles"
 import { TKnownMapRegionRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
 import { TKnownMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/knownMapTiles"
 import { TKnownMapTilesResourcesOnMapRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnMap"
@@ -109,6 +109,7 @@ export const terrainTypesAtom = atom<TWorldTerrainTypesRecordById>({})
 export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
 
 //Functions
+export const squadPlayersProfilesAtom = atom<TSquadPlayersProfilesRecordByOtherPlayerId>({})
 export const squadAtom = atom<TSquadRecordBySquadId>({})
 export const otherPlayerKnowledgeRequestsAtom =
   atom<TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId>({})
@@ -122,7 +123,6 @@ export const allAbilitiesAtom = atom<TAllAbilitiesRecordById>({})
 export const playerKnownPlayersAtom = atom<TPlayerKnownPlayersRecordByOtherPlayerId>({})
 export const knownMapTilesResourcesOnTileAtom = atom<TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId>({})
 export const otherSquadPlayersProfilesAtom = atom<TOtherSquadPlayersProfilesRecordByOtherPlayerId>({})
-export const activePlayerSquadPlayersProfilesAtom = atom<TActivePlayerSquadPlayersProfilesRecordByOtherPlayerId>({})
 export const otherPlayerAbilitiesAtom = atom<TOtherPlayerAbilitiesRecordByAbilityId>({})
 export const otherPlayerSkillsAtom = atom<TOtherPlayerSkillsRecordBySkillId>({})
 export const otherPlayerStatsAtom = atom<TOtherPlayerStatsRecordByStatId>({})

@@ -462,14 +462,6 @@
     ],
     "description": "Destructuring useOtherPlayerProfile hook"
   },
-  "Destructure useActivePlayerSquadPlayersProfiles": {
-    "prefix": "hook_squad_core_useActivePlayerSquadPlayersProfiles",
-    "body": [
-      "useFetchActivePlayerSquadPlayersProfiles({ playerId })",
-      "const activePlayerSquadPlayersProfiles = useActivePlayerSquadPlayersProfilesState()"
-    ],
-    "description": "Destructuring useActivePlayerSquadPlayersProfiles hook"
-  },
   "Destructure useOtherSquadPlayersProfiles": {
     "prefix": "hook_squad_core_useOtherSquadPlayersProfiles",
     "body": [
@@ -629,5 +621,13 @@
       "const squad = useSquadState()"
     ],
     "description": "Destructuring useSquad hook"
+  },
+  "Destructure useSquadPlayersProfiles": {
+    "prefix": "hook_squad_core_useSquadPlayersProfiles",
+    "body": [
+      "useFetchSquadPlayersProfiles({ playerId })",
+      "const squadPlayersProfiles = useSquadPlayersProfilesState()"
+    ],
+    "description": "Destructuring useSquadPlayersProfiles hook"
   }, //Automatic Snippets
 }

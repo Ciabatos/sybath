@@ -1,7 +1,7 @@
 {
   "promptAnswers": {
     "schema": "squad",
-    "method": "get_active_player_squad_players_profiles",
+    "method": "get_squad_players_profiles",
     "usePrevious": false,
     "selectedColumnsIndex": [
       "otherPlayerId"
@@ -10,18 +10,19 @@
     "mutationMergeOldData": true
   },
   "schema": "squad",
-  "method": "get_active_player_squad_players_profiles",
-  "methodCamelName": "activePlayerSquadPlayersProfiles",
-  "methodPascalName": "ActivePlayerSquadPlayersProfiles",
-  "methodKebabName": "get-active-player-squad-players-profiles",
-  "methodName": "getActivePlayerSquadPlayersProfiles",
-  "methodTypeName": "TActivePlayerSquadPlayersProfiles",
-  "methodParamsTypeName": "TActivePlayerSquadPlayersProfilesParams",
+  "method": "get_squad_players_profiles",
+  "methodCamelName": "squadPlayersProfiles",
+  "methodPascalName": "SquadPlayersProfiles",
+  "methodKebabName": "get-squad-players-profiles",
+  "methodName": "getSquadPlayersProfiles",
+  "methodTypeName": "TSquadPlayersProfiles",
+  "methodParamsTypeName": "TSquadPlayersProfilesParams",
   "methodParamsColumns": [
     {
       "name": "p_player_id",
       "camelName": "playerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -72,7 +73,7 @@
   "indexParamsColumns": "playerId",
   "indexTypeMethodName": "OtherPlayerId",
   "indexMethodName": "arrayToObjectKey",
-  "indexTypeName": "TActivePlayerSquadPlayersProfilesRecordByOtherPlayerId",
+  "indexTypeName": "TSquadPlayersProfilesRecordByOtherPlayerId",
   "indexColumns": [
     {
       "name": "other_player_id",
@@ -83,11 +84,9 @@
     }
   ],
   "sqlParamsPlaceholders": "$1",
-  "apiPath": "app/api/squad/rpc/get-active-player-squad-players-profiles/[playerId]/route.ts",
-  "apiPathParams": "/api/squad/rpc/get-active-player-squad-players-profiles/${params.playerId}",
+  "apiPath": "app/api/squad/rpc/get-squad-players-profiles/[playerId]/route.ts",
+  "apiPathParams": "/api/squad/rpc/get-squad-players-profiles/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": true,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ]
+  "compositeDefinitions": []
 }

@@ -4,20 +4,20 @@
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
 import {
-  TActivePlayerSquadPlayersProfilesRecordByOtherPlayerId,
-  TActivePlayerSquadPlayersProfilesParams,
-  TActivePlayerSquadPlayersProfiles,
-} from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquadPlayersProfiles"
-import { activePlayerSquadPlayersProfilesAtom } from "@/store/atoms"
+  TSquadPlayersProfilesRecordByOtherPlayerId,
+  TSquadPlayersProfilesParams,
+  TSquadPlayersProfiles,
+} from "@/db/postgresMainDatabase/schemas/squad/squadPlayersProfiles"
+import { squadPlayersProfilesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutateActivePlayerSquadPlayersProfiles(params: TActivePlayerSquadPlayersProfilesParams) {
+export function useMutateSquadPlayersProfiles(params: TSquadPlayersProfilesParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/squad/rpc/get-active-player-squad-players-profiles/${params.playerId}`
-  const activePlayerSquadPlayersProfiles = useAtomValue(activePlayerSquadPlayersProfilesAtom)
+  const key = `/api/squad/rpc/get-squad-players-profiles/${params.playerId}`
+  const squadPlayersProfiles = useAtomValue(squadPlayersProfilesAtom)
 
-  function mutateActivePlayerSquadPlayersProfiles(optimisticParams?: Partial<TActivePlayerSquadPlayersProfiles>[]) {
+  function mutateSquadPlayersProfiles(optimisticParams?: Partial<TSquadPlayersProfiles>[]) {
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -41,13 +41,10 @@ export function useMutateActivePlayerSquadPlayersProfiles(params: TActivePlayerS
       ...val,
     }))
 
-    const newObj = arrayToObjectKey(
-      ["otherPlayerId"],
-      dataWithDefaults,
-    ) as TActivePlayerSquadPlayersProfilesRecordByOtherPlayerId
+    const newObj = arrayToObjectKey(["otherPlayerId"], dataWithDefaults) as TSquadPlayersProfilesRecordByOtherPlayerId
 
-    const optimisticDataMergeWithOldData: TActivePlayerSquadPlayersProfilesRecordByOtherPlayerId = {
-      ...activePlayerSquadPlayersProfiles,
+    const optimisticDataMergeWithOldData: TSquadPlayersProfilesRecordByOtherPlayerId = {
+      ...squadPlayersProfiles,
       ...newObj,
     }
 
@@ -61,5 +58,5 @@ export function useMutateActivePlayerSquadPlayersProfiles(params: TActivePlayerS
     })
   }
 
-  return { mutateActivePlayerSquadPlayersProfiles }
+  return { mutateSquadPlayersProfiles }
 }

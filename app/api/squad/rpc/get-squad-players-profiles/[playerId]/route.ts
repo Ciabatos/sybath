@@ -1,9 +1,9 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetMethodFetcher.hbs
 
 import { auth } from "@/auth"
-import { TActivePlayerSquadPlayersProfilesParams } from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquadPlayersProfiles"
+import { TSquadPlayersProfilesParams } from "@/db/postgresMainDatabase/schemas/squad/squadPlayersProfiles"
 import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
-import { fetchActivePlayerSquadPlayersProfilesService } from "@/methods/services/squad/fetchActivePlayerSquadPlayersProfilesService"
+import { fetchSquadPlayersProfilesService } from "@/methods/services/squad/fetchSquadPlayersProfilesService"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
 
@@ -11,7 +11,7 @@ type TApiParams = Record<string, string>
 
 const typeParamsSchema = z.object({
   playerId: z.coerce.number(),
-}) satisfies z.ZodType<TActivePlayerSquadPlayersProfilesParams>
+}) satisfies z.ZodType<TSquadPlayersProfilesParams>
 
 export async function GET(request: NextRequest, { params }: { params: TApiParams }): Promise<NextResponse> {
   try {
@@ -28,7 +28,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
     const clientEtag = request.headers.get("if-none-match") ?? undefined
     const forceFresh = request.headers.get("x-force-fresh") ?? undefined
 
-    const { record, etag, cacheHit, etagMatched } = await fetchActivePlayerSquadPlayersProfilesService(parsedParams, {
+    const { record, etag, cacheHit, etagMatched } = await fetchSquadPlayersProfilesService(parsedParams, {
       ...(forceFresh ? { forceFresh: true } : { clientEtag }),
     })
 
