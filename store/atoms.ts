@@ -34,10 +34,11 @@ import { TPlayerKnownPlayersRecordByOtherPlayerId } from "@/db/postgresMainDatab
 import { TActivePlayerRecordById } from "@/db/postgresMainDatabase/schemas/players/activePlayer"
 import { TActivePlayerProfileRecordByName } from "@/db/postgresMainDatabase/schemas/players/activePlayerProfile"
 import { TActivePlayerSwitchProfilesRecordById } from "@/db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles"
+import { TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId } from "@/db/postgresMainDatabase/schemas/players/otherPlayerKnowledgeRequests"
 import { TOtherPlayerProfileRecordByName } from "@/db/postgresMainDatabase/schemas/players/otherPlayerProfile"
-import { TActivePlayerSquadRecordBySquadId } from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquad"
 import { TActivePlayerSquadPlayersProfilesRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquadPlayersProfiles"
 import { TOtherSquadPlayersProfilesRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/squad/otherSquadPlayersProfiles"
+import { TSquadRecordBySquadId } from "@/db/postgresMainDatabase/schemas/squad/squad"
 import { TSquadInvitesRecordById } from "@/db/postgresMainDatabase/schemas/squad/squadInvites"
 import { TKnownMapRegionRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
 import { TKnownMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/knownMapTiles"
@@ -62,7 +63,6 @@ import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { EPanelsTopCenterBar } from "@/types/enumeration/EPanelsTopCenterBar"
 import { atom } from "jotai"
-import { TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId } from "@/db/postgresMainDatabase/schemas/players/otherPlayerKnowledgeRequests"
 
 //Modals
 export const modalBottomCenterAtom = atom<EPanelsBottomCenter>(EPanelsBottomCenter.Inactive)
@@ -109,6 +109,7 @@ export const terrainTypesAtom = atom<TWorldTerrainTypesRecordById>({})
 export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
 
 //Functions
+export const squadAtom = atom<TSquadRecordBySquadId>({})
 export const otherPlayerKnowledgeRequestsAtom =
   atom<TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId>({})
 export const knownMapTilesResourcesOnMapAtom = atom<TKnownMapTilesResourcesOnMapRecordByMapTileXMapTileY>({})
@@ -122,7 +123,6 @@ export const playerKnownPlayersAtom = atom<TPlayerKnownPlayersRecordByOtherPlaye
 export const knownMapTilesResourcesOnTileAtom = atom<TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId>({})
 export const otherSquadPlayersProfilesAtom = atom<TOtherSquadPlayersProfilesRecordByOtherPlayerId>({})
 export const activePlayerSquadPlayersProfilesAtom = atom<TActivePlayerSquadPlayersProfilesRecordByOtherPlayerId>({})
-export const activePlayerSquadAtom = atom<TActivePlayerSquadRecordBySquadId>({})
 export const otherPlayerAbilitiesAtom = atom<TOtherPlayerAbilitiesRecordByAbilityId>({})
 export const otherPlayerSkillsAtom = atom<TOtherPlayerSkillsRecordBySkillId>({})
 export const otherPlayerStatsAtom = atom<TOtherPlayerStatsRecordByStatId>({})

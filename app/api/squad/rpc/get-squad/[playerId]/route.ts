@@ -1,9 +1,9 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetMethodFetcher.hbs
 
 import { auth } from "@/auth"
-import { TActivePlayerSquadParams } from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquad"
+import { TSquadParams } from "@/db/postgresMainDatabase/schemas/squad/squad"
 import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
-import { fetchActivePlayerSquadService } from "@/methods/services/squad/fetchActivePlayerSquadService"
+import { fetchSquadService } from "@/methods/services/squad/fetchSquadService"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
 
@@ -11,7 +11,7 @@ type TApiParams = Record<string, string>
 
 const typeParamsSchema = z.object({
   playerId: z.coerce.number(),
-}) satisfies z.ZodType<TActivePlayerSquadParams>
+}) satisfies z.ZodType<TSquadParams>
 
 export async function GET(request: NextRequest, { params }: { params: TApiParams }): Promise<NextResponse> {
   try {
@@ -28,7 +28,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
     const clientEtag = request.headers.get("if-none-match") ?? undefined
     const forceFresh = request.headers.get("x-force-fresh") ?? undefined
 
-    const { record, etag, cacheHit, etagMatched } = await fetchActivePlayerSquadService(parsedParams, {
+    const { record, etag, cacheHit, etagMatched } = await fetchSquadService(parsedParams, {
       ...(forceFresh ? { forceFresh: true } : { clientEtag }),
     })
 

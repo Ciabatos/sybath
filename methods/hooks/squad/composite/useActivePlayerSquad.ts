@@ -1,16 +1,12 @@
 "use client"
 
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
-import {
-  useActivePlayerSquadState,
-  useFetchActivePlayerSquad,
-} from "@/methods/hooks/squad/core/useFetchActivePlayerSquad"
+import { useFetchSquad, useSquadState } from "@/methods/hooks/squad/core/useFetchSquad"
 
 export function useActivePlayerSquad() {
   const { playerId } = usePlayerId()
-
-  useFetchActivePlayerSquad({ playerId })
-  const activePlayerSquadData = useActivePlayerSquadState()
+  useFetchSquad({ playerId })
+  const activePlayerSquadData = useSquadState()
 
   const [activePlayerSquad] = Object.values(activePlayerSquadData)
 

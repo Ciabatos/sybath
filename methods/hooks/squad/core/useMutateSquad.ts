@@ -3,13 +3,13 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import { TActivePlayerSquadParams, TActivePlayerSquad } from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquad"
+import { TSquadParams, TSquad } from "@/db/postgresMainDatabase/schemas/squad/squad"
 
-export function useMutateActivePlayerSquad(params: TActivePlayerSquadParams) {
+export function useMutateSquad(params: TSquadParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/squad/rpc/get-active-player-squad/${params.playerId}`
+  const key = `/api/squad/rpc/get-squad/${params.playerId}`
 
-  function mutateActivePlayerSquad(optimisticParams?: Partial<TActivePlayerSquad>[]) {
+  function mutateSquad(optimisticParams?: Partial<TSquad>[]) {
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -38,5 +38,5 @@ export function useMutateActivePlayerSquad(params: TActivePlayerSquadParams) {
     })
   }
 
-  return { mutateActivePlayerSquad }
+  return { mutateSquad }
 }

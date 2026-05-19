@@ -4,32 +4,32 @@
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 import { snakeToCamelRows } from "@/methods/functions/util/snakeToCamel"
 
-export type TActivePlayerSquadParams = {
+export type TSquadParams = {
   playerId: number
 }
 
-export type TActivePlayerSquad = {
+export type TSquad = {
   squadId: number
   squadName: string
   squadImagePortrait: string
 }
 
-export type TActivePlayerSquadRecordBySquadId = Record<string, TActivePlayerSquad>
+export type TSquadRecordBySquadId = Record<string, TSquad>
 
-export async function getActivePlayerSquad(params: TActivePlayerSquadParams) {
+export async function getSquad(params: TSquadParams) {
   try {
     const sqlParams = Object.values(params)
-    const sql = `SELECT * FROM squad.get_active_player_squad($1);`
+    const sql = `SELECT * FROM squad.get_squad($1);`
 
     const result = await query(sql, sqlParams)
-    return snakeToCamelRows(result.rows) as TActivePlayerSquad[]
+    return snakeToCamelRows(result.rows) as TSquad[]
   } catch (error) {
-    console.error("Error fetching getActivePlayerSquad:", {
+    console.error("Error fetching getSquad:", {
       error,
       params,
       timestamp: new Date().toISOString(),
     })
 
-    throw new Error("Failed to fetch getActivePlayerSquad")
+    throw new Error("Failed to fetch getSquad")
   }
 }

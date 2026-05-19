@@ -7,7 +7,7 @@ import { doSquadLeaveAction } from "@/methods/actions/squad/doSquadLeaveAction"
 import { useOtherPlayerId } from "@/methods/hooks/players/composite/useOtherPlayerId"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMovement"
-import { useMutateActivePlayerSquad } from "@/methods/hooks/squad/core/useMutateActivePlayerSquad"
+import { useMutateSquad } from "@/methods/hooks/squad/core/useMutateSquad"
 import { useMapId } from "@/methods/hooks/world/composite/useMapId"
 import { useFetchPlayerPosition, usePlayerPositionState } from "@/methods/hooks/world/core/useFetchPlayerPosition"
 import { toast } from "sonner"
@@ -27,7 +27,7 @@ export function useSquadControls() {
   const playerPosition = usePlayerPositionState()
   const [playerPos] = Object.values(playerPosition)
   const { selectPlayerPath } = usePlayerMovement()
-  const { mutateActivePlayerSquad } = useMutateActivePlayerSquad({ playerId })
+  const { mutateSquad } = useMutateSquad({ playerId })
 
   async function createSquad() {
     try {
@@ -37,7 +37,7 @@ export function useSquadControls() {
         return toast.error(result?.message)
       }
 
-      mutateActivePlayerSquad()
+      mutateSquad()
       return toast.success(result?.message)
     } catch (err) {
       console.error("Unexpected error in createSquad:", err)
@@ -53,7 +53,7 @@ export function useSquadControls() {
         return toast.error(result?.message)
       }
 
-      mutateActivePlayerSquad()
+      mutateSquad()
       return toast.success(result?.message)
     } catch (err) {
       console.error("Unexpected error in leaveSquad:", err)
@@ -74,7 +74,7 @@ export function useSquadControls() {
         return toast.error(result?.message)
       }
 
-      mutateActivePlayerSquad()
+      mutateSquad()
       return toast.success(result?.message)
     } catch (err) {
       console.error("Unexpected error in inviteToSquad:", err)
@@ -106,7 +106,7 @@ export function useSquadControls() {
         return toast.error(result?.message)
       }
 
-      mutateActivePlayerSquad()
+      mutateSquad()
       return toast.success(result?.message)
     } catch (err) {
       console.error("Unexpected error in joinSquad:", err)

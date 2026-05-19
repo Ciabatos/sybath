@@ -1,7 +1,7 @@
 {
   "promptAnswers": {
     "schema": "squad",
-    "method": "get_active_player_squad",
+    "method": "get_squad",
     "usePrevious": false,
     "selectedColumnsIndex": [
       "squadId"
@@ -10,13 +10,13 @@
     "mutationMergeOldData": false
   },
   "schema": "squad",
-  "method": "get_active_player_squad",
-  "methodCamelName": "activePlayerSquad",
-  "methodPascalName": "ActivePlayerSquad",
-  "methodKebabName": "get-active-player-squad",
-  "methodName": "getActivePlayerSquad",
-  "methodTypeName": "TActivePlayerSquad",
-  "methodParamsTypeName": "TActivePlayerSquadParams",
+  "method": "get_squad",
+  "methodCamelName": "squad",
+  "methodPascalName": "Squad",
+  "methodKebabName": "get-squad",
+  "methodName": "getSquad",
+  "methodTypeName": "TSquad",
+  "methodParamsTypeName": "TSquadParams",
   "methodParamsColumns": [
     {
       "name": "p_player_id",
@@ -52,7 +52,7 @@
   "indexParamsColumns": "playerId",
   "indexTypeMethodName": "SquadId",
   "indexMethodName": "arrayToObjectKey",
-  "indexTypeName": "TActivePlayerSquadRecordBySquadId",
+  "indexTypeName": "TSquadRecordBySquadId",
   "indexColumns": [
     {
       "name": "squad_id",
@@ -63,8 +63,8 @@
     }
   ],
   "sqlParamsPlaceholders": "$1",
-  "apiPath": "app/api/squad/rpc/get-active-player-squad/[playerId]/route.ts",
-  "apiPathParams": "/api/squad/rpc/get-active-player-squad/${params.playerId}",
+  "apiPath": "app/api/squad/rpc/get-squad/[playerId]/route.ts",
+  "apiPathParams": "/api/squad/rpc/get-squad/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": false,
   "compositeDefinitions": []

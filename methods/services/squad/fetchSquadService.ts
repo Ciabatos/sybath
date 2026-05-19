@@ -1,18 +1,14 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type {
-  TActivePlayerSquad,
-  TActivePlayerSquadRecordBySquadId,
-  TActivePlayerSquadParams,
-} from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquad"
-import { getActivePlayerSquad } from "@/db/postgresMainDatabase/schemas/squad/activePlayerSquad"
+import type { TSquad, TSquadRecordBySquadId, TSquadParams } from "@/db/postgresMainDatabase/schemas/squad/squad"
+import { getSquad } from "@/db/postgresMainDatabase/schemas/squad/squad"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import crypto from "crypto"
 
 type TCacheRecord = {
-  raw: TActivePlayerSquad[]
-  byKey: TActivePlayerSquadRecordBySquadId
+  raw: TSquad[]
+  byKey: TSquadRecordBySquadId
   etag: string
 }
 
@@ -26,11 +22,11 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchActivePlayerSquadService(
-  params: TActivePlayerSquadParams,
+export async function fetchSquadService(
+  params: TSquadParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
-  const cacheKey = makeCacheKey("getActivePlayerSquad", params)
+  const cacheKey = makeCacheKey("getSquad", params)
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
 
@@ -52,7 +48,7 @@ export async function fetchActivePlayerSquadService(
     }
   }
 
-  const raw = await getActivePlayerSquad(params)
+  const raw = await getSquad(params)
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
   if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
@@ -64,7 +60,7 @@ export async function fetchActivePlayerSquadService(
     }
   }
 
-  const byKey = arrayToObjectKey(["squadId"], raw) as TActivePlayerSquadRecordBySquadId
+  const byKey = arrayToObjectKey(["squadId"], raw) as TSquadRecordBySquadId
 
   const record: TCacheRecord = {
     raw,
