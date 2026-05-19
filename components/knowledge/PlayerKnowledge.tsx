@@ -1,4 +1,5 @@
 import OtherPlayerProfiles from "@/components/knowledge/OtherPlayerProfiles"
+import { Button } from "@/components/ui/button"
 import usePlayerKnownPlayers from "@/methods/hooks/knowledge/composite/usePlayerKnownPlayers"
 import { MapPin, Skull } from "lucide-react"
 import styles from "./styles/PlayerKnowledge.module.css"
@@ -27,6 +28,8 @@ export function PlayerKnowledge() {
           Knowledge represents what your hero has learned about the world, its locations, factions, and ancient lore.
         </p>
       </div>
+
+      <Button>Knowledge</Button>
 
       <div className={styles.category}>
         <h3 className={styles.categoryTitle}>Locations</h3>
