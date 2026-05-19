@@ -1,0 +1,6 @@
+przetworzyc i usunac niepotrzebne stare pliki w aplikacji
+do_spy_on_other_player
+do_other_player_knowledge_accept
+do_other_player_knowledge_decline
+do_other_player_knowledge_request
+get_other_player_knowledge_requests

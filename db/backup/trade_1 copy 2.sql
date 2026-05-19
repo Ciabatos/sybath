@@ -1,0 +1,1 @@
+Trade jeszcze nie wprowadzac

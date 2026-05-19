@@ -1,0 +1,1 @@
+DELETE TABLE players.other_player_knowledge_profile_requests
