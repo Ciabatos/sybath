@@ -1,3 +1,6 @@
+Trade z innych tile automatycznie pokazuje wystawienie ofert na targowisku dla questa przenoszenia towarow
+Knowledge idea zyskujemy jak w drzewku technologi w civie, musisz miec np 5 skilla poprzedniego i wtedy sie nowe odblokowuje, ale jak sie urodzisz potem i nie masz poprzednich to sie nic nie dzieje mozesz zaczac w srodku drzewa
+
 Zmienic scheme z players na knowledge dla requestow
 
 Zmienic nazwe procedury get_active_player_squad_players_profiles get_active_player_squad usunąc active z nazwy
