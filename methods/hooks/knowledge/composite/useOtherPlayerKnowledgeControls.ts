@@ -1,5 +1,6 @@
 "use client"
 
+import { doOtherPlayerKnowledgeAcceptAction } from "@/methods/actions/knowledge/doOtherPlayerKnowledgeAcceptAction"
 import { doOtherPlayerKnowledgeRequestAction } from "@/methods/actions/knowledge/doOtherPlayerKnowledgeRequestAction"
 import { useOtherPlayerId } from "@/methods/hooks/players/composite/useOtherPlayerId"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
@@ -9,126 +10,54 @@ export function useOtherPlayerKnowledgeControls() {
   const { playerId } = usePlayerId()
   const otherPlayerId = useOtherPlayerId()
 
-  async function inviteToKnownProfile() {
+  async function inviteToKnowledge(knowledgeTypeId: number) {
     try {
       const result = await doOtherPlayerKnowledgeRequestAction({
-        playerId: playerId,
-        otherPlayerId: otherPlayerId,
-        knowledgeTypeId: 1,
+        playerId,
+        otherPlayerId,
+        knowledgeTypeId,
       })
 
       if (!result.status) {
-        return toast.error(result?.message)
+        toast.error(result?.message)
+        return false
       }
 
-      return toast.success(result?.message)
+      toast.success(result?.message)
+      return true
     } catch (err) {
-      console.error("Unexpected error in inviteToKnownProfile:", err)
-      return "Unexpected error occurred. Please refresh the page."
+      console.error("Unexpected error in inviteToKnowledge:", err)
+      toast.error("Unexpected error occurred. Please refresh the page.")
+      return false
     }
   }
 
-  async function inviteToKnownSkills() {
+  async function acceptKnowledgeRequest(inviteId: number) {
     try {
-      const result = await doOtherPlayerKnowledgeRequestAction({
-        playerId: playerId,
-        otherPlayerId: otherPlayerId,
-        knowledgeTypeId: 2,
-      })
+      const result = await doOtherPlayerKnowledgeAcceptAction({ playerId, inviteId })
 
       if (!result.status) {
-        return toast.error(result?.message)
+        toast.error(result?.message)
+        return false
       }
 
-      return toast.success(result?.message)
+      toast.success(result?.message)
+      return true
     } catch (err) {
-      console.error("Unexpected error in inviteToKnownSkills:", err)
-      return "Unexpected error occurred. Please refresh the page."
-    }
-  }
-
-  async function inviteToKnownAbilities() {
-    try {
-      const result = await doOtherPlayerKnowledgeRequestAction({
-        playerId: playerId,
-        otherPlayerId: otherPlayerId,
-        knowledgeTypeId: 3,
-      })
-
-      if (!result.status) {
-        return toast.error(result?.message)
-      }
-
-      return toast.success(result?.message)
-    } catch (err) {
-      console.error("Unexpected error in inviteToKnownAbilities:", err)
-      return "Unexpected error occurred. Please refresh the page."
-    }
-  }
-
-  async function inviteToKnownStats() {
-    try {
-      const result = await doOtherPlayerKnowledgeRequestAction({
-        playerId: playerId,
-        otherPlayerId: otherPlayerId,
-        knowledgeTypeId: 4,
-      })
-
-      if (!result.status) {
-        return toast.error(result?.message)
-      }
-
-      return toast.success(result?.message)
-    } catch (err) {
-      console.error("Unexpected error in inviteToKnownStats:", err)
-      return "Unexpected error occurred. Please refresh the page."
-    }
-  }
-
-  async function inviteToKnownInventory() {
-    try {
-      const result = await doOtherPlayerKnowledgeRequestAction({
-        playerId: playerId,
-        otherPlayerId: otherPlayerId,
-        knowledgeTypeId: 5,
-      })
-
-      if (!result.status) {
-        return toast.error(result?.message)
-      }
-
-      return toast.success(result?.message)
-    } catch (err) {
-      console.error("Unexpected error in inviteToKnownInventory:", err)
-      return "Unexpected error occurred. Please refresh the page."
-    }
-  }
-
-  async function inviteToKnownPosition() {
-    try {
-      const result = await doOtherPlayerKnowledgeRequestAction({
-        playerId: playerId,
-        otherPlayerId: otherPlayerId,
-        knowledgeTypeId: 6,
-      })
-
-      if (!result.status) {
-        return toast.error(result?.message)
-      }
-
-      return toast.success(result?.message)
-    } catch (err) {
-      console.error("Unexpected error in inviteToKnownPosition:", err)
-      return "Unexpected error occurred. Please refresh the page."
+      console.error("Unexpected error in acceptKnowledgeRequest:", err)
+      toast.error("Unexpected error occurred. Please refresh the page.")
+      return false
     }
   }
 
   return {
-    inviteToKnownProfile,
-    inviteToKnownSkills,
-    inviteToKnownAbilities,
-    inviteToKnownStats,
-    inviteToKnownInventory,
-    inviteToKnownPosition,
+    inviteToKnowledge,
+    inviteToKnownProfile: () => inviteToKnowledge(1),
+    inviteToKnownSkills: () => inviteToKnowledge(2),
+    inviteToKnownAbilities: () => inviteToKnowledge(3),
+    inviteToKnownStats: () => inviteToKnowledge(4),
+    inviteToKnownInventory: () => inviteToKnowledge(5),
+    inviteToKnownPosition: () => inviteToKnowledge(6),
+    acceptKnowledgeRequest,
   }
 }
