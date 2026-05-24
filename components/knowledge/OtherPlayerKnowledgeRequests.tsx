@@ -9,7 +9,7 @@ import styles from "./styles/OtherPlayerKnowledgeRequests.module.css"
 
 export default function OtherPlayerKnowledgeRequests() {
   const { resetModalTopCenter } = useModalTopCenter()
-  const { acceptKnowledgeRequest } = useOtherPlayerKnowledgeControls()
+  const { acceptKnowledgeRequest, declineKnowledgeRequest } = useOtherPlayerKnowledgeControls()
 
   function closeOtherPlayerKnowledgeRequests() {
     resetModalTopCenter()
@@ -28,12 +28,17 @@ export default function OtherPlayerKnowledgeRequests() {
           <X />
         </Button>
         {Object.values(otherPlayerKnowledgeRequests).map((request) => (
-          <Button
-            key={request.otherPlayerKnowledgeRequestId}
-            onClick={() => acceptKnowledgeRequest(request.otherPlayerKnowledgeRequestId)}
-          >
-            Invited to by {request.name} {request.nickname} {request.secondName}
-          </Button>
+          <div key={request.otherPlayerKnowledgeRequestId}>
+            <Button onClick={() => acceptKnowledgeRequest(request.otherPlayerKnowledgeRequestId)}>
+              Invited to by {request.name} {request.nickname} {request.secondName}
+            </Button>
+            <Button
+              onClick={() => declineKnowledgeRequest(request.otherPlayerKnowledgeRequestId)}
+              variant='destructive'
+            >
+              Decline
+            </Button>
+          </div>
         ))}
       </div>
     </div>
