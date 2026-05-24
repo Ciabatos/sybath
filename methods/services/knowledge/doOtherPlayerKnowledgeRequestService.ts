@@ -1,21 +1,27 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - serviceGetMethodAction.hbs
 "use server"
 
-import { TDoOtherPlayerKnowledgeRequestParams, doOtherPlayerKnowledgeRequest } from "@/db/postgresMainDatabase/schemas/knowledge/doOtherPlayerKnowledgeRequest"
+import {
+  TDoOtherPlayerKnowledgeRequestParams,
+  doOtherPlayerKnowledgeRequest,
+} from "@/db/postgresMainDatabase/schemas/knowledge/doOtherPlayerKnowledgeRequest"
 import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
 
 //MANUAL CODE - START
 
 export type TDoOtherPlayerKnowledgeRequestServiceParams = {
-sessionUserId: number
-playerId: number
+  sessionUserId: number
+  playerId: number
+  otherPlayerId: string
+  knowledgeTypeId: number
 }
 
 //MANUAL CODE - END
 
 export async function doOtherPlayerKnowledgeRequestService(params: TDoOtherPlayerKnowledgeRequestServiceParams) {
   try {
-    const sessionPlayerId = (await getActivePlayerServer({ userId: params.sessionUserId }, { forceFresh: true })).raw[0].id
+    const sessionPlayerId = (await getActivePlayerServer({ userId: params.sessionUserId }, { forceFresh: true })).raw[0]
+      .id
     const playerId = params.playerId
 
     if (sessionPlayerId !== playerId) {
@@ -27,9 +33,8 @@ export async function doOtherPlayerKnowledgeRequestService(params: TDoOtherPlaye
 
     //MANUAL CODE - START
 
-    const playerId =
-    const otherPlayerId =
-    const knowledgeTypeId =
+    const otherPlayerId = params.otherPlayerId
+    const knowledgeTypeId = params.knowledgeTypeId
 
     //MANUAL CODE - END
 

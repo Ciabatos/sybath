@@ -27,8 +27,7 @@ export default function OtherPlayerKnowledgeRequests() {
         </Button>
         {Object.values(otherPlayerKnowledgeRequests).map((request) => (
           <Button key={request.otherPlayerKnowledgeRequestId}>
-            Invited to {request.secondName} by {request.name}
-            {request.nickname ? ` (${request.nickname})` : ""} {request.secondName}
+            Invited to by {request.name} {request.nickname} {request.secondName}
           </Button>
         ))}
       </div>

@@ -6,6 +6,7 @@ import { OtherPlayerCombinedInventory } from "@/components/inventory/OtherPlayer
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { createImage } from "@/methods/functions/util/createImage"
+import { useOtherPlayerKnowledgeControls } from "@/methods/hooks/knowledge/composite/useOtherPlayerKnowledgeControls"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { useOtherPlayerId } from "@/methods/hooks/players/composite/useOtherPlayerId"
 import { useOtherPlayerProfile } from "@/methods/hooks/players/composite/useOtherPlayerProfile"
@@ -20,6 +21,7 @@ export default function OtherPlayerPanel() {
   const { otherPlayerProfile } = useOtherPlayerProfile()
   const otherPLayerId = useOtherPlayerId()
   const { inviteToSquad } = useSquadControls()
+  const { inviteToKnownProfile } = useOtherPlayerKnowledgeControls()
 
   function onClose() {
     resetModalRightCenter()
@@ -62,7 +64,8 @@ export default function OtherPlayerPanel() {
           </div>
         </div>
         <Button onClick={() => inviteToSquad(1, 2)}>Invite to Squad</Button>
-        <Button onClick={() => inviteToSquad(2, 2)}>Invite to Permanent</Button>
+        <Button onClick={() => inviteToSquad(2, 2)}>Invite to Squad Permanent</Button>
+        <Button onClick={() => inviteToKnownProfile()}>Knowledge request profile</Button>
         <div className={styles.mainContent}>
           <Tabs
             defaultValue='Stats'

@@ -35,7 +35,7 @@ export function PlayerKnowledge() {
         </p>
       </div>
 
-      <Button onClick={openOtherPlayerKnowledgeRequests}>Knowledge</Button>
+      <Button onClick={openOtherPlayerKnowledgeRequests}>Knowledge requests</Button>
 
       <div className={styles.category}>
         <h3 className={styles.categoryTitle}>Locations</h3>
