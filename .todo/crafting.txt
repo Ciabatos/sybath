@@ -1,3 +1,5 @@
+Jak craftujesz i masz missing surowce to mozesz automatycznie zakup z danego rynku
+
 --Crafting nowych surowcow (tworzenie indeksów IFS)
 --Z puli właściwości wybieramy kombinacje np 3
 --Tworzy się nowy surowiec 
