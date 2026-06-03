@@ -1,5 +1,9 @@
 Trade z innych tile automatycznie pokazuje wystawienie ofert na targowisku dla questa przenoszenia towarow
 Knowledge idea zyskujemy jak w drzewku technologi w civie, musisz miec np 5 skilla poprzedniego i wtedy sie nowe odblokowuje, ale jak sie urodzisz potem i nie masz poprzednich to sie nic nie dzieje mozesz zaczac w srodku drzewa
+Trade ekran klikasz na knowledge i nim handlujesz tez albo klikasz na pole i rozwijasz mozliwosci
+Pomyslec na zmienieniu na liste zamiast pola stale w db to wtedy trzeba bedzie przerobic move ale to chyba na plus bo tak samo beda dzialac abilites na pasku
+
+Zrobic manager admina, dodawanie skilli, itemow, craftingu w grze
 
 Zmienic scheme z players na knowledge dla requestow
 
