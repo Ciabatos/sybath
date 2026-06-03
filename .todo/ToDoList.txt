@@ -3,6 +3,8 @@ Knowledge idea zyskujemy jak w drzewku technologi w civie, musisz miec np 5 skil
 Trade ekran klikasz na knowledge i nim handlujesz tez albo klikasz na pole i rozwijasz mozliwosci
 Pomyslec na zmienieniu na liste zamiast pola stale w db to wtedy trzeba bedzie przerobic move ale to chyba na plus bo tak samo beda dzialac abilites na pasku
 
+Zmienic widok jednostki na portrety
+
 Zrobic manager admina, dodawanie skilli, itemow, craftingu w grze
 
 Zmienic scheme z players na knowledge dla requestow
