@@ -1,3 +1,6 @@
+Zrobić plopjs generowanie snippety, type kazdy do oddzielnego pliku a nie modyfikacje !
+Dodac do plopjs usuwanie automatyczne
+
 Trade z innych tile automatycznie pokazuje wystawienie ofert na targowisku dla questa przenoszenia towarow
 Knowledge idea zyskujemy jak w drzewku technologi w civie, musisz miec np 5 skilla poprzedniego i wtedy sie nowe odblokowuje, ale jak sie urodzisz potem i nie masz poprzednich to sie nic nie dzieje mozesz zaczac w srodku drzewa
 Trade ekran klikasz na knowledge i nim handlujesz tez albo klikasz na pole i rozwijasz mozliwosci
