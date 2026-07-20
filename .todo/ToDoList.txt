@@ -1,4 +1,4 @@
-Zrobić plopjs generowanie snippety, type, atomy kazdy do oddzielnego pliku a nie modyfikacje !
+Zrobić plopjs generowanie snippety, type, atomy kazdy do oddzielnego pliku a nie modyfikacje ! - ogolnie zmiana wszedzie gdzie typ plopjs jest modify a nie add
 Dodac do plopjs usuwanie automatyczne
 
 Trade z innych tile automatycznie pokazuje wystawienie ofert na targowisku dla questa przenoszenia towarow
