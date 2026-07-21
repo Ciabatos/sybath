@@ -1,5 +1,5 @@
 https://chromewebstore.google.com/detail/gimli-tailwind/fojckembkmaoehhmkiomebhkcengcljl
-Glob Import z vite !
+Glob Import z vite ! https://nextjs.org/blog/next-16-3-turbopack#importmetaglob
 w typach lazy loading robic z nextjs https://nextjs.org/docs/app/guides/lazy-loading
 Zrobić plopjs generowanie snippety, type, atomy kazdy do oddzielnego pliku a nie modyfikacje ! - ogolnie zmiana wszedzie gdzie typ plopjs jest modify a nie add
 Dodac do plopjs usuwanie automatyczne
