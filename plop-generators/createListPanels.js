@@ -4,7 +4,8 @@ import path from "path"
 const COMPONENTS_ROOT = path.resolve("components")
 
 export default function createListPanels(plop) {
-  plop.setGenerator("createListPanels", {
+  const generatorName = "createListPanels"
+  plop.setGenerator(generatorName, {
     description: "Create new list panels",
     prompts: [
       {
@@ -25,6 +26,15 @@ export default function createListPanels(plop) {
     actions(data) {
       const actions = []
 
+      data.generatorName = generatorName
+
+      data.filesCreated = [
+        `components/${data.choosenPath}/${data.newPanelName}.tsx`,
+        `components/${data.choosenPath}/styles/${data.newPanelName}.module.css`,
+      ]
+
+      data.dateCreated = new Date().toISOString()
+
       actions.push(
         {
           type: "add",
@@ -36,6 +46,12 @@ export default function createListPanels(plop) {
           type: "add",
           path: "../components/{{choosenPath}}/styles/{{newPanelName}}.module.css",
           templateFile: "plop-templates/createListPanels/panelStyle.hbs",
+          force: true,
+        },
+        {
+          type: "add",
+          path: "./answerHistory/createListPanels/{{newPanelName}}_answers.json",
+          templateFile: "plop-templates/answerHistory.hbs",
           force: true,
         },
       )

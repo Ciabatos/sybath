@@ -5,7 +5,8 @@ const MAIN_ROOT = path.resolve("types/enumeration")
 const COMPONENTS_ROOT = path.resolve("components")
 
 export default function createPanels(plop) {
-  plop.setGenerator("createPanels", {
+  const generatorName = "createPanels"
+  plop.setGenerator(generatorName, {
     description: "Create new panel",
     prompts: [
       {
@@ -45,6 +46,15 @@ export default function createPanels(plop) {
 
       data.enumSuffix = enumSuffix
 
+      data.generatorName = generatorName
+
+      data.filesCreated = [
+        `components/${data.choosenPath}/${data.newPanelName}.tsx`,
+        `components/${data.choosenPath}/styles/${data.newPanelName}.module.css`,
+      ]
+
+      data.dateCreated = new Date().toISOString()
+
       actions.push(
         {
           type: "add",
@@ -56,6 +66,12 @@ export default function createPanels(plop) {
           type: "add",
           path: "../components/{{choosenPath}}/styles/{{newPanelName}}.module.css",
           templateFile: "plop-templates/createPanels/panelStyle.hbs",
+          force: true,
+        },
+        {
+          type: "add",
+          path: "./answerHistory/createPanels/{{newPanelName}}_answers.json",
+          templateFile: "plop-templates/answerHistory.hbs",
           force: true,
         },
       )

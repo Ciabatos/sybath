@@ -9,7 +9,8 @@ const actionPrettier = [
 ]
 
 export default function replayHistory(plop) {
-  plop.setGenerator("replayHistory", {
+  const generatorName = "replayHistory"
+  plop.setGenerator(generatorName, {
     description: "Replay saved generator answers",
 
     prompts: [

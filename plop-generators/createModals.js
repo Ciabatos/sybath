@@ -1,7 +1,8 @@
 import { snakeToCamel, snakeToPascal } from "./helpers/helpers.js"
 
 export default function createModals(plop) {
-  plop.setGenerator("createModals", {
+  const generatorName = "createModals"
+  plop.setGenerator(generatorName, {
     description: "Create new modal",
     prompts: [
       {
@@ -20,6 +21,19 @@ export default function createModals(plop) {
 
       const position = data.modalPascalName.replace(/^Modal/, "")
       data.positionPascalName = snakeToPascal(position)
+
+      data.generatorName = generatorName
+
+      data.filesCreated = [
+        `store/atoms/${data.modalCamelName}Atom.ts`,
+        `types/enumeration/EPanels${data.positionPascalName}.ts`,
+        `methods/hooks/modals/use${data.modalPascalName}.ts`,
+        `components/modals/${data.modalPascalName}.tsx`,
+        `types/panels/panel${data.positionPascalName}.ts`,
+        `.vscode/snippets/${data.modalPascalName}.code-snippets`,
+      ]
+
+      data.dateCreated = new Date().toISOString()
 
       actions.push(
         {
@@ -56,6 +70,12 @@ export default function createModals(plop) {
           type: "add",
           path: "../.vscode/snippets/{{modalPascalName}}.code-snippets",
           templateFile: "plop-templates/createModal/snippetCreateModal.hbs",
+          force: true,
+        },
+        {
+          type: "add",
+          path: "./answerHistory/createModals/{{modalPascalName}}_answers.json",
+          templateFile: "plop-templates/answerHistory.hbs",
           force: true,
         },
       )

@@ -11,7 +11,8 @@ import {
 
 // Generator plop
 export default function getMethodFetcher(plop) {
-  plop.setGenerator("getMethodFetcher", {
+  const generatorName = "getMethodFetcher"
+  plop.setGenerator(generatorName, {
     description: "Generate fetcher from Postgres method",
 
     prompts: async (inquirer) => {
@@ -255,6 +256,7 @@ export default function getMethodFetcher(plop) {
         generateMutation,
         mutationMergeOldData,
         compositeDefinitions,
+        generatorName,
       }
     },
 

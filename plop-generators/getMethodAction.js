@@ -11,7 +11,8 @@ import {
 
 // Generator plop
 export default function getMethodAction(plop) {
-  plop.setGenerator("getMethodAction", {
+  const generatorName = "getMethodAction"
+  plop.setGenerator(generatorName, {
     description: "Generate action from Postgres method",
 
     prompts: async (inquirer) => {
@@ -123,6 +124,15 @@ export default function getMethodAction(plop) {
         usePrevious: false,
       }
 
+      const filesCreated = [
+        `methods/actions/${schema}/${methodName}.ts`,
+        `methods/actions/${schema}/${methodName}.md`,
+        `db/postgresMainDatabase/schemas/${schema}/${methodCamelName}.ts`,
+        `methods/services/${schema}/${methodCamelName}Service.ts`,
+      ]
+
+      const dateCreated = new Date().toISOString()
+
       console.log({
         promptAnswers,
         schema,
@@ -151,6 +161,9 @@ export default function getMethodAction(plop) {
         methodColumns,
         sqlParamsPlaceholders,
         compositeDefinitions,
+        dateCreated,
+        filesCreated,
+        generatorName,
       }
     },
 
