@@ -308,10 +308,10 @@ export default function getMethodFetcher(plop) {
         template: `$1export const {{methodCamelName}}Atom = atom<{{indexTypeName}}>({})\n`,
       },
       {
-        type: "modify",
-        path: "../.vscode/snippets.code-snippets",
-        pattern: /(?=\/\/Automatic Snippets\s*\n)/,
+        type: "add",
+        path: "../.vscode/snippets/use{{methodPascalName}}.code-snippets",
         templateFile: "plop-templates/methodFetcher/snippetHookMethod.hbs",
+        force: true,
       },
       {
         type: "add",
