@@ -68,6 +68,12 @@ export default function createModals(plop) {
         },
         {
           type: "add",
+          path: "../components/modals/styles/{{modalPascalName}}.module.css",
+          templateFile: "plop-templates/createModal/stylesCreateModal.hbs",
+          force: true,
+        },
+        {
+          type: "add",
           path: "../.vscode/snippets/{{modalPascalName}}.code-snippets",
           templateFile: "plop-templates/createModal/snippetCreateModal.hbs",
           force: true,
