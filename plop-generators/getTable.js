@@ -356,6 +356,12 @@ export default function getTable(plop) {
         force: true,
       },
       {
+        type: "add",
+        path: "../store/atoms/{{tableCamelName}}Atom.ts",
+        templateFile: "plop-templates/getTable/atomGetTable.hbs",
+        force: true,
+      },
+      {
         type: "modify",
         path: "../store/atoms.ts",
         pattern: /((?:^"use client"\n)?(?:import[\s\S]*?\n))(?!import)/m,

@@ -290,6 +290,12 @@ export default function getMethodFetcher(plop) {
         force: true,
       },
       {
+        type: "add",
+        path: "../store/atoms/{{methodCamelName}}Atom.ts",
+        templateFile: "plop-templates/methodFetcher/atomMethodFetcher.hbs",
+        force: true,
+      },
+      {
         type: "modify",
         path: "../store/atoms.ts",
         pattern: /((?:^"use client"\n)?(?:import[\s\S]*?\n))(?!import)/m,
