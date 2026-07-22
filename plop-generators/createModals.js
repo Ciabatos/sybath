@@ -31,6 +31,7 @@ export default function createModals(plop) {
         `components/modals/${data.modalPascalName}.tsx`,
         `types/panels/panel${data.positionPascalName}.ts`,
         `.vscode/snippets/${data.modalPascalName}.code-snippets`,
+        `components/modals/styles/${data.modalPascalName}.module.css`,
       ]
 
       data.dateCreated = new Date().toISOString()
