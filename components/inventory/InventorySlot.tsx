@@ -35,6 +35,7 @@ function DroppableSlot({
 }) {
   const { ref, isDropTarget } = useDroppable({
     id,
+    accept: "item",
     data: inventory,
   })
 
@@ -56,6 +57,7 @@ function DroppableSlot({
 function DraggableItem({ id, inventory }: { id: string; inventory: TInventorySlot }) {
   const { ref, isDragging } = useDraggable({
     id,
+    type: "item",
     data: inventory,
   })
 
