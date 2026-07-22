@@ -1,0 +1,22 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - hookCreateModal.hbs
+"use client"
+
+import { {{modalCamelName}}Atom } from "@/store/atoms"
+import { EPanels{{positionPascalName}} } from "@/types/enumeration/EPanels{{positionPascalName}}"
+import { panel{{positionPascalName}} } from "@/types/panels/panel{{positionPascalName}}"
+import { useAtom } from "jotai"
+
+export function use{{modalPascalName}}() {
+  const [{{modalCamelName}}, set{{modalPascalName}}] = useAtom({{modalCamelName}}Atom)
+  const {{modalPascalName}} = panel{{positionPascalName}}[{{modalCamelName}}]
+
+  function open{{modalPascalName}}(panel: EPanels{{positionPascalName}}) {
+    set{{modalPascalName}}(panel)
+  }
+
+  function reset{{modalPascalName}}() {
+    set{{modalPascalName}}(EPanels{{positionPascalName}}.Inactive)
+  }
+
+  return { {{modalPascalName}}, open{{modalPascalName}}, reset{{modalPascalName}} }
+}

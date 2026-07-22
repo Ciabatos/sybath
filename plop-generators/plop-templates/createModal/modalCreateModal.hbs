@@ -1,0 +1,19 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - modalCreateModal.hbs
+"use client"
+
+import styles from "@/components/modals/styles/{{modalPascalName}}.module.css"
+import { use{{modalPascalName}} } from "@/methods/hooks/modals/use{{modalPascalName}}"
+
+export default function {{modalPascalName}}() {
+  const { {{modalPascalName}}, reset{{modalPascalName}} } = use{{modalPascalName}}()
+
+  if (!{{modalPascalName}}) return null
+
+  return (
+    <div className={styles.modalOverlay}>
+      <div className={styles.modalContainer}>
+        <{{modalPascalName}} closePanel={reset{{modalPascalName}}} />
+      </div>
+    </div>
+  )
+}
