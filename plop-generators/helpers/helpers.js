@@ -57,3 +57,15 @@ export function stripPrefix(methodName) {
   if (index === -1) return methodName // brak podkreślenia, zwróć cały string
   return methodName.slice(index + 1) // zwróć wszystko po pierwszym '_'
 }
+
+export function toCamelCase(str) {
+  return str
+    .replace(/^[A-Z]/, (letter) => letter.toLowerCase())
+    .replace(/[-_\s]+(.)?/g, (_, letter) => (letter ? letter.toUpperCase() : ""))
+}
+
+export function toPascalCase(str) {
+  const camel = toCamelCase(str)
+
+  return camel.replace(/^[a-z]/, (letter) => letter.toUpperCase())
+}

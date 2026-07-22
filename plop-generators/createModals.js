@@ -1,4 +1,4 @@
-import { snakeToCamel, snakeToPascal } from "./helpers/helpers.js"
+import { toCamelCase, toPascalCase } from "./helpers/helpers.js"
 
 export default function createModals(plop) {
   const generatorName = "createModals"
@@ -16,11 +16,11 @@ export default function createModals(plop) {
     actions(data) {
       const actions = []
 
-      data.modalCamelName = snakeToCamel(data.modalName)
-      data.modalPascalName = snakeToPascal(data.modalName)
+      data.modalCamelName = toCamelCase(data.modalName)
+      data.modalPascalName = toPascalCase(data.modalName)
 
-      const position = data.modalPascalName.replace(/^Modal/, "")
-      data.positionPascalName = snakeToPascal(position)
+      const position = data.modalName.replace(/^Modal/, "")
+      data.positionPascalName = toPascalCase(position)
 
       data.generatorName = generatorName
 
