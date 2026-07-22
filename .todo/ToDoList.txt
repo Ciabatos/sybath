@@ -4,15 +4,6 @@ w typach lazy loading robic z nextjs https://nextjs.org/docs/app/guides/lazy-loa
 Zrobić plopjs generowanie snippety, type, atomy kazdy do oddzielnego pliku a nie modyfikacje ! - ogolnie zmiana wszedzie gdzie typ plopjs jest modify a nie add
 Dodac do plopjs usuwanie automatyczne
 
-DND KIT przerobic useDroppable tak zeby przyjmowało tylko jeden typ
-accept
-Type | Type[] | ((source: Draggable) => boolean)
-Restrict which draggables can be dropped on this target. Pass a single type, an array of types, or a predicate that receives the draggable and returns true to accept it. If omitted, the droppable accepts every draggable.
-type
-string | number | Symbol
-An optional identifier to categorize this droppable. Whether a draggable can be dropped on this target is determined by this droppable’s own accept rule checked against the draggable’s type — a droppable’s type is not consulted by accept rules.
-
-
 Trade z innych tile automatycznie pokazuje wystawienie ofert na targowisku dla questa przenoszenia towarow
 Knowledge idea zyskujemy jak w drzewku technologi w civie, musisz miec np 5 skilla poprzedniego i wtedy sie nowe odblokowuje, ale jak sie urodzisz potem i nie masz poprzednich to sie nic nie dzieje mozesz zaczac w srodku drzewa
 Trade ekran klikasz na knowledge i nim handlujesz tez albo klikasz na pole i rozwijasz mozliwosci
