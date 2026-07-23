@@ -372,7 +372,7 @@ export async function createMethodGetRecords(schema, table) {
       COMMENT ON FUNCTION ${schema}.get_${table}() IS 'automatic_get_api';
     `
     await client.query(sql)
-    return true
+    return `FUNCTION ${schema}.get_${table}()`
   } finally {
     await client.end()
   }
@@ -445,7 +445,7 @@ export async function createMethodGetRecordsByKey(schema, table, indexParamsColu
     `
 
     await client.query(sql)
-    return true
+    return `FUNCTION ${schema}.get_${table}_by_key(${paramsDef})`
   } finally {
     await client.end()
   }

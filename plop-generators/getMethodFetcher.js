@@ -206,6 +206,18 @@ export default function getMethodFetcher(plop) {
         mutationMergeOldData,
       }
 
+      const filesCreated = [
+        `db/postgresMainDatabase/schemas/${schema}/${methodCamelName}.ts`,
+        `${apiPath}`,
+        `methods/hooks/${schema}/core/useFetch${methodPascalName}.ts`,
+        `methods/server-fetchers/${schema}/core/${methodName}Server.ts`,
+        `methods/services/${schema}/fetch${methodPascalName}Service.ts`,
+        `store/atoms/${methodCamelName}Atom.ts`,
+        `.vscode/snippets/use${methodPascalName}.code-snippets`,
+        `methods/hooks/${schema}/core/useMutate${methodPascalName}.ts`,
+        `methods/hooks/${schema}/core/useFetch${methodPascalName}.md`,
+      ]
+
       console.log({
         promptAnswers,
         schema,
@@ -296,18 +308,6 @@ export default function getMethodFetcher(plop) {
         path: "../store/atoms/{{methodCamelName}}Atom.ts",
         templateFile: "plop-templates/methodFetcher/atomMethodFetcher.hbs",
         force: true,
-      },
-      {
-        type: "modify",
-        path: "../store/atoms.ts",
-        pattern: /((?:^"use client"\n)?(?:import[\s\S]*?\n))(?!import)/m,
-        template: `$&import { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"\n`,
-      },
-      {
-        type: "modify",
-        path: "../store/atoms.ts",
-        pattern: /(\/\/Functions\s*\n)/,
-        template: `$1export const {{methodCamelName}}Atom = atom<{{indexTypeName}}>({})\n`,
       },
       {
         type: "add",

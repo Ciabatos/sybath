@@ -174,8 +174,8 @@ export default function getTable(plop) {
       const indexMethodParams = `[${indexColumns.map((f) => `"${snakeToCamel(f.name)}"`).join(", ")}]`
       const indexParamsColumns = methodParamsColumns.map((f) => snakeToCamel(f.name)).join(", ")
 
-      await createMethodGetRecords(schema, table)
-      await createMethodGetRecordsByKey(schema, table, indexParamsColumns)
+      const createMethodGetRecordsName = await createMethodGetRecords(schema, table)
+      const createMethodGetRecordsByKeyName = await createMethodGetRecordsByKey(schema, table, indexParamsColumns)
 
       const methodRecords = `get_${table}`
       const methodRecordsByKey = `get_${table}_by_key`
@@ -233,6 +233,26 @@ export default function getTable(plop) {
         generateMutation,
         mutationMergeOldData,
       }
+
+      const sqlMethodCreated = [createMethodGetRecordsByKeyName, createMethodGetRecordsName]
+
+      const filesCreated = [
+        `db/postgresMainDatabase/schemas/${schema}/${tableCamelName}.ts`,
+        `${apiPath}`,
+        `${apiPathByKey}`,
+        `methods/hooks/${schema}/core/useFetch${schemaTablePascalName}.ts`,
+        `methods/hooks/${schema}/core/useFetch${schemaTablePascalName}ByKey.ts`,
+        `methods/server-fetchers/${schema}/core/get${schemaTablePascalName}ByKeyServer.ts`,
+        `methods/services/${schema}/${fetcherName}Service.ts`,
+        `methods/services/${schema}/${fetcherNameByKey}Service.ts`,
+        `store/atoms/${tableCamelName}Atom.ts`,
+        `.vscode/snippets/use${schemaTablePascalName}.code-snippets`,
+        `.vscode/snippets/use${schemaTablePascalName}ByKey.code-snippets`,
+        `methods/hooks/${schema}/core/useMutate${schemaTablePascalName}.ts`,
+        `methods/hooks/${schema}/core/useMutate${schemaTablePascalName}ByKey.ts`,
+        `methods/hooks/${schema}/core/useFetch${schemaTablePascalName}.md`,
+        `methods/hooks/${schema}/core/useFetch${schemaTablePascalName}ByKey.md`,
+      ]
 
       console.log({
         promptAnswers,
@@ -298,6 +318,8 @@ export default function getTable(plop) {
         mutationMergeOldData,
         fetcherName,
         fetcherNameByKey,
+        filesCreated,
+        sqlMethodCreated,
         generatorName,
       }
     },
@@ -362,18 +384,6 @@ export default function getTable(plop) {
         path: "../store/atoms/{{tableCamelName}}Atom.ts",
         templateFile: "plop-templates/getTable/atomGetTable.hbs",
         force: true,
-      },
-      {
-        type: "modify",
-        path: "../store/atoms.ts",
-        pattern: /((?:^"use client"\n)?(?:import[\s\S]*?\n))(?!import)/m,
-        template: `$&import { {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"\n`,
-      },
-      {
-        type: "modify",
-        path: "../store/atoms.ts",
-        pattern: /(\/\/Tables\s*\n)/,
-        template: `$1export const {{tableCamelName}}Atom = atom<{{indexTypeName}}>({})\n`,
       },
       {
         type: "add",
