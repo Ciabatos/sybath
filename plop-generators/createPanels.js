@@ -44,6 +44,7 @@ export default function createPanels(plop) {
       const enumSuffix = enumName.replace(/^EPanels/, "")
       const panelName = `panel${enumSuffix}`
 
+      data.enumName = enumName
       data.enumSuffix = enumSuffix
       data.panelName = panelName
       data.generatorName = generatorName
