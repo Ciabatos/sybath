@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "generate:modals": "node components/modals/generateModalRegistry.js",
-    "generate:atoms": "node store/generateAtomsRegistry.js",
+    "generate:modals": "node components/modals/generateModalHandling.js",
+    "generate:atoms": "node store/generateAtomsHandling.js",
     "plop": "plop --plopfile plop-generators/plopfile.js",
-    "dev": "npm run generate:atoms && next dev --turbopack",
-    "build": "npm run generate:atoms && next build",
-    "start": "npm run generate:atoms && next start",
+    "dev": "npm run generate:modals && npm run generate:atoms && next dev --turbopack",
+    "build": "npm run generate:modals && npm run generate:atoms && next build",
+    "start": "npm run generate:modals && npm run generate:atoms && next start",
     "lint": "next lint"
   },
   "dependencies": {
