@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "generate:modals": "node components/modals/generateModalHandling.js",
+    "generate:panels": "node types/panels/generatePanelHandling.js",
     "generate:atoms": "node store/generateAtomsHandling.js",
     "plop": "plop --plopfile plop-generators/plopfile.js",
     "dev": "npm run generate:modals && npm run generate:atoms && next dev --turbopack",
