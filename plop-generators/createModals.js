@@ -29,7 +29,7 @@ export default function createModals(plop) {
         `types/enumeration/EPanels${data.positionPascalName}.ts`,
         `methods/hooks/modals/use${data.modalPascalName}.ts`,
         `components/modals/${data.modalPascalName}.tsx`,
-        `types/panels/panel${data.positionPascalName}.ts`,
+        `types/panels/${data.positionPascalName}/panel${data.positionPascalName}.ts`,
         `.vscode/snippets/${data.modalPascalName}.code-snippets`,
         `components/modals/styles/${data.modalPascalName}.module.css`,
       ]
@@ -63,7 +63,7 @@ export default function createModals(plop) {
         },
         {
           type: "add",
-          path: `../types/panels/panel{{positionPascalName}}.ts`,
+          path: `../types/panels/panel{{positionPascalName}}/Inactive.txt`,
           templateFile: "plop-templates/createModal/panelCreateModal.hbs",
           force: true,
         },
