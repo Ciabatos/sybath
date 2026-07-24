@@ -212,7 +212,7 @@ export default function getMethodFetcher(plop) {
         `methods/hooks/${schema}/core/useFetch${methodPascalName}.ts`,
         `methods/server-fetchers/${schema}/core/${methodName}Server.ts`,
         `methods/services/${schema}/fetch${methodPascalName}Service.ts`,
-        `store/atoms/${methodCamelName}Atom.ts`,
+        `store/atoms/getMethodFetcher/${methodCamelName}Atom.ts`,
         `.vscode/snippets/use${methodPascalName}.code-snippets`,
         `methods/hooks/${schema}/core/useMutate${methodPascalName}.ts`,
         `methods/hooks/${schema}/core/useFetch${methodPascalName}.md`,
@@ -305,7 +305,7 @@ export default function getMethodFetcher(plop) {
       },
       {
         type: "add",
-        path: "../store/atoms/{{methodCamelName}}Atom.ts",
+        path: "../store/atoms/getMethodFetcher/{{methodCamelName}}Atom.ts",
         templateFile: "plop-templates/methodFetcher/atomMethodFetcher.hbs",
         force: true,
       },

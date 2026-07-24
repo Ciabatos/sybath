@@ -245,7 +245,7 @@ export default function getTable(plop) {
         `methods/server-fetchers/${schema}/core/get${schemaTablePascalName}ByKeyServer.ts`,
         `methods/services/${schema}/${fetcherName}Service.ts`,
         `methods/services/${schema}/${fetcherNameByKey}Service.ts`,
-        `store/atoms/${tableCamelName}Atom.ts`,
+        `store/atoms/getTable/${tableCamelName}Atom.ts`,
         `.vscode/snippets/use${schemaTablePascalName}.code-snippets`,
         `.vscode/snippets/use${schemaTablePascalName}ByKey.code-snippets`,
         `methods/hooks/${schema}/core/useMutate${schemaTablePascalName}.ts`,
@@ -381,7 +381,7 @@ export default function getTable(plop) {
       },
       {
         type: "add",
-        path: "../store/atoms/{{tableCamelName}}Atom.ts",
+        path: "../store/atoms/getTable/{{tableCamelName}}Atom.ts",
         templateFile: "plop-templates/getTable/atomGetTable.hbs",
         force: true,
       },

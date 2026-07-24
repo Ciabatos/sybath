@@ -25,7 +25,7 @@ export default function createModals(plop) {
       data.generatorName = generatorName
 
       data.filesCreated = [
-        `store/atoms/${data.modalCamelName}Atom.ts`,
+        `store/atoms/createModals/${data.modalCamelName}Atom.ts`,
         `types/enumeration/EPanels${data.positionPascalName}.ts`,
         `methods/hooks/modals/use${data.modalPascalName}.ts`,
         `components/modals/${data.modalPascalName}.tsx`,
@@ -39,7 +39,7 @@ export default function createModals(plop) {
       actions.push(
         {
           type: "add",
-          path: "../store/atoms/{{modalCamelName}}Atom.ts",
+          path: "../store/atoms/createModals/{{modalCamelName}}Atom.ts",
           templateFile: "plop-templates/createModal/atomCreateModal.hbs",
           force: true,
         },
