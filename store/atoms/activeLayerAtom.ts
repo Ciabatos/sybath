@@ -1,4 +1,4 @@
-// GENERATED CODE - DO NOT EDIT MANUALLY - atomCreateModal.hbs
+
 
 import { atom } from "jotai"
 

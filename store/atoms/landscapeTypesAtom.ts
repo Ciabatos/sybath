@@ -1,5 +1,3 @@
-// GENERATED CODE - DO NOT EDIT MANUALLY - atomCreateModal.hbs
-
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
 import { atom } from "jotai"
 
