@@ -45,12 +45,13 @@ export default function createPanels(plop) {
       const panelName = `panel${enumSuffix}`
 
       data.enumSuffix = enumSuffix
-
+      data.panelName = panelName
       data.generatorName = generatorName
 
       data.filesCreated = [
         `components/${data.choosenPath}/${data.newPanelName}.tsx`,
         `components/${data.choosenPath}/styles/${data.newPanelName}.module.css`,
+        `types/panels/${data.panelName}/${data.newPanelName}.txt`,
       ]
 
       data.dateCreated = new Date().toISOString()
@@ -70,27 +71,17 @@ export default function createPanels(plop) {
         },
         {
           type: "add",
+          path: `../types/panels/{{panelName}}/{{newPanelName}}.txt`,
+          templateFile: "plop-templates/createPanels/panelType.hbs",
+          force: true,
+        },
+        {
+          type: "add",
           path: "./answerHistory/createPanels/{{newPanelName}}_answers.json",
           templateFile: "plop-templates/answerHistory.hbs",
           force: true,
         },
       )
-
-      actions.push({
-        type: "modify",
-        path: `../types/enumeration/${data.enumeration}`,
-        pattern: new RegExp(`(export enum ${enumName}\\s*\\{[\\s\\S]*?)(\\n\\})`),
-        template: `$1
-  {{newPanelName}} = "{{newPanelName}}",$2`,
-      })
-
-      actions.push({
-        type: "modify",
-        path: `../types/panels/${panelName}.ts`,
-        pattern: new RegExp(`(export const ${panelName}[\\s\\S]*?=\\s*\\{[\\s\\S]*?)(\\n\\s*\\})`),
-        template: `$1
-  [${enumName}.{{newPanelName}}]: React.lazy(() => import("@/components/{{choosenPath}}/{{newPanelName}}")),$2`,
-      })
 
       return actions
     },
