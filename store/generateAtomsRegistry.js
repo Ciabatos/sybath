@@ -30,4 +30,4 @@ ${exports.join("\n")}
 
 fs.writeFileSync(barrelPath, result, "utf8")
 
-console.log(`Generated ${barrelPath}`)
+console.log(`✅ Generated atoms.ts`)

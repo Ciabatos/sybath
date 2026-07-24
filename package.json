@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "generate:modals": "node components/modals/generateModalRegistry.js",
     "generate:atoms": "node store/generateAtomsRegistry.js",
     "plop": "plop --plopfile plop-generators/plopfile.js",
     "dev": "npm run generate:atoms && next dev --turbopack",
