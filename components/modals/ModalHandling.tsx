@@ -13,9 +13,8 @@ export default function ModalHandling() {
     <>
       {Object.entries(modals)
         .filter(([path]) => !path.endsWith("ModalHandling.tsx"))
-        .map(([path, module]: any) => {
-          const Component = module.default
-
+        .map(([path, module]) => {
+          const Component = module.default // sprawdź czy TS już podpowiada typ
           return <Component key={path} />
         })}
     </>
