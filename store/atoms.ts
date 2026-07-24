@@ -1,148 +1,67 @@
-"use client"
 
-import { TAttributesAbilitiesRecordById } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
-import { TAllAbilitiesRecordById } from "@/db/postgresMainDatabase/schemas/attributes/allAbilities"
-import { TAllSkillsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/allSkills"
-import { TOtherPlayerAbilitiesRecordByAbilityId } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerAbilities"
-import { TOtherPlayerSkillsRecordBySkillId } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerSkills"
-import { TOtherPlayerStatsRecordByStatId } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerStats"
-import { TPlayerAbilitiesRecordByAbilityId } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
-import { TPlayerEnergyRecordByLastRegeneratedAt } from "@/db/postgresMainDatabase/schemas/attributes/playerEnergy"
-import { TPlayerSkillsRecordBySkillId } from "@/db/postgresMainDatabase/schemas/attributes/playerSkills"
-import { TPlayerStatsRecordByStatId } from "@/db/postgresMainDatabase/schemas/attributes/playerStats"
-import { TAttributesSkillsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/skills"
-import { TAttributesStatsRecordById } from "@/db/postgresMainDatabase/schemas/attributes/stats"
-import { TBuildingsBuildingTypesRecordById } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
-import { TBuildingsBuildingsRecordByCityTileXCityTileY } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
-import { TCitiesCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
-import { TCitiesCityTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
-import { TPlayerCityRecordByCityId } from "@/db/postgresMainDatabase/schemas/cities/playerCity"
-import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
-import { TDistrictsDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/districts/districts"
-import { TBuildingInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory"
-import { TDistrictInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/districtInventory"
-import { TInventoryInventorySlotTypesRecordById } from "@/db/postgresMainDatabase/schemas/inventory/inventorySlotTypes"
-import { TOtherPlayerGearInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/otherPlayerGearInventory"
-import { TOtherPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/otherPlayerInventory"
-import { TPlayerGearInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/playerGearInventory"
-import { TPlayerInventoryRecordBySlotId } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
-import { TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/items"
-import { TPlayerRecipeMaterialsRecordById } from "@/db/postgresMainDatabase/schemas/items/playerRecipeMaterials"
-import { TPlayerRecipesRecordByItemId } from "@/db/postgresMainDatabase/schemas/items/playerRecipes"
-import { TItemsRecipeMaterialsRecordById } from "@/db/postgresMainDatabase/schemas/items/recipeMaterials"
-import { TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId } from "@/db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests"
-import { TPlayerKnownPlayersRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/knowledge/playerKnownPlayers"
-import { TActivePlayerRecordById } from "@/db/postgresMainDatabase/schemas/players/activePlayer"
-import { TActivePlayerProfileRecordByName } from "@/db/postgresMainDatabase/schemas/players/activePlayerProfile"
-import { TActivePlayerSwitchProfilesRecordById } from "@/db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles"
-import { TOtherPlayerProfileRecordByName } from "@/db/postgresMainDatabase/schemas/players/otherPlayerProfile"
-import { TOtherSquadPlayersProfilesRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/squad/otherSquadPlayersProfiles"
-import { TSquadRecordBySquadId } from "@/db/postgresMainDatabase/schemas/squad/squad"
-import { TSquadInvitesRecordById } from "@/db/postgresMainDatabase/schemas/squad/squadInvites"
-import { TSquadPlayersProfilesRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/squad/squadPlayersProfiles"
-import { TKnownMapRegionRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
-import { TKnownMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/knownMapTiles"
-import { TKnownMapTilesResourcesOnMapRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnMap"
-import { TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId } from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnTile"
-import { TKnownPlayersPositionsRecordByXY } from "@/db/postgresMainDatabase/schemas/world/knownPlayersPositions"
-import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
-import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
-import { TPlayerMapRecordByMapId } from "@/db/postgresMainDatabase/schemas/world/playerMap"
-import { TPlayerPositionRecordByXY } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
-import { TPlayersOnTileRecordByOtherPlayerId } from "@/db/postgresMainDatabase/schemas/world/playersOnTile"
-import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
-import { TPlayerMovementRecordByXY } from "@/methods/functions/map/pathFromPointToPoint"
-import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
-import { TAreaRecordByXY } from "@/methods/hooks/world/composite/useMapTilesArea"
-import { EPanelsBottomCenter } from "@/types/enumeration/EPanelsBottomCenter"
-import { EPanelsBottomLeft } from "@/types/enumeration/EPanelsBottomLeft"
-import { EPanelsBottomRight } from "@/types/enumeration/EPanelsBottomRight"
-import { EPanelsLeftCenter } from "@/types/enumeration/EPanelsLeftCenter"
-import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
-import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
-import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
-import { EPanelsTopCenterBar } from "@/types/enumeration/EPanelsTopCenterBar"
-import { atom } from "jotai"
-
-//Modals
-export const modalBottomCenterAtom = atom<EPanelsBottomCenter>(EPanelsBottomCenter.Inactive)
-export const modalLeftTopBarAtom = atom<EPanelsLeftTopBar>(EPanelsLeftTopBar.PlayerRibbonTop)
-export const modalRightCenterAtom = atom<EPanelsRightCenter>(EPanelsRightCenter.Inactive)
-export const modalTopCenterAtom = atom<EPanelsTopCenter>(EPanelsTopCenter.Inactive)
-export const modalTopCenterBarAtom = atom<EPanelsTopCenterBar>(EPanelsTopCenterBar.Inactive)
-export const modalLeftCenterAtom = atom<EPanelsLeftCenter>(EPanelsLeftCenter.Inactive)
-export const modalBottomLeftAtom = atom<EPanelsBottomLeft>(EPanelsBottomLeft.Inactive)
-export const modalBottomRightAtom = atom<EPanelsBottomRight>(EPanelsBottomRight.PlayerRibbonBottom)
-
-//City
-export const clickedCityTileAtom = atom<number>(0)
-
-//Map
-export const clickedMapTileAtom = atom<TMapTile>()
-export const activeLayerAtom = atom({
-  resources: true,
-})
-//Player
-export const clickedOtherPlayerMaskedIdAtom = atom<string>("")
-export const playerMovementPlannedAtom = atom<TPlayerMovementRecordByXY>({})
-export const playerMapTilesGuardAreaAtom = atom<TAreaRecordByXY>({})
-//Squad
-export const clickedOtherSquadIdAtom = atom<number>(0)
-
-//Panels
-
-//Tables
-export const recipeMaterialsAtom = atom<TItemsRecipeMaterialsRecordById>({})
-export const mapTilesAtom = atom<TWorldMapTilesRecordByXY>({})
-export const inventorySlotTypesAtom = atom<TInventoryInventorySlotTypesRecordById>({})
-export const itemsAtom = atom<TItemsItemsRecordById>({})
-export const districtsAtom = atom<TDistrictsDistrictsRecordByMapTileXMapTileY>({})
-export const districtTypesAtom = atom<TDistrictsDistrictTypesRecordById>({})
-export const cityTilesAtom = atom<TCitiesCityTilesRecordByXY>({})
-export const citiesAtom = atom<TCitiesCitiesRecordByMapTileXMapTileY>({})
-export const buildingsAtom = atom<TBuildingsBuildingsRecordByCityTileXCityTileY>({})
-export const buildingTypesAtom = atom<TBuildingsBuildingTypesRecordById>({})
-export const statsAtom = atom<TAttributesStatsRecordById>({})
-export const abilitiesAtom = atom<TAttributesAbilitiesRecordById>({})
-export const skillsAtom = atom<TAttributesSkillsRecordById>({})
-export const terrainTypesAtom = atom<TWorldTerrainTypesRecordById>({})
-export const landscapeTypesAtom = atom<TWorldLandscapeTypesRecordById>({})
-
-//Functions
-export const otherPlayerKnowledgeRequestsAtom =
-  atom<TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId>({})
-export const squadPlayersProfilesAtom = atom<TSquadPlayersProfilesRecordByOtherPlayerId>({})
-export const squadAtom = atom<TSquadRecordBySquadId>({})
-export const knownMapTilesResourcesOnMapAtom = atom<TKnownMapTilesResourcesOnMapRecordByMapTileXMapTileY>({})
-export const playerEnergyAtom = atom<TPlayerEnergyRecordByLastRegeneratedAt>({})
-export const squadInvitesAtom = atom<TSquadInvitesRecordById>({})
-export const playerRecipeMaterialsAtom = atom<TPlayerRecipeMaterialsRecordById>({})
-export const playerRecipesAtom = atom<TPlayerRecipesRecordByItemId>({})
-export const allSkillsAtom = atom<TAllSkillsRecordById>({})
-export const allAbilitiesAtom = atom<TAllAbilitiesRecordById>({})
-export const playerKnownPlayersAtom = atom<TPlayerKnownPlayersRecordByOtherPlayerId>({})
-export const knownMapTilesResourcesOnTileAtom = atom<TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId>({})
-export const otherSquadPlayersProfilesAtom = atom<TOtherSquadPlayersProfilesRecordByOtherPlayerId>({})
-export const otherPlayerAbilitiesAtom = atom<TOtherPlayerAbilitiesRecordByAbilityId>({})
-export const otherPlayerSkillsAtom = atom<TOtherPlayerSkillsRecordBySkillId>({})
-export const otherPlayerStatsAtom = atom<TOtherPlayerStatsRecordByStatId>({})
-export const otherPlayerGearInventoryAtom = atom<TOtherPlayerGearInventoryRecordBySlotId>({})
-export const otherPlayerInventoryAtom = atom<TOtherPlayerInventoryRecordBySlotId>({})
-export const playerGearInventoryAtom = atom<TPlayerGearInventoryRecordBySlotId>({})
-export const otherPlayerProfileAtom = atom<TOtherPlayerProfileRecordByName>({})
-export const playersOnTileAtom = atom<TPlayersOnTileRecordByOtherPlayerId>({})
-export const knownMapTilesAtom = atom<TKnownMapTilesRecordByXY>({})
-export const knownMapRegionAtom = atom<TKnownMapRegionRecordByMapTileXMapTileY>({})
-export const knownPlayersPositionsAtom = atom<TKnownPlayersPositionsRecordByXY>({})
-export const playerStatsAtom = atom<TPlayerStatsRecordByStatId>({})
-export const playerSkillsAtom = atom<TPlayerSkillsRecordBySkillId>({})
-export const buildingInventoryAtom = atom<TBuildingInventoryRecordBySlotId>({})
-export const districtInventoryAtom = atom<TDistrictInventoryRecordBySlotId>({})
-export const activePlayerSwitchProfilesAtom = atom<TActivePlayerSwitchProfilesRecordById>({})
-export const activePlayerProfileAtom = atom<TActivePlayerProfileRecordByName>({})
-export const activePlayerAtom = atom<TActivePlayerRecordById>({})
-export const playerCityAtom = atom<TPlayerCityRecordByCityId>({})
-export const playerMapAtom = atom<TPlayerMapRecordByMapId>({})
-export const playerInventoryAtom = atom<TPlayerInventoryRecordBySlotId>({})
-export const playerPositionAtom = atom<TPlayerPositionRecordByXY>({})
-export const playerAbilitiesAtom = atom<TPlayerAbilitiesRecordByAbilityId>({})
+// GENERATED CODE - DO NOT EDIT MANUALLY
+export { abilitiesAtom } from "@/store/atoms/abilitiesAtom"
+export { activeLayerAtom } from "@/store/atoms/activeLayerAtom"
+export { activePlayerAtom } from "@/store/atoms/activePlayerAtom"
+export { activePlayerProfileAtom } from "@/store/atoms/activePlayerProfileAtom"
+export { activePlayerSwitchProfilesAtom } from "@/store/atoms/activePlayerSwitchProfilesAtom"
+export { allAbilitiesAtom } from "@/store/atoms/allAbilitiesAtom"
+export { allSkillsAtom } from "@/store/atoms/allSkillsAtom"
+export { buildingInventoryAtom } from "@/store/atoms/buildingInventoryAtom"
+export { buildingsAtom } from "@/store/atoms/buildingsAtom"
+export { buildingTypesAtom } from "@/store/atoms/buildingTypesAtom"
+export { citiesAtom } from "@/store/atoms/citiesAtom"
+export { cityTilesAtom } from "@/store/atoms/cityTilesAtom"
+export { clickedCityTileAtom } from "@/store/atoms/clickedCityTileAtom"
+export { clickedMapTileAtom } from "@/store/atoms/clickedMapTileAtom"
+export { clickedOtherPlayerMaskedIdAtom } from "@/store/atoms/clickedOtherPlayerMaskedIdAtom"
+export { clickedOtherSquadIdAtom } from "@/store/atoms/clickedOtherSquadIdAtom"
+export { districtInventoryAtom } from "@/store/atoms/districtInventoryAtom"
+export { districtsAtom } from "@/store/atoms/districtsAtom"
+export { districtTypesAtom } from "@/store/atoms/districtTypesAtom"
+export { inventorySlotTypesAtom } from "@/store/atoms/inventorySlotTypesAtom"
+export { itemsAtom } from "@/store/atoms/itemsAtom"
+export { knownMapRegionAtom } from "@/store/atoms/knownMapRegionAtom"
+export { knownMapTilesAtom } from "@/store/atoms/knownMapTilesAtom"
+export { knownMapTilesResourcesOnMapAtom } from "@/store/atoms/knownMapTilesResourcesOnMapAtom"
+export { knownMapTilesResourcesOnTileAtom } from "@/store/atoms/knownMapTilesResourcesOnTileAtom"
+export { knownPlayersPositionsAtom } from "@/store/atoms/knownPlayersPositionsAtom"
+export { landscapeTypesAtom } from "@/store/atoms/landscapeTypesAtom"
+export { mapTilesAtom } from "@/store/atoms/mapTilesAtom"
+export { modalBottomCenterAtom } from "@/store/atoms/modalBottomCenterAtom"
+export { modalBottomLeftAtom } from "@/store/atoms/modalBottomLeftAtom"
+export { modalBottomRightAtom } from "@/store/atoms/modalBottomRightAtom"
+export { modalLeftCenterAtom } from "@/store/atoms/modalLeftCenterAtom"
+export { modalRightCenterAtom } from "@/store/atoms/modalRightCenterAtom"
+export { modalTopCenterAtom } from "@/store/atoms/modalTopCenterAtom"
+export { modalTopCenterBarAtom } from "@/store/atoms/modalTopCenterBarAtom"
+export { otherPlayerAbilitiesAtom } from "@/store/atoms/otherPlayerAbilitiesAtom"
+export { otherPlayerGearInventoryAtom } from "@/store/atoms/otherPlayerGearInventoryAtom"
+export { otherPlayerInventoryAtom } from "@/store/atoms/otherPlayerInventoryAtom"
+export { otherPlayerKnowledgeRequestsAtom } from "@/store/atoms/otherPlayerKnowledgeRequestsAtom"
+export { otherPlayerProfileAtom } from "@/store/atoms/otherPlayerProfileAtom"
+export { otherPlayerSkillsAtom } from "@/store/atoms/otherPlayerSkillsAtom"
+export { otherPlayerStatsAtom } from "@/store/atoms/otherPlayerStatsAtom"
+export { otherSquadPlayersProfilesAtom } from "@/store/atoms/otherSquadPlayersProfilesAtom"
+export { playerAbilitiesAtom } from "@/store/atoms/playerAbilitiesAtom"
+export { playerCityAtom } from "@/store/atoms/playerCityAtom"
+export { playerEnergyAtom } from "@/store/atoms/playerEnergyAtom"
+export { playerGearInventoryAtom } from "@/store/atoms/playerGearInventoryAtom"
+export { playerInventoryAtom } from "@/store/atoms/playerInventoryAtom"
+export { playerKnownPlayersAtom } from "@/store/atoms/playerKnownPlayersAtom"
+export { playerMapAtom } from "@/store/atoms/playerMapAtom"
+export { playerMapTilesGuardAreaAtom } from "@/store/atoms/playerMapTilesGuardAreaAtom"
+export { playerMovementPlannedAtom } from "@/store/atoms/playerMovementPlannedAtom"
+export { playerPositionAtom } from "@/store/atoms/playerPositionAtom"
+export { playerRecipeMaterialsAtom } from "@/store/atoms/playerRecipeMaterialsAtom"
+export { playerRecipesAtom } from "@/store/atoms/playerRecipesAtom"
+export { playerSkillsAtom } from "@/store/atoms/playerSkillsAtom"
+export { playersOnTileAtom } from "@/store/atoms/playersOnTileAtom"
+export { playerStatsAtom } from "@/store/atoms/playerStatsAtom"
+export { recipeMaterialsAtom } from "@/store/atoms/recipeMaterialsAtom"
+export { skillsAtom } from "@/store/atoms/skillsAtom"
+export { squadAtom } from "@/store/atoms/squadAtom"
+export { squadInvitesAtom } from "@/store/atoms/squadInvitesAtom"
+export { squadPlayersProfilesAtom } from "@/store/atoms/squadPlayersProfilesAtom"
+export { statsAtom } from "@/store/atoms/statsAtom"
+export { terrainTypesAtom } from "@/store/atoms/terrainTypesAtom"
