@@ -7,9 +7,7 @@ const folders = fs.readdirSync(panelsPath, { withFileTypes: true }).filter((dir)
 
 folders.forEach((folder) => {
   const panelName = folder.name
-  // panelBottomCenter
 
-  // panelBottomCenter -> EPanelsBottomCenter
   const enumName = "EPanels" + panelName.replace(/^panel/, "").replace(/([A-Z])/g, "$1")
 
   const folderPath = path.join(panelsPath, panelName)
