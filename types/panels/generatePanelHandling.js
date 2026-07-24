@@ -16,7 +16,8 @@ folders.forEach((folder) => {
 
   const entries = txtFiles.map((file) => fs.readFileSync(path.join(folderPath, file), "utf8").trim())
 
-  const output = `import { ${enumName} } from "@/types/enumeration/${enumName}"
+  const output = `// GENERATED CODE - DO NOT EDIT MANUALLY
+import { ${enumName} } from "@/types/enumeration/${enumName}"
 import React from "react"
 
 export const ${panelName}: Record<

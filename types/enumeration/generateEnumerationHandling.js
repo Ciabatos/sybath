@@ -17,7 +17,9 @@ folders.forEach((folder) => {
 
   const entries = txtFiles.map((file) => path.basename(file, ".txt"))
 
-  const output = `"use client"
+  const output = `// GENERATED CODE - DO NOT EDIT MANUALLY
+  
+"use client"
 
 export enum ${enumName} {
 ${entries.map((entry) => `  ${entry} = "${entry}",`).join("\n")}
