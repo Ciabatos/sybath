@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "generate:atoms": "node store/generateAtomsRegistry.js",
     "plop": "plop --plopfile plop-generators/plopfile.js",
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
+    "dev": "npm run generate:atoms && next dev --turbopack",
+    "build": "npm run generate:atoms && next build",
+    "start": "npm run generate:atoms && next start",
     "lint": "next lint"
   },
   "dependencies": {
