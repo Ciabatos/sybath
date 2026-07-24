@@ -26,10 +26,9 @@ export default function createModals(plop) {
 
       data.filesCreated = [
         `store/atoms/createModals/${data.modalCamelName}Atom.ts`,
-        `types/enumeration/EPanels${data.positionPascalName}.ts`,
         `methods/hooks/modals/use${data.modalPascalName}.ts`,
         `components/modals/${data.modalPascalName}.tsx`,
-        `types/panels/${data.positionPascalName}/panel${data.positionPascalName}.ts`,
+        `types/panels/${data.positionPascalName}/Inactive.txt`,
         `.vscode/snippets/${data.modalPascalName}.code-snippets`,
         `components/modals/styles/${data.modalPascalName}.module.css`,
       ]
@@ -41,12 +40,6 @@ export default function createModals(plop) {
           type: "add",
           path: "../store/atoms/createModals/{{modalCamelName}}Atom.ts",
           templateFile: "plop-templates/createModal/atomCreateModal.hbs",
-          force: true,
-        },
-        {
-          type: "add",
-          path: `../types/enumeration/EPanels{{positionPascalName}}.ts`,
-          templateFile: "plop-templates/createModal/enumCreateModal.hbs",
           force: true,
         },
         {
