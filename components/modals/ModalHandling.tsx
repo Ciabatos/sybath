@@ -10,7 +10,7 @@ import ModalTopCenter from "@/components/modals/ModalTopCenter"
 import ModalTopCenterBar from "@/components/modals/ModalTopCenterBar"
 import { useInventoryMonitor } from "@/methods/hooks/inventory/composite/useInventoryMonitor"
 
-export function ModalHandling() {
+export default function ModalHandling() {
   useInventoryMonitor()
 
   return (

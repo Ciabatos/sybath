@@ -3,7 +3,7 @@
 import styles from "@/components/modals/styles/ModalRightCenter.module.css"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 
-export function ModalRightCenter() {
+export default function ModalRightCenter() {
   const { ModalRightCenter, resetModalRightCenter } = useModalRightCenter()
 
   if (!ModalRightCenter) return null
