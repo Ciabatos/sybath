@@ -29,7 +29,9 @@ ${entries.map((e) => "  " + e).join(",\n")}
 }
 `
 
-  fs.writeFileSync(path.join(panelsPath, `${panelName}.ts`), output, "utf8")
+  const outputFile = path.join(panelsPath, `${panelName}.ts`)
+
+  fs.writeFileSync(outputFile, output, "utf8")
 
   console.log(`✅ Wygenerowano: ${outputFile}`)
 })
