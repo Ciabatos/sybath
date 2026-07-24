@@ -5,11 +5,13 @@
   "scripts": {
     "generate:modals": "node components/modals/generateModalHandling.js",
     "generate:panels": "node types/panels/generatePanelHandling.js",
+    "generate:enums": "node types/enumeration/generateEnumerationHandling.js",
     "generate:atoms": "node store/generateAtomsHandling.js",
     "plop": "plop --plopfile plop-generators/plopfile.js",
-    "dev": "npm run generate:modals && npm run generate:atoms && next dev --turbopack",
-    "build": "npm run generate:modals && npm run generate:atoms && next build",
-    "start": "npm run generate:modals && npm run generate:atoms && next start",
+    "dev": "npm run generate:modals && npm run generate:atoms && npm run generate:enums && npm run generate:panels && next dev --turbopack",
+    "build": "npm run generate:modals && npm run generate:atoms && npm run generate:enums && npm run generate:panels && next build",
+    "start": "npm run generate:modals && npm run generate:atoms && npm run generate:enums && npm run generate:panels && next start",
+    "prepare": "npm run generate:modals && npm run generate:atoms && npm run generate:enums && npm run generate:panels",
     "lint": "next lint"
   },
   "dependencies": {
