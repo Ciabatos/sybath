@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY
 
-'use client'
+"use client"
 export { abilitiesAtom } from "@/store/atoms/abilitiesAtom"
 export { activeLayerAtom } from "@/store/atoms/activeLayerAtom"
 export { activePlayerAtom } from "@/store/atoms/activePlayerAtom"

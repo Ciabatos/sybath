@@ -46,7 +46,7 @@ const exports = files
 
 const result = `// GENERATED CODE - DO NOT EDIT MANUALLY
 
-'use client'
+"use client"
 ${exports.join("\n")}
 `
 

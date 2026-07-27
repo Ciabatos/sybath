@@ -46,6 +46,7 @@ export type TAllAbilitiesParams = {
   playerId: number
 }
 
+
 export type TAllAbilities = {
   id: number
   name: string
