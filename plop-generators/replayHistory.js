@@ -50,6 +50,10 @@ export default function replayHistory(plop) {
           const generatorActions =
             typeof generator.actions === "function" ? generator.actions(historyAnswers) : generator.actions
 
+          historyAnswers.filesCreated = generatorActions
+            .filter((action) => action?.type === "add" && action.path)
+            .map((action) => plop.renderString(action.path, historyAnswers))
+
           // Dodaj log przed akcjami
           actions.push(() => {
             console.log(`▶ Replaying ${generatorName} - ${file}`)

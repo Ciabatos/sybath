@@ -29,7 +29,7 @@ export default function createModals(plop) {
         `methods/hooks/modals/use${data.modalPascalName}.ts`,
         `components/modals/${data.modalPascalName}.tsx`,
         `types/panels/${data.positionPascalName}/Inactive.txt`,
-        `.vscode/snippets/${data.modalPascalName}.code-snippets`,
+        `.vscode/${data.modalPascalName}.code-snippets`,
         `components/modals/styles/${data.modalPascalName}.module.css`,
       ]
 
@@ -68,7 +68,7 @@ export default function createModals(plop) {
         },
         {
           type: "add",
-          path: "../.vscode/snippets/{{modalPascalName}}.code-snippets",
+          path: "../.vscode/{{modalPascalName}}.code-snippets",
           templateFile: "plop-templates/createModal/snippetCreateModal.hbs",
           force: true,
         },
