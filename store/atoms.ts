@@ -1,5 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY
 
+'use client'
 export { abilitiesAtom } from "@/store/atoms/abilitiesAtom"
 export { activeLayerAtom } from "@/store/atoms/activeLayerAtom"
 export { activePlayerAtom } from "@/store/atoms/activePlayerAtom"
@@ -20,6 +21,7 @@ export { modalBottomCenterAtom } from "@/store/atoms/createModals/modalBottomCen
 export { modalBottomLeftAtom } from "@/store/atoms/createModals/modalBottomLeftAtom"
 export { modalBottomRightAtom } from "@/store/atoms/createModals/modalBottomRightAtom"
 export { modalLeftCenterAtom } from "@/store/atoms/createModals/modalLeftCenterAtom"
+export { modalLeftTopBarAtom } from "@/store/atoms/createModals/modalLeftTopBar"
 export { modalRightCenterAtom } from "@/store/atoms/createModals/modalRightCenterAtom"
 export { modalTopCenterAtom } from "@/store/atoms/createModals/modalTopCenterAtom"
 export { modalTopCenterBarAtom } from "@/store/atoms/createModals/modalTopCenterBarAtom"

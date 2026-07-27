@@ -44,9 +44,9 @@ const exports = files
   })
   .filter(Boolean)
 
-const result = 
-`// GENERATED CODE - DO NOT EDIT MANUALLY
+const result = `// GENERATED CODE - DO NOT EDIT MANUALLY
 
+'use client'
 ${exports.join("\n")}
 `
 
