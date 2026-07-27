@@ -117,8 +117,7 @@ COMMENT ON FUNCTION trade.get_trade_inventory(int4, int4) IS 'get_api';
 
 
 
-
-get_dostepne_entity_inventories_on_tile - lista graczy/budynkow z ekwipunkiem na tym tile gdzie jest dokonywany trade
-proponowany tile do handlu ?
+Do ekwipunku dodac wybor (postaci, budynku) ktorego widok ekwipunku jest get_dostepne_entity_inventories_on_tile - lista graczy/budynkow z ekwipunkiem na tym tile gdzie jest dokonywany trade
 po kliknieciu otwieraja sie wszystkie inventory jakie gracz ma - na to otwiera sie dany inventory
-moze jak jest z innych tiles to automatyczna propozycja dla logistic hub do transportu ?
+Miejsce gdzie transportowac itemy ?
+moze jak jest z innych tiles to automatyczna propozycja dla logistic hub do transportu i akcje transportu jako praca na rynku lub wlasny transport ? jezeli ten sam tile to nie potrzeba
