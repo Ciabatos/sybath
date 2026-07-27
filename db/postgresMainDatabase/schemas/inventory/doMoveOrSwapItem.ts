@@ -18,7 +18,13 @@ export type TDoMoveOrSwapItem = {
 
 export async function doMoveOrSwapItem(params: TDoMoveOrSwapItemParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [
+      params.playerId,
+      params.fromSlotId,
+      params.toSlotId,
+      params.fromInventoryContainerId,
+      params.toInventoryContainerId,
+    ]
     const sql = `SELECT * FROM inventory.do_move_or_swap_item($1, $2, $3, $4, $5);`
     const result = await query(sql, sqlParams)
 

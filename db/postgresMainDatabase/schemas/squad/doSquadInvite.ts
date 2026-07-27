@@ -17,7 +17,7 @@ export type TDoSquadInvite = {
 
 export async function doSquadInvite(params: TDoSquadInviteParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.playerId, params.invitedPlayerId, params.inviteType, params.squadRole]
     const sql = `SELECT * FROM squad.do_squad_invite($1, $2, $3, $4);`
     const result = await query(sql, sqlParams)
 

@@ -19,7 +19,14 @@ export type TDoGatherResourcesOnMapTile = {
 
 export async function doGatherResourcesOnMapTile(params: TDoGatherResourcesOnMapTileParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [
+      params.playerId,
+      params.mapId,
+      params.x,
+      params.y,
+      params.mapTilesResourceId,
+      params.gatherAmount,
+    ]
     const sql = `SELECT * FROM items.do_gather_resources_on_map_tile($1, $2, $3, $4, $5, $6);`
     const result = await query(sql, sqlParams)
 

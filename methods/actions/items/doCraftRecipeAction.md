@@ -34,6 +34,7 @@ playerId: number
 # path: `db/postgresMainDatabase/schemas/items/doCraftRecipe.ts`
 # TypeScript Types:
 
+
 export type TDoCraftRecipeParams = {
   playerId: number
   recipeId: number

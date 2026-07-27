@@ -73,5 +73,15 @@
         }
       ]
     }
+  ],
+  "filesCreated": [
+    "../methods/actions/world/doPlayerMovementAction.ts",
+    "../methods/actions/world/doPlayerMovementAction.md",
+    "../db/postgresMainDatabase/schemas/world/doPlayerMovement.ts",
+    "../methods/services/world/doPlayerMovementService.ts",
+    "./answerHistory/getMethodAction/world_do_player_movement_answers.json"
+  ],
+  "selectedGenerators": [
+    "getMethodAction"
   ]
 }

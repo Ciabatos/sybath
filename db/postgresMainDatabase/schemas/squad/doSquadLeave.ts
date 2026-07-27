@@ -14,7 +14,7 @@ export type TDoSquadLeave = {
 
 export async function doSquadLeave(params: TDoSquadLeaveParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.playerId]
     const sql = `SELECT * FROM squad.do_squad_leave($1);`
     const result = await query(sql, sqlParams)
 

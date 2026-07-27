@@ -34,6 +34,7 @@ playerId: number
 # path: `db/postgresMainDatabase/schemas/world/doMapTileExploration.ts`
 # TypeScript Types:
 
+
 export type TDoMapTileExplorationParams = {
   playerId: number
   mapId: number

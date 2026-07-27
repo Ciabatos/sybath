@@ -14,7 +14,7 @@ export type TDoSquadCreate = {
 
 export async function doSquadCreate(params: TDoSquadCreateParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.playerId]
     const sql = `SELECT * FROM squad.do_squad_create($1);`
     const result = await query(sql, sqlParams)
 

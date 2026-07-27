@@ -48,5 +48,15 @@
     }
   ],
   "sqlParamsPlaceholders": "$1, $2, $3",
-  "compositeDefinitions": []
+  "compositeDefinitions": [],
+  "filesCreated": [
+    "../methods/actions/knowledge/doOtherPlayerKnowledgeRequestAction.ts",
+    "../methods/actions/knowledge/doOtherPlayerKnowledgeRequestAction.md",
+    "../db/postgresMainDatabase/schemas/knowledge/doOtherPlayerKnowledgeRequest.ts",
+    "../methods/services/knowledge/doOtherPlayerKnowledgeRequestService.ts",
+    "./answerHistory/getMethodAction/knowledge_do_other_player_knowledge_request_answers.json"
+  ],
+  "selectedGenerators": [
+    "getMethodAction"
+  ]
 }

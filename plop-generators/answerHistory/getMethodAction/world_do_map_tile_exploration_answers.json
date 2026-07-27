@@ -54,5 +54,15 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2, $3, $4, $5"
+  "sqlParamsPlaceholders": "$1, $2, $3, $4, $5",
+  "filesCreated": [
+    "../methods/actions/world/doMapTileExplorationAction.ts",
+    "../methods/actions/world/doMapTileExplorationAction.md",
+    "../db/postgresMainDatabase/schemas/world/doMapTileExploration.ts",
+    "../methods/services/world/doMapTileExplorationService.ts",
+    "./answerHistory/getMethodAction/world_do_map_tile_exploration_answers.json"
+  ],
+  "selectedGenerators": [
+    "getMethodAction"
+  ]
 }

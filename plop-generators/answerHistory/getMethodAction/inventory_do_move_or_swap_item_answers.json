@@ -54,5 +54,15 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2, $3, $4, $5"
+  "sqlParamsPlaceholders": "$1, $2, $3, $4, $5",
+  "filesCreated": [
+    "../methods/actions/inventory/doMoveOrSwapItemAction.ts",
+    "../methods/actions/inventory/doMoveOrSwapItemAction.md",
+    "../db/postgresMainDatabase/schemas/inventory/doMoveOrSwapItem.ts",
+    "../methods/services/inventory/doMoveOrSwapItemService.ts",
+    "./answerHistory/getMethodAction/inventory_do_move_or_swap_item_answers.json"
+  ],
+  "selectedGenerators": [
+    "getMethodAction"
+  ]
 }

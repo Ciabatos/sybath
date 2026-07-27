@@ -34,6 +34,7 @@ playerId: number
 # path: `db/postgresMainDatabase/schemas/squad/doSquadJoin.ts`
 # TypeScript Types:
 
+
 export type TDoSquadJoinParams = {
   playerId: number
   squadInviteId: number

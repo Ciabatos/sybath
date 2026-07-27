@@ -15,7 +15,7 @@ export type TDoSwitchActivePlayer = {
 
 export async function doSwitchActivePlayer(params: TDoSwitchActivePlayerParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.playerId, params.switchToPlayerId]
     const sql = `SELECT * FROM players.do_switch_active_player($1, $2);`
     const result = await query(sql, sqlParams)
 

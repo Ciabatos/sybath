@@ -34,5 +34,15 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1"
+  "sqlParamsPlaceholders": "$1",
+  "filesCreated": [
+    "../methods/actions/squad/doSquadLeaveAction.ts",
+    "../methods/actions/squad/doSquadLeaveAction.md",
+    "../db/postgresMainDatabase/schemas/squad/doSquadLeave.ts",
+    "../methods/services/squad/doSquadLeaveService.ts",
+    "./answerHistory/getMethodAction/squad_do_squad_leave_answers.json"
+  ],
+  "selectedGenerators": [
+    "getMethodAction"
+  ]
 }

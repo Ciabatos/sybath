@@ -59,5 +59,15 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2, $3, $4, $5, $6"
+  "sqlParamsPlaceholders": "$1, $2, $3, $4, $5, $6",
+  "filesCreated": [
+    "../methods/actions/items/doGatherResourcesOnMapTileAction.ts",
+    "../methods/actions/items/doGatherResourcesOnMapTileAction.md",
+    "../db/postgresMainDatabase/schemas/items/doGatherResourcesOnMapTile.ts",
+    "../methods/services/items/doGatherResourcesOnMapTileService.ts",
+    "./answerHistory/getMethodAction/items_do_gather_resources_on_map_tile_answers.json"
+  ],
+  "selectedGenerators": [
+    "getMethodAction"
+  ]
 }

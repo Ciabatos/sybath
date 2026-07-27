@@ -39,5 +39,15 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2"
+  "sqlParamsPlaceholders": "$1, $2",
+  "filesCreated": [
+    "../methods/actions/items/doCraftRecipeAction.ts",
+    "../methods/actions/items/doCraftRecipeAction.md",
+    "../db/postgresMainDatabase/schemas/items/doCraftRecipe.ts",
+    "../methods/services/items/doCraftRecipeService.ts",
+    "./answerHistory/getMethodAction/items_do_craft_recipe_answers.json"
+  ],
+  "selectedGenerators": [
+    "getMethodAction"
+  ]
 }

@@ -42,5 +42,15 @@
     }
   ],
   "sqlParamsPlaceholders": "$1, $2",
-  "compositeDefinitions": []
+  "compositeDefinitions": [],
+  "filesCreated": [
+    "../methods/actions/knowledge/doOtherPlayerKnowledgeAcceptAction.ts",
+    "../methods/actions/knowledge/doOtherPlayerKnowledgeAcceptAction.md",
+    "../db/postgresMainDatabase/schemas/knowledge/doOtherPlayerKnowledgeAccept.ts",
+    "../methods/services/knowledge/doOtherPlayerKnowledgeAcceptService.ts",
+    "./answerHistory/getMethodAction/knowledge_do_other_player_knowledge_accept_answers.json"
+  ],
+  "selectedGenerators": [
+    "getMethodAction"
+  ]
 }

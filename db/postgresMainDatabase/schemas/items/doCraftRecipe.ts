@@ -15,7 +15,7 @@ export type TDoCraftRecipe = {
 
 export async function doCraftRecipe(params: TDoCraftRecipeParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.playerId, params.recipeId]
     const sql = `SELECT * FROM items.do_craft_recipe($1, $2);`
     const result = await query(sql, sqlParams)
 

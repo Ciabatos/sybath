@@ -39,5 +39,15 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2"
+  "sqlParamsPlaceholders": "$1, $2",
+  "filesCreated": [
+    "../methods/actions/players/doSwitchActivePlayerAction.ts",
+    "../methods/actions/players/doSwitchActivePlayerAction.md",
+    "../db/postgresMainDatabase/schemas/players/doSwitchActivePlayer.ts",
+    "../methods/services/players/doSwitchActivePlayerService.ts",
+    "./answerHistory/getMethodAction/players_do_switch_active_player_answers.json"
+  ],
+  "selectedGenerators": [
+    "getMethodAction"
+  ]
 }

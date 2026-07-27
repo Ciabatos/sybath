@@ -42,5 +42,15 @@
     }
   ],
   "sqlParamsPlaceholders": "$1, $2",
-  "compositeDefinitions": []
+  "compositeDefinitions": [],
+  "filesCreated": [
+    "../methods/actions/knowledge/doOtherPlayerKnowledgeDeclineAction.ts",
+    "../methods/actions/knowledge/doOtherPlayerKnowledgeDeclineAction.md",
+    "../db/postgresMainDatabase/schemas/knowledge/doOtherPlayerKnowledgeDecline.ts",
+    "../methods/services/knowledge/doOtherPlayerKnowledgeDeclineService.ts",
+    "./answerHistory/getMethodAction/knowledge_do_other_player_knowledge_decline_answers.json"
+  ],
+  "selectedGenerators": [
+    "getMethodAction"
+  ]
 }

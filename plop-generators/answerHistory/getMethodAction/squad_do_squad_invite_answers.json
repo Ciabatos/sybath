@@ -49,5 +49,15 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2, $3, $4"
+  "sqlParamsPlaceholders": "$1, $2, $3, $4",
+  "filesCreated": [
+    "../methods/actions/squad/doSquadInviteAction.ts",
+    "../methods/actions/squad/doSquadInviteAction.md",
+    "../db/postgresMainDatabase/schemas/squad/doSquadInvite.ts",
+    "../methods/services/squad/doSquadInviteService.ts",
+    "./answerHistory/getMethodAction/squad_do_squad_invite_answers.json"
+  ],
+  "selectedGenerators": [
+    "getMethodAction"
+  ]
 }

@@ -34,6 +34,7 @@ playerId: number
 # path: `db/postgresMainDatabase/schemas/items/doGatherResourcesOnMapTile.ts`
 # TypeScript Types:
 
+
 export type TDoGatherResourcesOnMapTileParams = {
   playerId: number
   mapId: number
