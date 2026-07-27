@@ -268,6 +268,7 @@ export default function getMethodFetcher(plop) {
         generateMutation,
         mutationMergeOldData,
         compositeDefinitions,
+        filesCreated,
         generatorName,
       }
     },
