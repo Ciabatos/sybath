@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookTableByKey.hbs
+
+{
+  "Destructure useBuildingsBuildingsByKey": {
+    "prefix": "hook_buildings_core_useBuildingsBuildingsByKey",
+    "body": [
+      "useFetchBuildingsBuildingsByKey({ cityId })",
+      "const buildings = useBuildingsBuildingsState()"
+    ],
+    "description": "Destructuring useBuildingsBuildingsByKey hook"
+  }
+}

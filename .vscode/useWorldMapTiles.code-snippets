@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookTable.hbs
+
+{
+  "Destructure useWorldMapTiles": {
+    "prefix": "hook_world_core_useWorldMapTiles",
+    "body": [
+      "useFetchWorldMapTiles()",
+      "const mapTiles = useWorldMapTilesState()"
+    ],
+    "description": "Destructuring useWorldMapTiles hook"
+  }
+}

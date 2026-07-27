@@ -69,5 +69,24 @@
   "fetcherNameByKey": "fetchInventoryInventorySlotTypesByKey",
   "selectedGenerators": [
     "getTable"
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/inventory/inventorySlotTypes.ts",
+    "../app/api/inventory/inventory-slot-types/route.ts",
+    "../app/api/inventory/inventory-slot-types/[id]/route.ts",
+    "../methods/hooks/inventory/core/useFetchInventoryInventorySlotTypes.ts",
+    "../methods/hooks/inventory/core/useFetchInventoryInventorySlotTypesByKey.ts",
+    "../methods/server-fetchers/inventory/core/getInventoryInventorySlotTypesServer.ts",
+    "../methods/server-fetchers/inventory/core/getInventoryInventorySlotTypesByKeyServer.ts",
+    "../methods/services/inventory/fetchInventoryInventorySlotTypesService.ts",
+    "../methods/services/inventory/fetchInventoryInventorySlotTypesByKeyService.ts",
+    "../store/atoms/getTable/inventorySlotTypesAtom.ts",
+    "../.vscode/useInventoryInventorySlotTypes.code-snippets",
+    "../.vscode/useInventoryInventorySlotTypesByKey.code-snippets",
+    "../methods/hooks/inventory/core/useMutateInventoryInventorySlotTypes.ts",
+    "../methods/hooks/inventory/core/useMutateInventoryInventorySlotTypesByKey.ts",
+    "./answerHistory/getTable/inventory_inventory_slot_types_answers.json",
+    "../methods/hooks/inventory/core/useFetchInventoryInventorySlotTypes.md",
+    "../methods/hooks/inventory/core/useFetchInventoryInventorySlotTypesByKey.md"
   ]
 }

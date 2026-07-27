@@ -96,5 +96,24 @@
   "fetcherNameByKey": "fetchWorldMapTilesByKey",
   "selectedGenerators": [
     "getTable"
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/world/mapTiles.ts",
+    "../app/api/world/map-tiles/route.ts",
+    "../app/api/world/map-tiles/[mapId]/route.ts",
+    "../methods/hooks/world/core/useFetchWorldMapTiles.ts",
+    "../methods/hooks/world/core/useFetchWorldMapTilesByKey.ts",
+    "../methods/server-fetchers/world/core/getWorldMapTilesServer.ts",
+    "../methods/server-fetchers/world/core/getWorldMapTilesByKeyServer.ts",
+    "../methods/services/world/fetchWorldMapTilesService.ts",
+    "../methods/services/world/fetchWorldMapTilesByKeyService.ts",
+    "../store/atoms/getTable/mapTilesAtom.ts",
+    "../.vscode/useWorldMapTiles.code-snippets",
+    "../.vscode/useWorldMapTilesByKey.code-snippets",
+    "../methods/hooks/world/core/useMutateWorldMapTiles.ts",
+    "../methods/hooks/world/core/useMutateWorldMapTilesByKey.ts",
+    "./answerHistory/getTable/world_map_tiles_answers.json",
+    "../methods/hooks/world/core/useFetchWorldMapTiles.md",
+    "../methods/hooks/world/core/useFetchWorldMapTilesByKey.md"
   ]
 }

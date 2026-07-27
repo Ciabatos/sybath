@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookTable.hbs
+
+{
+  "Destructure useItemsItems": {
+    "prefix": "hook_items_core_useItemsItems",
+    "body": [
+      "useFetchItemsItems()",
+      "const items = useItemsItemsState()"
+    ],
+    "description": "Destructuring useItemsItems hook"
+  }
+}

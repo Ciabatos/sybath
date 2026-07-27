@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookTable.hbs
+
+{
+  "Destructure useWorldLandscapeTypes": {
+    "prefix": "hook_world_core_useWorldLandscapeTypes",
+    "body": [
+      "useFetchWorldLandscapeTypes()",
+      "const landscapeTypes = useWorldLandscapeTypesState()"
+    ],
+    "description": "Destructuring useWorldLandscapeTypes hook"
+  }
+}

@@ -110,5 +110,24 @@
   "fetcherNameByKey": "fetchCitiesCitiesByKey",
   "selectedGenerators": [
     "getTable"
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/cities/cities.ts",
+    "../app/api/cities/cities/route.ts",
+    "../app/api/cities/cities/[mapId]/route.ts",
+    "../methods/hooks/cities/core/useFetchCitiesCities.ts",
+    "../methods/hooks/cities/core/useFetchCitiesCitiesByKey.ts",
+    "../methods/server-fetchers/cities/core/getCitiesCitiesServer.ts",
+    "../methods/server-fetchers/cities/core/getCitiesCitiesByKeyServer.ts",
+    "../methods/services/cities/fetchCitiesCitiesService.ts",
+    "../methods/services/cities/fetchCitiesCitiesByKeyService.ts",
+    "../store/atoms/getTable/citiesAtom.ts",
+    "../.vscode/useCitiesCities.code-snippets",
+    "../.vscode/useCitiesCitiesByKey.code-snippets",
+    "../methods/hooks/cities/core/useMutateCitiesCities.ts",
+    "../methods/hooks/cities/core/useMutateCitiesCitiesByKey.ts",
+    "./answerHistory/getTable/cities_cities_answers.json",
+    "../methods/hooks/cities/core/useFetchCitiesCities.md",
+    "../methods/hooks/cities/core/useFetchCitiesCitiesByKey.md"
   ]
 }

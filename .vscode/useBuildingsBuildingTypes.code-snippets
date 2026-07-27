@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookTable.hbs
+
+{
+  "Destructure useBuildingsBuildingTypes": {
+    "prefix": "hook_buildings_core_useBuildingsBuildingTypes",
+    "body": [
+      "useFetchBuildingsBuildingTypes()",
+      "const buildingTypes = useBuildingsBuildingTypesState()"
+    ],
+    "description": "Destructuring useBuildingsBuildingTypes hook"
+  }
+}

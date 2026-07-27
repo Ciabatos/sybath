@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookTable.hbs
+
+{
+  "Destructure useCitiesCityTiles": {
+    "prefix": "hook_cities_core_useCitiesCityTiles",
+    "body": [
+      "useFetchCitiesCityTiles()",
+      "const cityTiles = useCitiesCityTilesState()"
+    ],
+    "description": "Destructuring useCitiesCityTiles hook"
+  }
+}

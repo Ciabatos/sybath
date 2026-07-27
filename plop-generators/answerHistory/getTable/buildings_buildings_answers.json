@@ -104,5 +104,24 @@
   "fetcherNameByKey": "fetchBuildingsBuildingsByKey",
   "selectedGenerators": [
     "getTable"
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/buildings/buildings.ts",
+    "../app/api/buildings/buildings/route.ts",
+    "../app/api/buildings/buildings/[cityId]/route.ts",
+    "../methods/hooks/buildings/core/useFetchBuildingsBuildings.ts",
+    "../methods/hooks/buildings/core/useFetchBuildingsBuildingsByKey.ts",
+    "../methods/server-fetchers/buildings/core/getBuildingsBuildingsServer.ts",
+    "../methods/server-fetchers/buildings/core/getBuildingsBuildingsByKeyServer.ts",
+    "../methods/services/buildings/fetchBuildingsBuildingsService.ts",
+    "../methods/services/buildings/fetchBuildingsBuildingsByKeyService.ts",
+    "../store/atoms/getTable/buildingsAtom.ts",
+    "../.vscode/useBuildingsBuildings.code-snippets",
+    "../.vscode/useBuildingsBuildingsByKey.code-snippets",
+    "../methods/hooks/buildings/core/useMutateBuildingsBuildings.ts",
+    "../methods/hooks/buildings/core/useMutateBuildingsBuildingsByKey.ts",
+    "./answerHistory/getTable/buildings_buildings_answers.json",
+    "../methods/hooks/buildings/core/useFetchBuildingsBuildings.md",
+    "../methods/hooks/buildings/core/useFetchBuildingsBuildingsByKey.md"
   ]
 }

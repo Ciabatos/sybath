@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookTable.hbs
+
+{
+  "Destructure useDistrictsDistricts": {
+    "prefix": "hook_districts_core_useDistrictsDistricts",
+    "body": [
+      "useFetchDistrictsDistricts()",
+      "const districts = useDistrictsDistrictsState()"
+    ],
+    "description": "Destructuring useDistrictsDistricts hook"
+  }
+}

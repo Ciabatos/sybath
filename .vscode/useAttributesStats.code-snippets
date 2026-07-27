@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookTable.hbs
+
+{
+  "Destructure useAttributesStats": {
+    "prefix": "hook_attributes_core_useAttributesStats",
+    "body": [
+      "useFetchAttributesStats()",
+      "const stats = useAttributesStatsState()"
+    ],
+    "description": "Destructuring useAttributesStats hook"
+  }
+}

@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookTableByKey.hbs
+
+{
+  "Destructure useItemsItemsByKey": {
+    "prefix": "hook_items_core_useItemsItemsByKey",
+    "body": [
+      "useFetchItemsItemsByKey({ id })",
+      "const items = useItemsItemsState()"
+    ],
+    "description": "Destructuring useItemsItemsByKey hook"
+  }
+}

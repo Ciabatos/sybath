@@ -80,5 +80,27 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "fetcherName": "fetchAttributesAbilities",
-  "fetcherNameByKey": "fetchAttributesAbilitiesByKey"
+  "fetcherNameByKey": "fetchAttributesAbilitiesByKey",
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/attributes/abilities.ts",
+    "../app/api/attributes/abilities/route.ts",
+    "../app/api/attributes/abilities/[id]/route.ts",
+    "../methods/hooks/attributes/core/useFetchAttributesAbilities.ts",
+    "../methods/hooks/attributes/core/useFetchAttributesAbilitiesByKey.ts",
+    "../methods/server-fetchers/attributes/core/getAttributesAbilitiesServer.ts",
+    "../methods/server-fetchers/attributes/core/getAttributesAbilitiesByKeyServer.ts",
+    "../methods/services/attributes/fetchAttributesAbilitiesService.ts",
+    "../methods/services/attributes/fetchAttributesAbilitiesByKeyService.ts",
+    "../store/atoms/getTable/abilitiesAtom.ts",
+    "../.vscode/useAttributesAbilities.code-snippets",
+    "../.vscode/useAttributesAbilitiesByKey.code-snippets",
+    "../methods/hooks/attributes/core/useMutateAttributesAbilities.ts",
+    "../methods/hooks/attributes/core/useMutateAttributesAbilitiesByKey.ts",
+    "./answerHistory/getTable/attributes_abilities_answers.json",
+    "../methods/hooks/attributes/core/useFetchAttributesAbilities.md",
+    "../methods/hooks/attributes/core/useFetchAttributesAbilitiesByKey.md"
+  ],
+  "selectedGenerators": [
+    "getTable"
+  ]
 }

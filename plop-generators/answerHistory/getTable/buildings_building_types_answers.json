@@ -77,5 +77,24 @@
   "fetcherNameByKey": "fetchBuildingsBuildingTypesByKey",
   "selectedGenerators": [
     "getTable"
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/buildings/buildingTypes.ts",
+    "../app/api/buildings/building-types/route.ts",
+    "../app/api/buildings/building-types/[id]/route.ts",
+    "../methods/hooks/buildings/core/useFetchBuildingsBuildingTypes.ts",
+    "../methods/hooks/buildings/core/useFetchBuildingsBuildingTypesByKey.ts",
+    "../methods/server-fetchers/buildings/core/getBuildingsBuildingTypesServer.ts",
+    "../methods/server-fetchers/buildings/core/getBuildingsBuildingTypesByKeyServer.ts",
+    "../methods/services/buildings/fetchBuildingsBuildingTypesService.ts",
+    "../methods/services/buildings/fetchBuildingsBuildingTypesByKeyService.ts",
+    "../store/atoms/getTable/buildingTypesAtom.ts",
+    "../.vscode/useBuildingsBuildingTypes.code-snippets",
+    "../.vscode/useBuildingsBuildingTypesByKey.code-snippets",
+    "../methods/hooks/buildings/core/useMutateBuildingsBuildingTypes.ts",
+    "../methods/hooks/buildings/core/useMutateBuildingsBuildingTypesByKey.ts",
+    "./answerHistory/getTable/buildings_building_types_answers.json",
+    "../methods/hooks/buildings/core/useFetchBuildingsBuildingTypes.md",
+    "../methods/hooks/buildings/core/useFetchBuildingsBuildingTypesByKey.md"
   ]
 }

@@ -83,5 +83,24 @@
   "fetcherNameByKey": "fetchItemsItemsByKey",
   "selectedGenerators": [
     "getTable"
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/items/items.ts",
+    "../app/api/items/items/route.ts",
+    "../app/api/items/items/[id]/route.ts",
+    "../methods/hooks/items/core/useFetchItemsItems.ts",
+    "../methods/hooks/items/core/useFetchItemsItemsByKey.ts",
+    "../methods/server-fetchers/items/core/getItemsItemsServer.ts",
+    "../methods/server-fetchers/items/core/getItemsItemsByKeyServer.ts",
+    "../methods/services/items/fetchItemsItemsService.ts",
+    "../methods/services/items/fetchItemsItemsByKeyService.ts",
+    "../store/atoms/getTable/itemsAtom.ts",
+    "../.vscode/useItemsItems.code-snippets",
+    "../.vscode/useItemsItemsByKey.code-snippets",
+    "../methods/hooks/items/core/useMutateItemsItems.ts",
+    "../methods/hooks/items/core/useMutateItemsItemsByKey.ts",
+    "./answerHistory/getTable/items_items_answers.json",
+    "../methods/hooks/items/core/useFetchItemsItems.md",
+    "../methods/hooks/items/core/useFetchItemsItemsByKey.md"
   ]
 }

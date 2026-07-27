@@ -80,5 +80,27 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "fetcherName": "fetchAttributesStats",
-  "fetcherNameByKey": "fetchAttributesStatsByKey"
+  "fetcherNameByKey": "fetchAttributesStatsByKey",
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/attributes/stats.ts",
+    "../app/api/attributes/stats/route.ts",
+    "../app/api/attributes/stats/[id]/route.ts",
+    "../methods/hooks/attributes/core/useFetchAttributesStats.ts",
+    "../methods/hooks/attributes/core/useFetchAttributesStatsByKey.ts",
+    "../methods/server-fetchers/attributes/core/getAttributesStatsServer.ts",
+    "../methods/server-fetchers/attributes/core/getAttributesStatsByKeyServer.ts",
+    "../methods/services/attributes/fetchAttributesStatsService.ts",
+    "../methods/services/attributes/fetchAttributesStatsByKeyService.ts",
+    "../store/atoms/getTable/statsAtom.ts",
+    "../.vscode/useAttributesStats.code-snippets",
+    "../.vscode/useAttributesStatsByKey.code-snippets",
+    "../methods/hooks/attributes/core/useMutateAttributesStats.ts",
+    "../methods/hooks/attributes/core/useMutateAttributesStatsByKey.ts",
+    "./answerHistory/getTable/attributes_stats_answers.json",
+    "../methods/hooks/attributes/core/useFetchAttributesStats.md",
+    "../methods/hooks/attributes/core/useFetchAttributesStatsByKey.md"
+  ],
+  "selectedGenerators": [
+    "getTable"
+  ]
 }

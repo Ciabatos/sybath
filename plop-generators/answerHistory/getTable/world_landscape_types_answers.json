@@ -83,5 +83,24 @@
   "fetcherNameByKey": "fetchWorldLandscapeTypesByKey",
   "selectedGenerators": [
     "getTable"
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/world/landscapeTypes.ts",
+    "../app/api/world/landscape-types/route.ts",
+    "../app/api/world/landscape-types/[id]/route.ts",
+    "../methods/hooks/world/core/useFetchWorldLandscapeTypes.ts",
+    "../methods/hooks/world/core/useFetchWorldLandscapeTypesByKey.ts",
+    "../methods/server-fetchers/world/core/getWorldLandscapeTypesServer.ts",
+    "../methods/server-fetchers/world/core/getWorldLandscapeTypesByKeyServer.ts",
+    "../methods/services/world/fetchWorldLandscapeTypesService.ts",
+    "../methods/services/world/fetchWorldLandscapeTypesByKeyService.ts",
+    "../store/atoms/getTable/landscapeTypesAtom.ts",
+    "../.vscode/useWorldLandscapeTypes.code-snippets",
+    "../.vscode/useWorldLandscapeTypesByKey.code-snippets",
+    "../methods/hooks/world/core/useMutateWorldLandscapeTypes.ts",
+    "../methods/hooks/world/core/useMutateWorldLandscapeTypesByKey.ts",
+    "./answerHistory/getTable/world_landscape_types_answers.json",
+    "../methods/hooks/world/core/useFetchWorldLandscapeTypes.md",
+    "../methods/hooks/world/core/useFetchWorldLandscapeTypesByKey.md"
   ]
 }

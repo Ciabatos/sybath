@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookTableByKey.hbs
+
+{
+  "Destructure useInventoryInventorySlotTypesByKey": {
+    "prefix": "hook_inventory_core_useInventoryInventorySlotTypesByKey",
+    "body": [
+      "useFetchInventoryInventorySlotTypesByKey({ id })",
+      "const inventorySlotTypes = useInventoryInventorySlotTypesState()"
+    ],
+    "description": "Destructuring useInventoryInventorySlotTypesByKey hook"
+  }
+}

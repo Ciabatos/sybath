@@ -83,5 +83,24 @@
   "fetcherNameByKey": "fetchDistrictsDistrictTypesByKey",
   "selectedGenerators": [
     "getTable"
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/districts/districtTypes.ts",
+    "../app/api/districts/district-types/route.ts",
+    "../app/api/districts/district-types/[id]/route.ts",
+    "../methods/hooks/districts/core/useFetchDistrictsDistrictTypes.ts",
+    "../methods/hooks/districts/core/useFetchDistrictsDistrictTypesByKey.ts",
+    "../methods/server-fetchers/districts/core/getDistrictsDistrictTypesServer.ts",
+    "../methods/server-fetchers/districts/core/getDistrictsDistrictTypesByKeyServer.ts",
+    "../methods/services/districts/fetchDistrictsDistrictTypesService.ts",
+    "../methods/services/districts/fetchDistrictsDistrictTypesByKeyService.ts",
+    "../store/atoms/getTable/districtTypesAtom.ts",
+    "../.vscode/useDistrictsDistrictTypes.code-snippets",
+    "../.vscode/useDistrictsDistrictTypesByKey.code-snippets",
+    "../methods/hooks/districts/core/useMutateDistrictsDistrictTypes.ts",
+    "../methods/hooks/districts/core/useMutateDistrictsDistrictTypesByKey.ts",
+    "./answerHistory/getTable/districts_district_types_answers.json",
+    "../methods/hooks/districts/core/useFetchDistrictsDistrictTypes.md",
+    "../methods/hooks/districts/core/useFetchDistrictsDistrictTypesByKey.md"
   ]
 }

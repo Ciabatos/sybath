@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookTableByKey.hbs
+
+{
+  "Destructure useDistrictsDistrictsByKey": {
+    "prefix": "hook_districts_core_useDistrictsDistrictsByKey",
+    "body": [
+      "useFetchDistrictsDistrictsByKey({ mapId })",
+      "const districts = useDistrictsDistrictsState()"
+    ],
+    "description": "Destructuring useDistrictsDistrictsByKey hook"
+  }
+}

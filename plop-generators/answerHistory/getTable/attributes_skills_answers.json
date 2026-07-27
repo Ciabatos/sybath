@@ -80,5 +80,27 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "fetcherName": "fetchAttributesSkills",
-  "fetcherNameByKey": "fetchAttributesSkillsByKey"
+  "fetcherNameByKey": "fetchAttributesSkillsByKey",
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/attributes/skills.ts",
+    "../app/api/attributes/skills/route.ts",
+    "../app/api/attributes/skills/[id]/route.ts",
+    "../methods/hooks/attributes/core/useFetchAttributesSkills.ts",
+    "../methods/hooks/attributes/core/useFetchAttributesSkillsByKey.ts",
+    "../methods/server-fetchers/attributes/core/getAttributesSkillsServer.ts",
+    "../methods/server-fetchers/attributes/core/getAttributesSkillsByKeyServer.ts",
+    "../methods/services/attributes/fetchAttributesSkillsService.ts",
+    "../methods/services/attributes/fetchAttributesSkillsByKeyService.ts",
+    "../store/atoms/getTable/skillsAtom.ts",
+    "../.vscode/useAttributesSkills.code-snippets",
+    "../.vscode/useAttributesSkillsByKey.code-snippets",
+    "../methods/hooks/attributes/core/useMutateAttributesSkills.ts",
+    "../methods/hooks/attributes/core/useMutateAttributesSkillsByKey.ts",
+    "./answerHistory/getTable/attributes_skills_answers.json",
+    "../methods/hooks/attributes/core/useFetchAttributesSkills.md",
+    "../methods/hooks/attributes/core/useFetchAttributesSkillsByKey.md"
+  ],
+  "selectedGenerators": [
+    "getTable"
+  ]
 }

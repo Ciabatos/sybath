@@ -104,5 +104,24 @@
   "fetcherNameByKey": "fetchDistrictsDistrictsByKey",
   "selectedGenerators": [
     "getTable"
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/districts/districts.ts",
+    "../app/api/districts/districts/route.ts",
+    "../app/api/districts/districts/[mapId]/route.ts",
+    "../methods/hooks/districts/core/useFetchDistrictsDistricts.ts",
+    "../methods/hooks/districts/core/useFetchDistrictsDistrictsByKey.ts",
+    "../methods/server-fetchers/districts/core/getDistrictsDistrictsServer.ts",
+    "../methods/server-fetchers/districts/core/getDistrictsDistrictsByKeyServer.ts",
+    "../methods/services/districts/fetchDistrictsDistrictsService.ts",
+    "../methods/services/districts/fetchDistrictsDistrictsByKeyService.ts",
+    "../store/atoms/getTable/districtsAtom.ts",
+    "../.vscode/useDistrictsDistricts.code-snippets",
+    "../.vscode/useDistrictsDistrictsByKey.code-snippets",
+    "../methods/hooks/districts/core/useMutateDistrictsDistricts.ts",
+    "../methods/hooks/districts/core/useMutateDistrictsDistrictsByKey.ts",
+    "./answerHistory/getTable/districts_districts_answers.json",
+    "../methods/hooks/districts/core/useFetchDistrictsDistricts.md",
+    "../methods/hooks/districts/core/useFetchDistrictsDistrictsByKey.md"
   ]
 }

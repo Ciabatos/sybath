@@ -83,5 +83,24 @@
   "fetcherNameByKey": "fetchWorldTerrainTypesByKey",
   "selectedGenerators": [
     "getTable"
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/world/terrainTypes.ts",
+    "../app/api/world/terrain-types/route.ts",
+    "../app/api/world/terrain-types/[id]/route.ts",
+    "../methods/hooks/world/core/useFetchWorldTerrainTypes.ts",
+    "../methods/hooks/world/core/useFetchWorldTerrainTypesByKey.ts",
+    "../methods/server-fetchers/world/core/getWorldTerrainTypesServer.ts",
+    "../methods/server-fetchers/world/core/getWorldTerrainTypesByKeyServer.ts",
+    "../methods/services/world/fetchWorldTerrainTypesService.ts",
+    "../methods/services/world/fetchWorldTerrainTypesByKeyService.ts",
+    "../store/atoms/getTable/terrainTypesAtom.ts",
+    "../.vscode/useWorldTerrainTypes.code-snippets",
+    "../.vscode/useWorldTerrainTypesByKey.code-snippets",
+    "../methods/hooks/world/core/useMutateWorldTerrainTypes.ts",
+    "../methods/hooks/world/core/useMutateWorldTerrainTypesByKey.ts",
+    "./answerHistory/getTable/world_terrain_types_answers.json",
+    "../methods/hooks/world/core/useFetchWorldTerrainTypes.md",
+    "../methods/hooks/world/core/useFetchWorldTerrainTypesByKey.md"
   ]
 }

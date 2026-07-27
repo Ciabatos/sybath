@@ -80,5 +80,27 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "fetcherName": "fetchItemsRecipeMaterials",
-  "fetcherNameByKey": "fetchItemsRecipeMaterialsByKey"
+  "fetcherNameByKey": "fetchItemsRecipeMaterialsByKey",
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/items/recipeMaterials.ts",
+    "../app/api/items/recipe-materials/route.ts",
+    "../app/api/items/recipe-materials/[recipeId]/route.ts",
+    "../methods/hooks/items/core/useFetchItemsRecipeMaterials.ts",
+    "../methods/hooks/items/core/useFetchItemsRecipeMaterialsByKey.ts",
+    "../methods/server-fetchers/items/core/getItemsRecipeMaterialsServer.ts",
+    "../methods/server-fetchers/items/core/getItemsRecipeMaterialsByKeyServer.ts",
+    "../methods/services/items/fetchItemsRecipeMaterialsService.ts",
+    "../methods/services/items/fetchItemsRecipeMaterialsByKeyService.ts",
+    "../store/atoms/getTable/recipeMaterialsAtom.ts",
+    "../.vscode/useItemsRecipeMaterials.code-snippets",
+    "../.vscode/useItemsRecipeMaterialsByKey.code-snippets",
+    "../methods/hooks/items/core/useMutateItemsRecipeMaterials.ts",
+    "../methods/hooks/items/core/useMutateItemsRecipeMaterialsByKey.ts",
+    "./answerHistory/getTable/items_recipe_materials_answers.json",
+    "../methods/hooks/items/core/useFetchItemsRecipeMaterials.md",
+    "../methods/hooks/items/core/useFetchItemsRecipeMaterialsByKey.md"
+  ],
+  "selectedGenerators": [
+    "getTable"
+  ]
 }

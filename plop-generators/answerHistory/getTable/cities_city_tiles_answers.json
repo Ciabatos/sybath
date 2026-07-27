@@ -98,5 +98,24 @@
   "fetcherNameByKey": "fetchCitiesCityTilesByKey",
   "selectedGenerators": [
     "getTable"
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/cities/cityTiles.ts",
+    "../app/api/cities/city-tiles/route.ts",
+    "../app/api/cities/city-tiles/[cityId]/route.ts",
+    "../methods/hooks/cities/core/useFetchCitiesCityTiles.ts",
+    "../methods/hooks/cities/core/useFetchCitiesCityTilesByKey.ts",
+    "../methods/server-fetchers/cities/core/getCitiesCityTilesServer.ts",
+    "../methods/server-fetchers/cities/core/getCitiesCityTilesByKeyServer.ts",
+    "../methods/services/cities/fetchCitiesCityTilesService.ts",
+    "../methods/services/cities/fetchCitiesCityTilesByKeyService.ts",
+    "../store/atoms/getTable/cityTilesAtom.ts",
+    "../.vscode/useCitiesCityTiles.code-snippets",
+    "../.vscode/useCitiesCityTilesByKey.code-snippets",
+    "../methods/hooks/cities/core/useMutateCitiesCityTiles.ts",
+    "../methods/hooks/cities/core/useMutateCitiesCityTilesByKey.ts",
+    "./answerHistory/getTable/cities_city_tiles_answers.json",
+    "../methods/hooks/cities/core/useFetchCitiesCityTiles.md",
+    "../methods/hooks/cities/core/useFetchCitiesCityTilesByKey.md"
   ]
 }

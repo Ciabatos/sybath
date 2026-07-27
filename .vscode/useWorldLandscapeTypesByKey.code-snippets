@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookTableByKey.hbs
+
+{
+  "Destructure useWorldLandscapeTypesByKey": {
+    "prefix": "hook_world_core_useWorldLandscapeTypesByKey",
+    "body": [
+      "useFetchWorldLandscapeTypesByKey({ id })",
+      "const landscapeTypes = useWorldLandscapeTypesState()"
+    ],
+    "description": "Destructuring useWorldLandscapeTypesByKey hook"
+  }
+}
