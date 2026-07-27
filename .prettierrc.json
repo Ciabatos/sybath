@@ -16,5 +16,6 @@
   "proseWrap": "always",
   "quoteProps": "as-needed",
   "requirePragma": false,
-  "trailingComma": "all"
+  "trailingComma": "all",
+  "endOfLine": "lf"
 }

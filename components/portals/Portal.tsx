@@ -1,5 +1,5 @@
 "use client"
-import { ModalHandling } from "@/components/modals/ModalHandling"
+import ModalHandling from "@/components/modals/ModalHandling"
 import { useResetModalsOnRouteChange } from "@/methods/hooks/modals/useResetModalsOnRouteChange"
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
