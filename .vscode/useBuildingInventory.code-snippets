@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "Destructure useBuildingInventory": {
+    "prefix": "hook_inventory_core_useBuildingInventory",
+    "body": [
+      "useFetchBuildingInventory({ buildingId })",
+      "const buildingInventory = useBuildingInventoryState()"
+    ],
+    "description": "Destructuring useBuildingInventory hook"
+  }
+}

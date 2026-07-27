@@ -116,5 +116,20 @@
   "apiPathParams": "/api/squad/rpc/get-squad-invites/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": true,
-  "compositeDefinitions": []
+  "compositeDefinitions": [],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/squad/squadInvites.ts",
+    "../app/api/squad/rpc/get-squad-invites/[playerId]/route.ts",
+    "../methods/hooks/squad/core/useFetchSquadInvites.ts",
+    "../methods/server-fetchers/squad/core/getSquadInvitesServer.ts",
+    "../methods/services/squad/fetchSquadInvitesService.ts",
+    "../store/atoms/getMethodFetcher/squadInvitesAtom.ts",
+    "../.vscode/useSquadInvites.code-snippets",
+    "../methods/hooks/squad/core/useMutateSquadInvites.ts",
+    "./answerHistory/getMethodFetcher/squad_get_squad_invites_answers.json",
+    "../methods/hooks/squad/core/useFetchSquadInvites.md"
+  ],
+  "selectedGenerators": [
+    "getMethodFetcher"
+  ]
 }

@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "Destructure useDistrictInventory": {
+    "prefix": "hook_inventory_core_useDistrictInventory",
+    "body": [
+      "useFetchDistrictInventory({ districtId })",
+      "const districtInventory = useDistrictInventoryState()"
+    ],
+    "description": "Destructuring useDistrictInventory hook"
+  }
+}

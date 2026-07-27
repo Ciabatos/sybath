@@ -79,5 +79,20 @@
   "apiPath": "app/api/attributes/rpc/get-all-abilities/[playerId]/route.ts",
   "apiPathParams": "/api/attributes/rpc/get-all-abilities/${params.playerId}",
   "generateMutation": true,
-  "mutationMergeOldData": true
+  "mutationMergeOldData": true,
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/attributes/allAbilities.ts",
+    "../app/api/attributes/rpc/get-all-abilities/[playerId]/route.ts",
+    "../methods/hooks/attributes/core/useFetchAllAbilities.ts",
+    "../methods/server-fetchers/attributes/core/getAllAbilitiesServer.ts",
+    "../methods/services/attributes/fetchAllAbilitiesService.ts",
+    "../store/atoms/getMethodFetcher/allAbilitiesAtom.ts",
+    "../.vscode/useAllAbilities.code-snippets",
+    "../methods/hooks/attributes/core/useMutateAllAbilities.ts",
+    "./answerHistory/getMethodFetcher/attributes_get_all_abilities_answers.json",
+    "../methods/hooks/attributes/core/useFetchAllAbilities.md"
+  ],
+  "selectedGenerators": [
+    "getMethodFetcher"
+  ]
 }

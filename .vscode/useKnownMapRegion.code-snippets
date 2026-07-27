@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "Destructure useKnownMapRegion": {
+    "prefix": "hook_world_core_useKnownMapRegion",
+    "body": [
+      "useFetchKnownMapRegion({ mapId, playerId, regionType })",
+      "const knownMapRegion = useKnownMapRegionState()"
+    ],
+    "description": "Destructuring useKnownMapRegion hook"
+  }
+}

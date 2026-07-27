@@ -83,5 +83,17 @@
   "mutationMergeOldData": true,
   "selectedGenerators": [
     "getMethodFetcher"
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnTile.ts",
+    "../app/api/world/rpc/get-known-map-tiles-resources-on-tile/[mapId]/[mapTileX]/[mapTileY]/[playerId]/route.ts",
+    "../methods/hooks/world/core/useFetchKnownMapTilesResourcesOnTile.ts",
+    "../methods/server-fetchers/world/core/getKnownMapTilesResourcesOnTileServer.ts",
+    "../methods/services/world/fetchKnownMapTilesResourcesOnTileService.ts",
+    "../store/atoms/getMethodFetcher/knownMapTilesResourcesOnTileAtom.ts",
+    "../.vscode/useKnownMapTilesResourcesOnTile.code-snippets",
+    "../methods/hooks/world/core/useMutateKnownMapTilesResourcesOnTile.ts",
+    "./answerHistory/getMethodFetcher/world_get_known_map_tiles_resources_on_tile_answers.json",
+    "../methods/hooks/world/core/useFetchKnownMapTilesResourcesOnTile.md"
   ]
 }

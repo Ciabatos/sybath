@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "Destructure useActivePlayerSwitchProfiles": {
+    "prefix": "hook_players_core_useActivePlayerSwitchProfiles",
+    "body": [
+      "useFetchActivePlayerSwitchProfiles({ playerId })",
+      "const activePlayerSwitchProfiles = useActivePlayerSwitchProfilesState()"
+    ],
+    "description": "Destructuring useActivePlayerSwitchProfiles hook"
+  }
+}

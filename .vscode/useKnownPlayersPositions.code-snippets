@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "Destructure useKnownPlayersPositions": {
+    "prefix": "hook_world_core_useKnownPlayersPositions",
+    "body": [
+      "useFetchKnownPlayersPositions({ mapId, playerId })",
+      "const knownPlayersPositions = useKnownPlayersPositionsState()"
+    ],
+    "description": "Destructuring useKnownPlayersPositions hook"
+  }
+}

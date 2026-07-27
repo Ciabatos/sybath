@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "Destructure usePlayerRecipes": {
+    "prefix": "hook_items_core_usePlayerRecipes",
+    "body": [
+      "useFetchPlayerRecipes({ playerId })",
+      "const playerRecipes = usePlayerRecipesState()"
+    ],
+    "description": "Destructuring usePlayerRecipes hook"
+  }
+}

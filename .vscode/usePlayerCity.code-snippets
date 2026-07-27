@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "Destructure usePlayerCity": {
+    "prefix": "hook_cities_core_usePlayerCity",
+    "body": [
+      "useFetchPlayerCity({ playerId })",
+      "const playerCity = usePlayerCityState()"
+    ],
+    "description": "Destructuring usePlayerCity hook"
+  }
+}

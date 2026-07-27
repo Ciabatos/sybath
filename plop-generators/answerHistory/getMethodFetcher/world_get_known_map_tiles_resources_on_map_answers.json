@@ -92,5 +92,20 @@
         }
       ]
     }
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnMap.ts",
+    "../app/api/world/rpc/get-known-map-tiles-resources-on-map/[mapId]/[playerId]/route.ts",
+    "../methods/hooks/world/core/useFetchKnownMapTilesResourcesOnMap.ts",
+    "../methods/server-fetchers/world/core/getKnownMapTilesResourcesOnMapServer.ts",
+    "../methods/services/world/fetchKnownMapTilesResourcesOnMapService.ts",
+    "../store/atoms/getMethodFetcher/knownMapTilesResourcesOnMapAtom.ts",
+    "../.vscode/useKnownMapTilesResourcesOnMap.code-snippets",
+    "../methods/hooks/world/core/useMutateKnownMapTilesResourcesOnMap.ts",
+    "./answerHistory/getMethodFetcher/world_get_known_map_tiles_resources_on_map_answers.json",
+    "../methods/hooks/world/core/useFetchKnownMapTilesResourcesOnMap.md"
+  ],
+  "selectedGenerators": [
+    "getMethodFetcher"
   ]
 }

@@ -80,5 +80,17 @@
   "mutationMergeOldData": true,
   "selectedGenerators": [
     "getMethodFetcher"
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/players/otherPlayerProfile.ts",
+    "../app/api/players/rpc/get-other-player-profile/[playerId]/[otherPlayerId]/route.ts",
+    "../methods/hooks/players/core/useFetchOtherPlayerProfile.ts",
+    "../methods/server-fetchers/players/core/getOtherPlayerProfileServer.ts",
+    "../methods/services/players/fetchOtherPlayerProfileService.ts",
+    "../store/atoms/getMethodFetcher/otherPlayerProfileAtom.ts",
+    "../.vscode/useOtherPlayerProfile.code-snippets",
+    "../methods/hooks/players/core/useMutateOtherPlayerProfile.ts",
+    "./answerHistory/getMethodFetcher/players_get_other_player_profile_answers.json",
+    "../methods/hooks/players/core/useFetchOtherPlayerProfile.md"
   ]
 }

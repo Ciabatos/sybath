@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "Destructure usePlayerKnownPlayers": {
+    "prefix": "hook_knowledge_core_usePlayerKnownPlayers",
+    "body": [
+      "useFetchPlayerKnownPlayers({ playerId })",
+      "const playerKnownPlayers = usePlayerKnownPlayersState()"
+    ],
+    "description": "Destructuring usePlayerKnownPlayers hook"
+  }
+}

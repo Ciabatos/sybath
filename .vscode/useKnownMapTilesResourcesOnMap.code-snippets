@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "Destructure useKnownMapTilesResourcesOnMap": {
+    "prefix": "hook_world_core_useKnownMapTilesResourcesOnMap",
+    "body": [
+      "useFetchKnownMapTilesResourcesOnMap({ mapId, playerId })",
+      "const knownMapTilesResourcesOnMap = useKnownMapTilesResourcesOnMapState()"
+    ],
+    "description": "Destructuring useKnownMapTilesResourcesOnMap hook"
+  }
+}

@@ -67,5 +67,20 @@
   "apiPathParams": "/api/attributes/rpc/get-player-energy/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": true,
-  "compositeDefinitions": []
+  "compositeDefinitions": [],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/attributes/playerEnergy.ts",
+    "../app/api/attributes/rpc/get-player-energy/[playerId]/route.ts",
+    "../methods/hooks/attributes/core/useFetchPlayerEnergy.ts",
+    "../methods/server-fetchers/attributes/core/getPlayerEnergyServer.ts",
+    "../methods/services/attributes/fetchPlayerEnergyService.ts",
+    "../store/atoms/getMethodFetcher/playerEnergyAtom.ts",
+    "../.vscode/usePlayerEnergy.code-snippets",
+    "../methods/hooks/attributes/core/useMutatePlayerEnergy.ts",
+    "./answerHistory/getMethodFetcher/attributes_get_player_energy_answers.json",
+    "../methods/hooks/attributes/core/useFetchPlayerEnergy.md"
+  ],
+  "selectedGenerators": [
+    "getMethodFetcher"
+  ]
 }

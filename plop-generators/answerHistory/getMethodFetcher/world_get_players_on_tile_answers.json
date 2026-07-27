@@ -120,5 +120,20 @@
   "apiPathParams": "/api/world/rpc/get-players-on-tile/${params.mapId}/${params.mapTileX}/${params.mapTileY}/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": true,
-  "compositeDefinitions": []
+  "compositeDefinitions": [],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/world/playersOnTile.ts",
+    "../app/api/world/rpc/get-players-on-tile/[mapId]/[mapTileX]/[mapTileY]/[playerId]/route.ts",
+    "../methods/hooks/world/core/useFetchPlayersOnTile.ts",
+    "../methods/server-fetchers/world/core/getPlayersOnTileServer.ts",
+    "../methods/services/world/fetchPlayersOnTileService.ts",
+    "../store/atoms/getMethodFetcher/playersOnTileAtom.ts",
+    "../.vscode/usePlayersOnTile.code-snippets",
+    "../methods/hooks/world/core/useMutatePlayersOnTile.ts",
+    "./answerHistory/getMethodFetcher/world_get_players_on_tile_answers.json",
+    "../methods/hooks/world/core/useFetchPlayersOnTile.md"
+  ],
+  "selectedGenerators": [
+    "getMethodFetcher"
+  ]
 }

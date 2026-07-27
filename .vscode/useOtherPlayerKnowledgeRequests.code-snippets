@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "Destructure useOtherPlayerKnowledgeRequests": {
+    "prefix": "hook_knowledge_core_useOtherPlayerKnowledgeRequests",
+    "body": [
+      "useFetchOtherPlayerKnowledgeRequests({ playerId })",
+      "const otherPlayerKnowledgeRequests = useOtherPlayerKnowledgeRequestsState()"
+    ],
+    "description": "Destructuring useOtherPlayerKnowledgeRequests hook"
+  }
+}

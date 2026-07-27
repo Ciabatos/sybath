@@ -98,5 +98,20 @@
   "apiPath": "app/api/items/rpc/get-player-recipe-materials/[playerId]/[recipeId]/route.ts",
   "apiPathParams": "/api/items/rpc/get-player-recipe-materials/${params.playerId}/${params.recipeId}",
   "generateMutation": true,
-  "mutationMergeOldData": true
+  "mutationMergeOldData": true,
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/items/playerRecipeMaterials.ts",
+    "../app/api/items/rpc/get-player-recipe-materials/[playerId]/[recipeId]/route.ts",
+    "../methods/hooks/items/core/useFetchPlayerRecipeMaterials.ts",
+    "../methods/server-fetchers/items/core/getPlayerRecipeMaterialsServer.ts",
+    "../methods/services/items/fetchPlayerRecipeMaterialsService.ts",
+    "../store/atoms/getMethodFetcher/playerRecipeMaterialsAtom.ts",
+    "../.vscode/usePlayerRecipeMaterials.code-snippets",
+    "../methods/hooks/items/core/useMutatePlayerRecipeMaterials.ts",
+    "./answerHistory/getMethodFetcher/items_get_player_recipe_materials_answers.json",
+    "../methods/hooks/items/core/useFetchPlayerRecipeMaterials.md"
+  ],
+  "selectedGenerators": [
+    "getMethodFetcher"
+  ]
 }

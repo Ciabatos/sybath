@@ -96,5 +96,17 @@
   "mutationMergeOldData": true,
   "selectedGenerators": [
     "getMethodFetcher"
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/inventory/buildingInventory.ts",
+    "../app/api/inventory/rpc/get-building-inventory/[buildingId]/route.ts",
+    "../methods/hooks/inventory/core/useFetchBuildingInventory.ts",
+    "../methods/server-fetchers/inventory/core/getBuildingInventoryServer.ts",
+    "../methods/services/inventory/fetchBuildingInventoryService.ts",
+    "../store/atoms/getMethodFetcher/buildingInventoryAtom.ts",
+    "../.vscode/useBuildingInventory.code-snippets",
+    "../methods/hooks/inventory/core/useMutateBuildingInventory.ts",
+    "./answerHistory/getMethodFetcher/inventory_get_building_inventory_answers.json",
+    "../methods/hooks/inventory/core/useFetchBuildingInventory.md"
   ]
 }

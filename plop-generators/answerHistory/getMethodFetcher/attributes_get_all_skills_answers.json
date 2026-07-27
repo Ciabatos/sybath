@@ -79,5 +79,20 @@
   "apiPath": "app/api/attributes/rpc/get-all-skills/[playerId]/route.ts",
   "apiPathParams": "/api/attributes/rpc/get-all-skills/${params.playerId}",
   "generateMutation": true,
-  "mutationMergeOldData": true
+  "mutationMergeOldData": true,
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/attributes/allSkills.ts",
+    "../app/api/attributes/rpc/get-all-skills/[playerId]/route.ts",
+    "../methods/hooks/attributes/core/useFetchAllSkills.ts",
+    "../methods/server-fetchers/attributes/core/getAllSkillsServer.ts",
+    "../methods/services/attributes/fetchAllSkillsService.ts",
+    "../store/atoms/getMethodFetcher/allSkillsAtom.ts",
+    "../.vscode/useAllSkills.code-snippets",
+    "../methods/hooks/attributes/core/useMutateAllSkills.ts",
+    "./answerHistory/getMethodFetcher/attributes_get_all_skills_answers.json",
+    "../methods/hooks/attributes/core/useFetchAllSkills.md"
+  ],
+  "selectedGenerators": [
+    "getMethodFetcher"
+  ]
 }

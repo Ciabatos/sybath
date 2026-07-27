@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "Destructure usePlayerSkills": {
+    "prefix": "hook_attributes_core_usePlayerSkills",
+    "body": [
+      "useFetchPlayerSkills({ playerId })",
+      "const playerSkills = usePlayerSkillsState()"
+    ],
+    "description": "Destructuring usePlayerSkills hook"
+  }
+}

@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "Destructure usePlayerMap": {
+    "prefix": "hook_world_core_usePlayerMap",
+    "body": [
+      "useFetchPlayerMap({ playerId })",
+      "const playerMap = usePlayerMapState()"
+    ],
+    "description": "Destructuring usePlayerMap hook"
+  }
+}

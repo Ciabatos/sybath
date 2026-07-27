@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "Destructure useOtherSquadPlayersProfiles": {
+    "prefix": "hook_squad_core_useOtherSquadPlayersProfiles",
+    "body": [
+      "useFetchOtherSquadPlayersProfiles({ playerId, squadId })",
+      "const otherSquadPlayersProfiles = useOtherSquadPlayersProfilesState()"
+    ],
+    "description": "Destructuring useOtherSquadPlayersProfiles hook"
+  }
+}

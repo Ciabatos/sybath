@@ -82,5 +82,17 @@
   "mutationMergeOldData": false,
   "selectedGenerators": [
     "getMethodFetcher"
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles.ts",
+    "../app/api/players/rpc/get-active-player-switch-profiles/[playerId]/route.ts",
+    "../methods/hooks/players/core/useFetchActivePlayerSwitchProfiles.ts",
+    "../methods/server-fetchers/players/core/getActivePlayerSwitchProfilesServer.ts",
+    "../methods/services/players/fetchActivePlayerSwitchProfilesService.ts",
+    "../store/atoms/getMethodFetcher/activePlayerSwitchProfilesAtom.ts",
+    "../.vscode/useActivePlayerSwitchProfiles.code-snippets",
+    "../methods/hooks/players/core/useMutateActivePlayerSwitchProfiles.ts",
+    "./answerHistory/getMethodFetcher/players_get_active_player_switch_profiles_answers.json",
+    "../methods/hooks/players/core/useFetchActivePlayerSwitchProfiles.md"
   ]
 }

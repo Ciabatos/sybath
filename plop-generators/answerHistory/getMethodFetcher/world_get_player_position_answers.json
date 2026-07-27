@@ -88,5 +88,20 @@
   "apiPathParams": "/api/world/rpc/get-player-position/${params.mapId}/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": false,
-  "compositeDefinitions": []
+  "compositeDefinitions": [],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/world/playerPosition.ts",
+    "../app/api/world/rpc/get-player-position/[mapId]/[playerId]/route.ts",
+    "../methods/hooks/world/core/useFetchPlayerPosition.ts",
+    "../methods/server-fetchers/world/core/getPlayerPositionServer.ts",
+    "../methods/services/world/fetchPlayerPositionService.ts",
+    "../store/atoms/getMethodFetcher/playerPositionAtom.ts",
+    "../.vscode/usePlayerPosition.code-snippets",
+    "../methods/hooks/world/core/useMutatePlayerPosition.ts",
+    "./answerHistory/getMethodFetcher/world_get_player_position_answers.json",
+    "../methods/hooks/world/core/useFetchPlayerPosition.md"
+  ],
+  "selectedGenerators": [
+    "getMethodFetcher"
+  ]
 }

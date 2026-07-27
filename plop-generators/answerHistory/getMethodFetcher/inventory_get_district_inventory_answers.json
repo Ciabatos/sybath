@@ -96,5 +96,17 @@
   "mutationMergeOldData": true,
   "selectedGenerators": [
     "getMethodFetcher"
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/inventory/districtInventory.ts",
+    "../app/api/inventory/rpc/get-district-inventory/[districtId]/route.ts",
+    "../methods/hooks/inventory/core/useFetchDistrictInventory.ts",
+    "../methods/server-fetchers/inventory/core/getDistrictInventoryServer.ts",
+    "../methods/services/inventory/fetchDistrictInventoryService.ts",
+    "../store/atoms/getMethodFetcher/districtInventoryAtom.ts",
+    "../.vscode/useDistrictInventory.code-snippets",
+    "../methods/hooks/inventory/core/useMutateDistrictInventory.ts",
+    "./answerHistory/getMethodFetcher/inventory_get_district_inventory_answers.json",
+    "../methods/hooks/inventory/core/useFetchDistrictInventory.md"
   ]
 }

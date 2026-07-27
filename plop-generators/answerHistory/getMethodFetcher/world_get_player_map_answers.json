@@ -43,5 +43,17 @@
   "generateMutation": false,
   "selectedGenerators": [
     "getMethodFetcher"
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/world/playerMap.ts",
+    "../app/api/world/rpc/get-player-map/[playerId]/route.ts",
+    "../methods/hooks/world/core/useFetchPlayerMap.ts",
+    "../methods/server-fetchers/world/core/getPlayerMapServer.ts",
+    "../methods/services/world/fetchPlayerMapService.ts",
+    "../store/atoms/getMethodFetcher/playerMapAtom.ts",
+    "../.vscode/usePlayerMap.code-snippets",
+    "../methods/hooks/world/core/useMutatePlayerMap.ts",
+    "./answerHistory/getMethodFetcher/world_get_player_map_answers.json",
+    "../methods/hooks/world/core/useFetchPlayerMap.md"
   ]
 }

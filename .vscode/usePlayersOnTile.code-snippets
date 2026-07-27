@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "Destructure usePlayersOnTile": {
+    "prefix": "hook_world_core_usePlayersOnTile",
+    "body": [
+      "useFetchPlayersOnTile({ mapId, mapTileX, mapTileY, playerId })",
+      "const playersOnTile = usePlayersOnTileState()"
+    ],
+    "description": "Destructuring usePlayersOnTile hook"
+  }
+}

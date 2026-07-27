@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "Destructure useOtherPlayerProfile": {
+    "prefix": "hook_players_core_useOtherPlayerProfile",
+    "body": [
+      "useFetchOtherPlayerProfile({ playerId, otherPlayerId })",
+      "const otherPlayerProfile = useOtherPlayerProfileState()"
+    ],
+    "description": "Destructuring useOtherPlayerProfile hook"
+  }
+}

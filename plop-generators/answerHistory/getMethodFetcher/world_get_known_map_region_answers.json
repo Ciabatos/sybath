@@ -114,5 +114,17 @@
   "mutationMergeOldData": true,
   "selectedGenerators": [
     "getMethodFetcher"
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/world/knownMapRegion.ts",
+    "../app/api/world/rpc/get-known-map-region/[mapId]/[playerId]/[regionType]/route.ts",
+    "../methods/hooks/world/core/useFetchKnownMapRegion.ts",
+    "../methods/server-fetchers/world/core/getKnownMapRegionServer.ts",
+    "../methods/services/world/fetchKnownMapRegionService.ts",
+    "../store/atoms/getMethodFetcher/knownMapRegionAtom.ts",
+    "../.vscode/useKnownMapRegion.code-snippets",
+    "../methods/hooks/world/core/useMutateKnownMapRegion.ts",
+    "./answerHistory/getMethodFetcher/world_get_known_map_region_answers.json",
+    "../methods/hooks/world/core/useFetchKnownMapRegion.md"
   ]
 }

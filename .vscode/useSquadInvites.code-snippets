@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "Destructure useSquadInvites": {
+    "prefix": "hook_squad_core_useSquadInvites",
+    "body": [
+      "useFetchSquadInvites({ playerId })",
+      "const squadInvites = useSquadInvitesState()"
+    ],
+    "description": "Destructuring useSquadInvites hook"
+  }
+}

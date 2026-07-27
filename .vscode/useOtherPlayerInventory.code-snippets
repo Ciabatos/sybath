@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "Destructure useOtherPlayerInventory": {
+    "prefix": "hook_inventory_core_useOtherPlayerInventory",
+    "body": [
+      "useFetchOtherPlayerInventory({ playerId, otherPlayerId })",
+      "const otherPlayerInventory = useOtherPlayerInventoryState()"
+    ],
+    "description": "Destructuring useOtherPlayerInventory hook"
+  }
+}

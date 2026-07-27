@@ -43,5 +43,17 @@
   "generateMutation": false,
   "selectedGenerators": [
     "getMethodFetcher"
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/cities/playerCity.ts",
+    "../app/api/cities/rpc/get-player-city/[playerId]/route.ts",
+    "../methods/hooks/cities/core/useFetchPlayerCity.ts",
+    "../methods/server-fetchers/cities/core/getPlayerCityServer.ts",
+    "../methods/services/cities/fetchPlayerCityService.ts",
+    "../store/atoms/getMethodFetcher/playerCityAtom.ts",
+    "../.vscode/usePlayerCity.code-snippets",
+    "../methods/hooks/cities/core/useMutatePlayerCity.ts",
+    "./answerHistory/getMethodFetcher/cities_get_player_city_answers.json",
+    "../methods/hooks/cities/core/useFetchPlayerCity.md"
   ]
 }

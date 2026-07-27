@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "Destructure useAllAbilities": {
+    "prefix": "hook_attributes_core_useAllAbilities",
+    "body": [
+      "useFetchAllAbilities({ playerId })",
+      "const allAbilities = useAllAbilitiesState()"
+    ],
+    "description": "Destructuring useAllAbilities hook"
+  }
+}

@@ -67,5 +67,20 @@
   "apiPathParams": "/api/squad/rpc/get-squad/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": false,
-  "compositeDefinitions": []
+  "compositeDefinitions": [],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/squad/squad.ts",
+    "../app/api/squad/rpc/get-squad/[playerId]/route.ts",
+    "../methods/hooks/squad/core/useFetchSquad.ts",
+    "../methods/server-fetchers/squad/core/getSquadServer.ts",
+    "../methods/services/squad/fetchSquadService.ts",
+    "../store/atoms/getMethodFetcher/squadAtom.ts",
+    "../.vscode/useSquad.code-snippets",
+    "../methods/hooks/squad/core/useMutateSquad.ts",
+    "./answerHistory/getMethodFetcher/squad_get_squad_answers.json",
+    "../methods/hooks/squad/core/useFetchSquad.md"
+  ],
+  "selectedGenerators": [
+    "getMethodFetcher"
+  ]
 }

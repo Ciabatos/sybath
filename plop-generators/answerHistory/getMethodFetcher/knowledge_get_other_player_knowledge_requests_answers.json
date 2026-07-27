@@ -102,5 +102,20 @@
   "apiPathParams": "/api/knowledge/rpc/get-other-player-knowledge-requests/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": true,
-  "compositeDefinitions": []
+  "compositeDefinitions": [],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests.ts",
+    "../app/api/knowledge/rpc/get-other-player-knowledge-requests/[playerId]/route.ts",
+    "../methods/hooks/knowledge/core/useFetchOtherPlayerKnowledgeRequests.ts",
+    "../methods/server-fetchers/knowledge/core/getOtherPlayerKnowledgeRequestsServer.ts",
+    "../methods/services/knowledge/fetchOtherPlayerKnowledgeRequestsService.ts",
+    "../store/atoms/getMethodFetcher/otherPlayerKnowledgeRequestsAtom.ts",
+    "../.vscode/useOtherPlayerKnowledgeRequests.code-snippets",
+    "../methods/hooks/knowledge/core/useMutateOtherPlayerKnowledgeRequests.ts",
+    "./answerHistory/getMethodFetcher/knowledge_get_other_player_knowledge_requests_answers.json",
+    "../methods/hooks/knowledge/core/useFetchOtherPlayerKnowledgeRequests.md"
+  ],
+  "selectedGenerators": [
+    "getMethodFetcher"
+  ]
 }

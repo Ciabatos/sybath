@@ -107,5 +107,20 @@
   "apiPath": "app/api/knowledge/rpc/get-player-known-players/[playerId]/route.ts",
   "apiPathParams": "/api/knowledge/rpc/get-player-known-players/${params.playerId}",
   "generateMutation": true,
-  "mutationMergeOldData": true
+  "mutationMergeOldData": true,
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/knowledge/playerKnownPlayers.ts",
+    "../app/api/knowledge/rpc/get-player-known-players/[playerId]/route.ts",
+    "../methods/hooks/knowledge/core/useFetchPlayerKnownPlayers.ts",
+    "../methods/server-fetchers/knowledge/core/getPlayerKnownPlayersServer.ts",
+    "../methods/services/knowledge/fetchPlayerKnownPlayersService.ts",
+    "../store/atoms/getMethodFetcher/playerKnownPlayersAtom.ts",
+    "../.vscode/usePlayerKnownPlayers.code-snippets",
+    "../methods/hooks/knowledge/core/useMutatePlayerKnownPlayers.ts",
+    "./answerHistory/getMethodFetcher/knowledge_get_player_known_players_answers.json",
+    "../methods/hooks/knowledge/core/useFetchPlayerKnownPlayers.md"
+  ],
+  "selectedGenerators": [
+    "getMethodFetcher"
+  ]
 }

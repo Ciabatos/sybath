@@ -107,5 +107,20 @@
         }
       ]
     }
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/world/knownPlayersPositions.ts",
+    "../app/api/world/rpc/get-known-players-positions/[mapId]/[playerId]/route.ts",
+    "../methods/hooks/world/core/useFetchKnownPlayersPositions.ts",
+    "../methods/server-fetchers/world/core/getKnownPlayersPositionsServer.ts",
+    "../methods/services/world/fetchKnownPlayersPositionsService.ts",
+    "../store/atoms/getMethodFetcher/knownPlayersPositionsAtom.ts",
+    "../.vscode/useKnownPlayersPositions.code-snippets",
+    "../methods/hooks/world/core/useMutateKnownPlayersPositions.ts",
+    "./answerHistory/getMethodFetcher/world_get_known_players_positions_answers.json",
+    "../methods/hooks/world/core/useFetchKnownPlayersPositions.md"
+  ],
+  "selectedGenerators": [
+    "getMethodFetcher"
   ]
 }

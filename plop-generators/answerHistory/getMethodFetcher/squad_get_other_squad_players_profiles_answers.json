@@ -94,5 +94,17 @@
   "mutationMergeOldData": true,
   "selectedGenerators": [
     "getMethodFetcher"
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/squad/otherSquadPlayersProfiles.ts",
+    "../app/api/squad/rpc/get-other-squad-players-profiles/[playerId]/[squadId]/route.ts",
+    "../methods/hooks/squad/core/useFetchOtherSquadPlayersProfiles.ts",
+    "../methods/server-fetchers/squad/core/getOtherSquadPlayersProfilesServer.ts",
+    "../methods/services/squad/fetchOtherSquadPlayersProfilesService.ts",
+    "../store/atoms/getMethodFetcher/otherSquadPlayersProfilesAtom.ts",
+    "../.vscode/useOtherSquadPlayersProfiles.code-snippets",
+    "../methods/hooks/squad/core/useMutateOtherSquadPlayersProfiles.ts",
+    "./answerHistory/getMethodFetcher/squad_get_other_squad_players_profiles_answers.json",
+    "../methods/hooks/squad/core/useFetchOtherSquadPlayersProfiles.md"
   ]
 }

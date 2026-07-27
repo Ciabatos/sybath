@@ -96,5 +96,17 @@
   "mutationMergeOldData": true,
   "selectedGenerators": [
     "getMethodFetcher"
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/inventory/playerGearInventory.ts",
+    "../app/api/inventory/rpc/get-player-gear-inventory/[playerId]/route.ts",
+    "../methods/hooks/inventory/core/useFetchPlayerGearInventory.ts",
+    "../methods/server-fetchers/inventory/core/getPlayerGearInventoryServer.ts",
+    "../methods/services/inventory/fetchPlayerGearInventoryService.ts",
+    "../store/atoms/getMethodFetcher/playerGearInventoryAtom.ts",
+    "../.vscode/usePlayerGearInventory.code-snippets",
+    "../methods/hooks/inventory/core/useMutatePlayerGearInventory.ts",
+    "./answerHistory/getMethodFetcher/inventory_get_player_gear_inventory_answers.json",
+    "../methods/hooks/inventory/core/useFetchPlayerGearInventory.md"
   ]
 }

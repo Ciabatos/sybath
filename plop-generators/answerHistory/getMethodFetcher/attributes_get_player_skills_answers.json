@@ -68,5 +68,17 @@
   "mutationMergeOldData": true,
   "selectedGenerators": [
     "getMethodFetcher"
+  ],
+  "filesCreated": [
+    "../db/postgresMainDatabase/schemas/attributes/playerSkills.ts",
+    "../app/api/attributes/rpc/get-player-skills/[playerId]/route.ts",
+    "../methods/hooks/attributes/core/useFetchPlayerSkills.ts",
+    "../methods/server-fetchers/attributes/core/getPlayerSkillsServer.ts",
+    "../methods/services/attributes/fetchPlayerSkillsService.ts",
+    "../store/atoms/getMethodFetcher/playerSkillsAtom.ts",
+    "../.vscode/usePlayerSkills.code-snippets",
+    "../methods/hooks/attributes/core/useMutatePlayerSkills.ts",
+    "./answerHistory/getMethodFetcher/attributes_get_player_skills_answers.json",
+    "../methods/hooks/attributes/core/useFetchPlayerSkills.md"
   ]
 }
