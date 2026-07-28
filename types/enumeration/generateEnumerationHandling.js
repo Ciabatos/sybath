@@ -22,6 +22,7 @@ folders.forEach((folder) => {
 "use client"
 
 export enum ${enumName} {
+  Inactive = "Inactive",
 ${entries.map((entry) => `  ${entry} = "${entry}",`).join("\n")}
 }
 `

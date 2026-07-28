@@ -17,5 +17,5 @@
   "quoteProps": "as-needed",
   "requirePragma": false,
   "trailingComma": "all",
-  "endOfLine": "crlf"
+  "endOfLine": "lf"
 }

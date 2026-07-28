@@ -25,7 +25,6 @@ export const ${panelName}: Record<
   React.LazyExoticComponent<React.ComponentType<any>> | null
 > = {
   [${enumName}.Inactive]: null,
-  [${enumName}.MovementPanel]: React.lazy(() => import("@/components/map/MovementPanel")),
 ${entries.map((e) => "  " + e).join(",\n")}
 }
 `
