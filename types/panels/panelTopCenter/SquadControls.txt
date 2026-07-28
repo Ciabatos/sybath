@@ -1,1 +1,1 @@
-[EPanelsTopCenter.SquadControls]: React.lazy(() => import("@/components/squad/SquadControls")),
+[EPanelsTopCenter.SquadControls]: React.lazy(() => import("@/components/squad/SquadControls"))

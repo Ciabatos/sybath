@@ -1,1 +1,1 @@
-[EPanelsRightCenter.AllSkills]: React.lazy(() => import("@/components/attributes/AllSkills")),
+[EPanelsRightCenter.AllSkills]: React.lazy(() => import("@/components/attributes/AllSkills"))

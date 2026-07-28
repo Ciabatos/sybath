@@ -7,9 +7,9 @@ export const panelRightCenter: Record<
   React.LazyExoticComponent<React.ComponentType<any>> | null
 > = {
   [EPanelsRightCenter.Inactive]: null,
-  [EPanelsRightCenter.AllAbilities]: React.lazy(() => import("@/components/attributes/AllAbilities")),,
-  [EPanelsRightCenter.AllSkills]: React.lazy(() => import("@/components/attributes/AllSkills")),,
-  [EPanelsRightCenter.Crafting]: React.lazy(() => import("@/components/items/Crafting")),,
-  [EPanelsRightCenter.MapTileDetail]: React.lazy(() => import("@/components/map/MapTileDetail")),,
-  [EPanelsRightCenter.OtherPlayerPanel]: React.lazy(() => import("@/components/players/OtherPlayerPanel")),
+  [EPanelsRightCenter.AllAbilities]: React.lazy(() => import("@/components/attributes/AllAbilities")),
+  [EPanelsRightCenter.AllSkills]: React.lazy(() => import("@/components/attributes/AllSkills")),
+  [EPanelsRightCenter.Crafting]: React.lazy(() => import("@/components/items/Crafting")),
+  [EPanelsRightCenter.MapTileDetail]: React.lazy(() => import("@/components/map/MapTileDetail")),
+  [EPanelsRightCenter.OtherPlayerPanel]: React.lazy(() => import("@/components/players/OtherPlayerPanel"))
 }

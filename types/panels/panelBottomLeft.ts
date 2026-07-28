@@ -7,5 +7,5 @@ export const panelBottomLeft: Record<
   React.LazyExoticComponent<React.ComponentType<any>> | null
 > = {
   [EPanelsBottomLeft.Inactive]: null,
-  [EPanelsBottomLeft.PlayersOnTile]: React.lazy(() => import("@/components/players/PlayersOnTile")),
+  [EPanelsBottomLeft.PlayersOnTile]: React.lazy(() => import("@/components/players/PlayersOnTile"))
 }

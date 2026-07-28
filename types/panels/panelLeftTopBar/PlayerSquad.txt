@@ -1,1 +1,1 @@
-[EPanelsLeftTopBar.PlayerSquad]: React.lazy(() => import("@/components/squad/PlayerSquad")),
+[EPanelsLeftTopBar.PlayerSquad]: React.lazy(() => import("@/components/squad/PlayerSquad"))

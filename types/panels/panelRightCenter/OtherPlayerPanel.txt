@@ -1,1 +1,1 @@
-[EPanelsRightCenter.OtherPlayerPanel]: React.lazy(() => import("@/components/players/OtherPlayerPanel")),
+[EPanelsRightCenter.OtherPlayerPanel]: React.lazy(() => import("@/components/players/OtherPlayerPanel"))
