@@ -7,6 +7,7 @@ import styles from "./styles/PlayerCombinedInventory.module.css"
 export function PlayerCombinedInventory() {
   return (
     <div className={styles.wrapper}>
+      <div>Trade requests</div>
       <PlayerGear />
       <PlayerContainer />
     </div>
