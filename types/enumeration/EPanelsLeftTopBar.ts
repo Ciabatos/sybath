@@ -1,8 +1,10 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY
+  
 "use client"
 
 export enum EPanelsLeftTopBar {
   Inactive = "Inactive",
-  PlayerRibbonTop = "PlayerRibbonTop",
   PlayerPanel = "PlayerPanel",
+  PlayerRibbonTop = "PlayerRibbonTop",
   PlayerSquad = "PlayerSquad",
 }

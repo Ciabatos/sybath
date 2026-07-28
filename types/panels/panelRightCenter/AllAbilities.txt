@@ -1,0 +1,1 @@
+[EPanelsRightCenter.AllAbilities]: React.lazy(() => import("@/components/attributes/AllAbilities")),

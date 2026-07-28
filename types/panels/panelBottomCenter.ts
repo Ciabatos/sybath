@@ -1,3 +1,4 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY
 import { EPanelsBottomCenter } from "@/types/enumeration/EPanelsBottomCenter"
 import React from "react"
 
