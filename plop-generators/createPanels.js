@@ -26,7 +26,9 @@ export default function createPanels(plop) {
         type: "list",
         name: "enumeration",
         message: "Select modal to render the panels",
-        choices: fs.readdirSync(MAIN_ROOT).filter((f) => fs.statSync(path.join(MAIN_ROOT, f)).isFile()),
+        choices: fs
+          .readdirSync(MAIN_ROOT)
+          .filter((f) => fs.statSync(path.join(MAIN_ROOT, f)).isFile() && f !== "generateEnumerationHandling.js"),
         validate: (answer) => {
           if (answer.length < 1) {
             return "Musisz wybrać przynajmniej jeden modal."

@@ -1,0 +1,15 @@
+{
+  "choosenPath": "map",
+  "newPanelName": "MovementPanel",
+  "enumeration": "EPanelsBottomCenter.ts",
+  "enumName": "EPanelsBottomCenter",
+  "enumSuffix": "BottomCenter",
+  "panelName": "panelBottomCenter",
+  "generatorName": "createPanels",
+  "filesCreated": [
+    "components/map/MovementPanel.tsx",
+    "components/map/styles/MovementPanel.module.css",
+    "types/panels/panelBottomCenter/MovementPanel.txt"
+  ],
+  "dateCreated": "2026-07-29T11:33:15.862Z"
+}
