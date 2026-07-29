@@ -1,0 +1,15 @@
+{
+  "modalName": "ModalBottomCenter",
+  "modalCamelName": "modalBottomCenter",
+  "modalPascalName": "ModalBottomCenter",
+  "positionPascalName": "BottomCenter",
+  "generatorName": "createModals",
+  "filesCreated": [
+    "store/atoms/createModals/modalBottomCenterAtom.ts",
+    "methods/hooks/modals/useModalBottomCenter.ts",
+    "components/modals/ModalBottomCenter.tsx",
+    ".vscode/ModalBottomCenter.code-snippets",
+    "components/modals/styles/ModalBottomCenter.module.css"
+  ],
+  "dateCreated": "2026-07-29T11:20:24.710Z"
+}

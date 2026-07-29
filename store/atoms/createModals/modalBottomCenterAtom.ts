@@ -1,3 +1,5 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - atomCreateModal.hbs
+
 import { EPanelsBottomCenter } from "@/types/enumeration/EPanelsBottomCenter"
 import { atom } from "jotai"
 
