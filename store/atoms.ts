@@ -11,7 +11,7 @@ export { modalBottomCenterAtom } from "@/store/atoms/createModals/modalBottomCen
 export { modalBottomLeftAtom } from "@/store/atoms/createModals/modalBottomLeftAtom"
 export { modalBottomRightAtom } from "@/store/atoms/createModals/modalBottomRightAtom"
 export { modalLeftCenterAtom } from "@/store/atoms/createModals/modalLeftCenterAtom"
-export { modalLeftTopBarAtom } from "@/store/atoms/createModals/modalLeftTopBar"
+export { modalLeftTopBarAtom } from "@/store/atoms/createModals/modalLeftTopBarAtom"
 export { modalRightCenterAtom } from "@/store/atoms/createModals/modalRightCenterAtom"
 export { modalTopCenterAtom } from "@/store/atoms/createModals/modalTopCenterAtom"
 export { modalTopCenterBarAtom } from "@/store/atoms/createModals/modalTopCenterBarAtom"
