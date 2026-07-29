@@ -1,0 +1,15 @@
+{
+  "choosenPath": "attributes",
+  "newPanelName": "AllSkills",
+  "enumeration": "EPanelsRightCenter.ts",
+  "enumName": "EPanelsRightCenter",
+  "enumSuffix": "RightCenter",
+  "panelName": "panelRightCenter",
+  "generatorName": "createPanels",
+  "filesCreated": [
+    "components/attributes/AllSkills.tsx",
+    "components/attributes/styles/AllSkills.module.css",
+    "types/panels/panelRightCenter/AllSkills.txt"
+  ],
+  "dateCreated": "2026-07-29T11:41:19.982Z"
+}

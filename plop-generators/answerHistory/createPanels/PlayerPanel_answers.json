@@ -1,0 +1,15 @@
+{
+  "choosenPath": "players",
+  "newPanelName": "PlayerPanel",
+  "enumeration": "EPanelsLeftTopBar.ts",
+  "enumName": "EPanelsLeftTopBar",
+  "enumSuffix": "LeftTopBar",
+  "panelName": "panelLeftTopBar",
+  "generatorName": "createPanels",
+  "filesCreated": [
+    "components/players/PlayerPanel.tsx",
+    "components/players/styles/PlayerPanel.module.css",
+    "types/panels/panelLeftTopBar/PlayerPanel.txt"
+  ],
+  "dateCreated": "2026-07-29T11:39:56.914Z"
+}

@@ -1,0 +1,15 @@
+{
+  "choosenPath": "knowledge",
+  "newPanelName": "OtherPlayerKnowledgeRequests",
+  "enumeration": "EPanelsTopCenter.ts",
+  "enumName": "EPanelsTopCenter",
+  "enumSuffix": "TopCenter",
+  "panelName": "panelTopCenter",
+  "generatorName": "createPanels",
+  "filesCreated": [
+    "components/knowledge/OtherPlayerKnowledgeRequests.tsx",
+    "components/knowledge/styles/OtherPlayerKnowledgeRequests.module.css",
+    "types/panels/panelTopCenter/OtherPlayerKnowledgeRequests.txt"
+  ],
+  "dateCreated": "2026-07-29T11:42:55.745Z"
+}

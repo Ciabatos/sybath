@@ -1,0 +1,15 @@
+{
+  "choosenPath": "players",
+  "newPanelName": "OtherPlayerPanel",
+  "enumeration": "EPanelsRightCenter.ts",
+  "enumName": "EPanelsRightCenter",
+  "enumSuffix": "RightCenter",
+  "panelName": "panelRightCenter",
+  "generatorName": "createPanels",
+  "filesCreated": [
+    "components/players/OtherPlayerPanel.tsx",
+    "components/players/styles/OtherPlayerPanel.module.css",
+    "types/panels/panelRightCenter/OtherPlayerPanel.txt"
+  ],
+  "dateCreated": "2026-07-29T11:42:28.272Z"
+}

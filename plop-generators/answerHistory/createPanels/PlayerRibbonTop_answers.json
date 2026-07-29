@@ -1,0 +1,15 @@
+{
+  "choosenPath": "players",
+  "newPanelName": "PlayerRibbonTop",
+  "enumeration": "EPanelsLeftTopBar.ts",
+  "enumName": "EPanelsLeftTopBar",
+  "enumSuffix": "LeftTopBar",
+  "panelName": "panelLeftTopBar",
+  "generatorName": "createPanels",
+  "filesCreated": [
+    "components/players/PlayerRibbonTop.tsx",
+    "components/players/styles/PlayerRibbonTop.module.css",
+    "types/panels/panelLeftTopBar/PlayerRibbonTop.txt"
+  ],
+  "dateCreated": "2026-07-29T11:40:16.720Z"
+}

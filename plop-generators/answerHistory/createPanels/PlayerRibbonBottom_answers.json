@@ -1,0 +1,15 @@
+{
+  "choosenPath": "players",
+  "newPanelName": "PlayerRibbonBottom",
+  "enumeration": "EPanelsBottomRight.ts",
+  "enumName": "EPanelsBottomRight",
+  "enumSuffix": "BottomRight",
+  "panelName": "panelBottomRight",
+  "generatorName": "createPanels",
+  "filesCreated": [
+    "components/players/PlayerRibbonBottom.tsx",
+    "components/players/styles/PlayerRibbonBottom.module.css",
+    "types/panels/panelBottomRight/PlayerRibbonBottom.txt"
+  ],
+  "dateCreated": "2026-07-29T11:39:30.910Z"
+}

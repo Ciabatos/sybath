@@ -1,0 +1,15 @@
+{
+  "choosenPath": "squad",
+  "newPanelName": "SquadControls",
+  "enumeration": "EPanelsTopCenter.ts",
+  "enumName": "EPanelsTopCenter",
+  "enumSuffix": "TopCenter",
+  "panelName": "panelTopCenter",
+  "generatorName": "createPanels",
+  "filesCreated": [
+    "components/squad/SquadControls.tsx",
+    "components/squad/styles/SquadControls.module.css",
+    "types/panels/panelTopCenter/SquadControls.txt"
+  ],
+  "dateCreated": "2026-07-29T11:43:23.922Z"
+}

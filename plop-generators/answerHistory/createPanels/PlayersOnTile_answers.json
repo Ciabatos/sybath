@@ -1,0 +1,15 @@
+{
+  "choosenPath": "players",
+  "newPanelName": "PlayersOnTile",
+  "enumeration": "EPanelsBottomLeft.ts",
+  "enumName": "EPanelsBottomLeft",
+  "enumSuffix": "BottomLeft",
+  "panelName": "panelBottomLeft",
+  "generatorName": "createPanels",
+  "filesCreated": [
+    "components/players/PlayersOnTile.tsx",
+    "components/players/styles/PlayersOnTile.module.css",
+    "types/panels/panelBottomLeft/PlayersOnTile.txt"
+  ],
+  "dateCreated": "2026-07-29T11:38:09.944Z"
+}

@@ -1,0 +1,15 @@
+{
+  "choosenPath": "squad",
+  "newPanelName": "PlayerSquad",
+  "enumeration": "EPanelsLeftTopBar.ts",
+  "enumName": "EPanelsLeftTopBar",
+  "enumSuffix": "LeftTopBar",
+  "panelName": "panelLeftTopBar",
+  "generatorName": "createPanels",
+  "filesCreated": [
+    "components/squad/PlayerSquad.tsx",
+    "components/squad/styles/PlayerSquad.module.css",
+    "types/panels/panelLeftTopBar/PlayerSquad.txt"
+  ],
+  "dateCreated": "2026-07-29T11:40:39.787Z"
+}

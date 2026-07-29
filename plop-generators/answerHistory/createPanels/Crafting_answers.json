@@ -1,0 +1,15 @@
+{
+  "choosenPath": "items",
+  "newPanelName": "Crafting",
+  "enumeration": "EPanelsRightCenter.ts",
+  "enumName": "EPanelsRightCenter",
+  "enumSuffix": "RightCenter",
+  "panelName": "panelRightCenter",
+  "generatorName": "createPanels",
+  "filesCreated": [
+    "components/items/Crafting.tsx",
+    "components/items/styles/Crafting.module.css",
+    "types/panels/panelRightCenter/Crafting.txt"
+  ],
+  "dateCreated": "2026-07-29T11:41:39.507Z"
+}
