@@ -28,7 +28,6 @@ export default function createModals(plop) {
         `store/atoms/createModals/${data.modalCamelName}Atom.ts`,
         `methods/hooks/modals/use${data.modalPascalName}.ts`,
         `components/modals/${data.modalPascalName}.tsx`,
-        `types/panels/${data.positionPascalName}/Inactive.txt`,
         `.vscode/${data.modalPascalName}.code-snippets`,
         `components/modals/styles/${data.modalPascalName}.module.css`,
       ]
@@ -52,12 +51,6 @@ export default function createModals(plop) {
           type: "add",
           path: "../components/modals/{{modalPascalName}}.tsx",
           templateFile: "plop-templates/createModal/modalCreateModal.hbs",
-          force: true,
-        },
-        {
-          type: "add",
-          path: `../types/panels/panel{{positionPascalName}}/Inactive.txt`,
-          templateFile: "plop-templates/createModal/panelCreateModal.hbs",
           force: true,
         },
         {
