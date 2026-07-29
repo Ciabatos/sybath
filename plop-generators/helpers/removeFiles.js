@@ -6,6 +6,11 @@ export async function removeFiles(files, rootDir = "plop-generators") {
   const normalizedFiles = files.flat()
 
   for (const file of normalizedFiles) {
+    if (file.includes("answerHistory")) {
+      console.log(`Pominięto historię: ${file}`)
+      continue
+    }
+
     const filePath = path.resolve(rootDir, file)
 
     if (!fs.existsSync(filePath)) {
