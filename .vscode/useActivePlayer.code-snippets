@@ -1,0 +1,10 @@
+{ 
+	"Destructure useActivePlayer": {
+    "prefix": "hook_player_profile",
+    "body": [
+      "useFetchActivePlayer()",
+      "const activePlayer = useActivePlayerState()"
+    ],
+    "description": "Destructuring useActivePlayer hook"
+  }
+}

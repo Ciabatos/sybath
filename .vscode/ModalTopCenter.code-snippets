@@ -1,0 +1,14 @@
+  // GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "ModalTopCenter": {
+    "prefix": "hook_ModalTopCenter",
+    "body": [
+      "const { openModalTopCenter } = useModalTopCenter()",
+      "// const { resetModalTopCenter } = useModalTopCenter()",
+      "openModalTopCenter(EPanelsTopCenter.${1})",
+      "// resetModalTopCenter()"
+    ],
+    "description": "ModalTopCenter Open",
+  }
+}

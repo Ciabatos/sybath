@@ -1,0 +1,14 @@
+  // GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "ModalLeftTopBar": {
+    "prefix": "hook_ModalLeftTopBar",
+    "body": [
+      "const { openModalLeftTopBar } = useModalLeftTopBar()",
+      "// const { resetModalLeftTopBar } = useModalLeftTopBar()",
+      "openModalLeftTopBar(EPanelsLeftTopBar.${1})",
+      "// resetModalLeftTopBar()"
+    ],
+    "description": "ModalLeftTopBar Open",
+  }
+}

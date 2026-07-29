@@ -1,0 +1,14 @@
+  // GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "ModalBottomRight": {
+    "prefix": "hook_ModalBottomRight",
+    "body": [
+      "const { openModalBottomRight } = useModalBottomRight()",
+      "// const { resetModalBottomRight } = useModalBottomRight()",
+      "openModalBottomRight(EPanelsBottomRight.${1})",
+      "// resetModalBottomRight()"
+    ],
+    "description": "ModalBottomRight Open",
+  }
+}

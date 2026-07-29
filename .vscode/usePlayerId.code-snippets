@@ -1,0 +1,9 @@
+{
+  "Destructure usePlayerId": {
+    "prefix": "hook_player",
+    "body": [
+      "const { playerId } = usePlayerId()"
+    ],
+    "description": "Destructuring usePlayerId hook"
+  }
+}

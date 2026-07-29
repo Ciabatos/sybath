@@ -1,0 +1,14 @@
+  // GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "ModalLeftCenter": {
+    "prefix": "hook_ModalLeftCenter",
+    "body": [
+      "const { openModalLeftCenter } = useModalLeftCenter()",
+      "// const { resetModalLeftCenter } = useModalLeftCenter()",
+      "openModalLeftCenter(EPanelsLeftCenter.${1})",
+      "// resetModalLeftCenter()"
+    ],
+    "description": "ModalLeftCenter Open",
+  }
+}
