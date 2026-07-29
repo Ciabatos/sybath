@@ -1,6 +1,6 @@
-  // GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetCreateModal.hbs
 
-{ 
+{
   "ModalLeftTopBar": {
     "prefix": "hook_ModalLeftTopBar",
     "body": [

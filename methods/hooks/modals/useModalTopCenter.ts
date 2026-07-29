@@ -1,3 +1,4 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - hookCreateModal.hbs
 "use client"
 
 import { modalTopCenterAtom } from "@/store/atoms"

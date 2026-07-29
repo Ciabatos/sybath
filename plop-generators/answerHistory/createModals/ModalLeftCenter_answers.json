@@ -1,0 +1,15 @@
+{
+  "modalName": "ModalLeftCenter",
+  "modalCamelName": "modalLeftCenter",
+  "modalPascalName": "ModalLeftCenter",
+  "positionPascalName": "LeftCenter",
+  "generatorName": "createModals",
+  "filesCreated": [
+    "store/atoms/createModals/modalLeftCenterAtom.ts",
+    "methods/hooks/modals/useModalLeftCenter.ts",
+    "components/modals/ModalLeftCenter.tsx",
+    ".vscode/ModalLeftCenter.code-snippets",
+    "components/modals/styles/ModalLeftCenter.module.css"
+  ],
+  "dateCreated": "2026-07-29T11:21:33.603Z"
+}

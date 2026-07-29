@@ -1,3 +1,9 @@
+/* GENERATED CODE - DO NOT EDIT MANUALLY - snippetCreateModal.hbs */
+
+.modalOverlay {
+  z-index: 99;
+}
+
 .modalContainer {
   position: fixed;
   top: 1rem;

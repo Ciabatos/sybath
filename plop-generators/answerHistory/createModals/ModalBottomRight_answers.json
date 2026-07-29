@@ -1,0 +1,15 @@
+{
+  "modalName": "ModalBottomRight",
+  "modalCamelName": "modalBottomRight",
+  "modalPascalName": "ModalBottomRight",
+  "positionPascalName": "BottomRight",
+  "generatorName": "createModals",
+  "filesCreated": [
+    "store/atoms/createModals/modalBottomRightAtom.ts",
+    "methods/hooks/modals/useModalBottomRight.ts",
+    "components/modals/ModalBottomRight.tsx",
+    ".vscode/ModalBottomRight.code-snippets",
+    "components/modals/styles/ModalBottomRight.module.css"
+  ],
+  "dateCreated": "2026-07-29T11:21:21.475Z"
+}

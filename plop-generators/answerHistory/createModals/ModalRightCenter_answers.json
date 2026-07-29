@@ -1,0 +1,15 @@
+{
+  "modalName": "ModalRightCenter",
+  "modalCamelName": "modalRightCenter",
+  "modalPascalName": "ModalRightCenter",
+  "positionPascalName": "RightCenter",
+  "generatorName": "createModals",
+  "filesCreated": [
+    "store/atoms/createModals/modalRightCenterAtom.ts",
+    "methods/hooks/modals/useModalRightCenter.ts",
+    "components/modals/ModalRightCenter.tsx",
+    ".vscode/ModalRightCenter.code-snippets",
+    "components/modals/styles/ModalRightCenter.module.css"
+  ],
+  "dateCreated": "2026-07-29T11:21:57.671Z"
+}

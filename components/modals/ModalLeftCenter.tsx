@@ -1,3 +1,4 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - modalCreateModal.hbs
 "use client"
 
 import styles from "@/components/modals/styles/ModalLeftCenter.module.css"
@@ -11,7 +12,7 @@ export default function ModalLeftCenter() {
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContainer}>
-        <ModalLeftCenter closePanel={resetModalLeftCenter} />
+        <ModalLeftCenter closePanel={resetModalLeftCenter } />
       </div>
     </div>
   )

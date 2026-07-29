@@ -1,0 +1,15 @@
+{
+  "modalName": "ModalBottomLeft",
+  "modalCamelName": "modalBottomLeft",
+  "modalPascalName": "ModalBottomLeft",
+  "positionPascalName": "BottomLeft",
+  "generatorName": "createModals",
+  "filesCreated": [
+    "store/atoms/createModals/modalBottomLeftAtom.ts",
+    "methods/hooks/modals/useModalBottomLeft.ts",
+    "components/modals/ModalBottomLeft.tsx",
+    ".vscode/ModalBottomLeft.code-snippets",
+    "components/modals/styles/ModalBottomLeft.module.css"
+  ],
+  "dateCreated": "2026-07-29T11:21:07.438Z"
+}

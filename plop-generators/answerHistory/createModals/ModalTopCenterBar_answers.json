@@ -1,0 +1,15 @@
+{
+  "modalName": "ModalTopCenterBar",
+  "modalCamelName": "modalTopCenterBar",
+  "modalPascalName": "ModalTopCenterBar",
+  "positionPascalName": "TopCenterBar",
+  "generatorName": "createModals",
+  "filesCreated": [
+    "store/atoms/createModals/modalTopCenterBarAtom.ts",
+    "methods/hooks/modals/useModalTopCenterBar.ts",
+    "components/modals/ModalTopCenterBar.tsx",
+    ".vscode/ModalTopCenterBar.code-snippets",
+    "components/modals/styles/ModalTopCenterBar.module.css"
+  ],
+  "dateCreated": "2026-07-29T11:22:16.637Z"
+}

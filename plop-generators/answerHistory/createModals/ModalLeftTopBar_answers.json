@@ -1,0 +1,15 @@
+{
+  "modalName": "ModalLeftTopBar",
+  "modalCamelName": "modalLeftTopBar",
+  "modalPascalName": "ModalLeftTopBar",
+  "positionPascalName": "LeftTopBar",
+  "generatorName": "createModals",
+  "filesCreated": [
+    "store/atoms/createModals/modalLeftTopBarAtom.ts",
+    "methods/hooks/modals/useModalLeftTopBar.ts",
+    "components/modals/ModalLeftTopBar.tsx",
+    ".vscode/ModalLeftTopBar.code-snippets",
+    "components/modals/styles/ModalLeftTopBar.module.css"
+  ],
+  "dateCreated": "2026-07-29T11:21:45.780Z"
+}

@@ -1,3 +1,4 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - modalCreateModal.hbs
 "use client"
 
 import styles from "@/components/modals/styles/ModalBottomRight.module.css"
@@ -11,7 +12,7 @@ export default function ModalBottomRight() {
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContainer}>
-        <ModalBottomRight closePanel={resetModalBottomRight} />
+        <ModalBottomRight closePanel={resetModalBottomRight } />
       </div>
     </div>
   )
