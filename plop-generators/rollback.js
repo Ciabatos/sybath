@@ -23,7 +23,19 @@ export default function rollback(plop) {
         choices: (answers) => {
           const generatorPath = path.join(HISTORY_ROOT, answers.selectedGenerator)
 
-          return fs.readdirSync(generatorPath).filter((f) => fs.statSync(path.join(generatorPath, f)).isFile())
+          return fs
+            .readdirSync(generatorPath)
+            .filter((f) => fs.statSync(path.join(generatorPath, f)).isFile())
+            .map((file) => {
+              const filePath = path.join(generatorPath, file)
+
+              const json = JSON.parse(fs.readFileSync(filePath, "utf8"))
+
+              return {
+                name: file,
+                value: json.filesCreated,
+              }
+            })
         },
         validate: (answer) => {
           if (answer.length < 1) {

@@ -1,11 +1,12 @@
 import fs from "fs"
 import path from "path"
 
-export async function removeFiles(files) {
+export async function removeFiles(files, rootDir = "plop-generators") {
   const removedFiles = []
+  const normalizedFiles = files.flat()
 
-  for (const file of files) {
-    const filePath = path.resolve(file)
+  for (const file of normalizedFiles) {
+    const filePath = path.resolve(rootDir, file)
 
     if (!fs.existsSync(filePath)) {
       continue
@@ -15,7 +16,7 @@ export async function removeFiles(files) {
       recursive: true,
       force: true,
     })
-
+    console.log(file)
     removedFiles.push(file)
   }
 
