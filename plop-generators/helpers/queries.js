@@ -450,3 +450,16 @@ export async function createMethodGetRecordsByKey(schema, table, indexParamsColu
     await client.end()
   }
 }
+
+export async function dropFunction(functionName) {
+  const client = createClient()
+  await client.connect()
+  try {
+    const sql = `
+     DROP ${functionName}
+    `
+    await client.query(sql)
+  } finally {
+    await client.end()
+  }
+}

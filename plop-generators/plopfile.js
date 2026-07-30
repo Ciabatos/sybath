@@ -6,6 +6,7 @@ import getMethodAction from "./getMethodAction.js"
 import getMethodFetcher from "./getMethodFetcher.js"
 import getTable from "./getTable.js"
 import { formatWithPrettier } from "./helpers/prettier.js"
+import { dropFunction } from "./helpers/queries.js"
 import { removeFiles } from "./helpers/removeFiles.js"
 import replayHistory from "./replayHistory.js"
 import rollback from "./rollback.js"
@@ -37,7 +38,9 @@ async function configurePlop(plop) {
 
   plop.setActionType("removeFiles", async function (answers) {
     try {
-      return await removeFiles(answers.selectedFiles)
+      const removedFiles = await removeFiles(answers.selectedFiles)
+      const removedMethods = await dropFunction(answers.sqlMethodCreated)
+      return removedFiles + " " + removedMethods
     } catch (err) {
       console.error("Remove files failed:", err)
       throw err
