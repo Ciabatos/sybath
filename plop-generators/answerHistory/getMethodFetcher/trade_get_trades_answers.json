@@ -1,0 +1,97 @@
+{
+  "promptAnswers": {
+    "schema": "trade",
+    "method": "get_trades",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "tradeId"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "trade",
+  "method": "get_trades",
+  "methodCamelName": "trades",
+  "methodPascalName": "Trades",
+  "methodKebabName": "get-trades",
+  "methodName": "getTrades",
+  "methodTypeName": "TTrades",
+  "methodParamsTypeName": "TTradesParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "trade_id",
+      "camelName": "tradeId",
+      "pascalName": "TradeId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "status",
+      "camelName": "status",
+      "pascalName": "Status",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "created_at",
+      "camelName": "createdAt",
+      "pascalName": "CreatedAt",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "updated_at",
+      "camelName": "updatedAt",
+      "pascalName": "UpdatedAt",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "expires_at",
+      "camelName": "expiresAt",
+      "pascalName": "ExpiresAt",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"tradeId\"]",
+  "indexParamsColumns": "playerId",
+  "indexTypeMethodName": "TradeId",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TTradesRecordByTradeId",
+  "indexColumns": [
+    {
+      "name": "trade_id",
+      "camelName": "tradeId",
+      "pascalName": "TradeId",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1",
+  "apiPath": "app/api/trade/rpc/get-trades/[playerId]/route.ts",
+  "apiPathParams": "/api/trade/rpc/get-trades/${params.playerId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true,
+  "compositeDefinitions": [],
+  "filesCreated": [
+    "db/postgresMainDatabase/schemas/trade/trades.ts",
+    "app/api/trade/rpc/get-trades/[playerId]/route.ts",
+    "methods/hooks/trade/core/useFetchTrades.ts",
+    "methods/server-fetchers/trade/core/getTradesServer.ts",
+    "methods/services/trade/fetchTradesService.ts",
+    "store/atoms/getMethodFetcher/tradesAtom.ts",
+    ".vscode/useTrades.code-snippets",
+    "methods/hooks/trade/core/useMutateTrades.ts",
+    "methods/hooks/trade/core/useFetchTrades.md"
+  ],
+  "generatorName": "getMethodFetcher"
+}

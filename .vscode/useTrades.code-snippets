@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "Destructure useTrades": {
+    "prefix": "hook_trade_core_useTrades",
+    "body": [
+      "useFetchTrades({ playerId })",
+      "const trades = useTradesState()"
+    ],
+    "description": "Destructuring useTrades hook"
+  }
+}
