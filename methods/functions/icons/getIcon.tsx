@@ -56,6 +56,7 @@ import {
   GiSteeltoeBoots,
   GiStoneAxe,
   GiStoneBlock,
+  GiTrade,
   GiWoodPile,
 } from "react-icons/gi"
 import styles from "./icons.module.css"
@@ -128,6 +129,7 @@ const iconMap: Record<string, JSX.Element> = {
   GiFootsteps: <GiFootsteps className={styles.brown} />,
   GiStoneAxe: <GiStoneAxe className={styles.silver} />,
   GiWoodPile: <GiWoodPile className={styles.brown} />,
+  Trade: <GiTrade className={styles.brown} />,
   default: <GiCardboardBoxClosed className={styles.brown} />,
 }
 

@@ -4,7 +4,7 @@
     "method": "get_trades",
     "usePrevious": false,
     "selectedColumnsIndex": [
-      "tradeId"
+      "id"
     ],
     "generateMutation": true,
     "mutationMergeOldData": true
@@ -27,9 +27,9 @@
   ],
   "methodColumns": [
     {
-      "name": "trade_id",
-      "camelName": "tradeId",
-      "pascalName": "TradeId",
+      "name": "id",
+      "camelName": "id",
+      "pascalName": "Id",
       "tsType": "number",
       "optional": ""
     },
@@ -62,16 +62,16 @@
       "optional": ""
     }
   ],
-  "indexMethodParams": "[\"tradeId\"]",
+  "indexMethodParams": "[\"id\"]",
   "indexParamsColumns": "playerId",
-  "indexTypeMethodName": "TradeId",
+  "indexTypeMethodName": "Id",
   "indexMethodName": "arrayToObjectKey",
-  "indexTypeName": "TTradesRecordByTradeId",
+  "indexTypeName": "TTradesRecordById",
   "indexColumns": [
     {
-      "name": "trade_id",
-      "camelName": "tradeId",
-      "pascalName": "TradeId",
+      "name": "id",
+      "camelName": "id",
+      "pascalName": "Id",
       "tsType": "number",
       "optional": ""
     }

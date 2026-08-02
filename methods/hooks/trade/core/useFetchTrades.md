@@ -13,7 +13,7 @@ description: |
 
 # function useFetchTrades( params: TTradesParams)
 
-# Jotai atom name: const tradesAtom = atom<TTradesRecordByTradeId>({})
+# Jotai atom name: const tradesAtom = atom<TTradesRecordById>({})
 
 ### Data Flow
 
@@ -33,7 +33,7 @@ const typeParamsSchema = z.object({
 
 type TResult = {
   raw: TTrades[]
-  byKey: TTradesRecordByTradeId
+  byKey: TTradesRecordById
   apiPath: string
   atomName: string
 }
@@ -48,14 +48,14 @@ export type TTradesParams = {
 
 
 export type TTrades = {
-  tradeId: number
+  id: number
   status: number
   createdAt: string
   updatedAt: string
   expiresAt: string
 }
 
-export type TTradesRecordByTradeId = Record<string, TTrades>
+export type TTradesRecordById = Record<string, TTrades>
 
 Hook for mutate data using SWR
 # function path :`methods/hooks/trade/core/useMutateTrades.ts`

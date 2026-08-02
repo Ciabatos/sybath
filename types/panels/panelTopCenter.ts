@@ -8,5 +8,6 @@ export const panelTopCenter: Record<
 > = {
   [EPanelsTopCenter.Inactive]: null,
   [EPanelsTopCenter.OtherPlayerKnowledgeRequests]: React.lazy(() => import("@/components/knowledge/OtherPlayerKnowledgeRequests")),
-  [EPanelsTopCenter.SquadControls]: React.lazy(() => import("@/components/squad/SquadControls"))
+  [EPanelsTopCenter.SquadControls]: React.lazy(() => import("@/components/squad/SquadControls")),
+  [EPanelsTopCenter.TradeList]: React.lazy(() => import("@/components/trade/TradeList"))
 }

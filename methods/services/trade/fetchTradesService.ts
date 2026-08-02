@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type { TTrades, TTradesRecordByTradeId, TTradesParams } from "@/db/postgresMainDatabase/schemas/trade/trades"
+import type { TTrades, TTradesRecordById, TTradesParams } from "@/db/postgresMainDatabase/schemas/trade/trades"
 import { getTrades } from "@/db/postgresMainDatabase/schemas/trade/trades"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -8,7 +8,7 @@ import crypto from "crypto"
 
 type TCacheRecord = {
   raw: TTrades[]
-  byKey: TTradesRecordByTradeId
+  byKey: TTradesRecordById
   etag: string
 }
 
@@ -60,7 +60,7 @@ export async function fetchTradesService(
     }
   }
 
-  const byKey = arrayToObjectKey(["tradeId"], raw) as TTradesRecordByTradeId
+  const byKey = arrayToObjectKey(["id"], raw) as TTradesRecordById
 
   const record: TCacheRecord = {
     raw,

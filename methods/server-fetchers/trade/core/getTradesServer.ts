@@ -2,12 +2,12 @@
 "use server"
 
 import type { TTradesParams } from "@/db/postgresMainDatabase/schemas/trade/trades"
-import type { TTradesRecordByTradeId, TTrades } from "@/db/postgresMainDatabase/schemas/trade/trades"
+import type { TTradesRecordById, TTrades } from "@/db/postgresMainDatabase/schemas/trade/trades"
 import { fetchTradesService } from "@/methods/services/trade/fetchTradesService"
 
 type TResult = {
   raw: TTrades[]
-  byKey: TTradesRecordByTradeId
+  byKey: TTradesRecordById
   apiPath: string
   atomName: string
 }

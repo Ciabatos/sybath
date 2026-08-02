@@ -3,7 +3,7 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import { TTradesRecordByTradeId, TTradesParams, TTrades } from "@/db/postgresMainDatabase/schemas/trade/trades"
+import { TTradesRecordById, TTradesParams, TTrades } from "@/db/postgresMainDatabase/schemas/trade/trades"
 import { tradesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -22,7 +22,7 @@ export function useMutateTrades(params: TTradesParams) {
     //MANUAL CODE - START
 
     const defaultValues = {
-      tradeId: ``,
+      id: ``,
       status: ``,
       createdAt: ``,
       updatedAt: ``,
@@ -36,9 +36,9 @@ export function useMutateTrades(params: TTradesParams) {
       ...val,
     }))
 
-    const newObj = arrayToObjectKey(["tradeId"], dataWithDefaults) as TTradesRecordByTradeId
+    const newObj = arrayToObjectKey(["id"], dataWithDefaults) as TTradesRecordById
 
-    const optimisticDataMergeWithOldData: TTradesRecordByTradeId = {
+    const optimisticDataMergeWithOldData: TTradesRecordById = {
       ...trades,
       ...newObj,
     }

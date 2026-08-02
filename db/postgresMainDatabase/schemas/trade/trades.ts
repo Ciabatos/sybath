@@ -9,14 +9,14 @@ export type TTradesParams = {
 }
 
 export type TTrades = {
-  tradeId: number
+  id: number
   status: number
   createdAt: string
   updatedAt: string
   expiresAt: string
 }
 
-export type TTradesRecordByTradeId = Record<string, TTrades>
+export type TTradesRecordById = Record<string, TTrades>
 
 export async function getTrades(params: TTradesParams) {
   try {
