@@ -115,9 +115,25 @@ $function$
 COMMENT ON FUNCTION trade.get_trade_inventory(int4, int4) IS 'get_api';
 
 
+CREATE OR REPLACE FUNCTION trade.get_trades(p_player_id integer)
+ RETURNS TABLE(trade_id integer, status integer, created_at timestamp without time zone, updated_at timestamp without time zone, expires_at timestamp without time zone)
+ LANGUAGE plpgsql
+AS $function$
+BEGIN
 
+    RETURN QUERY
+    SELECT t.id, t.status, t.created_at, t.updated_at, t.expires_at
+    FROM trade.trades t
+    JOIN trade.trade_participants tp ON tp.trade_id = t.id
+    WHERE tp.player_id = p_player_id;
+
+END;
+$function$
+;
+
+COMMENT ON FUNCTION trade.get_trades(int4) IS 'get_api';
 
 Do ekwipunku dodac wybor (postaci, budynku) ktorego widok ekwipunku jest get_dostepne_entity_inventories_on_tile - lista graczy/budynkow z ekwipunkiem na tym tile gdzie jest dokonywany trade
 po kliknieciu otwieraja sie wszystkie inventory jakie gracz ma - na to otwiera sie dany inventory
-Miejsce gdzie transportowac itemy ?
+Miejsce gdzie transportowac itemy ? - ikona - unload at
 moze jak jest z innych tiles to automatyczna propozycja dla logistic hub do transportu i akcje transportu jako praca na rynku lub wlasny transport ? jezeli ten sam tile to nie potrzeba
