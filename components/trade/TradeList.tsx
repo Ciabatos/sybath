@@ -1,6 +1,6 @@
 // GENERATED CODE - DO EDIT MANUALLY - createPanels.hbs
 "use client"
-import Trade from "@/components/trade/Trade"
+import TradeListElement from "@/components/trade/TradeListElement"
 import { Button } from "@/components/ui/button"
 import getIcon from "@/methods/functions/icons/getIcon"
 import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
@@ -30,7 +30,7 @@ export default function TradeList() {
         <div>
           {Object.values(trades).map((trade) => (
             <div key={trade.id}>
-              <Trade
+              <TradeListElement
                 icon={getIcon("Trade")}
                 status={trade.status}
                 createdAt={trade.createdAt}

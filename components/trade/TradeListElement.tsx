@@ -9,12 +9,10 @@ interface TTradeProps {
   expiresAt: string
 }
 
-export default function Trade({ icon, status, createdAt, updatedAt, expiresAt }: TTradeProps) {
-  const hasMax = maxValue !== undefined && value !== undefined
-  const percentage = hasMax ? (value / maxValue) * 100 : 0
-
+export default function TradeElementList({ icon, status, createdAt, updatedAt, expiresAt }: TTradeProps) {
+-- uzyc plop nestes list !!!!
   return (
-    <div className={`${styles.listItem} ${value > 0 && canCraft ? "" : styles.listItemDisabled}`}>
+    <div className={styles.listItem}>
       <div className={styles.listItemIcon}>
         <span className={styles.listItemIconEmoji}>{icon}</span>
       </div>
