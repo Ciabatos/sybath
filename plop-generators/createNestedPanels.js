@@ -6,7 +6,7 @@ const COMPONENTS_ROOT = path.resolve("components")
 export default function createNestedPanels(plop) {
   const generatorName = "createNestedPanels"
   plop.setGenerator(generatorName, {
-    description: "Create new nested panels",
+    description: "Create new nested panels who can be used in Main Panel",
     prompts: [
       {
         type: "list",

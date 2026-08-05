@@ -6,7 +6,7 @@ const COMPONENTS_ROOT = path.resolve("components")
 export default function createListPanels(plop) {
   const generatorName = "createListPanels"
   plop.setGenerator(generatorName, {
-    description: "Create new list panels",
+    description: "Create new list with are used in panels",
     prompts: [
       {
         type: "list",
