@@ -48,8 +48,8 @@ async function configurePlop(plop) {
   })
 
   createPanels(plop)
-  createNestedPanels(plop)
   createListPanels(plop)
+  createNestedPanels(plop)
 
   createModals(plop)
 
