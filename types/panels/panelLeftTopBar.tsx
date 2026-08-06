@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY
-import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
+import { EPanelsLeftTopBar } from "../enumeration/EPanelsLeftTopBar"
 import dynamic from "next/dynamic"
 import React from "react"
 

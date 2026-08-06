@@ -32,6 +32,7 @@ export default function TradeList() {
             <div key={trade.id}>
               <TradeListElement
                 icon={getIcon("Trade")}
+                id={trade.id}
                 status={trade.status}
                 createdAt={trade.createdAt}
                 updatedAt={trade.updatedAt}

@@ -1,16 +1,17 @@
 "use client"
-import styles from "./styles/Recipe.module.css"
+import styles from "./styles/TradeListElement.module.css"
 
 interface TTradeProps {
   icon: React.ReactNode
+  id: number
   status: number
   createdAt: string
   updatedAt: string
   expiresAt: string
 }
 
-export default function TradeElementList({ icon, status, createdAt, updatedAt, expiresAt }: TTradeProps) {
--- uzyc plop nestes list !!!!
+export default function TradeElementList({ icon, id, status, createdAt, updatedAt, expiresAt }: TTradeProps) {
+  // -- uzyc plop nestes list !!!!
   return (
     <div className={styles.listItem}>
       <div className={styles.listItemIcon}>
@@ -18,23 +19,15 @@ export default function TradeElementList({ icon, status, createdAt, updatedAt, e
       </div>
       <div className={styles.listItemContent}>
         <div className={styles.listItemHeader}>
-          <h3 className={styles.listItemName}>{name}</h3>
+          <h3 className={styles.listItemName}>{id}</h3>
           <div className={styles.listItemStat}>
-            <span>
-              {value}
-              {hasMax && <span>/{maxValue}</span>}
-            </span>
-            {hasMax && (
-              <div className={styles.listItemBar}>
-                <div
-                  className={styles.listItemBarFill}
-                  style={{ width: `${percentage}%` }}
-                />
-              </div>
-            )}
+            <span>{status}</span>
+            {createdAt}
+            {updatedAt}
+            {expiresAt}
           </div>
         </div>
-        <p className={styles.listItemDescription}>{description}</p>
+        <p className={styles.listItemDescription}>{status}</p>
       </div>
     </div>
   )
