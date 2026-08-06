@@ -1,1 +1,1 @@
-[EPanelsTopCenter.OtherPlayerKnowledgeRequests]: React.lazy(() => import("@/components/knowledge/OtherPlayerKnowledgeRequests"))
+[EPanelsTopCenter.OtherPlayerKnowledgeRequests]: dynamic(() => import("@/components/knowledge/OtherPlayerKnowledgeRequests")

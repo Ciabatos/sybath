@@ -1,1 +1,1 @@
-[EPanelsBottomLeft.PlayersOnTile]: React.lazy(() => import("@/components/players/PlayersOnTile"))
+[EPanelsBottomLeft.PlayersOnTile]: dynamic(() => import("@/components/players/PlayersOnTile")

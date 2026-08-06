@@ -1,1 +1,1 @@
-[EPanelsTopCenter.SquadControls]: React.lazy(() => import("@/components/squad/SquadControls"))
+[EPanelsTopCenter.SquadControls]: dynamic(() => import("@/components/squad/SquadControls")

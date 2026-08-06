@@ -1,1 +1,1 @@
-[EPanelsTopCenter.TradeList]: React.lazy(() => import("@/components/trade/TradeList"))
+[EPanelsTopCenter.TradeList]: dynamic(() => import("@/components/trade/TradeList")

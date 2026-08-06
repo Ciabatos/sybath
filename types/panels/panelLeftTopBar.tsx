@@ -1,7 +1,8 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY
-import { EPanelsLeftTopBar } from "../enumeration/EPanelsLeftTopBar"
+
 import dynamic from "next/dynamic"
 import React from "react"
+import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
 
 export const panelLeftTopBar: Record<EPanelsLeftTopBar, React.ComponentType<any> | null> = {
   [EPanelsLeftTopBar.Inactive]: null,
@@ -9,10 +10,9 @@ export const panelLeftTopBar: Record<EPanelsLeftTopBar, React.ComponentType<any>
     loading: () => <p>Ładowanie panelu gracza...</p>,
   }),
   [EPanelsLeftTopBar.PlayerRibbonTop]: dynamic(() => import("@/components/players/PlayerRibbonTop"), {
-    loading: () => <p>Ładowanie...</p>,
+    loading: () => <p>Ładowanie panelu gracza...</p>,
   }),
   [EPanelsLeftTopBar.PlayerSquad]: dynamic(() => import("@/components/squad/PlayerSquad"), {
-    loading: () => <p>Ładowanie składu...</p>,
-  }),
+    loading: () => <p>Ładowanie panelu gracza...</p>,
+  })
 }
-

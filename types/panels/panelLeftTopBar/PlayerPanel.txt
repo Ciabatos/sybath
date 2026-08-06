@@ -1,1 +1,1 @@
-[EPanelsLeftTopBar.PlayerPanel]: React.lazy(() => import("@/components/players/PlayerPanel"))
+[EPanelsLeftTopBar.PlayerPanel]: dynamic(() => import("@/components/players/PlayerPanel")

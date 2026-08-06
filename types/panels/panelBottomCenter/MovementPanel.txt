@@ -1,1 +1,1 @@
-[EPanelsBottomCenter.MovementPanel]: React.lazy(() => import("@/components/map/MovementPanel"))
+[EPanelsBottomCenter.MovementPanel]: dynamic(() => import("@/components/map/MovementPanel")

@@ -1,1 +1,1 @@
-[EPanelsLeftTopBar.PlayerRibbonTop]: React.lazy(() => import("@/components/players/PlayerRibbonTop"))
+[EPanelsLeftTopBar.PlayerRibbonTop]: dynamic(() => import("@/components/players/PlayerRibbonTop")

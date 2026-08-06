@@ -17,19 +17,24 @@ folders.forEach((folder) => {
   const entries = txtFiles.map((file) => fs.readFileSync(path.join(folderPath, file), "utf8").trim())
 
   const output = `// GENERATED CODE - DO NOT EDIT MANUALLY
-import { ${enumName} } from "@/types/enumeration/${enumName}"
-import React from "react"
 
-export const ${panelName}: Record<
-  ${enumName},
-  React.LazyExoticComponent<React.ComponentType<any>> | null
-> = {
+import dynamic from "next/dynamic"
+import React from "react"
+import { ${enumName} } from "@/types/enumeration/${enumName}"
+
+export const ${panelName}: Record<${enumName}, React.ComponentType<any> | null> = {
   [${enumName}.Inactive]: null,
-${entries.map((e) => "  " + e).join(",\n")}
+${entries
+  .map(
+    (e) => `  ${e}, {
+    loading: () => <p>Ładowanie panelu gracza...</p>,
+  })`,
+  )
+  .join(",\n")}
 }
 `
 
-  const outputFile = path.join(panelsPath, `${panelName}.ts`)
+  const outputFile = path.join(panelsPath, `${panelName}.tsx`)
 
   fs.writeFileSync(outputFile, output, "utf8")
 
