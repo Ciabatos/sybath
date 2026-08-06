@@ -3,6 +3,7 @@ import createListPanels from "./createListPanels.js"
 import createModals from "./createModals.js"
 import createNestedPanels from "./createNestedPanels.js"
 import createPanels from "./createPanels.js"
+import formatPrettier from "./formatPrettier.js"
 import getMethodAction from "./getMethodAction.js"
 import getMethodFetcher from "./getMethodFetcher.js"
 import getTable from "./getTable.js"
@@ -63,6 +64,8 @@ async function configurePlop(plop) {
   rollback(plop)
 
   replayHistory(plop)
+
+  formatPrettier(plop)
 }
 
 export default configurePlop
