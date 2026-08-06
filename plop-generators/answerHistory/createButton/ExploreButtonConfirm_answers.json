@@ -1,0 +1,10 @@
+{
+  "choosenPath": "map",
+  "newPanelName": "ExploreButtonConfirm",
+  "generatorName": "createButton",
+  "filesCreated": [
+    "components/map/ExploreButtonConfirm.tsx",
+    "components/map/styles/ExploreButtonConfirm.module.css"
+  ],
+  "dateCreated": "2026-08-06T13:25:50.447Z"
+}

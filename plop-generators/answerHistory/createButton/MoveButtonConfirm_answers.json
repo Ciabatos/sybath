@@ -1,0 +1,10 @@
+{
+  "choosenPath": "map",
+  "newPanelName": "MoveButtonConfirm",
+  "generatorName": "createButton",
+  "filesCreated": [
+    "components/map/MoveButtonConfirm.tsx",
+    "components/map/styles/MoveButtonConfirm.module.css"
+  ],
+  "dateCreated": "2026-08-06T13:24:15.301Z"
+}

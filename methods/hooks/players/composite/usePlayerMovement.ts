@@ -84,8 +84,7 @@ export function usePlayerMovement() {
 
     const lastStep = Object.values(playerMovementPlanned).reduce((max, curr) => (curr.order > max.order ? curr : max))
     mutatePlayerPosition([{ x: lastStep.x, y: lastStep.y }])
-    resetPlayerMovementPlanned()
-    resetModalBottomCenter()
+    closeMovementPanel()
     return toast.success(result?.message)
   }
 
@@ -104,8 +103,7 @@ export function usePlayerMovement() {
 
     const lastStep = Object.values(path).reduce((max, curr) => (curr.order > max.order ? curr : max))
     mutatePlayerPosition([{ x: lastStep.x, y: lastStep.y }])
-    resetPlayerMovementPlanned()
-    resetModalBottomCenter()
+    closeMovementPanel()
     return toast.success(result?.message)
   }
 
@@ -136,8 +134,7 @@ export function usePlayerMovement() {
 
     const lastStep = Object.values(path).reduce((max, curr) => (curr.order > max.order ? curr : max))
     mutatePlayerPosition([{ x: lastStep.x, y: lastStep.y }])
-    resetPlayerMovementPlanned()
-    resetModalBottomCenter()
+    closeMovementPanel()
     return toast.success(result?.message)
   }
 
@@ -157,7 +154,6 @@ export function usePlayerMovement() {
     moveSelectedPlayerPath,
     selectPlayerPathAndMovePlayer,
     selectPlayerPathAndMovePlayerToClickedTile,
-    resetPlayerMovementPlanned,
     closeMovementPanel,
   }
 }

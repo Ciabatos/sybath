@@ -1,0 +1,25 @@
+// GENERATED CODE - DO EDIT MANUALLY - createButton.hbs
+
+"use client"
+import { Button } from "@/components/ui/button"
+import styles from "./styles/{{newPanelName}}.module.css"
+
+type T{{newPanelName}}Props = {
+  onClose?: () => void
+}
+
+export default function {{newPanelName}}({ onClose }: T{{newPanelName}}Props) {
+
+  function handleClick() {
+    onClose?.()
+  }
+
+  return (
+    <Button
+      className={styles.actionButton}
+      onClick={handleClick}
+    >
+      {{newPanelName}}
+    </Button>
+  )
+}

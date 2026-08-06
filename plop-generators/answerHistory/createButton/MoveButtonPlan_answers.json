@@ -1,0 +1,10 @@
+{
+  "choosenPath": "map",
+  "newPanelName": "MoveButtonPlan",
+  "generatorName": "createButton",
+  "filesCreated": [
+    "components/map/MoveButtonPlan.tsx",
+    "components/map/styles/MoveButtonPlan.module.css"
+  ],
+  "dateCreated": "2026-08-06T13:21:41.149Z"
+}

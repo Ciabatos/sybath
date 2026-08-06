@@ -1,6 +1,6 @@
 // GENERATED CODE - DO EDIT MANUALLY - createPanels.hbs
 "use client"
-import ConfirmMoveButton from "@/components/map/ConfirmMoveButton"
+import ConfirmMoveButton from "@/components/map/MoveButtonConfirm"
 import { Button } from "@/components/ui/button"
 import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMovement"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"

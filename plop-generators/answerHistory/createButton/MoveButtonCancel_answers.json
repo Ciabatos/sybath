@@ -1,0 +1,10 @@
+{
+  "choosenPath": "map",
+  "newPanelName": "MoveButtonCancel",
+  "generatorName": "createButton",
+  "filesCreated": [
+    "components/map/MoveButtonCancel.tsx",
+    "components/map/styles/MoveButtonCancel.module.css"
+  ],
+  "dateCreated": "2026-08-06T13:37:52.506Z"
+}

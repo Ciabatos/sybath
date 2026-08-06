@@ -8,16 +8,19 @@ import { useMapId } from "@/methods/hooks/world/composite/useMapId"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { useFetchPlayerPosition, usePlayerPositionState } from "@/methods/hooks/world/core/useFetchPlayerPosition"
 import { useMutateKnownMapTilesResourcesOnTile } from "@/methods/hooks/world/core/useMutateKnownMapTilesResourcesOnTile"
+import { useState } from "react"
 import { toast } from "sonner"
 
 export function usePlayerExploration() {
   const { playerId } = usePlayerId()
   const { mapId } = useMapId()
   const { clickedMapTile } = useMapTileActions()
-  const { selectPlayerPathAndMovePlayerToClickedTile, closeMovementPanel } = usePlayerMovement()
+  const { selectPlayerPathToClickedTile, selectPlayerPathAndMovePlayerToClickedTile, closeMovementPanel } =
+    usePlayerMovement()
   const { playerAbilities } = usePlayerAbilities()
   useFetchPlayerPosition({ mapId, playerId })
   const playerPosition = usePlayerPositionState()
+  const [isExploring, setIsExploring] = useState(false)
 
   const { mutateKnownMapTilesResourcesOnTile } = useMutateKnownMapTilesResourcesOnTile({
     mapId,
@@ -26,7 +29,28 @@ export function usePlayerExploration() {
     playerId,
   })
 
-  async function exploreClickedTile() {
+  async function exploreClickedTilePlan() {
+    if (!clickedMapTile) return toast.error("No tile selected")
+
+    try {
+      if (!playerAbilities[2]?.value) {
+        return toast.error("Player does not have exploration ability")
+      }
+
+      if (!playerPosition[`${clickedMapTile.mapTiles.x},${clickedMapTile.mapTiles.y}`]) {
+        const resultMovement = await selectPlayerPathToClickedTile()
+
+        if (!resultMovement) {
+          return toast.error("Failed to move to the tile, cannot explore")
+        }
+      }
+      setIsExploring(true)
+    } catch (error) {
+      console.error("Error exploring tile:", error)
+    }
+  }
+
+  async function exploreClickedTileConfirm() {
     if (!clickedMapTile) return toast.error("No tile selected")
 
     try {
@@ -54,13 +78,18 @@ export function usePlayerExploration() {
       }
 
       mutateKnownMapTilesResourcesOnTile()
+      setIsExploring(false)
 
-      closeMovementPanel()
       toast.success(`You are exploring destination tile`)
     } catch (error) {
       console.error("Error exploring tile:", error)
     }
   }
 
-  return { exploreClickedTile }
+  function closeExplorationPanel() {
+    closeMovementPanel()
+    setIsExploring(false)
+  }
+
+  return { isExploring, exploreClickedTilePlan, exploreClickedTileConfirm, closeExplorationPanel }
 }

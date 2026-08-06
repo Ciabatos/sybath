@@ -1,7 +1,12 @@
 "use client"
 
 import GatherResource from "@/components/items/GatherResource"
-import ConfirmMoveButton from "@/components/map/ConfirmMoveButton"
+import ExploreButtonCancel from "@/components/map/ExploreButtonCancel"
+import ExploreButtonConfirm from "@/components/map/ExploreButtonConfirm"
+import ExploreButtonPlan from "@/components/map/ExploreButtonPlan"
+import MoveButtonCancel from "@/components/map/MoveButtonCancel"
+import MoveButtonConfirm from "@/components/map/MoveButtonConfirm"
+import MoveButtonPlan from "@/components/map/MoveButtonPlan"
 import { Button } from "@/components/ui/button"
 import { Field, FieldLabel } from "@/components/ui/field"
 import { Progress } from "@/components/ui/progress"
@@ -22,11 +27,10 @@ export default function MapTileDetail() {
   const { clickedMapTile } = useMapTileActions()
 
   // ── MOVEMENT LOGIC  ──────────────────────────────────────────
-  const { isMoving, selectPlayerPathToClickedTile, resetPlayerMovementPlanned } = usePlayerMovement()
+  const { isMoving } = usePlayerMovement()
 
   // ── EXPLORATION LOGIC  ──────────────────────────────────────────s
-  const { exploreClickedTile } = usePlayerExploration()
-  const [isExploring, setIsExploring] = useState(false)
+  const { isExploring } = usePlayerExploration()
 
   // ── GATHER LOGIC  ──────────────────────────────────────────
   const { combinedKnownMapTilesResourcesOnTile } = useMapTileDetail()
@@ -41,28 +45,6 @@ export default function MapTileDetail() {
   }
   const onClose = () => {
     resetModalRightCenter()
-  }
-
-  function handleMove() {
-    selectPlayerPathToClickedTile()
-  }
-
-  function handleExplore() {
-    if (!isExploring) {
-      setIsExploring(true)
-      handleMove()
-    }
-  }
-
-  function handleConfirmExplore() {
-    if (isExploring) {
-      setIsExploring(false)
-      exploreClickedTile()
-    }
-  }
-
-  function handleCancelExplore() {
-    setIsExploring(false)
   }
 
   function handlePlayersListOnTile() {
@@ -245,44 +227,24 @@ export default function MapTileDetail() {
               <Button className={styles.actionButton}>Set Special Place Like TradePost or church</Button>
               <Button className={styles.actionButton}>Set Camp</Button>
 
-              {/*  MOVEMENT LOGIC */}
-              {!isMoving ? (
-                <Button
-                  className={styles.actionButton}
-                  onClick={handleMove}
-                >
-                  Move
-                </Button>
-              ) : (
-                <ConfirmMoveButton />
-              )}
-
               {/*  HUNT LOGIC */}
               <Button className={styles.actionButton}>Hunt</Button>
 
-              {/*  EXPLORATION LOGIC */}
-              {!isExploring ? (
-                <Button
-                  className={styles.actionButton}
-                  onClick={handleExplore}
-                >
-                  Explore
-                </Button>
+              {/*  MOVEMENT LOGIC */}
+              {!isMoving ? (
+                <MoveButtonPlan />
               ) : (
                 <>
-                  <Button
-                    className={styles.actionButton}
-                    onClick={handleConfirmExplore}
-                  >
-                    Confirm Exploration
-                  </Button>
-
-                  <Button
-                    className={styles.actionButton}
-                    onClick={handleCancelExplore}
-                  >
-                    Cancel Exploration
-                  </Button>
+                  <MoveButtonConfirm />
+                  <MoveButtonCancel />
+                </>
+              )}
+              {!isExploring ? (
+                <ExploreButtonPlan />
+              ) : (
+                <>
+                  <ExploreButtonConfirm />
+                  <ExploreButtonCancel />
                 </>
               )}
             </div>

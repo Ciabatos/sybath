@@ -1,3 +1,4 @@
+import createButton from "./createButton.js"
 import createListPanels from "./createListPanels.js"
 import createModals from "./createModals.js"
 import createNestedPanels from "./createNestedPanels.js"
@@ -50,7 +51,7 @@ async function configurePlop(plop) {
   createPanels(plop)
   createListPanels(plop)
   createNestedPanels(plop)
-
+  createButton(plop)
   createModals(plop)
 
   getMethodAction(plop)

@@ -1,0 +1,10 @@
+{
+  "choosenPath": "map",
+  "newPanelName": "ExploreButtonCancel",
+  "generatorName": "createButton",
+  "filesCreated": [
+    "components/map/ExploreButtonCancel.tsx",
+    "components/map/styles/ExploreButtonCancel.module.css"
+  ],
+  "dateCreated": "2026-08-06T13:45:28.560Z"
+}

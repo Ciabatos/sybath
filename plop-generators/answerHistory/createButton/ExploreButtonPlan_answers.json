@@ -1,0 +1,10 @@
+{
+  "choosenPath": "map",
+  "newPanelName": "ExploreButtonPlan",
+  "generatorName": "createButton",
+  "filesCreated": [
+    "components/map/ExploreButtonPlan.tsx",
+    "components/map/styles/ExploreButtonPlan.module.css"
+  ],
+  "dateCreated": "2026-08-06T13:25:33.901Z"
+}
