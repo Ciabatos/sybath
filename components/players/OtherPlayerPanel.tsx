@@ -3,6 +3,7 @@ import { OtherPlayerAbilities } from "@/components/attributes/OtherPlayerAbiliti
 import { OtherPlayerSkills } from "@/components/attributes/OtherPlayerSkills"
 import OtherPlayerStats from "@/components/attributes/OtherPlayerStats"
 import { OtherPlayerCombinedInventory } from "@/components/inventory/OtherPlayerCombinedInventory"
+import OpenTrade from "@/components/trade/OpenTrade"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { createImage } from "@/methods/functions/util/createImage"
@@ -63,6 +64,7 @@ export default function OtherPlayerPanel() {
             <p className={styles.heroTitle}>Inni głosują za nickiem lub nazywają{nickname}</p>
           </div>
         </div>
+        <OpenTrade />
         <Button onClick={() => inviteToSquad(1, 2)}>Invite to Squad</Button>
         <Button onClick={() => inviteToSquad(2, 2)}>Invite to Squad Permanent</Button>
         <Button onClick={() => inviteToKnownProfile()}>Knowledge request profile</Button>

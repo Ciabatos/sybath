@@ -38,16 +38,17 @@ INSERT INTO inventory.inventory_container_types
 VALUES('Trade');
 
 
--- DROP FUNCTION trade.trade_open(int4, int4, int4, int4, int4);
-
-CREATE OR REPLACE FUNCTION trade.trade_open(p_player_id integer, p_invited_player_id integer)
+CREATE OR REPLACE FUNCTION trade.trade_open(p_player_id integer, p_invited_player_id text)
  RETURNS void
  LANGUAGE plpgsql
 AS $function$
 DECLARE
     v_trade_id int;
+    v_invited_player_id int;
 BEGIN
-    IF p_player_id = p_invited_player_id THEN
+    v_invited_player_id := players.get_real_player_id(p_invited_player_id);
+
+    IF p_player_id = v_invited_player_id THEN
         PERFORM util.raise_error('Cannot trade with yourself');
     END IF;
 
@@ -55,7 +56,7 @@ BEGIN
         SELECT 1
         FROM trade.trade_participants tp1
         JOIN trade.trade_participants tp2 ON tp2.trade_id = tp1.trade_id
-                                         AND tp2.player_id = p_invited_player_id
+                                         AND tp2.player_id = v_invited_player_id
         JOIN trade.trades t              ON t.id = tp1.trade_id
         WHERE tp1.player_id = p_player_id
           AND t.status IN (1, 2)
@@ -70,18 +71,51 @@ BEGIN
     INSERT INTO trade.trade_participants (trade_id, player_id, side, accepted)
     VALUES
         (v_trade_id, p_player_id,         1, false),
-        (v_trade_id, p_invited_player_id, 2, false);
+        (v_trade_id, v_invited_player_id, 2, false);
 
     INSERT INTO trade.trade_slots (trade_id, player_id, item_id, quantity, created_at)
     SELECT v_trade_id, p_player_id, NULL, NULL, now()
     FROM generate_series(1, 12);
 
     INSERT INTO trade.trade_slots (trade_id, player_id, item_id, quantity, created_at)
-    SELECT v_trade_id, p_invited_player_id, NULL, NULL, now()
+    SELECT v_trade_id, v_invited_player_id, NULL, NULL, now()
     FROM generate_series(1, 12);
 END;
 $function$
 ;
+
+
+-- DROP FUNCTION items.do_craft_recipe(int4, int4);
+
+CREATE OR REPLACE FUNCTION trade.do_trade_open(p_player_id integer, p_invited_player_id text)
+ RETURNS TABLE(status boolean, message text)
+ LANGUAGE plpgsql
+AS $function$
+BEGIN
+
+    /* MUTEX */
+    PERFORM 1
+    FROM players.players
+    WHERE id = p_player_id
+    FOR UPDATE;
+
+    PERFORM trade.trade_open(p_player_id, p_invited_player_id);
+
+    RETURN QUERY SELECT true, 'Trade opened successfully';
+    
+    EXCEPTION
+        WHEN OTHERS THEN
+            IF SQLSTATE = 'P0001' THEN
+                RETURN QUERY SELECT false, SQLERRM;
+            ELSE
+                RAISE;
+            END IF;
+
+END;
+$function$
+;
+
+COMMENT ON FUNCTION trade.do_trade_open(int4, text) IS 'action_api';
 
 
 

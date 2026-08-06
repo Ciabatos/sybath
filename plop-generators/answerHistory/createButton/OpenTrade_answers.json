@@ -1,0 +1,10 @@
+{
+  "choosenPath": "trade",
+  "newPanelName": "OpenTrade",
+  "generatorName": "createButton",
+  "filesCreated": [
+    "components/trade/OpenTrade.tsx",
+    "components/trade/styles/OpenTrade.module.css"
+  ],
+  "dateCreated": "2026-08-06T19:54:21.958Z"
+}

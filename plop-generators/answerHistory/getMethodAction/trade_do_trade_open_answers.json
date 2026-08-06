@@ -1,0 +1,54 @@
+{
+  "promptAnswers": {
+    "schema": "trade",
+    "method": "do_trade_open",
+    "usePrevious": false
+  },
+  "schema": "trade",
+  "method": "do_trade_open",
+  "methodCamelName": "doTradeOpen",
+  "methodPascalName": "DoTradeOpen",
+  "methodName": "doTradeOpenAction",
+  "methodTypeName": "TDoTradeOpen",
+  "methodParamsTypeName": "TDoTradeOpenParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
+    },
+    {
+      "name": "p_invited_player_id",
+      "camelName": "invitedPlayerId",
+      "tsType": "string",
+      "isJson": false
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "status",
+      "camelName": "status",
+      "pascalName": "Status",
+      "tsType": "boolean",
+      "optional": ""
+    },
+    {
+      "name": "message",
+      "camelName": "message",
+      "pascalName": "Message",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1, $2",
+  "compositeDefinitions": [],
+  "dateCreated": "2026-08-06T19:48:59.930Z",
+  "filesCreated": [
+    "methods/actions/trade/doTradeOpenAction.ts",
+    "methods/actions/trade/doTradeOpenAction.md",
+    "db/postgresMainDatabase/schemas/trade/doTradeOpen.ts",
+    "methods/services/trade/doTradeOpenService.ts"
+  ],
+  "generatorName": "getMethodAction"
+}
