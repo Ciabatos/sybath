@@ -1,0 +1,10 @@
+{
+  "choosenPath": "trade",
+  "newPanelName": "TradesElement",
+  "generatorName": "createListPanels",
+  "filesCreated": [
+    "components/trade/TradesElement.tsx",
+    "components/trade/styles/TradesElement.module.css"
+  ],
+  "dateCreated": "2026-08-08T11:37:43.818Z"
+}

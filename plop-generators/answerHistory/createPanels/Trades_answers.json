@@ -1,15 +1,15 @@
 {
   "choosenPath": "trade",
-  "newPanelName": "TradeList",
+  "newPanelName": "Trades",
   "enumeration": "EPanelsTopCenter.ts",
   "enumName": "EPanelsTopCenter",
   "enumSuffix": "TopCenter",
   "panelName": "panelTopCenter",
   "generatorName": "createPanels",
   "filesCreated": [
-    "components/trade/TradeList.tsx",
-    "components/trade/styles/TradeList.module.css",
-    "types/panels/panelTopCenter/TradeList.txt"
+    "components/trade/Trades.tsx",
+    "components/trade/styles/Trades.module.css",
+    "types/panels/panelTopCenter/Trades.txt"
   ],
-  "dateCreated": "2026-08-02T14:40:14.047Z"
+  "dateCreated": "2026-08-08T11:14:33.945Z"
 }

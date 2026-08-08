@@ -12,7 +12,7 @@ export const panelTopCenter: Record<EPanelsTopCenter, React.ComponentType<any> |
   [EPanelsTopCenter.SquadControls]: dynamic(() => import("@/components/squad/SquadControls"), {
     loading: () => <p>Ładowanie panelu gracza...</p>,
   }),
-  [EPanelsTopCenter.TradeList]: dynamic(() => import("@/components/trade/TradeList"), {
+  [EPanelsTopCenter.Trades]: dynamic(() => import("@/components/trade/Trades"), {
     loading: () => <p>Ładowanie panelu gracza...</p>,
   })
 }

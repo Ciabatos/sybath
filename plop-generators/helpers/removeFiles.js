@@ -1,15 +1,15 @@
 import fs from "fs"
 import path from "path"
 
-export async function removeFiles(files, rootDir = "plop-generators") {
+export async function removeFiles(files, rootDir = process.cwd()) {
   const removedFiles = []
   const normalizedFiles = files.flat()
-
+  console.log("Normalized files:", normalizedFiles)
   for (const file of normalizedFiles) {
-    if (file.includes("answerHistory")) {
-      console.log(`Pominięto historię: ${file}`)
-      continue
-    }
+    // if (file.includes("answerHistory")) {
+    //   console.log(`Pominięto historię: ${file}`)
+    //   continue
+    // }
 
     const filePath = path.resolve(rootDir, file)
 

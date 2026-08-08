@@ -1,0 +1,139 @@
+/* GENERATED CODE - DO EDIT MANUALLY - createListPanels.hbs */
+/* ─── Wrapper ───────────────────────────────────────────────────────────── */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* ─── Karta / wiersz ────────────────────────────────────────────────────── */
+.listItem {
+  display: flex;
+  gap: 1rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 2px solid #4a3426;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #2b1810 0%, #1a0f08 100%);
+  padding: 0.75rem;
+}
+
+.listItem:hover {
+  border-color: #c89a4a;
+  background: linear-gradient(135deg, #3d2415 0%, #2b1810 100%);
+}
+
+.listItemDisabled {
+  filter: grayscale(100%);
+  pointer-events: none;
+}
+
+/* ─── Ikona ─────────────────────────────────────────────────────────────── */
+.listItemIcon {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #6b4f3a;
+  border-radius: 8px;
+  background: radial-gradient(circle, #3d2415 0%, #1a0f08 100%);
+  width: 44px;
+  height: 44px;
+}
+
+.listItemIconEmoji {
+  font-size: 24px;
+  line-height: 1;
+}
+
+/* ─── Lista lewa strona ───────────────────────────────────────────────────── */
+.listItemContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.listItemHeader {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.listItemName {
+  margin: 0;
+  color: #d4a574;
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: "Lora", serif;
+}
+
+/* ─── Lista prawa strona ────────────────────────────────────────────────── */
+.listItemStat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 70px;
+  color: #e6c998;
+  font-weight: 700;
+  font-size: 0.875rem;
+  font-family: "Lora", serif;
+  text-align: right;
+}
+
+/* ─── Pasek ────────────────────────────────────────────────── */
+.listItemBar {
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  border: 1px solid #4a3426;
+  border-radius: 4px;
+  background: #1a0f08;
+  width: 100%;
+  height: 8px;
+  overflow: hidden;
+}
+
+.listItemBarFill {
+  transition: width 0.3s ease;
+  box-shadow: 0 0 8px rgba(200, 154, 74, 0.6);
+  background: linear-gradient(90deg, #c89a4a 0%, #d4a574 50%, #e6c998 100%);
+  height: 100%;
+}
+
+/* ─── Lista dol ──────────────────────────────────────────────────────────────── */
+.listItemDescription {
+  margin: 0;
+  color: rgba(212, 165, 116, 0.8);
+  font-style: italic;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  font-family: "Lora", serif;
+}
+
+/* ─── Responsive ────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .listItem {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .listItemIcon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .listItemIconEmoji {
+    font-size: 28px;
+  }
+
+  .listItemHeader {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .listItemStatValue {
+    text-align: left;
+  }
+}

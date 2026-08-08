@@ -1,1 +1,0 @@
-[EPanelsTopCenter.TradeList]: dynamic(() => import("@/components/trade/TradeList")

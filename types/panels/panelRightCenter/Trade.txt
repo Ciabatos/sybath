@@ -1,0 +1,1 @@
+[EPanelsRightCenter.Trade]: dynamic(() => import("@/components/trade/Trade")

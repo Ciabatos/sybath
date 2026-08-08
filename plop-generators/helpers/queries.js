@@ -452,6 +452,7 @@ export async function createMethodGetRecordsByKey(schema, table, indexParamsColu
 }
 
 export async function dropFunction(functionName) {
+  if (!functionName) return
   const client = createClient()
   await client.connect()
   try {

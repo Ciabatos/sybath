@@ -3,7 +3,7 @@
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
 import { useFetchTrades, useTradesState } from "@/methods/hooks/trade/core/useFetchTrades"
 
-export function useTradeList() {
+export function useTrades() {
   const { playerId } = usePlayerId()
 
   useFetchTrades({ playerId })

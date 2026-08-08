@@ -1,28 +1,17 @@
-import { doTradeOpenAction } from "@/methods/actions/trade/doTradeOpenAction"
-import { useOtherPlayerId } from "@/methods/hooks/players/composite/useOtherPlayerId"
+"use client"
+
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
-import { toast } from "sonner"
+import { useFetchTradeInventory, useTradeInventoryState } from "@/methods/hooks/trade/core/useFetchTradeInventory"
 
-export function useTrade() {
+type TTradeParams = {
+  tradeId: number
+}
+
+export function useTrade(params: TTradeParams) {
   const { playerId } = usePlayerId()
-  const otherPlayerId = useOtherPlayerId()
 
-  async function openTrade() {
-    try {
-      const result = await doTradeOpenAction({
-        playerId,
-        invitedPlayerId: otherPlayerId,
-      })
+  useFetchTradeInventory({ playerId, tradeId: params.tradeId })
+  const tradeInventory = useTradeInventoryState()
 
-      if (!result.status) {
-        return toast.error(result.message)
-      }
-
-      toast.success(`Trade opened with player ${otherPlayerId}!`)
-    } catch (error) {
-      console.error("Error opening trade:", error)
-    }
-  }
-
-  return { openTrade }
+  return { tradeInventory }
 }

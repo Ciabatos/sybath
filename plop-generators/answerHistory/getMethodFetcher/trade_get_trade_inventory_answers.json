@@ -1,0 +1,124 @@
+{
+  "promptAnswers": {
+    "schema": "trade",
+    "method": "get_trade_inventory",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "slotId"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "trade",
+  "method": "get_trade_inventory",
+  "methodCamelName": "tradeInventory",
+  "methodPascalName": "TradeInventory",
+  "methodKebabName": "get-trade-inventory",
+  "methodName": "getTradeInventory",
+  "methodTypeName": "TTradeInventory",
+  "methodParamsTypeName": "TTradeInventoryParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
+    },
+    {
+      "name": "p_trade_id",
+      "camelName": "tradeId",
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "slot_id",
+      "camelName": "slotId",
+      "pascalName": "SlotId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "container_id",
+      "camelName": "containerId",
+      "pascalName": "ContainerId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "inventory_container_type_id",
+      "camelName": "inventoryContainerTypeId",
+      "pascalName": "InventoryContainerTypeId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "inventory_slot_type_id",
+      "camelName": "inventorySlotTypeId",
+      "pascalName": "InventorySlotTypeId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "item_id",
+      "camelName": "itemId",
+      "pascalName": "ItemId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "pascalName": "Name",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "quantity",
+      "camelName": "quantity",
+      "pascalName": "Quantity",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "side",
+      "camelName": "side",
+      "pascalName": "Side",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"slotId\"]",
+  "indexParamsColumns": "playerId, tradeId",
+  "indexTypeMethodName": "SlotId",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TTradeInventoryRecordBySlotId",
+  "indexColumns": [
+    {
+      "name": "slot_id",
+      "camelName": "slotId",
+      "pascalName": "SlotId",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1, $2",
+  "apiPath": "app/api/trade/rpc/get-trade-inventory/[playerId]/[tradeId]/route.ts",
+  "apiPathParams": "/api/trade/rpc/get-trade-inventory/${params.playerId}/${params.tradeId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true,
+  "compositeDefinitions": [],
+  "filesCreated": [
+    "db/postgresMainDatabase/schemas/trade/tradeInventory.ts",
+    "app/api/trade/rpc/get-trade-inventory/[playerId]/[tradeId]/route.ts",
+    "methods/hooks/trade/core/useFetchTradeInventory.ts",
+    "methods/server-fetchers/trade/core/getTradeInventoryServer.ts",
+    "methods/services/trade/fetchTradeInventoryService.ts",
+    "store/atoms/getMethodFetcher/tradeInventoryAtom.ts",
+    ".vscode/useTradeInventory.code-snippets",
+    "methods/hooks/trade/core/useMutateTradeInventory.ts",
+    "methods/hooks/trade/core/useFetchTradeInventory.md"
+  ],
+  "generatorName": "getMethodFetcher"
+}

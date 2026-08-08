@@ -2,7 +2,7 @@
 
 "use client"
 import { Button } from "@/components/ui/button"
-import { useTrade } from "@/methods/hooks/trade/composite/useTrade"
+import { useOpenTrade } from "@/methods/hooks/trade/composite/useOpenTrade"
 import styles from "./styles/OpenTrade.module.css"
 
 type TOpenTradeProps = {
@@ -10,7 +10,7 @@ type TOpenTradeProps = {
 }
 
 export default function OpenTrade({ onClose }: TOpenTradeProps) {
-  const { openTrade } = useTrade()
+  const { openTrade } = useOpenTrade()
 
   function handleClick() {
     openTrade()

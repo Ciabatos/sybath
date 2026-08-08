@@ -39,6 +39,7 @@ async function configurePlop(plop) {
   })
 
   plop.setActionType("removeFiles", async function (answers) {
+    console.log("Remove files", answers)
     try {
       const removedFiles = await removeFiles(answers.selectedFiles)
       const removedMethods = await dropFunction(answers.sqlMethodCreated)

@@ -1,7 +1,8 @@
+// GENERATED CODE - DO EDIT MANUALLY - createListPanels.hbs
 "use client"
-import styles from "./styles/TradeListElement.module.css"
+import styles from "./styles/TradesElement.module.css"
 
-interface TTradeProps {
+interface TTradesElementProps {
   icon: React.ReactNode
   id: number
   status: number
@@ -10,8 +11,7 @@ interface TTradeProps {
   expiresAt: string
 }
 
-export default function TradeElementList({ icon, id, status, createdAt, updatedAt, expiresAt }: TTradeProps) {
-  // -- uzyc plop nestes list !!!!
+export default function TradesElement({ icon, id, status, createdAt, updatedAt, expiresAt }: TTradesElementProps) {
   return (
     <div className={styles.listItem}>
       <div className={styles.listItemIcon}>

@@ -1,19 +1,19 @@
 // GENERATED CODE - DO EDIT MANUALLY - createPanels.hbs
 "use client"
-import TradeListElement from "@/components/trade/TradeListElement"
+import TradesElement from "@/components/trade/TradesElement"
 import { Button } from "@/components/ui/button"
 import getIcon from "@/methods/functions/icons/getIcon"
 import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
-import { useTradeList } from "@/methods/hooks/trade/composite/useTradeList"
+import { useTrades } from "@/methods/hooks/trade/composite/useTrades"
 import { X } from "lucide-react"
-import styles from "./styles/TradeList.module.css"
+import styles from "./styles/Trades.module.css"
 
-export default function TradeList() {
+export default function Trades() {
   const { resetModalTopCenter } = useModalTopCenter()
 
-  const { trades } = useTradeList()
+  const { trades } = useTrades()
 
-  function closeTradeList() {
+  function closeTrades() {
     resetModalTopCenter()
   }
 
@@ -21,7 +21,7 @@ export default function TradeList() {
     <div className={styles.overlay}>
       <div className={styles.panel}>
         <Button
-          onClick={closeTradeList}
+          onClick={closeTrades}
           variant='ghost'
           size='icon'
         >
@@ -30,7 +30,7 @@ export default function TradeList() {
         <div>
           {Object.values(trades).map((trade) => (
             <div key={trade.id}>
-              <TradeListElement
+              <TradesElement
                 icon={getIcon("Trade")}
                 id={trade.id}
                 status={trade.status}
