@@ -1,3 +1,4 @@
+import createAtomClientSingleton from "./createAtomClientSingleton.js"
 import createButton from "./createButton.js"
 import createListPanels from "./createListPanels.js"
 import createModals from "./createModals.js"
@@ -55,7 +56,7 @@ async function configurePlop(plop) {
   createNestedPanels(plop)
   createButton(plop)
   createModals(plop)
-
+  createAtomClientSingleton(plop)
   getMethodAction(plop)
 
   getMethodFetcher(plop)

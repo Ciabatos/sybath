@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - atomCreateAtomClientSingleton.hbs
+
+import { {{atomName}} } from "@/store/atoms"
+import { useAtomValue, useSetAtom } from "jotai"
+
+export function use{{inputName}}() {
+  return useAtomValue({{atomName}})
+}
+
+export function useSet{{inputName}}() {
+  return useSetAtom({{atomName}})
+}
