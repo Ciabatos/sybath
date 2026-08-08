@@ -2,14 +2,13 @@
 
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
+import { useSetClickedTrade } from "@/methods/hooks/trade/composite/useClickedTrade"
 import { useFetchTrades, useTradesState } from "@/methods/hooks/trade/core/useFetchTrades"
-import { clickedTradeAtom } from "@/store/atoms"
 import { EPanelsRightCenter } from "@/types/enumeration/EPanelsRightCenter"
-import { useAtom } from "jotai"
 
 export function useTrades() {
   const { playerId } = usePlayerId()
-  const [clickedTrade, setClickedTrade] = useAtom(clickedTradeAtom)
+  const setClickedTrade = useSetClickedTrade()
   const { openModalRightCenter } = useModalRightCenter()
 
   useFetchTrades({ playerId })
@@ -20,5 +19,5 @@ export function useTrades() {
     openModalRightCenter(EPanelsRightCenter.Trade)
   }
 
-  return { trades, clickedTrade, handleClickOnTrade }
+  return { trades, handleClickOnTrade }
 }

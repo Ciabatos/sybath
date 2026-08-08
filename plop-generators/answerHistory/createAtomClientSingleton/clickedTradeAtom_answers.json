@@ -1,0 +1,16 @@
+{
+  "choosenPath": "trade",
+  "inputName": "clickedTrade",
+  "atomName": "clickedTradeAtom",
+  "inputCamelName": "clickedTrade",
+  "inputPascalName": "ClickedTrade",
+  "atomCamelName": "clickedTradeAtom",
+  "atomPascalName": "ClickedTradeAtom",
+  "generatorName": "createAtomClientSingleton",
+  "filesCreated": [
+    "store/atoms/client/clickedTradeAtom.ts",
+    "/methods/hooks/trade/composite/clickedTradeAtom.ts",
+    "answerHistory/createAtomClientSingleton/clickedTradeAtom_answers.json"
+  ],
+  "dateCreated": "2026-08-08T14:48:13.658Z"
+}

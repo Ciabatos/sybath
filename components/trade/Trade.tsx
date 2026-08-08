@@ -6,11 +6,9 @@ import { useTrade } from "@/methods/hooks/trade/composite/useTrade"
 import { X } from "lucide-react"
 import styles from "./styles/Trade.module.css"
 
-type TTradeProps = { tradeId: number }
-
-export default function Trade({ tradeId }: TTradeProps) {
+export default function Trade() {
   const { resetModalRightCenter } = useModalRightCenter()
-  const { tradeInventory } = useTrade({ tradeId })
+  const { tradeInventory } = useTrade()
 
   function closeTrade() {
     resetModalRightCenter()

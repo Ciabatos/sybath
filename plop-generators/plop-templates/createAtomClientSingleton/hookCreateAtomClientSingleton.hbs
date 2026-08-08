@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - atomCreateAtomClientSingleton.hbs
+
+import { {{atomCamelName}} } from "@/store/atoms"
+import { useAtomValue, useSetAtom } from "jotai"
+
+export function use{{inputPascalName}}() {
+  return useAtomValue({{atomCamelName}})
+}
+
+export function useSet{{inputPascalName}}() {
+  return useSetAtom({{atomCamelName}})
+}
