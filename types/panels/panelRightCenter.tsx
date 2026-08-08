@@ -20,5 +20,8 @@ export const panelRightCenter: Record<EPanelsRightCenter, React.ComponentType<an
   }),
   [EPanelsRightCenter.OtherPlayerPanel]: dynamic(() => import("@/components/players/OtherPlayerPanel"), {
     loading: () => <p>Ładowanie panelu gracza...</p>,
+  }),
+  [EPanelsRightCenter.Trade]: dynamic(() => import("@/components/trade/Trade"), {
+    loading: () => <p>Ładowanie panelu gracza...</p>,
   })
 }

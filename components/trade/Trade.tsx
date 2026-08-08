@@ -26,6 +26,14 @@ export default function Trade({ tradeId }: TTradeProps) {
         >
           <X />
         </Button>
+        {Object.values(tradeInventory).map((item) => (
+          <div key={item.slotId}>
+            <div className={styles.itemContainer}>
+              <div className={styles.itemName}>{item.name}</div>
+              <div className={styles.itemQuantity}>Quantity: {item.quantity}</div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   )

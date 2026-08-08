@@ -1,5 +1,7 @@
 // GENERATED CODE - DO EDIT MANUALLY - createListPanels.hbs
 "use client"
+import { Button } from "@/components/ui/button"
+import { useTrades } from "@/methods/hooks/trade/composite/useTrades"
 import styles from "./styles/TradesElement.module.css"
 
 interface TTradesElementProps {
@@ -12,8 +14,13 @@ interface TTradesElementProps {
 }
 
 export default function TradesElement({ icon, id, status, createdAt, updatedAt, expiresAt }: TTradesElementProps) {
+  const { handleClickOnTrade } = useTrades()
+
   return (
-    <div className={styles.listItem}>
+    <Button
+      onClick={() => handleClickOnTrade(id)}
+      className={styles.listItem}
+    >
       <div className={styles.listItemIcon}>
         <span className={styles.listItemIconEmoji}>{icon}</span>
       </div>
@@ -29,6 +36,6 @@ export default function TradesElement({ icon, id, status, createdAt, updatedAt, 
         </div>
         <p className={styles.listItemDescription}>{status}</p>
       </div>
-    </div>
+    </Button>
   )
 }
