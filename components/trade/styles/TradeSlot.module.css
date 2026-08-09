@@ -1,0 +1,136 @@
+/* Base slot — used directly by DroppableSlot inside both gear and inventory grids */
+.slot {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+  cursor: pointer;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.6);
+  border: 1px solid #3d2510;
+  border-radius: 1px;
+  background: #160d06;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.slot:hover {
+  box-shadow:
+    inset 0 1px 3px rgba(0, 0, 0, 0.6),
+    0 0 8px rgba(200, 154, 74, 0.25);
+  border-color: #7a5530;
+  background: #1e1008;
+}
+
+.slot.dragOver {
+  animation: pulse 0.4s infinite alternate;
+  border-color: #5aab50;
+  background: rgba(76, 175, 80, 0.12);
+}
+
+/* Placeholder shown when slot is empty */
+.placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.placeholderIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.2;
+  width: 55%;
+  height: 55%;
+}
+
+.placeholderIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Draggable item inside a slot */
+.item {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: grab;
+  padding: 2px;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+
+.item:active {
+  cursor: grabbing;
+}
+
+.item.dragging {
+  opacity: 0.4;
+}
+
+.itemImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65%;
+  height: 65%;
+  pointer-events: none;
+}
+
+.itemImage svg {
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
+  width: 100%;
+  height: 100%;
+}
+
+/* Quantity badge — bottom right corner */
+.quantity {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  border-radius: 2px;
+  background: rgba(10, 5, 2, 0.85);
+  padding: 0 3px;
+  pointer-events: none;
+  color: #c89a4a;
+  font-weight: 700;
+  font-size: 0.6rem;
+  line-height: 1.4;
+  font-family: "Cinzel", serif;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 1);
+}
+
+/* Drop hint overlay */
+.dropHint {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  animation: pulse 0.4s infinite alternate;
+  inset: 0;
+  border-radius: 3px;
+  background: rgba(90, 171, 80, 0.15);
+  pointer-events: none;
+  color: #5aab50;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+@keyframes pulse {
+  from {
+    background-color: rgba(76, 175, 80, 0.1);
+  }
+  to {
+    background-color: rgba(76, 175, 80, 0.3);
+  }
+}

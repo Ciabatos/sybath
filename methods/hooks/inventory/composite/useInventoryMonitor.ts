@@ -8,6 +8,8 @@ import { useMutatePlayerGearInventory } from "@/methods/hooks/inventory/core/use
 import { useMutatePlayerInventory } from "@/methods/hooks/inventory/core/useMutatePlayerInventory"
 import { useOtherPlayerId } from "@/methods/hooks/players/composite/useOtherPlayerId"
 import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
+import { useClickedTrade } from "@/methods/hooks/trade/composite/useClickedTrade"
+import { useMutateTradeInventory } from "@/methods/hooks/trade/core/useMutateTradeInventory"
 import { useDragDropMonitor } from "@dnd-kit/react"
 import { toast } from "sonner"
 
@@ -51,12 +53,17 @@ type TInventoryUpdate = {
 export function useInventoryMonitor() {
   const { playerId } = usePlayerId()
   const otherPlayerId = useOtherPlayerId()
+  const clickedTrade = useClickedTrade()
   const { mutatePlayerInventory } = useMutatePlayerInventory({ playerId })
   const { mutatePlayerGearInventory } = useMutatePlayerGearInventory({ playerId })
   const { mutateOtherPlayerInventory } = useMutateOtherPlayerInventory({ playerId, otherPlayerId: otherPlayerId })
   const { mutateOtherPlayerGearInventory } = useMutateOtherPlayerGearInventory({
     playerId,
     otherPlayerId,
+  })
+  const { mutateTradeInventory } = useMutateTradeInventory({
+    playerId,
+    tradeId: clickedTrade,
   })
 
   const isSamePlayer = playerId === Number(otherPlayerId)
@@ -66,6 +73,7 @@ export function useInventoryMonitor() {
     playerGearInventory: [mutatePlayerGearInventory, ...(isSamePlayer ? [mutateOtherPlayerGearInventory] : [])],
     otherPlayerInventory: [mutateOtherPlayerInventory, ...(isSamePlayer ? [mutatePlayerInventory] : [])],
     otherPlayerGearInventory: [mutateOtherPlayerGearInventory, ...(isSamePlayer ? [mutatePlayerGearInventory] : [])],
+    tradeInventory: [mutateTradeInventory, ...(isSamePlayer ? [mutatePlayerGearInventory] : [])],
   }
 
   useDragDropMonitor({
@@ -73,34 +81,47 @@ export function useInventoryMonitor() {
       const { operation, canceled } = event
       if (canceled || !operation.target) return
 
-      const sourceData = operation.source?.data as TInventorySlot
-      const targetData = operation.target?.data as TInventorySlot
+      const sourceData = operation.source?.data
+      const targetData = operation.target?.data
       if (!sourceData?.itemId) return
 
       if (sourceData.type === "tradeInventory") {
+        sourceData as TInventorySlot
+        targetData as TInventorySlot
+
         return
       }
 
-      const result = await moveOrSwapItem({
-        fromType: sourceData.type,
-        toType: targetData.type,
-        fromSlotId: sourceData.slotId,
-        toSlotId: targetData.slotId,
-        fromInventoryContainerId: sourceData.containerId,
-        toInventoryContainerId: targetData.containerId,
-        fromInventoryContainerTypeId: sourceData.inventoryContainerTypeId,
-        toInventoryContainerTypeId: targetData.inventoryContainerTypeId,
-        fromInventorySlotTypeId: sourceData.inventorySlotTypeId,
-        toInventorySlotTypeId: targetData.inventorySlotTypeId,
-        fromItemId: sourceData.itemId,
-        toItemId: targetData.itemId,
-        fromName: sourceData.name,
-        toName: targetData.name,
-        fromQuantity: sourceData.quantity,
-        toQuantity: targetData.quantity,
-      })
+      if (
+        sourceData.type === "otherPlayerGearInventory" ||
+        sourceData.type === "otherPlayerInventory" ||
+        sourceData.type === "playerGearInventory" ||
+        sourceData.type === "playerInventory"
+      ) {
+        sourceData as TInventorySlot
+        targetData as TInventorySlot
 
-      toast.success(result)
+        const result = await moveOrSwapItem({
+          fromType: sourceData.type,
+          toType: targetData.type,
+          fromSlotId: sourceData.slotId,
+          toSlotId: targetData.slotId,
+          fromInventoryContainerId: sourceData.containerId,
+          toInventoryContainerId: targetData.containerId,
+          fromInventoryContainerTypeId: sourceData.inventoryContainerTypeId,
+          toInventoryContainerTypeId: targetData.inventoryContainerTypeId,
+          fromInventorySlotTypeId: sourceData.inventorySlotTypeId,
+          toInventorySlotTypeId: targetData.inventorySlotTypeId,
+          fromItemId: sourceData.itemId,
+          toItemId: targetData.itemId,
+          fromName: sourceData.name,
+          toName: targetData.name,
+          fromQuantity: sourceData.quantity,
+          toQuantity: targetData.quantity,
+        })
+
+        toast.success(result)
+      }
     },
   })
 

@@ -1,5 +1,6 @@
 // GENERATED CODE - DO EDIT MANUALLY - createPanels.hbs
 "use client"
+import { TradeSlot } from "@/components/trade/TradeSlot"
 import { Button } from "@/components/ui/button"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { useTrade } from "@/methods/hooks/trade/composite/useTrade"
@@ -8,14 +9,18 @@ import styles from "./styles/Trade.module.css"
 
 export default function Trade() {
   const { resetModalRightCenter } = useModalRightCenter()
-  const { tradeInventory } = useTrade()
+  const { combinedTradeInventory } = useTrade()
 
   function closeTrade() {
     resetModalRightCenter()
   }
 
+  const side1Inventory = combinedTradeInventory.filter((tradeInventory) => tradeInventory.side === 1)
+
+  const side2Inventory = combinedTradeInventory.filter((tradeInventory) => tradeInventory.side === 2)
+
   return (
-    <div className={styles.overlay}>
+    <div className={styles.panelsContainer}>
       <div className={styles.panel}>
         <Button
           onClick={closeTrade}
@@ -24,14 +29,22 @@ export default function Trade() {
         >
           <X />
         </Button>
-        {Object.values(tradeInventory).map((item) => (
-          <div key={item.slotId}>
-            <div className={styles.itemContainer}>
-              <div className={styles.itemName}>{item.name}</div>
-              <div className={styles.itemQuantity}>Quantity: {item.quantity}</div>
-            </div>
-          </div>
-        ))}
+        <div className={styles.grid}>
+          {side1Inventory.map((tradeInventory) => (
+            <TradeSlot
+              key={tradeInventory.slotId}
+              inventory={tradeInventory}
+            />
+          ))}
+        </div>
+        <div className={styles.grid}>
+          {side2Inventory.map((tradeInventory) => (
+            <TradeSlot
+              key={tradeInventory.slotId}
+              inventory={tradeInventory}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )

@@ -1,0 +1,98 @@
+import getIcon from "@/methods/functions/icons/getIcon"
+import { useDraggable, useDroppable } from "@dnd-kit/react"
+import { ReactNode, useId } from "react"
+import styles from "./styles/TradeSlot.module.css"
+
+export type TTradeSlot = {
+  type: `tradeInventory`
+  id: number
+  name: string
+  description?: string
+  image: string
+  slotId: number
+  containerId: number
+  inventoryContainerTypeId: number
+  inventorySlotTypeId: number
+  itemId: number
+  quantity: number
+  side: number
+}
+
+type TProps = {
+  inventory?: TTradeSlot
+  placeholderIcon?: string
+}
+
+function DroppableSlot({
+  id,
+  children,
+  inventory,
+  placeholderIcon,
+}: {
+  id: string
+  children: ReactNode
+  inventory?: TTradeSlot
+  placeholderIcon?: string
+}) {
+  const { ref, isDropTarget } = useDroppable({
+    id,
+    accept: "item",
+    data: inventory,
+  })
+
+  return (
+    <div
+      ref={ref}
+      className={`${styles.slot} ${isDropTarget ? styles.dragOver : ""}`}
+    >
+      {children || (
+        <div className={styles.placeholder}>
+          {placeholderIcon && <span className={styles.placeholderIcon}>{getIcon(placeholderIcon)}</span>}
+        </div>
+      )}
+      {isDropTarget && !children && <div className={styles.dropHint}>+</div>}
+    </div>
+  )
+}
+
+function DraggableItem({ id, inventory }: { id: string; inventory: TTradeSlot }) {
+  const { ref, isDragging } = useDraggable({
+    id,
+    type: "trade",
+    data: inventory,
+  })
+
+  return (
+    <div
+      ref={ref}
+      className={`${styles.item} ${isDragging ? styles.dragging : ""}`}
+    >
+      <span className={styles.itemImage}>{getIcon(inventory.image)}</span>
+      {inventory.quantity && inventory.quantity >= 1 ? (
+        <span className={styles.quantity}>{inventory.quantity}</span>
+      ) : null}
+    </div>
+  )
+}
+
+// Główny komponent TradeSlot używający oddzielnych komponentów
+export function TradeSlot({ inventory, placeholderIcon }: TProps) {
+  const hasItem = inventory?.itemId
+  const uniqueId = useId()
+  const slotId = `slot-${inventory?.containerId}-${inventory?.slotId}-${uniqueId}`
+
+  return (
+    <DroppableSlot
+      id={slotId}
+      inventory={inventory}
+      placeholderIcon={placeholderIcon}
+    >
+      {hasItem && inventory && (
+        <DraggableItem
+          id={`item-${inventory.containerId}-${inventory.slotId}-${uniqueId}`}
+          inventory={inventory}
+        />
+      )}
+    </DroppableSlot>
+  )
+}
