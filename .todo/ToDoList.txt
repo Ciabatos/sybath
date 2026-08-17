@@ -1,8 +1,6 @@
-https://chromewebstore.google.com/detail/gimli-tailwind/fojckembkmaoehhmkiomebhkcengcljl
-Glob Import z vite ! https://nextjs.org/blog/next-16-3-turbopack#importmetaglob
-w typach lazy loading robic z nextjs https://nextjs.org/docs/app/guides/lazy-loading
-Zrobić plopjs generowanie snippety, type, atomy kazdy do oddzielnego pliku a nie modyfikacje ! - ogolnie zmiana wszedzie gdzie typ plopjs jest modify a nie add
-Dodac do plopjs usuwanie automatyczne
+PLOP.JS
+POBIERANIE PLAYERID W SERVER SIDE ONLY !- niepotrzebnie na cliencie to trzymam i i tak nie uzywam !! Potem jest porównywanie zbędne i errory przy fetchach
+JAWNE PRZEKAZANIE PARAMETROW DO PROCEDUR (BUG: ORDER MOZE BYC ZLY TERAZ)
 
 Trade z innych tile automatycznie pokazuje wystawienie ofert na targowisku dla questa przenoszenia towarow
 Knowledge idea zyskujemy jak w drzewku technologi w civie, musisz miec np 5 skilla poprzedniego i wtedy sie nowe odblokowuje, ale jak sie urodzisz potem i nie masz poprzednich to sie nic nie dzieje mozesz zaczac w srodku drzewa
