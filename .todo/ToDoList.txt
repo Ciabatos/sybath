@@ -1,7 +1,7 @@
 PLOP.JS
 POBIERANIE PLAYERID W SERVER SIDE ONLY !- niepotrzebnie na cliencie to trzymam i i tak nie uzywam !! Potem jest porównywanie zbędne i errory przy fetchach
 JAWNE PRZEKAZANIE PARAMETROW DO PROCEDUR (BUG: ORDER MOZE BYC ZLY TERAZ) w plikach w folderze db
-useCallback w MUTATE !!
+useCallback w MUTATE bo moze być użyta w useEffect !!
 
 Trade z innych tile automatycznie pokazuje wystawienie ofert na targowisku dla questa przenoszenia towarow
 Knowledge idea zyskujemy jak w drzewku technologi w civie, musisz miec np 5 skilla poprzedniego i wtedy sie nowe odblokowuje, ale jak sie urodzisz potem i nie masz poprzednich to sie nic nie dzieje mozesz zaczac w srodku drzewa
