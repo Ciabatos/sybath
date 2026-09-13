@@ -34,11 +34,9 @@ export default function PlayerPanel() {
       <div className={styles.panel}>
         <Button
           onClick={onClose}
-          variant='ghost'
-          size='icon'
           className={styles.closeButton}
         >
-          <X className={styles.closeButtonIcon} />
+          <X />
         </Button>
 
         <div className={styles.header}>

@@ -1,5 +1,16 @@
+getActivePlayerServer zamienic na zwykla funkcje w db ktora sprawdza czy id player = id usera
+wywalic wszystkie sprawdzenia w api getActivePlayerServer
+wywalic zapisywanie w bazie zmiany playera, zamiast tego dodac to do atomu i client state
+Gracz ma jeden user i zmienia sobie tylko na cliencie playera i robiac akcje podaje ten numer i to na db sprawdza czy playerId = userId
+Przy okazji zrobic normalne auth !
+useActivePlayerProfile Wyjebac, przeniesc logike do client side
+
+Utworzyc domyslne pojedyncze componenty zeby moc szybko budowac parent componenty
+
+Edytor Itemow, Skillow, Atrybutów, Budynkow
+Biblioteka Icon, Itemow, Atrybótow, Budynkow, Skillow, Api do akcji
+
 PLOP.JS
-POBIERANIE PLAYERID W SERVER SIDE ONLY !- niepotrzebnie na cliencie to trzymam i i tak nie uzywam !! Potem jest porównywanie zbędne i errory przy fetchach
 JAWNE PRZEKAZANIE PARAMETROW DO PROCEDUR (BUG: ORDER MOZE BYC ZLY TERAZ) w plikach w folderze db
 useCallback w MUTATE bo moze być użyta w useEffect !!
 
