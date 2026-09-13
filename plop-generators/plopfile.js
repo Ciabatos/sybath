@@ -58,15 +58,10 @@ async function configurePlop(plop) {
   createModals(plop)
   createAtomClientSingleton(plop)
   getMethodAction(plop)
-
   getMethodFetcher(plop)
-
   getTable(plop)
-
   rollback(plop)
-
   replayHistory(plop)
-
   formatPrettier(plop)
 }
 

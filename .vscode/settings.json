@@ -1,4 +1,6 @@
 {
+  "workbench.colorTheme": "Dark+",
+  "workbench.editor.enablePreview": true,
   "files.eol": "\r\n",
   "prettier.configPath": ".prettierrc.json",
   "javascript.updateImportsOnFileMove.enabled": "always",
@@ -76,7 +78,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "github.copilot.chat.codesearch.enabled": true,
-  "workbench.editor.enablePreview": false,
   "auto-close-tag.activationOnLanguage": [
     "xml",
     "php",
