@@ -1,3 +1,5 @@
+https://github.com/alexanderkasten/use-next-sse
+
 getActivePlayerServer zamienic na zwykla funkcje w db ktora sprawdza czy id player = id usera
 wywalic wszystkie sprawdzenia w api getActivePlayerServer
 wywalic zapisywanie w bazie zmiany playera, zamiast tego dodac to do atomu i client state
