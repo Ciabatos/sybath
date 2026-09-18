@@ -9,6 +9,7 @@ Przy okazji zrobic normalne auth !
 useActivePlayerProfile Wyjebac, przeniesc logike do client side
 
 Utworzyc domyslne pojedyncze componenty zeby moc szybko budowac parent componenty
+Zrobic layout do modali - shadcn component o nazwie - Resizable
 
 Edytor Itemow, Skillow, Atrybutów, Budynkow
 Biblioteka Icon, Itemow, Atrybótow, Budynkow, Skillow, Api do akcji
