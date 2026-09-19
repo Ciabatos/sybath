@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "Destructure useDefaultActivePlayer": {
+    "prefix": "hook_players_core_useDefaultActivePlayer",
+    "body": [
+      "useFetchDefaultActivePlayer({ userId })",
+      "const defaultActivePlayer = useDefaultActivePlayerState()"
+    ],
+    "description": "Destructuring useDefaultActivePlayer hook"
+  }
+}

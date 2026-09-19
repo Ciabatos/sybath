@@ -3527,7 +3527,7 @@ layer for player movement to understand the database call pattern.
 7: import { getCitiesCitiesByKeyServer } from "@/methods/server-fetchers/cities/core/getCitiesCitiesByKeyServer"
 8: import { getDistrictsDistrictsByKeyServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictsByKeyServer"
 9: import { getDistrictsDistrictTypesServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictTypesServer"
-10: import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
+10: import { getDefaultActivePlayerServer } from "@/methods/server-fetchers/players/core/getDefaultActivePlayerServer"
 11: import { getPlayerMapServer } from "@/methods/server-fetchers/world/core/getPlayerMapServer"
 12: import { getPlayerPositionServer } from "@/methods/server-fetchers/world/core/getPlayerPositionServer"
 13: import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
@@ -3546,7 +3546,7 @@ layer for player movement to understand the database call pattern.
 26:
 27: export async function doPlayerMovementService(params: TDoPlayerMovementServiceParams) {
 28:   try {
-29:     const sessionPlayerId = (await getActivePlayerServer({ userId: params.sessionUserId }, { forceFresh: true })).raw[0]
+29:     const sessionPlayerId = (await getDefaultActivePlayerServer({ userId: params.sessionUserId }, { forceFresh: true })).raw[0]
 30:       .id
 31:     const playerId = params.playerId
 32:

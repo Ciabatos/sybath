@@ -1,0 +1,69 @@
+{
+  "promptAnswers": {
+    "schema": "players",
+    "method": "get_default_active_player",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "id"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": false
+  },
+  "schema": "players",
+  "method": "get_default_active_player",
+  "methodCamelName": "defaultActivePlayer",
+  "methodPascalName": "DefaultActivePlayer",
+  "methodKebabName": "get-default-active-player",
+  "methodName": "getDefaultActivePlayer",
+  "methodTypeName": "TDefaultActivePlayer",
+  "methodParamsTypeName": "TDefaultActivePlayerParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "pascalName": "Id",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"id\"]",
+  "indexParamsColumns": "userId",
+  "indexTypeMethodName": "Id",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TDefaultActivePlayerRecordById",
+  "indexColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "pascalName": "Id",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlParamsPlaceholders": "$1",
+  "apiPath": "app/api/players/rpc/get-default-active-player/[userId]/route.ts",
+  "apiPathParams": "/api/players/rpc/get-default-active-player/${params.userId}",
+  "generateMutation": true,
+  "mutationMergeOldData": false,
+  "compositeDefinitions": [],
+  "filesCreated": [
+    "db/postgresMainDatabase/schemas/players/defaultActivePlayer.ts",
+    "app/api/players/rpc/get-default-active-player/[userId]/route.ts",
+    "methods/hooks/players/core/useFetchDefaultActivePlayer.ts",
+    "methods/server-fetchers/players/core/getDefaultActivePlayerServer.ts",
+    "methods/services/players/fetchDefaultActivePlayerService.ts",
+    "store/atoms/getMethodFetcher/defaultActivePlayerAtom.ts",
+    ".vscode/useDefaultActivePlayer.code-snippets",
+    "methods/hooks/players/core/useMutateDefaultActivePlayer.ts",
+    "methods/hooks/players/core/useFetchDefaultActivePlayer.md"
+  ],
+  "generatorName": "getMethodFetcher"
+}

@@ -1,24 +1,19 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetMethodFetcher.hbs
 
+import { TDefaultActivePlayerParams } from "@/db/postgresMainDatabase/schemas/players/defaultActivePlayer"
 import { auth } from "@/lib/auth"
-{{#if methodParamsColumns}}import { {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"{{/if}}
-import { getDefaultActivePlayerServer } from "@/methods/server-fetchers/players/core/getDefaultActivePlayerServer"
-import { fetch{{methodPascalName}}Service } from "@/methods/services/{{schema}}/fetch{{methodPascalName}}Service"
+import { fetchDefaultActivePlayerService } from "@/methods/services/players/fetchDefaultActivePlayerService"
 import { headers } from "next/headers"
 import { NextRequest, NextResponse } from "next/server"
-{{#if methodParamsColumns}}
 import z from "zod"
 
 type TApiParams = Record<string, string>
 
 const typeParamsSchema = z.object({
-  {{#each methodParamsColumns}}
-  {{camelName}}: z.coerce.{{tsType}}(),
-  {{/each}}
-}) satisfies z.ZodType<{{methodParamsTypeName}}>
+  userId: z.coerce.string(),
+}) satisfies z.ZodType<TDefaultActivePlayerParams>
 
-{{/if}}
-export async function GET(request: NextRequest{{#if methodParamsColumns}}, { params }: { params: TApiParams } {{/if}}): Promise<NextResponse> {
+export async function GET(request: NextRequest, { params }: { params: TApiParams }): Promise<NextResponse> {
   try {
     const session = await auth.api.getSession({ headers: await headers() })
     const sessionUserId = session?.user?.id
@@ -27,25 +22,19 @@ export async function GET(request: NextRequest{{#if methodParamsColumns}}, { par
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
     }
 
-  {{#if methodParamsColumns}}
     const paramsFromPromise = await params
     const parsedParams = typeParamsSchema.parse(paramsFromPromise)
-  {{/if}}
 
     const clientEtag = request.headers.get("if-none-match") ?? undefined
     const forceFresh = request.headers.get("x-force-fresh") ?? undefined
-    
-    const { record, etag, cacheHit, etagMatched } = await fetch{{methodPascalName}}Service({{#if methodParamsColumns}}parsedParams,{{/if}} {
+
+    const { record, etag, cacheHit, etagMatched } = await fetchDefaultActivePlayerService(parsedParams, {
       ...(forceFresh ? { forceFresh: true } : { clientEtag }),
     })
 
     if (cacheHit || etagMatched) {
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })
     }
-
-    
-
-
 
     return NextResponse.json(record!.raw, { headers: { ETag: etag } })
   } catch (error) {
