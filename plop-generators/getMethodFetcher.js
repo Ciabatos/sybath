@@ -157,11 +157,14 @@ export default function getMethodFetcher(plop) {
       const indexTypeName = methodTypeName + "RecordBy" + indexTypeMethodName
       const indexMethodName = "arrayToObjectKey"
 
-      const apiParamPathSquareBrackets = methodParamsColumns.length
-        ? "/" + methodParamsColumns.map((f) => `[${f.camelName}]`).join("/")
+      const clientMethodParamsTypeName = `${methodTypeName}ClientParams`
+      const clientMethodParamsColumns = methodParamsColumns.filter((f) => f.camelName !== "userId")
+
+      const apiParamPathSquareBrackets = clientMethodParamsColumns.length
+        ? "/" + clientMethodParamsColumns.map((f) => `[${f.camelName}]`).join("/")
         : ""
-      const apiParamPath = methodParamsColumns.length
-        ? "/" + methodParamsColumns.map((f) => `\${params.${f.camelName}}`).join("/")
+      const apiParamPath = clientMethodParamsColumns.length
+        ? "/" + clientMethodParamsColumns.map((f) => `\${params.${f.camelName}}`).join("/")
         : ""
 
       //rpc jednoznacznie oznacza “remote procedure call”
@@ -228,7 +231,9 @@ export default function getMethodFetcher(plop) {
         methodName,
         methodTypeName,
         methodParamsTypeName,
+        clientMethodParamsTypeName,
         methodParamsColumns,
+        clientMethodParamsColumns,
         methodColumns,
         indexMethodParams,
         indexParamsColumns,
@@ -254,7 +259,9 @@ export default function getMethodFetcher(plop) {
         methodName,
         methodTypeName,
         methodParamsTypeName,
+        clientMethodParamsTypeName,
         methodParamsColumns,
+        clientMethodParamsColumns,
         methodColumns,
         indexMethodParams,
         indexParamsColumns,

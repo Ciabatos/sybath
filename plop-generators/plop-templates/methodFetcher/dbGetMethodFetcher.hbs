@@ -9,7 +9,10 @@ export type {{methodParamsTypeName}} = {
 {{#each methodParamsColumns}}
   {{camelName}}: {{tsType}}
 {{/each}}
-}{{/if}}
+}
+
+export type {{clientMethodParamsTypeName}} = Omit<{{methodParamsTypeName}}, "userId">
+{{/if}}
 
 {{#each compositeDefinitions}}
 export type {{typeName}} = {

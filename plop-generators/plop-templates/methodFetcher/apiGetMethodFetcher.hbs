@@ -28,7 +28,10 @@ export async function GET(request: NextRequest{{#if methodParamsColumns}}, { par
 
   {{#if methodParamsColumns}}
     const paramsFromPromise = await params
-    const parsedParams = typeParamsSchema.parse(paramsFromPromise)
+    const parsedParams = typeParamsSchema.parse({
+      ...paramsFromPromise,
+      userId: sessionUserId,
+    })
   {{/if}}
 
     const clientEtag = request.headers.get("if-none-match") ?? undefined

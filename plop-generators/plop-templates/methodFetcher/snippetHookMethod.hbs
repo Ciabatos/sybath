@@ -4,7 +4,7 @@
   "Destructure use{{methodPascalName}}": {
     "prefix": "hook_{{schema}}_core_use{{methodPascalName}}",
     "body": [
-      "useFetch{{methodPascalName}}({{#if methodParamsColumns}}{ {{#each methodParamsColumns}}{{camelName}}{{#unless @last}}, {{/unless}}{{/each}} }{{/if}})",
+      "useFetch{{methodPascalName}}({{#if clientMethodParamsColumns}}{ {{#each clientMethodParamsColumns}}{{camelName}}{{#unless @last}}, {{/unless}}{{/each}} }{{/if}})",
       "const {{methodCamelName}} = use{{methodPascalName}}State()"
     ],
     "description": "Destructuring use{{methodPascalName}} hook"

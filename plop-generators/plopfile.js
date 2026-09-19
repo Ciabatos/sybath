@@ -1,18 +1,7 @@
-import createAtomClientSingleton from "./createAtomClientSingleton.js"
-import createButton from "./createButton.js"
-import createListPanels from "./createListPanels.js"
-import createModals from "./createModals.js"
-import createNestedPanels from "./createNestedPanels.js"
-import createPanels from "./createPanels.js"
-import formatPrettier from "./formatPrettier.js"
-import getMethodAction from "./getMethodAction.js"
 import getMethodFetcher from "./getMethodFetcher.js"
-import getTable from "./getTable.js"
 import { formatWithPrettier } from "./helpers/prettier.js"
 import { dropFunction } from "./helpers/queries.js"
 import { removeFiles } from "./helpers/removeFiles.js"
-import replayHistory from "./replayHistory.js"
-import rollback from "./rollback.js"
 
 async function configurePlop(plop) {
   const pathsToFormat = [
@@ -51,18 +40,18 @@ async function configurePlop(plop) {
     }
   })
 
-  createPanels(plop)
-  createListPanels(plop)
-  createNestedPanels(plop)
-  createButton(plop)
-  createModals(plop)
-  createAtomClientSingleton(plop)
-  getMethodAction(plop)
+  // createPanels(plop)
+  // createListPanels(plop)
+  // createNestedPanels(plop)
+  // createButton(plop)
+  // createModals(plop)
+  // createAtomClientSingleton(plop)
+  // getMethodAction(plop)
   getMethodFetcher(plop)
-  getTable(plop)
-  rollback(plop)
-  replayHistory(plop)
-  formatPrettier(plop)
+  // getTable(plop)
+  // rollback(plop)
+  // replayHistory(plop)
+  // formatPrettier(plop)
 }
 
 export default configurePlop
