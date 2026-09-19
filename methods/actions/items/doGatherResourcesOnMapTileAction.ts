@@ -1,20 +1,21 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - actionGetMethodAction.hbs
 "use server"
 
-import { auth } from "@/auth"
+import { auth } from "@/lib/auth"
 import {
   TDoGatherResourcesOnMapTileServiceParams,
   doGatherResourcesOnMapTileService,
 } from "@/methods/services/items/doGatherResourcesOnMapTileService"
+import { headers } from "next/headers"
 
 type TDoGatherResourcesOnMapTileActionParams = Omit<TDoGatherResourcesOnMapTileServiceParams, "sessionUserId">
 
 export async function doGatherResourcesOnMapTileAction(params: TDoGatherResourcesOnMapTileActionParams) {
   try {
-    const session = await auth()
-    const sessionUserId = session?.user?.userId
+    const session = await auth.api.getSession({ headers: await headers() })
+    const sessionUserId = session?.user?.id
 
-    if (!sessionUserId || isNaN(sessionUserId)) {
+    if (!sessionUserId) {
       return {
         status: false,
         message: "Active player mismatch",

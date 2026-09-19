@@ -25,7 +25,7 @@ path: `methods/services/items/doGatherResourcesOnMapTileService.ts`
 # TypeScript Types:
 
 export type TDoGatherResourcesOnMapTileServiceParams = {
-sessionUserId: number
+sessionUserId: string
 playerId: number
 }
 

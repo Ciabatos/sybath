@@ -1,20 +1,21 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - actionGetMethodAction.hbs
 "use server"
 
-import { auth } from "@/auth"
+import { auth } from "@/lib/auth"
 import {
   TDoOtherPlayerKnowledgeRequestServiceParams,
   doOtherPlayerKnowledgeRequestService,
 } from "@/methods/services/knowledge/doOtherPlayerKnowledgeRequestService"
+import { headers } from "next/headers"
 
 type TDoOtherPlayerKnowledgeRequestActionParams = Omit<TDoOtherPlayerKnowledgeRequestServiceParams, "sessionUserId">
 
 export async function doOtherPlayerKnowledgeRequestAction(params: TDoOtherPlayerKnowledgeRequestActionParams) {
   try {
-    const session = await auth()
-    const sessionUserId = session?.user?.userId
+    const session = await auth.api.getSession({ headers: await headers() })
+    const sessionUserId = session?.user?.id
 
-    if (!sessionUserId || isNaN(sessionUserId)) {
+    if (!sessionUserId) {
       return {
         status: false,
         message: "Active player mismatch",

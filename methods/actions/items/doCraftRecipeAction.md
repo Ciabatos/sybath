@@ -25,7 +25,7 @@ path: `methods/services/items/doCraftRecipeService.ts`
 # TypeScript Types:
 
 export type TDoCraftRecipeServiceParams = {
-sessionUserId: number
+sessionUserId: string
 playerId: number
 }
 

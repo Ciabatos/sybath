@@ -25,7 +25,7 @@ path: `methods/services/knowledge/doOtherPlayerKnowledgeAcceptService.ts`
 # TypeScript Types:
 
 export type TDoOtherPlayerKnowledgeAcceptServiceParams = {
-sessionUserId: number
+sessionUserId: string
 playerId: number
 }
 

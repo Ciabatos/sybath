@@ -12,7 +12,7 @@ import { getPlayerPositionServer } from "@/methods/server-fetchers/world/core/ge
 //MANUAL CODE - START
 
 export type TDoGatherResourcesOnMapTileServiceParams = {
-  sessionUserId: number
+  sessionUserId: string
   playerId: number
   mapId: number
   targetTileX: number

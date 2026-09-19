@@ -1,9 +1,10 @@
 "use server"
-import { auth } from "@/auth"
 import MapWrapper from "@/components/map/MapWrapper"
+import { auth } from "@/lib/auth"
 import { getInitialPageMapData } from "@/methods/server-fetchers/world/composite/getInitialPageMapData"
 import { AtomsHydrator } from "@/providers/jotai-hydrator"
 import { SWRHydrator } from "@/providers/swr-hydrator"
+import { headers } from "next/headers"
 import styles from "./page.module.css"
 
 type TParams = {
@@ -11,10 +12,10 @@ type TParams = {
 }
 
 export default async function WorldPage({ params }: { params: TParams }) {
-  const session = await auth()
-  const sessionUserId = session?.user?.userId
+  const session = await auth.api.getSession({ headers: await headers() })
+  const sessionUserId = session?.user?.id
 
-  if (!sessionUserId || isNaN(sessionUserId)) {
+  if (!sessionUserId) {
     return null
   }
 

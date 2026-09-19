@@ -25,7 +25,7 @@ path: `methods/services/inventory/doMoveOrSwapItemService.ts`
 # TypeScript Types:
 
 export type TDoMoveOrSwapItemServiceParams = {
-sessionUserId: number
+sessionUserId: string
 playerId: number
 }
 

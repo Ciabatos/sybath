@@ -25,7 +25,7 @@ path: `methods/services/knowledge/doOtherPlayerKnowledgeRequestService.ts`
 # TypeScript Types:
 
 export type TDoOtherPlayerKnowledgeRequestServiceParams = {
-sessionUserId: number
+sessionUserId: string
 playerId: number
 }
 

@@ -25,7 +25,7 @@ path: `methods/services/squad/doSquadCreateService.ts`
 # TypeScript Types:
 
 export type TDoSquadCreateServiceParams = {
-sessionUserId: number
+sessionUserId: string
 playerId: number
 }
 

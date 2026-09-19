@@ -18,7 +18,7 @@ import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core
 
 export type TDoPlayerMovementServiceParams = {
   path: TPlayerMovementRecordByXY
-  sessionUserId: number
+  sessionUserId: string
   playerId: number
 }
 

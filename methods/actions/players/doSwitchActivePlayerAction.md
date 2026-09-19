@@ -25,7 +25,7 @@ path: `methods/services/players/doSwitchActivePlayerService.ts`
 # TypeScript Types:
 
 export type TDoSwitchActivePlayerServiceParams = {
-sessionUserId: number
+sessionUserId: string
 playerId: number
 }
 

@@ -7,7 +7,7 @@ import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/ge
 //MANUAL CODE - START
 
 export type TDoSquadInviteServiceParams = {
-  sessionUserId: number
+  sessionUserId: string
   playerId: number
   invitedPlayerId: string
   inviteType: number

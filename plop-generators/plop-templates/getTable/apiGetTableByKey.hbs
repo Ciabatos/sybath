@@ -1,8 +1,9 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetTableByKey.hbs
 
-import { auth } from "@/auth"
+import { auth } from "@/lib/auth"
 {{#if methodParamsColumns}}import { {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"{{/if}}
 import { {{fetcherNameByKey}}Service } from "@/methods/services/{{schema}}/{{fetcherNameByKey}}Service"
+import { headers } from "next/headers"
 import { NextRequest, NextResponse } from "next/server"
 {{#if methodParamsColumns}}
 import z from "zod"
@@ -18,10 +19,10 @@ const typeParamsSchema = z.object({
 {{/if}}
 export async function GET(request: NextRequest{{#if methodParamsColumns}}, { params }: { params: TApiParams }{{/if}}): Promise<NextResponse> {
   try {
-    const session = await auth()
-    const sessionUserId = session?.user?.userId
+    const session = await auth.api.getSession({ headers: await headers() })
+    const sessionUserId = session?.user?.id
 
-    if (!sessionUserId || isNaN(sessionUserId)) {
+    if (!sessionUserId) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
     }
   

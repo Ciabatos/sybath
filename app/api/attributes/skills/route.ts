@@ -1,15 +1,16 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetTable.hbs
 
-import { auth } from "@/auth"
+import { auth } from "@/lib/auth"
 import { fetchAttributesSkillsService } from "@/methods/services/attributes/fetchAttributesSkillsService"
+import { headers } from "next/headers"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
-    const session = await auth()
-    const sessionUserId = session?.user?.userId
+    const session = await auth.api.getSession({ headers: await headers() })
+    const sessionUserId = session?.user?.id
 
-    if (!sessionUserId || isNaN(sessionUserId)) {
+    if (!sessionUserId) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
     }
 

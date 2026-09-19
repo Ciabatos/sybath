@@ -1,9 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetMethodFetcher.hbs
 
-import { auth } from "@/auth"
+import { auth } from "@/lib/auth"
 {{#if methodParamsColumns}}import { {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"{{/if}}
 import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
 import { fetch{{methodPascalName}}Service } from "@/methods/services/{{schema}}/fetch{{methodPascalName}}Service"
+import { headers } from "next/headers"
 import { NextRequest, NextResponse } from "next/server"
 {{#if methodParamsColumns}}
 import z from "zod"
@@ -19,10 +20,10 @@ const typeParamsSchema = z.object({
 {{/if}}
 export async function GET(request: NextRequest{{#if methodParamsColumns}}, { params }: { params: TApiParams } {{/if}}): Promise<NextResponse> {
   try {
-    const session = await auth()
-    const sessionUserId = session?.user?.userId
+    const session = await auth.api.getSession({ headers: await headers() })
+    const sessionUserId = session?.user?.id
 
-    if (!sessionUserId || isNaN(sessionUserId)) {
+    if (!sessionUserId) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
     }
 
@@ -42,11 +43,9 @@ export async function GET(request: NextRequest{{#if methodParamsColumns}}, { par
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })
     }
 
-    const sessionPlayerId = (await getActivePlayerServer({ userId: sessionUserId }, { forceFresh: true })).raw[0].id
+    
 
-    if (sessionPlayerId !== parsedParams.playerId) {
-      return NextResponse.json({ message: "Not found" }, { status: 404 })
-    }
+
 
     return NextResponse.json(record!.raw, { headers: { ETag: etag } })
   } catch (error) {

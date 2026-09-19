@@ -1,9 +1,9 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetMethodFetcher.hbs
 
-import { auth } from "@/auth"
 import { TBuildingInventoryParams } from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory"
-import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
+import { auth } from "@/lib/auth"
 import { fetchBuildingInventoryService } from "@/methods/services/inventory/fetchBuildingInventoryService"
+import { headers } from "next/headers"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
 
@@ -15,10 +15,10 @@ const typeParamsSchema = z.object({
 
 export async function GET(request: NextRequest, { params }: { params: TApiParams }): Promise<NextResponse> {
   try {
-    const session = await auth()
-    const sessionUserId = session?.user?.userId
+    const session = await auth.api.getSession({ headers: await headers() })
+    const sessionUserId = session?.user?.id
 
-    if (!sessionUserId || isNaN(sessionUserId)) {
+    if (!sessionUserId) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
     }
 
@@ -34,12 +34,6 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
 
     if (cacheHit || etagMatched) {
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })
-    }
-
-    const sessionPlayerId = (await getActivePlayerServer({ userId: sessionUserId }, { forceFresh: true })).raw[0].id
-
-    if (sessionPlayerId !== parsedParams.playerId) {
-      return NextResponse.json({ message: "Not found" }, { status: 404 })
     }
 
     return NextResponse.json(record!.raw, { headers: { ETag: etag } })

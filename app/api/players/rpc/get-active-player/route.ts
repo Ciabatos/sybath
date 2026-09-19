@@ -1,16 +1,17 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetMethodFetcher.hbs
 // Edited: 2023-10-02T15:13:38.255Z Added fetch by userId
 
-import { auth } from "@/auth"
+import { auth } from "@/lib/auth"
 import { fetchActivePlayerService } from "@/methods/services/players/fetchActivePlayerService"
+import { headers } from "next/headers"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
-    const session = await auth()
-    const sessionUserId = session?.user?.userId
+    const session = await auth.api.getSession({ headers: await headers() })
+    const sessionUserId = session?.user?.id
 
-    if (!sessionUserId || isNaN(sessionUserId)) {
+    if (!sessionUserId) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
     }
 

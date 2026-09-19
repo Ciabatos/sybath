@@ -25,7 +25,7 @@ path: `methods/services/world/doPlayerMovementService.ts`
 # TypeScript Types:
 
 export type TDoPlayerMovementServiceParams = {
-sessionUserId: number
+sessionUserId: string
 playerId: number
 }
 

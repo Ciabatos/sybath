@@ -3054,7 +3054,7 @@ squad-related hooks and atoms.
 <content>1: // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - actionGetMethodAction.hbs
 2: "use server"
 3:
-4: import { auth } from "@/auth"
+4: import { auth } from "@/lib/auth"
 5: import {
 6:   TDoPlayerMovementServiceParams,
 7:   doPlayerMovementService,
@@ -3064,10 +3064,10 @@ squad-related hooks and atoms.
 11:
 12: export async function doPlayerMovementAction(params: TDoPlayerMovementActionParams) {
 13:   try {
-14:     const session = await auth()
-15:     const sessionUserId = session?.user?.userId
+14:     const session = await auth.api.getSession({ headers: await headers() })
+15:     const sessionUserId = session?.user?.id
 16:
-17:     if (!sessionUserId || isNaN(sessionUserId)) {
+17:     if (!sessionUserId) {
 18:       return {
 19:         status: false,
 20:         message: "Active player mismatch",
@@ -3538,7 +3538,7 @@ layer for player movement to understand the database call pattern.
 18:
 19: export type TDoPlayerMovementServiceParams = {
 20:   path: TPlayerMovementRecordByXY
-21:   sessionUserId: number
+21:   sessionUserId: string
 22:   playerId: number
 23: }
 24:

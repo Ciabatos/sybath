@@ -25,7 +25,7 @@ path: `methods/services/world/doMapTileExplorationService.ts`
 # TypeScript Types:
 
 export type TDoMapTileExplorationServiceParams = {
-sessionUserId: number
+sessionUserId: string
 playerId: number
 }
 

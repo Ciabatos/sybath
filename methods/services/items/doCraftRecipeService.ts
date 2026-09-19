@@ -7,7 +7,7 @@ import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/ge
 //MANUAL CODE - START
 
 export type TDoCraftRecipeServiceParams = {
-  sessionUserId: number
+  sessionUserId: string
   playerId: number
   recipeId: number
 }

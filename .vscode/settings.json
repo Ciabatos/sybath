@@ -32,7 +32,7 @@
   "tailwindCSS.emmetCompletions": true,
 
   "editor.formatOnSave": true,
-  "explorer.autoReveal": false,
+  "explorer.autoReveal": true,
   "workbench.iconTheme": "vscode-icons",
   "vsicons.dontShowNewVersionMessage": true,
   "editor.guides.bracketPairs": "active",

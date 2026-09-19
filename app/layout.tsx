@@ -2,14 +2,13 @@ import { DndProvider } from "@/providers/dnd-provider"
 import { SWRProvider } from "@/providers/swr-provider"
 import { Provider } from "jotai"
 import type { Metadata } from "next"
-import { SessionProvider } from "next-auth/react"
 import { Toaster } from "sonner"
 // @ts-expect-error: missing type declarations for side-effect import of './globals.css'
+import { cn } from "@/lib/utils"
+import { Geist } from "next/font/google"
 import "./globals.css"
-import { Geist } from "next/font/google";
-import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" })
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,18 +21,19 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en' className={cn("font-sans", geist.variable)}>
+    <html
+      lang='en'
+      className={cn("font-sans", geist.variable)}
+    >
       <body>
-        <SessionProvider>
-          <Provider>
-            <SWRProvider>
-              <DndProvider>
-                {children}
-                <Toaster position='bottom-right' />
-              </DndProvider>
-            </SWRProvider>
-          </Provider>
-        </SessionProvider>
+        <Provider>
+          <SWRProvider>
+            <DndProvider>
+              {children}
+              <Toaster position='bottom-right' />
+            </DndProvider>
+          </SWRProvider>
+        </Provider>
       </body>
     </html>
   )

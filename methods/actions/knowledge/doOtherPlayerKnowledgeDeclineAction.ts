@@ -1,20 +1,21 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - actionGetMethodAction.hbs
 "use server"
 
-import { auth } from "@/auth"
+import { auth } from "@/lib/auth"
 import {
   TDoOtherPlayerKnowledgeDeclineServiceParams,
   doOtherPlayerKnowledgeDeclineService,
 } from "@/methods/services/knowledge/doOtherPlayerKnowledgeDeclineService"
+import { headers } from "next/headers"
 
 type TDoOtherPlayerKnowledgeDeclineActionParams = Omit<TDoOtherPlayerKnowledgeDeclineServiceParams, "sessionUserId">
 
 export async function doOtherPlayerKnowledgeDeclineAction(params: TDoOtherPlayerKnowledgeDeclineActionParams) {
   try {
-    const session = await auth()
-    const sessionUserId = session?.user?.userId
+    const session = await auth.api.getSession({ headers: await headers() })
+    const sessionUserId = session?.user?.id
 
-    if (!sessionUserId || isNaN(sessionUserId)) {
+    if (!sessionUserId) {
       return {
         status: false,
         message: "Active player mismatch",

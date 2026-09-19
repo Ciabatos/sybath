@@ -1,20 +1,21 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - actionGetMethodAction.hbs
 "use server"
 
-import { auth } from "@/auth"
+import { auth } from "@/lib/auth"
 import {
   TDoMapTileExplorationServiceParams,
   doMapTileExplorationService,
 } from "@/methods/services/world/doMapTileExplorationService"
+import { headers } from "next/headers"
 
 type TDoMapTileExplorationActionParams = Omit<TDoMapTileExplorationServiceParams, "sessionUserId">
 
 export async function doMapTileExplorationAction(params: TDoMapTileExplorationActionParams) {
   try {
-    const session = await auth()
-    const sessionUserId = session?.user?.userId
+    const session = await auth.api.getSession({ headers: await headers() })
+    const sessionUserId = session?.user?.id
 
-    if (!sessionUserId || isNaN(sessionUserId)) {
+    if (!sessionUserId) {
       return {
         status: false,
         message: "Active player mismatch",

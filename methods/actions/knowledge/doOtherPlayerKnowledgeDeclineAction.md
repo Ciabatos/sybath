@@ -25,7 +25,7 @@ path: `methods/services/knowledge/doOtherPlayerKnowledgeDeclineService.ts`
 # TypeScript Types:
 
 export type TDoOtherPlayerKnowledgeDeclineServiceParams = {
-sessionUserId: number
+sessionUserId: string
 playerId: number
 }
 

@@ -25,7 +25,7 @@ path: `methods/services/trade/doTradeOpenService.ts`
 # TypeScript Types:
 
 export type TDoTradeOpenServiceParams = {
-sessionUserId: number
+sessionUserId: string
 playerId: number
 }
 

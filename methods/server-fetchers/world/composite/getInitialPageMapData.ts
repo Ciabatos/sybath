@@ -18,8 +18,13 @@ import { getPlayerPositionServer } from "@/methods/server-fetchers/world/core/ge
 import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
 import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
 
-export async function getInitialPageMapData(clientMapId: number, sessionUserId: number) {
+export async function getInitialPageMapData(clientMapId: number, sessionUserId: string) {
   const activePlayer = await getActivePlayerServer({ userId: sessionUserId })
+
+  if (!activePlayer || !activePlayer.raw[0]) {
+    return null
+  }
+
   const sessionPlayerId = activePlayer.raw[0].id
   const playerId = sessionPlayerId
 

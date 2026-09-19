@@ -25,7 +25,7 @@ path: `methods/services/squad/doSquadJoinService.ts`
 # TypeScript Types:
 
 export type TDoSquadJoinServiceParams = {
-sessionUserId: number
+sessionUserId: string
 playerId: number
 }
 

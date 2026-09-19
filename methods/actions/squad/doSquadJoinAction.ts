@@ -1,17 +1,18 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - actionGetMethodAction.hbs
 "use server"
 
-import { auth } from "@/auth"
+import { auth } from "@/lib/auth"
 import { TDoSquadJoinServiceParams, doSquadJoinService } from "@/methods/services/squad/doSquadJoinService"
+import { headers } from "next/headers"
 
 type TDoSquadJoinActionParams = Omit<TDoSquadJoinServiceParams, "sessionUserId">
 
 export async function doSquadJoinAction(params: TDoSquadJoinActionParams) {
   try {
-    const session = await auth()
-    const sessionUserId = session?.user?.userId
+    const session = await auth.api.getSession({ headers: await headers() })
+    const sessionUserId = session?.user?.id
 
-    if (!sessionUserId || isNaN(sessionUserId)) {
+    if (!sessionUserId) {
       return {
         status: false,
         message: "Active player mismatch",

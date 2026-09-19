@@ -10,7 +10,7 @@ import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/ge
 //MANUAL CODE - START
 
 export type TDoSwitchActivePlayerServiceParams = {
-  sessionUserId: number
+  sessionUserId: string
   playerId: number
   switchToPlayerId: number
 }

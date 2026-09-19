@@ -25,7 +25,7 @@ path: `methods/services/squad/doSquadLeaveService.ts`
 # TypeScript Types:
 
 export type TDoSquadLeaveServiceParams = {
-sessionUserId: number
+sessionUserId: string
 playerId: number
 }
 

@@ -1,9 +1,10 @@
 "use server"
-import { auth } from "@/auth"
 import CityWrapper from "@/components/city/CityWrapper"
+import { auth } from "@/lib/auth"
 import { getInitialPageCityData } from "@/methods/server-fetchers/cities/composite/getInitialPageCityData"
 import { AtomsHydrator } from "@/providers/jotai-hydrator"
 import { SWRHydrator } from "@/providers/swr-hydrator"
+import { headers } from "next/headers"
 import styles from "./page.module.css"
 
 type TParams = {
@@ -11,10 +12,10 @@ type TParams = {
 }
 
 export default async function CityPage({ params }: { params: TParams }) {
-  const session = await auth()
-  const sessionUserId = session?.user?.userId
+  const session = await auth.api.getSession({ headers: await headers() })
+  const sessionUserId = session?.user?.id
 
-  if (!sessionUserId || isNaN(sessionUserId)) {
+  if (!sessionUserId) {
     return null
   }
 
