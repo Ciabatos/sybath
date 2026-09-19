@@ -1,13 +1,6 @@
 https://github.com/alexanderkasten/use-next-sse
 https://claude.ai/share/870c1173-ccc9-435f-b7c9-79e0ae203ab2
 
-getDefaultActivePlayerServer zamienic na zwykla funkcje w db ktora sprawdza czy id player = id usera
-wywalic wszystkie sprawdzenia w api getDefaultActivePlayerServer
-wywalic zapisywanie w bazie zmiany playera, zamiast tego dodac to do atomu i client state
-Gracz ma jeden user i zmienia sobie tylko na cliencie playera i robiac akcje podaje ten numer i to na db sprawdza czy playerId = userId
-Przy okazji zrobic normalne auth !
-useActivePlayerProfile Wyjebac, przeniesc logike do client side
-
 Utworzyc domyslne pojedyncze componenty zeby moc szybko budowac parent componenty
 Zrobic layout do modali - shadcn component o nazwie - Resizable - zastanowic sie dla ktorych, pewnie jakies duze listy typu gracze
 

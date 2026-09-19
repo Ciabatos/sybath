@@ -2,7 +2,6 @@
 
 import { auth } from "@/lib/auth"
 {{#if methodParamsColumns}}import { {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"{{/if}}
-import { getDefaultActivePlayerServer } from "@/methods/server-fetchers/players/core/getDefaultActivePlayerServer"
 import { fetch{{methodPascalName}}Service } from "@/methods/services/{{schema}}/fetch{{methodPascalName}}Service"
 import { headers } from "next/headers"
 import { NextRequest, NextResponse } from "next/server"
