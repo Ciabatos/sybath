@@ -2,7 +2,6 @@
 "use server"
 
 import { TDoSquadInviteParams, doSquadInvite } from "@/db/postgresMainDatabase/schemas/squad/doSquadInvite"
-import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
 
 //MANUAL CODE - START
 
@@ -18,16 +17,8 @@ export type TDoSquadInviteServiceParams = {
 
 export async function doSquadInviteService(params: TDoSquadInviteServiceParams) {
   try {
-    const sessionPlayerId = (await getActivePlayerServer({ userId: params.sessionUserId }, { forceFresh: true })).raw[0]
-      .id
+    const sessionPlayerId = params.sessionUserId
     const playerId = params.playerId
-
-    if (sessionPlayerId !== playerId) {
-      return {
-        status: false,
-        message: "Active player mismatch",
-      }
-    }
 
     //MANUAL CODE - START
 

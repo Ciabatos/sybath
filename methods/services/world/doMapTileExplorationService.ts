@@ -6,7 +6,6 @@ import {
   doMapTileExploration,
 } from "@/db/postgresMainDatabase/schemas/world/doMapTileExploration"
 import { getPlayerAbilitiesServer } from "@/methods/server-fetchers/attributes/core/getPlayerAbilitiesServer"
-import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
 import { getPlayerMapServer } from "@/methods/server-fetchers/world/core/getPlayerMapServer"
 import { getPlayerPositionServer } from "@/methods/server-fetchers/world/core/getPlayerPositionServer"
 
@@ -24,16 +23,8 @@ export type TDoMapTileExplorationServiceParams = {
 
 export async function doMapTileExplorationService(params: TDoMapTileExplorationServiceParams) {
   try {
-    const sessionPlayerId = (await getActivePlayerServer({ userId: params.sessionUserId }, { forceFresh: true })).raw[0]
-      .id
+    const sessionPlayerId = params.sessionUserId
     const playerId = params.playerId
-
-    if (sessionPlayerId !== playerId) {
-      return {
-        status: false,
-        message: "Active player mismatch",
-      }
-    }
 
     //MANUAL CODE - START
     const mapId = (await getPlayerMapServer({ playerId })).raw[0].mapId

@@ -5,7 +5,6 @@ import {
   TDoGatherResourcesOnMapTileParams,
   doGatherResourcesOnMapTile,
 } from "@/db/postgresMainDatabase/schemas/items/doGatherResourcesOnMapTile"
-import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
 import { getPlayerMapServer } from "@/methods/server-fetchers/world/core/getPlayerMapServer"
 import { getPlayerPositionServer } from "@/methods/server-fetchers/world/core/getPlayerPositionServer"
 
@@ -25,16 +24,8 @@ export type TDoGatherResourcesOnMapTileServiceParams = {
 
 export async function doGatherResourcesOnMapTileService(params: TDoGatherResourcesOnMapTileServiceParams) {
   try {
-    const sessionPlayerId = (await getActivePlayerServer({ userId: params.sessionUserId }, { forceFresh: true })).raw[0]
-      .id
+    const sessionPlayerId = params.sessionUserId
     const playerId = params.playerId
-
-    if (sessionPlayerId !== playerId) {
-      return {
-        status: false,
-        message: "Active player mismatch",
-      }
-    }
 
     //MANUAL CODE - START
 

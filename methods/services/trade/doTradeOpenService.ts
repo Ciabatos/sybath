@@ -2,7 +2,6 @@
 "use server"
 
 import { TDoTradeOpenParams, doTradeOpen } from "@/db/postgresMainDatabase/schemas/trade/doTradeOpen"
-import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
 
 //MANUAL CODE - START
 
@@ -16,16 +15,8 @@ export type TDoTradeOpenServiceParams = {
 
 export async function doTradeOpenService(params: TDoTradeOpenServiceParams) {
   try {
-    const sessionPlayerId = (await getActivePlayerServer({ userId: params.sessionUserId }, { forceFresh: true })).raw[0]
-      .id
+    const sessionPlayerId = params.sessionUserId
     const playerId = params.playerId
-
-    if (sessionPlayerId !== playerId) {
-      return {
-        status: false,
-        message: "Active player mismatch",
-      }
-    }
 
     //MANUAL CODE - START
 

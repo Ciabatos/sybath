@@ -2,7 +2,6 @@
 "use server"
 
 import { TDoCraftRecipeParams, doCraftRecipe } from "@/db/postgresMainDatabase/schemas/items/doCraftRecipe"
-import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
 
 //MANUAL CODE - START
 
@@ -16,16 +15,8 @@ export type TDoCraftRecipeServiceParams = {
 
 export async function doCraftRecipeService(params: TDoCraftRecipeServiceParams) {
   try {
-    const sessionPlayerId = (await getActivePlayerServer({ userId: params.sessionUserId }, { forceFresh: true })).raw[0]
-      .id
+    const sessionPlayerId = params.sessionUserId
     const playerId = params.playerId
-
-    if (sessionPlayerId !== playerId) {
-      return {
-        status: false,
-        message: "Active player mismatch",
-      }
-    }
 
     //MANUAL CODE - START
 

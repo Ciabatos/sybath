@@ -5,7 +5,6 @@ import {
   TDoSwitchActivePlayerParams,
   doSwitchActivePlayer,
 } from "@/db/postgresMainDatabase/schemas/players/doSwitchActivePlayer"
-import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
 
 //MANUAL CODE - START
 
@@ -19,16 +18,8 @@ export type TDoSwitchActivePlayerServiceParams = {
 
 export async function doSwitchActivePlayerService(params: TDoSwitchActivePlayerServiceParams) {
   try {
-    const sessionPlayerId = (await getActivePlayerServer({ userId: params.sessionUserId }, { forceFresh: true })).raw[0]
-      .id
+    const sessionPlayerId = params.sessionUserId
     const playerId = params.playerId
-
-    if (sessionPlayerId !== playerId) {
-      return {
-        status: false,
-        message: "Active player mismatch",
-      }
-    }
 
     //MANUAL CODE - START
 

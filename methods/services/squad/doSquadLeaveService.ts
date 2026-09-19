@@ -2,7 +2,6 @@
 "use server"
 
 import { TDoSquadLeaveParams, doSquadLeave } from "@/db/postgresMainDatabase/schemas/squad/doSquadLeave"
-import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
 
 //MANUAL CODE - START
 
@@ -15,16 +14,8 @@ export type TDoSquadLeaveServiceParams = {
 
 export async function doSquadLeaveService(params: TDoSquadLeaveServiceParams) {
   try {
-    const sessionPlayerId = (await getActivePlayerServer({ userId: params.sessionUserId }, { forceFresh: true })).raw[0]
-      .id
+    const sessionPlayerId = params.sessionUserId
     const playerId = params.playerId
-
-    if (sessionPlayerId !== playerId) {
-      return {
-        status: false,
-        message: "Active player mismatch",
-      }
-    }
 
     //MANUAL CODE - START
 

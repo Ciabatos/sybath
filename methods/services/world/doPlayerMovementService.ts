@@ -7,7 +7,6 @@ import { recalculatePathMoveCosts } from "@/methods/functions/map/recalculatePat
 import { getCitiesCitiesByKeyServer } from "@/methods/server-fetchers/cities/core/getCitiesCitiesByKeyServer"
 import { getDistrictsDistrictsByKeyServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictsByKeyServer"
 import { getDistrictsDistrictTypesServer } from "@/methods/server-fetchers/districts/core/getDistrictsDistrictTypesServer"
-import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
 import { getPlayerMapServer } from "@/methods/server-fetchers/world/core/getPlayerMapServer"
 import { getPlayerPositionServer } from "@/methods/server-fetchers/world/core/getPlayerPositionServer"
 import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
@@ -26,16 +25,8 @@ export type TDoPlayerMovementServiceParams = {
 
 export async function doPlayerMovementService(params: TDoPlayerMovementServiceParams) {
   try {
-    const sessionPlayerId = (await getActivePlayerServer({ userId: params.sessionUserId }, { forceFresh: true })).raw[0]
-      .id
+    const sessionPlayerId = params.sessionUserId
     const playerId = params.playerId
-
-    if (sessionPlayerId !== playerId) {
-      return {
-        status: false,
-        message: "Active player mismatch",
-      }
-    }
 
     //MANUAL CODE - START
 

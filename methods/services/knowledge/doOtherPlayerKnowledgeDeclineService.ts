@@ -5,7 +5,6 @@ import {
   TDoOtherPlayerKnowledgeDeclineParams,
   doOtherPlayerKnowledgeDecline,
 } from "@/db/postgresMainDatabase/schemas/knowledge/doOtherPlayerKnowledgeDecline"
-import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
 
 //MANUAL CODE - START
 
@@ -19,16 +18,8 @@ export type TDoOtherPlayerKnowledgeDeclineServiceParams = {
 
 export async function doOtherPlayerKnowledgeDeclineService(params: TDoOtherPlayerKnowledgeDeclineServiceParams) {
   try {
-    const sessionPlayerId = (await getActivePlayerServer({ userId: params.sessionUserId }, { forceFresh: true })).raw[0]
-      .id
+    const sessionPlayerId = params.sessionUserId
     const playerId = params.playerId
-
-    if (sessionPlayerId !== playerId) {
-      return {
-        status: false,
-        message: "Active player mismatch",
-      }
-    }
 
     //MANUAL CODE - START
 
