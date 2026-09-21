@@ -1,0 +1,12 @@
+export function resolveCreateButton({ choosenPath, newPanelName }) {
+  return {
+    choosenPath,
+    newPanelName,
+    generatorName: "createButton",
+    filesCreated: [
+      `components/${choosenPath}/${newPanelName}.tsx`,
+      `components/${choosenPath}/styles/${newPanelName}.module.css`,
+    ],
+    dateCreated: new Date().toISOString(),
+  }
+}
