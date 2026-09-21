@@ -1,26 +1,26 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTable.hbs
 
 "use client"
-import { {{indexTypeName}}, {{methodTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
+import { {{indexTypeName}}, {{methodTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{entityCamelName}}"
 import { {{indexMethodName}} } from "@/methods/functions/util/converters"
-import { {{tableCamelName}}Atom } from "@/store/atoms"
+import { {{entityCamelName}}Atom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetch{{schemaTablePascalName}}() {
-  const set{{schemaTablePascalName}} = useSetAtom({{tableCamelName}}Atom)
+export function useFetch{{schemaEntityPascalName}}() {
+  const set{{schemaEntityPascalName}} = useSetAtom({{entityCamelName}}Atom)
   
   const { data } = useSWR<{{methodTypeName}}[]>(`{{apiPathParams}}`, { refreshInterval: 3000 })
 
   useEffect(() => {
     if (data) {
-      const {{tableCamelName}} = {{{indexMethodName}}}({{{indexMethodParams}}}, data) as {{indexTypeName}}
-      set{{schemaTablePascalName}}({{tableCamelName}})
+      const {{entityCamelName}} = {{{indexMethodName}}}({{{indexMethodParams}}}, data) as {{indexTypeName}}
+      set{{schemaEntityPascalName}}({{entityCamelName}})
     }
-  }, [data, set{{schemaTablePascalName}}])
+  }, [data, set{{schemaEntityPascalName}}])
 }
 
-export function use{{schemaTablePascalName}}State() {
-  return useAtomValue({{tableCamelName}}Atom)
+export function use{{schemaEntityPascalName}}State() {
+  return useAtomValue({{entityCamelName}}Atom)
 }

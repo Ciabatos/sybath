@@ -3,17 +3,17 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import { {{#if mutationMergeOldData}}{{indexTypeName}}, {{/if}}{{#if methodParamsColumns}}{{methodParamsTypeName}}, {{methodTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
-{{#if mutationMergeOldData}}import { {{tableCamelName}}Atom } from "@/store/atoms"{{/if}}
+import { {{#if mutationMergeOldData}}{{indexTypeName}}, {{/if}}{{#if methodParamsColumns}}{{methodParamsTypeName}}, {{methodTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{entityCamelName}}"
+{{#if mutationMergeOldData}}import { {{entityCamelName}}Atom } from "@/store/atoms"{{/if}}
 {{#if mutationMergeOldData}}import { useAtomValue } from "jotai"{{/if}}
 {{#if mutationMergeOldData}}import { arrayToObjectKey } from "@/methods/functions/util/converters"{{/if}}
 
-export function useMutate{{schemaTablePascalName}}({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}) {
+export function useMutate{{schemaEntityPascalName}}({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}) {
   const { mutate } = useSWRConfig()
   const key = `{{apiPathParamsByKey}}`
-  {{#if mutationMergeOldData}}const {{tableCamelName}} = useAtomValue({{tableCamelName}}Atom){{/if}}
+  {{#if mutationMergeOldData}}const {{entityCamelName}} = useAtomValue({{entityCamelName}}Atom){{/if}}
 
-  function mutate{{schemaTablePascalName}}(optimisticParams?: Partial<{{methodTypeName}}>[]) {
+  function mutate{{schemaEntityPascalName}}(optimisticParams?: Partial<{{methodTypeName}}>[]) {
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -38,7 +38,7 @@ export function useMutate{{schemaTablePascalName}}({{#if methodParamsColumns}} p
     const newObj = {{{indexMethodName}}}({{{indexMethodParams}}}, dataWithDefaults) as {{indexTypeName}}
     
     const optimisticDataMergeWithOldData: {{indexTypeName}} = {
-      ...{{tableCamelName}},
+      ...{{entityCamelName}},
       ...newObj,      
     }
     
@@ -53,5 +53,5 @@ export function useMutate{{schemaTablePascalName}}({{#if methodParamsColumns}} p
     })
   }
 
-  return { mutate{{schemaTablePascalName}} }
+  return { mutate{{schemaEntityPascalName}} }
 }

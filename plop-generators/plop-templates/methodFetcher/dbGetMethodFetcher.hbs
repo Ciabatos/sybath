@@ -30,20 +30,20 @@ export type {{methodTypeName}} = {
 
 export type {{indexTypeName}} = Record<string, {{methodTypeName}}>
 
-export async function {{methodName}}(params: {{methodParamsTypeName}}) {
+export async function {{dbFunctionName}}(params: {{methodParamsTypeName}}) {
   try {
     const sqlParams = Object.values(params)
-    const sql = `SELECT * FROM {{schema}}.{{method}}({{sqlParamsPlaceholders}});`
+    const sql = `SELECT * FROM {{schema}}.{{sqlFunctionName}}({{sqlParamsPlaceholders}});`
     
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as {{methodTypeName}}[]
   } catch (error) {
-    console.error("Error fetching {{methodName}}:", {
+    console.error("Error fetching {{dbFunctionName}}:", {
       error,
       params,
       timestamp: new Date().toISOString(),
     })
     
-    throw new Error("Failed to fetch {{methodName}}")
+    throw new Error("Failed to fetch {{dbFunctionName}}")
   }
 }

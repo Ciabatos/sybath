@@ -1,4 +1,8 @@
-import getMethodFetcher from "./getMethodFetcher.js"
+import getMethodAction from "./generators/getMethodAction/index.js"
+import getMethodFetcher from "./generators/getMethodFetcher/index.js"
+import getTable from "./generators/getTable/index.js"
+import replayHistory from "./generators/replayHistory/index.js"
+import rollback from "./generators/rollback/index.js"
 import { formatWithPrettier } from "./helpers/prettier.js"
 import { dropFunction } from "./helpers/queries.js"
 import { removeFiles } from "./helpers/removeFiles.js"
@@ -46,11 +50,11 @@ async function configurePlop(plop) {
   // createButton(plop)
   // createModals(plop)
   // createAtomClientSingleton(plop)
-  // getMethodAction(plop)
+  getMethodAction(plop)
   getMethodFetcher(plop)
-  // getTable(plop)
-  // rollback(plop)
-  // replayHistory(plop)
+  getTable(plop)
+  rollback(plop)
+  replayHistory(plop)
   // formatPrettier(plop)
 }
 

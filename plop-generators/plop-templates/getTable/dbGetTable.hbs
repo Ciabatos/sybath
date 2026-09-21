@@ -19,36 +19,36 @@ export type {{methodTypeName}} = {
 
 export type {{indexTypeName}} = Record<string, {{methodTypeName}}>
 
-export async function {{methodName}}() {
+export async function {{dbFunctionName}}() {
   try {
-    const sql = `SELECT * FROM {{schema}}.{{methodRecords}}();`
+    const sql = `SELECT * FROM {{schema}}.{{sqlFunctionName}}();`
     
     const result = await query(sql)
     return snakeToCamelRows(result.rows) as {{methodTypeName}}[]
   } catch (error) {
-    console.error("Error fetching {{methodName}}:", {
+    console.error("Error fetching {{dbFunctionName}}:", {
       error,
       timestamp: new Date().toISOString(),
     })
     
-    throw new Error("Failed to fetch {{methodName}}")
+    throw new Error("Failed to fetch {{dbFunctionName}}")
   }
 }
 
-export async function {{methodNameByKey}}(params: {{methodParamsTypeName}}) {
+export async function {{dbFunctionByKeyName}}(params: {{methodParamsTypeName}}) {
   try {
     const sqlParams = Object.values(params)
-    const sql = `SELECT * FROM {{schema}}.{{methodRecordsByKey}}({{sqlParamsPlaceholders}});`
+    const sql = `SELECT * FROM {{schema}}.{{sqlFunctionByKeyName}}({{sqlParamsPlaceholders}});`
     
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as {{methodTypeName}}[]
   } catch (error) {
-    console.error("Error fetching {{methodNameByKey}}:", {
+    console.error("Error fetching {{dbFunctionByKeyName}}:", {
       error,
       params,
       timestamp: new Date().toISOString(),
     })
 
-    throw new Error("Failed to fetch {{methodNameByKey}}")
+    throw new Error("Failed to fetch {{dbFunctionByKeyName}}")
   }
 }

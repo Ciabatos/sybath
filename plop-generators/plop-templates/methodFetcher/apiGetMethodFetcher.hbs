@@ -1,8 +1,8 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetMethodFetcher.hbs
 
 import { auth } from "@/lib/auth"
-{{#if methodParamsColumns}}import { {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"{{/if}}
-import { fetch{{methodPascalName}}Service } from "@/methods/services/{{schema}}/fetch{{methodPascalName}}Service"
+{{#if methodParamsColumns}}import { {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{entityCamelName}}"{{/if}}
+import { fetch{{entityPascalName}}Service } from "@/methods/services/{{schema}}/fetch{{entityPascalName}}Service"
 import { headers } from "next/headers"
 import { NextRequest, NextResponse } from "next/server"
 {{#if methodParamsColumns}}
@@ -37,7 +37,7 @@ export async function GET(request: NextRequest{{#if methodParamsColumns}}, { par
     const clientEtag = request.headers.get("if-none-match") ?? undefined
     const forceFresh = request.headers.get("x-force-fresh") ?? undefined
     
-    const { record, etag, cacheHit, etagMatched } = await fetch{{methodPascalName}}Service({{#if methodParamsColumns}}parsedParams,{{/if}} {
+    const { record, etag, cacheHit, etagMatched } = await fetch{{entityPascalName}}Service({{#if methodParamsColumns}}parsedParams,{{/if}} {
       ...(forceFresh ? { forceFresh: true } : { clientEtag }),
     })
 

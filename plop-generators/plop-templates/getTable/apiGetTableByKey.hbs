@@ -1,8 +1,8 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetTableByKey.hbs
 
 import { auth } from "@/lib/auth"
-{{#if methodParamsColumns}}import { {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"{{/if}}
-import { {{fetcherNameByKey}}Service } from "@/methods/services/{{schema}}/{{fetcherNameByKey}}Service"
+{{#if methodParamsColumns}}import { {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{entityCamelName}}"{{/if}}
+import { {{fetcherByKeyName}}Service } from "@/methods/services/{{schema}}/{{fetcherByKeyName}}Service"
 import { headers } from "next/headers"
 import { NextRequest, NextResponse } from "next/server"
 {{#if methodParamsColumns}}
@@ -37,7 +37,7 @@ export async function GET(request: NextRequest{{#if methodParamsColumns}}, { par
     const clientEtag = request.headers.get("if-none-match") ?? undefined
     const forceFresh = request.headers.get("x-force-fresh") ?? undefined
 
-    const { record, etag, cacheHit, etagMatched } = await {{fetcherNameByKey}}Service({{#if methodParamsColumns}}parsedParams,{{/if}} {
+    const { record, etag, cacheHit, etagMatched } = await {{fetcherByKeyName}}Service({{#if methodParamsColumns}}parsedParams,{{/if}} {
       ...(forceFresh ? { forceFresh: true } : { clientEtag }),
     })
 

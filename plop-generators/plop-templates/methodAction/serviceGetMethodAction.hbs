@@ -1,18 +1,18 @@
 // GENERATED CODE - SHOULD BE EDITED MANUALLY TO END CONFIGURATION - serviceGetMethodAction.hbs
 "use server"
 
-import { {{methodParamsTypeName}}, {{methodCamelName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
+import { {{methodParamsTypeName}}, {{entityCamelName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{entityCamelName}}"
 
 //MANUAL CODE - START
 
-export type T{{methodPascalName}}ServiceParams = {
+export type T{{entityPascalName}}ServiceParams = {
 sessionUserId: string
 playerId: number
 }
 
 //MANUAL CODE - END
 
-export async function {{methodCamelName}}Service(params: T{{methodPascalName}}ServiceParams) {
+export async function {{entityCamelName}}Service(params: T{{entityPascalName}}ServiceParams) {
   try {
     const sessionPlayerId = params.sessionUserId
     const playerId = params.playerId
@@ -31,10 +31,10 @@ export async function {{methodCamelName}}Service(params: T{{methodPascalName}}Se
       {{/each}}
     }
 
-    const result = await {{methodCamelName}}(data)
+    const result = await {{entityCamelName}}(data)
     return result
   } catch (error) {
-    console.error("Error {{methodCamelName}}Service :", {
+    console.error("Error {{entityCamelName}}Service :", {
       error,
       params,
       timestamp: new Date().toISOString(),

@@ -1,40 +1,38 @@
 ---
-name: ai-{{methodName}}-description
+name: ai-{{actionName}}-description
 description: |
-  Action {{methodName}} description, workflow.
+  Action {{actionName}} description, workflow.
 
   Use when:
-  When using action {{methodName}} or trying to understand it.
+  When using action {{actionName}} or trying to understand it.
 ---
 
 
 
-# {{methodName}} Action Documentation
-# function path :`methods/actions/{{schema}}/{{methodName}}.ts` 
-# function {{methodName}}(params: T{{methodPascalName}}ActionParams)
+# {{actionName}} Action Documentation
+# function path :`methods/actions/{{schema}}/{{actionName}}.ts` 
+# function {{actionName}}(params: T{{entityPascalName}}ActionParams)
 # TypeScript Types:
-type T{{methodPascalName}}ActionParams = Omit<T{{methodPascalName}}ServiceParams, "sessionUserId"></T>
+type T{{entityPascalName}}ActionParams = Omit<T{{entityPascalName}}ServiceParams, "sessionUserId"></T>
 
 ### Data Flow
-```
-# function {{methodCamelName}}Service(params: T{{methodPascalName}}ServiceParams)
-path: `methods/services/{{schema}}/{{methodCamelName}}Service.ts` 
-# TypeScript Types:
+function {{entityCamelName}}Service(params: T{{entityPascalName}}ServiceParams)
+path: methods/services/{{schema}}/{{entityCamelName}}Service.ts
 
-export type T{{methodPascalName}}ServiceParams = {
+TypeScript Types:
+export type T{{entityPascalName}}ServiceParams = {
 sessionUserId: string
 playerId: number
 }
 
+Database function {{entityCamelName}}({{#if methodParamsColumns}}params: {{methodParamsTypeName}}{{/if}})
 
- Database function {{methodCamelName}}({{#if methodParamsColumns}}params: {{methodParamsTypeName}}{{/if}}) 
-# path: `db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}.ts` 
-# TypeScript Types:
-
+path: db/postgresMainDatabase/schemas/{{schema}}/{{entityCamelName}}.ts
+TypeScript Types:
 {{#each compositeDefinitions}}
 export type {{typeName}} = {
 {{#each fields}}
-  {{camelName}}: {{tsType}}
+{{camelName}}: {{tsType}}
 {{/each}}
 }
 {{/each}}
@@ -42,25 +40,17 @@ export type {{typeName}} = {
 {{#if methodParamsColumns}}
 export type {{methodParamsTypeName}} = {
 {{#each methodParamsColumns}}
-  {{camelName}}: {{tsType}}
+{{camelName}}: {{tsType}}
 {{/each}}
 }{{/if}}
 
 export type {{methodTypeName}} = {
 {{#each methodColumns}}
-  {{camelName}}{{optional}}: {{tsType}}
+{{camelName}}{{optional}}: {{tsType}}
 {{/each}}
 }
 
-#### PostgreSQL Database
-# "schema": "{{schema}}"
-# "method": "{{method}}"
-You have more information in mcp `game-db`
-```
-
-Note: {{methodName}} is a Next.js Server Action
-A Next.js Server Action is a function that:
-Runs on the server
-Can be called directly from a React component
-Is typically triggered by form submissions or user interactions
-Eliminates the need for manual API endpoints
+PostgreSQL Database
+"schema": "{{schema}}"
+"method": "{{sqlFunctionName}}"
+You have more information in mcp game-db

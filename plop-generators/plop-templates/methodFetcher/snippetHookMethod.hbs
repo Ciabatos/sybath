@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
 
 { 
-  "Destructure use{{methodPascalName}}": {
-    "prefix": "hook_{{schema}}_core_use{{methodPascalName}}",
+  "Destructure use{{entityPascalName}}": {
+    "prefix": "hook_{{schema}}_core_use{{entityPascalName}}",
     "body": [
-      "useFetch{{methodPascalName}}({{#if clientMethodParamsColumns}}{ {{#each clientMethodParamsColumns}}{{camelName}}{{#unless @last}}, {{/unless}}{{/each}} }{{/if}})",
-      "const {{methodCamelName}} = use{{methodPascalName}}State()"
+      "useFetch{{entityPascalName}}({{#if clientMethodParamsColumns}}{ {{#each clientMethodParamsColumns}}{{camelName}}{{#unless @last}}, {{/unless}}{{/each}} }{{/if}})",
+      "const {{entityCamelName}} = use{{entityPascalName}}State()"
     ],
-    "description": "Destructuring use{{methodPascalName}} hook"
+    "description": "Destructuring use{{entityPascalName}} hook"
   }
 }

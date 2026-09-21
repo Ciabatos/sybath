@@ -2,12 +2,12 @@
 "use server"
 
 import { auth } from "@/lib/auth"
-import { T{{methodPascalName}}ServiceParams, {{methodCamelName}}Service } from "@/methods/services/{{schema}}/{{methodCamelName}}Service"
+import { T{{entityPascalName}}ServiceParams, {{entityCamelName}}Service } from "@/methods/services/{{schema}}/{{entityCamelName}}Service"
 import { headers } from "next/headers"
 
-type T{{methodPascalName}}ActionParams = Omit<T{{methodPascalName}}ServiceParams, "sessionUserId">
+type T{{entityPascalName}}ActionParams = Omit<T{{entityPascalName}}ServiceParams, "sessionUserId">
 
-export async function {{methodName}}(params: T{{methodPascalName}}ActionParams) {
+export async function {{actionName}}(params: T{{entityPascalName}}ActionParams) {
   try {
     const session = await auth.api.getSession({ headers: await headers() })
     const sessionUserId = session?.user?.id
@@ -23,15 +23,15 @@ export async function {{methodName}}(params: T{{methodPascalName}}ActionParams) 
 
     //MANUAL CODE - END
 
-    const data: T{{methodPascalName}}ServiceParams = {
+    const data: T{{entityPascalName}}ServiceParams = {
       sessionUserId: sessionUserId,
       ...params,
     }
 
-    const result = await {{methodCamelName}}Service(data)
+    const result = await {{entityCamelName}}Service(data)
     return result
   } catch (error) {
-    console.error("Error {{methodName}} :", {
+    console.error("Error {{actionName}} :", {
       error,
       params,
       timestamp: new Date().toISOString(),

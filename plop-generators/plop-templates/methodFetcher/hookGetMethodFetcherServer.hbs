@@ -1,9 +1,9 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcherServer.hbs
 "use server"
 
-{{#if methodParamsColumns}}import type { {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}" {{/if}}
-import type { {{indexTypeName}},{{methodTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{methodCamelName}}"
-import { fetch{{methodPascalName}}Service } from "@/methods/services/{{schema}}/fetch{{methodPascalName}}Service"
+{{#if methodParamsColumns}}import type { {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{entityCamelName}}" {{/if}}
+import type { {{indexTypeName}},{{methodTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{entityCamelName}}"
+import { fetch{{entityPascalName}}Service } from "@/methods/services/{{schema}}/fetch{{entityPascalName}}Service"
 
 type TResult = {
   raw: {{methodTypeName}}[]
@@ -12,14 +12,13 @@ type TResult = {
   atomName: string
 }
 
-export async function {{methodName}}Server({{#if methodParamsColumns}} params: {{methodParamsTypeName}}, {{/if}}options?: { forceFresh?: boolean },): Promise<TResult> {
-  const { record } = await fetch{{methodPascalName}}Service({{#if methodParamsColumns}}params, {{/if}}{ forceFresh: options?.forceFresh })
+export async function {{dbFunctionName}}Server({{#if methodParamsColumns}} params: {{methodParamsTypeName}}, {{/if}}options?: { forceFresh?: boolean },): Promise<TResult> {
+  const { record } = await fetch{{entityPascalName}}Service({{#if methodParamsColumns}}params, {{/if}}{ forceFresh: options?.forceFresh })
 
   return {
     raw: record!.raw,
     byKey: record!.byKey,
     apiPath: `{{apiPathParams}}`,
-    atomName: `{{methodCamelName}}Atom`,
+    atomName: `{{entityCamelName}}Atom`,
   }
 }
-

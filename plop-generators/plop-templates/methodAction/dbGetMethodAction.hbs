@@ -25,7 +25,7 @@ export type {{methodTypeName}} = {
 {{/each}}
 }
 
-export async function {{methodCamelName}}({{#if methodParamsColumns}}params: {{methodParamsTypeName}}{{/if}}) {
+export async function {{entityCamelName}}({{#if methodParamsColumns}}params: {{methodParamsTypeName}}{{/if}}) {
   try {
     {{#if methodParamsColumns}}
     const sqlParams = [
@@ -37,20 +37,20 @@ export async function {{methodCamelName}}({{#if methodParamsColumns}}params: {{m
       {{/if}}{{#unless @last}},{{/unless}}
 {{/each}}
     ]
-    const sql = `SELECT * FROM {{schema}}.{{method}}({{sqlParamsPlaceholders}});`
+    const sql = `SELECT * FROM {{schema}}.{{sqlFunctionName}}({{sqlParamsPlaceholders}});`
     const result = await query(sql, sqlParams)
     {{else}}
-    const sql = `SELECT * FROM {{schema}}.{{method}}();`
+    const sql = `SELECT * FROM {{schema}}.{{sqlFunctionName}}();`
     const result = await query(sql){{/if}}
 
     return snakeToCamelKeys(result.rows[0]) as {{methodTypeName}}
   } catch (error) {
-    console.error("Error executing {{methodCamelName}}:", {
+    console.error("Error executing {{entityCamelName}}:", {
       error,
       params,
       timestamp: new Date().toISOString(),
     })
     
-    throw new Error("Failed to execute {{methodCamelName}}")
+    throw new Error("Failed to execute {{entityCamelName}}")
   }
 }

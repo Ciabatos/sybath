@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTableServer.hbs
 "use server"
 
-import type { {{methodTypeName}}, {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
+import type { {{methodTypeName}}, {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{entityCamelName}}"
 import { {{fetcherName}}Service } from "@/methods/services/{{schema}}/{{fetcherName}}Service"
 
 type TResult = {
@@ -11,13 +11,13 @@ type TResult = {
   atomName: string
 }
 
-export async function {{methodName}}Server(options?: { forceFresh?: boolean }): Promise<TResult> {
+export async function {{dbFunctionName}}Server(options?: { forceFresh?: boolean }): Promise<TResult> {
   const { record } = await {{fetcherName}}Service({ forceFresh: options?.forceFresh })
 
   return {
     raw: record!.raw,
     byKey: record!.byKey,
     apiPath: `{{apiPathParams}}`,
-    atomName: `{{tableCamelName}}Atom`,
+    atomName: `{{entityCamelName}}Atom`,
   }
 }

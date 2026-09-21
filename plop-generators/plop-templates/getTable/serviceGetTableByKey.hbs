@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetTableByKey.hbs
 
-import type { {{methodTypeName}}, {{indexTypeName}}{{#if methodParamsColumns}},{{methodParamsTypeName}}{{/if}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
-import { {{methodNameByKey}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{tableCamelName}}"
+import type { {{methodTypeName}}, {{indexTypeName}}{{#if methodParamsColumns}},{{methodParamsTypeName}}{{/if}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{entityCamelName}}"
+import { {{dbFunctionByKeyName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{entityCamelName}}"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { {{indexMethodName}} } from "@/methods/functions/util/converters"
 import crypto from "crypto"
@@ -22,11 +22,11 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function {{fetcherNameByKey}}Service(
+export async function {{fetcherByKeyName}}Service(
  {{#if methodParamsColumns}}params: {{methodParamsTypeName}}{{/if}},
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
-  const cacheKey = makeCacheKey("{{methodNameByKey}}"{{#if methodParamsColumns}}, params{{/if}})
+  const cacheKey = makeCacheKey("{{dbFunctionByKeyName}}"{{#if methodParamsColumns}}, params{{/if}})
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
 
@@ -48,7 +48,7 @@ export async function {{fetcherNameByKey}}Service(
     }
   }
 
-  const raw = await {{methodNameByKey}}({{#if methodParamsColumns}}params{{/if}})
+  const raw = await {{dbFunctionByKeyName}}({{#if methodParamsColumns}}params{{/if}})
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
   if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {

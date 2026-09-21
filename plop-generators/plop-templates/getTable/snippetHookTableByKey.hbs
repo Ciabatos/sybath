@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookTableByKey.hbs
 
 {
-  "Destructure use{{schemaTablePascalName}}ByKey": {
-    "prefix": "hook_{{schema}}_core_use{{schemaTablePascalName}}ByKey",
+  "Destructure use{{schemaEntityPascalName}}ByKey": {
+    "prefix": "hook_{{schema}}_core_use{{schemaEntityPascalName}}ByKey",
     "body": [
-      "useFetch{{schemaTablePascalName}}ByKey({{#if methodParamsColumns}}{ {{#each methodParamsColumns}}{{camelName}}{{#unless @last}}, {{/unless}}{{/each}} }{{/if}})",
-      "const {{tableCamelName}} = use{{schemaTablePascalName}}State()"
+      "useFetch{{schemaEntityPascalName}}ByKey({{#if methodParamsColumns}}{ {{#each methodParamsColumns}}{{camelName}}{{#unless @last}}, {{/unless}}{{/each}} }{{/if}})",
+      "const {{entityCamelName}} = use{{schemaEntityPascalName}}State()"
     ],
-    "description": "Destructuring use{{schemaTablePascalName}}ByKey hook"
+    "description": "Destructuring use{{schemaEntityPascalName}}ByKey hook"
   }
 }
