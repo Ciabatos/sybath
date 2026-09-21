@@ -1,11 +1,9 @@
+import formatPrettier from "./generators/formatPrettier/index.js"
 import getMethodAction from "./generators/getMethodAction/index.js"
 import getMethodFetcher from "./generators/getMethodFetcher/index.js"
 import getTable from "./generators/getTable/index.js"
 import replayHistory from "./generators/replayHistory/index.js"
 import rollback from "./generators/rollback/index.js"
-import { formatWithPrettier } from "./helpers/prettier.js"
-import { dropFunction } from "./helpers/queries.js"
-import { removeFiles } from "./helpers/removeFiles.js"
 
 async function configurePlop(plop) {
   const pathsToFormat = [
@@ -22,28 +20,6 @@ async function configurePlop(plop) {
 
   plop.setHelper("json", (context) => JSON.stringify(context, null, 2))
 
-  plop.setActionType("PrettierFormat", async function () {
-    try {
-      const result = await formatWithPrettier(pathsToFormat)
-      return result
-    } catch (err) {
-      console.error("Prettier failed:", err)
-      throw err
-    }
-  })
-
-  plop.setActionType("removeFiles", async function (answers) {
-    console.log("Remove files", answers)
-    try {
-      const removedFiles = await removeFiles(answers.selectedFiles)
-      const removedMethods = await dropFunction(answers.sqlMethodCreated)
-      return removedFiles + " " + removedMethods
-    } catch (err) {
-      console.error("Remove files failed:", err)
-      throw err
-    }
-  })
-
   // createPanels(plop)
   // createListPanels(plop)
   // createNestedPanels(plop)
@@ -55,7 +31,7 @@ async function configurePlop(plop) {
   getTable(plop)
   rollback(plop)
   replayHistory(plop)
-  // formatPrettier(plop)
+  formatPrettier(plop)
 }
 
 export default configurePlop
