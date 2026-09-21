@@ -1,13 +1,22 @@
 import { executeAddActions, getReplayHistoryActions } from "./actions.js"
 import { getReplayHistoryPrompts } from "./prompts.js"
-import { HISTORY_ROOT, listHistoryFiles, readHistoryFile, resolveReplay } from "./resolve.js"
+import {
+  HISTORY_ROOT,
+  listGeneratorFolders,
+  listHistoryFiles,
+  listHistoryFilesFor,
+  readHistoryFile,
+  resolveReplay,
+} from "./resolve.js"
 
 export {
   executeAddActions,
   getReplayHistoryActions,
   getReplayHistoryPrompts,
   HISTORY_ROOT,
+  listGeneratorFolders,
   listHistoryFiles,
+  listHistoryFilesFor,
   readHistoryFile,
   resolveReplay,
 }

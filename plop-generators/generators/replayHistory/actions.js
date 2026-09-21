@@ -19,11 +19,6 @@ export function getReplayHistoryActions() {
         continue
       }
 
-      if (!historyAnswers?.promptAnswers) {
-        actions.push(() => `⚠ ${fileKey}: brak promptAnswers — nie można odpalić resolve.`)
-        continue
-      }
-
       actions.push({
         type: "replayGenerator",
         targetGenerator: gen,
