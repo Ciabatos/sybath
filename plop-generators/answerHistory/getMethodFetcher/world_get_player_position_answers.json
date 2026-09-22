@@ -111,6 +111,7 @@
   "generateMutation": true,
   "mutationMergeOldData": false,
   "compositeDefinitions": [],
+  "dateCreated": "2026-09-22T22:24:25.854Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/world/playerPosition.ts",
     "app/api/world/rpc/get-player-position/[mapId]/[playerId]/route.ts",

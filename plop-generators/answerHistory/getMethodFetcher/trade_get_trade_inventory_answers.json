@@ -131,6 +131,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
+  "dateCreated": "2026-09-22T22:24:25.010Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/trade/tradeInventory.ts",
     "app/api/trade/rpc/get-trade-inventory/[playerId]/[tradeId]/route.ts",

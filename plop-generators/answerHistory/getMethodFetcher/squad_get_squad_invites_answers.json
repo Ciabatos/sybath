@@ -133,6 +133,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
+  "dateCreated": "2026-09-22T22:24:24.741Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/squad/squadInvites.ts",
     "app/api/squad/rpc/get-squad-invites/[playerId]/route.ts",

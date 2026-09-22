@@ -126,6 +126,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
+  "dateCreated": "2026-09-22T22:24:24.073Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/knowledge/playerKnownPlayers.ts",
     "app/api/knowledge/rpc/get-player-known-players/[playerId]/route.ts",

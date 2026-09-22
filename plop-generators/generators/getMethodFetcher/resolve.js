@@ -88,6 +88,8 @@ export async function resolveGetMethodFetcher({
     `methods/hooks/${schema}/core/useFetch${entityPascalName}.md`,
   ]
 
+  const dateCreated = new Date().toISOString()
+
   return {
     promptAnswers,
     schema,
@@ -115,6 +117,7 @@ export async function resolveGetMethodFetcher({
     generateMutation,
     mutationMergeOldData,
     compositeDefinitions,
+    dateCreated,
     filesCreated,
     generatorName: "getMethodFetcher",
   }

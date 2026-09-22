@@ -84,6 +84,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
+  "dateCreated": "2026-09-22T22:24:22.600Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/attributes/playerEnergy.ts",
     "app/api/attributes/rpc/get-player-energy/[playerId]/route.ts",

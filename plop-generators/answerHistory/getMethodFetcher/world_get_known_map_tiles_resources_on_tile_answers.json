@@ -120,6 +120,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
+  "dateCreated": "2026-09-22T22:24:25.430Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnTile.ts",
     "app/api/world/rpc/get-known-map-tiles-resources-on-tile/[mapId]/[mapTileX]/[mapTileY]/[playerId]/route.ts",

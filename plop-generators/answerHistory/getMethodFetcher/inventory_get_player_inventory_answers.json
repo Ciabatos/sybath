@@ -112,6 +112,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
+  "dateCreated": "2026-09-22T22:24:23.602Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/inventory/playerInventory.ts",
     "app/api/inventory/rpc/get-player-inventory/[playerId]/route.ts",

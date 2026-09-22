@@ -70,6 +70,7 @@
   "generateMutation": true,
   "mutationMergeOldData": false,
   "compositeDefinitions": [],
+  "dateCreated": "2026-09-22T22:24:25.771Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/world/playerMap.ts",
     "app/api/world/rpc/get-player-map/[playerId]/route.ts",

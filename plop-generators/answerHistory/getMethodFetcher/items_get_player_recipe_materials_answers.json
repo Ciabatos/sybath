@@ -124,6 +124,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
+  "dateCreated": "2026-09-22T22:24:23.784Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/items/playerRecipeMaterials.ts",
     "app/api/items/rpc/get-player-recipe-materials/[playerId]/[recipeId]/route.ts",
