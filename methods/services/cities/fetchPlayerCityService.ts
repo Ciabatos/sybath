@@ -1,10 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type {
-  TPlayerCity,
-  TPlayerCityRecordByCityId,
-  TPlayerCityParams,
-} from "@/db/postgresMainDatabase/schemas/cities/playerCity"
+import type { TPlayerCity, TPlayerCityRecordByCityId,TPlayerCityParams } from "@/db/postgresMainDatabase/schemas/cities/playerCity"
 import { getPlayerCity } from "@/db/postgresMainDatabase/schemas/cities/playerCity"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -27,7 +23,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchPlayerCityService(
-  params: TPlayerCityParams,
+ params: TPlayerCityParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getPlayerCity", params)
@@ -65,6 +61,7 @@ export async function fetchPlayerCityService(
   }
 
   const byKey = arrayToObjectKey(["cityId"], raw) as TPlayerCityRecordByCityId
+
 
   const record: TCacheRecord = {
     raw,

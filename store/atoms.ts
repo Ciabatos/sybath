@@ -23,6 +23,7 @@ export { activePlayerSwitchProfilesAtom } from "@/store/atoms/getMethodFetcher/a
 export { allAbilitiesAtom } from "@/store/atoms/getMethodFetcher/allAbilitiesAtom"
 export { allSkillsAtom } from "@/store/atoms/getMethodFetcher/allSkillsAtom"
 export { buildingInventoryAtom } from "@/store/atoms/getMethodFetcher/buildingInventoryAtom"
+export { defaultActivePlayerAtom } from "@/store/atoms/getMethodFetcher/defaultActivePlayerAtom"
 export { districtInventoryAtom } from "@/store/atoms/getMethodFetcher/districtInventoryAtom"
 export { knownMapRegionAtom } from "@/store/atoms/getMethodFetcher/knownMapRegionAtom"
 export { knownMapTilesAtom } from "@/store/atoms/getMethodFetcher/knownMapTilesAtom"

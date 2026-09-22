@@ -28,7 +28,7 @@ export async function getInitialPageMapData(clientMapId: number, sessionUserId: 
   const sessionPlayerId = activePlayer.raw[0].id
   const playerId = sessionPlayerId
 
-  const map = await getPlayerMapServer({ playerId })
+  const map = await getPlayerMapServer({ userId: sessionUserId, playerId })
 
   if (!map || !map.byKey[clientMapId]) {
     return null
@@ -56,18 +56,18 @@ export async function getInitialPageMapData(clientMapId: number, sessionUserId: 
     playerIventory,
   ] = await Promise.all([
     getWorldTerrainTypesServer(),
-    getKnownMapTilesServer({ mapId, playerId }),
+    getKnownMapTilesServer({ userId: sessionUserId, mapId, playerId }),
     getWorldLandscapeTypesServer(),
     getCitiesCitiesByKeyServer({ mapId }),
     getDistrictsDistrictsByKeyServer({ mapId }),
     getDistrictsDistrictTypesServer(),
-    getPlayerPositionServer({ mapId, playerId }),
-    getKnownPlayersPositionsServer({ mapId, playerId }),
+    getPlayerPositionServer({ userId: sessionUserId, mapId, playerId }),
+    getKnownPlayersPositionsServer({ userId: sessionUserId, mapId, playerId }),
     getAttributesSkillsServer(),
     getAttributesAbilitiesServer(),
-    getPlayerSkillsServer({ playerId }),
-    getPlayerAbilitiesServer({ playerId }),
-    getPlayerInventoryServer({ playerId }),
+    getPlayerSkillsServer({ userId: sessionUserId, playerId }),
+    getPlayerAbilitiesServer({ userId: sessionUserId, playerId }),
+    getPlayerInventoryServer({ userId: sessionUserId, playerId }),
   ])
 
   const fallbackData = createSwrFallback(
