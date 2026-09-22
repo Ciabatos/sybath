@@ -7,51 +7,42 @@ description: |
   When using action doOtherPlayerKnowledgeRequestAction or trying to understand it.
 ---
 
+
+
 # doOtherPlayerKnowledgeRequestAction Action Documentation
-
-# function path :`methods/actions/knowledge/doOtherPlayerKnowledgeRequestAction.ts`
-
+# function path :`methods/actions/knowledge/doOtherPlayerKnowledgeRequestAction.ts` 
 # function doOtherPlayerKnowledgeRequestAction(params: TDoOtherPlayerKnowledgeRequestActionParams)
-
 # TypeScript Types:
-
 type TDoOtherPlayerKnowledgeRequestActionParams = Omit<TDoOtherPlayerKnowledgeRequestServiceParams, "sessionUserId"></T>
 
 ### Data Flow
+function doOtherPlayerKnowledgeRequestService(params: TDoOtherPlayerKnowledgeRequestServiceParams)
+path: methods/services/knowledge/doOtherPlayerKnowledgeRequestService.ts
 
-```
-# function doOtherPlayerKnowledgeRequestService(params: TDoOtherPlayerKnowledgeRequestServiceParams)
-path: `methods/services/knowledge/doOtherPlayerKnowledgeRequestService.ts`
-# TypeScript Types:
-
+TypeScript Types:
 export type TDoOtherPlayerKnowledgeRequestServiceParams = {
 sessionUserId: string
 playerId: number
 }
 
+Database function doOtherPlayerKnowledgeRequest(params: TDoOtherPlayerKnowledgeRequestParams)
 
- Database function doOtherPlayerKnowledgeRequest(params: TDoOtherPlayerKnowledgeRequestParams)
-# path: `db/postgresMainDatabase/schemas/knowledge/doOtherPlayerKnowledgeRequest.ts`
-# TypeScript Types:
-
+path: db/postgresMainDatabase/schemas/knowledge/doOtherPlayerKnowledgeRequest.ts
+TypeScript Types:
 
 export type TDoOtherPlayerKnowledgeRequestParams = {
-  playerId: number
-  otherPlayerId: string
-  knowledgeTypeId: number
+userId: string
+playerId: number
+otherPlayerId: string
+knowledgeTypeId: number
 }
 
 export type TDoOtherPlayerKnowledgeRequest = {
-  status: boolean
-  message: string
+status: boolean
+message: string
 }
 
-#### PostgreSQL Database
-# "schema": "knowledge"
-# "method": "do_other_player_knowledge_request"
-You have more information in mcp `game-db`
-```
-
-Note: doOtherPlayerKnowledgeRequestAction is a Next.js Server Action A Next.js Server Action is a function that: Runs on
-the server Can be called directly from a React component Is typically triggered by form submissions or user interactions
-Eliminates the need for manual API endpoints
+PostgreSQL Database
+"schema": "knowledge"
+"method": "do_other_player_knowledge_request"
+You have more information in mcp game-db

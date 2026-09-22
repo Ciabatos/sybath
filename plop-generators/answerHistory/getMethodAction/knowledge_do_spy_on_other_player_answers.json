@@ -1,0 +1,68 @@
+{
+  "promptAnswers": {
+    "schema": "knowledge",
+    "method": "do_spy_on_other_player",
+    "usePrevious": false
+  },
+  "schema": "knowledge",
+  "method": "do_spy_on_other_player",
+  "entityCamelName": "doSpyOnOtherPlayer",
+  "entityPascalName": "DoSpyOnOtherPlayer",
+  "actionName": "doSpyOnOtherPlayerAction",
+  "dbFunctionName": "doSpyOnOtherPlayer",
+  "methodTypeName": "TDoSpyOnOtherPlayer",
+  "methodParamsTypeName": "TDoSpyOnOtherPlayerParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
+    },
+    {
+      "name": "p_other_player_id",
+      "camelName": "otherPlayerId",
+      "tsType": "string",
+      "isJson": false
+    },
+    {
+      "name": "p_knowledge_type_id",
+      "camelName": "knowledgeTypeId",
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "status",
+      "camelName": "status",
+      "pascalName": "Status",
+      "tsType": "boolean",
+      "optional": ""
+    },
+    {
+      "name": "message",
+      "camelName": "message",
+      "pascalName": "Message",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "sqlFunctionName": "do_spy_on_other_player",
+  "sqlParamsPlaceholders": "$1, $2, $3, $4",
+  "compositeDefinitions": [],
+  "dateCreated": "2026-09-22T21:59:23.350Z",
+  "filesCreated": [
+    "methods/actions/knowledge/doSpyOnOtherPlayerAction.ts",
+    "methods/actions/knowledge/doSpyOnOtherPlayerAction.md",
+    "db/postgresMainDatabase/schemas/knowledge/doSpyOnOtherPlayer.ts",
+    "methods/services/knowledge/doSpyOnOtherPlayerService.ts"
+  ],
+  "generatorName": "getMethodAction"
+}

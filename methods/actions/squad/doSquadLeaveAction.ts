@@ -5,7 +5,7 @@ import { auth } from "@/lib/auth"
 import { TDoSquadLeaveServiceParams, doSquadLeaveService } from "@/methods/services/squad/doSquadLeaveService"
 import { headers } from "next/headers"
 
-type TDoSquadLeaveActionParams = Omit<TDoSquadLeaveServiceParams, "sessionUserId">
+type TDoSquadLeaveActionParams = Omit<TDoSquadLeaveServiceParams, "userId">
 
 export async function doSquadLeaveAction(params: TDoSquadLeaveActionParams) {
   try {
@@ -24,7 +24,7 @@ export async function doSquadLeaveAction(params: TDoSquadLeaveActionParams) {
     //MANUAL CODE - END
 
     const data: TDoSquadLeaveServiceParams = {
-      sessionUserId: sessionUserId,
+      userId: sessionUserId,
       ...params,
     }
 

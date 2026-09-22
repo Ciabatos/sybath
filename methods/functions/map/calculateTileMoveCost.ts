@@ -1,12 +1,12 @@
 import { TCitiesCitiesRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/cities/cities"
 import { TDistrictsDistrictsRecordByMapTileXMapTileY } from "@/db/postgresMainDatabase/schemas/districts/districts"
 import { TDistrictsDistrictTypesRecordById } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
-import { TKnownMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/knownMapTiles"
 import { TWorldLandscapeTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
+import { TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
 import { TWorldTerrainTypesRecordById } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 
 type TTileCostContext = {
-  mapTiles: TKnownMapTilesRecordByXY
+  mapTiles: TWorldMapTilesRecordByXY
   terrainTypes: TWorldTerrainTypesRecordById
   landscapeTypes: TWorldLandscapeTypesRecordById
   cities: TCitiesCitiesRecordByMapTileXMapTileY

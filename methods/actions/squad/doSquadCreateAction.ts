@@ -5,7 +5,7 @@ import { auth } from "@/lib/auth"
 import { TDoSquadCreateServiceParams, doSquadCreateService } from "@/methods/services/squad/doSquadCreateService"
 import { headers } from "next/headers"
 
-type TDoSquadCreateActionParams = Omit<TDoSquadCreateServiceParams, "sessionUserId">
+type TDoSquadCreateActionParams = Omit<TDoSquadCreateServiceParams, "userId">
 
 export async function doSquadCreateAction(params: TDoSquadCreateActionParams) {
   try {
@@ -24,7 +24,7 @@ export async function doSquadCreateAction(params: TDoSquadCreateActionParams) {
     //MANUAL CODE - END
 
     const data: TDoSquadCreateServiceParams = {
-      sessionUserId: sessionUserId,
+      userId: sessionUserId,
       ...params,
     }
 

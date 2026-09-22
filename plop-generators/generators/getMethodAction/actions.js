@@ -30,6 +30,6 @@ export function getMethodActionActions() {
       templateFile: "plop-templates/answerHistory.hbs",
       force: true,
     },
-    { type: "PrettierFormat" },
+    // { type: "PrettierFormat" },
   ]
 }

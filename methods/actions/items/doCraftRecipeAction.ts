@@ -5,7 +5,7 @@ import { auth } from "@/lib/auth"
 import { TDoCraftRecipeServiceParams, doCraftRecipeService } from "@/methods/services/items/doCraftRecipeService"
 import { headers } from "next/headers"
 
-type TDoCraftRecipeActionParams = Omit<TDoCraftRecipeServiceParams, "sessionUserId">
+type TDoCraftRecipeActionParams = Omit<TDoCraftRecipeServiceParams, "userId">
 
 export async function doCraftRecipeAction(params: TDoCraftRecipeActionParams) {
   try {
@@ -24,7 +24,7 @@ export async function doCraftRecipeAction(params: TDoCraftRecipeActionParams) {
     //MANUAL CODE - END
 
     const data: TDoCraftRecipeServiceParams = {
-      sessionUserId: sessionUserId,
+      userId: sessionUserId,
       ...params,
     }
 

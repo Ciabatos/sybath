@@ -6,21 +6,30 @@
   },
   "schema": "items",
   "method": "do_craft_recipe",
-  "methodCamelName": "doCraftRecipe",
-  "methodPascalName": "DoCraftRecipe",
-  "methodName": "doCraftRecipeAction",
+  "entityCamelName": "doCraftRecipe",
+  "entityPascalName": "DoCraftRecipe",
+  "actionName": "doCraftRecipeAction",
+  "dbFunctionName": "doCraftRecipe",
   "methodTypeName": "TDoCraftRecipe",
   "methodParamsTypeName": "TDoCraftRecipeParams",
   "methodParamsColumns": [
     {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
+    {
       "name": "p_player_id",
       "camelName": "playerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     },
     {
       "name": "p_recipe_id",
       "camelName": "recipeId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -39,15 +48,15 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2",
+  "sqlFunctionName": "do_craft_recipe",
+  "sqlParamsPlaceholders": "$1, $2, $3",
+  "compositeDefinitions": [],
+  "dateCreated": "2026-09-22T21:58:44.133Z",
   "filesCreated": [
-    "../methods/actions/items/doCraftRecipeAction.ts",
-    "../methods/actions/items/doCraftRecipeAction.md",
-    "../db/postgresMainDatabase/schemas/items/doCraftRecipe.ts",
-    "../methods/services/items/doCraftRecipeService.ts",
-    "./answerHistory/getMethodAction/items_do_craft_recipe_answers.json"
+    "methods/actions/items/doCraftRecipeAction.ts",
+    "methods/actions/items/doCraftRecipeAction.md",
+    "db/postgresMainDatabase/schemas/items/doCraftRecipe.ts",
+    "methods/services/items/doCraftRecipeService.ts"
   ],
-  "selectedGenerators": [
-    "getMethodAction"
-  ]
+  "generatorName": "getMethodAction"
 }

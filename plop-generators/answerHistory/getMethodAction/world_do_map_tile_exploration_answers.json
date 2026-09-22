@@ -6,36 +6,48 @@
   },
   "schema": "world",
   "method": "do_map_tile_exploration",
-  "methodCamelName": "doMapTileExploration",
-  "methodPascalName": "DoMapTileExploration",
-  "methodName": "doMapTileExplorationAction",
+  "entityCamelName": "doMapTileExploration",
+  "entityPascalName": "DoMapTileExploration",
+  "actionName": "doMapTileExplorationAction",
+  "dbFunctionName": "doMapTileExploration",
   "methodTypeName": "TDoMapTileExploration",
   "methodParamsTypeName": "TDoMapTileExplorationParams",
   "methodParamsColumns": [
     {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
+    {
       "name": "p_player_id",
       "camelName": "playerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     },
     {
       "name": "p_map_id",
       "camelName": "mapId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     },
     {
       "name": "p_x",
       "camelName": "x",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     },
     {
       "name": "p_y",
       "camelName": "y",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     },
     {
       "name": "p_exploration_level",
       "camelName": "explorationLevel",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -54,15 +66,15 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2, $3, $4, $5",
+  "sqlFunctionName": "do_map_tile_exploration",
+  "sqlParamsPlaceholders": "$1, $2, $3, $4, $5, $6",
+  "compositeDefinitions": [],
+  "dateCreated": "2026-09-22T22:00:15.165Z",
   "filesCreated": [
-    "../methods/actions/world/doMapTileExplorationAction.ts",
-    "../methods/actions/world/doMapTileExplorationAction.md",
-    "../db/postgresMainDatabase/schemas/world/doMapTileExploration.ts",
-    "../methods/services/world/doMapTileExplorationService.ts",
-    "./answerHistory/getMethodAction/world_do_map_tile_exploration_answers.json"
+    "methods/actions/world/doMapTileExplorationAction.ts",
+    "methods/actions/world/doMapTileExplorationAction.md",
+    "db/postgresMainDatabase/schemas/world/doMapTileExploration.ts",
+    "methods/services/world/doMapTileExplorationService.ts"
   ],
-  "selectedGenerators": [
-    "getMethodAction"
-  ]
+  "generatorName": "getMethodAction"
 }

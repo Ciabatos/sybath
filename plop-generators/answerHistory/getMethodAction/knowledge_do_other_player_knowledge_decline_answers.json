@@ -6,12 +6,19 @@
   },
   "schema": "knowledge",
   "method": "do_other_player_knowledge_decline",
-  "methodCamelName": "doOtherPlayerKnowledgeDecline",
-  "methodPascalName": "DoOtherPlayerKnowledgeDecline",
-  "methodName": "doOtherPlayerKnowledgeDeclineAction",
+  "entityCamelName": "doOtherPlayerKnowledgeDecline",
+  "entityPascalName": "DoOtherPlayerKnowledgeDecline",
+  "actionName": "doOtherPlayerKnowledgeDeclineAction",
+  "dbFunctionName": "doOtherPlayerKnowledgeDecline",
   "methodTypeName": "TDoOtherPlayerKnowledgeDecline",
   "methodParamsTypeName": "TDoOtherPlayerKnowledgeDeclineParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
     {
       "name": "p_player_id",
       "camelName": "playerId",
@@ -41,16 +48,15 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2",
+  "sqlFunctionName": "do_other_player_knowledge_decline",
+  "sqlParamsPlaceholders": "$1, $2, $3",
   "compositeDefinitions": [],
+  "dateCreated": "2026-09-22T21:59:11.403Z",
   "filesCreated": [
-    "../methods/actions/knowledge/doOtherPlayerKnowledgeDeclineAction.ts",
-    "../methods/actions/knowledge/doOtherPlayerKnowledgeDeclineAction.md",
-    "../db/postgresMainDatabase/schemas/knowledge/doOtherPlayerKnowledgeDecline.ts",
-    "../methods/services/knowledge/doOtherPlayerKnowledgeDeclineService.ts",
-    "./answerHistory/getMethodAction/knowledge_do_other_player_knowledge_decline_answers.json"
+    "methods/actions/knowledge/doOtherPlayerKnowledgeDeclineAction.ts",
+    "methods/actions/knowledge/doOtherPlayerKnowledgeDeclineAction.md",
+    "db/postgresMainDatabase/schemas/knowledge/doOtherPlayerKnowledgeDecline.ts",
+    "methods/services/knowledge/doOtherPlayerKnowledgeDeclineService.ts"
   ],
-  "selectedGenerators": [
-    "getMethodAction"
-  ]
+  "generatorName": "getMethodAction"
 }

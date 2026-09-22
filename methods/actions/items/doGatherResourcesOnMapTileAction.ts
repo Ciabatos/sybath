@@ -2,13 +2,10 @@
 "use server"
 
 import { auth } from "@/lib/auth"
-import {
-  TDoGatherResourcesOnMapTileServiceParams,
-  doGatherResourcesOnMapTileService,
-} from "@/methods/services/items/doGatherResourcesOnMapTileService"
+import { TDoGatherResourcesOnMapTileServiceParams, doGatherResourcesOnMapTileService } from "@/methods/services/items/doGatherResourcesOnMapTileService"
 import { headers } from "next/headers"
 
-type TDoGatherResourcesOnMapTileActionParams = Omit<TDoGatherResourcesOnMapTileServiceParams, "sessionUserId">
+type TDoGatherResourcesOnMapTileActionParams = Omit<TDoGatherResourcesOnMapTileServiceParams, "userId">
 
 export async function doGatherResourcesOnMapTileAction(params: TDoGatherResourcesOnMapTileActionParams) {
   try {
@@ -27,7 +24,7 @@ export async function doGatherResourcesOnMapTileAction(params: TDoGatherResource
     //MANUAL CODE - END
 
     const data: TDoGatherResourcesOnMapTileServiceParams = {
-      sessionUserId: sessionUserId,
+      userId: sessionUserId,
       ...params,
     }
 

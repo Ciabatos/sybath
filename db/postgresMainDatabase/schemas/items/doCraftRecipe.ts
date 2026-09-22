@@ -2,8 +2,11 @@
 
 "use server"
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
+import { snakeToCamelKeys } from "@/methods/functions/util/snakeToCamel"
+
 
 export type TDoCraftRecipeParams = {
+  userId: string
   playerId: number
   recipeId: number
 }
@@ -15,18 +18,26 @@ export type TDoCraftRecipe = {
 
 export async function doCraftRecipe(params: TDoCraftRecipeParams) {
   try {
-    const sqlParams = [params.playerId, params.recipeId]
-    const sql = `SELECT * FROM items.do_craft_recipe($1, $2);`
+    const sqlParams = [
+      params.userId
+      ,
+      params.playerId
+      ,
+      params.recipeId
+      
+    ]
+    const sql = `SELECT * FROM items.do_craft_recipe($1, $2, $3);`
     const result = await query(sql, sqlParams)
 
-    return result.rows[0] as TDoCraftRecipe
+
+    return snakeToCamelKeys(result.rows[0]) as TDoCraftRecipe
   } catch (error) {
     console.error("Error executing doCraftRecipe:", {
       error,
       params,
       timestamp: new Date().toISOString(),
     })
-
+    
     throw new Error("Failed to execute doCraftRecipe")
   }
 }

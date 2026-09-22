@@ -6,7 +6,7 @@ import { TDoSquadJoinParams, doSquadJoin } from "@/db/postgresMainDatabase/schem
 //MANUAL CODE - START
 
 export type TDoSquadJoinServiceParams = {
-  sessionUserId: string
+  userId: string
   playerId: number
   squadInviteId: number
 }
@@ -15,7 +15,7 @@ export type TDoSquadJoinServiceParams = {
 
 export async function doSquadJoinService(params: TDoSquadJoinServiceParams) {
   try {
-    const sessionPlayerId = params.sessionUserId
+    const userId = params.userId
     const playerId = params.playerId
 
     //MANUAL CODE - START
@@ -25,6 +25,7 @@ export async function doSquadJoinService(params: TDoSquadJoinServiceParams) {
     //MANUAL CODE - END
 
     const data: TDoSquadJoinParams = {
+      userId: userId,
       playerId: playerId,
       squadInviteId: squadInviteId,
     }

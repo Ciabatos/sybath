@@ -9,7 +9,7 @@ import {
 //MANUAL CODE - START
 
 export type TDoOtherPlayerKnowledgeAcceptServiceParams = {
-  sessionUserId: string
+  userId: string
   playerId: number
   inviteId: number
 }
@@ -18,7 +18,7 @@ export type TDoOtherPlayerKnowledgeAcceptServiceParams = {
 
 export async function doOtherPlayerKnowledgeAcceptService(params: TDoOtherPlayerKnowledgeAcceptServiceParams) {
   try {
-    const sessionPlayerId = params.sessionUserId
+    const userId = params.userId
     const playerId = params.playerId
 
     //MANUAL CODE - START
@@ -28,6 +28,7 @@ export async function doOtherPlayerKnowledgeAcceptService(params: TDoOtherPlayer
     //MANUAL CODE - END
 
     const data: TDoOtherPlayerKnowledgeAcceptParams = {
+      userId: userId,
       playerId: playerId,
       inviteId: inviteId,
     }

@@ -2,6 +2,7 @@
 
 "use server"
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
+import { snakeToCamelKeys } from "@/methods/functions/util/snakeToCamel"
 
 export type TCtPath = {
   order: number
@@ -12,6 +13,7 @@ export type TCtPath = {
 }
 
 export type TDoPlayerMovementParams = {
+  userId: string
   playerId: number
   path: TCtPath[]
 }
@@ -23,18 +25,26 @@ export type TDoPlayerMovement = {
 
 export async function doPlayerMovement(params: TDoPlayerMovementParams) {
   try {
-    const sqlParams = [params.playerId, JSON.stringify(params.path)]
-    const sql = `SELECT * FROM world.do_player_movement($1, $2);`
+    const sqlParams = [
+      params.userId
+      ,
+      params.playerId
+      ,
+      JSON.stringify(params.path)
+
+    ]
+    const sql = `SELECT * FROM world.do_player_movement($1, $2, $3);`
     const result = await query(sql, sqlParams)
 
-    return result.rows[0] as TDoPlayerMovement
+
+    return snakeToCamelKeys(result.rows[0]) as TDoPlayerMovement
   } catch (error) {
     console.error("Error executing doPlayerMovement:", {
       error,
       params,
       timestamp: new Date().toISOString(),
     })
-
+    
     throw new Error("Failed to execute doPlayerMovement")
   }
 }

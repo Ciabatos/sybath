@@ -6,12 +6,19 @@
   },
   "schema": "world",
   "method": "do_player_movement",
-  "methodCamelName": "doPlayerMovement",
-  "methodPascalName": "DoPlayerMovement",
-  "methodName": "doPlayerMovementAction",
+  "entityCamelName": "doPlayerMovement",
+  "entityPascalName": "DoPlayerMovement",
+  "actionName": "doPlayerMovementAction",
+  "dbFunctionName": "doPlayerMovement",
   "methodTypeName": "TDoPlayerMovement",
   "methodParamsTypeName": "TDoPlayerMovementParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
     {
       "name": "p_player_id",
       "camelName": "playerId",
@@ -41,7 +48,8 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2",
+  "sqlFunctionName": "do_player_movement",
+  "sqlParamsPlaceholders": "$1, $2, $3",
   "compositeDefinitions": [
     {
       "typeName": "TCtPath",
@@ -74,14 +82,12 @@
       ]
     }
   ],
+  "dateCreated": "2026-09-22T22:00:19.483Z",
   "filesCreated": [
-    "../methods/actions/world/doPlayerMovementAction.ts",
-    "../methods/actions/world/doPlayerMovementAction.md",
-    "../db/postgresMainDatabase/schemas/world/doPlayerMovement.ts",
-    "../methods/services/world/doPlayerMovementService.ts",
-    "./answerHistory/getMethodAction/world_do_player_movement_answers.json"
+    "methods/actions/world/doPlayerMovementAction.ts",
+    "methods/actions/world/doPlayerMovementAction.md",
+    "db/postgresMainDatabase/schemas/world/doPlayerMovement.ts",
+    "methods/services/world/doPlayerMovementService.ts"
   ],
-  "selectedGenerators": [
-    "getMethodAction"
-  ]
+  "generatorName": "getMethodAction"
 }

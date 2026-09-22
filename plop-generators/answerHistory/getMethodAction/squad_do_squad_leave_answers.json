@@ -6,16 +6,24 @@
   },
   "schema": "squad",
   "method": "do_squad_leave",
-  "methodCamelName": "doSquadLeave",
-  "methodPascalName": "DoSquadLeave",
-  "methodName": "doSquadLeaveAction",
+  "entityCamelName": "doSquadLeave",
+  "entityPascalName": "DoSquadLeave",
+  "actionName": "doSquadLeaveAction",
+  "dbFunctionName": "doSquadLeave",
   "methodTypeName": "TDoSquadLeave",
   "methodParamsTypeName": "TDoSquadLeaveParams",
   "methodParamsColumns": [
     {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
+    {
       "name": "p_player_id",
       "camelName": "playerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -34,15 +42,15 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1",
+  "sqlFunctionName": "do_squad_leave",
+  "sqlParamsPlaceholders": "$1, $2",
+  "compositeDefinitions": [],
+  "dateCreated": "2026-09-22T21:59:57.118Z",
   "filesCreated": [
-    "../methods/actions/squad/doSquadLeaveAction.ts",
-    "../methods/actions/squad/doSquadLeaveAction.md",
-    "../db/postgresMainDatabase/schemas/squad/doSquadLeave.ts",
-    "../methods/services/squad/doSquadLeaveService.ts",
-    "./answerHistory/getMethodAction/squad_do_squad_leave_answers.json"
+    "methods/actions/squad/doSquadLeaveAction.ts",
+    "methods/actions/squad/doSquadLeaveAction.md",
+    "db/postgresMainDatabase/schemas/squad/doSquadLeave.ts",
+    "methods/services/squad/doSquadLeaveService.ts"
   ],
-  "selectedGenerators": [
-    "getMethodAction"
-  ]
+  "generatorName": "getMethodAction"
 }

@@ -5,7 +5,7 @@ import { auth } from "@/lib/auth"
 import { TDoSquadInviteServiceParams, doSquadInviteService } from "@/methods/services/squad/doSquadInviteService"
 import { headers } from "next/headers"
 
-type TDoSquadInviteActionParams = Omit<TDoSquadInviteServiceParams, "sessionUserId">
+type TDoSquadInviteActionParams = Omit<TDoSquadInviteServiceParams, "userId">
 
 export async function doSquadInviteAction(params: TDoSquadInviteActionParams) {
   try {
@@ -24,7 +24,7 @@ export async function doSquadInviteAction(params: TDoSquadInviteActionParams) {
     //MANUAL CODE - END
 
     const data: TDoSquadInviteServiceParams = {
-      sessionUserId: sessionUserId,
+      userId: sessionUserId,
       ...params,
     }
 

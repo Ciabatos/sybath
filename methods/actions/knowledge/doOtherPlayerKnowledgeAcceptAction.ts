@@ -2,13 +2,10 @@
 "use server"
 
 import { auth } from "@/lib/auth"
-import {
-  TDoOtherPlayerKnowledgeAcceptServiceParams,
-  doOtherPlayerKnowledgeAcceptService,
-} from "@/methods/services/knowledge/doOtherPlayerKnowledgeAcceptService"
+import { TDoOtherPlayerKnowledgeAcceptServiceParams, doOtherPlayerKnowledgeAcceptService } from "@/methods/services/knowledge/doOtherPlayerKnowledgeAcceptService"
 import { headers } from "next/headers"
 
-type TDoOtherPlayerKnowledgeAcceptActionParams = Omit<TDoOtherPlayerKnowledgeAcceptServiceParams, "sessionUserId">
+type TDoOtherPlayerKnowledgeAcceptActionParams = Omit<TDoOtherPlayerKnowledgeAcceptServiceParams, "userId">
 
 export async function doOtherPlayerKnowledgeAcceptAction(params: TDoOtherPlayerKnowledgeAcceptActionParams) {
   try {
@@ -27,7 +24,7 @@ export async function doOtherPlayerKnowledgeAcceptAction(params: TDoOtherPlayerK
     //MANUAL CODE - END
 
     const data: TDoOtherPlayerKnowledgeAcceptServiceParams = {
-      sessionUserId: sessionUserId,
+      userId: sessionUserId,
       ...params,
     }
 

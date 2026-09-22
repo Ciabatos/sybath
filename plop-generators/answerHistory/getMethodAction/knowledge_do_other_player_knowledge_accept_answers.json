@@ -6,12 +6,19 @@
   },
   "schema": "knowledge",
   "method": "do_other_player_knowledge_accept",
-  "methodCamelName": "doOtherPlayerKnowledgeAccept",
-  "methodPascalName": "DoOtherPlayerKnowledgeAccept",
-  "methodName": "doOtherPlayerKnowledgeAcceptAction",
+  "entityCamelName": "doOtherPlayerKnowledgeAccept",
+  "entityPascalName": "DoOtherPlayerKnowledgeAccept",
+  "actionName": "doOtherPlayerKnowledgeAcceptAction",
+  "dbFunctionName": "doOtherPlayerKnowledgeAccept",
   "methodTypeName": "TDoOtherPlayerKnowledgeAccept",
   "methodParamsTypeName": "TDoOtherPlayerKnowledgeAcceptParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
     {
       "name": "p_player_id",
       "camelName": "playerId",
@@ -41,16 +48,15 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2",
+  "sqlFunctionName": "do_other_player_knowledge_accept",
+  "sqlParamsPlaceholders": "$1, $2, $3",
   "compositeDefinitions": [],
+  "dateCreated": "2026-09-22T21:59:05.207Z",
   "filesCreated": [
-    "../methods/actions/knowledge/doOtherPlayerKnowledgeAcceptAction.ts",
-    "../methods/actions/knowledge/doOtherPlayerKnowledgeAcceptAction.md",
-    "../db/postgresMainDatabase/schemas/knowledge/doOtherPlayerKnowledgeAccept.ts",
-    "../methods/services/knowledge/doOtherPlayerKnowledgeAcceptService.ts",
-    "./answerHistory/getMethodAction/knowledge_do_other_player_knowledge_accept_answers.json"
+    "methods/actions/knowledge/doOtherPlayerKnowledgeAcceptAction.ts",
+    "methods/actions/knowledge/doOtherPlayerKnowledgeAcceptAction.md",
+    "db/postgresMainDatabase/schemas/knowledge/doOtherPlayerKnowledgeAccept.ts",
+    "methods/services/knowledge/doOtherPlayerKnowledgeAcceptService.ts"
   ],
-  "selectedGenerators": [
-    "getMethodAction"
-  ]
+  "generatorName": "getMethodAction"
 }

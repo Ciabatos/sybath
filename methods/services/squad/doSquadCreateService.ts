@@ -6,7 +6,7 @@ import { TDoSquadCreateParams, doSquadCreate } from "@/db/postgresMainDatabase/s
 //MANUAL CODE - START
 
 export type TDoSquadCreateServiceParams = {
-  sessionUserId: string
+  userId: string
   playerId: number
 }
 
@@ -14,7 +14,7 @@ export type TDoSquadCreateServiceParams = {
 
 export async function doSquadCreateService(params: TDoSquadCreateServiceParams) {
   try {
-    const sessionPlayerId = params.sessionUserId
+    const userId = params.userId
     const playerId = params.playerId
 
     //MANUAL CODE - START
@@ -22,6 +22,7 @@ export async function doSquadCreateService(params: TDoSquadCreateServiceParams) 
     //MANUAL CODE - END
 
     const data: TDoSquadCreateParams = {
+      userId: userId,
       playerId: playerId,
     }
 

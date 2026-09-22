@@ -1,0 +1,68 @@
+{
+  "promptAnswers": {
+    "schema": "inventory",
+    "method": "do_add_item_to_player_inventory",
+    "usePrevious": false
+  },
+  "schema": "inventory",
+  "method": "do_add_item_to_player_inventory",
+  "entityCamelName": "doAddItemToPlayerInventory",
+  "entityPascalName": "DoAddItemToPlayerInventory",
+  "actionName": "doAddItemToPlayerInventoryAction",
+  "dbFunctionName": "doAddItemToPlayerInventory",
+  "methodTypeName": "TDoAddItemToPlayerInventory",
+  "methodParamsTypeName": "TDoAddItemToPlayerInventoryParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
+    },
+    {
+      "name": "p_item_id",
+      "camelName": "itemId",
+      "tsType": "number",
+      "isJson": false
+    },
+    {
+      "name": "p_quantity",
+      "camelName": "quantity",
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "methodColumns": [
+    {
+      "name": "status",
+      "camelName": "status",
+      "pascalName": "Status",
+      "tsType": "boolean",
+      "optional": ""
+    },
+    {
+      "name": "message",
+      "camelName": "message",
+      "pascalName": "Message",
+      "tsType": "string",
+      "optional": ""
+    }
+  ],
+  "sqlFunctionName": "do_add_item_to_player_inventory",
+  "sqlParamsPlaceholders": "$1, $2, $3, $4",
+  "compositeDefinitions": [],
+  "dateCreated": "2026-09-22T21:58:23.570Z",
+  "filesCreated": [
+    "methods/actions/inventory/doAddItemToPlayerInventoryAction.ts",
+    "methods/actions/inventory/doAddItemToPlayerInventoryAction.md",
+    "db/postgresMainDatabase/schemas/inventory/doAddItemToPlayerInventory.ts",
+    "methods/services/inventory/doAddItemToPlayerInventoryService.ts"
+  ],
+  "generatorName": "getMethodAction"
+}

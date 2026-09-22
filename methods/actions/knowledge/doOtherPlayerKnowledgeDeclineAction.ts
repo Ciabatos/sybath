@@ -2,13 +2,10 @@
 "use server"
 
 import { auth } from "@/lib/auth"
-import {
-  TDoOtherPlayerKnowledgeDeclineServiceParams,
-  doOtherPlayerKnowledgeDeclineService,
-} from "@/methods/services/knowledge/doOtherPlayerKnowledgeDeclineService"
+import { TDoOtherPlayerKnowledgeDeclineServiceParams, doOtherPlayerKnowledgeDeclineService } from "@/methods/services/knowledge/doOtherPlayerKnowledgeDeclineService"
 import { headers } from "next/headers"
 
-type TDoOtherPlayerKnowledgeDeclineActionParams = Omit<TDoOtherPlayerKnowledgeDeclineServiceParams, "sessionUserId">
+type TDoOtherPlayerKnowledgeDeclineActionParams = Omit<TDoOtherPlayerKnowledgeDeclineServiceParams, "userId">
 
 export async function doOtherPlayerKnowledgeDeclineAction(params: TDoOtherPlayerKnowledgeDeclineActionParams) {
   try {
@@ -27,7 +24,7 @@ export async function doOtherPlayerKnowledgeDeclineAction(params: TDoOtherPlayer
     //MANUAL CODE - END
 
     const data: TDoOtherPlayerKnowledgeDeclineServiceParams = {
-      sessionUserId: sessionUserId,
+      userId: sessionUserId,
       ...params,
     }
 

@@ -6,31 +6,42 @@
   },
   "schema": "squad",
   "method": "do_squad_invite",
-  "methodCamelName": "doSquadInvite",
-  "methodPascalName": "DoSquadInvite",
-  "methodName": "doSquadInviteAction",
+  "entityCamelName": "doSquadInvite",
+  "entityPascalName": "DoSquadInvite",
+  "actionName": "doSquadInviteAction",
+  "dbFunctionName": "doSquadInvite",
   "methodTypeName": "TDoSquadInvite",
   "methodParamsTypeName": "TDoSquadInviteParams",
   "methodParamsColumns": [
     {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
+    {
       "name": "p_player_id",
       "camelName": "playerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     },
     {
       "name": "p_invited_player_id",
       "camelName": "invitedPlayerId",
-      "tsType": "string"
+      "tsType": "string",
+      "isJson": false
     },
     {
       "name": "p_invite_type",
       "camelName": "inviteType",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     },
     {
       "name": "p_squad_role",
       "camelName": "squadRole",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -49,15 +60,15 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2, $3, $4",
+  "sqlFunctionName": "do_squad_invite",
+  "sqlParamsPlaceholders": "$1, $2, $3, $4, $5",
+  "compositeDefinitions": [],
+  "dateCreated": "2026-09-22T21:59:45.474Z",
   "filesCreated": [
-    "../methods/actions/squad/doSquadInviteAction.ts",
-    "../methods/actions/squad/doSquadInviteAction.md",
-    "../db/postgresMainDatabase/schemas/squad/doSquadInvite.ts",
-    "../methods/services/squad/doSquadInviteService.ts",
-    "./answerHistory/getMethodAction/squad_do_squad_invite_answers.json"
+    "methods/actions/squad/doSquadInviteAction.ts",
+    "methods/actions/squad/doSquadInviteAction.md",
+    "db/postgresMainDatabase/schemas/squad/doSquadInvite.ts",
+    "methods/services/squad/doSquadInviteService.ts"
   ],
-  "selectedGenerators": [
-    "getMethodAction"
-  ]
+  "generatorName": "getMethodAction"
 }

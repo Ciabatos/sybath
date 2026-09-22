@@ -6,7 +6,7 @@ import { TDoSquadLeaveParams, doSquadLeave } from "@/db/postgresMainDatabase/sch
 //MANUAL CODE - START
 
 export type TDoSquadLeaveServiceParams = {
-  sessionUserId: string
+  userId: string
   playerId: number
 }
 
@@ -14,7 +14,7 @@ export type TDoSquadLeaveServiceParams = {
 
 export async function doSquadLeaveService(params: TDoSquadLeaveServiceParams) {
   try {
-    const sessionPlayerId = params.sessionUserId
+    const userId = params.userId
     const playerId = params.playerId
 
     //MANUAL CODE - START
@@ -22,6 +22,7 @@ export async function doSquadLeaveService(params: TDoSquadLeaveServiceParams) {
     //MANUAL CODE - END
 
     const data: TDoSquadLeaveParams = {
+      userId: userId,
       playerId: playerId,
     }
 

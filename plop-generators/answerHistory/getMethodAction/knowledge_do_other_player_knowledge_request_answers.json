@@ -6,12 +6,19 @@
   },
   "schema": "knowledge",
   "method": "do_other_player_knowledge_request",
-  "methodCamelName": "doOtherPlayerKnowledgeRequest",
-  "methodPascalName": "DoOtherPlayerKnowledgeRequest",
-  "methodName": "doOtherPlayerKnowledgeRequestAction",
+  "entityCamelName": "doOtherPlayerKnowledgeRequest",
+  "entityPascalName": "DoOtherPlayerKnowledgeRequest",
+  "actionName": "doOtherPlayerKnowledgeRequestAction",
+  "dbFunctionName": "doOtherPlayerKnowledgeRequest",
   "methodTypeName": "TDoOtherPlayerKnowledgeRequest",
   "methodParamsTypeName": "TDoOtherPlayerKnowledgeRequestParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
     {
       "name": "p_player_id",
       "camelName": "playerId",
@@ -47,16 +54,15 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2, $3",
+  "sqlFunctionName": "do_other_player_knowledge_request",
+  "sqlParamsPlaceholders": "$1, $2, $3, $4",
   "compositeDefinitions": [],
+  "dateCreated": "2026-09-22T21:59:17.573Z",
   "filesCreated": [
-    "../methods/actions/knowledge/doOtherPlayerKnowledgeRequestAction.ts",
-    "../methods/actions/knowledge/doOtherPlayerKnowledgeRequestAction.md",
-    "../db/postgresMainDatabase/schemas/knowledge/doOtherPlayerKnowledgeRequest.ts",
-    "../methods/services/knowledge/doOtherPlayerKnowledgeRequestService.ts",
-    "./answerHistory/getMethodAction/knowledge_do_other_player_knowledge_request_answers.json"
+    "methods/actions/knowledge/doOtherPlayerKnowledgeRequestAction.ts",
+    "methods/actions/knowledge/doOtherPlayerKnowledgeRequestAction.md",
+    "db/postgresMainDatabase/schemas/knowledge/doOtherPlayerKnowledgeRequest.ts",
+    "methods/services/knowledge/doOtherPlayerKnowledgeRequestService.ts"
   ],
-  "selectedGenerators": [
-    "getMethodAction"
-  ]
+  "generatorName": "getMethodAction"
 }

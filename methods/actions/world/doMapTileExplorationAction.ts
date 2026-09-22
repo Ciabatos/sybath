@@ -2,13 +2,10 @@
 "use server"
 
 import { auth } from "@/lib/auth"
-import {
-  TDoMapTileExplorationServiceParams,
-  doMapTileExplorationService,
-} from "@/methods/services/world/doMapTileExplorationService"
+import { TDoMapTileExplorationServiceParams, doMapTileExplorationService } from "@/methods/services/world/doMapTileExplorationService"
 import { headers } from "next/headers"
 
-type TDoMapTileExplorationActionParams = Omit<TDoMapTileExplorationServiceParams, "sessionUserId">
+type TDoMapTileExplorationActionParams = Omit<TDoMapTileExplorationServiceParams, "userId">
 
 export async function doMapTileExplorationAction(params: TDoMapTileExplorationActionParams) {
   try {
@@ -27,7 +24,7 @@ export async function doMapTileExplorationAction(params: TDoMapTileExplorationAc
     //MANUAL CODE - END
 
     const data: TDoMapTileExplorationServiceParams = {
-      sessionUserId: sessionUserId,
+      userId: sessionUserId,
       ...params,
     }
 

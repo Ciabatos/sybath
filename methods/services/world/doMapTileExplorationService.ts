@@ -12,7 +12,7 @@ import { getPlayerPositionServer } from "@/methods/server-fetchers/world/core/ge
 //MANUAL CODE - START
 
 export type TDoMapTileExplorationServiceParams = {
-  sessionUserId: string
+  userId: string
   playerId: number
   mapId: number
   targetTileX: number
@@ -23,15 +23,15 @@ export type TDoMapTileExplorationServiceParams = {
 
 export async function doMapTileExplorationService(params: TDoMapTileExplorationServiceParams) {
   try {
-    const sessionPlayerId = params.sessionUserId
+    const userId = params.userId
     const playerId = params.playerId
 
     //MANUAL CODE - START
-    const mapId = (await getPlayerMapServer({ playerId })).raw[0].mapId
+    const mapId = (await getPlayerMapServer({ userId, playerId })).raw[0].mapId
 
     const [playerAbilities, playerPosition] = await Promise.all([
-      getPlayerAbilitiesServer({ playerId }),
-      getPlayerPositionServer({ mapId, playerId }, { forceFresh: true }),
+      getPlayerAbilitiesServer({ userId, playerId }),
+      getPlayerPositionServer({ userId, mapId, playerId }, { forceFresh: true }),
     ])
 
     if (!playerAbilities.byKey[2]?.value) {
@@ -51,6 +51,7 @@ export async function doMapTileExplorationService(params: TDoMapTileExplorationS
     //MANUAL CODE - END
 
     const data: TDoMapTileExplorationParams = {
+      userId: userId,
       playerId: playerId,
       mapId: mapId,
       x: params.targetTileX,

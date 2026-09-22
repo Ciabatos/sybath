@@ -16,21 +16,21 @@ import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core
 //MANUAL CODE - START
 
 export type TDoPlayerMovementServiceParams = {
-  path: TPlayerMovementRecordByXY
-  sessionUserId: string
+  userId: string
   playerId: number
+  path: TPlayerMovementRecordByXY
 }
 
 //MANUAL CODE - END
 
 export async function doPlayerMovementService(params: TDoPlayerMovementServiceParams) {
   try {
-    const sessionPlayerId = params.sessionUserId
+    const userId = params.userId
     const playerId = params.playerId
 
     //MANUAL CODE - START
 
-    const mapId = (await getPlayerMapServer({ playerId })).raw[0].mapId
+    const mapId = (await getPlayerMapServer({ userId, playerId })).raw[0].mapId
 
     const [mapTiles, terrainTypes, landscapeTypes, cities, districts, districtTypes, playerPosition] =
       await Promise.all([
@@ -40,7 +40,7 @@ export async function doPlayerMovementService(params: TDoPlayerMovementServicePa
         getCitiesCitiesByKeyServer({ mapId }),
         getDistrictsDistrictsByKeyServer({ mapId }),
         getDistrictsDistrictTypesServer(),
-        getPlayerPositionServer({ mapId, playerId }, { forceFresh: true }),
+        getPlayerPositionServer({ userId, mapId, playerId }, { forceFresh: true }),
       ])
 
     if (!mapTiles) {
@@ -90,6 +90,7 @@ export async function doPlayerMovementService(params: TDoPlayerMovementServicePa
     //MANUAL CODE - END
 
     const data: TDoPlayerMovementParams = {
+      userId: userId,
       playerId: playerId,
       path: path,
     }

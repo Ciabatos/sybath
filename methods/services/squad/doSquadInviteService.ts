@@ -6,7 +6,7 @@ import { TDoSquadInviteParams, doSquadInvite } from "@/db/postgresMainDatabase/s
 //MANUAL CODE - START
 
 export type TDoSquadInviteServiceParams = {
-  sessionUserId: string
+  userId: string
   playerId: number
   invitedPlayerId: string
   inviteType: number
@@ -17,7 +17,7 @@ export type TDoSquadInviteServiceParams = {
 
 export async function doSquadInviteService(params: TDoSquadInviteServiceParams) {
   try {
-    const sessionPlayerId = params.sessionUserId
+    const userId = params.userId
     const playerId = params.playerId
 
     //MANUAL CODE - START
@@ -29,6 +29,7 @@ export async function doSquadInviteService(params: TDoSquadInviteServiceParams) 
     //MANUAL CODE - END
 
     const data: TDoSquadInviteParams = {
+      userId: userId,
       playerId: playerId,
       invitedPlayerId: invitedPlayerId,
       inviteType: inviteType,

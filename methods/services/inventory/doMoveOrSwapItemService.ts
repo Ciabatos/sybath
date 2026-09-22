@@ -6,7 +6,7 @@ import { TDoMoveOrSwapItemParams, doMoveOrSwapItem } from "@/db/postgresMainData
 //MANUAL CODE - START
 
 export type TDoMoveOrSwapItemServiceParams = {
-  sessionUserId: string
+  userId: string
   playerId: number
   fromSlotId: number
   toSlotId: number
@@ -18,7 +18,7 @@ export type TDoMoveOrSwapItemServiceParams = {
 
 export async function doMoveOrSwapItemService(params: TDoMoveOrSwapItemServiceParams) {
   try {
-    const sessionPlayerId = params.sessionUserId
+    const userId = params.userId
     const playerId = params.playerId
 
     //MANUAL CODE - START
@@ -34,10 +34,10 @@ export async function doMoveOrSwapItemService(params: TDoMoveOrSwapItemServicePa
         message: "Cannot switch to the same slot",
       }
     }
-
     //MANUAL CODE - END
 
     const data: TDoMoveOrSwapItemParams = {
+      userId: userId,
       playerId: playerId,
       fromSlotId: fromSlotId,
       toSlotId: toSlotId,

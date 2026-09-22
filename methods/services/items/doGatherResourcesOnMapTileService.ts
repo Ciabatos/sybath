@@ -11,7 +11,7 @@ import { getPlayerPositionServer } from "@/methods/server-fetchers/world/core/ge
 //MANUAL CODE - START
 
 export type TDoGatherResourcesOnMapTileServiceParams = {
-  sessionUserId: string
+  userId: string
   playerId: number
   mapId: number
   targetTileX: number
@@ -24,14 +24,16 @@ export type TDoGatherResourcesOnMapTileServiceParams = {
 
 export async function doGatherResourcesOnMapTileService(params: TDoGatherResourcesOnMapTileServiceParams) {
   try {
-    const sessionPlayerId = params.sessionUserId
+    const userId = params.userId
     const playerId = params.playerId
 
     //MANUAL CODE - START
 
-    const mapId = (await getPlayerMapServer({ playerId })).raw[0].mapId
+    const mapId = (await getPlayerMapServer({ userId, playerId })).raw[0].mapId
 
-    const [playerPosition] = await Promise.all([getPlayerPositionServer({ mapId, playerId }, { forceFresh: true })])
+    const [playerPosition] = await Promise.all([
+      getPlayerPositionServer({ userId, mapId, playerId }, { forceFresh: true }),
+    ])
 
     if (!playerPosition.byKey[`${params.targetTileX},${params.targetTileY}`]) {
       return {
@@ -43,6 +45,7 @@ export async function doGatherResourcesOnMapTileService(params: TDoGatherResourc
     //MANUAL CODE - END
 
     const data: TDoGatherResourcesOnMapTileParams = {
+      userId: userId,
       playerId: playerId,
       mapId: mapId,
       x: params.targetTileX,

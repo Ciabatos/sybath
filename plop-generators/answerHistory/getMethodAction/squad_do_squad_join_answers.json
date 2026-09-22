@@ -6,21 +6,30 @@
   },
   "schema": "squad",
   "method": "do_squad_join",
-  "methodCamelName": "doSquadJoin",
-  "methodPascalName": "DoSquadJoin",
-  "methodName": "doSquadJoinAction",
+  "entityCamelName": "doSquadJoin",
+  "entityPascalName": "DoSquadJoin",
+  "actionName": "doSquadJoinAction",
+  "dbFunctionName": "doSquadJoin",
   "methodTypeName": "TDoSquadJoin",
   "methodParamsTypeName": "TDoSquadJoinParams",
   "methodParamsColumns": [
     {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
+    {
       "name": "p_player_id",
       "camelName": "playerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     },
     {
       "name": "p_squad_invite_id",
       "camelName": "squadInviteId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -39,15 +48,15 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2",
+  "sqlFunctionName": "do_squad_join",
+  "sqlParamsPlaceholders": "$1, $2, $3",
+  "compositeDefinitions": [],
+  "dateCreated": "2026-09-22T21:59:51.560Z",
   "filesCreated": [
-    "../methods/actions/squad/doSquadJoinAction.ts",
-    "../methods/actions/squad/doSquadJoinAction.md",
-    "../db/postgresMainDatabase/schemas/squad/doSquadJoin.ts",
-    "../methods/services/squad/doSquadJoinService.ts",
-    "./answerHistory/getMethodAction/squad_do_squad_join_answers.json"
+    "methods/actions/squad/doSquadJoinAction.ts",
+    "methods/actions/squad/doSquadJoinAction.md",
+    "db/postgresMainDatabase/schemas/squad/doSquadJoin.ts",
+    "methods/services/squad/doSquadJoinService.ts"
   ],
-  "selectedGenerators": [
-    "getMethodAction"
-  ]
+  "generatorName": "getMethodAction"
 }

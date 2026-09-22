@@ -6,7 +6,7 @@ import { TDoTradeOpenParams, doTradeOpen } from "@/db/postgresMainDatabase/schem
 //MANUAL CODE - START
 
 export type TDoTradeOpenServiceParams = {
-  sessionUserId: string
+  userId: string
   playerId: number
   invitedPlayerId: string
 }
@@ -15,7 +15,7 @@ export type TDoTradeOpenServiceParams = {
 
 export async function doTradeOpenService(params: TDoTradeOpenServiceParams) {
   try {
-    const sessionPlayerId = params.sessionUserId
+    const userId = params.userId
     const playerId = params.playerId
 
     //MANUAL CODE - START
@@ -25,6 +25,7 @@ export async function doTradeOpenService(params: TDoTradeOpenServiceParams) {
     //MANUAL CODE - END
 
     const data: TDoTradeOpenParams = {
+      userId: userId,
       playerId: playerId,
       invitedPlayerId: invitedPlayerId,
     }

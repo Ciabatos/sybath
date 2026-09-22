@@ -63,6 +63,6 @@ export function getMethodFetcherActions() {
       templateFile: "plop-templates/methodFetcher/skillCreatorMethod.hbs",
       force: true,
     },
-    // { type: "PrettierFormat" },
+    { type: "PrettierFormat" },
   ]
 }

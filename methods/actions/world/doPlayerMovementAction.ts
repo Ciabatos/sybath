@@ -2,13 +2,10 @@
 "use server"
 
 import { auth } from "@/lib/auth"
-import {
-  TDoPlayerMovementServiceParams,
-  doPlayerMovementService,
-} from "@/methods/services/world/doPlayerMovementService"
+import { TDoPlayerMovementServiceParams, doPlayerMovementService } from "@/methods/services/world/doPlayerMovementService"
 import { headers } from "next/headers"
 
-type TDoPlayerMovementActionParams = Omit<TDoPlayerMovementServiceParams, "sessionUserId">
+type TDoPlayerMovementActionParams = Omit<TDoPlayerMovementServiceParams, "userId">
 
 export async function doPlayerMovementAction(params: TDoPlayerMovementActionParams) {
   try {
@@ -27,7 +24,7 @@ export async function doPlayerMovementAction(params: TDoPlayerMovementActionPara
     //MANUAL CODE - END
 
     const data: TDoPlayerMovementServiceParams = {
-      sessionUserId: sessionUserId,
+      userId: sessionUserId,
       ...params,
     }
 

@@ -6,12 +6,19 @@
   },
   "schema": "trade",
   "method": "do_trade_open",
-  "methodCamelName": "doTradeOpen",
-  "methodPascalName": "DoTradeOpen",
-  "methodName": "doTradeOpenAction",
+  "entityCamelName": "doTradeOpen",
+  "entityPascalName": "DoTradeOpen",
+  "actionName": "doTradeOpenAction",
+  "dbFunctionName": "doTradeOpen",
   "methodTypeName": "TDoTradeOpen",
   "methodParamsTypeName": "TDoTradeOpenParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
     {
       "name": "p_player_id",
       "camelName": "playerId",
@@ -41,9 +48,10 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2",
+  "sqlFunctionName": "do_trade_open",
+  "sqlParamsPlaceholders": "$1, $2, $3",
   "compositeDefinitions": [],
-  "dateCreated": "2026-08-06T19:48:59.930Z",
+  "dateCreated": "2026-09-22T22:00:07.001Z",
   "filesCreated": [
     "methods/actions/trade/doTradeOpenAction.ts",
     "methods/actions/trade/doTradeOpenAction.md",

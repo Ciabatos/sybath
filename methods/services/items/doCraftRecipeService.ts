@@ -6,7 +6,7 @@ import { TDoCraftRecipeParams, doCraftRecipe } from "@/db/postgresMainDatabase/s
 //MANUAL CODE - START
 
 export type TDoCraftRecipeServiceParams = {
-  sessionUserId: string
+  userId: string
   playerId: number
   recipeId: number
 }
@@ -15,7 +15,7 @@ export type TDoCraftRecipeServiceParams = {
 
 export async function doCraftRecipeService(params: TDoCraftRecipeServiceParams) {
   try {
-    const sessionPlayerId = params.sessionUserId
+    const userId = params.userId
     const playerId = params.playerId
 
     //MANUAL CODE - START
@@ -25,9 +25,11 @@ export async function doCraftRecipeService(params: TDoCraftRecipeServiceParams) 
     //MANUAL CODE - END
 
     const data: TDoCraftRecipeParams = {
+      userId: userId,
       playerId: playerId,
       recipeId: recipeId,
     }
+
     const result = await doCraftRecipe(data)
     return result
   } catch (error) {

@@ -5,7 +5,7 @@ import { auth } from "@/lib/auth"
 import { TDoTradeOpenServiceParams, doTradeOpenService } from "@/methods/services/trade/doTradeOpenService"
 import { headers } from "next/headers"
 
-type TDoTradeOpenActionParams = Omit<TDoTradeOpenServiceParams, "sessionUserId">
+type TDoTradeOpenActionParams = Omit<TDoTradeOpenServiceParams, "userId">
 
 export async function doTradeOpenAction(params: TDoTradeOpenActionParams) {
   try {
@@ -24,7 +24,7 @@ export async function doTradeOpenAction(params: TDoTradeOpenActionParams) {
     //MANUAL CODE - END
 
     const data: TDoTradeOpenServiceParams = {
-      sessionUserId: sessionUserId,
+      userId: sessionUserId,
       ...params,
     }
 

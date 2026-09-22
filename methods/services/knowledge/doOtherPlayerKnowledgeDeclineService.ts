@@ -9,7 +9,7 @@ import {
 //MANUAL CODE - START
 
 export type TDoOtherPlayerKnowledgeDeclineServiceParams = {
-  sessionUserId: string
+  userId: string
   playerId: number
   inviteId: number
 }
@@ -18,7 +18,7 @@ export type TDoOtherPlayerKnowledgeDeclineServiceParams = {
 
 export async function doOtherPlayerKnowledgeDeclineService(params: TDoOtherPlayerKnowledgeDeclineServiceParams) {
   try {
-    const sessionPlayerId = params.sessionUserId
+    const userId = params.userId
     const playerId = params.playerId
 
     //MANUAL CODE - START
@@ -28,6 +28,7 @@ export async function doOtherPlayerKnowledgeDeclineService(params: TDoOtherPlaye
     //MANUAL CODE - END
 
     const data: TDoOtherPlayerKnowledgeDeclineParams = {
+      userId: userId,
       playerId: playerId,
       inviteId: inviteId,
     }

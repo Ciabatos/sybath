@@ -7,49 +7,40 @@ description: |
   When using action doSquadCreateAction or trying to understand it.
 ---
 
+
+
 # doSquadCreateAction Action Documentation
-
-# function path :`methods/actions/squad/doSquadCreateAction.ts`
-
+# function path :`methods/actions/squad/doSquadCreateAction.ts` 
 # function doSquadCreateAction(params: TDoSquadCreateActionParams)
-
 # TypeScript Types:
-
 type TDoSquadCreateActionParams = Omit<TDoSquadCreateServiceParams, "sessionUserId"></T>
 
 ### Data Flow
+function doSquadCreateService(params: TDoSquadCreateServiceParams)
+path: methods/services/squad/doSquadCreateService.ts
 
-```
-# function doSquadCreateService(params: TDoSquadCreateServiceParams)
-path: `methods/services/squad/doSquadCreateService.ts`
-# TypeScript Types:
-
+TypeScript Types:
 export type TDoSquadCreateServiceParams = {
 sessionUserId: string
 playerId: number
 }
 
+Database function doSquadCreate(params: TDoSquadCreateParams)
 
- Database function doSquadCreate(params: TDoSquadCreateParams)
-# path: `db/postgresMainDatabase/schemas/squad/doSquadCreate.ts`
-# TypeScript Types:
-
+path: db/postgresMainDatabase/schemas/squad/doSquadCreate.ts
+TypeScript Types:
 
 export type TDoSquadCreateParams = {
-  playerId: number
+userId: string
+playerId: number
 }
 
 export type TDoSquadCreate = {
-  status: boolean
-  message: string
+status: boolean
+message: string
 }
 
-#### PostgreSQL Database
-# "schema": "squad"
-# "method": "do_squad_create"
-You have more information in mcp `game-db`
-```
-
-Note: doSquadCreateAction is a Next.js Server Action A Next.js Server Action is a function that: Runs on the server Can
-be called directly from a React component Is typically triggered by form submissions or user interactions Eliminates the
-need for manual API endpoints
+PostgreSQL Database
+"schema": "squad"
+"method": "do_squad_create"
+You have more information in mcp game-db

@@ -6,36 +6,48 @@
   },
   "schema": "inventory",
   "method": "do_move_or_swap_item",
-  "methodCamelName": "doMoveOrSwapItem",
-  "methodPascalName": "DoMoveOrSwapItem",
-  "methodName": "doMoveOrSwapItemAction",
+  "entityCamelName": "doMoveOrSwapItem",
+  "entityPascalName": "DoMoveOrSwapItem",
+  "actionName": "doMoveOrSwapItemAction",
+  "dbFunctionName": "doMoveOrSwapItem",
   "methodTypeName": "TDoMoveOrSwapItem",
   "methodParamsTypeName": "TDoMoveOrSwapItemParams",
   "methodParamsColumns": [
     {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
+    {
       "name": "p_player_id",
       "camelName": "playerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     },
     {
       "name": "p_from_slot_id",
       "camelName": "fromSlotId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     },
     {
       "name": "p_to_slot_id",
       "camelName": "toSlotId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     },
     {
       "name": "p_from_inventory_container_id",
       "camelName": "fromInventoryContainerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     },
     {
       "name": "p_to_inventory_container_id",
       "camelName": "toInventoryContainerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -54,15 +66,15 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2, $3, $4, $5",
+  "sqlFunctionName": "do_move_or_swap_item",
+  "sqlParamsPlaceholders": "$1, $2, $3, $4, $5, $6",
+  "compositeDefinitions": [],
+  "dateCreated": "2026-09-22T21:58:31.805Z",
   "filesCreated": [
-    "../methods/actions/inventory/doMoveOrSwapItemAction.ts",
-    "../methods/actions/inventory/doMoveOrSwapItemAction.md",
-    "../db/postgresMainDatabase/schemas/inventory/doMoveOrSwapItem.ts",
-    "../methods/services/inventory/doMoveOrSwapItemService.ts",
-    "./answerHistory/getMethodAction/inventory_do_move_or_swap_item_answers.json"
+    "methods/actions/inventory/doMoveOrSwapItemAction.ts",
+    "methods/actions/inventory/doMoveOrSwapItemAction.md",
+    "db/postgresMainDatabase/schemas/inventory/doMoveOrSwapItem.ts",
+    "methods/services/inventory/doMoveOrSwapItemService.ts"
   ],
-  "selectedGenerators": [
-    "getMethodAction"
-  ]
+  "generatorName": "getMethodAction"
 }

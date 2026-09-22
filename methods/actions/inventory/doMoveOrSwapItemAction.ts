@@ -2,13 +2,10 @@
 "use server"
 
 import { auth } from "@/lib/auth"
-import {
-  TDoMoveOrSwapItemServiceParams,
-  doMoveOrSwapItemService,
-} from "@/methods/services/inventory/doMoveOrSwapItemService"
+import { TDoMoveOrSwapItemServiceParams, doMoveOrSwapItemService } from "@/methods/services/inventory/doMoveOrSwapItemService"
 import { headers } from "next/headers"
 
-type TDoMoveOrSwapItemActionParams = Omit<TDoMoveOrSwapItemServiceParams, "sessionUserId">
+type TDoMoveOrSwapItemActionParams = Omit<TDoMoveOrSwapItemServiceParams, "userId">
 
 export async function doMoveOrSwapItemAction(params: TDoMoveOrSwapItemActionParams) {
   try {
@@ -27,7 +24,7 @@ export async function doMoveOrSwapItemAction(params: TDoMoveOrSwapItemActionPara
     //MANUAL CODE - END
 
     const data: TDoMoveOrSwapItemServiceParams = {
-      sessionUserId: sessionUserId,
+      userId: sessionUserId,
       ...params,
     }
 
