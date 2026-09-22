@@ -3,16 +3,12 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import {
-  TTradeInventoryRecordBySlotId,
-  TTradeInventoryParams,
-  TTradeInventory,
-} from "@/db/postgresMainDatabase/schemas/trade/tradeInventory"
+import { TTradeInventoryRecordBySlotId,  TTradeInventoryParams, TTradeInventory  } from "@/db/postgresMainDatabase/schemas/trade/tradeInventory"
 import { tradeInventoryAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
+import { arrayToObjectKey } from "@/methods/functions/util/converters" 
 
-export function useMutateTradeInventory(params: TTradeInventoryParams) {
+export function useMutateTradeInventory( params: TTradeInventoryParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/trade/rpc/get-trade-inventory/${params.playerId}/${params.tradeId}`
   const tradeInventory = useAtomValue(tradeInventoryAtom)
@@ -44,10 +40,10 @@ export function useMutateTradeInventory(params: TTradeInventoryParams) {
     }))
 
     const newObj = arrayToObjectKey(["slotId"], dataWithDefaults) as TTradeInventoryRecordBySlotId
-
+    
     const optimisticDataMergeWithOldData: TTradeInventoryRecordBySlotId = {
-      ...tradeInventory,
-      ...newObj,
+      ...tradeInventory, 
+      ...newObj,      
     }
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)

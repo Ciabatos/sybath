@@ -11,13 +11,28 @@
   },
   "schema": "trade",
   "method": "get_trades",
-  "methodCamelName": "trades",
-  "methodPascalName": "Trades",
-  "methodKebabName": "get-trades",
-  "methodName": "getTrades",
+  "entityCamelName": "trades",
+  "entityPascalName": "Trades",
+  "entityKebabName": "get-trades",
+  "dbFunctionName": "getTrades",
   "methodTypeName": "TTrades",
   "methodParamsTypeName": "TTradesParams",
+  "clientMethodParamsTypeName": "TTradesClientParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "clientMethodParamsColumns": [
     {
       "name": "p_player_id",
       "camelName": "playerId",
@@ -63,7 +78,7 @@
     }
   ],
   "indexMethodParams": "[\"id\"]",
-  "indexParamsColumns": "playerId",
+  "indexParamsColumns": "userId, playerId",
   "indexTypeMethodName": "Id",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TTradesRecordById",
@@ -76,7 +91,8 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1",
+  "sqlFunctionName": "get_trades",
+  "sqlParamsPlaceholders": "$1, $2",
   "apiPath": "app/api/trade/rpc/get-trades/[playerId]/route.ts",
   "apiPathParams": "/api/trade/rpc/get-trades/${params.playerId}",
   "generateMutation": true,

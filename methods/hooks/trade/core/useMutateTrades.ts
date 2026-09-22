@@ -3,12 +3,12 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import { TTradesRecordById, TTradesParams, TTrades } from "@/db/postgresMainDatabase/schemas/trade/trades"
+import { TTradesRecordById,  TTradesParams, TTrades  } from "@/db/postgresMainDatabase/schemas/trade/trades"
 import { tradesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
+import { arrayToObjectKey } from "@/methods/functions/util/converters" 
 
-export function useMutateTrades(params: TTradesParams) {
+export function useMutateTrades( params: TTradesParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/trade/rpc/get-trades/${params.playerId}`
   const trades = useAtomValue(tradesAtom)
@@ -37,10 +37,10 @@ export function useMutateTrades(params: TTradesParams) {
     }))
 
     const newObj = arrayToObjectKey(["id"], dataWithDefaults) as TTradesRecordById
-
+    
     const optimisticDataMergeWithOldData: TTradesRecordById = {
-      ...trades,
-      ...newObj,
+      ...trades, 
+      ...newObj,      
     }
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
