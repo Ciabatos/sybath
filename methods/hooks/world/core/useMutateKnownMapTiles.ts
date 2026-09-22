@@ -3,16 +3,12 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import {
-  TKnownMapTilesRecordByXY,
-  TKnownMapTilesParams,
-  TKnownMapTiles,
-} from "@/db/postgresMainDatabase/schemas/world/knownMapTiles"
+import { TKnownMapTilesRecordByXY,  TKnownMapTilesParams, TKnownMapTiles  } from "@/db/postgresMainDatabase/schemas/world/knownMapTiles"
 import { knownMapTilesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
+import { arrayToObjectKey } from "@/methods/functions/util/converters" 
 
-export function useMutateKnownMapTiles(params: TKnownMapTilesParams) {
+export function useMutateKnownMapTiles( params: TKnownMapTilesParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/world/rpc/get-known-map-tiles/${params.mapId}/${params.playerId}`
   const knownMapTiles = useAtomValue(knownMapTilesAtom)
@@ -41,10 +37,10 @@ export function useMutateKnownMapTiles(params: TKnownMapTilesParams) {
     }))
 
     const newObj = arrayToObjectKey(["x", "y"], dataWithDefaults) as TKnownMapTilesRecordByXY
-
+    
     const optimisticDataMergeWithOldData: TKnownMapTilesRecordByXY = {
-      ...knownMapTiles,
-      ...newObj,
+      ...knownMapTiles, 
+      ...newObj,      
     }
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)

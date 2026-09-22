@@ -12,27 +12,57 @@
   },
   "schema": "world",
   "method": "get_known_map_region",
-  "methodCamelName": "knownMapRegion",
-  "methodPascalName": "KnownMapRegion",
-  "methodKebabName": "get-known-map-region",
-  "methodName": "getKnownMapRegion",
+  "entityCamelName": "knownMapRegion",
+  "entityPascalName": "KnownMapRegion",
+  "entityKebabName": "get-known-map-region",
+  "dbFunctionName": "getKnownMapRegion",
   "methodTypeName": "TKnownMapRegion",
   "methodParamsTypeName": "TKnownMapRegionParams",
+  "clientMethodParamsTypeName": "TKnownMapRegionClientParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
     {
       "name": "p_map_id",
       "camelName": "mapId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     },
     {
       "name": "p_player_id",
       "camelName": "playerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     },
     {
       "name": "p_region_type",
       "camelName": "regionType",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "clientMethodParamsColumns": [
+    {
+      "name": "p_map_id",
+      "camelName": "mapId",
+      "tsType": "number",
+      "isJson": false
+    },
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
+    },
+    {
+      "name": "p_region_type",
+      "camelName": "regionType",
+      "tsType": "number",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -87,7 +117,7 @@
     }
   ],
   "indexMethodParams": "[\"mapTileX\", \"mapTileY\"]",
-  "indexParamsColumns": "mapId, playerId, regionType",
+  "indexParamsColumns": "userId, mapId, playerId, regionType",
   "indexTypeMethodName": "MapTileXMapTileY",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TKnownMapRegionRecordByMapTileXMapTileY",
@@ -107,24 +137,23 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2, $3",
+  "sqlFunctionName": "get_known_map_region",
+  "sqlParamsPlaceholders": "$1, $2, $3, $4",
   "apiPath": "app/api/world/rpc/get-known-map-region/[mapId]/[playerId]/[regionType]/route.ts",
   "apiPathParams": "/api/world/rpc/get-known-map-region/${params.mapId}/${params.playerId}/${params.regionType}",
   "generateMutation": true,
   "mutationMergeOldData": true,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ],
+  "compositeDefinitions": [],
   "filesCreated": [
-    "../db/postgresMainDatabase/schemas/world/knownMapRegion.ts",
-    "../app/api/world/rpc/get-known-map-region/[mapId]/[playerId]/[regionType]/route.ts",
-    "../methods/hooks/world/core/useFetchKnownMapRegion.ts",
-    "../methods/server-fetchers/world/core/getKnownMapRegionServer.ts",
-    "../methods/services/world/fetchKnownMapRegionService.ts",
-    "../store/atoms/getMethodFetcher/knownMapRegionAtom.ts",
-    "../.vscode/useKnownMapRegion.code-snippets",
-    "../methods/hooks/world/core/useMutateKnownMapRegion.ts",
-    "./answerHistory/getMethodFetcher/world_get_known_map_region_answers.json",
-    "../methods/hooks/world/core/useFetchKnownMapRegion.md"
-  ]
+    "db/postgresMainDatabase/schemas/world/knownMapRegion.ts",
+    "app/api/world/rpc/get-known-map-region/[mapId]/[playerId]/[regionType]/route.ts",
+    "methods/hooks/world/core/useFetchKnownMapRegion.ts",
+    "methods/server-fetchers/world/core/getKnownMapRegionServer.ts",
+    "methods/services/world/fetchKnownMapRegionService.ts",
+    "store/atoms/getMethodFetcher/knownMapRegionAtom.ts",
+    ".vscode/useKnownMapRegion.code-snippets",
+    "methods/hooks/world/core/useMutateKnownMapRegion.ts",
+    "methods/hooks/world/core/useFetchKnownMapRegion.md"
+  ],
+  "generatorName": "getMethodFetcher"
 }

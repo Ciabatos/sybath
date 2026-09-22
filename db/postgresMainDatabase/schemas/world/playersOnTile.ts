@@ -5,11 +5,15 @@ import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 import { snakeToCamelRows } from "@/methods/functions/util/snakeToCamel"
 
 export type TPlayersOnTileParams = {
+  userId: string
   mapId: number
   mapTileX: number
   mapTileY: number
   playerId: number
 }
+
+export type TPlayersOnTileClientParams = Omit<TPlayersOnTileParams, "userId">
+
 
 export type TPlayersOnTile = {
   otherPlayerId: string
@@ -27,8 +31,8 @@ export type TPlayersOnTileRecordByOtherPlayerId = Record<string, TPlayersOnTile>
 export async function getPlayersOnTile(params: TPlayersOnTileParams) {
   try {
     const sqlParams = Object.values(params)
-    const sql = `SELECT * FROM world.get_players_on_tile($1, $2, $3, $4);`
-
+    const sql = `SELECT * FROM world.get_players_on_tile($1, $2, $3, $4, $5);`
+    
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TPlayersOnTile[]
   } catch (error) {
@@ -37,7 +41,7 @@ export async function getPlayersOnTile(params: TPlayersOnTileParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-
+    
     throw new Error("Failed to fetch getPlayersOnTile")
   }
 }

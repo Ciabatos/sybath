@@ -1,17 +1,43 @@
 {
+  "promptAnswers": {
+    "schema": "world",
+    "method": "get_player_map",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "mapId"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": false
+  },
   "schema": "world",
   "method": "get_player_map",
-  "methodCamelName": "playerMap",
-  "methodPascalName": "PlayerMap",
-  "methodKebabName": "get-player-map",
-  "methodName": "getPlayerMap",
+  "entityCamelName": "playerMap",
+  "entityPascalName": "PlayerMap",
+  "entityKebabName": "get-player-map",
+  "dbFunctionName": "getPlayerMap",
   "methodTypeName": "TPlayerMap",
   "methodParamsTypeName": "TPlayerMapParams",
+  "clientMethodParamsTypeName": "TPlayerMapClientParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
     {
       "name": "p_player_id",
       "camelName": "playerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "clientMethodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -24,7 +50,7 @@
     }
   ],
   "indexMethodParams": "[\"mapId\"]",
-  "indexParamsColumns": "playerId",
+  "indexParamsColumns": "userId, playerId",
   "indexTypeMethodName": "MapId",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TPlayerMapRecordByMapId",
@@ -37,23 +63,23 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1",
+  "sqlFunctionName": "get_player_map",
+  "sqlParamsPlaceholders": "$1, $2",
   "apiPath": "app/api/world/rpc/get-player-map/[playerId]/route.ts",
   "apiPathParams": "/api/world/rpc/get-player-map/${params.playerId}",
-  "generateMutation": false,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ],
+  "generateMutation": true,
+  "mutationMergeOldData": false,
+  "compositeDefinitions": [],
   "filesCreated": [
-    "../db/postgresMainDatabase/schemas/world/playerMap.ts",
-    "../app/api/world/rpc/get-player-map/[playerId]/route.ts",
-    "../methods/hooks/world/core/useFetchPlayerMap.ts",
-    "../methods/server-fetchers/world/core/getPlayerMapServer.ts",
-    "../methods/services/world/fetchPlayerMapService.ts",
-    "../store/atoms/getMethodFetcher/playerMapAtom.ts",
-    "../.vscode/usePlayerMap.code-snippets",
-    "../methods/hooks/world/core/useMutatePlayerMap.ts",
-    "./answerHistory/getMethodFetcher/world_get_player_map_answers.json",
-    "../methods/hooks/world/core/useFetchPlayerMap.md"
-  ]
+    "db/postgresMainDatabase/schemas/world/playerMap.ts",
+    "app/api/world/rpc/get-player-map/[playerId]/route.ts",
+    "methods/hooks/world/core/useFetchPlayerMap.ts",
+    "methods/server-fetchers/world/core/getPlayerMapServer.ts",
+    "methods/services/world/fetchPlayerMapService.ts",
+    "store/atoms/getMethodFetcher/playerMapAtom.ts",
+    ".vscode/usePlayerMap.code-snippets",
+    "methods/hooks/world/core/useMutatePlayerMap.ts",
+    "methods/hooks/world/core/useFetchPlayerMap.md"
+  ],
+  "generatorName": "getMethodFetcher"
 }

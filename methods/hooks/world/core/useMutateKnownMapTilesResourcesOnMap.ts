@@ -3,16 +3,12 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import {
-  TKnownMapTilesResourcesOnMapRecordByMapTileXMapTileY,
-  TKnownMapTilesResourcesOnMapParams,
-  TKnownMapTilesResourcesOnMap,
-} from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnMap"
+import { TKnownMapTilesResourcesOnMapRecordByMapTileXMapTileY,  TKnownMapTilesResourcesOnMapParams, TKnownMapTilesResourcesOnMap  } from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnMap"
 import { knownMapTilesResourcesOnMapAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
+import { arrayToObjectKey } from "@/methods/functions/util/converters" 
 
-export function useMutateKnownMapTilesResourcesOnMap(params: TKnownMapTilesResourcesOnMapParams) {
+export function useMutateKnownMapTilesResourcesOnMap( params: TKnownMapTilesResourcesOnMapParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/world/rpc/get-known-map-tiles-resources-on-map/${params.mapId}/${params.playerId}`
   const knownMapTilesResourcesOnMap = useAtomValue(knownMapTilesResourcesOnMapAtom)
@@ -38,14 +34,11 @@ export function useMutateKnownMapTilesResourcesOnMap(params: TKnownMapTilesResou
       ...val,
     }))
 
-    const newObj = arrayToObjectKey(
-      ["mapTileX", "mapTileY"],
-      dataWithDefaults,
-    ) as TKnownMapTilesResourcesOnMapRecordByMapTileXMapTileY
-
+    const newObj = arrayToObjectKey(["mapTileX", "mapTileY"], dataWithDefaults) as TKnownMapTilesResourcesOnMapRecordByMapTileXMapTileY
+    
     const optimisticDataMergeWithOldData: TKnownMapTilesResourcesOnMapRecordByMapTileXMapTileY = {
-      ...knownMapTilesResourcesOnMap,
-      ...newObj,
+      ...knownMapTilesResourcesOnMap, 
+      ...newObj,      
     }
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)

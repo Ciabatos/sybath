@@ -12,13 +12,34 @@
   },
   "schema": "world",
   "method": "get_known_players_positions",
-  "methodCamelName": "knownPlayersPositions",
-  "methodPascalName": "KnownPlayersPositions",
-  "methodKebabName": "get-known-players-positions",
-  "methodName": "getKnownPlayersPositions",
+  "entityCamelName": "knownPlayersPositions",
+  "entityPascalName": "KnownPlayersPositions",
+  "entityKebabName": "get-known-players-positions",
+  "dbFunctionName": "getKnownPlayersPositions",
   "methodTypeName": "TKnownPlayersPositions",
   "methodParamsTypeName": "TKnownPlayersPositionsParams",
+  "clientMethodParamsTypeName": "TKnownPlayersPositionsClientParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
+    {
+      "name": "p_map_id",
+      "camelName": "mapId",
+      "tsType": "number",
+      "isJson": false
+    },
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "clientMethodParamsColumns": [
     {
       "name": "p_map_id",
       "camelName": "mapId",
@@ -56,7 +77,7 @@
     }
   ],
   "indexMethodParams": "[\"x\", \"y\"]",
-  "indexParamsColumns": "mapId, playerId",
+  "indexParamsColumns": "userId, mapId, playerId",
   "indexTypeMethodName": "XY",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TKnownPlayersPositionsRecordByXY",
@@ -76,7 +97,8 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2",
+  "sqlFunctionName": "get_known_players_positions",
+  "sqlParamsPlaceholders": "$1, $2, $3",
   "apiPath": "app/api/world/rpc/get-known-players-positions/[mapId]/[playerId]/route.ts",
   "apiPathParams": "/api/world/rpc/get-known-players-positions/${params.mapId}/${params.playerId}",
   "generateMutation": true,
@@ -109,18 +131,15 @@
     }
   ],
   "filesCreated": [
-    "../db/postgresMainDatabase/schemas/world/knownPlayersPositions.ts",
-    "../app/api/world/rpc/get-known-players-positions/[mapId]/[playerId]/route.ts",
-    "../methods/hooks/world/core/useFetchKnownPlayersPositions.ts",
-    "../methods/server-fetchers/world/core/getKnownPlayersPositionsServer.ts",
-    "../methods/services/world/fetchKnownPlayersPositionsService.ts",
-    "../store/atoms/getMethodFetcher/knownPlayersPositionsAtom.ts",
-    "../.vscode/useKnownPlayersPositions.code-snippets",
-    "../methods/hooks/world/core/useMutateKnownPlayersPositions.ts",
-    "./answerHistory/getMethodFetcher/world_get_known_players_positions_answers.json",
-    "../methods/hooks/world/core/useFetchKnownPlayersPositions.md"
+    "db/postgresMainDatabase/schemas/world/knownPlayersPositions.ts",
+    "app/api/world/rpc/get-known-players-positions/[mapId]/[playerId]/route.ts",
+    "methods/hooks/world/core/useFetchKnownPlayersPositions.ts",
+    "methods/server-fetchers/world/core/getKnownPlayersPositionsServer.ts",
+    "methods/services/world/fetchKnownPlayersPositionsService.ts",
+    "store/atoms/getMethodFetcher/knownPlayersPositionsAtom.ts",
+    ".vscode/useKnownPlayersPositions.code-snippets",
+    "methods/hooks/world/core/useMutateKnownPlayersPositions.ts",
+    "methods/hooks/world/core/useFetchKnownPlayersPositions.md"
   ],
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ]
+  "generatorName": "getMethodFetcher"
 }

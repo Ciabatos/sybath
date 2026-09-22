@@ -1,10 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type {
-  TKnownMapRegion,
-  TKnownMapRegionRecordByMapTileXMapTileY,
-  TKnownMapRegionParams,
-} from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
+import type { TKnownMapRegion, TKnownMapRegionRecordByMapTileXMapTileY,TKnownMapRegionParams } from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
 import { getKnownMapRegion } from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -27,7 +23,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchKnownMapRegionService(
-  params: TKnownMapRegionParams,
+ params: TKnownMapRegionParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getKnownMapRegion", params)
@@ -65,6 +61,7 @@ export async function fetchKnownMapRegionService(
   }
 
   const byKey = arrayToObjectKey(["mapTileX", "mapTileY"], raw) as TKnownMapRegionRecordByMapTileXMapTileY
+
 
   const record: TCacheRecord = {
     raw,

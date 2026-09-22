@@ -12,22 +12,45 @@
   },
   "schema": "world",
   "method": "get_known_map_tiles",
-  "methodCamelName": "knownMapTiles",
-  "methodPascalName": "KnownMapTiles",
-  "methodKebabName": "get-known-map-tiles",
-  "methodName": "getKnownMapTiles",
+  "entityCamelName": "knownMapTiles",
+  "entityPascalName": "KnownMapTiles",
+  "entityKebabName": "get-known-map-tiles",
+  "dbFunctionName": "getKnownMapTiles",
   "methodTypeName": "TKnownMapTiles",
   "methodParamsTypeName": "TKnownMapTilesParams",
+  "clientMethodParamsTypeName": "TKnownMapTilesClientParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
     {
       "name": "p_map_id",
       "camelName": "mapId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     },
     {
       "name": "p_player_id",
       "camelName": "playerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "clientMethodParamsColumns": [
+    {
+      "name": "p_map_id",
+      "camelName": "mapId",
+      "tsType": "number",
+      "isJson": false
+    },
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -68,7 +91,7 @@
     }
   ],
   "indexMethodParams": "[\"x\", \"y\"]",
-  "indexParamsColumns": "mapId, playerId",
+  "indexParamsColumns": "userId, mapId, playerId",
   "indexTypeMethodName": "XY",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TKnownMapTilesRecordByXY",
@@ -88,24 +111,23 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2",
+  "sqlFunctionName": "get_known_map_tiles",
+  "sqlParamsPlaceholders": "$1, $2, $3",
   "apiPath": "app/api/world/rpc/get-known-map-tiles/[mapId]/[playerId]/route.ts",
   "apiPathParams": "/api/world/rpc/get-known-map-tiles/${params.mapId}/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": true,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ],
+  "compositeDefinitions": [],
   "filesCreated": [
-    "../db/postgresMainDatabase/schemas/world/knownMapTiles.ts",
-    "../app/api/world/rpc/get-known-map-tiles/[mapId]/[playerId]/route.ts",
-    "../methods/hooks/world/core/useFetchKnownMapTiles.ts",
-    "../methods/server-fetchers/world/core/getKnownMapTilesServer.ts",
-    "../methods/services/world/fetchKnownMapTilesService.ts",
-    "../store/atoms/getMethodFetcher/knownMapTilesAtom.ts",
-    "../.vscode/useKnownMapTiles.code-snippets",
-    "../methods/hooks/world/core/useMutateKnownMapTiles.ts",
-    "./answerHistory/getMethodFetcher/world_get_known_map_tiles_answers.json",
-    "../methods/hooks/world/core/useFetchKnownMapTiles.md"
-  ]
+    "db/postgresMainDatabase/schemas/world/knownMapTiles.ts",
+    "app/api/world/rpc/get-known-map-tiles/[mapId]/[playerId]/route.ts",
+    "methods/hooks/world/core/useFetchKnownMapTiles.ts",
+    "methods/server-fetchers/world/core/getKnownMapTilesServer.ts",
+    "methods/services/world/fetchKnownMapTilesService.ts",
+    "store/atoms/getMethodFetcher/knownMapTilesAtom.ts",
+    ".vscode/useKnownMapTiles.code-snippets",
+    "methods/hooks/world/core/useMutateKnownMapTiles.ts",
+    "methods/hooks/world/core/useFetchKnownMapTiles.md"
+  ],
+  "generatorName": "getMethodFetcher"
 }

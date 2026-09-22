@@ -1,10 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type {
-  TKnownMapTiles,
-  TKnownMapTilesRecordByXY,
-  TKnownMapTilesParams,
-} from "@/db/postgresMainDatabase/schemas/world/knownMapTiles"
+import type { TKnownMapTiles, TKnownMapTilesRecordByXY,TKnownMapTilesParams } from "@/db/postgresMainDatabase/schemas/world/knownMapTiles"
 import { getKnownMapTiles } from "@/db/postgresMainDatabase/schemas/world/knownMapTiles"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -27,7 +23,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchKnownMapTilesService(
-  params: TKnownMapTilesParams,
+ params: TKnownMapTilesParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getKnownMapTiles", params)
@@ -65,6 +61,7 @@ export async function fetchKnownMapTilesService(
   }
 
   const byKey = arrayToObjectKey(["x", "y"], raw) as TKnownMapTilesRecordByXY
+
 
   const record: TCacheRecord = {
     raw,

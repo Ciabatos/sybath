@@ -1,31 +1,21 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcher.hbs
 
 "use client"
-import {
-  TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId,
-  TKnownMapTilesResourcesOnTile,
-  TKnownMapTilesResourcesOnTileParams,
-} from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnTile"
+import { TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId, TKnownMapTilesResourcesOnTile , TKnownMapTilesResourcesOnTileClientParams  } from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnTile"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { knownMapTilesResourcesOnTileAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchKnownMapTilesResourcesOnTile(params: TKnownMapTilesResourcesOnTileParams) {
+export function useFetchKnownMapTilesResourcesOnTile( params: TKnownMapTilesResourcesOnTileClientParams) {
   const setKnownMapTilesResourcesOnTile = useSetAtom(knownMapTilesResourcesOnTileAtom)
 
-  const { data } = useSWR<TKnownMapTilesResourcesOnTile[]>(
-    `/api/world/rpc/get-known-map-tiles-resources-on-tile/${params.mapId}/${params.mapTileX}/${params.mapTileY}/${params.playerId}`,
-    { refreshInterval: 3000 },
-  )
+  const { data } = useSWR<TKnownMapTilesResourcesOnTile[]>(`/api/world/rpc/get-known-map-tiles-resources-on-tile/${params.mapId}/${params.mapTileX}/${params.mapTileY}/${params.playerId}`, { refreshInterval: 3000 })
 
   useEffect(() => {
     if (data) {
-      const knownMapTilesResourcesOnTile = arrayToObjectKey(
-        ["mapTilesResourceId"],
-        data,
-      ) as TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId
+      const knownMapTilesResourcesOnTile = arrayToObjectKey(["mapTilesResourceId"], data) as TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId
       setKnownMapTilesResourcesOnTile(knownMapTilesResourcesOnTile)
     }
   }, [data, setKnownMapTilesResourcesOnTile])

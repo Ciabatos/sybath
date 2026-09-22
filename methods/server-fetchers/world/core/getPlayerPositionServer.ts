@@ -1,8 +1,8 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcherServer.hbs
 "use server"
 
-import type { TPlayerPositionParams } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
-import type { TPlayerPositionRecordByXY, TPlayerPosition } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
+import type { TPlayerPositionParams } from "@/db/postgresMainDatabase/schemas/world/playerPosition" 
+import type { TPlayerPositionRecordByXY,TPlayerPosition } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 import { fetchPlayerPositionService } from "@/methods/services/world/fetchPlayerPositionService"
 
 type TResult = {
@@ -12,10 +12,7 @@ type TResult = {
   atomName: string
 }
 
-export async function getPlayerPositionServer(
-  params: TPlayerPositionParams,
-  options?: { forceFresh?: boolean },
-): Promise<TResult> {
+export async function getPlayerPositionServer( params: TPlayerPositionParams, options?: { forceFresh?: boolean },): Promise<TResult> {
   const { record } = await fetchPlayerPositionService(params, { forceFresh: options?.forceFresh })
 
   return {

@@ -12,13 +12,34 @@
   },
   "schema": "world",
   "method": "get_player_position",
-  "methodCamelName": "playerPosition",
-  "methodPascalName": "PlayerPosition",
-  "methodKebabName": "get-player-position",
-  "methodName": "getPlayerPosition",
+  "entityCamelName": "playerPosition",
+  "entityPascalName": "PlayerPosition",
+  "entityKebabName": "get-player-position",
+  "dbFunctionName": "getPlayerPosition",
   "methodTypeName": "TPlayerPosition",
   "methodParamsTypeName": "TPlayerPositionParams",
+  "clientMethodParamsTypeName": "TPlayerPositionClientParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
+    {
+      "name": "p_map_id",
+      "camelName": "mapId",
+      "tsType": "number",
+      "isJson": false
+    },
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "clientMethodParamsColumns": [
     {
       "name": "p_map_id",
       "camelName": "mapId",
@@ -63,7 +84,7 @@
     }
   ],
   "indexMethodParams": "[\"x\", \"y\"]",
-  "indexParamsColumns": "mapId, playerId",
+  "indexParamsColumns": "userId, mapId, playerId",
   "indexTypeMethodName": "XY",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TPlayerPositionRecordByXY",
@@ -83,25 +104,23 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2",
+  "sqlFunctionName": "get_player_position",
+  "sqlParamsPlaceholders": "$1, $2, $3",
   "apiPath": "app/api/world/rpc/get-player-position/[mapId]/[playerId]/route.ts",
   "apiPathParams": "/api/world/rpc/get-player-position/${params.mapId}/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": false,
   "compositeDefinitions": [],
   "filesCreated": [
-    "../db/postgresMainDatabase/schemas/world/playerPosition.ts",
-    "../app/api/world/rpc/get-player-position/[mapId]/[playerId]/route.ts",
-    "../methods/hooks/world/core/useFetchPlayerPosition.ts",
-    "../methods/server-fetchers/world/core/getPlayerPositionServer.ts",
-    "../methods/services/world/fetchPlayerPositionService.ts",
-    "../store/atoms/getMethodFetcher/playerPositionAtom.ts",
-    "../.vscode/usePlayerPosition.code-snippets",
-    "../methods/hooks/world/core/useMutatePlayerPosition.ts",
-    "./answerHistory/getMethodFetcher/world_get_player_position_answers.json",
-    "../methods/hooks/world/core/useFetchPlayerPosition.md"
+    "db/postgresMainDatabase/schemas/world/playerPosition.ts",
+    "app/api/world/rpc/get-player-position/[mapId]/[playerId]/route.ts",
+    "methods/hooks/world/core/useFetchPlayerPosition.ts",
+    "methods/server-fetchers/world/core/getPlayerPositionServer.ts",
+    "methods/services/world/fetchPlayerPositionService.ts",
+    "store/atoms/getMethodFetcher/playerPositionAtom.ts",
+    ".vscode/usePlayerPosition.code-snippets",
+    "methods/hooks/world/core/useMutatePlayerPosition.ts",
+    "methods/hooks/world/core/useFetchPlayerPosition.md"
   ],
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ]
+  "generatorName": "getMethodFetcher"
 }

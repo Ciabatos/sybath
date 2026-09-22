@@ -5,11 +5,15 @@ import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 import { snakeToCamelRows } from "@/methods/functions/util/snakeToCamel"
 
 export type TKnownMapTilesResourcesOnTileParams = {
+  userId: string
   mapId: number
   mapTileX: number
   mapTileY: number
   playerId: number
 }
+
+export type TKnownMapTilesResourcesOnTileClientParams = Omit<TKnownMapTilesResourcesOnTileParams, "userId">
+
 
 export type TKnownMapTilesResourcesOnTile = {
   mapTilesResourceId: number
@@ -22,8 +26,8 @@ export type TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId = Record<str
 export async function getKnownMapTilesResourcesOnTile(params: TKnownMapTilesResourcesOnTileParams) {
   try {
     const sqlParams = Object.values(params)
-    const sql = `SELECT * FROM world.get_known_map_tiles_resources_on_tile($1, $2, $3, $4);`
-
+    const sql = `SELECT * FROM world.get_known_map_tiles_resources_on_tile($1, $2, $3, $4, $5);`
+    
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TKnownMapTilesResourcesOnTile[]
   } catch (error) {
@@ -32,7 +36,7 @@ export async function getKnownMapTilesResourcesOnTile(params: TKnownMapTilesReso
       params,
       timestamp: new Date().toISOString(),
     })
-
+    
     throw new Error("Failed to fetch getKnownMapTilesResourcesOnTile")
   }
 }

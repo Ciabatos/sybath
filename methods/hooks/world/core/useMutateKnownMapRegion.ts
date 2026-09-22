@@ -3,16 +3,12 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import {
-  TKnownMapRegionRecordByMapTileXMapTileY,
-  TKnownMapRegionParams,
-  TKnownMapRegion,
-} from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
+import { TKnownMapRegionRecordByMapTileXMapTileY,  TKnownMapRegionParams, TKnownMapRegion  } from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
 import { knownMapRegionAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
+import { arrayToObjectKey } from "@/methods/functions/util/converters" 
 
-export function useMutateKnownMapRegion(params: TKnownMapRegionParams) {
+export function useMutateKnownMapRegion( params: TKnownMapRegionParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/world/rpc/get-known-map-region/${params.mapId}/${params.playerId}/${params.regionType}`
   const knownMapRegion = useAtomValue(knownMapRegionAtom)
@@ -42,14 +38,11 @@ export function useMutateKnownMapRegion(params: TKnownMapRegionParams) {
       ...val,
     }))
 
-    const newObj = arrayToObjectKey(
-      ["mapTileX", "mapTileY"],
-      dataWithDefaults,
-    ) as TKnownMapRegionRecordByMapTileXMapTileY
-
+    const newObj = arrayToObjectKey(["mapTileX", "mapTileY"], dataWithDefaults) as TKnownMapRegionRecordByMapTileXMapTileY
+    
     const optimisticDataMergeWithOldData: TKnownMapRegionRecordByMapTileXMapTileY = {
-      ...knownMapRegion,
-      ...newObj,
+      ...knownMapRegion, 
+      ...newObj,      
     }
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)

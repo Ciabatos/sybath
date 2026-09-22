@@ -1,10 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type {
-  TPlayerMap,
-  TPlayerMapRecordByMapId,
-  TPlayerMapParams,
-} from "@/db/postgresMainDatabase/schemas/world/playerMap"
+import type { TPlayerMap, TPlayerMapRecordByMapId,TPlayerMapParams } from "@/db/postgresMainDatabase/schemas/world/playerMap"
 import { getPlayerMap } from "@/db/postgresMainDatabase/schemas/world/playerMap"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -27,7 +23,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchPlayerMapService(
-  params: TPlayerMapParams,
+ params: TPlayerMapParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getPlayerMap", params)
@@ -65,6 +61,7 @@ export async function fetchPlayerMapService(
   }
 
   const byKey = arrayToObjectKey(["mapId"], raw) as TPlayerMapRecordByMapId
+
 
   const record: TCacheRecord = {
     raw,

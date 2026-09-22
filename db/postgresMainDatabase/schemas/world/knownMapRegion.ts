@@ -5,10 +5,14 @@ import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 import { snakeToCamelRows } from "@/methods/functions/util/snakeToCamel"
 
 export type TKnownMapRegionParams = {
+  userId: string
   mapId: number
   playerId: number
   regionType: number
 }
+
+export type TKnownMapRegionClientParams = Omit<TKnownMapRegionParams, "userId">
+
 
 export type TKnownMapRegion = {
   regionId: number
@@ -25,8 +29,8 @@ export type TKnownMapRegionRecordByMapTileXMapTileY = Record<string, TKnownMapRe
 export async function getKnownMapRegion(params: TKnownMapRegionParams) {
   try {
     const sqlParams = Object.values(params)
-    const sql = `SELECT * FROM world.get_known_map_region($1, $2, $3);`
-
+    const sql = `SELECT * FROM world.get_known_map_region($1, $2, $3, $4);`
+    
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TKnownMapRegion[]
   } catch (error) {
@@ -35,7 +39,7 @@ export async function getKnownMapRegion(params: TKnownMapRegionParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-
+    
     throw new Error("Failed to fetch getKnownMapRegion")
   }
 }

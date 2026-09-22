@@ -1,10 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type {
-  TPlayersOnTile,
-  TPlayersOnTileRecordByOtherPlayerId,
-  TPlayersOnTileParams,
-} from "@/db/postgresMainDatabase/schemas/world/playersOnTile"
+import type { TPlayersOnTile, TPlayersOnTileRecordByOtherPlayerId,TPlayersOnTileParams } from "@/db/postgresMainDatabase/schemas/world/playersOnTile"
 import { getPlayersOnTile } from "@/db/postgresMainDatabase/schemas/world/playersOnTile"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -27,7 +23,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchPlayersOnTileService(
-  params: TPlayersOnTileParams,
+ params: TPlayersOnTileParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getPlayersOnTile", params)
@@ -65,6 +61,7 @@ export async function fetchPlayersOnTileService(
   }
 
   const byKey = arrayToObjectKey(["otherPlayerId"], raw) as TPlayersOnTileRecordByOtherPlayerId
+
 
   const record: TCacheRecord = {
     raw,
