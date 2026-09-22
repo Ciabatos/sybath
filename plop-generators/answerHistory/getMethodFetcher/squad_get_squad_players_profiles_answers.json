@@ -11,13 +11,28 @@
   },
   "schema": "squad",
   "method": "get_squad_players_profiles",
-  "methodCamelName": "squadPlayersProfiles",
-  "methodPascalName": "SquadPlayersProfiles",
-  "methodKebabName": "get-squad-players-profiles",
-  "methodName": "getSquadPlayersProfiles",
+  "entityCamelName": "squadPlayersProfiles",
+  "entityPascalName": "SquadPlayersProfiles",
+  "entityKebabName": "get-squad-players-profiles",
+  "dbFunctionName": "getSquadPlayersProfiles",
   "methodTypeName": "TSquadPlayersProfiles",
   "methodParamsTypeName": "TSquadPlayersProfilesParams",
+  "clientMethodParamsTypeName": "TSquadPlayersProfilesClientParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "clientMethodParamsColumns": [
     {
       "name": "p_player_id",
       "camelName": "playerId",
@@ -70,7 +85,7 @@
     }
   ],
   "indexMethodParams": "[\"otherPlayerId\"]",
-  "indexParamsColumns": "playerId",
+  "indexParamsColumns": "userId, playerId",
   "indexTypeMethodName": "OtherPlayerId",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TSquadPlayersProfilesRecordByOtherPlayerId",
@@ -83,25 +98,23 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1",
+  "sqlFunctionName": "get_squad_players_profiles",
+  "sqlParamsPlaceholders": "$1, $2",
   "apiPath": "app/api/squad/rpc/get-squad-players-profiles/[playerId]/route.ts",
   "apiPathParams": "/api/squad/rpc/get-squad-players-profiles/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
   "filesCreated": [
-    "../db/postgresMainDatabase/schemas/squad/squadPlayersProfiles.ts",
-    "../app/api/squad/rpc/get-squad-players-profiles/[playerId]/route.ts",
-    "../methods/hooks/squad/core/useFetchSquadPlayersProfiles.ts",
-    "../methods/server-fetchers/squad/core/getSquadPlayersProfilesServer.ts",
-    "../methods/services/squad/fetchSquadPlayersProfilesService.ts",
-    "../store/atoms/getMethodFetcher/squadPlayersProfilesAtom.ts",
-    "../.vscode/useSquadPlayersProfiles.code-snippets",
-    "../methods/hooks/squad/core/useMutateSquadPlayersProfiles.ts",
-    "./answerHistory/getMethodFetcher/squad_get_squad_players_profiles_answers.json",
-    "../methods/hooks/squad/core/useFetchSquadPlayersProfiles.md"
+    "db/postgresMainDatabase/schemas/squad/squadPlayersProfiles.ts",
+    "app/api/squad/rpc/get-squad-players-profiles/[playerId]/route.ts",
+    "methods/hooks/squad/core/useFetchSquadPlayersProfiles.ts",
+    "methods/server-fetchers/squad/core/getSquadPlayersProfilesServer.ts",
+    "methods/services/squad/fetchSquadPlayersProfilesService.ts",
+    "store/atoms/getMethodFetcher/squadPlayersProfilesAtom.ts",
+    ".vscode/useSquadPlayersProfiles.code-snippets",
+    "methods/hooks/squad/core/useMutateSquadPlayersProfiles.ts",
+    "methods/hooks/squad/core/useFetchSquadPlayersProfiles.md"
   ],
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ]
+  "generatorName": "getMethodFetcher"
 }

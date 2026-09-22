@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcher.hbs
 
 "use client"
-import { TSquadRecordBySquadId, TSquad, TSquadParams } from "@/db/postgresMainDatabase/schemas/squad/squad"
+import { TSquadRecordBySquadId, TSquad , TSquadClientParams  } from "@/db/postgresMainDatabase/schemas/squad/squad"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { squadAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchSquad(params: TSquadParams) {
+export function useFetchSquad( params: TSquadClientParams) {
   const setSquad = useSetAtom(squadAtom)
 
   const { data } = useSWR<TSquad[]>(`/api/squad/rpc/get-squad/${params.playerId}`, { refreshInterval: 3000 })

@@ -1,8 +1,8 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcherServer.hbs
 "use server"
 
-import type { TSquadParams } from "@/db/postgresMainDatabase/schemas/squad/squad"
-import type { TSquadRecordBySquadId, TSquad } from "@/db/postgresMainDatabase/schemas/squad/squad"
+import type { TSquadParams } from "@/db/postgresMainDatabase/schemas/squad/squad" 
+import type { TSquadRecordBySquadId,TSquad } from "@/db/postgresMainDatabase/schemas/squad/squad"
 import { fetchSquadService } from "@/methods/services/squad/fetchSquadService"
 
 type TResult = {
@@ -12,7 +12,7 @@ type TResult = {
   atomName: string
 }
 
-export async function getSquadServer(params: TSquadParams, options?: { forceFresh?: boolean }): Promise<TResult> {
+export async function getSquadServer( params: TSquadParams, options?: { forceFresh?: boolean },): Promise<TResult> {
   const { record } = await fetchSquadService(params, { forceFresh: options?.forceFresh })
 
   return {

@@ -5,8 +5,12 @@ import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 import { snakeToCamelRows } from "@/methods/functions/util/snakeToCamel"
 
 export type TSquadInvitesParams = {
+  userId: string
   playerId: number
 }
+
+export type TSquadInvitesClientParams = Omit<TSquadInvitesParams, "userId">
+
 
 export type TSquadInvites = {
   id: number
@@ -26,8 +30,8 @@ export type TSquadInvitesRecordById = Record<string, TSquadInvites>
 export async function getSquadInvites(params: TSquadInvitesParams) {
   try {
     const sqlParams = Object.values(params)
-    const sql = `SELECT * FROM squad.get_squad_invites($1);`
-
+    const sql = `SELECT * FROM squad.get_squad_invites($1, $2);`
+    
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TSquadInvites[]
   } catch (error) {
@@ -36,7 +40,7 @@ export async function getSquadInvites(params: TSquadInvitesParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-
+    
     throw new Error("Failed to fetch getSquadInvites")
   }
 }

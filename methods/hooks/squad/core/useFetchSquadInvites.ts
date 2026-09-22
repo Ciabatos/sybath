@@ -1,23 +1,17 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcher.hbs
 
 "use client"
-import {
-  TSquadInvitesRecordById,
-  TSquadInvites,
-  TSquadInvitesParams,
-} from "@/db/postgresMainDatabase/schemas/squad/squadInvites"
+import { TSquadInvitesRecordById, TSquadInvites , TSquadInvitesClientParams  } from "@/db/postgresMainDatabase/schemas/squad/squadInvites"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { squadInvitesAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchSquadInvites(params: TSquadInvitesParams) {
+export function useFetchSquadInvites( params: TSquadInvitesClientParams) {
   const setSquadInvites = useSetAtom(squadInvitesAtom)
 
-  const { data } = useSWR<TSquadInvites[]>(`/api/squad/rpc/get-squad-invites/${params.playerId}`, {
-    refreshInterval: 3000,
-  })
+  const { data } = useSWR<TSquadInvites[]>(`/api/squad/rpc/get-squad-invites/${params.playerId}`, { refreshInterval: 3000 })
 
   useEffect(() => {
     if (data) {

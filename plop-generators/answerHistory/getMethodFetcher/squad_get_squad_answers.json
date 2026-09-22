@@ -11,13 +11,28 @@
   },
   "schema": "squad",
   "method": "get_squad",
-  "methodCamelName": "squad",
-  "methodPascalName": "Squad",
-  "methodKebabName": "get-squad",
-  "methodName": "getSquad",
+  "entityCamelName": "squad",
+  "entityPascalName": "Squad",
+  "entityKebabName": "get-squad",
+  "dbFunctionName": "getSquad",
   "methodTypeName": "TSquad",
   "methodParamsTypeName": "TSquadParams",
+  "clientMethodParamsTypeName": "TSquadClientParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "clientMethodParamsColumns": [
     {
       "name": "p_player_id",
       "camelName": "playerId",
@@ -49,7 +64,7 @@
     }
   ],
   "indexMethodParams": "[\"squadId\"]",
-  "indexParamsColumns": "playerId",
+  "indexParamsColumns": "userId, playerId",
   "indexTypeMethodName": "SquadId",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TSquadRecordBySquadId",
@@ -62,25 +77,23 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1",
+  "sqlFunctionName": "get_squad",
+  "sqlParamsPlaceholders": "$1, $2",
   "apiPath": "app/api/squad/rpc/get-squad/[playerId]/route.ts",
   "apiPathParams": "/api/squad/rpc/get-squad/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": false,
   "compositeDefinitions": [],
   "filesCreated": [
-    "../db/postgresMainDatabase/schemas/squad/squad.ts",
-    "../app/api/squad/rpc/get-squad/[playerId]/route.ts",
-    "../methods/hooks/squad/core/useFetchSquad.ts",
-    "../methods/server-fetchers/squad/core/getSquadServer.ts",
-    "../methods/services/squad/fetchSquadService.ts",
-    "../store/atoms/getMethodFetcher/squadAtom.ts",
-    "../.vscode/useSquad.code-snippets",
-    "../methods/hooks/squad/core/useMutateSquad.ts",
-    "./answerHistory/getMethodFetcher/squad_get_squad_answers.json",
-    "../methods/hooks/squad/core/useFetchSquad.md"
+    "db/postgresMainDatabase/schemas/squad/squad.ts",
+    "app/api/squad/rpc/get-squad/[playerId]/route.ts",
+    "methods/hooks/squad/core/useFetchSquad.ts",
+    "methods/server-fetchers/squad/core/getSquadServer.ts",
+    "methods/services/squad/fetchSquadService.ts",
+    "store/atoms/getMethodFetcher/squadAtom.ts",
+    ".vscode/useSquad.code-snippets",
+    "methods/hooks/squad/core/useMutateSquad.ts",
+    "methods/hooks/squad/core/useFetchSquad.md"
   ],
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ]
+  "generatorName": "getMethodFetcher"
 }
