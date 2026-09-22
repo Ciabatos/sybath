@@ -1,11 +1,8 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcherServer.hbs
 "use server"
 
-import type { TPlayerKnownPlayersParams } from "@/db/postgresMainDatabase/schemas/knowledge/playerKnownPlayers"
-import type {
-  TPlayerKnownPlayersRecordByOtherPlayerId,
-  TPlayerKnownPlayers,
-} from "@/db/postgresMainDatabase/schemas/knowledge/playerKnownPlayers"
+import type { TPlayerKnownPlayersParams } from "@/db/postgresMainDatabase/schemas/knowledge/playerKnownPlayers" 
+import type { TPlayerKnownPlayersRecordByOtherPlayerId,TPlayerKnownPlayers } from "@/db/postgresMainDatabase/schemas/knowledge/playerKnownPlayers"
 import { fetchPlayerKnownPlayersService } from "@/methods/services/knowledge/fetchPlayerKnownPlayersService"
 
 type TResult = {
@@ -15,10 +12,7 @@ type TResult = {
   atomName: string
 }
 
-export async function getPlayerKnownPlayersServer(
-  params: TPlayerKnownPlayersParams,
-  options?: { forceFresh?: boolean },
-): Promise<TResult> {
+export async function getPlayerKnownPlayersServer( params: TPlayerKnownPlayersParams, options?: { forceFresh?: boolean },): Promise<TResult> {
   const { record } = await fetchPlayerKnownPlayersService(params, { forceFresh: options?.forceFresh })
 
   return {

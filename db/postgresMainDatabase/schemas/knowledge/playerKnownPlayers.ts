@@ -5,8 +5,12 @@ import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 import { snakeToCamelRows } from "@/methods/functions/util/snakeToCamel"
 
 export type TPlayerKnownPlayersParams = {
+  userId: string
   playerId: number
 }
+
+export type TPlayerKnownPlayersClientParams = Omit<TPlayerKnownPlayersParams, "userId">
+
 
 export type TPlayerKnownPlayers = {
   otherPlayerId: string
@@ -25,8 +29,8 @@ export type TPlayerKnownPlayersRecordByOtherPlayerId = Record<string, TPlayerKno
 export async function getPlayerKnownPlayers(params: TPlayerKnownPlayersParams) {
   try {
     const sqlParams = Object.values(params)
-    const sql = `SELECT * FROM knowledge.get_player_known_players($1);`
-
+    const sql = `SELECT * FROM knowledge.get_player_known_players($1, $2);`
+    
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TPlayerKnownPlayers[]
   } catch (error) {
@@ -35,7 +39,7 @@ export async function getPlayerKnownPlayers(params: TPlayerKnownPlayersParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-
+    
     throw new Error("Failed to fetch getPlayerKnownPlayers")
   }
 }

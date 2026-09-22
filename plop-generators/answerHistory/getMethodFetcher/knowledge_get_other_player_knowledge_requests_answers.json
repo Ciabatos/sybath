@@ -11,13 +11,28 @@
   },
   "schema": "knowledge",
   "method": "get_other_player_knowledge_requests",
-  "methodCamelName": "otherPlayerKnowledgeRequests",
-  "methodPascalName": "OtherPlayerKnowledgeRequests",
-  "methodKebabName": "get-other-player-knowledge-requests",
-  "methodName": "getOtherPlayerKnowledgeRequests",
+  "entityCamelName": "otherPlayerKnowledgeRequests",
+  "entityPascalName": "OtherPlayerKnowledgeRequests",
+  "entityKebabName": "get-other-player-knowledge-requests",
+  "dbFunctionName": "getOtherPlayerKnowledgeRequests",
   "methodTypeName": "TOtherPlayerKnowledgeRequests",
   "methodParamsTypeName": "TOtherPlayerKnowledgeRequestsParams",
+  "clientMethodParamsTypeName": "TOtherPlayerKnowledgeRequestsClientParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "clientMethodParamsColumns": [
     {
       "name": "p_player_id",
       "camelName": "playerId",
@@ -84,7 +99,7 @@
     }
   ],
   "indexMethodParams": "[\"otherPlayerKnowledgeRequestId\"]",
-  "indexParamsColumns": "playerId",
+  "indexParamsColumns": "userId, playerId",
   "indexTypeMethodName": "OtherPlayerKnowledgeRequestId",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId",
@@ -97,25 +112,23 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1",
+  "sqlFunctionName": "get_other_player_knowledge_requests",
+  "sqlParamsPlaceholders": "$1, $2",
   "apiPath": "app/api/knowledge/rpc/get-other-player-knowledge-requests/[playerId]/route.ts",
   "apiPathParams": "/api/knowledge/rpc/get-other-player-knowledge-requests/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
   "filesCreated": [
-    "../db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests.ts",
-    "../app/api/knowledge/rpc/get-other-player-knowledge-requests/[playerId]/route.ts",
-    "../methods/hooks/knowledge/core/useFetchOtherPlayerKnowledgeRequests.ts",
-    "../methods/server-fetchers/knowledge/core/getOtherPlayerKnowledgeRequestsServer.ts",
-    "../methods/services/knowledge/fetchOtherPlayerKnowledgeRequestsService.ts",
-    "../store/atoms/getMethodFetcher/otherPlayerKnowledgeRequestsAtom.ts",
-    "../.vscode/useOtherPlayerKnowledgeRequests.code-snippets",
-    "../methods/hooks/knowledge/core/useMutateOtherPlayerKnowledgeRequests.ts",
-    "./answerHistory/getMethodFetcher/knowledge_get_other_player_knowledge_requests_answers.json",
-    "../methods/hooks/knowledge/core/useFetchOtherPlayerKnowledgeRequests.md"
+    "db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests.ts",
+    "app/api/knowledge/rpc/get-other-player-knowledge-requests/[playerId]/route.ts",
+    "methods/hooks/knowledge/core/useFetchOtherPlayerKnowledgeRequests.ts",
+    "methods/server-fetchers/knowledge/core/getOtherPlayerKnowledgeRequestsServer.ts",
+    "methods/services/knowledge/fetchOtherPlayerKnowledgeRequestsService.ts",
+    "store/atoms/getMethodFetcher/otherPlayerKnowledgeRequestsAtom.ts",
+    ".vscode/useOtherPlayerKnowledgeRequests.code-snippets",
+    "methods/hooks/knowledge/core/useMutateOtherPlayerKnowledgeRequests.ts",
+    "methods/hooks/knowledge/core/useFetchOtherPlayerKnowledgeRequests.md"
   ],
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ]
+  "generatorName": "getMethodFetcher"
 }

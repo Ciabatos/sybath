@@ -1,10 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type {
-  TPlayerKnownPlayers,
-  TPlayerKnownPlayersRecordByOtherPlayerId,
-  TPlayerKnownPlayersParams,
-} from "@/db/postgresMainDatabase/schemas/knowledge/playerKnownPlayers"
+import type { TPlayerKnownPlayers, TPlayerKnownPlayersRecordByOtherPlayerId,TPlayerKnownPlayersParams } from "@/db/postgresMainDatabase/schemas/knowledge/playerKnownPlayers"
 import { getPlayerKnownPlayers } from "@/db/postgresMainDatabase/schemas/knowledge/playerKnownPlayers"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -27,7 +23,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchPlayerKnownPlayersService(
-  params: TPlayerKnownPlayersParams,
+ params: TPlayerKnownPlayersParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getPlayerKnownPlayers", params)
@@ -65,6 +61,7 @@ export async function fetchPlayerKnownPlayersService(
   }
 
   const byKey = arrayToObjectKey(["otherPlayerId"], raw) as TPlayerKnownPlayersRecordByOtherPlayerId
+
 
   const record: TCacheRecord = {
     raw,

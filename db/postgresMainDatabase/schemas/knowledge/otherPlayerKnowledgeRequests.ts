@@ -5,8 +5,12 @@ import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 import { snakeToCamelRows } from "@/methods/functions/util/snakeToCamel"
 
 export type TOtherPlayerKnowledgeRequestsParams = {
+  userId: string
   playerId: number
 }
+
+export type TOtherPlayerKnowledgeRequestsClientParams = Omit<TOtherPlayerKnowledgeRequestsParams, "userId">
+
 
 export type TOtherPlayerKnowledgeRequests = {
   otherPlayerKnowledgeRequestId: number
@@ -19,16 +23,13 @@ export type TOtherPlayerKnowledgeRequests = {
   createdAt: string
 }
 
-export type TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId = Record<
-  string,
-  TOtherPlayerKnowledgeRequests
->
+export type TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId = Record<string, TOtherPlayerKnowledgeRequests>
 
 export async function getOtherPlayerKnowledgeRequests(params: TOtherPlayerKnowledgeRequestsParams) {
   try {
     const sqlParams = Object.values(params)
-    const sql = `SELECT * FROM knowledge.get_other_player_knowledge_requests($1);`
-
+    const sql = `SELECT * FROM knowledge.get_other_player_knowledge_requests($1, $2);`
+    
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TOtherPlayerKnowledgeRequests[]
   } catch (error) {
@@ -37,7 +38,7 @@ export async function getOtherPlayerKnowledgeRequests(params: TOtherPlayerKnowle
       params,
       timestamp: new Date().toISOString(),
     })
-
+    
     throw new Error("Failed to fetch getOtherPlayerKnowledgeRequests")
   }
 }
