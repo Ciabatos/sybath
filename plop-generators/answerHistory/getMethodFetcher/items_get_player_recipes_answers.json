@@ -11,17 +11,33 @@
   },
   "schema": "items",
   "method": "get_player_recipes",
-  "methodCamelName": "playerRecipes",
-  "methodPascalName": "PlayerRecipes",
-  "methodKebabName": "get-player-recipes",
-  "methodName": "getPlayerRecipes",
+  "entityCamelName": "playerRecipes",
+  "entityPascalName": "PlayerRecipes",
+  "entityKebabName": "get-player-recipes",
+  "dbFunctionName": "getPlayerRecipes",
   "methodTypeName": "TPlayerRecipes",
   "methodParamsTypeName": "TPlayerRecipesParams",
+  "clientMethodParamsTypeName": "TPlayerRecipesClientParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
     {
       "name": "p_player_id",
       "camelName": "playerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "clientMethodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -76,7 +92,7 @@
     }
   ],
   "indexMethodParams": "[\"itemId\"]",
-  "indexParamsColumns": "playerId",
+  "indexParamsColumns": "userId, playerId",
   "indexTypeMethodName": "ItemId",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TPlayerRecipesRecordByItemId",
@@ -89,24 +105,23 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1",
+  "sqlFunctionName": "get_player_recipes",
+  "sqlParamsPlaceholders": "$1, $2",
   "apiPath": "app/api/items/rpc/get-player-recipes/[playerId]/route.ts",
   "apiPathParams": "/api/items/rpc/get-player-recipes/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": true,
+  "compositeDefinitions": [],
   "filesCreated": [
-    "../db/postgresMainDatabase/schemas/items/playerRecipes.ts",
-    "../app/api/items/rpc/get-player-recipes/[playerId]/route.ts",
-    "../methods/hooks/items/core/useFetchPlayerRecipes.ts",
-    "../methods/server-fetchers/items/core/getPlayerRecipesServer.ts",
-    "../methods/services/items/fetchPlayerRecipesService.ts",
-    "../store/atoms/getMethodFetcher/playerRecipesAtom.ts",
-    "../.vscode/usePlayerRecipes.code-snippets",
-    "../methods/hooks/items/core/useMutatePlayerRecipes.ts",
-    "./answerHistory/getMethodFetcher/items_get_player_recipes_answers.json",
-    "../methods/hooks/items/core/useFetchPlayerRecipes.md"
+    "db/postgresMainDatabase/schemas/items/playerRecipes.ts",
+    "app/api/items/rpc/get-player-recipes/[playerId]/route.ts",
+    "methods/hooks/items/core/useFetchPlayerRecipes.ts",
+    "methods/server-fetchers/items/core/getPlayerRecipesServer.ts",
+    "methods/services/items/fetchPlayerRecipesService.ts",
+    "store/atoms/getMethodFetcher/playerRecipesAtom.ts",
+    ".vscode/usePlayerRecipes.code-snippets",
+    "methods/hooks/items/core/useMutatePlayerRecipes.ts",
+    "methods/hooks/items/core/useFetchPlayerRecipes.md"
   ],
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ]
+  "generatorName": "getMethodFetcher"
 }

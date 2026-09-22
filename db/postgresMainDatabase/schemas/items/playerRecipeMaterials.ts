@@ -5,9 +5,13 @@ import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 import { snakeToCamelRows } from "@/methods/functions/util/snakeToCamel"
 
 export type TPlayerRecipeMaterialsParams = {
+  userId: string
   playerId: number
   recipeId: number
 }
+
+export type TPlayerRecipeMaterialsClientParams = Omit<TPlayerRecipeMaterialsParams, "userId">
+
 
 export type TPlayerRecipeMaterials = {
   id: number
@@ -24,8 +28,8 @@ export type TPlayerRecipeMaterialsRecordById = Record<string, TPlayerRecipeMater
 export async function getPlayerRecipeMaterials(params: TPlayerRecipeMaterialsParams) {
   try {
     const sqlParams = Object.values(params)
-    const sql = `SELECT * FROM items.get_player_recipe_materials($1, $2);`
-
+    const sql = `SELECT * FROM items.get_player_recipe_materials($1, $2, $3);`
+    
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TPlayerRecipeMaterials[]
   } catch (error) {
@@ -34,7 +38,7 @@ export async function getPlayerRecipeMaterials(params: TPlayerRecipeMaterialsPar
       params,
       timestamp: new Date().toISOString(),
     })
-
+    
     throw new Error("Failed to fetch getPlayerRecipeMaterials")
   }
 }
