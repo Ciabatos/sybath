@@ -119,6 +119,8 @@ export async function resolveGetTable({
     `methods/hooks/${schema}/core/useFetch${schemaEntityPascalName}ByKey.md`,
   ]
 
+  const dateCreated = new Date().toISOString()
+
   return {
     promptAnswers,
     schema,
@@ -149,6 +151,7 @@ export async function resolveGetTable({
     mutationMergeOldData,
     fetcherName,
     fetcherByKeyName,
+    dateCreated,
     filesCreated,
     sqlMethodCreated,
     generatorName: "getTable",
