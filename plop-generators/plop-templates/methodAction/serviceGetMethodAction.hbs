@@ -6,7 +6,7 @@ import { {{methodParamsTypeName}}, {{entityCamelName}} } from "@/db/postgresMain
 //MANUAL CODE - START
 
 export type T{{entityPascalName}}ServiceParams = {
-sessionUserId: string
+userId: string
 playerId: number
 }
 
@@ -14,7 +14,7 @@ playerId: number
 
 export async function {{entityCamelName}}Service(params: T{{entityPascalName}}ServiceParams) {
   try {
-    const sessionPlayerId = params.sessionUserId
+    const userId = params.userId
     const playerId = params.playerId
 
     //MANUAL CODE - START

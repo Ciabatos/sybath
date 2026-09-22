@@ -5,7 +5,7 @@ import { auth } from "@/lib/auth"
 import { T{{entityPascalName}}ServiceParams, {{entityCamelName}}Service } from "@/methods/services/{{schema}}/{{entityCamelName}}Service"
 import { headers } from "next/headers"
 
-type T{{entityPascalName}}ActionParams = Omit<T{{entityPascalName}}ServiceParams, "sessionUserId">
+type T{{entityPascalName}}ActionParams = Omit<T{{entityPascalName}}ServiceParams, "userId">
 
 export async function {{actionName}}(params: T{{entityPascalName}}ActionParams) {
   try {
@@ -24,7 +24,7 @@ export async function {{actionName}}(params: T{{entityPascalName}}ActionParams) 
     //MANUAL CODE - END
 
     const data: T{{entityPascalName}}ServiceParams = {
-      sessionUserId: sessionUserId,
+      userId: sessionUserId,
       ...params,
     }
 
