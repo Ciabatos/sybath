@@ -1,10 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type {
-  TOtherPlayerSkills,
-  TOtherPlayerSkillsRecordBySkillId,
-  TOtherPlayerSkillsParams,
-} from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerSkills"
+import type { TOtherPlayerSkills, TOtherPlayerSkillsRecordBySkillId,TOtherPlayerSkillsParams } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerSkills"
 import { getOtherPlayerSkills } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerSkills"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -27,7 +23,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchOtherPlayerSkillsService(
-  params: TOtherPlayerSkillsParams,
+ params: TOtherPlayerSkillsParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getOtherPlayerSkills", params)
@@ -65,6 +61,7 @@ export async function fetchOtherPlayerSkillsService(
   }
 
   const byKey = arrayToObjectKey(["skillId"], raw) as TOtherPlayerSkillsRecordBySkillId
+
 
   const record: TCacheRecord = {
     raw,

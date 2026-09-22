@@ -5,8 +5,12 @@ import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 import { snakeToCamelRows } from "@/methods/functions/util/snakeToCamel"
 
 export type TAllSkillsParams = {
+  userId: string
   playerId: number
 }
+
+export type TAllSkillsClientParams = Omit<TAllSkillsParams, "userId">
+
 
 export type TAllSkills = {
   id: number
@@ -21,8 +25,8 @@ export type TAllSkillsRecordById = Record<string, TAllSkills>
 export async function getAllSkills(params: TAllSkillsParams) {
   try {
     const sqlParams = Object.values(params)
-    const sql = `SELECT * FROM attributes.get_all_skills($1);`
-
+    const sql = `SELECT * FROM attributes.get_all_skills($1, $2);`
+    
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TAllSkills[]
   } catch (error) {
@@ -31,7 +35,7 @@ export async function getAllSkills(params: TAllSkillsParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-
+    
     throw new Error("Failed to fetch getAllSkills")
   }
 }

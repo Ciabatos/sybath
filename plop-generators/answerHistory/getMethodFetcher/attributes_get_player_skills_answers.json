@@ -11,17 +11,33 @@
   },
   "schema": "attributes",
   "method": "get_player_skills",
-  "methodCamelName": "playerSkills",
-  "methodPascalName": "PlayerSkills",
-  "methodKebabName": "get-player-skills",
-  "methodName": "getPlayerSkills",
+  "entityCamelName": "playerSkills",
+  "entityPascalName": "PlayerSkills",
+  "entityKebabName": "get-player-skills",
+  "dbFunctionName": "getPlayerSkills",
   "methodTypeName": "TPlayerSkills",
   "methodParamsTypeName": "TPlayerSkillsParams",
+  "clientMethodParamsTypeName": "TPlayerSkillsClientParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
     {
       "name": "p_player_id",
       "camelName": "playerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "clientMethodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -48,7 +64,7 @@
     }
   ],
   "indexMethodParams": "[\"skillId\"]",
-  "indexParamsColumns": "playerId",
+  "indexParamsColumns": "userId, playerId",
   "indexTypeMethodName": "SkillId",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TPlayerSkillsRecordBySkillId",
@@ -61,24 +77,23 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1",
+  "sqlFunctionName": "get_player_skills",
+  "sqlParamsPlaceholders": "$1, $2",
   "apiPath": "app/api/attributes/rpc/get-player-skills/[playerId]/route.ts",
   "apiPathParams": "/api/attributes/rpc/get-player-skills/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": true,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ],
+  "compositeDefinitions": [],
   "filesCreated": [
-    "../db/postgresMainDatabase/schemas/attributes/playerSkills.ts",
-    "../app/api/attributes/rpc/get-player-skills/[playerId]/route.ts",
-    "../methods/hooks/attributes/core/useFetchPlayerSkills.ts",
-    "../methods/server-fetchers/attributes/core/getPlayerSkillsServer.ts",
-    "../methods/services/attributes/fetchPlayerSkillsService.ts",
-    "../store/atoms/getMethodFetcher/playerSkillsAtom.ts",
-    "../.vscode/usePlayerSkills.code-snippets",
-    "../methods/hooks/attributes/core/useMutatePlayerSkills.ts",
-    "./answerHistory/getMethodFetcher/attributes_get_player_skills_answers.json",
-    "../methods/hooks/attributes/core/useFetchPlayerSkills.md"
-  ]
+    "db/postgresMainDatabase/schemas/attributes/playerSkills.ts",
+    "app/api/attributes/rpc/get-player-skills/[playerId]/route.ts",
+    "methods/hooks/attributes/core/useFetchPlayerSkills.ts",
+    "methods/server-fetchers/attributes/core/getPlayerSkillsServer.ts",
+    "methods/services/attributes/fetchPlayerSkillsService.ts",
+    "store/atoms/getMethodFetcher/playerSkillsAtom.ts",
+    ".vscode/usePlayerSkills.code-snippets",
+    "methods/hooks/attributes/core/useMutatePlayerSkills.ts",
+    "methods/hooks/attributes/core/useFetchPlayerSkills.md"
+  ],
+  "generatorName": "getMethodFetcher"
 }

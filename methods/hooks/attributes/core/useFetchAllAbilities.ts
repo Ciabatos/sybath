@@ -1,23 +1,17 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcher.hbs
 
 "use client"
-import {
-  TAllAbilitiesRecordById,
-  TAllAbilities,
-  TAllAbilitiesParams,
-} from "@/db/postgresMainDatabase/schemas/attributes/allAbilities"
+import { TAllAbilitiesRecordById, TAllAbilities , TAllAbilitiesClientParams  } from "@/db/postgresMainDatabase/schemas/attributes/allAbilities"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { allAbilitiesAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchAllAbilities(params: TAllAbilitiesParams) {
+export function useFetchAllAbilities( params: TAllAbilitiesClientParams) {
   const setAllAbilities = useSetAtom(allAbilitiesAtom)
 
-  const { data } = useSWR<TAllAbilities[]>(`/api/attributes/rpc/get-all-abilities/${params.playerId}`, {
-    refreshInterval: 3000,
-  })
+  const { data } = useSWR<TAllAbilities[]>(`/api/attributes/rpc/get-all-abilities/${params.playerId}`, { refreshInterval: 3000 })
 
   useEffect(() => {
     if (data) {

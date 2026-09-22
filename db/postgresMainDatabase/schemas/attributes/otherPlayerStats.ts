@@ -5,9 +5,13 @@ import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 import { snakeToCamelRows } from "@/methods/functions/util/snakeToCamel"
 
 export type TOtherPlayerStatsParams = {
+  userId: string
   playerId: number
   otherPlayerId: string
 }
+
+export type TOtherPlayerStatsClientParams = Omit<TOtherPlayerStatsParams, "userId">
+
 
 export type TOtherPlayerStats = {
   statId: number
@@ -20,8 +24,8 @@ export type TOtherPlayerStatsRecordByStatId = Record<string, TOtherPlayerStats>
 export async function getOtherPlayerStats(params: TOtherPlayerStatsParams) {
   try {
     const sqlParams = Object.values(params)
-    const sql = `SELECT * FROM attributes.get_other_player_stats($1, $2);`
-
+    const sql = `SELECT * FROM attributes.get_other_player_stats($1, $2, $3);`
+    
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TOtherPlayerStats[]
   } catch (error) {
@@ -30,7 +34,7 @@ export async function getOtherPlayerStats(params: TOtherPlayerStatsParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-
+    
     throw new Error("Failed to fetch getOtherPlayerStats")
   }
 }

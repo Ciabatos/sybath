@@ -11,22 +11,45 @@
   },
   "schema": "attributes",
   "method": "get_other_player_skills",
-  "methodCamelName": "otherPlayerSkills",
-  "methodPascalName": "OtherPlayerSkills",
-  "methodKebabName": "get-other-player-skills",
-  "methodName": "getOtherPlayerSkills",
+  "entityCamelName": "otherPlayerSkills",
+  "entityPascalName": "OtherPlayerSkills",
+  "entityKebabName": "get-other-player-skills",
+  "dbFunctionName": "getOtherPlayerSkills",
   "methodTypeName": "TOtherPlayerSkills",
   "methodParamsTypeName": "TOtherPlayerSkillsParams",
+  "clientMethodParamsTypeName": "TOtherPlayerSkillsClientParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
     {
       "name": "p_player_id",
       "camelName": "playerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     },
     {
       "name": "p_other_player_id",
       "camelName": "otherPlayerId",
-      "tsType": "string"
+      "tsType": "string",
+      "isJson": false
+    }
+  ],
+  "clientMethodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
+    },
+    {
+      "name": "p_other_player_id",
+      "camelName": "otherPlayerId",
+      "tsType": "string",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -53,7 +76,7 @@
     }
   ],
   "indexMethodParams": "[\"skillId\"]",
-  "indexParamsColumns": "playerId, otherPlayerId",
+  "indexParamsColumns": "userId, playerId, otherPlayerId",
   "indexTypeMethodName": "SkillId",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TOtherPlayerSkillsRecordBySkillId",
@@ -66,24 +89,23 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2",
+  "sqlFunctionName": "get_other_player_skills",
+  "sqlParamsPlaceholders": "$1, $2, $3",
   "apiPath": "app/api/attributes/rpc/get-other-player-skills/[playerId]/[otherPlayerId]/route.ts",
   "apiPathParams": "/api/attributes/rpc/get-other-player-skills/${params.playerId}/${params.otherPlayerId}",
   "generateMutation": true,
   "mutationMergeOldData": true,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ],
+  "compositeDefinitions": [],
   "filesCreated": [
-    "../db/postgresMainDatabase/schemas/attributes/otherPlayerSkills.ts",
-    "../app/api/attributes/rpc/get-other-player-skills/[playerId]/[otherPlayerId]/route.ts",
-    "../methods/hooks/attributes/core/useFetchOtherPlayerSkills.ts",
-    "../methods/server-fetchers/attributes/core/getOtherPlayerSkillsServer.ts",
-    "../methods/services/attributes/fetchOtherPlayerSkillsService.ts",
-    "../store/atoms/getMethodFetcher/otherPlayerSkillsAtom.ts",
-    "../.vscode/useOtherPlayerSkills.code-snippets",
-    "../methods/hooks/attributes/core/useMutateOtherPlayerSkills.ts",
-    "./answerHistory/getMethodFetcher/attributes_get_other_player_skills_answers.json",
-    "../methods/hooks/attributes/core/useFetchOtherPlayerSkills.md"
-  ]
+    "db/postgresMainDatabase/schemas/attributes/otherPlayerSkills.ts",
+    "app/api/attributes/rpc/get-other-player-skills/[playerId]/[otherPlayerId]/route.ts",
+    "methods/hooks/attributes/core/useFetchOtherPlayerSkills.ts",
+    "methods/server-fetchers/attributes/core/getOtherPlayerSkillsServer.ts",
+    "methods/services/attributes/fetchOtherPlayerSkillsService.ts",
+    "store/atoms/getMethodFetcher/otherPlayerSkillsAtom.ts",
+    ".vscode/useOtherPlayerSkills.code-snippets",
+    "methods/hooks/attributes/core/useMutateOtherPlayerSkills.ts",
+    "methods/hooks/attributes/core/useFetchOtherPlayerSkills.md"
+  ],
+  "generatorName": "getMethodFetcher"
 }

@@ -11,17 +11,33 @@
   },
   "schema": "attributes",
   "method": "get_player_stats",
-  "methodCamelName": "playerStats",
-  "methodPascalName": "PlayerStats",
-  "methodKebabName": "get-player-stats",
-  "methodName": "getPlayerStats",
+  "entityCamelName": "playerStats",
+  "entityPascalName": "PlayerStats",
+  "entityKebabName": "get-player-stats",
+  "dbFunctionName": "getPlayerStats",
   "methodTypeName": "TPlayerStats",
   "methodParamsTypeName": "TPlayerStatsParams",
+  "clientMethodParamsTypeName": "TPlayerStatsClientParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
     {
       "name": "p_player_id",
       "camelName": "playerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "clientMethodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -48,7 +64,7 @@
     }
   ],
   "indexMethodParams": "[\"statId\"]",
-  "indexParamsColumns": "playerId",
+  "indexParamsColumns": "userId, playerId",
   "indexTypeMethodName": "StatId",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TPlayerStatsRecordByStatId",
@@ -61,24 +77,23 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1",
+  "sqlFunctionName": "get_player_stats",
+  "sqlParamsPlaceholders": "$1, $2",
   "apiPath": "app/api/attributes/rpc/get-player-stats/[playerId]/route.ts",
   "apiPathParams": "/api/attributes/rpc/get-player-stats/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": true,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ],
+  "compositeDefinitions": [],
   "filesCreated": [
-    "../db/postgresMainDatabase/schemas/attributes/playerStats.ts",
-    "../app/api/attributes/rpc/get-player-stats/[playerId]/route.ts",
-    "../methods/hooks/attributes/core/useFetchPlayerStats.ts",
-    "../methods/server-fetchers/attributes/core/getPlayerStatsServer.ts",
-    "../methods/services/attributes/fetchPlayerStatsService.ts",
-    "../store/atoms/getMethodFetcher/playerStatsAtom.ts",
-    "../.vscode/usePlayerStats.code-snippets",
-    "../methods/hooks/attributes/core/useMutatePlayerStats.ts",
-    "./answerHistory/getMethodFetcher/attributes_get_player_stats_answers.json",
-    "../methods/hooks/attributes/core/useFetchPlayerStats.md"
-  ]
+    "db/postgresMainDatabase/schemas/attributes/playerStats.ts",
+    "app/api/attributes/rpc/get-player-stats/[playerId]/route.ts",
+    "methods/hooks/attributes/core/useFetchPlayerStats.ts",
+    "methods/server-fetchers/attributes/core/getPlayerStatsServer.ts",
+    "methods/services/attributes/fetchPlayerStatsService.ts",
+    "store/atoms/getMethodFetcher/playerStatsAtom.ts",
+    ".vscode/usePlayerStats.code-snippets",
+    "methods/hooks/attributes/core/useMutatePlayerStats.ts",
+    "methods/hooks/attributes/core/useFetchPlayerStats.md"
+  ],
+  "generatorName": "getMethodFetcher"
 }

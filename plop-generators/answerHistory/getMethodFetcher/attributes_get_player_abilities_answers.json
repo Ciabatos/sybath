@@ -11,17 +11,33 @@
   },
   "schema": "attributes",
   "method": "get_player_abilities",
-  "methodCamelName": "playerAbilities",
-  "methodPascalName": "PlayerAbilities",
-  "methodKebabName": "get-player-abilities",
-  "methodName": "getPlayerAbilities",
+  "entityCamelName": "playerAbilities",
+  "entityPascalName": "PlayerAbilities",
+  "entityKebabName": "get-player-abilities",
+  "dbFunctionName": "getPlayerAbilities",
   "methodTypeName": "TPlayerAbilities",
   "methodParamsTypeName": "TPlayerAbilitiesParams",
+  "clientMethodParamsTypeName": "TPlayerAbilitiesClientParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
     {
       "name": "p_player_id",
       "camelName": "playerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "clientMethodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -48,7 +64,7 @@
     }
   ],
   "indexMethodParams": "[\"abilityId\"]",
-  "indexParamsColumns": "playerId",
+  "indexParamsColumns": "userId, playerId",
   "indexTypeMethodName": "AbilityId",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TPlayerAbilitiesRecordByAbilityId",
@@ -61,24 +77,23 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1",
+  "sqlFunctionName": "get_player_abilities",
+  "sqlParamsPlaceholders": "$1, $2",
   "apiPath": "app/api/attributes/rpc/get-player-abilities/[playerId]/route.ts",
   "apiPathParams": "/api/attributes/rpc/get-player-abilities/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": true,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ],
+  "compositeDefinitions": [],
   "filesCreated": [
-    "../db/postgresMainDatabase/schemas/attributes/playerAbilities.ts",
-    "../app/api/attributes/rpc/get-player-abilities/[playerId]/route.ts",
-    "../methods/hooks/attributes/core/useFetchPlayerAbilities.ts",
-    "../methods/server-fetchers/attributes/core/getPlayerAbilitiesServer.ts",
-    "../methods/services/attributes/fetchPlayerAbilitiesService.ts",
-    "../store/atoms/getMethodFetcher/playerAbilitiesAtom.ts",
-    "../.vscode/usePlayerAbilities.code-snippets",
-    "../methods/hooks/attributes/core/useMutatePlayerAbilities.ts",
-    "./answerHistory/getMethodFetcher/attributes_get_player_abilities_answers.json",
-    "../methods/hooks/attributes/core/useFetchPlayerAbilities.md"
-  ]
+    "db/postgresMainDatabase/schemas/attributes/playerAbilities.ts",
+    "app/api/attributes/rpc/get-player-abilities/[playerId]/route.ts",
+    "methods/hooks/attributes/core/useFetchPlayerAbilities.ts",
+    "methods/server-fetchers/attributes/core/getPlayerAbilitiesServer.ts",
+    "methods/services/attributes/fetchPlayerAbilitiesService.ts",
+    "store/atoms/getMethodFetcher/playerAbilitiesAtom.ts",
+    ".vscode/usePlayerAbilities.code-snippets",
+    "methods/hooks/attributes/core/useMutatePlayerAbilities.ts",
+    "methods/hooks/attributes/core/useFetchPlayerAbilities.md"
+  ],
+  "generatorName": "getMethodFetcher"
 }

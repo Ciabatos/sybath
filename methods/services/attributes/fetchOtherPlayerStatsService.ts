@@ -1,10 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type {
-  TOtherPlayerStats,
-  TOtherPlayerStatsRecordByStatId,
-  TOtherPlayerStatsParams,
-} from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerStats"
+import type { TOtherPlayerStats, TOtherPlayerStatsRecordByStatId,TOtherPlayerStatsParams } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerStats"
 import { getOtherPlayerStats } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerStats"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -27,7 +23,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchOtherPlayerStatsService(
-  params: TOtherPlayerStatsParams,
+ params: TOtherPlayerStatsParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getOtherPlayerStats", params)
@@ -65,6 +61,7 @@ export async function fetchOtherPlayerStatsService(
   }
 
   const byKey = arrayToObjectKey(["statId"], raw) as TOtherPlayerStatsRecordByStatId
+
 
   const record: TCacheRecord = {
     raw,

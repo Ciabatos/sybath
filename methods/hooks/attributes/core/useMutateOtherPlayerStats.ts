@@ -3,16 +3,12 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import {
-  TOtherPlayerStatsRecordByStatId,
-  TOtherPlayerStatsParams,
-  TOtherPlayerStats,
-} from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerStats"
+import { TOtherPlayerStatsRecordByStatId,  TOtherPlayerStatsParams, TOtherPlayerStats  } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerStats"
 import { otherPlayerStatsAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
+import { arrayToObjectKey } from "@/methods/functions/util/converters" 
 
-export function useMutateOtherPlayerStats(params: TOtherPlayerStatsParams) {
+export function useMutateOtherPlayerStats( params: TOtherPlayerStatsParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/attributes/rpc/get-other-player-stats/${params.playerId}/${params.otherPlayerId}`
   const otherPlayerStats = useAtomValue(otherPlayerStatsAtom)
@@ -39,10 +35,10 @@ export function useMutateOtherPlayerStats(params: TOtherPlayerStatsParams) {
     }))
 
     const newObj = arrayToObjectKey(["statId"], dataWithDefaults) as TOtherPlayerStatsRecordByStatId
-
+    
     const optimisticDataMergeWithOldData: TOtherPlayerStatsRecordByStatId = {
-      ...otherPlayerStats,
-      ...newObj,
+      ...otherPlayerStats, 
+      ...newObj,      
     }
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)

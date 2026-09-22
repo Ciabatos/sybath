@@ -1,10 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type {
-  TAllAbilities,
-  TAllAbilitiesRecordById,
-  TAllAbilitiesParams,
-} from "@/db/postgresMainDatabase/schemas/attributes/allAbilities"
+import type { TAllAbilities, TAllAbilitiesRecordById,TAllAbilitiesParams } from "@/db/postgresMainDatabase/schemas/attributes/allAbilities"
 import { getAllAbilities } from "@/db/postgresMainDatabase/schemas/attributes/allAbilities"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -27,7 +23,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchAllAbilitiesService(
-  params: TAllAbilitiesParams,
+ params: TAllAbilitiesParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getAllAbilities", params)
@@ -65,6 +61,7 @@ export async function fetchAllAbilitiesService(
   }
 
   const byKey = arrayToObjectKey(["id"], raw) as TAllAbilitiesRecordById
+
 
   const record: TCacheRecord = {
     raw,
