@@ -1,10 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type {
-  TPlayerGearInventory,
-  TPlayerGearInventoryRecordBySlotId,
-  TPlayerGearInventoryParams,
-} from "@/db/postgresMainDatabase/schemas/inventory/playerGearInventory"
+import type { TPlayerGearInventory, TPlayerGearInventoryRecordBySlotId,TPlayerGearInventoryParams } from "@/db/postgresMainDatabase/schemas/inventory/playerGearInventory"
 import { getPlayerGearInventory } from "@/db/postgresMainDatabase/schemas/inventory/playerGearInventory"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -27,7 +23,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchPlayerGearInventoryService(
-  params: TPlayerGearInventoryParams,
+ params: TPlayerGearInventoryParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getPlayerGearInventory", params)
@@ -65,6 +61,7 @@ export async function fetchPlayerGearInventoryService(
   }
 
   const byKey = arrayToObjectKey(["slotId"], raw) as TPlayerGearInventoryRecordBySlotId
+
 
   const record: TCacheRecord = {
     raw,

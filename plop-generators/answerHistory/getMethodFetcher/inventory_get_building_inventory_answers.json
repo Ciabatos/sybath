@@ -11,17 +11,33 @@
   },
   "schema": "inventory",
   "method": "get_building_inventory",
-  "methodCamelName": "buildingInventory",
-  "methodPascalName": "BuildingInventory",
-  "methodKebabName": "get-building-inventory",
-  "methodName": "getBuildingInventory",
+  "entityCamelName": "buildingInventory",
+  "entityPascalName": "BuildingInventory",
+  "entityKebabName": "get-building-inventory",
+  "dbFunctionName": "getBuildingInventory",
   "methodTypeName": "TBuildingInventory",
   "methodParamsTypeName": "TBuildingInventoryParams",
+  "clientMethodParamsTypeName": "TBuildingInventoryClientParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
     {
       "name": "p_building_id",
       "camelName": "buildingId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "clientMethodParamsColumns": [
+    {
+      "name": "p_building_id",
+      "camelName": "buildingId",
+      "tsType": "number",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -76,7 +92,7 @@
     }
   ],
   "indexMethodParams": "[\"slotId\"]",
-  "indexParamsColumns": "buildingId",
+  "indexParamsColumns": "userId, buildingId",
   "indexTypeMethodName": "SlotId",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TBuildingInventoryRecordBySlotId",
@@ -89,24 +105,23 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1",
+  "sqlFunctionName": "get_building_inventory",
+  "sqlParamsPlaceholders": "$1, $2",
   "apiPath": "app/api/inventory/rpc/get-building-inventory/[buildingId]/route.ts",
   "apiPathParams": "/api/inventory/rpc/get-building-inventory/${params.buildingId}",
   "generateMutation": true,
   "mutationMergeOldData": true,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ],
+  "compositeDefinitions": [],
   "filesCreated": [
-    "../db/postgresMainDatabase/schemas/inventory/buildingInventory.ts",
-    "../app/api/inventory/rpc/get-building-inventory/[buildingId]/route.ts",
-    "../methods/hooks/inventory/core/useFetchBuildingInventory.ts",
-    "../methods/server-fetchers/inventory/core/getBuildingInventoryServer.ts",
-    "../methods/services/inventory/fetchBuildingInventoryService.ts",
-    "../store/atoms/getMethodFetcher/buildingInventoryAtom.ts",
-    "../.vscode/useBuildingInventory.code-snippets",
-    "../methods/hooks/inventory/core/useMutateBuildingInventory.ts",
-    "./answerHistory/getMethodFetcher/inventory_get_building_inventory_answers.json",
-    "../methods/hooks/inventory/core/useFetchBuildingInventory.md"
-  ]
+    "db/postgresMainDatabase/schemas/inventory/buildingInventory.ts",
+    "app/api/inventory/rpc/get-building-inventory/[buildingId]/route.ts",
+    "methods/hooks/inventory/core/useFetchBuildingInventory.ts",
+    "methods/server-fetchers/inventory/core/getBuildingInventoryServer.ts",
+    "methods/services/inventory/fetchBuildingInventoryService.ts",
+    "store/atoms/getMethodFetcher/buildingInventoryAtom.ts",
+    ".vscode/useBuildingInventory.code-snippets",
+    "methods/hooks/inventory/core/useMutateBuildingInventory.ts",
+    "methods/hooks/inventory/core/useFetchBuildingInventory.md"
+  ],
+  "generatorName": "getMethodFetcher"
 }

@@ -11,22 +11,45 @@
   },
   "schema": "inventory",
   "method": "get_other_player_inventory",
-  "methodCamelName": "otherPlayerInventory",
-  "methodPascalName": "OtherPlayerInventory",
-  "methodKebabName": "get-other-player-inventory",
-  "methodName": "getOtherPlayerInventory",
+  "entityCamelName": "otherPlayerInventory",
+  "entityPascalName": "OtherPlayerInventory",
+  "entityKebabName": "get-other-player-inventory",
+  "dbFunctionName": "getOtherPlayerInventory",
   "methodTypeName": "TOtherPlayerInventory",
   "methodParamsTypeName": "TOtherPlayerInventoryParams",
+  "clientMethodParamsTypeName": "TOtherPlayerInventoryClientParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
     {
       "name": "p_player_id",
       "camelName": "playerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
     },
     {
       "name": "p_other_player_id",
       "camelName": "otherPlayerId",
-      "tsType": "string"
+      "tsType": "string",
+      "isJson": false
+    }
+  ],
+  "clientMethodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
+    },
+    {
+      "name": "p_other_player_id",
+      "camelName": "otherPlayerId",
+      "tsType": "string",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -81,7 +104,7 @@
     }
   ],
   "indexMethodParams": "[\"slotId\"]",
-  "indexParamsColumns": "playerId, otherPlayerId",
+  "indexParamsColumns": "userId, playerId, otherPlayerId",
   "indexTypeMethodName": "SlotId",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TOtherPlayerInventoryRecordBySlotId",
@@ -94,24 +117,23 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1, $2",
+  "sqlFunctionName": "get_other_player_inventory",
+  "sqlParamsPlaceholders": "$1, $2, $3",
   "apiPath": "app/api/inventory/rpc/get-other-player-inventory/[playerId]/[otherPlayerId]/route.ts",
   "apiPathParams": "/api/inventory/rpc/get-other-player-inventory/${params.playerId}/${params.otherPlayerId}",
   "generateMutation": true,
   "mutationMergeOldData": true,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ],
+  "compositeDefinitions": [],
   "filesCreated": [
-    "../db/postgresMainDatabase/schemas/inventory/otherPlayerInventory.ts",
-    "../app/api/inventory/rpc/get-other-player-inventory/[playerId]/[otherPlayerId]/route.ts",
-    "../methods/hooks/inventory/core/useFetchOtherPlayerInventory.ts",
-    "../methods/server-fetchers/inventory/core/getOtherPlayerInventoryServer.ts",
-    "../methods/services/inventory/fetchOtherPlayerInventoryService.ts",
-    "../store/atoms/getMethodFetcher/otherPlayerInventoryAtom.ts",
-    "../.vscode/useOtherPlayerInventory.code-snippets",
-    "../methods/hooks/inventory/core/useMutateOtherPlayerInventory.ts",
-    "./answerHistory/getMethodFetcher/inventory_get_other_player_inventory_answers.json",
-    "../methods/hooks/inventory/core/useFetchOtherPlayerInventory.md"
-  ]
+    "db/postgresMainDatabase/schemas/inventory/otherPlayerInventory.ts",
+    "app/api/inventory/rpc/get-other-player-inventory/[playerId]/[otherPlayerId]/route.ts",
+    "methods/hooks/inventory/core/useFetchOtherPlayerInventory.ts",
+    "methods/server-fetchers/inventory/core/getOtherPlayerInventoryServer.ts",
+    "methods/services/inventory/fetchOtherPlayerInventoryService.ts",
+    "store/atoms/getMethodFetcher/otherPlayerInventoryAtom.ts",
+    ".vscode/useOtherPlayerInventory.code-snippets",
+    "methods/hooks/inventory/core/useMutateOtherPlayerInventory.ts",
+    "methods/hooks/inventory/core/useFetchOtherPlayerInventory.md"
+  ],
+  "generatorName": "getMethodFetcher"
 }

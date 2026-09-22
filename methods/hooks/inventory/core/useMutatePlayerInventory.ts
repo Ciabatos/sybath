@@ -3,16 +3,12 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import {
-  TPlayerInventoryRecordBySlotId,
-  TPlayerInventoryParams,
-  TPlayerInventory,
-} from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
+import { TPlayerInventoryRecordBySlotId,  TPlayerInventoryParams, TPlayerInventory  } from "@/db/postgresMainDatabase/schemas/inventory/playerInventory"
 import { playerInventoryAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
+import { arrayToObjectKey } from "@/methods/functions/util/converters" 
 
-export function useMutatePlayerInventory(params: TPlayerInventoryParams) {
+export function useMutatePlayerInventory( params: TPlayerInventoryParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/inventory/rpc/get-player-inventory/${params.playerId}`
   const playerInventory = useAtomValue(playerInventoryAtom)
@@ -43,10 +39,10 @@ export function useMutatePlayerInventory(params: TPlayerInventoryParams) {
     }))
 
     const newObj = arrayToObjectKey(["slotId"], dataWithDefaults) as TPlayerInventoryRecordBySlotId
-
+    
     const optimisticDataMergeWithOldData: TPlayerInventoryRecordBySlotId = {
-      ...playerInventory,
-      ...newObj,
+      ...playerInventory, 
+      ...newObj,      
     }
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)

@@ -1,24 +1,17 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcher.hbs
 
 "use client"
-import {
-  TOtherPlayerGearInventoryRecordBySlotId,
-  TOtherPlayerGearInventory,
-  TOtherPlayerGearInventoryParams,
-} from "@/db/postgresMainDatabase/schemas/inventory/otherPlayerGearInventory"
+import { TOtherPlayerGearInventoryRecordBySlotId, TOtherPlayerGearInventory , TOtherPlayerGearInventoryClientParams  } from "@/db/postgresMainDatabase/schemas/inventory/otherPlayerGearInventory"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { otherPlayerGearInventoryAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchOtherPlayerGearInventory(params: TOtherPlayerGearInventoryParams) {
+export function useFetchOtherPlayerGearInventory( params: TOtherPlayerGearInventoryClientParams) {
   const setOtherPlayerGearInventory = useSetAtom(otherPlayerGearInventoryAtom)
 
-  const { data } = useSWR<TOtherPlayerGearInventory[]>(
-    `/api/inventory/rpc/get-other-player-gear-inventory/${params.playerId}/${params.otherPlayerId}`,
-    { refreshInterval: 3000 },
-  )
+  const { data } = useSWR<TOtherPlayerGearInventory[]>(`/api/inventory/rpc/get-other-player-gear-inventory/${params.playerId}/${params.otherPlayerId}`, { refreshInterval: 3000 })
 
   useEffect(() => {
     if (data) {

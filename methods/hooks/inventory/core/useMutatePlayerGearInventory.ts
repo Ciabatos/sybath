@@ -3,16 +3,12 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import {
-  TPlayerGearInventoryRecordBySlotId,
-  TPlayerGearInventoryParams,
-  TPlayerGearInventory,
-} from "@/db/postgresMainDatabase/schemas/inventory/playerGearInventory"
+import { TPlayerGearInventoryRecordBySlotId,  TPlayerGearInventoryParams, TPlayerGearInventory  } from "@/db/postgresMainDatabase/schemas/inventory/playerGearInventory"
 import { playerGearInventoryAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
+import { arrayToObjectKey } from "@/methods/functions/util/converters" 
 
-export function useMutatePlayerGearInventory(params: TPlayerGearInventoryParams) {
+export function useMutatePlayerGearInventory( params: TPlayerGearInventoryParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/inventory/rpc/get-player-gear-inventory/${params.playerId}`
   const playerGearInventory = useAtomValue(playerGearInventoryAtom)
@@ -43,10 +39,10 @@ export function useMutatePlayerGearInventory(params: TPlayerGearInventoryParams)
     }))
 
     const newObj = arrayToObjectKey(["slotId"], dataWithDefaults) as TPlayerGearInventoryRecordBySlotId
-
+    
     const optimisticDataMergeWithOldData: TPlayerGearInventoryRecordBySlotId = {
-      ...playerGearInventory,
-      ...newObj,
+      ...playerGearInventory, 
+      ...newObj,      
     }
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)

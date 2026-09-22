@@ -1,11 +1,8 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcherServer.hbs
 "use server"
 
-import type { TOtherPlayerInventoryParams } from "@/db/postgresMainDatabase/schemas/inventory/otherPlayerInventory"
-import type {
-  TOtherPlayerInventoryRecordBySlotId,
-  TOtherPlayerInventory,
-} from "@/db/postgresMainDatabase/schemas/inventory/otherPlayerInventory"
+import type { TOtherPlayerInventoryParams } from "@/db/postgresMainDatabase/schemas/inventory/otherPlayerInventory" 
+import type { TOtherPlayerInventoryRecordBySlotId,TOtherPlayerInventory } from "@/db/postgresMainDatabase/schemas/inventory/otherPlayerInventory"
 import { fetchOtherPlayerInventoryService } from "@/methods/services/inventory/fetchOtherPlayerInventoryService"
 
 type TResult = {
@@ -15,10 +12,7 @@ type TResult = {
   atomName: string
 }
 
-export async function getOtherPlayerInventoryServer(
-  params: TOtherPlayerInventoryParams,
-  options?: { forceFresh?: boolean },
-): Promise<TResult> {
+export async function getOtherPlayerInventoryServer( params: TOtherPlayerInventoryParams, options?: { forceFresh?: boolean },): Promise<TResult> {
   const { record } = await fetchOtherPlayerInventoryService(params, { forceFresh: options?.forceFresh })
 
   return {

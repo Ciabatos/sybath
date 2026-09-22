@@ -11,17 +11,33 @@
   },
   "schema": "inventory",
   "method": "get_district_inventory",
-  "methodCamelName": "districtInventory",
-  "methodPascalName": "DistrictInventory",
-  "methodKebabName": "get-district-inventory",
-  "methodName": "getDistrictInventory",
+  "entityCamelName": "districtInventory",
+  "entityPascalName": "DistrictInventory",
+  "entityKebabName": "get-district-inventory",
+  "dbFunctionName": "getDistrictInventory",
   "methodTypeName": "TDistrictInventory",
   "methodParamsTypeName": "TDistrictInventoryParams",
+  "clientMethodParamsTypeName": "TDistrictInventoryClientParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
     {
       "name": "p_district_id",
       "camelName": "districtId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "clientMethodParamsColumns": [
+    {
+      "name": "p_district_id",
+      "camelName": "districtId",
+      "tsType": "number",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -76,7 +92,7 @@
     }
   ],
   "indexMethodParams": "[\"slotId\"]",
-  "indexParamsColumns": "districtId",
+  "indexParamsColumns": "userId, districtId",
   "indexTypeMethodName": "SlotId",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TDistrictInventoryRecordBySlotId",
@@ -89,24 +105,23 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1",
+  "sqlFunctionName": "get_district_inventory",
+  "sqlParamsPlaceholders": "$1, $2",
   "apiPath": "app/api/inventory/rpc/get-district-inventory/[districtId]/route.ts",
   "apiPathParams": "/api/inventory/rpc/get-district-inventory/${params.districtId}",
   "generateMutation": true,
   "mutationMergeOldData": true,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ],
+  "compositeDefinitions": [],
   "filesCreated": [
-    "../db/postgresMainDatabase/schemas/inventory/districtInventory.ts",
-    "../app/api/inventory/rpc/get-district-inventory/[districtId]/route.ts",
-    "../methods/hooks/inventory/core/useFetchDistrictInventory.ts",
-    "../methods/server-fetchers/inventory/core/getDistrictInventoryServer.ts",
-    "../methods/services/inventory/fetchDistrictInventoryService.ts",
-    "../store/atoms/getMethodFetcher/districtInventoryAtom.ts",
-    "../.vscode/useDistrictInventory.code-snippets",
-    "../methods/hooks/inventory/core/useMutateDistrictInventory.ts",
-    "./answerHistory/getMethodFetcher/inventory_get_district_inventory_answers.json",
-    "../methods/hooks/inventory/core/useFetchDistrictInventory.md"
-  ]
+    "db/postgresMainDatabase/schemas/inventory/districtInventory.ts",
+    "app/api/inventory/rpc/get-district-inventory/[districtId]/route.ts",
+    "methods/hooks/inventory/core/useFetchDistrictInventory.ts",
+    "methods/server-fetchers/inventory/core/getDistrictInventoryServer.ts",
+    "methods/services/inventory/fetchDistrictInventoryService.ts",
+    "store/atoms/getMethodFetcher/districtInventoryAtom.ts",
+    ".vscode/useDistrictInventory.code-snippets",
+    "methods/hooks/inventory/core/useMutateDistrictInventory.ts",
+    "methods/hooks/inventory/core/useFetchDistrictInventory.md"
+  ],
+  "generatorName": "getMethodFetcher"
 }

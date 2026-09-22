@@ -11,17 +11,33 @@
   },
   "schema": "inventory",
   "method": "get_player_gear_inventory",
-  "methodCamelName": "playerGearInventory",
-  "methodPascalName": "PlayerGearInventory",
-  "methodKebabName": "get-player-gear-inventory",
-  "methodName": "getPlayerGearInventory",
+  "entityCamelName": "playerGearInventory",
+  "entityPascalName": "PlayerGearInventory",
+  "entityKebabName": "get-player-gear-inventory",
+  "dbFunctionName": "getPlayerGearInventory",
   "methodTypeName": "TPlayerGearInventory",
   "methodParamsTypeName": "TPlayerGearInventoryParams",
+  "clientMethodParamsTypeName": "TPlayerGearInventoryClientParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
     {
       "name": "p_player_id",
       "camelName": "playerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "clientMethodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -76,7 +92,7 @@
     }
   ],
   "indexMethodParams": "[\"slotId\"]",
-  "indexParamsColumns": "playerId",
+  "indexParamsColumns": "userId, playerId",
   "indexTypeMethodName": "SlotId",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TPlayerGearInventoryRecordBySlotId",
@@ -89,24 +105,23 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1",
+  "sqlFunctionName": "get_player_gear_inventory",
+  "sqlParamsPlaceholders": "$1, $2",
   "apiPath": "app/api/inventory/rpc/get-player-gear-inventory/[playerId]/route.ts",
   "apiPathParams": "/api/inventory/rpc/get-player-gear-inventory/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": true,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ],
+  "compositeDefinitions": [],
   "filesCreated": [
-    "../db/postgresMainDatabase/schemas/inventory/playerGearInventory.ts",
-    "../app/api/inventory/rpc/get-player-gear-inventory/[playerId]/route.ts",
-    "../methods/hooks/inventory/core/useFetchPlayerGearInventory.ts",
-    "../methods/server-fetchers/inventory/core/getPlayerGearInventoryServer.ts",
-    "../methods/services/inventory/fetchPlayerGearInventoryService.ts",
-    "../store/atoms/getMethodFetcher/playerGearInventoryAtom.ts",
-    "../.vscode/usePlayerGearInventory.code-snippets",
-    "../methods/hooks/inventory/core/useMutatePlayerGearInventory.ts",
-    "./answerHistory/getMethodFetcher/inventory_get_player_gear_inventory_answers.json",
-    "../methods/hooks/inventory/core/useFetchPlayerGearInventory.md"
-  ]
+    "db/postgresMainDatabase/schemas/inventory/playerGearInventory.ts",
+    "app/api/inventory/rpc/get-player-gear-inventory/[playerId]/route.ts",
+    "methods/hooks/inventory/core/useFetchPlayerGearInventory.ts",
+    "methods/server-fetchers/inventory/core/getPlayerGearInventoryServer.ts",
+    "methods/services/inventory/fetchPlayerGearInventoryService.ts",
+    "store/atoms/getMethodFetcher/playerGearInventoryAtom.ts",
+    ".vscode/usePlayerGearInventory.code-snippets",
+    "methods/hooks/inventory/core/useMutatePlayerGearInventory.ts",
+    "methods/hooks/inventory/core/useFetchPlayerGearInventory.md"
+  ],
+  "generatorName": "getMethodFetcher"
 }

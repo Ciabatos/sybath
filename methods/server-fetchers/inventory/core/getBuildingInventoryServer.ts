@@ -1,11 +1,8 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcherServer.hbs
 "use server"
 
-import type { TBuildingInventoryParams } from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory"
-import type {
-  TBuildingInventoryRecordBySlotId,
-  TBuildingInventory,
-} from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory"
+import type { TBuildingInventoryParams } from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory" 
+import type { TBuildingInventoryRecordBySlotId,TBuildingInventory } from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory"
 import { fetchBuildingInventoryService } from "@/methods/services/inventory/fetchBuildingInventoryService"
 
 type TResult = {
@@ -15,10 +12,7 @@ type TResult = {
   atomName: string
 }
 
-export async function getBuildingInventoryServer(
-  params: TBuildingInventoryParams,
-  options?: { forceFresh?: boolean },
-): Promise<TResult> {
+export async function getBuildingInventoryServer( params: TBuildingInventoryParams, options?: { forceFresh?: boolean },): Promise<TResult> {
   const { record } = await fetchBuildingInventoryService(params, { forceFresh: options?.forceFresh })
 
   return {

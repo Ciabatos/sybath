@@ -11,17 +11,33 @@
   },
   "schema": "inventory",
   "method": "get_player_inventory",
-  "methodCamelName": "playerInventory",
-  "methodPascalName": "PlayerInventory",
-  "methodKebabName": "get-player-inventory",
-  "methodName": "getPlayerInventory",
+  "entityCamelName": "playerInventory",
+  "entityPascalName": "PlayerInventory",
+  "entityKebabName": "get-player-inventory",
+  "dbFunctionName": "getPlayerInventory",
   "methodTypeName": "TPlayerInventory",
   "methodParamsTypeName": "TPlayerInventoryParams",
+  "clientMethodParamsTypeName": "TPlayerInventoryClientParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
     {
       "name": "p_player_id",
       "camelName": "playerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "clientMethodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -76,7 +92,7 @@
     }
   ],
   "indexMethodParams": "[\"slotId\"]",
-  "indexParamsColumns": "playerId",
+  "indexParamsColumns": "userId, playerId",
   "indexTypeMethodName": "SlotId",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TPlayerInventoryRecordBySlotId",
@@ -89,24 +105,23 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1",
+  "sqlFunctionName": "get_player_inventory",
+  "sqlParamsPlaceholders": "$1, $2",
   "apiPath": "app/api/inventory/rpc/get-player-inventory/[playerId]/route.ts",
   "apiPathParams": "/api/inventory/rpc/get-player-inventory/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": true,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ],
+  "compositeDefinitions": [],
   "filesCreated": [
-    "../db/postgresMainDatabase/schemas/inventory/playerInventory.ts",
-    "../app/api/inventory/rpc/get-player-inventory/[playerId]/route.ts",
-    "../methods/hooks/inventory/core/useFetchPlayerInventory.ts",
-    "../methods/server-fetchers/inventory/core/getPlayerInventoryServer.ts",
-    "../methods/services/inventory/fetchPlayerInventoryService.ts",
-    "../store/atoms/getMethodFetcher/playerInventoryAtom.ts",
-    "../.vscode/usePlayerInventory.code-snippets",
-    "../methods/hooks/inventory/core/useMutatePlayerInventory.ts",
-    "./answerHistory/getMethodFetcher/inventory_get_player_inventory_answers.json",
-    "../methods/hooks/inventory/core/useFetchPlayerInventory.md"
-  ]
+    "db/postgresMainDatabase/schemas/inventory/playerInventory.ts",
+    "app/api/inventory/rpc/get-player-inventory/[playerId]/route.ts",
+    "methods/hooks/inventory/core/useFetchPlayerInventory.ts",
+    "methods/server-fetchers/inventory/core/getPlayerInventoryServer.ts",
+    "methods/services/inventory/fetchPlayerInventoryService.ts",
+    "store/atoms/getMethodFetcher/playerInventoryAtom.ts",
+    ".vscode/usePlayerInventory.code-snippets",
+    "methods/hooks/inventory/core/useMutatePlayerInventory.ts",
+    "methods/hooks/inventory/core/useFetchPlayerInventory.md"
+  ],
+  "generatorName": "getMethodFetcher"
 }
