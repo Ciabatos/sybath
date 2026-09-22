@@ -2,7 +2,10 @@
 "use server"
 
 import { auth } from "@/lib/auth"
-import { TDoGatherResourcesOnMapTileServiceParams, doGatherResourcesOnMapTileService } from "@/methods/services/items/doGatherResourcesOnMapTileService"
+import {
+  TDoGatherResourcesOnMapTileServiceParams,
+  doGatherResourcesOnMapTileService,
+} from "@/methods/services/items/doGatherResourcesOnMapTileService"
 import { headers } from "next/headers"
 
 type TDoGatherResourcesOnMapTileActionParams = Omit<TDoGatherResourcesOnMapTileServiceParams, "userId">

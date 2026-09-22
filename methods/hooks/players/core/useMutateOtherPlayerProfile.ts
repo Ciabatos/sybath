@@ -3,15 +3,14 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import {  TOtherPlayerProfileParams, TOtherPlayerProfile  } from "@/db/postgresMainDatabase/schemas/players/otherPlayerProfile"
+import {
+  TOtherPlayerProfileParams,
+  TOtherPlayerProfile,
+} from "@/db/postgresMainDatabase/schemas/players/otherPlayerProfile"
 
-
- 
-
-export function useMutateOtherPlayerProfile( params: TOtherPlayerProfileParams) {
+export function useMutateOtherPlayerProfile(params: TOtherPlayerProfileParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/players/rpc/get-other-player-profile/${params.playerId}/${params.otherPlayerId}`
-  
 
   function mutateOtherPlayerProfile(optimisticParams?: Partial<TOtherPlayerProfile>[]) {
     if (!optimisticParams) {

@@ -2,7 +2,10 @@
 "use server"
 
 import { auth } from "@/lib/auth"
-import { TDoSpyOnOtherPlayerServiceParams, doSpyOnOtherPlayerService } from "@/methods/services/knowledge/doSpyOnOtherPlayerService"
+import {
+  TDoSpyOnOtherPlayerServiceParams,
+  doSpyOnOtherPlayerService,
+} from "@/methods/services/knowledge/doSpyOnOtherPlayerService"
 import { headers } from "next/headers"
 
 type TDoSpyOnOtherPlayerActionParams = Omit<TDoSpyOnOtherPlayerServiceParams, "userId">

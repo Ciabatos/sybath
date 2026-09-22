@@ -3,12 +3,16 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import { TPlayerKnownPlayersRecordByOtherPlayerId,  TPlayerKnownPlayersParams, TPlayerKnownPlayers  } from "@/db/postgresMainDatabase/schemas/knowledge/playerKnownPlayers"
+import {
+  TPlayerKnownPlayersRecordByOtherPlayerId,
+  TPlayerKnownPlayersParams,
+  TPlayerKnownPlayers,
+} from "@/db/postgresMainDatabase/schemas/knowledge/playerKnownPlayers"
 import { playerKnownPlayersAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import { arrayToObjectKey } from "@/methods/functions/util/converters" 
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutatePlayerKnownPlayers( params: TPlayerKnownPlayersParams) {
+export function useMutatePlayerKnownPlayers(params: TPlayerKnownPlayersParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/knowledge/rpc/get-player-known-players/${params.playerId}`
   const playerKnownPlayers = useAtomValue(playerKnownPlayersAtom)
@@ -41,10 +45,10 @@ export function useMutatePlayerKnownPlayers( params: TPlayerKnownPlayersParams) 
     }))
 
     const newObj = arrayToObjectKey(["otherPlayerId"], dataWithDefaults) as TPlayerKnownPlayersRecordByOtherPlayerId
-    
+
     const optimisticDataMergeWithOldData: TPlayerKnownPlayersRecordByOtherPlayerId = {
-      ...playerKnownPlayers, 
-      ...newObj,      
+      ...playerKnownPlayers,
+      ...newObj,
     }
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)

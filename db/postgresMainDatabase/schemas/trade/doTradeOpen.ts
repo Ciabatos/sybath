@@ -4,7 +4,6 @@
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 import { snakeToCamelKeys } from "@/methods/functions/util/snakeToCamel"
 
-
 export type TDoTradeOpenParams = {
   userId: string
   playerId: number
@@ -18,17 +17,9 @@ export type TDoTradeOpen = {
 
 export async function doTradeOpen(params: TDoTradeOpenParams) {
   try {
-    const sqlParams = [
-      params.userId
-      ,
-      params.playerId
-      ,
-      params.invitedPlayerId
-      
-    ]
+    const sqlParams = [params.userId, params.playerId, params.invitedPlayerId]
     const sql = `SELECT * FROM trade.do_trade_open($1, $2, $3);`
     const result = await query(sql, sqlParams)
-
 
     return snakeToCamelKeys(result.rows[0]) as TDoTradeOpen
   } catch (error) {
@@ -37,7 +28,7 @@ export async function doTradeOpen(params: TDoTradeOpenParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to execute doTradeOpen")
   }
 }

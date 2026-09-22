@@ -1,8 +1,8 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcherServer.hbs
 "use server"
 
-import type { TTradesParams } from "@/db/postgresMainDatabase/schemas/trade/trades" 
-import type { TTradesRecordById,TTrades } from "@/db/postgresMainDatabase/schemas/trade/trades"
+import type { TTradesParams } from "@/db/postgresMainDatabase/schemas/trade/trades"
+import type { TTradesRecordById, TTrades } from "@/db/postgresMainDatabase/schemas/trade/trades"
 import { fetchTradesService } from "@/methods/services/trade/fetchTradesService"
 
 type TResult = {
@@ -12,7 +12,7 @@ type TResult = {
   atomName: string
 }
 
-export async function getTradesServer( params: TTradesParams, options?: { forceFresh?: boolean },): Promise<TResult> {
+export async function getTradesServer(params: TTradesParams, options?: { forceFresh?: boolean }): Promise<TResult> {
   const { record } = await fetchTradesService(params, { forceFresh: options?.forceFresh })
 
   return {

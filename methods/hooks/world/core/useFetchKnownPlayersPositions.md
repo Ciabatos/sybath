@@ -7,65 +7,39 @@ description: |
   When using hook useFetchKnownPlayersPositions or trying to understand it.
 ---
 
-
-
 # useFetchKnownPlayersPositions hook Documentation
-# function path :`methods/hooks/world/core/useFetchKnownPlayersPositions.ts` 
+
+# function path :`methods/hooks/world/core/useFetchKnownPlayersPositions.ts`
+
 # function useFetchKnownPlayersPositions( params: TKnownPlayersPositionsParams)
+
 # Jotai atom name: const knownPlayersPositionsAtom = atom<TKnownPlayersPositionsRecordByXY>({})
 
-
 ### Data Flow
-function GET(request: NextRequest, { params }: { params: TApiParams } )
-path: app/api/world/rpc/get-known-players-positions/[mapId]/[playerId]/route.ts
-TypeScript Types:
-type TApiParams = Record<string, string>
 
-const typeParamsSchema = z.object({
-userId: z.coerce.string(),
-mapId: z.coerce.number(),
-playerId: z.coerce.number(),
-}) satisfies z.ZodType<TKnownPlayersPositionsParams>
+function GET(request: NextRequest, { params }: { params: TApiParams } ) path:
+app/api/world/rpc/get-known-players-positions/[mapId]/[playerId]/route.ts TypeScript Types: type TApiParams =
+Record<string, string>
 
-function getKnownPlayersPositionsServer( params: TKnownPlayersPositionsParams, options?: { forceFresh?: boolean },): Promise<TResult>
-path: methods/server-fetchers/world/core/getKnownPlayersPositionsServer.ts
-TypeScript Types:
-type TResult = {
-raw: TKnownPlayersPositions[]
-byKey: TKnownPlayersPositionsRecordByXY
-apiPath: string
-atomName: string
-}
+const typeParamsSchema = z.object({ userId: z.coerce.string(), mapId: z.coerce.number(), playerId: z.coerce.number(), })
+satisfies z.ZodType<TKnownPlayersPositionsParams>
 
-function getKnownPlayersPositions(params: TKnownPlayersPositionsParams)
-path: db/postgresMainDatabase/schemas/world/knownPlayersPositions.ts
-TypeScript Types:
-export type TKnownPlayersPositionsParams = {
-userId: string
-mapId: number
-playerId: number
-}
+function getKnownPlayersPositionsServer( params: TKnownPlayersPositionsParams, options?: { forceFresh?: boolean },):
+Promise<TResult> path: methods/server-fetchers/world/core/getKnownPlayersPositionsServer.ts TypeScript Types: type
+TResult = { raw: TKnownPlayersPositions[] byKey: TKnownPlayersPositionsRecordByXY apiPath: string atomName: string }
 
-export type TCtOtherPlayers = {
-otherPlayerId: string
-imageMap: string
-inSquad: boolean
-squadId: number
-}
+function getKnownPlayersPositions(params: TKnownPlayersPositionsParams) path:
+db/postgresMainDatabase/schemas/world/knownPlayersPositions.ts TypeScript Types: export type
+TKnownPlayersPositionsParams = { userId: string mapId: number playerId: number }
 
-export type TKnownPlayersPositions = {
-x: number
-y: number
-otherPlayers: TCtOtherPlayers[]
-}
+export type TCtOtherPlayers = { otherPlayerId: string imageMap: string inSquad: boolean squadId: number }
+
+export type TKnownPlayersPositions = { x: number y: number otherPlayers: TCtOtherPlayers[] }
 
 export type TKnownPlayersPositionsRecordByXY = Record<string, TKnownPlayersPositions>
 
 Hook for mutate data using SWR
 
-function path :methods/hooks/world/core/useMutateKnownPlayersPositions.ts
-function useMutateKnownPlayersPositions( params: TKnownPlayersPositionsParams)
-PostgreSQL Database
-"schema": "world"
-"method": "get_known_players_positions"
-You have more information in mcp game-db
+function path :methods/hooks/world/core/useMutateKnownPlayersPositions.ts function useMutateKnownPlayersPositions(
+params: TKnownPlayersPositionsParams) PostgreSQL Database "schema": "world" "method": "get_known_players_positions" You
+have more information in mcp game-db

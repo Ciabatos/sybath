@@ -12,7 +12,6 @@ export type TTradeInventoryParams = {
 
 export type TTradeInventoryClientParams = Omit<TTradeInventoryParams, "userId">
 
-
 export type TTradeInventory = {
   slotId: number
   containerId: number
@@ -30,7 +29,7 @@ export async function getTradeInventory(params: TTradeInventoryParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM trade.get_trade_inventory($1, $2, $3);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TTradeInventory[]
   } catch (error) {
@@ -39,7 +38,7 @@ export async function getTradeInventory(params: TTradeInventoryParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getTradeInventory")
   }
 }

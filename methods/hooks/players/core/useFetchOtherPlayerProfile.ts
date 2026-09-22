@@ -1,17 +1,24 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcher.hbs
 
 "use client"
-import { TOtherPlayerProfileRecordByName, TOtherPlayerProfile , TOtherPlayerProfileClientParams  } from "@/db/postgresMainDatabase/schemas/players/otherPlayerProfile"
+import {
+  TOtherPlayerProfileRecordByName,
+  TOtherPlayerProfile,
+  TOtherPlayerProfileClientParams,
+} from "@/db/postgresMainDatabase/schemas/players/otherPlayerProfile"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { otherPlayerProfileAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchOtherPlayerProfile( params: TOtherPlayerProfileClientParams) {
+export function useFetchOtherPlayerProfile(params: TOtherPlayerProfileClientParams) {
   const setOtherPlayerProfile = useSetAtom(otherPlayerProfileAtom)
 
-  const { data } = useSWR<TOtherPlayerProfile[]>(`/api/players/rpc/get-other-player-profile/${params.playerId}/${params.otherPlayerId}`, { refreshInterval: 3000 })
+  const { data } = useSWR<TOtherPlayerProfile[]>(
+    `/api/players/rpc/get-other-player-profile/${params.playerId}/${params.otherPlayerId}`,
+    { refreshInterval: 3000 },
+  )
 
   useEffect(() => {
     if (data) {

@@ -4,7 +4,6 @@
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 import { snakeToCamelKeys } from "@/methods/functions/util/snakeToCamel"
 
-
 export type TDoOtherPlayerKnowledgeAcceptParams = {
   userId: string
   playerId: number
@@ -18,17 +17,9 @@ export type TDoOtherPlayerKnowledgeAccept = {
 
 export async function doOtherPlayerKnowledgeAccept(params: TDoOtherPlayerKnowledgeAcceptParams) {
   try {
-    const sqlParams = [
-      params.userId
-      ,
-      params.playerId
-      ,
-      params.inviteId
-      
-    ]
+    const sqlParams = [params.userId, params.playerId, params.inviteId]
     const sql = `SELECT * FROM knowledge.do_other_player_knowledge_accept($1, $2, $3);`
     const result = await query(sql, sqlParams)
-
 
     return snakeToCamelKeys(result.rows[0]) as TDoOtherPlayerKnowledgeAccept
   } catch (error) {
@@ -37,7 +28,7 @@ export async function doOtherPlayerKnowledgeAccept(params: TDoOtherPlayerKnowled
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to execute doOtherPlayerKnowledgeAccept")
   }
 }

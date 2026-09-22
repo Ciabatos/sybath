@@ -12,7 +12,6 @@ export type TPlayerPositionParams = {
 
 export type TPlayerPositionClientParams = Omit<TPlayerPositionParams, "userId">
 
-
 export type TPlayerPosition = {
   x: number
   y: number
@@ -26,7 +25,7 @@ export async function getPlayerPosition(params: TPlayerPositionParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM world.get_player_position($1, $2, $3);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TPlayerPosition[]
   } catch (error) {
@@ -35,7 +34,7 @@ export async function getPlayerPosition(params: TPlayerPositionParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getPlayerPosition")
   }
 }

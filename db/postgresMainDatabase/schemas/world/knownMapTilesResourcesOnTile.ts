@@ -14,7 +14,6 @@ export type TKnownMapTilesResourcesOnTileParams = {
 
 export type TKnownMapTilesResourcesOnTileClientParams = Omit<TKnownMapTilesResourcesOnTileParams, "userId">
 
-
 export type TKnownMapTilesResourcesOnTile = {
   mapTilesResourceId: number
   itemId: number
@@ -27,7 +26,7 @@ export async function getKnownMapTilesResourcesOnTile(params: TKnownMapTilesReso
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM world.get_known_map_tiles_resources_on_tile($1, $2, $3, $4, $5);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TKnownMapTilesResourcesOnTile[]
   } catch (error) {
@@ -36,7 +35,7 @@ export async function getKnownMapTilesResourcesOnTile(params: TKnownMapTilesReso
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getKnownMapTilesResourcesOnTile")
   }
 }

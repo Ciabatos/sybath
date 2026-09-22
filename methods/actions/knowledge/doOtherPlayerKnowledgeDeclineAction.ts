@@ -2,7 +2,10 @@
 "use server"
 
 import { auth } from "@/lib/auth"
-import { TDoOtherPlayerKnowledgeDeclineServiceParams, doOtherPlayerKnowledgeDeclineService } from "@/methods/services/knowledge/doOtherPlayerKnowledgeDeclineService"
+import {
+  TDoOtherPlayerKnowledgeDeclineServiceParams,
+  doOtherPlayerKnowledgeDeclineService,
+} from "@/methods/services/knowledge/doOtherPlayerKnowledgeDeclineService"
 import { headers } from "next/headers"
 
 type TDoOtherPlayerKnowledgeDeclineActionParams = Omit<TDoOtherPlayerKnowledgeDeclineServiceParams, "userId">

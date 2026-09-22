@@ -1,17 +1,24 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcher.hbs
 
 "use client"
-import { TOtherPlayerStatsRecordByStatId, TOtherPlayerStats , TOtherPlayerStatsClientParams  } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerStats"
+import {
+  TOtherPlayerStatsRecordByStatId,
+  TOtherPlayerStats,
+  TOtherPlayerStatsClientParams,
+} from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerStats"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { otherPlayerStatsAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchOtherPlayerStats( params: TOtherPlayerStatsClientParams) {
+export function useFetchOtherPlayerStats(params: TOtherPlayerStatsClientParams) {
   const setOtherPlayerStats = useSetAtom(otherPlayerStatsAtom)
 
-  const { data } = useSWR<TOtherPlayerStats[]>(`/api/attributes/rpc/get-other-player-stats/${params.playerId}/${params.otherPlayerId}`, { refreshInterval: 3000 })
+  const { data } = useSWR<TOtherPlayerStats[]>(
+    `/api/attributes/rpc/get-other-player-stats/${params.playerId}/${params.otherPlayerId}`,
+    { refreshInterval: 3000 },
+  )
 
   useEffect(() => {
     if (data) {

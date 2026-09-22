@@ -3,12 +3,16 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import { TPlayerRecipesRecordByItemId,  TPlayerRecipesParams, TPlayerRecipes  } from "@/db/postgresMainDatabase/schemas/items/playerRecipes"
+import {
+  TPlayerRecipesRecordByItemId,
+  TPlayerRecipesParams,
+  TPlayerRecipes,
+} from "@/db/postgresMainDatabase/schemas/items/playerRecipes"
 import { playerRecipesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import { arrayToObjectKey } from "@/methods/functions/util/converters" 
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutatePlayerRecipes( params: TPlayerRecipesParams) {
+export function useMutatePlayerRecipes(params: TPlayerRecipesParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/items/rpc/get-player-recipes/${params.playerId}`
   const playerRecipes = useAtomValue(playerRecipesAtom)
@@ -39,10 +43,10 @@ export function useMutatePlayerRecipes( params: TPlayerRecipesParams) {
     }))
 
     const newObj = arrayToObjectKey(["itemId"], dataWithDefaults) as TPlayerRecipesRecordByItemId
-    
+
     const optimisticDataMergeWithOldData: TPlayerRecipesRecordByItemId = {
-      ...playerRecipes, 
-      ...newObj,      
+      ...playerRecipes,
+      ...newObj,
     }
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)

@@ -11,7 +11,6 @@ export type TDistrictInventoryParams = {
 
 export type TDistrictInventoryClientParams = Omit<TDistrictInventoryParams, "userId">
 
-
 export type TDistrictInventory = {
   slotId: number
   containerId: number
@@ -28,7 +27,7 @@ export async function getDistrictInventory(params: TDistrictInventoryParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM inventory.get_district_inventory($1, $2);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TDistrictInventory[]
   } catch (error) {
@@ -37,7 +36,7 @@ export async function getDistrictInventory(params: TDistrictInventoryParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getDistrictInventory")
   }
 }

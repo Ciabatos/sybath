@@ -2,7 +2,10 @@
 "use server"
 
 import { auth } from "@/lib/auth"
-import { TDoMapTileExplorationServiceParams, doMapTileExplorationService } from "@/methods/services/world/doMapTileExplorationService"
+import {
+  TDoMapTileExplorationServiceParams,
+  doMapTileExplorationService,
+} from "@/methods/services/world/doMapTileExplorationService"
 import { headers } from "next/headers"
 
 type TDoMapTileExplorationActionParams = Omit<TDoMapTileExplorationServiceParams, "userId">

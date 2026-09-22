@@ -3,15 +3,11 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import {  TPlayerPositionParams, TPlayerPosition  } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
+import { TPlayerPositionParams, TPlayerPosition } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 
-
- 
-
-export function useMutatePlayerPosition( params: TPlayerPositionParams) {
+export function useMutatePlayerPosition(params: TPlayerPositionParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/world/rpc/get-player-position/${params.mapId}/${params.playerId}`
-  
 
   function mutatePlayerPosition(optimisticParams?: Partial<TPlayerPosition>[]) {
     if (!optimisticParams) {

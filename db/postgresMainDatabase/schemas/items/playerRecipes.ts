@@ -11,7 +11,6 @@ export type TPlayerRecipesParams = {
 
 export type TPlayerRecipesClientParams = Omit<TPlayerRecipesParams, "userId">
 
-
 export type TPlayerRecipes = {
   id: number
   itemId: number
@@ -28,7 +27,7 @@ export async function getPlayerRecipes(params: TPlayerRecipesParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM items.get_player_recipes($1, $2);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TPlayerRecipes[]
   } catch (error) {
@@ -37,7 +36,7 @@ export async function getPlayerRecipes(params: TPlayerRecipesParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getPlayerRecipes")
   }
 }

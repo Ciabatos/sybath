@@ -3,15 +3,11 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import {  TPlayerCityParams, TPlayerCity  } from "@/db/postgresMainDatabase/schemas/cities/playerCity"
+import { TPlayerCityParams, TPlayerCity } from "@/db/postgresMainDatabase/schemas/cities/playerCity"
 
-
- 
-
-export function useMutatePlayerCity( params: TPlayerCityParams) {
+export function useMutatePlayerCity(params: TPlayerCityParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/cities/rpc/get-player-city/${params.playerId}`
-  
 
   function mutatePlayerCity(optimisticParams?: Partial<TPlayerCity>[]) {
     if (!optimisticParams) {

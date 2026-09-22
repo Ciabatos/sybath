@@ -1,6 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type { TKnownMapTilesResourcesOnTile, TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId,TKnownMapTilesResourcesOnTileParams } from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnTile"
+import type {
+  TKnownMapTilesResourcesOnTile,
+  TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId,
+  TKnownMapTilesResourcesOnTileParams,
+} from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnTile"
 import { getKnownMapTilesResourcesOnTile } from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnTile"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -23,7 +27,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchKnownMapTilesResourcesOnTileService(
- params: TKnownMapTilesResourcesOnTileParams,
+  params: TKnownMapTilesResourcesOnTileParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getKnownMapTilesResourcesOnTile", params)
@@ -61,7 +65,6 @@ export async function fetchKnownMapTilesResourcesOnTileService(
   }
 
   const byKey = arrayToObjectKey(["mapTilesResourceId"], raw) as TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId
-
 
   const record: TCacheRecord = {
     raw,

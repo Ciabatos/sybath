@@ -25,17 +25,9 @@ export type TDoPlayerMovement = {
 
 export async function doPlayerMovement(params: TDoPlayerMovementParams) {
   try {
-    const sqlParams = [
-      params.userId
-      ,
-      params.playerId
-      ,
-      JSON.stringify(params.path)
-
-    ]
+    const sqlParams = [params.userId, params.playerId, JSON.stringify(params.path)]
     const sql = `SELECT * FROM world.do_player_movement($1, $2, $3);`
     const result = await query(sql, sqlParams)
-
 
     return snakeToCamelKeys(result.rows[0]) as TDoPlayerMovement
   } catch (error) {
@@ -44,7 +36,7 @@ export async function doPlayerMovement(params: TDoPlayerMovementParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to execute doPlayerMovement")
   }
 }

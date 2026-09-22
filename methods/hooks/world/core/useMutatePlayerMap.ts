@@ -3,15 +3,11 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import {  TPlayerMapParams, TPlayerMap  } from "@/db/postgresMainDatabase/schemas/world/playerMap"
+import { TPlayerMapParams, TPlayerMap } from "@/db/postgresMainDatabase/schemas/world/playerMap"
 
-
- 
-
-export function useMutatePlayerMap( params: TPlayerMapParams) {
+export function useMutatePlayerMap(params: TPlayerMapParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/world/rpc/get-player-map/${params.playerId}`
-  
 
   function mutatePlayerMap(optimisticParams?: Partial<TPlayerMap>[]) {
     if (!optimisticParams) {

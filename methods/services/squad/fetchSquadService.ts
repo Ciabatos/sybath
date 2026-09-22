@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type { TSquad, TSquadRecordBySquadId,TSquadParams } from "@/db/postgresMainDatabase/schemas/squad/squad"
+import type { TSquad, TSquadRecordBySquadId, TSquadParams } from "@/db/postgresMainDatabase/schemas/squad/squad"
 import { getSquad } from "@/db/postgresMainDatabase/schemas/squad/squad"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -23,7 +23,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchSquadService(
- params: TSquadParams,
+  params: TSquadParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getSquad", params)
@@ -61,7 +61,6 @@ export async function fetchSquadService(
   }
 
   const byKey = arrayToObjectKey(["squadId"], raw) as TSquadRecordBySquadId
-
 
   const record: TCacheRecord = {
     raw,

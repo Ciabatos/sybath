@@ -3,12 +3,16 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import { TAllSkillsRecordById,  TAllSkillsParams, TAllSkills  } from "@/db/postgresMainDatabase/schemas/attributes/allSkills"
+import {
+  TAllSkillsRecordById,
+  TAllSkillsParams,
+  TAllSkills,
+} from "@/db/postgresMainDatabase/schemas/attributes/allSkills"
 import { allSkillsAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import { arrayToObjectKey } from "@/methods/functions/util/converters" 
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutateAllSkills( params: TAllSkillsParams) {
+export function useMutateAllSkills(params: TAllSkillsParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/attributes/rpc/get-all-skills/${params.playerId}`
   const allSkills = useAtomValue(allSkillsAtom)
@@ -37,10 +41,10 @@ export function useMutateAllSkills( params: TAllSkillsParams) {
     }))
 
     const newObj = arrayToObjectKey(["id"], dataWithDefaults) as TAllSkillsRecordById
-    
+
     const optimisticDataMergeWithOldData: TAllSkillsRecordById = {
-      ...allSkills, 
-      ...newObj,      
+      ...allSkills,
+      ...newObj,
     }
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)

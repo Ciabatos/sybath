@@ -12,7 +12,6 @@ export type TOtherPlayerProfileParams = {
 
 export type TOtherPlayerProfileClientParams = Omit<TOtherPlayerProfileParams, "userId">
 
-
 export type TOtherPlayerProfile = {
   name: string
   secondName: string
@@ -26,7 +25,7 @@ export async function getOtherPlayerProfile(params: TOtherPlayerProfileParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM players.get_other_player_profile($1, $2, $3);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TOtherPlayerProfile[]
   } catch (error) {
@@ -35,7 +34,7 @@ export async function getOtherPlayerProfile(params: TOtherPlayerProfileParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getOtherPlayerProfile")
   }
 }

@@ -12,7 +12,6 @@ export type TKnownMapTilesParams = {
 
 export type TKnownMapTilesClientParams = Omit<TKnownMapTilesParams, "userId">
 
-
 export type TKnownMapTiles = {
   mapId: number
   x: number
@@ -27,7 +26,7 @@ export async function getKnownMapTiles(params: TKnownMapTilesParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM world.get_known_map_tiles($1, $2, $3);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TKnownMapTiles[]
   } catch (error) {
@@ -36,7 +35,7 @@ export async function getKnownMapTiles(params: TKnownMapTilesParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getKnownMapTiles")
   }
 }

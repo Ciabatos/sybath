@@ -12,7 +12,6 @@ export type TOtherPlayerStatsParams = {
 
 export type TOtherPlayerStatsClientParams = Omit<TOtherPlayerStatsParams, "userId">
 
-
 export type TOtherPlayerStats = {
   statId: number
   value: number
@@ -25,7 +24,7 @@ export async function getOtherPlayerStats(params: TOtherPlayerStatsParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM attributes.get_other_player_stats($1, $2, $3);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TOtherPlayerStats[]
   } catch (error) {
@@ -34,7 +33,7 @@ export async function getOtherPlayerStats(params: TOtherPlayerStatsParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getOtherPlayerStats")
   }
 }

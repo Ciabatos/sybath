@@ -11,7 +11,6 @@ export type TPlayerMapParams = {
 
 export type TPlayerMapClientParams = Omit<TPlayerMapParams, "userId">
 
-
 export type TPlayerMap = {
   mapId: number
 }
@@ -22,7 +21,7 @@ export async function getPlayerMap(params: TPlayerMapParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM world.get_player_map($1, $2);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TPlayerMap[]
   } catch (error) {
@@ -31,7 +30,7 @@ export async function getPlayerMap(params: TPlayerMapParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getPlayerMap")
   }
 }

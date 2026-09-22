@@ -3,12 +3,16 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import { TPlayersOnTileRecordByOtherPlayerId,  TPlayersOnTileParams, TPlayersOnTile  } from "@/db/postgresMainDatabase/schemas/world/playersOnTile"
+import {
+  TPlayersOnTileRecordByOtherPlayerId,
+  TPlayersOnTileParams,
+  TPlayersOnTile,
+} from "@/db/postgresMainDatabase/schemas/world/playersOnTile"
 import { playersOnTileAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import { arrayToObjectKey } from "@/methods/functions/util/converters" 
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutatePlayersOnTile( params: TPlayersOnTileParams) {
+export function useMutatePlayersOnTile(params: TPlayersOnTileParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/world/rpc/get-players-on-tile/${params.mapId}/${params.mapTileX}/${params.mapTileY}/${params.playerId}`
   const playersOnTile = useAtomValue(playersOnTileAtom)
@@ -40,10 +44,10 @@ export function useMutatePlayersOnTile( params: TPlayersOnTileParams) {
     }))
 
     const newObj = arrayToObjectKey(["otherPlayerId"], dataWithDefaults) as TPlayersOnTileRecordByOtherPlayerId
-    
+
     const optimisticDataMergeWithOldData: TPlayersOnTileRecordByOtherPlayerId = {
-      ...playersOnTile, 
-      ...newObj,      
+      ...playersOnTile,
+      ...newObj,
     }
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)

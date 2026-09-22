@@ -1,8 +1,11 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcherServer.hbs
 "use server"
 
-import type { TOtherPlayerKnowledgeRequestsParams } from "@/db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests" 
-import type { TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId,TOtherPlayerKnowledgeRequests } from "@/db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests"
+import type { TOtherPlayerKnowledgeRequestsParams } from "@/db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests"
+import type {
+  TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId,
+  TOtherPlayerKnowledgeRequests,
+} from "@/db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests"
 import { fetchOtherPlayerKnowledgeRequestsService } from "@/methods/services/knowledge/fetchOtherPlayerKnowledgeRequestsService"
 
 type TResult = {
@@ -12,7 +15,10 @@ type TResult = {
   atomName: string
 }
 
-export async function getOtherPlayerKnowledgeRequestsServer( params: TOtherPlayerKnowledgeRequestsParams, options?: { forceFresh?: boolean },): Promise<TResult> {
+export async function getOtherPlayerKnowledgeRequestsServer(
+  params: TOtherPlayerKnowledgeRequestsParams,
+  options?: { forceFresh?: boolean },
+): Promise<TResult> {
   const { record } = await fetchOtherPlayerKnowledgeRequestsService(params, { forceFresh: options?.forceFresh })
 
   return {

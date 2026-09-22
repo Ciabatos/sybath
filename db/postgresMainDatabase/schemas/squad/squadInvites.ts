@@ -11,7 +11,6 @@ export type TSquadInvitesParams = {
 
 export type TSquadInvitesClientParams = Omit<TSquadInvitesParams, "userId">
 
-
 export type TSquadInvites = {
   id: number
   squadId: number
@@ -31,7 +30,7 @@ export async function getSquadInvites(params: TSquadInvitesParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM squad.get_squad_invites($1, $2);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TSquadInvites[]
   } catch (error) {
@@ -40,7 +39,7 @@ export async function getSquadInvites(params: TSquadInvitesParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getSquadInvites")
   }
 }

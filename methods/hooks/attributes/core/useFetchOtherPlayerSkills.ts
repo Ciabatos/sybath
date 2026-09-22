@@ -1,17 +1,24 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcher.hbs
 
 "use client"
-import { TOtherPlayerSkillsRecordBySkillId, TOtherPlayerSkills , TOtherPlayerSkillsClientParams  } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerSkills"
+import {
+  TOtherPlayerSkillsRecordBySkillId,
+  TOtherPlayerSkills,
+  TOtherPlayerSkillsClientParams,
+} from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerSkills"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { otherPlayerSkillsAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchOtherPlayerSkills( params: TOtherPlayerSkillsClientParams) {
+export function useFetchOtherPlayerSkills(params: TOtherPlayerSkillsClientParams) {
   const setOtherPlayerSkills = useSetAtom(otherPlayerSkillsAtom)
 
-  const { data } = useSWR<TOtherPlayerSkills[]>(`/api/attributes/rpc/get-other-player-skills/${params.playerId}/${params.otherPlayerId}`, { refreshInterval: 3000 })
+  const { data } = useSWR<TOtherPlayerSkills[]>(
+    `/api/attributes/rpc/get-other-player-skills/${params.playerId}/${params.otherPlayerId}`,
+    { refreshInterval: 3000 },
+  )
 
   useEffect(() => {
     if (data) {

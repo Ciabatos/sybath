@@ -1,8 +1,11 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcherServer.hbs
 "use server"
 
-import type { TOtherPlayerSkillsParams } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerSkills" 
-import type { TOtherPlayerSkillsRecordBySkillId,TOtherPlayerSkills } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerSkills"
+import type { TOtherPlayerSkillsParams } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerSkills"
+import type {
+  TOtherPlayerSkillsRecordBySkillId,
+  TOtherPlayerSkills,
+} from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerSkills"
 import { fetchOtherPlayerSkillsService } from "@/methods/services/attributes/fetchOtherPlayerSkillsService"
 
 type TResult = {
@@ -12,7 +15,10 @@ type TResult = {
   atomName: string
 }
 
-export async function getOtherPlayerSkillsServer( params: TOtherPlayerSkillsParams, options?: { forceFresh?: boolean },): Promise<TResult> {
+export async function getOtherPlayerSkillsServer(
+  params: TOtherPlayerSkillsParams,
+  options?: { forceFresh?: boolean },
+): Promise<TResult> {
   const { record } = await fetchOtherPlayerSkillsService(params, { forceFresh: options?.forceFresh })
 
   return {

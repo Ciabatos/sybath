@@ -28,7 +28,7 @@ export async function getKnownMapTilesResourcesOnMap(params: TKnownMapTilesResou
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM world.get_known_map_tiles_resources_on_map($1, $2, $3);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TKnownMapTilesResourcesOnMap[]
   } catch (error) {
@@ -37,7 +37,7 @@ export async function getKnownMapTilesResourcesOnMap(params: TKnownMapTilesResou
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getKnownMapTilesResourcesOnMap")
   }
 }

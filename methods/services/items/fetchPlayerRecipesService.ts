@@ -1,6 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type { TPlayerRecipes, TPlayerRecipesRecordByItemId,TPlayerRecipesParams } from "@/db/postgresMainDatabase/schemas/items/playerRecipes"
+import type {
+  TPlayerRecipes,
+  TPlayerRecipesRecordByItemId,
+  TPlayerRecipesParams,
+} from "@/db/postgresMainDatabase/schemas/items/playerRecipes"
 import { getPlayerRecipes } from "@/db/postgresMainDatabase/schemas/items/playerRecipes"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -23,7 +27,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchPlayerRecipesService(
- params: TPlayerRecipesParams,
+  params: TPlayerRecipesParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getPlayerRecipes", params)
@@ -61,7 +65,6 @@ export async function fetchPlayerRecipesService(
   }
 
   const byKey = arrayToObjectKey(["itemId"], raw) as TPlayerRecipesRecordByItemId
-
 
   const record: TCacheRecord = {
     raw,

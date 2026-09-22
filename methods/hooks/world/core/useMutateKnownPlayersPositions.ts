@@ -3,12 +3,16 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import { TKnownPlayersPositionsRecordByXY,  TKnownPlayersPositionsParams, TKnownPlayersPositions  } from "@/db/postgresMainDatabase/schemas/world/knownPlayersPositions"
+import {
+  TKnownPlayersPositionsRecordByXY,
+  TKnownPlayersPositionsParams,
+  TKnownPlayersPositions,
+} from "@/db/postgresMainDatabase/schemas/world/knownPlayersPositions"
 import { knownPlayersPositionsAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import { arrayToObjectKey } from "@/methods/functions/util/converters" 
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutateKnownPlayersPositions( params: TKnownPlayersPositionsParams) {
+export function useMutateKnownPlayersPositions(params: TKnownPlayersPositionsParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/world/rpc/get-known-players-positions/${params.mapId}/${params.playerId}`
   const knownPlayersPositions = useAtomValue(knownPlayersPositionsAtom)
@@ -35,10 +39,10 @@ export function useMutateKnownPlayersPositions( params: TKnownPlayersPositionsPa
     }))
 
     const newObj = arrayToObjectKey(["x", "y"], dataWithDefaults) as TKnownPlayersPositionsRecordByXY
-    
+
     const optimisticDataMergeWithOldData: TKnownPlayersPositionsRecordByXY = {
-      ...knownPlayersPositions, 
-      ...newObj,      
+      ...knownPlayersPositions,
+      ...newObj,
     }
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)

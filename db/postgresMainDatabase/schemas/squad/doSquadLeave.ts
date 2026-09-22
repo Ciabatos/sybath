@@ -4,7 +4,6 @@
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 import { snakeToCamelKeys } from "@/methods/functions/util/snakeToCamel"
 
-
 export type TDoSquadLeaveParams = {
   userId: string
   playerId: number
@@ -17,15 +16,9 @@ export type TDoSquadLeave = {
 
 export async function doSquadLeave(params: TDoSquadLeaveParams) {
   try {
-    const sqlParams = [
-      params.userId
-      ,
-      params.playerId
-      
-    ]
+    const sqlParams = [params.userId, params.playerId]
     const sql = `SELECT * FROM squad.do_squad_leave($1, $2);`
     const result = await query(sql, sqlParams)
-
 
     return snakeToCamelKeys(result.rows[0]) as TDoSquadLeave
   } catch (error) {
@@ -34,7 +27,7 @@ export async function doSquadLeave(params: TDoSquadLeaveParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to execute doSquadLeave")
   }
 }

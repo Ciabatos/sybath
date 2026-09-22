@@ -13,7 +13,6 @@ export type TKnownMapRegionParams = {
 
 export type TKnownMapRegionClientParams = Omit<TKnownMapRegionParams, "userId">
 
-
 export type TKnownMapRegion = {
   regionId: number
   mapId: number
@@ -30,7 +29,7 @@ export async function getKnownMapRegion(params: TKnownMapRegionParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM world.get_known_map_region($1, $2, $3, $4);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TKnownMapRegion[]
   } catch (error) {
@@ -39,7 +38,7 @@ export async function getKnownMapRegion(params: TKnownMapRegionParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getKnownMapRegion")
   }
 }

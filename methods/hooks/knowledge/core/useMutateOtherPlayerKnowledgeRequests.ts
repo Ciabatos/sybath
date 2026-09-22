@@ -3,12 +3,16 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import { TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId,  TOtherPlayerKnowledgeRequestsParams, TOtherPlayerKnowledgeRequests  } from "@/db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests"
+import {
+  TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId,
+  TOtherPlayerKnowledgeRequestsParams,
+  TOtherPlayerKnowledgeRequests,
+} from "@/db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests"
 import { otherPlayerKnowledgeRequestsAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import { arrayToObjectKey } from "@/methods/functions/util/converters" 
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutateOtherPlayerKnowledgeRequests( params: TOtherPlayerKnowledgeRequestsParams) {
+export function useMutateOtherPlayerKnowledgeRequests(params: TOtherPlayerKnowledgeRequestsParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/knowledge/rpc/get-other-player-knowledge-requests/${params.playerId}`
   const otherPlayerKnowledgeRequests = useAtomValue(otherPlayerKnowledgeRequestsAtom)
@@ -39,11 +43,14 @@ export function useMutateOtherPlayerKnowledgeRequests( params: TOtherPlayerKnowl
       ...val,
     }))
 
-    const newObj = arrayToObjectKey(["otherPlayerKnowledgeRequestId"], dataWithDefaults) as TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId
-    
+    const newObj = arrayToObjectKey(
+      ["otherPlayerKnowledgeRequestId"],
+      dataWithDefaults,
+    ) as TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId
+
     const optimisticDataMergeWithOldData: TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId = {
-      ...otherPlayerKnowledgeRequests, 
-      ...newObj,      
+      ...otherPlayerKnowledgeRequests,
+      ...newObj,
     }
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)

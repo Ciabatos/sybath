@@ -10,7 +10,6 @@ export type TDefaultActivePlayerParams = {
 
 export type TDefaultActivePlayerClientParams = Omit<TDefaultActivePlayerParams, "userId">
 
-
 export type TDefaultActivePlayer = {
   id: number
 }
@@ -21,7 +20,7 @@ export async function getDefaultActivePlayer(params: TDefaultActivePlayerParams)
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM players.get_default_active_player($1);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TDefaultActivePlayer[]
   } catch (error) {
@@ -30,7 +29,7 @@ export async function getDefaultActivePlayer(params: TDefaultActivePlayerParams)
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getDefaultActivePlayer")
   }
 }

@@ -7,59 +7,37 @@ description: |
   When using hook useFetchOtherPlayerSkills or trying to understand it.
 ---
 
-
-
 # useFetchOtherPlayerSkills hook Documentation
-# function path :`methods/hooks/attributes/core/useFetchOtherPlayerSkills.ts` 
+
+# function path :`methods/hooks/attributes/core/useFetchOtherPlayerSkills.ts`
+
 # function useFetchOtherPlayerSkills( params: TOtherPlayerSkillsParams)
+
 # Jotai atom name: const otherPlayerSkillsAtom = atom<TOtherPlayerSkillsRecordBySkillId>({})
 
-
 ### Data Flow
-function GET(request: NextRequest, { params }: { params: TApiParams } )
-path: app/api/attributes/rpc/get-other-player-skills/[playerId]/[otherPlayerId]/route.ts
-TypeScript Types:
-type TApiParams = Record<string, string>
 
-const typeParamsSchema = z.object({
-userId: z.coerce.string(),
-playerId: z.coerce.number(),
-otherPlayerId: z.coerce.string(),
-}) satisfies z.ZodType<TOtherPlayerSkillsParams>
+function GET(request: NextRequest, { params }: { params: TApiParams } ) path:
+app/api/attributes/rpc/get-other-player-skills/[playerId]/[otherPlayerId]/route.ts TypeScript Types: type TApiParams =
+Record<string, string>
 
-function getOtherPlayerSkillsServer( params: TOtherPlayerSkillsParams, options?: { forceFresh?: boolean },): Promise<TResult>
-path: methods/server-fetchers/attributes/core/getOtherPlayerSkillsServer.ts
-TypeScript Types:
-type TResult = {
-raw: TOtherPlayerSkills[]
-byKey: TOtherPlayerSkillsRecordBySkillId
-apiPath: string
-atomName: string
-}
+const typeParamsSchema = z.object({ userId: z.coerce.string(), playerId: z.coerce.number(), otherPlayerId:
+z.coerce.string(), }) satisfies z.ZodType<TOtherPlayerSkillsParams>
 
-function getOtherPlayerSkills(params: TOtherPlayerSkillsParams)
-path: db/postgresMainDatabase/schemas/attributes/otherPlayerSkills.ts
-TypeScript Types:
-export type TOtherPlayerSkillsParams = {
-userId: string
-playerId: number
-otherPlayerId: string
-}
+function getOtherPlayerSkillsServer( params: TOtherPlayerSkillsParams, options?: { forceFresh?: boolean },):
+Promise<TResult> path: methods/server-fetchers/attributes/core/getOtherPlayerSkillsServer.ts TypeScript Types: type
+TResult = { raw: TOtherPlayerSkills[] byKey: TOtherPlayerSkillsRecordBySkillId apiPath: string atomName: string }
 
+function getOtherPlayerSkills(params: TOtherPlayerSkillsParams) path:
+db/postgresMainDatabase/schemas/attributes/otherPlayerSkills.ts TypeScript Types: export type TOtherPlayerSkillsParams =
+{ userId: string playerId: number otherPlayerId: string }
 
-export type TOtherPlayerSkills = {
-skillId: number
-value: number
-name: string
-}
+export type TOtherPlayerSkills = { skillId: number value: number name: string }
 
 export type TOtherPlayerSkillsRecordBySkillId = Record<string, TOtherPlayerSkills>
 
 Hook for mutate data using SWR
 
-function path :methods/hooks/attributes/core/useMutateOtherPlayerSkills.ts
-function useMutateOtherPlayerSkills( params: TOtherPlayerSkillsParams)
-PostgreSQL Database
-"schema": "attributes"
-"method": "get_other_player_skills"
-You have more information in mcp game-db
+function path :methods/hooks/attributes/core/useMutateOtherPlayerSkills.ts function useMutateOtherPlayerSkills( params:
+TOtherPlayerSkillsParams) PostgreSQL Database "schema": "attributes" "method": "get_other_player_skills" You have more
+information in mcp game-db

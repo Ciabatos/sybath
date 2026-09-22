@@ -12,7 +12,6 @@ export type TOtherSquadPlayersProfilesParams = {
 
 export type TOtherSquadPlayersProfilesClientParams = Omit<TOtherSquadPlayersProfilesParams, "userId">
 
-
 export type TOtherSquadPlayersProfiles = {
   otherPlayerId: string
   name: string
@@ -28,7 +27,7 @@ export async function getOtherSquadPlayersProfiles(params: TOtherSquadPlayersPro
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM squad.get_other_squad_players_profiles($1, $2, $3);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TOtherSquadPlayersProfiles[]
   } catch (error) {
@@ -37,7 +36,7 @@ export async function getOtherSquadPlayersProfiles(params: TOtherSquadPlayersPro
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getOtherSquadPlayersProfiles")
   }
 }

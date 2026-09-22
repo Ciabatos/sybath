@@ -11,7 +11,6 @@ export type TActivePlayerSwitchProfilesParams = {
 
 export type TActivePlayerSwitchProfilesClientParams = Omit<TActivePlayerSwitchProfilesParams, "userId">
 
-
 export type TActivePlayerSwitchProfiles = {
   id: number
   name: string
@@ -26,7 +25,7 @@ export async function getActivePlayerSwitchProfiles(params: TActivePlayerSwitchP
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM players.get_active_player_switch_profiles($1, $2);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TActivePlayerSwitchProfiles[]
   } catch (error) {
@@ -35,7 +34,7 @@ export async function getActivePlayerSwitchProfiles(params: TActivePlayerSwitchP
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getActivePlayerSwitchProfiles")
   }
 }

@@ -13,7 +13,7 @@ const typeParamsSchema = z.object({
   userId: z.coerce.string(),
 }) satisfies z.ZodType<TDefaultActivePlayerParams>
 
-export async function GET(request: NextRequest, { params }: { params: TApiParams } ): Promise<NextResponse> {
+export async function GET(request: NextRequest, { params }: { params: TApiParams }): Promise<NextResponse> {
   try {
     const session = await auth.api.getSession({ headers: await headers() })
     const sessionUserId = session?.user?.id
@@ -30,7 +30,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
 
     const clientEtag = request.headers.get("if-none-match") ?? undefined
     const forceFresh = request.headers.get("x-force-fresh") ?? undefined
-    
+
     const { record, etag, cacheHit, etagMatched } = await fetchDefaultActivePlayerService(parsedParams, {
       ...(forceFresh ? { forceFresh: true } : { clientEtag }),
     })
@@ -38,10 +38,6 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
     if (cacheHit || etagMatched) {
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })
     }
-
-    
-
-
 
     return NextResponse.json(record!.raw, { headers: { ETag: etag } })
   } catch (error) {

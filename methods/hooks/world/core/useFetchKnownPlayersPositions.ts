@@ -1,17 +1,24 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcher.hbs
 
 "use client"
-import { TKnownPlayersPositionsRecordByXY, TKnownPlayersPositions , TKnownPlayersPositionsClientParams  } from "@/db/postgresMainDatabase/schemas/world/knownPlayersPositions"
+import {
+  TKnownPlayersPositionsRecordByXY,
+  TKnownPlayersPositions,
+  TKnownPlayersPositionsClientParams,
+} from "@/db/postgresMainDatabase/schemas/world/knownPlayersPositions"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { knownPlayersPositionsAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchKnownPlayersPositions( params: TKnownPlayersPositionsClientParams) {
+export function useFetchKnownPlayersPositions(params: TKnownPlayersPositionsClientParams) {
   const setKnownPlayersPositions = useSetAtom(knownPlayersPositionsAtom)
 
-  const { data } = useSWR<TKnownPlayersPositions[]>(`/api/world/rpc/get-known-players-positions/${params.mapId}/${params.playerId}`, { refreshInterval: 3000 })
+  const { data } = useSWR<TKnownPlayersPositions[]>(
+    `/api/world/rpc/get-known-players-positions/${params.mapId}/${params.playerId}`,
+    { refreshInterval: 3000 },
+  )
 
   useEffect(() => {
     if (data) {

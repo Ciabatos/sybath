@@ -3,12 +3,16 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import { TSquadInvitesRecordById,  TSquadInvitesParams, TSquadInvites  } from "@/db/postgresMainDatabase/schemas/squad/squadInvites"
+import {
+  TSquadInvitesRecordById,
+  TSquadInvitesParams,
+  TSquadInvites,
+} from "@/db/postgresMainDatabase/schemas/squad/squadInvites"
 import { squadInvitesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
-import { arrayToObjectKey } from "@/methods/functions/util/converters" 
+import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutateSquadInvites( params: TSquadInvitesParams) {
+export function useMutateSquadInvites(params: TSquadInvitesParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/squad/rpc/get-squad-invites/${params.playerId}`
   const squadInvites = useAtomValue(squadInvitesAtom)
@@ -42,10 +46,10 @@ export function useMutateSquadInvites( params: TSquadInvitesParams) {
     }))
 
     const newObj = arrayToObjectKey(["id"], dataWithDefaults) as TSquadInvitesRecordById
-    
+
     const optimisticDataMergeWithOldData: TSquadInvitesRecordById = {
-      ...squadInvites, 
-      ...newObj,      
+      ...squadInvites,
+      ...newObj,
     }
 
     const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)

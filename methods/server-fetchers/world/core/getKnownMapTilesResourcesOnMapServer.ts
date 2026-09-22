@@ -1,8 +1,11 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcherServer.hbs
 "use server"
 
-import type { TKnownMapTilesResourcesOnMapParams } from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnMap" 
-import type { TKnownMapTilesResourcesOnMapRecordByMapTileXMapTileY,TKnownMapTilesResourcesOnMap } from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnMap"
+import type { TKnownMapTilesResourcesOnMapParams } from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnMap"
+import type {
+  TKnownMapTilesResourcesOnMapRecordByMapTileXMapTileY,
+  TKnownMapTilesResourcesOnMap,
+} from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnMap"
 import { fetchKnownMapTilesResourcesOnMapService } from "@/methods/services/world/fetchKnownMapTilesResourcesOnMapService"
 
 type TResult = {
@@ -12,7 +15,10 @@ type TResult = {
   atomName: string
 }
 
-export async function getKnownMapTilesResourcesOnMapServer( params: TKnownMapTilesResourcesOnMapParams, options?: { forceFresh?: boolean },): Promise<TResult> {
+export async function getKnownMapTilesResourcesOnMapServer(
+  params: TKnownMapTilesResourcesOnMapParams,
+  options?: { forceFresh?: boolean },
+): Promise<TResult> {
   const { record } = await fetchKnownMapTilesResourcesOnMapService(params, { forceFresh: options?.forceFresh })
 
   return {

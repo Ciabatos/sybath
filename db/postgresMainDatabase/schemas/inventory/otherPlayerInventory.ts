@@ -12,7 +12,6 @@ export type TOtherPlayerInventoryParams = {
 
 export type TOtherPlayerInventoryClientParams = Omit<TOtherPlayerInventoryParams, "userId">
 
-
 export type TOtherPlayerInventory = {
   slotId: number
   containerId: number
@@ -29,7 +28,7 @@ export async function getOtherPlayerInventory(params: TOtherPlayerInventoryParam
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM inventory.get_other_player_inventory($1, $2, $3);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TOtherPlayerInventory[]
   } catch (error) {
@@ -38,7 +37,7 @@ export async function getOtherPlayerInventory(params: TOtherPlayerInventoryParam
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getOtherPlayerInventory")
   }
 }

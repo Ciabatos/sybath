@@ -1,17 +1,24 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcher.hbs
 
 "use client"
-import { TTradeInventoryRecordBySlotId, TTradeInventory , TTradeInventoryClientParams  } from "@/db/postgresMainDatabase/schemas/trade/tradeInventory"
+import {
+  TTradeInventoryRecordBySlotId,
+  TTradeInventory,
+  TTradeInventoryClientParams,
+} from "@/db/postgresMainDatabase/schemas/trade/tradeInventory"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { tradeInventoryAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchTradeInventory( params: TTradeInventoryClientParams) {
+export function useFetchTradeInventory(params: TTradeInventoryClientParams) {
   const setTradeInventory = useSetAtom(tradeInventoryAtom)
 
-  const { data } = useSWR<TTradeInventory[]>(`/api/trade/rpc/get-trade-inventory/${params.playerId}/${params.tradeId}`, { refreshInterval: 3000 })
+  const { data } = useSWR<TTradeInventory[]>(
+    `/api/trade/rpc/get-trade-inventory/${params.playerId}/${params.tradeId}`,
+    { refreshInterval: 3000 },
+  )
 
   useEffect(() => {
     if (data) {

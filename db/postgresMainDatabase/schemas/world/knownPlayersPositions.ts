@@ -31,7 +31,7 @@ export async function getKnownPlayersPositions(params: TKnownPlayersPositionsPar
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM world.get_known_players_positions($1, $2, $3);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TKnownPlayersPositions[]
   } catch (error) {
@@ -40,7 +40,7 @@ export async function getKnownPlayersPositions(params: TKnownPlayersPositionsPar
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getKnownPlayersPositions")
   }
 }

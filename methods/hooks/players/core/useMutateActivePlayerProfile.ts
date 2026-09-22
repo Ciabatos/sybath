@@ -3,15 +3,14 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import {  TActivePlayerProfileParams, TActivePlayerProfile  } from "@/db/postgresMainDatabase/schemas/players/activePlayerProfile"
+import {
+  TActivePlayerProfileParams,
+  TActivePlayerProfile,
+} from "@/db/postgresMainDatabase/schemas/players/activePlayerProfile"
 
-
- 
-
-export function useMutateActivePlayerProfile( params: TActivePlayerProfileParams) {
+export function useMutateActivePlayerProfile(params: TActivePlayerProfileParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/players/rpc/get-active-player-profile/${params.playerId}`
-  
 
   function mutateActivePlayerProfile(optimisticParams?: Partial<TActivePlayerProfile>[]) {
     if (!optimisticParams) {

@@ -4,7 +4,6 @@
 import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 import { snakeToCamelKeys } from "@/methods/functions/util/snakeToCamel"
 
-
 export type TDoAddItemToPlayerInventoryParams = {
   userId: string
   playerId: number
@@ -19,19 +18,9 @@ export type TDoAddItemToPlayerInventory = {
 
 export async function doAddItemToPlayerInventory(params: TDoAddItemToPlayerInventoryParams) {
   try {
-    const sqlParams = [
-      params.userId
-      ,
-      params.playerId
-      ,
-      params.itemId
-      ,
-      params.quantity
-      
-    ]
+    const sqlParams = [params.userId, params.playerId, params.itemId, params.quantity]
     const sql = `SELECT * FROM inventory.do_add_item_to_player_inventory($1, $2, $3, $4);`
     const result = await query(sql, sqlParams)
-
 
     return snakeToCamelKeys(result.rows[0]) as TDoAddItemToPlayerInventory
   } catch (error) {
@@ -40,7 +29,7 @@ export async function doAddItemToPlayerInventory(params: TDoAddItemToPlayerInven
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to execute doAddItemToPlayerInventory")
   }
 }

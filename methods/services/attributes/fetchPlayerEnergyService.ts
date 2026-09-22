@@ -1,6 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type { TPlayerEnergy, TPlayerEnergyRecordByLastRegeneratedAt,TPlayerEnergyParams } from "@/db/postgresMainDatabase/schemas/attributes/playerEnergy"
+import type {
+  TPlayerEnergy,
+  TPlayerEnergyRecordByLastRegeneratedAt,
+  TPlayerEnergyParams,
+} from "@/db/postgresMainDatabase/schemas/attributes/playerEnergy"
 import { getPlayerEnergy } from "@/db/postgresMainDatabase/schemas/attributes/playerEnergy"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -23,7 +27,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchPlayerEnergyService(
- params: TPlayerEnergyParams,
+  params: TPlayerEnergyParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getPlayerEnergy", params)
@@ -61,7 +65,6 @@ export async function fetchPlayerEnergyService(
   }
 
   const byKey = arrayToObjectKey(["lastRegeneratedAt"], raw) as TPlayerEnergyRecordByLastRegeneratedAt
-
 
   const record: TCacheRecord = {
     raw,

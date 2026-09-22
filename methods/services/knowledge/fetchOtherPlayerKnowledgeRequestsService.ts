@@ -1,6 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type { TOtherPlayerKnowledgeRequests, TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId,TOtherPlayerKnowledgeRequestsParams } from "@/db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests"
+import type {
+  TOtherPlayerKnowledgeRequests,
+  TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId,
+  TOtherPlayerKnowledgeRequestsParams,
+} from "@/db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests"
 import { getOtherPlayerKnowledgeRequests } from "@/db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -23,7 +27,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchOtherPlayerKnowledgeRequestsService(
- params: TOtherPlayerKnowledgeRequestsParams,
+  params: TOtherPlayerKnowledgeRequestsParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getOtherPlayerKnowledgeRequests", params)
@@ -60,8 +64,10 @@ export async function fetchOtherPlayerKnowledgeRequestsService(
     }
   }
 
-  const byKey = arrayToObjectKey(["otherPlayerKnowledgeRequestId"], raw) as TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId
-
+  const byKey = arrayToObjectKey(
+    ["otherPlayerKnowledgeRequestId"],
+    raw,
+  ) as TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId
 
   const record: TCacheRecord = {
     raw,

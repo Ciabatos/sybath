@@ -12,7 +12,6 @@ export type TOtherPlayerSkillsParams = {
 
 export type TOtherPlayerSkillsClientParams = Omit<TOtherPlayerSkillsParams, "userId">
 
-
 export type TOtherPlayerSkills = {
   skillId: number
   value: number
@@ -25,7 +24,7 @@ export async function getOtherPlayerSkills(params: TOtherPlayerSkillsParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM attributes.get_other_player_skills($1, $2, $3);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TOtherPlayerSkills[]
   } catch (error) {
@@ -34,7 +33,7 @@ export async function getOtherPlayerSkills(params: TOtherPlayerSkillsParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getOtherPlayerSkills")
   }
 }

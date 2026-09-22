@@ -1,8 +1,11 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcherServer.hbs
 "use server"
 
-import type { TKnownMapRegionParams } from "@/db/postgresMainDatabase/schemas/world/knownMapRegion" 
-import type { TKnownMapRegionRecordByMapTileXMapTileY,TKnownMapRegion } from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
+import type { TKnownMapRegionParams } from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
+import type {
+  TKnownMapRegionRecordByMapTileXMapTileY,
+  TKnownMapRegion,
+} from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
 import { fetchKnownMapRegionService } from "@/methods/services/world/fetchKnownMapRegionService"
 
 type TResult = {
@@ -12,7 +15,10 @@ type TResult = {
   atomName: string
 }
 
-export async function getKnownMapRegionServer( params: TKnownMapRegionParams, options?: { forceFresh?: boolean },): Promise<TResult> {
+export async function getKnownMapRegionServer(
+  params: TKnownMapRegionParams,
+  options?: { forceFresh?: boolean },
+): Promise<TResult> {
   const { record } = await fetchKnownMapRegionService(params, { forceFresh: options?.forceFresh })
 
   return {

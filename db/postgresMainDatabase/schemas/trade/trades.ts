@@ -11,7 +11,6 @@ export type TTradesParams = {
 
 export type TTradesClientParams = Omit<TTradesParams, "userId">
 
-
 export type TTrades = {
   id: number
   status: number
@@ -26,7 +25,7 @@ export async function getTrades(params: TTradesParams) {
   try {
     const sqlParams = Object.values(params)
     const sql = `SELECT * FROM trade.get_trades($1, $2);`
-    
+
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TTrades[]
   } catch (error) {
@@ -35,7 +34,7 @@ export async function getTrades(params: TTradesParams) {
       params,
       timestamp: new Date().toISOString(),
     })
-    
+
     throw new Error("Failed to fetch getTrades")
   }
 }

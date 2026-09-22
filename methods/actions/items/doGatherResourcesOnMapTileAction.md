@@ -7,45 +7,31 @@ description: |
   When using action doGatherResourcesOnMapTileAction or trying to understand it.
 ---
 
-
-
 # doGatherResourcesOnMapTileAction Action Documentation
-# function path :`methods/actions/items/doGatherResourcesOnMapTileAction.ts` 
+
+# function path :`methods/actions/items/doGatherResourcesOnMapTileAction.ts`
+
 # function doGatherResourcesOnMapTileAction(params: TDoGatherResourcesOnMapTileActionParams)
+
 # TypeScript Types:
+
 type TDoGatherResourcesOnMapTileActionParams = Omit<TDoGatherResourcesOnMapTileServiceParams, "sessionUserId"></T>
 
 ### Data Flow
-function doGatherResourcesOnMapTileService(params: TDoGatherResourcesOnMapTileServiceParams)
-path: methods/services/items/doGatherResourcesOnMapTileService.ts
 
-TypeScript Types:
-export type TDoGatherResourcesOnMapTileServiceParams = {
-sessionUserId: string
-playerId: number
-}
+function doGatherResourcesOnMapTileService(params: TDoGatherResourcesOnMapTileServiceParams) path:
+methods/services/items/doGatherResourcesOnMapTileService.ts
+
+TypeScript Types: export type TDoGatherResourcesOnMapTileServiceParams = { sessionUserId: string playerId: number }
 
 Database function doGatherResourcesOnMapTile(params: TDoGatherResourcesOnMapTileParams)
 
-path: db/postgresMainDatabase/schemas/items/doGatherResourcesOnMapTile.ts
-TypeScript Types:
+path: db/postgresMainDatabase/schemas/items/doGatherResourcesOnMapTile.ts TypeScript Types:
 
-export type TDoGatherResourcesOnMapTileParams = {
-userId: string
-playerId: number
-mapId: number
-x: number
-y: number
-mapTilesResourceId: number
-gatherAmount: number
-}
+export type TDoGatherResourcesOnMapTileParams = { userId: string playerId: number mapId: number x: number y: number
+mapTilesResourceId: number gatherAmount: number }
 
-export type TDoGatherResourcesOnMapTile = {
-status: boolean
-message: string
-}
+export type TDoGatherResourcesOnMapTile = { status: boolean message: string }
 
-PostgreSQL Database
-"schema": "items"
-"method": "do_gather_resources_on_map_tile"
-You have more information in mcp game-db
+PostgreSQL Database "schema": "items" "method": "do_gather_resources_on_map_tile" You have more information in mcp
+game-db

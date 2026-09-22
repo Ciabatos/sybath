@@ -2,7 +2,10 @@
 "use server"
 
 import { auth } from "@/lib/auth"
-import { TDoOtherPlayerKnowledgeAcceptServiceParams, doOtherPlayerKnowledgeAcceptService } from "@/methods/services/knowledge/doOtherPlayerKnowledgeAcceptService"
+import {
+  TDoOtherPlayerKnowledgeAcceptServiceParams,
+  doOtherPlayerKnowledgeAcceptService,
+} from "@/methods/services/knowledge/doOtherPlayerKnowledgeAcceptService"
 import { headers } from "next/headers"
 
 type TDoOtherPlayerKnowledgeAcceptActionParams = Omit<TDoOtherPlayerKnowledgeAcceptServiceParams, "userId">

@@ -2,7 +2,10 @@
 "use server"
 
 import { auth } from "@/lib/auth"
-import { TDoAddItemToInventoryServiceParams, doAddItemToInventoryService } from "@/methods/services/inventory/doAddItemToInventoryService"
+import {
+  TDoAddItemToInventoryServiceParams,
+  doAddItemToInventoryService,
+} from "@/methods/services/inventory/doAddItemToInventoryService"
 import { headers } from "next/headers"
 
 type TDoAddItemToInventoryActionParams = Omit<TDoAddItemToInventoryServiceParams, "userId">

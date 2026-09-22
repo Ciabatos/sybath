@@ -1,6 +1,10 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type { TActivePlayerSwitchProfiles, TActivePlayerSwitchProfilesRecordById,TActivePlayerSwitchProfilesParams } from "@/db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles"
+import type {
+  TActivePlayerSwitchProfiles,
+  TActivePlayerSwitchProfilesRecordById,
+  TActivePlayerSwitchProfilesParams,
+} from "@/db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles"
 import { getActivePlayerSwitchProfiles } from "@/db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -23,7 +27,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchActivePlayerSwitchProfilesService(
- params: TActivePlayerSwitchProfilesParams,
+  params: TActivePlayerSwitchProfilesParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getActivePlayerSwitchProfiles", params)
@@ -61,7 +65,6 @@ export async function fetchActivePlayerSwitchProfilesService(
   }
 
   const byKey = arrayToObjectKey(["id"], raw) as TActivePlayerSwitchProfilesRecordById
-
 
   const record: TCacheRecord = {
     raw,

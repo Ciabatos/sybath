@@ -1,17 +1,23 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcher.hbs
 
 "use client"
-import { TPlayerGearInventoryRecordBySlotId, TPlayerGearInventory , TPlayerGearInventoryClientParams  } from "@/db/postgresMainDatabase/schemas/inventory/playerGearInventory"
+import {
+  TPlayerGearInventoryRecordBySlotId,
+  TPlayerGearInventory,
+  TPlayerGearInventoryClientParams,
+} from "@/db/postgresMainDatabase/schemas/inventory/playerGearInventory"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { playerGearInventoryAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchPlayerGearInventory( params: TPlayerGearInventoryClientParams) {
+export function useFetchPlayerGearInventory(params: TPlayerGearInventoryClientParams) {
   const setPlayerGearInventory = useSetAtom(playerGearInventoryAtom)
 
-  const { data } = useSWR<TPlayerGearInventory[]>(`/api/inventory/rpc/get-player-gear-inventory/${params.playerId}`, { refreshInterval: 3000 })
+  const { data } = useSWR<TPlayerGearInventory[]>(`/api/inventory/rpc/get-player-gear-inventory/${params.playerId}`, {
+    refreshInterval: 3000,
+  })
 
   useEffect(() => {
     if (data) {
