@@ -11,12 +11,13 @@
   },
   "schema": "players",
   "method": "get_default_active_player",
-  "methodCamelName": "defaultActivePlayer",
-  "methodPascalName": "DefaultActivePlayer",
-  "methodKebabName": "get-default-active-player",
-  "methodName": "getDefaultActivePlayer",
+  "entityCamelName": "defaultActivePlayer",
+  "entityPascalName": "DefaultActivePlayer",
+  "entityKebabName": "get-default-active-player",
+  "dbFunctionName": "getDefaultActivePlayer",
   "methodTypeName": "TDefaultActivePlayer",
   "methodParamsTypeName": "TDefaultActivePlayerParams",
+  "clientMethodParamsTypeName": "TDefaultActivePlayerClientParams",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -25,6 +26,7 @@
       "isJson": false
     }
   ],
+  "clientMethodParamsColumns": [],
   "methodColumns": [
     {
       "name": "id",
@@ -48,15 +50,16 @@
       "optional": ""
     }
   ],
+  "sqlFunctionName": "get_default_active_player",
   "sqlParamsPlaceholders": "$1",
-  "apiPath": "app/api/players/rpc/get-default-active-player/[userId]/route.ts",
-  "apiPathParams": "/api/players/rpc/get-default-active-player/${params.userId}",
+  "apiPath": "app/api/players/rpc/get-default-active-player/route.ts",
+  "apiPathParams": "/api/players/rpc/get-default-active-player",
   "generateMutation": true,
   "mutationMergeOldData": false,
   "compositeDefinitions": [],
   "filesCreated": [
     "db/postgresMainDatabase/schemas/players/defaultActivePlayer.ts",
-    "app/api/players/rpc/get-default-active-player/[userId]/route.ts",
+    "app/api/players/rpc/get-default-active-player/route.ts",
     "methods/hooks/players/core/useFetchDefaultActivePlayer.ts",
     "methods/server-fetchers/players/core/getDefaultActivePlayerServer.ts",
     "methods/services/players/fetchDefaultActivePlayerService.ts",

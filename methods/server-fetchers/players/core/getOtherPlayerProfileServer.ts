@@ -1,11 +1,8 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcherServer.hbs
 "use server"
 
-import type { TOtherPlayerProfileParams } from "@/db/postgresMainDatabase/schemas/players/otherPlayerProfile"
-import type {
-  TOtherPlayerProfileRecordByName,
-  TOtherPlayerProfile,
-} from "@/db/postgresMainDatabase/schemas/players/otherPlayerProfile"
+import type { TOtherPlayerProfileParams } from "@/db/postgresMainDatabase/schemas/players/otherPlayerProfile" 
+import type { TOtherPlayerProfileRecordByName,TOtherPlayerProfile } from "@/db/postgresMainDatabase/schemas/players/otherPlayerProfile"
 import { fetchOtherPlayerProfileService } from "@/methods/services/players/fetchOtherPlayerProfileService"
 
 type TResult = {
@@ -15,10 +12,7 @@ type TResult = {
   atomName: string
 }
 
-export async function getOtherPlayerProfileServer(
-  params: TOtherPlayerProfileParams,
-  options?: { forceFresh?: boolean },
-): Promise<TResult> {
+export async function getOtherPlayerProfileServer( params: TOtherPlayerProfileParams, options?: { forceFresh?: boolean },): Promise<TResult> {
   const { record } = await fetchOtherPlayerProfileService(params, { forceFresh: options?.forceFresh })
 
   return {

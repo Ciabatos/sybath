@@ -3,14 +3,15 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import {
-  TDefaultActivePlayerParams,
-  TDefaultActivePlayer,
-} from "@/db/postgresMainDatabase/schemas/players/defaultActivePlayer"
+import {  TDefaultActivePlayerParams, TDefaultActivePlayer  } from "@/db/postgresMainDatabase/schemas/players/defaultActivePlayer"
 
-export function useMutateDefaultActivePlayer(params: TDefaultActivePlayerParams) {
+
+ 
+
+export function useMutateDefaultActivePlayer( params: TDefaultActivePlayerParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/players/rpc/get-default-active-player/${params.userId}`
+  const key = `/api/players/rpc/get-default-active-player`
+  
 
   function mutateDefaultActivePlayer(optimisticParams?: Partial<TDefaultActivePlayer>[]) {
     if (!optimisticParams) {

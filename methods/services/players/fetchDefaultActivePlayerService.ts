@@ -1,10 +1,6 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
-import type {
-  TDefaultActivePlayer,
-  TDefaultActivePlayerRecordById,
-  TDefaultActivePlayerParams,
-} from "@/db/postgresMainDatabase/schemas/players/defaultActivePlayer"
+import type { TDefaultActivePlayer, TDefaultActivePlayerRecordById,TDefaultActivePlayerParams } from "@/db/postgresMainDatabase/schemas/players/defaultActivePlayer"
 import { getDefaultActivePlayer } from "@/db/postgresMainDatabase/schemas/players/defaultActivePlayer"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
@@ -27,7 +23,7 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetchDefaultActivePlayerService(
-  params: TDefaultActivePlayerParams,
+ params: TDefaultActivePlayerParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("getDefaultActivePlayer", params)
@@ -65,6 +61,7 @@ export async function fetchDefaultActivePlayerService(
   }
 
   const byKey = arrayToObjectKey(["id"], raw) as TDefaultActivePlayerRecordById
+
 
   const record: TCacheRecord = {
     raw,

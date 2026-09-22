@@ -5,8 +5,12 @@ import { query } from "@/db/postgresMainDatabase/postgresMainDatabase"
 import { snakeToCamelRows } from "@/methods/functions/util/snakeToCamel"
 
 export type TActivePlayerSwitchProfilesParams = {
+  userId: string
   playerId: number
 }
+
+export type TActivePlayerSwitchProfilesClientParams = Omit<TActivePlayerSwitchProfilesParams, "userId">
+
 
 export type TActivePlayerSwitchProfiles = {
   id: number
@@ -21,8 +25,8 @@ export type TActivePlayerSwitchProfilesRecordById = Record<string, TActivePlayer
 export async function getActivePlayerSwitchProfiles(params: TActivePlayerSwitchProfilesParams) {
   try {
     const sqlParams = Object.values(params)
-    const sql = `SELECT * FROM players.get_active_player_switch_profiles($1);`
-
+    const sql = `SELECT * FROM players.get_active_player_switch_profiles($1, $2);`
+    
     const result = await query(sql, sqlParams)
     return snakeToCamelRows(result.rows) as TActivePlayerSwitchProfiles[]
   } catch (error) {
@@ -31,7 +35,7 @@ export async function getActivePlayerSwitchProfiles(params: TActivePlayerSwitchP
       params,
       timestamp: new Date().toISOString(),
     })
-
+    
     throw new Error("Failed to fetch getActivePlayerSwitchProfiles")
   }
 }

@@ -3,19 +3,15 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import {
-  TOtherPlayerProfileRecordByName,
-  TOtherPlayerProfileParams,
-  TOtherPlayerProfile,
-} from "@/db/postgresMainDatabase/schemas/players/otherPlayerProfile"
-import { otherPlayerProfileAtom } from "@/store/atoms"
-import { useAtomValue } from "jotai"
-import { arrayToObjectKey } from "@/methods/functions/util/converters"
+import {  TOtherPlayerProfileParams, TOtherPlayerProfile  } from "@/db/postgresMainDatabase/schemas/players/otherPlayerProfile"
 
-export function useMutateOtherPlayerProfile(params: TOtherPlayerProfileParams) {
+
+ 
+
+export function useMutateOtherPlayerProfile( params: TOtherPlayerProfileParams) {
   const { mutate } = useSWRConfig()
   const key = `/api/players/rpc/get-other-player-profile/${params.playerId}/${params.otherPlayerId}`
-  const otherPlayerProfile = useAtomValue(otherPlayerProfileAtom)
+  
 
   function mutateOtherPlayerProfile(optimisticParams?: Partial<TOtherPlayerProfile>[]) {
     if (!optimisticParams) {
@@ -39,17 +35,8 @@ export function useMutateOtherPlayerProfile(params: TOtherPlayerProfileParams) {
       ...val,
     }))
 
-    const newObj = arrayToObjectKey(["name"], dataWithDefaults) as TOtherPlayerProfileRecordByName
-
-    const optimisticDataMergeWithOldData: TOtherPlayerProfileRecordByName = {
-      ...otherPlayerProfile,
-      ...newObj,
-    }
-
-    const optimisticDataMergeWithOldDataArray = Object.values(optimisticDataMergeWithOldData)
-
     mutate(key, () => fetchFresh(key), {
-      optimisticData: optimisticDataMergeWithOldDataArray,
+      optimisticData: dataWithDefaults,
       rollbackOnError: true,
       revalidate: false,
       populateCache: true,

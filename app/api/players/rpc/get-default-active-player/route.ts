@@ -1,8 +1,8 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetMethodFetcher.hbs
 
 import { auth } from "@/lib/auth"
-import { TActivePlayerProfileParams } from "@/db/postgresMainDatabase/schemas/players/activePlayerProfile"
-import { fetchActivePlayerProfileService } from "@/methods/services/players/fetchActivePlayerProfileService"
+import { TDefaultActivePlayerParams } from "@/db/postgresMainDatabase/schemas/players/defaultActivePlayer"
+import { fetchDefaultActivePlayerService } from "@/methods/services/players/fetchDefaultActivePlayerService"
 import { headers } from "next/headers"
 import { NextRequest, NextResponse } from "next/server"
 import z from "zod"
@@ -11,8 +11,7 @@ type TApiParams = Record<string, string>
 
 const typeParamsSchema = z.object({
   userId: z.coerce.string(),
-  playerId: z.coerce.number(),
-}) satisfies z.ZodType<TActivePlayerProfileParams>
+}) satisfies z.ZodType<TDefaultActivePlayerParams>
 
 export async function GET(request: NextRequest, { params }: { params: TApiParams } ): Promise<NextResponse> {
   try {
@@ -32,7 +31,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
     const clientEtag = request.headers.get("if-none-match") ?? undefined
     const forceFresh = request.headers.get("x-force-fresh") ?? undefined
     
-    const { record, etag, cacheHit, etagMatched } = await fetchActivePlayerProfileService(parsedParams, {
+    const { record, etag, cacheHit, etagMatched } = await fetchDefaultActivePlayerService(parsedParams, {
       ...(forceFresh ? { forceFresh: true } : { clientEtag }),
     })
 

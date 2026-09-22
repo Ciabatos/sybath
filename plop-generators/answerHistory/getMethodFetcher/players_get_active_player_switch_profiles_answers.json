@@ -11,17 +11,33 @@
   },
   "schema": "players",
   "method": "get_active_player_switch_profiles",
-  "methodCamelName": "activePlayerSwitchProfiles",
-  "methodPascalName": "ActivePlayerSwitchProfiles",
-  "methodKebabName": "get-active-player-switch-profiles",
-  "methodName": "getActivePlayerSwitchProfiles",
+  "entityCamelName": "activePlayerSwitchProfiles",
+  "entityPascalName": "ActivePlayerSwitchProfiles",
+  "entityKebabName": "get-active-player-switch-profiles",
+  "dbFunctionName": "getActivePlayerSwitchProfiles",
   "methodTypeName": "TActivePlayerSwitchProfiles",
   "methodParamsTypeName": "TActivePlayerSwitchProfilesParams",
+  "clientMethodParamsTypeName": "TActivePlayerSwitchProfilesClientParams",
   "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    },
     {
       "name": "p_player_id",
       "camelName": "playerId",
-      "tsType": "number"
+      "tsType": "number",
+      "isJson": false
+    }
+  ],
+  "clientMethodParamsColumns": [
+    {
+      "name": "p_player_id",
+      "camelName": "playerId",
+      "tsType": "number",
+      "isJson": false
     }
   ],
   "methodColumns": [
@@ -62,7 +78,7 @@
     }
   ],
   "indexMethodParams": "[\"id\"]",
-  "indexParamsColumns": "playerId",
+  "indexParamsColumns": "userId, playerId",
   "indexTypeMethodName": "Id",
   "indexMethodName": "arrayToObjectKey",
   "indexTypeName": "TActivePlayerSwitchProfilesRecordById",
@@ -75,24 +91,23 @@
       "optional": ""
     }
   ],
-  "sqlParamsPlaceholders": "$1",
+  "sqlFunctionName": "get_active_player_switch_profiles",
+  "sqlParamsPlaceholders": "$1, $2",
   "apiPath": "app/api/players/rpc/get-active-player-switch-profiles/[playerId]/route.ts",
   "apiPathParams": "/api/players/rpc/get-active-player-switch-profiles/${params.playerId}",
   "generateMutation": true,
   "mutationMergeOldData": false,
-  "selectedGenerators": [
-    "getMethodFetcher"
-  ],
+  "compositeDefinitions": [],
   "filesCreated": [
-    "../db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles.ts",
-    "../app/api/players/rpc/get-active-player-switch-profiles/[playerId]/route.ts",
-    "../methods/hooks/players/core/useFetchActivePlayerSwitchProfiles.ts",
-    "../methods/server-fetchers/players/core/getActivePlayerSwitchProfilesServer.ts",
-    "../methods/services/players/fetchActivePlayerSwitchProfilesService.ts",
-    "../store/atoms/getMethodFetcher/activePlayerSwitchProfilesAtom.ts",
-    "../.vscode/useActivePlayerSwitchProfiles.code-snippets",
-    "../methods/hooks/players/core/useMutateActivePlayerSwitchProfiles.ts",
-    "./answerHistory/getMethodFetcher/players_get_active_player_switch_profiles_answers.json",
-    "../methods/hooks/players/core/useFetchActivePlayerSwitchProfiles.md"
-  ]
+    "db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles.ts",
+    "app/api/players/rpc/get-active-player-switch-profiles/[playerId]/route.ts",
+    "methods/hooks/players/core/useFetchActivePlayerSwitchProfiles.ts",
+    "methods/server-fetchers/players/core/getActivePlayerSwitchProfilesServer.ts",
+    "methods/services/players/fetchActivePlayerSwitchProfilesService.ts",
+    "store/atoms/getMethodFetcher/activePlayerSwitchProfilesAtom.ts",
+    ".vscode/useActivePlayerSwitchProfiles.code-snippets",
+    "methods/hooks/players/core/useMutateActivePlayerSwitchProfiles.ts",
+    "methods/hooks/players/core/useFetchActivePlayerSwitchProfiles.md"
+  ],
+  "generatorName": "getMethodFetcher"
 }
