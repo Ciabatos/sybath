@@ -1,3 +1,5 @@
+Wyjebac AI z całego kodu, wyizolowac go w nowym projekcie tylko do generowanie reactlike componentow UI z uzyciem shadcn i swojego stylingu i tyle- moge zpaodac schematy jak ma budowac css.modules
+
 https://github.com/alexanderkasten/use-next-sse
 https://claude.ai/share/870c1173-ccc9-435f-b7c9-79e0ae203ab2
 
