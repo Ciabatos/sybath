@@ -1,0 +1,15 @@
+{
+  "choosenPath": "players",
+  "newPanelName": "CreatePlayerPanel",
+  "enumeration": "EPanelsTopCenter.ts",
+  "enumName": "EPanelsTopCenter",
+  "enumSuffix": "TopCenter",
+  "panelName": "panelTopCenter",
+  "generatorName": "createPanels",
+  "filesCreated": [
+    "components/players/CreatePlayerPanel.tsx",
+    "components/players/styles/CreatePlayerPanel.module.css",
+    "types/panels/panelTopCenter/CreatePlayerPanel.txt"
+  ],
+  "dateCreated": "2026-10-04T10:29:30.232Z"
+}

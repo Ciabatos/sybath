@@ -1,17 +1,31 @@
-## Project overview
+# AGENTS.md
 
-Medieval/fantasy multiplayer turn-based game with real-time elements.
+## Struktura projektu
 
-## Tech Stack
+- `components/players/` – panele (np. `CreatePlayerPanel.tsx`)
+- `components/players/styles/` – style paneli (`.module.css`)
+- `components/modals/` – modale (rodzice paneli)
+- `components/modals/styles/` – style modali (`.module.css`)
+- `methods/hooks/modals/` – hooki modalne (np. `useModalTopCenter`)
+- `app\globals.css` - globalne style.
 
-- **Framework**: Next.js 16+ (App Router)
-- **Language**: TypeScript
-- **Styling**: CSS Modules (per-component) RETRO STYLE
-- **Icons**: `lucide-react` `react-icons/gi`
-- **UI Primitives**: from mcp `8bitcn*`
+## Hierarchia
 
-## Project Structure
+Modal (np. ModalTopCenter) └── Panel (np. CreatePlayerPanel) ├── Sekcja A (opcjonalnie) ├── Sekcja B (opcjonalnie) └──
+...
 
-- `components/` - Contains all components
-- `components/ui` - Contains reusable primitives. To add new primitives use shadcn,shadcn . This is only for shadcn
-  library, we dont make components here, only install them from shadcn mcp
+text
+
+- **Modal** = rodzic najwyższego poziomu. Definiuje kontener, animację, pozycję.
+- **Panel** = dziecko modala. Wypełnia kontener UI.
+- **Sekcje** = opcjonalne mniejsze komponenty. Rodzicem zawsze pozostaje Panel.
+
+## Twarde zasady
+
+1. **Nie modyfikuj logiki** – nie ruszaj importów, hooków, `onClick` zamykających modal.
+2. **Nie zmieniaj modala** – modal jest tylko do odczytu (żeby poznać kontener).
+3. **UI tylko w panelu** – cały wygenerowany kod trafia do pliku panelu i jego `.module.css`.
+4. **Mockuj dane** – brak `fetch`/`axios`. Stałe w pliku panelu.
+5. **Rozbijaj na komponenty** – jeśli panel jest złożony, twórz pliki w tym samym katalogu, ale Panel pozostaje
+   rodzicem.
+6. **CSS Modules** – bez Tailwinda.
