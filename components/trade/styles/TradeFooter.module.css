@@ -1,0 +1,200 @@
+/* Stopka panelu — bilans i akcje */
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.875rem;
+  border-top: 2px solid rgba(200, 154, 74, 0.35);
+  padding-top: 0.75rem;
+}
+
+/* ---------- Banner potwierdzenia ---------- */
+
+.confirmedBanner {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  animation: bannerIn 0.35s ease-out;
+  border: 1px solid rgba(124, 179, 66, 0.5);
+  border-radius: 0.5rem;
+  background: linear-gradient(90deg, rgba(124, 179, 66, 0.18) 0%, rgba(124, 179, 66, 0.02) 100%);
+  padding: 0.5rem 0.7rem;
+}
+
+@keyframes bannerIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.confirmedIcon {
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  color: #7cb342;
+}
+
+.confirmedText {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.confirmedTitle {
+  color: #9ccc65;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.confirmedHint {
+  overflow: hidden;
+  color: #a08560;
+  font-family: "Lora", serif;
+  font-size: 0.62rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.confirmedSeal {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.2rem;
+  border: 1px solid rgba(200, 154, 74, 0.4);
+  border-radius: 0.25rem;
+  background: rgba(12, 8, 5, 0.7);
+  padding: 0.15rem 0.4rem;
+  color: #c89a4a;
+  font-size: 0.6rem;
+}
+
+.confirmedSealIcon {
+  width: 0.7rem;
+  height: 0.7rem;
+}
+
+.balanceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.balanceLabel {
+  color: #8b7355;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.balanceValue {
+  font-weight: 600;
+  font-size: 0.72rem;
+}
+
+.balanceOk {
+  color: #7cb342;
+  text-shadow: 0 0 8px rgba(124, 179, 66, 0.4);
+}
+
+.balanceWarn {
+  color: #e0a34a;
+}
+
+.actionsRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.status {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.statusText {
+  color: #d4a574;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+.statusHint {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #8b7355;
+  font-size: 0.58rem;
+}
+
+.statusIcon {
+  width: 0.65rem;
+  height: 0.65rem;
+  color: #c89a4a;
+}
+
+.timerCritical {
+  animation: timerBlink 1s infinite alternate;
+  color: #e57373;
+}
+
+@keyframes timerBlink {
+  from {
+    opacity: 0.45;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.acceptButton {
+  gap: 0.4rem;
+  border: 2px solid #5c4325;
+  border-radius: 0.375rem;
+  background: linear-gradient(180deg, #3d2e1f 0%, #241a12 100%);
+  padding: 0.45rem 1rem;
+  color: #7a6b5e;
+  font-family: "Cinzel", serif;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.acceptButton:disabled {
+  opacity: 0.55;
+}
+
+.acceptReady {
+  border-color: #c89a4a;
+  background: linear-gradient(180deg, #8b6914 0%, #5c4325 100%);
+  color: #ffd740;
+}
+
+.acceptReady:hover {
+  box-shadow: 0 0 16px rgba(200, 154, 74, 0.45);
+  background: linear-gradient(180deg, #a37c1a 0%, #6b4c29 100%);
+  color: #ffe98a;
+}
+
+.acceptIcon {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.acceptCheck {
+  width: 0.8rem;
+  height: 0.8rem;
+  opacity: 0.7;
+}
