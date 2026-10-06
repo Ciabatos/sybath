@@ -8,13 +8,12 @@ import { getBuildingsBuildingsByKeyServer } from "@/methods/server-fetchers/buil
 import { getBuildingsBuildingTypesServer } from "@/methods/server-fetchers/buildings/core/getBuildingsBuildingTypesServer"
 import { getCitiesCityTilesByKeyServer } from "@/methods/server-fetchers/cities/core/getCitiesCityTilesByKeyServer"
 import { getPlayerCityServer } from "@/methods/server-fetchers/cities/core/getPlayerCityServer"
-import { getDefaultActivePlayerServer } from "@/methods/server-fetchers/players/core/getDefaultActivePlayerServer"
-
+import { getActivePlayerServer } from "@/methods/server-fetchers/players/core/getActivePlayerServer"
 import { getWorldLandscapeTypesServer } from "@/methods/server-fetchers/world/core/getWorldLandscapeTypesServer"
 import { getWorldTerrainTypesServer } from "@/methods/server-fetchers/world/core/getWorldTerrainTypesServer"
 
 export async function getInitialPageCityData(clientCityId: number, sessionUserId: string) {
-  const activePlayer = await getDefaultActivePlayerServer({ userId: sessionUserId })
+  const activePlayer = await getActivePlayerServer({ userId: sessionUserId })
 
   if (!activePlayer || !activePlayer.raw[0]) {
     return null

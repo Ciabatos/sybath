@@ -1,0 +1,73 @@
+{
+  "promptAnswers": {
+    "schema": "players",
+    "method": "get_active_player",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "id"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": false
+  },
+  "schema": "players",
+  "method": "get_active_player",
+  "entityCamelName": "activePlayer",
+  "entityPascalName": "ActivePlayer",
+  "entityKebabName": "get-active-player",
+  "dbFunctionName": "getActivePlayer",
+  "methodTypeName": "TActivePlayer",
+  "methodParamsTypeName": "TActivePlayerParams",
+  "clientMethodParamsTypeName": "TActivePlayerClientParams",
+  "methodParamsColumns": [
+    {
+      "name": "p_user_id",
+      "camelName": "userId",
+      "tsType": "string",
+      "isJson": false
+    }
+  ],
+  "clientMethodParamsColumns": [],
+  "methodColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "pascalName": "Id",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"id\"]",
+  "indexParamsColumns": "userId",
+  "indexTypeMethodName": "Id",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TActivePlayerRecordById",
+  "indexColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "pascalName": "Id",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "sqlFunctionName": "get_active_player",
+  "sqlParamsPlaceholders": "$1",
+  "apiPath": "app/api/players/rpc/get-active-player/route.ts",
+  "apiPathParams": "/api/players/rpc/get-active-player",
+  "generateMutation": true,
+  "mutationMergeOldData": false,
+  "compositeDefinitions": [],
+  "dateCreated": "2026-10-06T20:29:41.821Z",
+  "filesCreated": [
+    "db/postgresMainDatabase/schemas/players/activePlayer.ts",
+    "app/api/players/rpc/get-active-player/route.ts",
+    "methods/hooks/players/core/useFetchActivePlayer.ts",
+    "methods/server-fetchers/players/core/getActivePlayerServer.ts",
+    "methods/services/players/fetchActivePlayerService.ts",
+    "store/atoms/getMethodFetcher/activePlayerAtom.ts",
+    ".vscode/useActivePlayer.code-snippets",
+    "methods/hooks/players/core/useMutateActivePlayer.ts",
+    "methods/hooks/players/core/useFetchActivePlayer.md"
+  ],
+  "generatorName": "getMethodFetcher"
+}

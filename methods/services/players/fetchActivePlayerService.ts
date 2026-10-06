@@ -1,18 +1,18 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - serviceGetMethodFetcher.hbs
 
 import type {
-  TDefaultActivePlayer,
-  TDefaultActivePlayerRecordById,
-  TDefaultActivePlayerParams,
-} from "@/db/postgresMainDatabase/schemas/players/defaultActivePlayer"
-import { getDefaultActivePlayer } from "@/db/postgresMainDatabase/schemas/players/defaultActivePlayer"
+  TActivePlayer,
+  TActivePlayerRecordById,
+  TActivePlayerParams,
+} from "@/db/postgresMainDatabase/schemas/players/activePlayer"
+import { getActivePlayer } from "@/db/postgresMainDatabase/schemas/players/activePlayer"
 import { createServerCache, makeCacheKey } from "@/methods/functions/util/cache"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import crypto from "crypto"
 
 type TCacheRecord = {
-  raw: TDefaultActivePlayer[]
-  byKey: TDefaultActivePlayerRecordById
+  raw: TActivePlayer[]
+  byKey: TActivePlayerRecordById
   etag: string
 }
 
@@ -26,11 +26,11 @@ type TFetchResult = {
 const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
-export async function fetchDefaultActivePlayerService(
-  params: TDefaultActivePlayerParams,
+export async function fetchActivePlayerService(
+  params: TActivePlayerParams,
   options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
-  const cacheKey = makeCacheKey("getDefaultActivePlayer", params)
+  const cacheKey = makeCacheKey("getActivePlayer", params)
   const cached = getCache(cacheKey)
   const cachedEtag = getEtag(cacheKey)
 
@@ -52,7 +52,7 @@ export async function fetchDefaultActivePlayerService(
     }
   }
 
-  const raw = await getDefaultActivePlayer(params)
+  const raw = await getActivePlayer(params)
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
   if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
@@ -64,7 +64,7 @@ export async function fetchDefaultActivePlayerService(
     }
   }
 
-  const byKey = arrayToObjectKey(["id"], raw) as TDefaultActivePlayerRecordById
+  const byKey = arrayToObjectKey(["id"], raw) as TActivePlayerRecordById
 
   const record: TCacheRecord = {
     raw,

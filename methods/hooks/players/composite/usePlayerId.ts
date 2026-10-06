@@ -5,7 +5,7 @@ import { useAtomValue } from "jotai"
 export function usePlayerId() {
   const activePlayer = useAtomValue(activePlayerAtom)
 
-  const playerId = activePlayer
-  console.log("activePlayer", activePlayer)
+  const playerId = Object.values(activePlayer)[0]?.id ?? null
+
   return { playerId }
 }

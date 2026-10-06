@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT EDIT MANUALLY - snippetHookMethod.hbs
+
+{ 
+  "Destructure useActivePlayer": {
+    "prefix": "hook_players_core_useActivePlayer",
+    "body": [
+      "useFetchActivePlayer()",
+      "const activePlayer = useActivePlayerState()"
+    ],
+    "description": "Destructuring useActivePlayer hook"
+  }
+}
