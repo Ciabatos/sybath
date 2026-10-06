@@ -1,3 +1,3 @@
 import { atom } from "jotai"
 
-export const activePlayerAtom = atom<number>(1)
+export const activePlayerAtom = atom<number | null>(null)
