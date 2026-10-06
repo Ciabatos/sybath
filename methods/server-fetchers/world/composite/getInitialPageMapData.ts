@@ -87,7 +87,7 @@ export async function getInitialPageMapData(clientMapId: number, sessionUserId: 
     terrainTypes,
     landscapeTypes,
   )
-  console.log("activePlayer", activePlayer)
+
   const atomHydrationData = createAtomHydration(
     activePlayer,
     map,
