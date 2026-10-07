@@ -2,43 +2,75 @@
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
-  gap: 0.5rem;
-  box-shadow: inset 0 2px 1px rgba(0, 0, 0, 0.5);
-  border: 2px solid #4a3426;
-  border-radius: 6px;
+  gap: 0.4rem;
+  box-shadow:
+    inset 0 2px 1px rgba(0, 0, 0, 0.5),
+    0 2px 10px rgba(0, 0, 0, 0.4);
+  border: 1px solid #4a3426;
+  border-radius: 0.375rem;
   background: #0c0805;
-  padding: 0.75rem;
+  padding: 0.6rem;
   width: 100%;
-  height: 60%;
 }
 
 .header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
   border-bottom: 1px solid #4a3426;
-  padding-bottom: 0.5rem;
-  text-align: center;
+  padding-bottom: 0.35rem;
 }
 
 .title {
   margin: 0;
   color: #c89a4a;
-  font-weight: 700;
-  font-size: 0.8rem;
   font-family: "Cinzel", serif;
-  letter-spacing: 2px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
   text-transform: uppercase;
 }
 
-.gearGrid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1px;
-  height: 100%;
+.counter {
+  margin-left: auto;
+  color: #8b7355;
+  font-family: "Cinzel", serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.emptyCell {
-  border: 1px dashed rgba(74, 52, 38, 0.4);
-  border-radius: 4px;
-  background: rgba(26, 15, 8, 0.3);
+.counter + .counter {
+  margin-left: 0;
+}
+
+/* Paper-doll: 5 kolumn x 4 wiersze */
+.gearGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.3rem;
+  width: 100%;
+}
+
+.gearGrid > * {
+  min-width: 0;
+}
+
+.gap {
+  min-height: 0;
+}
+
+/* Sloty gearowe mają proporcje kwadratowe + podpis */
+.gearGrid > *:not(.gap) {
   aspect-ratio: 1;
+}
+
+.hint {
+  margin: 0;
+  color: #6b5540;
+  font-family: "Lora", serif;
+  font-size: 0.62rem;
+  font-style: italic;
+  text-align: center;
 }

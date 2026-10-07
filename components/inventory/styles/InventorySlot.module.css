@@ -1,36 +1,80 @@
-/* Base slot — used directly by DroppableSlot inside both gear and inventory grids */
+/* Slot: komórka siatki slotów (label pod spodem) */
+
+.slotCell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+/* Slot kwadratowy wewnątrz komórki, podpis zabiera górną część wysokości */
+.slotCell > .slot {
+  flex: 1;
+  min-height: 0;
+}
+
+/* Base slot — używany przez sloty gearowe i plecakowe */
 .slot {
   display: flex;
   position: relative;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-shadow:
+    inset 0 1px 1px rgba(0, 0, 0, 0.7),
+    inset 0 -1px 1px rgba(200, 154, 74, 0.06);
+  border: 1px solid #3d2510;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #180e07 0%, #120a05 100%);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   transition:
     border-color 0.15s ease,
     background 0.15s ease,
     box-shadow 0.15s ease;
-  cursor: pointer;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.6);
-  border: 1px solid #3d2510;
-  border-radius: 1px;
-  background: #160d06;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
 }
 
-.slot:hover {
+.slotFilled {
+  cursor: grab;
+  border-color: #5a3d20;
+  background: linear-gradient(180deg, #23150a 0%, #160d06 100%);
+}
+
+.slotEmpty {
+  cursor: default;
+  border-style: dashed;
+  border-color: #33200f;
+  background: #140b05;
+}
+
+.slotFilled:hover {
   box-shadow:
     inset 0 1px 3px rgba(0, 0, 0, 0.6),
-    0 0 8px rgba(200, 154, 74, 0.25);
-  border-color: #7a5530;
-  background: #1e1008;
+    0 0 10px rgba(200, 154, 74, 0.3);
+  border-color: #8b6531;
+  background: linear-gradient(180deg, #2e1c0e 0%, #1d1108 100%);
+}
+
+.slotEmpty:hover {
+  border-color: #4a3426;
+  background: #1a1008;
 }
 
 .slot.dragOver {
-  animation: pulse 0.4s infinite alternate;
-  border-color: #5aab50;
-  background: rgba(76, 175, 80, 0.12);
+  border-color: #6fbf62;
+  box-shadow:
+    inset 0 0 12px rgba(111, 191, 98, 0.25),
+    0 0 10px rgba(111, 191, 98, 0.3);
+  background: rgba(76, 175, 80, 0.14);
+}
+
+/* Slot zaznaczony kliknięciem — podświetlenie złotą ramką */
+.slot.selected {
+  border-color: #c89a4a;
+  box-shadow:
+    inset 0 0 10px rgba(200, 154, 74, 0.2),
+    0 0 8px rgba(200, 154, 74, 0.4);
 }
 
 /* Placeholder shown when slot is empty */
@@ -46,9 +90,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0.2;
-  width: 55%;
-  height: 55%;
+  opacity: 0.18;
+  width: 58%;
+  height: 58%;
 }
 
 .placeholderIcon svg {
@@ -63,11 +107,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  cursor: grab;
   padding: 2px;
   width: 100%;
   height: 100%;
   user-select: none;
+  cursor: grab;
 }
 
 .item:active {
@@ -75,39 +119,63 @@
 }
 
 .item.dragging {
-  opacity: 0.4;
+  opacity: 0.35;
 }
 
 .itemImage {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 65%;
-  height: 65%;
+  width: 68%;
+  height: 68%;
   pointer-events: none;
 }
 
 .itemImage svg {
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.85));
   width: 100%;
   height: 100%;
 }
 
 /* Quantity badge — bottom right corner */
 .quantity {
+  display: flex;
   position: absolute;
-  right: 2px;
-  bottom: 2px;
+  right: 1px;
+  bottom: 1px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.9);
+  border: 1px solid #4a3426;
   border-radius: 2px;
-  background: rgba(10, 5, 2, 0.85);
+  background: rgba(10, 5, 2, 0.92);
   padding: 0 3px;
-  pointer-events: none;
-  color: #c89a4a;
-  font-weight: 700;
-  font-size: 0.6rem;
-  line-height: 1.4;
+  min-width: 1.1rem;
+  color: #e6b85c;
   font-family: "Cinzel", serif;
+  font-weight: 700;
+  font-size: 0.58rem;
+  line-height: 1.35;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 1);
+}
+
+/* Podpis slotu gearowego pod miniaturą */
+.slotCaption {
+  overflow: hidden;
+  flex-shrink: 0;
+  color: #8b7355;
+  font-family: "Cinzel", serif;
+  font-size: 0.52rem;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Podpis jaśniejszy, gdy w slocie coś jest */
+.slot:has(.item) + .slotCaption {
+  color: #b8955e;
 }
 
 /* Drop hint overlay */
@@ -116,21 +184,21 @@
   position: absolute;
   justify-content: center;
   align-items: center;
-  animation: pulse 0.4s infinite alternate;
+  animation: dropHintPulse 0.7s infinite alternate;
   inset: 0;
-  border-radius: 3px;
-  background: rgba(90, 171, 80, 0.15);
+  background: rgba(111, 191, 98, 0.18);
   pointer-events: none;
-  color: #5aab50;
-  font-weight: bold;
-  font-size: 1.25rem;
+  color: #8fd97f;
+  font-family: "Cinzel", serif;
+  font-weight: 700;
+  font-size: 1.1rem;
 }
 
-@keyframes pulse {
+@keyframes dropHintPulse {
   from {
     background-color: rgba(76, 175, 80, 0.1);
   }
   to {
-    background-color: rgba(76, 175, 80, 0.3);
+    background-color: rgba(76, 175, 80, 0.28);
   }
 }
