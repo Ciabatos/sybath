@@ -31,14 +31,14 @@ export default function PlayerPanel() {
       <div className={styles.panel}>
         <header className={styles.header}>
           <div className={styles.portraits}>
+            <div className={styles.playerPortrait}>
+              <PlayerPortrait imagePortrait={activePlayerProfile?.imagePortrait || null} />
+            </div>
             {squadImagePortrait && (
               <div className={styles.squadBadge}>
                 <SquadPortrait squadImagePortrait={squadImagePortrait} />
               </div>
             )}
-            <div className={styles.playerPortrait}>
-              <PlayerPortrait imagePortrait={activePlayerProfile?.imagePortrait || null} />
-            </div>
           </div>
 
           <div className={styles.headerInfo}>
@@ -68,3 +68,4 @@ export default function PlayerPanel() {
     </div>
   )
 }
+

@@ -1,10 +1,15 @@
-import OtherPlayerProfiles from "@/components/knowledge/OtherPlayerProfiles"
-import { Button } from "@/components/ui/button"
+"use client"
+
+import { KnowledgeEmpty, KnowledgeSection } from "@/components/knowledge/KnowledgeSection"
+import { KnowledgeHeroCard } from "@/components/knowledge/KnowledgeHeroCard"
+import { KnowledgeRegionCard } from "@/components/knowledge/KnowledgeRegionCard"
+import { KNOWLEDGE_EMBLEM, KNOWLEDGE_HEADER, KNOWLEDGE_SECTIONS } from "@/components/knowledge/knowledgeLayout"
+import { TKnownMapRegion } from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
+import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
 import usePlayerKnownMapRegions from "@/methods/hooks/knowledge/composite/usePlayerKnownMapRegions"
 import usePlayerKnownPlayers from "@/methods/hooks/knowledge/composite/usePlayerKnownPlayers"
-import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
-import { MapPin, Skull } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import styles from "./styles/PlayerKnowledge.module.css"
 
 export function PlayerKnowledge() {
@@ -12,132 +17,81 @@ export function PlayerKnowledge() {
   const { knownMapRegion } = usePlayerKnownMapRegions()
   const { openModalTopCenter } = useModalTopCenter()
 
-  const crimesKnowledge = [
-    {
-      icon: <Skull />,
-      title: "Murder",
-      description: "Murder of Serghios by Kako.",
-      level: "Known" as const,
-    },
-    {
-      icon: <Skull />,
-      title: "Murder",
-      description: "Murder of Pako by Kako.",
-      level: "Partial" as const,
-    },
-  ]
+  const Emblem = KNOWLEDGE_EMBLEM
+  const heroes = Object.values(playerKnownPlayers)
+  const regionGroups = Object.groupBy(Object.values(knownMapRegion), (region) => region.regionId)
+  const regionEntries = Object.entries(regionGroups).filter(
+    (entry): entry is [string, TKnownMapRegion[]] => Array.isArray(entry[1]) && entry[1].length > 0,
+  )
 
   function openOtherPlayerKnowledgeRequests() {
     openModalTopCenter(EPanelsTopCenter.OtherPlayerKnowledgeRequests)
   }
 
-  const regionGroups = Object.groupBy(Object.values(knownMapRegion), ({ regionId }) => regionId)
-
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <p className={styles.headerText}>
-          Knowledge represents what your hero has learned about the world, its locations, factions, and ancient lore.
-        </p>
-      </div>
-
-      <Button onClick={openOtherPlayerKnowledgeRequests}>Knowledge requests</Button>
-
-      <div className={styles.category}>
-        <h3 className={styles.categoryTitle}>Heroes</h3>
-        <div className={styles.categoryItems}>
-          {Object.entries(playerKnownPlayers).map(([key, player]) => (
-            <div key={key}>
-              <OtherPlayerProfiles playerProfile={player} />
-            </div>
-          ))}
+      <header className={styles.header}>
+        <span className={styles.headerEmblem}>
+          <Emblem className={styles.headerEmblemIcon} />
+        </span>
+        <div className={styles.headerInfo}>
+          <h2 className={styles.headerTitle}>{KNOWLEDGE_HEADER.title}</h2>
+          <p className={styles.headerSubtitle}>{KNOWLEDGE_HEADER.subtitle}</p>
         </div>
-      </div>
+        <Button
+          onClick={openOtherPlayerKnowledgeRequests}
+          variant='outline'
+          size='sm'
+          className={styles.requestsButton}
+        >
+          {KNOWLEDGE_HEADER.requestsLabel}
+        </Button>
+      </header>
 
-      <div className={styles.category}>
-        <h3 className={styles.categoryTitle}>Factions</h3>
-        <div className={styles.categoryItems}>
-          {crimesKnowledge.map((item, index) => (
-            <div
-              key={index}
-              className={styles.knowledgeItem}
-            >
-              <div className={styles.knowledgeIcon}>
-                <MapPin />
-              </div>
-              <div className={styles.knowledgeInfo}>
-                <div className={styles.knowledgeHeader}>
-                  <h4 className={styles.knowledgeTitle}>{item.title}</h4>
-                  <span className={`${styles.knowledgeLevel} ${styles[`level${item.level}`]}`}>{item.level}</span>
-                </div>
-                <p className={styles.knowledgeDescription}>{item.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <KnowledgeSection
+        config={KNOWLEDGE_SECTIONS.heroes}
+        count={heroes.length}
+      >
+        {heroes.length === 0 ? (
+          <KnowledgeEmpty text={KNOWLEDGE_SECTIONS.heroes.emptyText} />
+        ) : (
+          <div className={styles.heroGrid}>
+            {heroes.map((hero) => (
+              <KnowledgeHeroCard
+                key={hero.otherPlayerId}
+                player={hero}
+              />
+            ))}
+          </div>
+        )}
+      </KnowledgeSection>
 
-      <div className={styles.category}>
-        <h3 className={styles.categoryTitle}>Regions</h3>
-        {Object.entries(regionGroups).map(([regionId, regions]) => {
-          if (!regions) return null
+      <KnowledgeSection
+        config={KNOWLEDGE_SECTIONS.regions}
+        count={regionEntries.length}
+      >
+        {regionEntries.length === 0 ? (
+          <KnowledgeEmpty text={KNOWLEDGE_SECTIONS.regions.emptyText} />
+        ) : (
+          <div className={styles.regionList}>
+            {regionEntries.map(([regionId, regions]) => (
+              <KnowledgeRegionCard
+                key={regionId}
+                regionName={regions[0].regionName}
+                tiles={regions}
+              />
+            ))}
+          </div>
+        )}
+      </KnowledgeSection>
 
-          const firstRegion = regions[0]
+      <KnowledgeSection config={KNOWLEDGE_SECTIONS.factions}>
+        <KnowledgeEmpty text={KNOWLEDGE_SECTIONS.factions.emptyText} />
+      </KnowledgeSection>
 
-          return (
-            <div
-              key={regionId}
-              className={styles.regionGroup}
-            >
-              <h4 className={styles.regionName}>{firstRegion.regionName}</h4>
-
-              {regions.map((region) => (
-                <div
-                  key={`${region.mapId}${region.mapTileX}${region.mapTileY}`}
-                  className={styles.knowledgeItem}
-                >
-                  <div className={styles.knowledgeIcon}>
-                    <MapPin />
-                  </div>
-
-                  <div className={styles.knowledgeInfo}>
-                    <div className={styles.knowledgeHeader}>
-                      <h4 className={styles.knowledgeTitle}>
-                        Tile ({region.mapTileX}, {region.mapTileY})
-                      </h4>
-                    </div>
-
-                    <p className={styles.knowledgeDescription}>Map ID: {region.mapId}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )
-        })}
-      </div>
-
-      <div className={styles.category}>
-        <h3 className={styles.categoryTitle}>Crimes</h3>
-        <div className={styles.categoryItems}>
-          {crimesKnowledge.map((item, index) => (
-            <div
-              key={index}
-              className={styles.knowledgeItem}
-            >
-              <div className={styles.knowledgeIcon}>
-                <MapPin />
-              </div>
-              <div className={styles.knowledgeInfo}>
-                <div className={styles.knowledgeHeader}>
-                  <h4 className={styles.knowledgeTitle}>{item.title}</h4>
-                  <span className={`${styles.knowledgeLevel} ${styles[`level${item.level}`]}`}>{item.level}</span>
-                </div>
-                <p className={styles.knowledgeDescription}>{item.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <KnowledgeSection config={KNOWLEDGE_SECTIONS.crimes}>
+        <KnowledgeEmpty text={KNOWLEDGE_SECTIONS.crimes.emptyText} />
+      </KnowledgeSection>
     </div>
   )
 }
