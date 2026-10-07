@@ -10,11 +10,9 @@ import SquadPortrait from "@/components/squad/SquadPortrait"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useModalLeftTopBar } from "@/methods/hooks/modals/useModalLeftTopBar"
-import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
 import { useActivePlayerProfile } from "@/methods/hooks/players/composite/useActivePlayerProfile"
 import { usePlayerSquad } from "@/methods/hooks/squad/composite/usePlayerSquad"
 import { EPanelsLeftTopBar } from "@/types/enumeration/EPanelsLeftTopBar"
-import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { X } from "lucide-react"
 import styles from "./styles/PlayerPanel.module.css"
 
@@ -22,13 +20,6 @@ export default function PlayerPanel() {
   const { openModalLeftTopBar } = useModalLeftTopBar()
   const { activePlayerProfile } = useActivePlayerProfile()
   const { activePlayerSquad } = usePlayerSquad()
-  const { openModalTopCenter } = useModalTopCenter()
-  // const { resetModalTopCenter } = useModalTopCenter()
-
-  // resetModalTopCenter()
-  function openCreatePlayerPanel() {
-    openModalTopCenter(EPanelsTopCenter.CreatePlayerPanel)
-  }
 
   function onClose() {
     openModalLeftTopBar(EPanelsLeftTopBar.PlayerRibbonTop)
@@ -41,9 +32,6 @@ export default function PlayerPanel() {
   return (
     <div className={styles.panelsContainer}>
       <div className={styles.panel}>
-        <Button onClick={openCreatePlayerPanel}>
-          <p>openCreatePlayerPanel</p>
-        </Button>
         <Button
           onClick={onClose}
           className={styles.closeButton}
