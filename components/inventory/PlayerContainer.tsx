@@ -1,16 +1,18 @@
 "use client"
 
-import { InventoryInspector } from "@/components/inventory/InventoryInspector"
 import { InventorySection } from "@/components/inventory/InventorySection"
 import { TInventorySlot } from "@/components/inventory/InventorySlot"
 import { BAG_SECTION } from "@/components/inventory/inventoryLayout"
 import { usePlayerInventory } from "@/methods/hooks/inventory/composite/usePlayerInventory"
-import { useState } from "react"
 import styles from "./styles/PlayerContainer.module.css"
 
-export function PlayerContainer() {
+type TProps = {
+  selected?: TInventorySlot | null
+  onSelect?: (slot: TInventorySlot) => void
+}
+
+export function PlayerContainer({ selected, onSelect }: TProps) {
   const { combinedPlayerInventory } = usePlayerInventory()
-  const [selectedSlot, setSelectedSlot] = useState<TInventorySlot | null>(null)
 
   const usedSlots = combinedPlayerInventory.filter((slot) => slot.itemId).length
   const totalUnits = combinedPlayerInventory.reduce(
@@ -27,12 +29,8 @@ export function PlayerContainer() {
         slots={combinedPlayerInventory}
         usedSlots={usedSlots}
         totalUnits={totalUnits}
-        selected={selectedSlot}
-        onSelect={setSelectedSlot}
-      />
-      <InventoryInspector
-        slot={selectedSlot}
-        emptyHint='Select an item to read its description'
+        selected={selected}
+        onSelect={onSelect}
       />
     </div>
   )

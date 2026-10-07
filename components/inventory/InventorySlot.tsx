@@ -94,7 +94,14 @@ function SlotFrame({
         } ${isDropTarget ? styles.dragOver : ""}`}
       >
         {children}
-        {isDropTarget && !view.hasItem && <div className={styles.dropHint} aria-hidden>+</div>}
+        {isDropTarget && !view.hasItem && (
+          <div
+            className={styles.dropHint}
+            aria-hidden
+          >
+            +
+          </div>
+        )}
       </div>
       {view.slotLabel && <span className={styles.slotCaption}>{view.slotLabel}</span>}
     </div>
@@ -111,23 +118,24 @@ export function InventorySlot({ inventory, placeholderIcon, slotLabel, selected,
   const view: TSlotView = {
     hasItem,
     icon: hasItem && inventory ? getIcon(inventory.image) : placeholderIcon ? getIcon(placeholderIcon) : null,
-    title: hasItem && inventory ? inventory.name : slotLabel ?? "Empty slot",
+    title: hasItem && inventory ? inventory.name : (slotLabel ?? "Empty slot"),
     description: hasItem ? inventory?.description : undefined,
     quantity: inventory?.quantity ?? 0,
     slotLabel,
   }
 
-  const body = hasItem && inventory ? (
-    <DraggableItem
-      id={`item-${inventory.containerId}-${inventory.slotId}`}
-      inventory={inventory}
-      onDraggingChange={handleDraggingChange}
-    />
-  ) : (
-    <div className={styles.placeholder}>
-      {placeholderIcon && <span className={styles.placeholderIcon}>{getIcon(placeholderIcon)}</span>}
-    </div>
-  )
+  const body =
+    hasItem && inventory ? (
+      <DraggableItem
+        id={`item-${inventory.containerId}-${inventory.slotId}`}
+        inventory={inventory}
+        onDraggingChange={handleDraggingChange}
+      />
+    ) : (
+      <div className={styles.placeholder}>
+        {placeholderIcon && <span className={styles.placeholderIcon}>{getIcon(placeholderIcon)}</span>}
+      </div>
+    )
 
   // Slot bez rekordu w bazie nie może przyjąć upuszczonego przedmiotu — brakuje danych
   // wymaganych przez `useInventoryMonitor` (m.in. containerId i slotTypeId).
