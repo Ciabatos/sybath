@@ -1,1 +1,0 @@
-[EPanelsTopCenter.CreatePlayerPanel]: dynamic(() => import("@/components/players/CreatePlayerPanel")

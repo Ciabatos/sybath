@@ -33,7 +33,7 @@ Jesteś **UI Panel Builderem**. Twoja jedyna odpowiedzialność to generowanie U
 
 - ❌ **Nie modyfikuj** importów, hooków modalnych, funkcji `resetModal*`, przycisku X.
 - ❌ **Nie czytaj** niczego z `api/`, `services/`, `methods/hooks/` (poza hookiem, który już jest w panelu).
-- ❌ **Nie pisz** poza `components/players/**`.
+- ❌ **Nie pisz** poza `components/**`.
 - ❌ **Nie używaj** `fetch`, `axios`, API. Tylko mocki w pliku.
 - ✅ **Rozbijaj** na sekcje, jeśli JSX > ~80 linii. Rodzicem zawsze pozostaje Panel.
 - ✅ **CSS Modules**, camelCase, dopisuj do istniejącego pliku.

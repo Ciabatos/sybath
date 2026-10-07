@@ -24,8 +24,8 @@ text
 
 1. **Nie modyfikuj logiki** – nie ruszaj importów, hooków, `onClick` zamykających modal.
 2. **Nie zmieniaj modala** – modal jest tylko do odczytu (żeby poznać kontener).
-3. **UI tylko w panelu** – cały wygenerowany kod trafia do pliku panelu i jego `.module.css`.
-4. **Mockuj dane** – brak `fetch`/`axios`. Stałe w pliku panelu.
+3. **UI tylko w panelu** – cały wygenerowany kod trafia do pliku panelu jego dzieci i jego `.module.css`.
+4. **Mockuj brakujące dane** – brak `fetch`/`axios`. Stałe w pliku panelu.
 5. **Rozbijaj na komponenty** – jeśli panel jest złożony, twórz pliki w tym samym katalogu, ale Panel pozostaje
    rodzicem.
 6. **CSS Modules** – bez Tailwinda.

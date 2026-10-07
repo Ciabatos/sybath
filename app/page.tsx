@@ -2,6 +2,7 @@
 import { SignInButton } from "@/components/login/SignInButton"
 import { SignOutButton } from "@/components/login/SignOutButton"
 import { SignUpButton } from "@/components/login/SignUpButton"
+import CreateNewPlayer from "@/components/players/CreateNewPlayer"
 import { auth } from "@/lib/auth"
 import { headers } from "next/headers"
 import Link from "next/link"
@@ -24,6 +25,7 @@ export default async function HomePage() {
     <div className={styles.main}>
       <div>PlayerId: {sessionUserId}</div>
       <SignOutButton />
+      <CreateNewPlayer />
       <Link href='/map/1'>Play !</Link>
     </div>
   )

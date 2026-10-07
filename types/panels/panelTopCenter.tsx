@@ -6,9 +6,6 @@ import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 
 export const panelTopCenter: Record<EPanelsTopCenter, React.ComponentType<any> | null> = {
   [EPanelsTopCenter.Inactive]: null,
-  [EPanelsTopCenter.CreatePlayerPanel]: dynamic(() => import("@/components/players/CreatePlayerPanel"), {
-    loading: () => <p>Ładowanie panelu gracza...</p>,
-  }),
   [EPanelsTopCenter.OtherPlayerKnowledgeRequests]: dynamic(() => import("@/components/knowledge/OtherPlayerKnowledgeRequests"), {
     loading: () => <p>Ładowanie panelu gracza...</p>,
   }),
