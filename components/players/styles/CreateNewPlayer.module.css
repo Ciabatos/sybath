@@ -1,92 +1,175 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    inset 0 4px 8px rgba(0, 0, 0, 0.6),
+    inset 0 -2px 8px rgba(0, 0, 0, 0.4),
+    0 12px 40px rgba(0, 0, 0, 0.95);
+  border: 3px solid #c89a4a;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #0c0a09 0%, #1a1410 50%, #0f0c0a 100%);
+  padding: 1.75rem;
+  width: 24rem;
+}
+
 .form {
   display: flex;
   flex-direction: column;
+  gap: 1.25rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
   gap: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  background-color: #ffffff;
-  padding: 1.5rem;
-  max-width: 400px;
-  font-family:
-    system-ui,
-    -apple-system,
-    sans-serif;
+  border-bottom: 2px solid #c89a4a;
+  padding-bottom: 1rem;
+}
+
+.headerIcon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(200, 154, 74, 0.25);
+  border: 2px solid #c89a4a;
+  border-radius: 0.5rem;
+  background: rgba(200, 154, 74, 0.1);
+  width: 2.75rem;
+  height: 2.75rem;
+  color: #c89a4a;
+}
+
+.headerIconGlyph {
+  width: 1.375rem;
+  height: 1.375rem;
+}
+
+.headerInfo {
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
-  margin: 0 0 0.5rem 0;
-  color: #111827;
-  font-weight: 600;
-  font-size: 1.25rem;
+  margin: 0;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+  color: #c89a4a;
+  font-weight: 700;
+  font-size: 1.375rem;
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.02em;
+}
+
+.subtitle {
+  margin: 0;
+  color: rgba(200, 154, 74, 0.7);
+  font-size: 0.8rem;
+  font-family: "Lora", serif;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.4rem;
 }
 
 .label {
-  color: #374151;
-  font-weight: 500;
-  font-size: 0.875rem;
+  color: #d4a574;
+  font-weight: 600;
+  font-size: 0.8rem;
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .input {
-  transition:
-    border-color 0.15s ease,
-    box-shadow 0.15s ease;
-  outline: none;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  background-color: #fff;
-  padding: 0.6rem 0.75rem;
-  color: #111827;
-  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  border: 2px solid rgba(120, 53, 15, 0.6);
+  border-radius: 0.5rem;
+  background-color: rgba(12, 10, 9, 0.8);
+  height: 2.5rem;
+  color: #e6c998;
+  font-family: "Lora", serif;
 }
 
-.input:focus {
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-  border-color: #2563eb;
+.input::placeholder {
+  color: rgba(200, 154, 74, 0.4);
+  font-style: italic;
+}
+
+.input:focus-visible {
+  border-color: #c89a4a;
+  box-shadow:
+    0 0 0 3px rgba(200, 154, 74, 0.2),
+    inset 0 1px 0 rgba(200, 154, 74, 0.2);
+  color: #e6c998;
 }
 
 .input:disabled {
   cursor: not-allowed;
-  background-color: #f3f4f6;
+  background-color: rgba(28, 25, 23, 0.6);
+  color: rgba(200, 154, 74, 0.5);
 }
 
 .button {
-  transition:
-    background-color 0.15s ease,
-    transform 0.05s ease;
-  cursor: pointer;
-  margin-top: 0.5rem;
-  border: none;
-  border-radius: 8px;
-  background-color: #2563eb;
-  padding: 0.7rem 1rem;
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  border: 2px solid #c89a4a;
+  border-radius: 0.5rem;
+  background: linear-gradient(180deg, #d4a574 0%, #c89a4a 50%, #a67c3c 100%);
+  height: 2.75rem;
+  color: #0c0a09;
+  font-weight: 700;
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .button:hover:not(:disabled) {
-  background-color: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(200, 154, 74, 0.4);
+  filter: brightness(1.08);
 }
 
 .button:active:not(:disabled) {
-  transform: scale(0.98);
+  transform: translateY(0);
+  box-shadow: none;
 }
 
 .button:disabled {
   cursor: not-allowed;
-  background-color: #93c5fd;
+  filter: grayscale(0.5) brightness(0.8);
+}
+
+.buttonIcon {
+  width: 1rem;
+  height: 1rem;
 }
 
 .message {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
   margin: 0;
-  color: #059669;
-  font-size: 0.875rem;
-  text-align: center;
+  border: 1px solid rgba(200, 154, 74, 0.35);
+  border-radius: 0.5rem;
+  background-color: rgba(120, 53, 15, 0.25);
+  padding: 0.5rem 0.75rem;
+  color: #e6c998;
+  font-size: 0.8rem;
+  font-family: "Lora", serif;
+}
+
+.messageIcon {
+  flex-shrink: 0;
+  width: 0.875rem;
+  height: 0.875rem;
+  color: #c89a4a;
 }
