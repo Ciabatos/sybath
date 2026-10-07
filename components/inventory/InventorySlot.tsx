@@ -1,6 +1,6 @@
 import getIcon from "@/methods/functions/icons/getIcon"
 import { useDraggable, useDroppable } from "@dnd-kit/react"
-import { ReactNode, useId } from "react"
+import { ReactNode } from "react"
 import styles from "./styles/InventorySlot.module.css"
 
 export type TInventorySlot = {
@@ -77,8 +77,8 @@ function DraggableItem({ id, inventory }: { id: string; inventory: TInventorySlo
 // Główny komponent InventorySlot używający oddzielnych komponentów
 export function InventorySlot({ inventory, placeholderIcon }: TProps) {
   const hasItem = inventory?.itemId
-  const uniqueId = useId()
-  const slotId = `slot-${inventory?.containerId}-${inventory?.slotId}-${uniqueId}`
+
+  const slotId = `slot-${inventory?.containerId}-${inventory?.slotId}`
 
   return (
     <DroppableSlot
@@ -88,7 +88,7 @@ export function InventorySlot({ inventory, placeholderIcon }: TProps) {
     >
       {hasItem && inventory && (
         <DraggableItem
-          id={`item-${inventory.containerId}-${inventory.slotId}-${uniqueId}`}
+          id={`item-${inventory.containerId}-${inventory.slotId}`}
           inventory={inventory}
         />
       )}
