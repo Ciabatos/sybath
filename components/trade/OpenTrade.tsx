@@ -3,6 +3,7 @@
 "use client"
 import { Button } from "@/components/ui/button"
 import { useOpenTrade } from "@/methods/hooks/trade/composite/useOpenTrade"
+import { Handshake } from "lucide-react"
 import styles from "./styles/OpenTrade.module.css"
 
 type TOpenTradeProps = {
@@ -21,8 +22,10 @@ export default function OpenTrade({ onClose }: TOpenTradeProps) {
     <Button
       className={styles.actionButton}
       onClick={handleClick}
+      variant='outline'
     >
-      OpenTrade
+      <Handshake className={styles.actionIcon} />
+      Trade
     </Button>
   )
 }

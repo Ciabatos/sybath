@@ -4,6 +4,7 @@
 import { Button } from "@/components/ui/button"
 import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
 import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
+import { ScrollText } from "lucide-react"
 import styles from "./styles/OpenTrades.module.css"
 
 type TOpenTradesProps = {
@@ -22,8 +23,10 @@ export default function OpenTrades({ onClose }: TOpenTradesProps) {
     <Button
       className={styles.actionButton}
       onClick={handleClick}
+      variant='outline'
     >
-      OpenTrades
+      <ScrollText className={styles.actionIcon} />
+      Trades
     </Button>
   )
 }
