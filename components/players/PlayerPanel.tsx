@@ -34,13 +34,14 @@ export default function PlayerPanel() {
             <div className={styles.playerPortrait}>
               <PlayerPortrait imagePortrait={activePlayerProfile?.imagePortrait || null} />
             </div>
+          </div>
+          <div className={styles.portraits}>
             {squadImagePortrait && (
               <div className={styles.squadBadge}>
                 <SquadPortrait squadImagePortrait={squadImagePortrait} />
               </div>
             )}
           </div>
-
           <div className={styles.headerInfo}>
             <h2 className={styles.heroName}>
               {name} {secondName}

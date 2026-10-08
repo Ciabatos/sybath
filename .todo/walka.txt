@@ -36,6 +36,9 @@ Gry:
 -kenshi
 -Shadows of Forbidden Gods
 -Soulash 2
+-BOC: Birth of Cultures
+-Antimatter
+-Feudums
 
 fazy walki clashu (moze wiecej niz jedna runda do kazdego)
 attak / defend
