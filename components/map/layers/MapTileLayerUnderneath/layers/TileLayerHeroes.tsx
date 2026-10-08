@@ -37,9 +37,7 @@ export default function TileLayerHeroes({ tile, showDetail }: TProps) {
         className={styles.badge}
         title={`${count} ${count === 1 ? "hero" : "heroes"} on this tile`}
       >
-        {/* W bazie ikona „grupy". W warstwie szczegółowej portretów jest
-            wystarczająco dużo, więc zostaje sama liczba. */}
-        {!showDetail && <Users className={styles.badgeIcon} />}
+        <Users className={styles.badgeIcon} />
         <span className={styles.badgeValue}>{count}</span>
       </span>
 
@@ -54,9 +52,7 @@ export default function TileLayerHeroes({ tile, showDetail }: TProps) {
               data-collapsed={index >= MAX_DETAIL_ROW}
               data-squad={other.inSquad}
               style={{
-                backgroundImage: other.inSquad
-                  ? createSquadImage(other.imageMap)
-                  : createPlayerImage(other.imageMap),
+                backgroundImage: other.inSquad ? createSquadImage(other.imageMap) : createPlayerImage(other.imageMap),
               }}
             />
           ))}

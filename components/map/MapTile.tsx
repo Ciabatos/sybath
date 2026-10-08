@@ -1,6 +1,6 @@
 "use client"
 
-import MapTileLayerUnderneathHandling from "@/components/map/layers/mapTileLayers/MapTileLayerUnderneathHandling"
+import MapTileLayerUnderneathHandling from "@/components/map/layers/MapTileLayerUnderneath/MapTileLayerUnderneathHandling"
 import style from "@/components/map/styles/MapTile.module.css"
 import { createImage } from "@/methods/functions/util/createImage"
 import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"

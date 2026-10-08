@@ -1,111 +1,97 @@
 "use client"
 
 import { TKnownMapRegion } from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
-import { buildRegionOutline, orderEdgesToPolygon } from "@/methods/functions/map/layers/buildRegions"
+import { buildRegionLoops, loopToPolygonPath, tileCentroid } from "@/methods/functions/map/layers/regionOutline"
 import { useRegionLayerProvince } from "@/methods/hooks/world/composite/useRegionLayerProvince"
+import { useMemo } from "react"
 import style from "./styles/RegionLayer.module.css"
 
 const TILE_SIZE = 64
 
+/**
+ * Obrys regionów.
+ *
+ * Każda pętla rysowana jest dwukrotnie: grubsza ciemna „obwódka" pod węższą
+ * złotą linią. Dzięki temu obrys czytelny jest nad każdym terenem — dokładnie
+ * tak, jak linia kartograficzna na mapie.
+ *
+ * Poprzednia wersja rysowała `stroke` o podwójnej szerokości i próbowała wyciąć
+ * wnętrze `clipPath`, żeby zostało tylko „zewnętrzne pół". `clipPath` z samym
+ * wielokątem zachowuje jednak WNĄTRZE, więc przetrwało właśnie wewnętrzne pół —
+ * efekt był odwrotny do zamierzonego.
+ */
 export default function RegionLayerProvince() {
-  //zamienic na provincesRegion
   const { knownMapRegion } = useRegionLayerProvince()
-  const tilesByRegion: Record<number, TKnownMapRegion[]> = {}
 
-  Object.values(knownMapRegion).forEach((tile) => {
-    const id = tile.regionId
+  const regions = useMemo(() => {
+    const tilesByRegion: Record<number, TKnownMapRegion[]> = {}
 
-    if (!id || id <= 0) return
+    Object.values(knownMapRegion).forEach((tile) => {
+      const id = tile.regionId
 
-    if (!tilesByRegion[id]) {
-      tilesByRegion[id] = []
-    }
+      if (!id || id <= 0) return
 
-    tilesByRegion[id].push({
-      ...tile,
-      mapTileX: tile.mapTileX - 1,
-      mapTileY: tile.mapTileY - 1,
+      if (!tilesByRegion[id]) tilesByRegion[id] = []
+
+      tilesByRegion[id].push({
+        ...tile,
+        // Przesunięcie o 1 z oryginalnej wersji — nie zmieniam go, bo nie da się
+        // zweryfikować pochodzenia bez bazy. Jeśli obrys jest przesunięty o
+        // kafel, to jest to miejsce do poprawki.
+        mapTileX: tile.mapTileX - 1,
+        mapTileY: tile.mapTileY - 1,
+      })
     })
-  })
 
-  if (!Object.keys(tilesByRegion).length) return null
+    return Object.entries(tilesByRegion)
+      .map(([regionId, tiles]) => {
+        const loops = buildRegionLoops(tiles, TILE_SIZE)
+
+        return {
+          regionId: Number(regionId),
+          name: tiles[0]?.regionName,
+          paths: loops.map((loop) => loopToPolygonPath(loop)).filter(Boolean),
+          label: tileCentroid(tiles, TILE_SIZE),
+        }
+      })
+      .filter((region) => region.paths.length > 0)
+  }, [knownMapRegion])
+
+  if (!regions.length) return null
 
   return (
     <svg className={style.Layer}>
-      <defs>
-        {/* Plażowy pattern */}
-        <pattern
-          id='beachPattern'
-          patternUnits='userSpaceOnUse'
-          width='64'
-          height='64'
-        >
-          <image
-            href='/terrainTypePicture/beach.png'
-            x='0'
-            y='0'
-            width='64'
-            height='64'
-          />
-        </pattern>
+      {regions.map(({ regionId, paths }) => (
+        <g key={regionId}>
+          {paths.map((d) => (
+            <g key={d}>
+              {/* Obwódka — ciemna, grubsza, żeby linia nie ginęła na terenie. */}
+              <path className={style.casing} d={d} />
+              {/* Właściwa linia. */}
+              <path className={style.line} d={d} />
+            </g>
+          ))}
+        </g>
+      ))}
 
-        {/* Filter falowania */}
-        <filter id='wavy'>
-          <feTurbulence
-            type='fractalNoise'
-            baseFrequency='0.3'
-            numOctaves='6'
-            result='noise'
-          />
-          <feDisplacementMap
-            in2='noise'
-            in='SourceGraphic'
-            scale='6'
-          />
-        </filter>
-      </defs>
-
-      {Object.entries(tilesByRegion).map(([regionIdStr, tiles]) => {
-        const regionId = Number(regionIdStr)
-        const imageOutline = tiles[0]?.imageOutline
-        // `imageOutline` jest w bazie pustym stringiem, a `stroke=""` to brak
-        // obrysu — warstwa regionów była wtedy niewidoczna i przełącznik
-        // wyglądał na zepsuty. Złoty kolor to tylko domyślny fallback.
-        const outline = imageOutline || "#c89a4a"
-        const edges = buildRegionOutline(tiles, TILE_SIZE)
-        const polygon = orderEdgesToPolygon(edges)
-        let finalPolygon = polygon
-
-        if (
-          polygon.length &&
-          (polygon[0].x !== polygon[polygon.length - 1].x || polygon[0].y !== polygon[polygon.length - 1].y)
-        ) {
-          finalPolygon = [...polygon, polygon[0]]
-        }
-        const points = finalPolygon.map((p) => `${p.x},${p.y}`).join(" ")
-        const clipId = `clip-region-${regionId}`
-
-        return (
-          <g key={regionId}>
-            <defs>
-              <clipPath id={clipId}>
-                <polygon points={points} />
-              </clipPath>
-            </defs>
-
-            {/* Stroke z podwojoną grubością, przycięty do ZEWNĄTRZ przez inwersję */}
-            {/* Trick: rysujemy stroke 2x grubszy, clipPath wycina wnętrze → zostaje tylko zewnętrzny stroke */}
-            <polygon
-              points={points}
-              fill='none'
-              stroke={outline}
-              strokeWidth={8} // 2x docelowa grubość
-              strokeLinejoin='round'
-              clipPath={`url(#${clipId})`}
-            />
-          </g>
-        )
-      })}
+      {regions.map(({ regionId, name, label }) =>
+        name && label ? (
+          <text
+            key={`label-${regionId}`}
+            className={style.label}
+            x={label.x}
+            y={label.y}
+            /*
+              Siatka `.Tiles` to `rotate(-45deg) skew(15deg,15deg)`, więc odwrócenie
+              to `skew(-15deg,-15deg) rotate(45deg)`. SVG składa listę
+              transformów od lewej do prawej, więc kolejność musi być dokładnie taka.
+            */
+            transform={`skew(-15 -15 ${label.x} ${label.y}) rotate(45 ${label.x} ${label.y})`}
+          >
+            {name}
+          </text>
+        ) : null,
+      )}
     </svg>
   )
 }

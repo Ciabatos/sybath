@@ -1,4 +1,4 @@
-import MapTileLayers from "@/components/map/layers/mapTileLayers/layers/MapTileLayers"
+import MapTileLayers from "@/components/map/layers/MapTileLayerUnderneath/layers/MapTileLayers"
 import MapBase from "@/components/map/layers/mapLayers/MapBase"
 import { useMapHandling } from "@/methods/hooks/world/composite/useMapHandling"
 import { useResourcesLayer } from "@/methods/hooks/world/composite/useResourcesLayer"

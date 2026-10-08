@@ -1,6 +1,6 @@
 "use client"
 
-import TileLayerPlayerMovementPlanned from "@/components/map/layers/mapTileLayers/layers/TileLayerPlayerMovementPlanned"
+import TileLayerPlayerMovementPlanned from "@/components/map/layers/MapTileLayerUnderneath/layers/TileLayerPlayerMovementPlanned"
 import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
 
 /**

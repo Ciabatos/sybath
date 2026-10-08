@@ -4,3 +4,45 @@
   overflow: visible;
   pointer-events: none;
 }
+
+/*
+  Obrys rysowany jest dwukrotnie: grubsza ciemna obwódka pod węższą złotą
+  linią. Bez ciemnego podsadzenia złota linia ginie na jasnym terenie —
+  to jak „casing" w typografii kartograficznej.
+
+  `miter` + wyższy limit, żeby kąty proste schodów były ostre. `round`
+  zaokrąglał każdy narożnik i przy tej skali siatki obrys czytał się jako plamy.
+*/
+
+.casing {
+  fill: none;
+  stroke: #0d0704;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+  stroke-miterlimit: 8;
+  stroke-width: 6;
+}
+
+.line {
+  fill: none;
+  stroke: #e0b463;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+  stroke-miterlimit: 8;
+  stroke-width: 2.5;
+}
+
+/* Nazwa regionu — liczona z obszaru kafelków, więc nie wychodzi poza region. */
+.label {
+  fill: #f2dcb4;
+  stroke: #0d0704;
+  stroke-width: 3px;
+  paint-order: stroke;
+  font-family: "Cinzel", serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  pointer-events: none;
+}

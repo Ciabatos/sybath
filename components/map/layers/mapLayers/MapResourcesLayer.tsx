@@ -1,5 +1,5 @@
 import MapBase from "@/components/map/layers/mapLayers/MapBase"
-import ResourcesLayer from "@/components/map/layers/mapTileLayers/layers/ResourcesLayer"
+import ResourcesLayer from "@/components/map/layers/MapTileLayerUnderneath/layers/ResourcesLayer"
 import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
 import { useResourcesLayer } from "@/methods/hooks/world/composite/useResourcesLayer"
 
@@ -18,9 +18,7 @@ export default function MapResourcesLayer({ mapTiles }: TProps) {
     <MapBase
       mapTiles={mapTiles}
       renderLayers={(tile) => (
-        <ResourcesLayer
-          knownMapTilesResourcesOnMap={combinedResourcesOnMap[`${tile.mapTiles.x},${tile.mapTiles.y}`]}
-        />
+        <ResourcesLayer knownMapTilesResourcesOnMap={combinedResourcesOnMap[`${tile.mapTiles.x},${tile.mapTiles.y}`]} />
       )}
     />
   )
