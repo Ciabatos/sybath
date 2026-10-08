@@ -1,0 +1,86 @@
+/* Współdzielone style dla sześciu przycisków akcji MapTileDetail.
+   Każdy z sześciu plików *ButtonPlan/Confirm/Cancel.module.css był pusty
+   (sama linia komentarza), przez co `styles.actionButton` było `undefined`. */
+
+.actionButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  touch-action: manipulation;
+  border-radius: 0.3rem;
+  width: 100%;
+  font-family: "Cinzel", serif;
+  font-weight: 600;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.actionButton:focus-visible {
+  outline: 2px solid #c89a4a;
+  outline-offset: 1px;
+}
+
+/* Akcja główna — złota, wyróżniona */
+.primary {
+  border-color: #8b6531;
+  background: linear-gradient(180deg, rgba(200, 154, 74, 0.28) 0%, rgba(122, 85, 37, 0.22) 100%);
+  color: #e6b85c;
+}
+
+.primary:hover {
+  border-color: #c89a4a;
+  background: linear-gradient(180deg, rgba(200, 154, 74, 0.4) 0%, rgba(122, 85, 37, 0.3) 100%);
+  color: #f0cd82;
+}
+
+/* Akcje drugorzędne — brzeg bronzowy */
+.secondary {
+  border-color: #6b4f2a;
+  background: linear-gradient(180deg, rgba(60, 36, 21, 0.7) 0%, rgba(26, 15, 8, 0.85) 100%);
+  color: #c89a4a;
+}
+
+.secondary:hover {
+  border-color: #c89a4a;
+  background: linear-gradient(180deg, rgba(90, 55, 30, 0.8) 0%, rgba(43, 24, 16, 0.9) 100%);
+  color: #e6b85c;
+}
+
+/* Anulowanie — bez wypełnienia */
+.ghost {
+  border-color: transparent;
+  background: transparent;
+  color: #8b7355;
+}
+
+.ghost:hover {
+  border-color: #4a3426;
+  background: rgba(74, 52, 38, 0.35);
+  color: #c89a4a;
+}
+
+/* Akcje bez logiki za sobą (Set Camp, Hunt, ...) — tylko do odczytu */
+.disabled {
+  cursor: not-allowed;
+  border-color: #3d2510;
+  background: rgba(26, 15, 8, 0.5);
+  color: #5a4022;
+}
+
+.disabled:hover {
+  border-color: #3d2510;
+  background: rgba(26, 15, 8, 0.5);
+  color: #5a4022;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .actionButton {
+    transition: none;
+  }
+}

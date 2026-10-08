@@ -3,7 +3,7 @@
 "use client"
 import { Button } from "@/components/ui/button"
 import { usePlayerExploration } from "@/methods/hooks/players/composite/usePlayerExploration"
-import styles from "./styles/ExploreButtonCancel.module.css"
+import styles from "./styles/MapActionButton.module.css"
 
 type TExploreButtonCancelProps = {
   onClose?: () => void
@@ -19,10 +19,10 @@ export default function ExploreButtonCancel({ onClose }: TExploreButtonCancelPro
 
   return (
     <Button
-      className={styles.actionButton}
+      className={`${styles.actionButton} ${styles.ghost}`}
       onClick={handleClick}
     >
-      ExploreButtonCancel
+      Cancel
     </Button>
   )
 }

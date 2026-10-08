@@ -3,7 +3,7 @@
 "use client"
 import { Button } from "@/components/ui/button"
 import { usePlayerExploration } from "@/methods/hooks/players/composite/usePlayerExploration"
-import styles from "./styles/ExploreButtonPlan.module.css"
+import styles from "./styles/MapActionButton.module.css"
 
 type TExploreButtonPlanProps = {
   onClose?: () => void
@@ -19,10 +19,10 @@ export default function ExploreButtonPlan({ onClose }: TExploreButtonPlanProps) 
 
   return (
     <Button
-      className={styles.actionButton}
+      className={`${styles.actionButton} ${styles.secondary}`}
       onClick={handleClick}
     >
-      ExploreButtonPlan
+      Plan Explore
     </Button>
   )
 }

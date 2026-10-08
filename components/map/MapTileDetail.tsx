@@ -8,8 +8,8 @@ import MoveButtonCancel from "@/components/map/MoveButtonCancel"
 import MoveButtonConfirm from "@/components/map/MoveButtonConfirm"
 import MoveButtonPlan from "@/components/map/MoveButtonPlan"
 import { Button } from "@/components/ui/button"
-import { Field, FieldLabel } from "@/components/ui/field"
 import { Progress } from "@/components/ui/progress"
+import getIcon from "@/methods/functions/icons/getIcon"
 import { useModalBottomLeft } from "@/methods/hooks/modals/useModalBottomLeft"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { usePlayerExploration } from "@/methods/hooks/players/composite/usePlayerExploration"
@@ -17,22 +17,21 @@ import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMo
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { TMapTileResource, useMapTileDetail } from "@/methods/hooks/world/composite/useMapTileDetail"
 import { EPanelsBottomLeft } from "@/types/enumeration/EPanelsBottomLeft"
-import { X } from "lucide-react"
+import { Backpack, Compass, Footprints, MapPin, Swords, Tent, Users, X } from "lucide-react"
 import { Activity, useEffect, useState } from "react"
 import styles from "./styles/MapTileDetail.module.css"
+
+/** Ikona zastępcza, gdy getIcon nie zna klucza obrazu przedmiotu. */
+const FALLBACK_ICON = "📦"
 
 export default function MapTileDetail() {
   const { resetModalRightCenter } = useModalRightCenter()
   const { openModalBottomLeft } = useModalBottomLeft()
   const { clickedMapTile } = useMapTileActions()
 
-  // ── MOVEMENT LOGIC  ──────────────────────────────────────────
   const { isMoving } = usePlayerMovement()
-
-  // ── EXPLORATION LOGIC  ──────────────────────────────────────────s
   const { isExploring } = usePlayerExploration()
 
-  // ── GATHER LOGIC  ──────────────────────────────────────────
   const { combinedKnownMapTilesResourcesOnTile } = useMapTileDetail()
   const [clickedResource, setClickedResource] = useState<TMapTileResource | null>(null)
 
@@ -43,6 +42,7 @@ export default function MapTileDetail() {
   if (!clickedMapTile) {
     return null
   }
+
   const onClose = () => {
     resetModalRightCenter()
   }
@@ -56,17 +56,26 @@ export default function MapTileDetail() {
   }
 
   // ── DERIVED ────────────────────────────────────────────────────────────────
-  const terrainName = clickedMapTile?.terrainTypes?.name
-  const terrainTypesMoveCost = clickedMapTile?.terrainTypes?.moveCost
-  const landscapeTypesMoveCost = clickedMapTile?.landscapeTypes?.moveCost
-  const citiesMoveCost = clickedMapTile?.cities?.moveCost
-  const districtTypesMoveCost = clickedMapTile?.districtTypes?.moveCost
+  const { mapTiles, terrainTypes, landscapeTypes, cities, districts, districtTypes } = clickedMapTile
+
+  const terrainName = terrainTypes?.name
+  const landscapeName = landscapeTypes?.name
+  const cityName = cities?.name
+  const districtName = districts?.name
+  const districtTypeName = districtTypes?.name
+
   const totalMoveCost =
-    (terrainTypesMoveCost || 0) + (landscapeTypesMoveCost || 0) + (citiesMoveCost || 0) + (districtTypesMoveCost || 0)
-  const landscapeName = clickedMapTile?.landscapeTypes?.name
-  const cityName = clickedMapTile?.cities?.name
-  const districtName = clickedMapTile?.districts?.name
-  const districtTypeName = clickedMapTile?.districtTypes?.name
+    (terrainTypes?.moveCost || 0) + (landscapeTypes?.moveCost || 0) + (cities?.moveCost || 0) + (districtTypes?.moveCost || 0)
+
+  const allResources = combinedKnownMapTilesResourcesOnTile ?? []
+  const foundResources = allResources.filter((resource) => resource.itemId !== null)
+  const exploredPercent = allResources.length === 0 ? 100 : Math.round((foundResources.length / allResources.length) * 100)
+
+  const pendingActions = [
+    { key: "place", label: "Special Place" },
+    { key: "camp", label: "Camp" },
+    { key: "hunt", label: "Hunt" },
+  ]
 
   return (
     <div className={styles.overlay}>
@@ -76,177 +85,171 @@ export default function MapTileDetail() {
           resource={clickedResource}
         />
       </Activity>
-      <div className={styles.panel}>
-        <div className={styles.header}>
-          <div className={styles.titleSection}>
-            <h2 className={styles.title}>{terrainName}</h2>
-            <p className={styles.description}>{landscapeName}</p>
 
-            <span className={styles.coordinates}>
-              [{clickedMapTile?.mapTiles.x}, {clickedMapTile?.mapTiles.y}]
+      <div className={styles.panel}>
+        <header className={styles.header}>
+          <div className={styles.titleSection}>
+            <h2 className={styles.title}>{terrainName ?? "Unknown terrain"}</h2>
+
+            <span className={styles.subLine}>
+              {landscapeName && <span className={styles.subLineName}>{landscapeName}</span>}
+              <span className={styles.coordinates}>
+                <MapPin className={styles.coordinatesIcon} />
+                {mapTiles.x}, {mapTiles.y}
+              </span>
             </span>
           </div>
+
           <Button
             onClick={onClose}
             variant='ghost'
             size='icon'
             className={styles.closeButton}
+            aria-label='Close'
           >
             <X className={styles.closeIcon} />
           </Button>
-        </div>
+        </header>
 
+        {/* Stała wysokość — kliknięcie innego kafelka nie zmienia rozmiaru panelu */}
         <div className={styles.content}>
           <section className={styles.section}>
-            <h3 className={styles.sectionTitle}>Movement cost</h3>
             <div
-              className={styles.difficultyBadge}
-              data-difficulty={totalMoveCost}
+              className={styles.sectionHeader}
+              title='Movement cost'
             >
-              {totalMoveCost}
+              <Footprints className={styles.sectionIcon} />
+              <span className={styles.sectionLabel}>Move</span>
+              <span className={styles.sectionValue}>{totalMoveCost}</span>
             </div>
           </section>
 
           {cityName && (
             <section className={styles.section}>
-              <h3 className={styles.sectionTitle}>Settlements</h3>
-              <div className={styles.resourceList}>
-                <div
-                  key={
-                    clickedMapTile?.mapTiles.mapId +
-                    clickedMapTile?.mapTiles.x +
-                    clickedMapTile?.mapTiles.y +
-                    "Settlements"
-                  }
-                  className={styles.resourceItem}
-                >
-                  <span className={styles.resourceIcon}>📦</span>
-                  <span className={styles.resourceName}>{cityName}</span>
-                </div>
+              <div className={styles.sectionHeader}>
+                <Tent className={styles.sectionIcon} />
+                <span className={styles.sectionLabel}>Settlement</span>
+              </div>
+              <div className={styles.chipList}>
+                <span className={styles.chip}>{cityName}</span>
               </div>
             </section>
           )}
 
           {districtName && (
             <section className={styles.section}>
-              <h3 className={styles.sectionTitle}>Districts</h3>
-              <div className={styles.resourceList}>
-                <div
-                  key={
-                    clickedMapTile?.mapTiles.mapId +
-                    clickedMapTile?.mapTiles.x +
-                    clickedMapTile?.mapTiles.y +
-                    "Districts"
-                  }
-                  className={styles.resourceItem}
-                >
-                  <span className={styles.resourceIcon}>📦</span>
-                  <span className={styles.resourceName}>{districtName}</span>
-                  <span className={styles.resourceName}>{districtTypeName}</span>
-                </div>
+              <div className={styles.sectionHeader}>
+                <MapPin className={styles.sectionIcon} />
+                <span className={styles.sectionLabel}>District</span>
+              </div>
+              <div className={styles.chipList}>
+                <span className={styles.chip}>
+                  {districtName}
+                  {districtTypeName && <span className={styles.chipMeta}>{districtTypeName}</span>}
+                </span>
               </div>
             </section>
           )}
 
           <section className={styles.section}>
-            <div className={styles.resourceList}>
-              {combinedKnownMapTilesResourcesOnTile
-                ?.filter((resource) => resource.itemId !== null)
-                .map((resource) => (
+            <div className={styles.sectionHeader}>
+              <Backpack className={styles.sectionIcon} />
+              <span className={styles.sectionLabel}>Resources</span>
+              <span className={styles.sectionValue}>{foundResources.length}</span>
+            </div>
+
+            {foundResources.length === 0 ? (
+              <p className={styles.emptyText}>
+                {allResources.length === 0 ? "Nothing here" : "Not explored yet"}
+              </p>
+            ) : (
+              <div className={styles.chipList}>
+                {foundResources.map((resource) => (
                   <Button
-                    key={resource.mapTilesResourceId + "KnownMapTilesResourcesOnTile"}
-                    className={styles.resourceItem}
-                    onClick={() => {
-                      handleResourceOnTile(resource)
-                    }}
+                    key={resource.mapTilesResourceId}
+                    className={styles.chipButton}
+                    title={resource.description || resource.name}
+                    onClick={() => handleResourceOnTile(resource)}
                   >
-                    <span className={styles.resourceIcon}>📦</span>
-                    <span className={styles.resourceName}>{resource.name}</span>
+                    <span className={styles.chipIconBox}>{getIcon(resource.image) ?? FALLBACK_ICON}</span>
+                    <span className={styles.chipLabel}>{resource.name}</span>
                   </Button>
                 ))}
+              </div>
+            )}
 
-              {combinedKnownMapTilesResourcesOnTile && (
-                <div className={styles.resourceStats}>
-                  <Field className='w-full max-w-sm'>
-                    <FieldLabel htmlFor='progress-upload'>
-                      <span>Exploration progress</span>
-                      <span className='ml-auto'>{`${
-                        combinedKnownMapTilesResourcesOnTile.length === 0
-                          ? 100
-                          : Math.round(
-                              (combinedKnownMapTilesResourcesOnTile.filter((r) => r.itemId !== null).length /
-                                combinedKnownMapTilesResourcesOnTile.length) *
-                                100,
-                            )
-                      }%`}</span>
-                    </FieldLabel>
-                    <Progress
-                      value={
-                        combinedKnownMapTilesResourcesOnTile.length === 0
-                          ? 100
-                          : Math.round(
-                              (combinedKnownMapTilesResourcesOnTile.filter((r) => r.itemId !== null).length /
-                                combinedKnownMapTilesResourcesOnTile.length) *
-                                100,
-                            )
-                      }
-                      id='progress-upload'
-                    />
-                  </Field>
-                </div>
-              )}
+            <div
+              className={styles.progressBlock}
+              title='Exploration progress'
+            >
+              <Compass className={styles.progressIcon} />
+              <Progress
+                value={exploredPercent}
+                className={styles.progressBar}
+                aria-label='Exploration progress'
+              />
+              <span className={styles.progressValue}>{exploredPercent}%</span>
             </div>
           </section>
 
           <section className={styles.section}>
-            <h3 className={styles.sectionTitle}>Encounters</h3>
-            <div className={styles.encounterList}>
-              <div
-                key={
-                  clickedMapTile?.mapTiles.mapId +
-                  clickedMapTile?.mapTiles.x +
-                  clickedMapTile?.mapTiles.y +
-                  "Encounters"
-                }
-                className={styles.encounterItem}
-              >
-                <Button
-                  className={styles.actionButton}
-                  onClick={() => {
-                    handlePlayersListOnTile()
-                  }}
-                >
-                  Players list on tile
-                </Button>
+            <div className={styles.sectionHeader}>
+              <Users className={styles.sectionIcon} />
+              <span className={styles.sectionLabel}>Here</span>
+            </div>
+            <Button
+              className={styles.inlineButton}
+              onClick={handlePlayersListOnTile}
+              title='Players on this tile'
+            >
+              <Users className={styles.inlineButtonIcon} />
+              Players
+            </Button>
+          </section>
+
+          <section className={styles.section}>
+            <div className={styles.sectionHeader}>
+              <Swords className={styles.sectionIcon} />
+              <span className={styles.sectionLabel}>Actions</span>
+            </div>
+
+            <div className={styles.actionGroup}>
+              <div className={styles.actionGroupRow}>
+                {isMoving ? (
+                  <>
+                    <MoveButtonConfirm />
+                    <MoveButtonCancel />
+                  </>
+                ) : (
+                  <MoveButtonPlan />
+                )}
               </div>
             </div>
-          </section>
 
-          <section className={styles.section}>
-            <div className={styles.actionButtons}>
-              <Button className={styles.actionButton}>Set Special Place Like TradePost or church</Button>
-              <Button className={styles.actionButton}>Set Camp</Button>
+            <div className={styles.actionGroup}>
+              <div className={styles.actionGroupRow}>
+                {isExploring ? (
+                  <>
+                    <ExploreButtonConfirm />
+                    <ExploreButtonCancel />
+                  </>
+                ) : (
+                  <ExploreButtonPlan />
+                )}
+              </div>
+            </div>
 
-              {/*  HUNT LOGIC */}
-              <Button className={styles.actionButton}>Hunt</Button>
-
-              {/*  MOVEMENT LOGIC */}
-              {!isMoving ? (
-                <MoveButtonPlan />
-              ) : (
-                <>
-                  <MoveButtonConfirm />
-                  <MoveButtonCancel />
-                </>
-              )}
-              {!isExploring ? (
-                <ExploreButtonPlan />
-              ) : (
-                <>
-                  <ExploreButtonConfirm />
-                  <ExploreButtonCancel />
-                </>
-              )}
+            <div className={styles.actionGroup}>
+              {pendingActions.map((action) => (
+                <Button
+                  key={action.key}
+                  className={styles.inlineButton}
+                  disabled
+                  title='Not implemented yet'
+                >
+                  {action.label}
+                </Button>
+              ))}
             </div>
           </section>
         </div>

@@ -3,7 +3,7 @@
 "use client"
 import { Button } from "@/components/ui/button"
 import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMovement"
-import styles from "./styles/MoveButtonPlan.module.css"
+import styles from "./styles/MapActionButton.module.css"
 
 type TMoveButtonPlanProps = {
   onClose?: () => void
@@ -19,10 +19,10 @@ export default function MoveButtonPlan({ onClose }: TMoveButtonPlanProps) {
 
   return (
     <Button
-      className={styles.actionButton}
+      className={`${styles.actionButton} ${styles.secondary}`}
       onClick={handleClick}
     >
-      MoveButtonPlan
+      Plan Route
     </Button>
   )
 }

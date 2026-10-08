@@ -1,11 +1,15 @@
 .overlay {
   display: flex;
+  position: fixed;
+  z-index: 100;
   top: 0;
   right: 0;
   bottom: 0;
 }
 
+/* Było `flex-direction: column` bez `display: flex` — właściwość była martwa. */
 .panel {
+  display: flex;
   flex-direction: column;
   box-shadow:
     -4px 0 20px rgba(0, 0, 0, 0.7),
@@ -16,203 +20,338 @@
   overflow: hidden;
 }
 
+/* ── Nagłówek ────────────────────────────────────────────── */
+
 .header {
   display: flex;
+  flex-shrink: 0;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  gap: 0.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
   border-bottom: 2px solid #4a3728;
   background: linear-gradient(to bottom, #2b1810, #1a0f08);
-  padding: 20px;
+  padding: 0.7rem 0.85rem;
 }
 
 .titleSection {
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: 4px;
+  gap: 0.1rem;
+  min-width: 0;
 }
 
 .title {
+  overflow: hidden;
   margin: 0;
   color: #c89a4a;
-  font-weight: 700;
-  font-size: 24px;
   font-family: "Cinzel", serif;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  text-overflow: ellipsis;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  white-space: nowrap;
+}
+
+.subLine {
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  gap: 0.4rem;
+  color: #8b7355;
+  font-size: 0.7rem;
+}
+
+.subLineName {
+  overflow: hidden;
+  color: #d4a574;
+  font-family: "Lora", serif;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .coordinates {
-  opacity: 0.8;
-  color: #d4a574;
-  font-size: 14px;
-  font-family: "Lora", serif;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.15rem;
+  font-family: "Cinzel", serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+}
+
+.coordinatesIcon {
+  flex-shrink: 0;
+  width: 0.6rem;
+  height: 0.6rem;
 }
 
 .closeButton {
-  transition: all 0.2s ease;
+  flex-shrink: 0;
   border: 1px solid #4a3728;
-  border-radius: 4px;
+  border-radius: 0.3rem;
   background: rgba(74, 55, 40, 0.5);
-  width: 40px;
-  height: 40px;
+  width: 1.7rem;
+  height: 1.7rem;
   color: #c89a4a;
 }
 
 .closeButton:hover {
-  transform: scale(1.05);
   border-color: #c89a4a;
   background: rgba(74, 55, 40, 0.8);
+  color: #e6b85c;
 }
 
 .closeIcon {
-  width: 20px;
-  height: 20px;
+  width: 0.85rem;
+  height: 0.85rem;
 }
+
+/* ── Treść ───────────────────────────────────────────────────
+   Stała wysokość + przewijanie wewnętrzne. Bez tego panel skakał
+   przy klikaniu innych kafelków, bo sekcje pojawiały się i znikały,
+   zmieniając wysokość pod kursorem. */
 
 .content {
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: 24px;
-  padding: 20px;
+  gap: 0.7rem;
+  padding: 0.85rem;
+  min-height: 0;
   overflow-y: auto;
+  height: 0;
+}
+
+.content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.content::-webkit-scrollbar-track {
+  border-radius: 4px;
+  background: rgba(12, 10, 9, 0.5);
+}
+
+.content::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: #8b6d3a;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background: #c89a4a;
 }
 
 .section {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0.3rem;
 }
 
-.sectionTitle {
-  margin: 0;
-  border-bottom: 1px solid #4a3728;
-  padding-bottom: 8px;
-  color: #e6c998;
-  font-weight: 600;
-  font-size: 16px;
-  font-family: "Cinzel", serif;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.description {
-  margin: 0;
-  color: #d4a574;
-  font-size: 14px;
-  line-height: 1.6;
-  font-family: "Lora", serif;
-}
-
-.difficultyBadge {
-  display: inline-block;
-  border: 2px solid;
-  border-radius: 4px;
-  background: rgba(0, 0, 0, 0.3);
-  padding: 8px 16px;
-  font-weight: 600;
-  font-size: 14px;
-  font-family: "Lora", serif;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-
-.difficultyBadge[data-difficulty="safe"] {
-  border-color: #4ade80;
-  color: #4ade80;
-}
-
-.difficultyBadge[data-difficulty="easy"] {
-  border-color: #86efac;
-  color: #86efac;
-}
-
-.difficultyBadge[data-difficulty="medium"] {
-  border-color: #facc15;
-  color: #facc15;
-}
-
-.difficultyBadge[data-difficulty="hard"] {
-  border-color: #f87171;
-  color: #f87171;
-}
-
-.resourceList,
-.encounterList {
-  display: flex;
-  gap: 8px;
-}
-
-.resourceItem,
-.encounterItem {
+/* Wiersz nagłówka sekcji — ikona + krótki podpis + wartość */
+.sectionHeader {
   display: flex;
   align-items: center;
-  gap: 12px;
-  transition: all 0.2s ease;
+  gap: 0.35rem;
+  border-bottom: 1px solid #3d2510;
+  padding-bottom: 0.25rem;
+}
+
+.sectionIcon {
+  flex-shrink: 0;
+  width: 0.85rem;
+  height: 0.85rem;
+  color: #a68062;
+}
+
+.sectionLabel {
+  color: #c89a4a;
+  font-family: "Cinzel", serif;
+  font-weight: 600;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.sectionValue {
+  margin-left: auto;
+  color: #e6b85c;
+  font-family: "Cinzel", serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+/* ── Chips ───────────────────────────────────────────────── */
+
+.chipList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.chip,
+.chipButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
   border: 1px solid #4a3728;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   background: rgba(61, 36, 21, 0.4);
-  padding: 10px;
-}
-
-.resourceItem:hover,
-.encounterItem:hover {
-  border-color: #c89a4a;
-  background: rgba(61, 36, 21, 0.6);
-}
-
-.resourceIcon,
-.encounterIcon {
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
-  font-size: 20px;
-}
-
-.resourceName,
-.encounterName {
+  padding: 0.25rem 0.45rem;
   color: #d4a574;
-  font-weight: 500;
-  font-size: 14px;
   font-family: "Lora", serif;
+  font-size: 0.75rem;
 }
 
-.actionButtons {
+.chipButton {
+  touch-action: manipulation;
+  width: auto;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.chipButton:hover {
+  border-color: #c89a4a;
+  background: rgba(61, 36, 21, 0.7);
+  color: #e6c998;
+}
+
+/* Bez rozmiaru ikona z getIcon renderuje się w natywnych 24x24
+   z atrybutów SVG, zamiast wypełnić ramkę. */
+.chipIconBox {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 0.95rem;
+  height: 0.95rem;
+  font-size: 0.85rem;
+}
+
+.chipIconBox svg {
+  width: 100%;
+  height: 100%;
+}
+
+.chipLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chipMeta {
+  color: #8b7355;
+  font-family: "Cinzel", serif;
+  font-size: 0.52rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.emptyText {
+  margin: 0;
+  color: #6b5540;
+  font-family: "Lora", serif;
+  font-size: 0.7rem;
+  font-style: italic;
+}
+
+/* ── Postęp eksploracji ───────────────────────────────────── */
+
+.progressBlock {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.progressIcon {
+  flex-shrink: 0;
+  width: 0.75rem;
+  height: 0.75rem;
+  color: #8b7355;
+}
+
+.progressBar {
+  flex: 1;
+  height: 4px;
+  background: #0a0603;
+}
+
+.progressValue {
+  flex-shrink: 0;
+  color: #8b7355;
+  font-family: "Cinzel", serif;
+  font-weight: 700;
+  font-size: 0.6rem;
+}
+
+/* ── Przyciski ───────────────────────────────────────────── */
+
+.inlineButton {
+  display: inline-flex;
+  touch-action: manipulation;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  border-color: #6b4f2a;
+  border-radius: 0.25rem;
+  background: linear-gradient(180deg, rgba(60, 36, 21, 0.7) 0%, rgba(26, 15, 8, 0.85) 100%);
+  width: 100%;
+  height: auto;
+  padding: 0.35rem 0.5rem;
+  color: #c89a4a;
+  font-family: "Cinzel", serif;
+  font-weight: 600;
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.inlineButton:hover {
+  border-color: #c89a4a;
+  background: linear-gradient(180deg, rgba(90, 55, 30, 0.8) 0%, rgba(43, 24, 16, 0.9) 100%);
+  color: #e6b85c;
+}
+
+.inlineButton:focus-visible {
+  outline: 2px solid #c89a4a;
+  outline-offset: 1px;
+}
+
+.inlineButtonIcon {
+  flex-shrink: 0;
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.actionGroup {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 8px;
+  gap: 0.25rem;
 }
 
-.actionButton {
-  transition: all 0.2s ease;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 2px 4px rgba(0, 0, 0, 0.5);
-  border: 2px solid #4a3728;
-  border-radius: 4px;
-  background: linear-gradient(to bottom, #4a3728, #3d2415);
-  width: 100%;
-  height: 44px;
-  color: #c89a4a;
-  font-weight: 600;
-  font-size: 14px;
-  font-family: "Cinzel", serif;
-  letter-spacing: 0.5px;
+.actionGroupRow {
+  display: flex;
+  gap: 0.25rem;
 }
 
-.actionButton:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 4px 8px rgba(0, 0, 0, 0.6),
-    0 0 12px rgba(200, 154, 74, 0.3);
-  border-color: #c89a4a;
-  background: linear-gradient(to bottom, #5a4738, #4d3525);
+/* `:button`, nie `*` — wyższa specyficzność od `.actionButton`, które żyje
+   w innym pliku. Przy `*` obie reguły miałyby identyczną specyficzność
+   (0-1-0) i o wygranej decydowałaby kolejność w bundlu. */
+.actionGroupRow > button {
+  flex: 1;
+  width: auto;
 }
 
-.actionButton:active {
-  transform: translateY(0);
-  box-shadow:
-    inset 0 2px 4px rgba(0, 0, 0, 0.4),
-    0 1px 2px rgba(0, 0, 0, 0.5);
+@media (prefers-reduced-motion: reduce) {
+  .inlineButton,
+  .chipButton {
+    transition: none;
+  }
 }

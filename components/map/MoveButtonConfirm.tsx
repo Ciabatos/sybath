@@ -3,7 +3,7 @@
 "use client"
 import { Button } from "@/components/ui/button"
 import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMovement"
-import styles from "./styles/MoveButtonConfirm.module.css"
+import styles from "./styles/MapActionButton.module.css"
 
 type TMoveButtonConfirmProps = {
   onClose?: () => void
@@ -19,10 +19,10 @@ export default function MoveButtonConfirm({ onClose }: TMoveButtonConfirmProps) 
 
   return (
     <Button
-      className={styles.actionButton}
+      className={`${styles.actionButton} ${styles.primary}`}
       onClick={handleClick}
     >
-      MoveButtonConfirm
+      Travel
     </Button>
   )
 }

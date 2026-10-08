@@ -48,9 +48,14 @@ export function usePlayerMovement() {
     return toast.success(`Action selected confirm to proceed`)
   }
 
-  async function selectPlayerPathToClickedTile() {
+  // Zwraca `true`, gdy ruch faktycznie zaplanowano.
+  // Wcześniej zwracało `toast.success(...)` / `toast.error(...)`, a sonner
+  // zwraca obiekt ExternalToast w obu przypadkach — czyli zawsze truthy.
+  // Każdy `if (!result)` u wywołujących nigdy nie zachodził.
+  async function selectPlayerPathToClickedTile(): Promise<boolean> {
     if (!clickedMapTile) {
-      return toast.error("No tile selected")
+      toast.error("No tile selected")
+      return false
     }
 
     const params = {
@@ -63,12 +68,14 @@ export function usePlayerMovement() {
     const path = getPathFromPointToPoint(params)
 
     if (!path) {
-      return toast.error(`Cannot move to this tile`)
+      toast.error(`Cannot move to this tile`)
+      return false
     }
 
     setPlayerMovementPlanned(path)
     openModalBottomCenter(EPanelsBottomCenter.MovementPanel)
-    return toast.success(`Action selected confirm to proceed`)
+    toast.success(`Action selected confirm to proceed`)
+    return true
   }
 
   async function moveSelectedPlayerPath() {
@@ -107,9 +114,10 @@ export function usePlayerMovement() {
     return toast.success(result?.message)
   }
 
-  async function selectPlayerPathAndMovePlayerToClickedTile() {
+  async function selectPlayerPathAndMovePlayerToClickedTile(): Promise<boolean> {
     if (!clickedMapTile) {
-      return toast.error("No tile selected")
+      toast.error("No tile selected")
+      return false
     }
 
     const params = {
@@ -123,19 +131,22 @@ export function usePlayerMovement() {
     const path = getPathFromPointToPoint(params)
 
     if (!path) {
-      return toast.error(`Cannot move to this tile`)
+      toast.error(`Cannot move to this tile`)
+      return false
     }
 
     const result = await doPlayerMovementAction({ path: path, ...params })
 
     if (!result?.status) {
-      return toast.error(result?.message)
+      toast.error(result?.message)
+      return false
     }
 
     const lastStep = Object.values(path).reduce((max, curr) => (curr.order > max.order ? curr : max))
     mutatePlayerPosition([{ x: lastStep.x, y: lastStep.y }])
     closeMovementPanel()
-    return toast.success(result?.message)
+    toast.success(result?.message)
+    return true
   }
 
   function resetPlayerMovementPlanned() {

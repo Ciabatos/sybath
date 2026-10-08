@@ -3,7 +3,7 @@
 "use client"
 import { Button } from "@/components/ui/button"
 import { usePlayerExploration } from "@/methods/hooks/players/composite/usePlayerExploration"
-import styles from "./styles/ExploreButtonConfirm.module.css"
+import styles from "./styles/MapActionButton.module.css"
 
 type TExploreButtonConfirmProps = {
   onClose?: () => void
@@ -19,10 +19,10 @@ export default function ExploreButtonConfirm({ onClose }: TExploreButtonConfirmP
 
   return (
     <Button
-      className={styles.actionButton}
+      className={`${styles.actionButton} ${styles.primary}`}
       onClick={handleClick}
     >
-      ExploreButtonConfirm
+      Explore
     </Button>
   )
 }

@@ -8,8 +8,12 @@ import { useMapId } from "@/methods/hooks/world/composite/useMapId"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { useFetchPlayerPosition, usePlayerPositionState } from "@/methods/hooks/world/core/useFetchPlayerPosition"
 import { useMutateKnownMapTilesResourcesOnTile } from "@/methods/hooks/world/core/useMutateKnownMapTilesResourcesOnTile"
-import { useState } from "react"
+import { isExploringAtom } from "@/store/atoms"
+import { useAtom } from "jotai"
 import { toast } from "sonner"
+
+/** Indeks zdolności odpowiedzialnej za eksplorację w `playerAbilities`. */
+const EXPLORATION_ABILITY_INDEX = 2
 
 export function usePlayerExploration() {
   const { playerId } = usePlayerId()
@@ -20,50 +24,70 @@ export function usePlayerExploration() {
   const { playerAbilities } = usePlayerAbilities()
   useFetchPlayerPosition({ mapId, playerId })
   const playerPosition = usePlayerPositionState()
-  const [isExploring, setIsExploring] = useState(false)
+
+  // Atom, nie useState — ten hook wołany jest z kilku komponentów.
+  // Z useState każde wywołanie miałoby własną, niezależną kopię flagi.
+  const [isExploring, setIsExploring] = useAtom(isExploringAtom)
 
   const { mutateKnownMapTilesResourcesOnTile } = useMutateKnownMapTilesResourcesOnTile({
     mapId,
-    mapTileX: clickedMapTile!.mapTiles.x,
-    mapTileY: clickedMapTile!.mapTiles.y,
+    mapTileX: clickedMapTile?.mapTiles.x ?? 0,
+    mapTileY: clickedMapTile?.mapTiles.y ?? 0,
     playerId,
   })
 
-  async function exploreClickedTilePlan() {
-    if (!clickedMapTile) return toast.error("No tile selected")
+  function hasExplorationAbility(): boolean {
+    if (!playerAbilities[EXPLORATION_ABILITY_INDEX]?.value) {
+      toast.error("Player does not have exploration ability")
+      return false
+    }
+    return true
+  }
+
+  /** Czy gracz stoi już na tym kafelku. Klucz budowany tak samo jak w useFetchPlayerPosition. */
+  function isStandingOnTile(): boolean {
+    if (!clickedMapTile) return false
+    return Boolean(playerPosition[`${clickedMapTile.mapTiles.x},${clickedMapTile.mapTiles.y}`])
+  }
+
+  async function exploreClickedTilePlan(): Promise<boolean> {
+    if (!clickedMapTile) {
+      toast.error("No tile selected")
+      return false
+    }
 
     try {
-      if (!playerAbilities[2]?.value) {
-        return toast.error("Player does not have exploration ability")
+      if (!hasExplorationAbility()) return false
+
+      if (!isStandingOnTile()) {
+        // Funkcja zwraca teraz prawdziwe `false`, gdy nie da się zaplanować ruchu.
+        const didPlanMove = await selectPlayerPathToClickedTile()
+
+        if (!didPlanMove) return false
       }
 
-      if (!playerPosition[`${clickedMapTile.mapTiles.x},${clickedMapTile.mapTiles.y}`]) {
-        const resultMovement = await selectPlayerPathToClickedTile()
-
-        if (!resultMovement) {
-          return toast.error("Failed to move to the tile, cannot explore")
-        }
-      }
       setIsExploring(true)
+      return true
     } catch (error) {
       console.error("Error exploring tile:", error)
+      toast.error("Could not plan the exploration")
+      return false
     }
   }
 
-  async function exploreClickedTileConfirm() {
-    if (!clickedMapTile) return toast.error("No tile selected")
+  async function exploreClickedTileConfirm(): Promise<boolean> {
+    if (!clickedMapTile) {
+      toast.error("No tile selected")
+      return false
+    }
 
     try {
-      if (!playerAbilities[2]?.value) {
-        return toast.error("Player does not have exploration ability")
-      }
+      if (!hasExplorationAbility()) return false
 
-      if (!playerPosition[`${clickedMapTile.mapTiles.x},${clickedMapTile.mapTiles.y}`]) {
-        const resultMovement = await selectPlayerPathAndMovePlayerToClickedTile()
+      if (!isStandingOnTile()) {
+        const didMove = await selectPlayerPathAndMovePlayerToClickedTile()
 
-        if (!resultMovement) {
-          return toast.error("Failed to move to the tile, cannot explore")
-        }
+        if (!didMove) return false
       }
 
       const result = await doMapTileExplorationAction({
@@ -74,15 +98,19 @@ export function usePlayerExploration() {
       })
 
       if (!result.status) {
-        return toast.error(result.message)
+        toast.error(result.message)
+        return false
       }
 
       mutateKnownMapTilesResourcesOnTile()
       setIsExploring(false)
 
       toast.success(`You are exploring destination tile`)
+      return true
     } catch (error) {
       console.error("Error exploring tile:", error)
+      toast.error("Could not explore the tile")
+      return false
     }
   }
 
