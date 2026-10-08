@@ -2,15 +2,15 @@
 
 import { usePlayerMovementPlanned } from "@/methods/hooks/players/composite/usePlayerMovement"
 import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
-import styles from "./styles/MovementPlannedLayer.module.css"
+import styles from "./styles/PlannedRouteLayer.module.css"
 
 /**
- * Zaplanowana trasa ruchu — przerywana ramka i koszt kafelka.
+ * Zaplanowana trasa ruchu — przerywana ramka i koszt do zapłaty na kafelku.
  *
- * Warstwa „pod" (`layers/mapUnderneath`): renderowana w `MapTile` przed
- * licznikami i ikonicami, żeby przy nakładaniu wygrywała treść, nie obrys.
+ * Rysowana pierwsza w `.layers` kafelka, więc liczniki i ikony innych warstw
+ * lądują na wierzchu. Kolejność jest jawna w `MapTile`, nie w nazwie folderu.
  */
-export default function MovementPlannedLayer({ mapTiles }: TMapTile) {
+export default function PlannedRouteLayer({ mapTiles }: TMapTile) {
   const playerMovementPlanned = usePlayerMovementPlanned()
   const layerData = playerMovementPlanned[`${mapTiles.x},${mapTiles.y}`]
 

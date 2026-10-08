@@ -1,3 +1,5 @@
+/* Obrys regionów — nakładka na CAŁĄ siatkę kafelków. */
+
 .Layer {
   position: absolute;
   z-index: 88;

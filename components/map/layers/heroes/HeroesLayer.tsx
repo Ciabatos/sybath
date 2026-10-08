@@ -1,11 +1,11 @@
 import { createImage } from "@/methods/functions/util/createImage"
 import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
 import { Users } from "lucide-react"
-import styles from "./styles/TileLayerHeroes.module.css"
+import styles from "./styles/HeroesLayer.module.css"
 
 type TProps = {
   tile: TMapTile
-  /** true = aktywna warstwa szczegółowa. false = zlicznik z ikoną grupy. */
+  /** true = aktywna warstwa szczegółowa. false = sam zlicznik z ikoną grupy. */
   showDetail: boolean
 }
 
@@ -16,7 +16,9 @@ const MAX_DETAIL_ROW = 4
 const { createPlayerImage, createSquadImage } = createImage()
 
 /**
- * Bohaterowie na kafelku — przełączana warstwa.
+ * Bohaterowie na kafelku — inni gracze stojący na tym samym polu.
+ *
+ * Markera własnego bohatera rysuje `MapTile`, tu są tylko pozostali gracze.
  *
  * Baza (warstwa wyłączona) → jedna liczba i jedna ikona `Users`, czyli
  * „tu są jacyś bohaterowie". Bez portretów, bo kafelek ma 64px.
@@ -24,7 +26,7 @@ const { createPlayerImage, createSquadImage } = createImage()
  * Warstwa włączona → ta sama liczba PLUS portret każdego bohatera w rzędzie
  * na dole kafelka, żeby było widać kto konkretnie.
  */
-export default function TileLayerHeroes({ tile, showDetail }: TProps) {
+export default function HeroesLayer({ tile, showDetail }: TProps) {
   const otherPlayers = tile.knownPlayersPositions?.otherPlayers ?? []
 
   if (otherPlayers.length === 0) return null

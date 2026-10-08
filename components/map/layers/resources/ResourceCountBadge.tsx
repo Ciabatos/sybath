@@ -7,12 +7,11 @@ type TProps = {
 }
 
 /**
- * Sam zlicznik zasobów na kafelku — bez ikon poszczególnych przedmiotów.
+ * Sam zlicznik zasobów — bez ikon poszczególnych przedmiotów.
  *
- * Wywoływany przez `TileLayerResources` tylko wtedy, gdy warstwa szczegółowa jest
- * wyłączona. Dawniej nazywał się `ResourcesLayer`, co myliło się z
- * `TileLayerResources` — obie rzeczy są „warstwą zasobów", ale tylko jedna
- * przełącza widok.
+ * Wywoływany przez `ResourcesLayer` tylko wtedy, gdy warstwa szczegółowa jest
+ * wyłączona. Osobna nazwa, bo `ResourcesLayer` i `ResourceCountBadge` to dwa
+ * różne warianty tego samego rysunku, nie dwie warstwy.
  */
 export default function ResourceCountBadge({ resources }: TProps) {
   const count = resources?.itemIds.length ?? 0

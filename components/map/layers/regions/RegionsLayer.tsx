@@ -4,21 +4,25 @@ import { TKnownMapRegion } from "@/db/postgresMainDatabase/schemas/world/knownMa
 import { buildRegionLoops, loopToPolygonPath, tileCentroid } from "@/methods/functions/map/layers/regionOutline"
 import { useRegionLayerProvince } from "@/methods/hooks/world/composite/useRegionLayerProvince"
 import { useMemo } from "react"
-import style from "./styles/RegionLayer.module.css"
+import style from "./styles/RegionsLayer.module.css"
 
 const TILE_SIZE = 64
 
 /**
- * Obrys regionów — nakładka na CAŁĄ siatkę kafelków, nie na pojedynczy kafelek.
+ * Obrys regionów.
  *
- * Dlatego żyje w `layers/mapOverlay`, a nie przy kafelkach. Kolejność w `.Tiles`
- * nie ma tu znaczenia: to `<svg>` wypozycjonowane absolutnie, więc i tak rysuje
- * się na wierzchu.
+ * Jedyna warstwa, która nie należy do pojedynczego kafelka — rysuje się na całej
+ * siatce jako `<svg>`. Nie potrzebuje osobnej grupy ruchu, bo `position:
+ * absolute` i tak wyrywa ją z przepływu.
+ *
+ * `useRegionLayerProvince` ma na sztywno `regionType = 1`, czyli na razie
+ *(regiony == provinces). Odkąd pojawią się inne typy regionów, nazwa
+ * `useRegionLayerProvince` przestanie pasować.
  *
  * Każda pętla rysowana jest dwukrotnie: grubsza ciemna „obwódka" pod węższą
  * złotą linią, żeby obrys był czytelny nad każdym terenem.
  */
-export default function RegionLayerProvince() {
+export default function RegionsLayer() {
   const { knownMapRegion } = useRegionLayerProvince()
 
   const regions = useMemo(() => {

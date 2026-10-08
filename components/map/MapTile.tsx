@@ -1,6 +1,6 @@
 "use client"
 
-import MovementPlannedLayer from "@/components/map/layers/mapUnderneath/MovementPlannedLayer"
+import PlannedRouteLayer from "@/components/map/layers/movement/PlannedRouteLayer"
 import style from "@/components/map/styles/MapTile.module.css"
 import { createImage } from "@/methods/functions/util/createImage"
 import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
@@ -9,7 +9,7 @@ import { ReactNode } from "react"
 
 type TProps = {
   mapTile: TMapTile
-  /** Warstwa z `layers/mapAbove` — liczniki i ikony. */
+  /** Warstwy przekazane przez `MapHandling` — liczniki i ikony. */
   layers?: ReactNode
 }
 
@@ -49,7 +49,7 @@ export default function MapTile({ mapTile, layers }: TProps) {
         style={gridPlacement}
       >
         <div className={style.layers}>
-          <MovementPlannedLayer {...mapTile} />
+          <PlannedRouteLayer {...mapTile} />
         </div>
       </div>
     )
@@ -95,10 +95,12 @@ export default function MapTile({ mapTile, layers }: TProps) {
       {/*
         Wszystkie nakładki kafelka w jednym kontekście stackingowym i POZA
         divem debug — inaczej lądowały w przepływie tekstu.
-        Kolejność: warstwa „pod" (plan ruchu) przed warstwą „nad" (liczniki).
+
+        Kolejność ma znaczenie i jest jawna tutaj: plan ruchu idzie pierwszy,
+        więc liczniki i ikony z `layers/` lądują na wierzchu.
       */}
       <div className={style.layers}>
-        <MovementPlannedLayer {...mapTile} />
+        <PlannedRouteLayer {...mapTile} />
         {layers}
       </div>
 

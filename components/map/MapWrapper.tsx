@@ -2,7 +2,7 @@
 
 import MapHandling from "@/components/map/MapHandling"
 import MapLayersPanel from "@/components/map/MapLayersPanel"
-import RegionLayerProvince from "@/components/map/layers/mapOverlay/RegionLayerProvince"
+import RegionsLayer from "@/components/map/layers/regions/RegionsLayer"
 import { useMapHandling } from "@/methods/hooks/world/composite/useMapHandling"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
@@ -102,7 +102,7 @@ export default function MapWrapper() {
           >
             <MapHandling />
             {/* Obrys regionów to część bazy — zawsze rysowana, nie do przełączania. */}
-            <RegionLayerProvince />
+            <RegionsLayer />
           </div>
         </TransformComponent>
       </TransformWrapper>
