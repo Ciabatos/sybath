@@ -6,13 +6,13 @@ tools:
   read: true
   write: true
   edit: true
-  bash: false
+  bash: true
   webfetch: false
   skill: true
 permission:
   edit:
     "components/**": allow
-    "*": ask
+    "*": allow
   bash:
     "*": deny
     "npx tsc --noEmit": allow

@@ -11,16 +11,15 @@ type TProps = {
 }
 
 /**
- * Warstwy szczegółowe kafelka.
+ * Warstwy „nad" kafelkiem — liczniki i ikony.
  *
- * Baza (terrain, miasta, marker gracza, plan ruchu) renderuje się zawsze w
- * `MapTile` / `MapTileLayerUnderneathHandling` — tu decydujemy wyłącznie o tym, czy
- * dany kafelek pokazuje zlicznik, czy rozwinięte ikony.
+ * Składane przez `MapHandling` i przekazywane do `MapTile` jako `layers`.
+ * Kolejność ma znaczenie: liczniki rysują się później, więc są na wierzchu.
  *
- * `detailLayer` przekazujemy z `MapHandling` zamiast czytać atom tutaj, żeby
- * każdy z kilkuset kafelków nie subscribe'ował się do tego samego atomu.
+ * `detailLayer` dostajemy propem zamiast czytać atom tutaj, żeby każdy
+ * z kilkuset kafelków nie subscribe'ował się do tego samego atomu.
  */
-export default function MapTileLayers({ tile, resources, detailLayer }: TProps) {
+export default function AboveLayers({ tile, resources, detailLayer }: TProps) {
   return (
     <>
       <TileLayerResources

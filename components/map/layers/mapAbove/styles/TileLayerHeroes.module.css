@@ -1,8 +1,8 @@
 /* Bohaterowie na kafelku. Kafel ma stały 64px, więc wszystko w px.
 
    Podział kafelka między warstwy (żadna nie nachodzi na inną):
-     lewy górny róg  → liczba bohaterów (ta i jej ikona grupy)
-     prawy górny róg → zasoby (licznik albo kolumna ikon)
+     lewy górny róg  → zlicznik bohaterów (ta i jego ikona grupy)
+     prawy górny róg → zasoby (zlicznik albo kolumna ikon)
      dół             → portrety bohaterów, tylko gdy warstwa jest włączona
 */
 

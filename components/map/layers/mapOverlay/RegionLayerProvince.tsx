@@ -9,16 +9,14 @@ import style from "./styles/RegionLayer.module.css"
 const TILE_SIZE = 64
 
 /**
- * Obrys regionów.
+ * Obrys regionów — nakładka na CAŁĄ siatkę kafelków, nie na pojedynczy kafelek.
+ *
+ * Dlatego żyje w `layers/mapOverlay`, a nie przy kafelkach. Kolejność w `.Tiles`
+ * nie ma tu znaczenia: to `<svg>` wypozycjonowane absolutnie, więc i tak rysuje
+ * się na wierzchu.
  *
  * Każda pętla rysowana jest dwukrotnie: grubsza ciemna „obwódka" pod węższą
- * złotą linią. Dzięki temu obrys czytelny jest nad każdym terenem — dokładnie
- * tak, jak linia kartograficzna na mapie.
- *
- * Poprzednia wersja rysowała `stroke` o podwójnej szerokości i próbowała wyciąć
- * wnętrze `clipPath`, żeby zostało tylko „zewnętrzne pół". `clipPath` z samym
- * wielokątem zachowuje jednak WNĄTRZE, więc przetrwało właśnie wewnętrzne pół —
- * efekt był odwrotny do zamierzonego.
+ * złotą linią, żeby obrys był czytelny nad każdym terenem.
  */
 export default function RegionLayerProvince() {
   const { knownMapRegion } = useRegionLayerProvince()
@@ -44,16 +42,14 @@ export default function RegionLayerProvince() {
     })
 
     return Object.entries(tilesByRegion)
-      .map(([regionId, tiles]) => {
-        const loops = buildRegionLoops(tiles, TILE_SIZE)
-
-        return {
-          regionId: Number(regionId),
-          name: tiles[0]?.regionName,
-          paths: loops.map((loop) => loopToPolygonPath(loop)).filter(Boolean),
-          label: tileCentroid(tiles, TILE_SIZE),
-        }
-      })
+      .map(([regionId, tiles]) => ({
+        regionId: Number(regionId),
+        name: tiles[0]?.regionName,
+        paths: buildRegionLoops(tiles, TILE_SIZE)
+          .map((loop) => loopToPolygonPath(loop))
+          .filter(Boolean),
+        label: tileCentroid(tiles, TILE_SIZE),
+      }))
       .filter((region) => region.paths.length > 0)
   }, [knownMapRegion])
 

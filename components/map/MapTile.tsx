@@ -1,6 +1,6 @@
 "use client"
 
-import MapTileLayerUnderneathHandling from "@/components/map/layers/MapTileLayerUnderneath/MapTileLayerUnderneathHandling"
+import MovementPlannedLayer from "@/components/map/layers/mapUnderneath/MovementPlannedLayer"
 import style from "@/components/map/styles/MapTile.module.css"
 import { createImage } from "@/methods/functions/util/createImage"
 import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
@@ -9,6 +9,7 @@ import { ReactNode } from "react"
 
 type TProps = {
   mapTile: TMapTile
+  /** Warstwa z `layers/mapAbove` — liczniki i ikony. */
   layers?: ReactNode
 }
 
@@ -48,7 +49,7 @@ export default function MapTile({ mapTile, layers }: TProps) {
         style={gridPlacement}
       >
         <div className={style.layers}>
-          <MapTileLayerUnderneathHandling {...mapTile} />
+          <MovementPlannedLayer {...mapTile} />
         </div>
       </div>
     )
@@ -94,9 +95,10 @@ export default function MapTile({ mapTile, layers }: TProps) {
       {/*
         Wszystkie nakładki kafelka w jednym kontekście stackingowym i POZA
         divem debug — inaczej lądowały w przepływie tekstu.
+        Kolejność: warstwa „pod" (plan ruchu) przed warstwą „nad" (liczniki).
       */}
       <div className={style.layers}>
-        <MapTileLayerUnderneathHandling {...mapTile} />
+        <MovementPlannedLayer {...mapTile} />
         {layers}
       </div>
 

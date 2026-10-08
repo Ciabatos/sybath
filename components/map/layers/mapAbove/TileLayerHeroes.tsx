@@ -16,7 +16,7 @@ const MAX_DETAIL_ROW = 4
 const { createPlayerImage, createSquadImage } = createImage()
 
 /**
- * Bohaterowie na kafelku.
+ * Bohaterowie na kafelku — przełączana warstwa.
  *
  * Baza (warstwa wyłączona) → jedna liczba i jedna ikona `Users`, czyli
  * „tu są jacyś bohaterowie". Bez portretów, bo kafelek ma 64px.

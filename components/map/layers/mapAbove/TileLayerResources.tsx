@@ -1,11 +1,11 @@
 import getIcon from "@/methods/functions/icons/getIcon"
 import { TCombinedResourcesOnMap } from "@/methods/hooks/world/composite/useResourcesLayer"
-import ResourcesLayer from "./ResourcesLayer"
+import ResourceCountBadge from "./ResourceCountBadge"
 import styles from "./styles/TileLayerResources.module.css"
 
 type TProps = {
   resources?: TCombinedResourcesOnMap[string]
-  /** true = aktywna warstwa szczegółowa. false = sam licznik. */
+  /** true = aktywna warstwa szczegółowa. false = sam zlicznik. */
   showDetail: boolean
 }
 
@@ -13,9 +13,9 @@ type TProps = {
 const MAX_DETAIL_ICONS = 3
 
 /**
- * Zasoby na kafelku.
+ * Zasoby na kafelku — przełączana warstwa.
  *
- * Warstwa wyłączona → zwykły licznik (`ResourcesLayer`, dokładnie jak wcześniej).
+ * Warstwa wyłączona → sam `ResourceCountBadge`.
  * Warstwa włączona → jeden kafelek ikony na zasób, ułożony w kolumnę.
  */
 export default function TileLayerResources({ resources, showDetail }: TProps) {
@@ -24,7 +24,7 @@ export default function TileLayerResources({ resources, showDetail }: TProps) {
   if (items.length === 0) return null
 
   if (!showDetail) {
-    return <ResourcesLayer knownMapTilesResourcesOnMap={resources} />
+    return <ResourceCountBadge resources={resources} />
   }
 
   const shown = items.slice(0, MAX_DETAIL_ICONS)

@@ -6,6 +6,7 @@ import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMo
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { X } from "lucide-react"
 import { useEffect, useState } from "react"
+import actionStyles from "./styles/MapActionButton.module.css"
 import styles from "./styles/MovementPanel.module.css"
 
 export default function MovementPanel() {
@@ -35,20 +36,19 @@ export default function MovementPanel() {
           onClick={closeMovement}
           variant='ghost'
           size='icon'
+          aria-label='Close movement panel'
         >
           <X />
         </Button>
 
-        <>
-          <ConfirmMoveButton onClose={closeMovement} />
+        <ConfirmMoveButton onClose={closeMovement} />
 
-          <Button
-            className={styles.actionButton}
-            onClick={closeMovement}
-          >
-            Cancel Move
-          </Button>
-        </>
+        <Button
+          className={actionStyles.actionButton}
+          onClick={closeMovement}
+        >
+          Cancel Move
+        </Button>
       </div>
     </div>
   )

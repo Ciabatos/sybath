@@ -1,13 +1,15 @@
-import MapTileLayers from "@/components/map/layers/MapTileLayerUnderneath/layers/MapTileLayers"
-import MapBase from "@/components/map/layers/mapLayers/MapBase"
+import AboveLayers from "@/components/map/layers/mapAbove/AboveLayers"
+import MapBase from "@/components/map/layers/mapBase/MapBase"
 import { useMapHandling } from "@/methods/hooks/world/composite/useMapHandling"
 import { useResourcesLayer } from "@/methods/hooks/world/composite/useResourcesLayer"
 import { activeLayerAtom } from "@/store/atoms"
 import { useAtom } from "jotai"
 
 /**
- * Baza (terrain, miasta, gracz, liczniki) jest zawsze.
- * Warstwa szczegółów jest jedna i wyłączna — patrz `activeLayerAtom`.
+ * Pętla po kafelkach + wyłączna warstwa szczegółów.
+ *
+ * Baza (`MapBase`) jest zawsze. Warstwa szczegółów jest jedna i wyłączna —
+ * patrz `activeLayerAtom`.
  */
 export default function MapHandling() {
   const [activeLayer] = useAtom(activeLayerAtom)
@@ -18,7 +20,7 @@ export default function MapHandling() {
     <MapBase
       mapTiles={combinedMap}
       renderLayers={(tile) => (
-        <MapTileLayers
+        <AboveLayers
           tile={tile}
           resources={combinedResourcesOnMap[`${tile.mapTiles.x},${tile.mapTiles.y}`]}
           detailLayer={activeLayer.layer}

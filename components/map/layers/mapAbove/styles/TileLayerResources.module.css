@@ -1,8 +1,8 @@
 /* Warstwa szczegółowa zasobów — kolumna ikon w PRAWYM górnym rogu, czyli tam,
-   gdzie wcześniej siedział sam licznik `ResourcesLayer`. Lewy górny róg zajmuje
-   zlicznik bohaterów, dół — ich portrety.
+   gdzie wcześniej siedział sam zlicznik. Lewy górny róg zajmuje zlicznik
+   bohaterów, dół — ich portrety.
 
-   Siatka jest przekrzywiona, więc ikony dziedziczą ten sam skew co licznik
+   Siatka jest przekrzywiona, więc ikony dziedziczą ten sam skew co zlicznik
    obok — spójnie z resztą kafelka, bez odwracania przekształcenia. */
 
 .stack {

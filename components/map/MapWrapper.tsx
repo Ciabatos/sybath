@@ -2,7 +2,7 @@
 
 import MapHandling from "@/components/map/MapHandling"
 import MapLayersPanel from "@/components/map/MapLayersPanel"
-import RegionLayerProvince from "@/components/map/layers/mapWrapperLayers/RegionLayerProvince"
+import RegionLayerProvince from "@/components/map/layers/mapOverlay/RegionLayerProvince"
 import { useMapHandling } from "@/methods/hooks/world/composite/useMapHandling"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch"
