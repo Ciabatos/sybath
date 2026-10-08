@@ -1,0 +1,1 @@
+[EPanelsTopCenter.GatherResource]: dynamic(() => import("@/components/items/GatherResource")

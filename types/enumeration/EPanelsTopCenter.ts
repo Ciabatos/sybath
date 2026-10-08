@@ -4,6 +4,7 @@
 
 export enum EPanelsTopCenter {
   Inactive = "Inactive",
+  GatherResource = "GatherResource",
   OtherPlayerKnowledgeRequests = "OtherPlayerKnowledgeRequests",
   SquadControls = "SquadControls",
   Trades = "Trades",

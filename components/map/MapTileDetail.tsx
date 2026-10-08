@@ -1,6 +1,5 @@
 "use client"
 
-import GatherResource from "@/components/items/GatherResource"
 import ExploreButtonCancel from "@/components/map/ExploreButtonCancel"
 import ExploreButtonConfirm from "@/components/map/ExploreButtonConfirm"
 import ExploreButtonPlan from "@/components/map/ExploreButtonPlan"
@@ -16,9 +15,13 @@ import { usePlayerExploration } from "@/methods/hooks/players/composite/usePlaye
 import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMovement"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import { TMapTileResource, useMapTileDetail } from "@/methods/hooks/world/composite/useMapTileDetail"
+import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
+import { gatherResourceAtom } from "@/store/atoms"
 import { EPanelsBottomLeft } from "@/types/enumeration/EPanelsBottomLeft"
+import { EPanelsTopCenter } from "@/types/enumeration/EPanelsTopCenter"
 import { Backpack, Compass, Footprints, MapPin, Swords, Tent, Users, X } from "lucide-react"
-import { Activity, useEffect, useState } from "react"
+import { useAtom } from "jotai"
+import { useEffect } from "react"
 import styles from "./styles/MapTileDetail.module.css"
 
 /** Ikona zastępcza, gdy getIcon nie zna klucza obrazu przedmiotu. */
@@ -27,16 +30,20 @@ const FALLBACK_ICON = "📦"
 export default function MapTileDetail() {
   const { resetModalRightCenter } = useModalRightCenter()
   const { openModalBottomLeft } = useModalBottomLeft()
+  const { openModalTopCenter } = useModalTopCenter()
   const { clickedMapTile } = useMapTileActions()
 
   const { isMoving } = usePlayerMovement()
   const { isExploring } = usePlayerExploration()
 
   const { combinedKnownMapTilesResourcesOnTile } = useMapTileDetail()
-  const [clickedResource, setClickedResource] = useState<TMapTileResource | null>(null)
+
+  // Zasób do zebrania żyje w atomie, bo GatherResource to osobny modal
+  // w TopCenter i nie dostanie go przez prop.
+  const [, setGatherResource] = useAtom(gatherResourceAtom)
 
   useEffect(() => {
-    setClickedResource(null)
+    setGatherResource(null)
   }, [clickedMapTile])
 
   if (!clickedMapTile) {
@@ -52,7 +59,8 @@ export default function MapTileDetail() {
   }
 
   function handleResourceOnTile(resource: TMapTileResource) {
-    setClickedResource(resource)
+    setGatherResource(resource)
+    openModalTopCenter(EPanelsTopCenter.GatherResource)
   }
 
   // ── DERIVED ────────────────────────────────────────────────────────────────
@@ -79,13 +87,6 @@ export default function MapTileDetail() {
 
   return (
     <div className={styles.overlay}>
-      <Activity mode={!!clickedResource ? "visible" : "hidden"}>
-        <GatherResource
-          onClose={() => setClickedResource(null)}
-          resource={clickedResource}
-        />
-      </Activity>
-
       <div className={styles.panel}>
         <header className={styles.header}>
           <div className={styles.titleSection}>

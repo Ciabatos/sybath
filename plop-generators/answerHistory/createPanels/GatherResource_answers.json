@@ -1,0 +1,15 @@
+{
+  "choosenPath": "items",
+  "newPanelName": "GatherResource",
+  "enumeration": "EPanelsTopCenter.ts",
+  "enumName": "EPanelsTopCenter",
+  "enumSuffix": "TopCenter",
+  "panelName": "panelTopCenter",
+  "generatorName": "createPanels",
+  "filesCreated": [
+    "components/items/GatherResource.tsx",
+    "components/items/styles/GatherResource.module.css",
+    "types/panels/panelTopCenter/GatherResource.txt"
+  ],
+  "dateCreated": "2026-10-08T16:16:54.664Z"
+}

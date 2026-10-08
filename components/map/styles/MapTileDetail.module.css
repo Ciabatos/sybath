@@ -2,21 +2,36 @@
   display: flex;
   position: fixed;
   z-index: 100;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
+  /* Overlay musi zakrywać cały viewport, żeby `%` i centrowanie liczyły się
+     od ekranu. Bez `pointer-events: none` blokowałby kliknięcia w mapę. */
+  pointer-events: none;
+}
+
+/* Przywracamy klikalność samemu panelowi. */
+.overlay > * {
+  pointer-events: auto;
 }
 
 /* Było `flex-direction: column` bez `display: flex` — właściwość była martwa. */
 .panel {
   display: flex;
+  flex-shrink: 0;
   flex-direction: column;
+  /* Prawy górny róg: wypchnięcie w prawo + wyrównanie do góry */
+  align-self: flex-start;
+  margin-left: auto;
   box-shadow:
     -4px 0 20px rgba(0, 0, 0, 0.7),
     inset 0 0 30px rgba(0, 0, 0, 0.3);
-  border-left: 3px solid #4a3728;
+  border: 1px solid #4a3728;
+  border-right: none;
+  border-radius: 0.5rem 0 0 0.5rem;
   background: linear-gradient(135deg, #1a0f08 0%, #2b1810 50%, #1a0f08 100%);
-  width: 100%;
+  /* Rozmiar zablokowany na procentach ekranu — zawartość nigdy go nie zmieni. */
+  width: 25%;
+  min-width: 18rem;
+  height: 60%;
   overflow: hidden;
 }
 
@@ -31,26 +46,26 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
   border-bottom: 2px solid #4a3728;
   background: linear-gradient(to bottom, #2b1810, #1a0f08);
-  padding: 0.7rem 0.85rem;
+  padding: 0.85rem 1rem;
 }
 
 .titleSection {
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: 0.1rem;
+  gap: 0.15rem;
   min-width: 0;
 }
 
 .title {
-  overflow: hidden;
   margin: 0;
+  overflow: hidden;
   color: #c89a4a;
-  font-family: "Cinzel", serif;
   font-weight: 700;
-  font-size: 1.15rem;
-  letter-spacing: 0.02em;
+  font-size: 1.4rem;
   line-height: 1.15;
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.02em;
   text-overflow: ellipsis;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
   white-space: nowrap;
@@ -58,11 +73,11 @@
 
 .subLine {
   display: flex;
-  overflow: hidden;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.5rem;
+  overflow: hidden;
   color: #8b7355;
-  font-size: 0.7rem;
+  font-size: 0.82rem;
 }
 
 .subLineName {
@@ -77,16 +92,16 @@
   display: flex;
   flex-shrink: 0;
   align-items: center;
-  gap: 0.15rem;
+  gap: 0.2rem;
+  font-size: 0.72rem;
   font-family: "Cinzel", serif;
-  font-size: 0.62rem;
   letter-spacing: 0.05em;
 }
 
 .coordinatesIcon {
   flex-shrink: 0;
-  width: 0.6rem;
-  height: 0.6rem;
+  width: 0.72rem;
+  height: 0.72rem;
 }
 
 .closeButton {
@@ -94,8 +109,8 @@
   border: 1px solid #4a3728;
   border-radius: 0.3rem;
   background: rgba(74, 55, 40, 0.5);
-  width: 1.7rem;
-  height: 1.7rem;
+  width: 1.9rem;
+  height: 1.9rem;
   color: #c89a4a;
 }
 
@@ -106,24 +121,24 @@
 }
 
 .closeIcon {
-  width: 0.85rem;
-  height: 0.85rem;
+  width: 0.95rem;
+  height: 0.95rem;
 }
 
 /* ── Treść ───────────────────────────────────────────────────
-   Stała wysokość + przewijanie wewnętrzne. Bez tego panel skakał
-   przy klikaniu innych kafelków, bo sekcje pojawiały się i znikały,
-   zmieniając wysokość pod kursorem. */
+   Wysokość panelu zablokowana procentowo, więc przełączanie kafelków
+   już niczego nie przesuwa. `height: 0` + `flex: 1` + `min-height: 0`
+   to idiom pozwalający przewijać wnętrze flexa. */
 
 .content {
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: 0.7rem;
-  padding: 0.85rem;
+  gap: 0.85rem;
+  padding: 1rem;
+  height: 0;
   min-height: 0;
   overflow-y: auto;
-  height: 0;
 }
 
 .content::-webkit-scrollbar {
@@ -147,30 +162,30 @@
 .section {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.4rem;
 }
 
 /* Wiersz nagłówka sekcji — ikona + krótki podpis + wartość */
 .sectionHeader {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.45rem;
   border-bottom: 1px solid #3d2510;
-  padding-bottom: 0.25rem;
+  padding-bottom: 0.3rem;
 }
 
 .sectionIcon {
   flex-shrink: 0;
-  width: 0.85rem;
-  height: 0.85rem;
+  width: 1rem;
+  height: 1rem;
   color: #a68062;
 }
 
 .sectionLabel {
   color: #c89a4a;
-  font-family: "Cinzel", serif;
   font-weight: 600;
-  font-size: 0.6rem;
+  font-size: 0.72rem;
+  font-family: "Cinzel", serif;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -178,9 +193,9 @@
 .sectionValue {
   margin-left: auto;
   color: #e6b85c;
-  font-family: "Cinzel", serif;
   font-weight: 700;
-  font-size: 0.75rem;
+  font-size: 0.95rem;
+  font-family: "Cinzel", serif;
 }
 
 /* ── Chips ───────────────────────────────────────────────── */
@@ -188,29 +203,29 @@
 .chipList {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem;
+  gap: 0.3rem;
 }
 
 .chip,
 .chipButton {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.35rem;
   border: 1px solid #4a3728;
-  border-radius: 0.25rem;
+  border-radius: 0.3rem;
   background: rgba(61, 36, 21, 0.4);
-  padding: 0.25rem 0.45rem;
+  padding: 0.3rem 0.55rem;
   color: #d4a574;
+  font-size: 0.85rem;
   font-family: "Lora", serif;
-  font-size: 0.75rem;
 }
 
 .chipButton {
-  touch-action: manipulation;
-  width: auto;
   transition:
     border-color 0.15s ease,
     background 0.15s ease;
+  width: auto;
+  touch-action: manipulation;
 }
 
 .chipButton:hover {
@@ -226,9 +241,9 @@
   flex-shrink: 0;
   justify-content: center;
   align-items: center;
-  width: 0.95rem;
-  height: 0.95rem;
-  font-size: 0.85rem;
+  width: 1.15rem;
+  height: 1.15rem;
+  font-size: 1rem;
 }
 
 .chipIconBox svg {
@@ -244,8 +259,8 @@
 
 .chipMeta {
   color: #8b7355;
+  font-size: 0.62rem;
   font-family: "Cinzel", serif;
-  font-size: 0.52rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -253,9 +268,9 @@
 .emptyText {
   margin: 0;
   color: #6b5540;
-  font-family: "Lora", serif;
-  font-size: 0.7rem;
   font-style: italic;
+  font-size: 0.8rem;
+  font-family: "Lora", serif;
 }
 
 /* ── Postęp eksploracji ───────────────────────────────────── */
@@ -263,54 +278,54 @@
 .progressBlock {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.4rem;
 }
 
 .progressIcon {
   flex-shrink: 0;
-  width: 0.75rem;
-  height: 0.75rem;
+  width: 0.9rem;
+  height: 0.9rem;
   color: #8b7355;
 }
 
 .progressBar {
   flex: 1;
-  height: 4px;
   background: #0a0603;
+  height: 5px;
 }
 
 .progressValue {
   flex-shrink: 0;
   color: #8b7355;
-  font-family: "Cinzel", serif;
   font-weight: 700;
-  font-size: 0.6rem;
+  font-size: 0.72rem;
+  font-family: "Cinzel", serif;
 }
 
 /* ── Przyciski ───────────────────────────────────────────── */
 
 .inlineButton {
   display: inline-flex;
-  touch-action: manipulation;
-  align-items: center;
   justify-content: center;
-  gap: 0.3rem;
-  border-color: #6b4f2a;
-  border-radius: 0.25rem;
-  background: linear-gradient(180deg, rgba(60, 36, 21, 0.7) 0%, rgba(26, 15, 8, 0.85) 100%);
-  width: 100%;
-  height: auto;
-  padding: 0.35rem 0.5rem;
-  color: #c89a4a;
-  font-family: "Cinzel", serif;
-  font-weight: 600;
-  font-size: 0.58rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  align-items: center;
+  gap: 0.35rem;
   transition:
     border-color 0.15s ease,
     background 0.15s ease,
     color 0.15s ease;
+  border-color: #6b4f2a;
+  border-radius: 0.3rem;
+  background: linear-gradient(180deg, rgba(60, 36, 21, 0.7) 0%, rgba(26, 15, 8, 0.85) 100%);
+  padding: 0.45rem 0.6rem;
+  width: 100%;
+  height: auto;
+  touch-action: manipulation;
+  color: #c89a4a;
+  font-weight: 600;
+  font-size: 0.68rem;
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .inlineButton:hover {
@@ -326,19 +341,19 @@
 
 .inlineButtonIcon {
   flex-shrink: 0;
-  width: 0.8rem;
-  height: 0.8rem;
+  width: 0.95rem;
+  height: 0.95rem;
 }
 
 .actionGroup {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.3rem;
 }
 
 .actionGroupRow {
   display: flex;
-  gap: 0.25rem;
+  gap: 0.3rem;
 }
 
 /* `:button`, nie `*` — wyższa specyficzność od `.actionButton`, które żyje
@@ -349,9 +364,25 @@
   width: auto;
 }
 
+/* ── Wąskie ekrany ────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .panel {
+    width: 60%;
+  }
+}
+
+@media (max-width: 640px) {
+  .panel {
+    width: 92%;
+    height: 70%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .inlineButton,
   .chipButton {
     transition: none;
   }
 }
+
