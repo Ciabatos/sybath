@@ -18,7 +18,281 @@
 .panel {
   display: flex;
   flex-direction: column;
+  box-shadow:
+    inset 0 0 30px rgba(0, 0, 0, 0.3),
+    0 12px 40px rgba(0, 0, 0, 0.9);
+  border: 1px solid #4a3426;
+  border-top: 2px solid #6b4f2a;
+  border-radius: 0 0 0.5rem 0.5rem;
   background: linear-gradient(135deg, #1a0f08 0%, #2b1810 50%, #1a0f08 100%);
-  height: 100%;
+  /* ModalTopCenter jest fixed i nie ma width — bez jawnej szerokości panel
+     kurczyłby się do treści. */
+  width: 26rem;
+  max-width: calc(100vw - 2rem);
+  max-height: 70vh;
+  padding: 0.6rem;
+}
+
+/* ── Nagłówek ────────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid rgba(200, 154, 74, 0.25);
+  padding-bottom: 0.4rem;
+}
+
+.headerEmblem {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.6);
+  border: 1px solid #6b4f2a;
+  border-radius: 0.25rem;
+  background: radial-gradient(circle at 35% 30%, #3d2415 0%, #150d07 100%);
+  width: 2rem;
+  height: 2rem;
+  color: #c89a4a;
+}
+
+.headerEmblemIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.headerInfo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.05rem;
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  color: #d4a574;
+  font-family: "Cinzel", serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  text-transform: uppercase;
+}
+
+.subtitle {
+  margin: 0;
+  color: #8b7355;
+  font-family: "Lora", serif;
+  font-size: 0.65rem;
+  font-style: italic;
+}
+
+.closeButton {
+  flex-shrink: 0;
+  border: 1px solid #4a3426;
+  border-radius: 0.25rem;
+  background: rgba(12, 8, 5, 0.6);
+  width: 1.6rem;
+  height: 1.6rem;
+  color: #a68062;
+}
+
+.closeButton:hover {
+  border-color: #c89a4a;
+  background: rgba(200, 154, 74, 0.15);
+  color: #e6b85c;
+}
+
+.closeIcon {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+/* ── Lista ───────────────────────────────────────────────── */
+
+.list {
+  display: flex;
+  overflow-y: auto;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin: 0.45rem 0 0;
+  padding: 0;
+  list-style: none;
+  min-height: 0;
+}
+
+.list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.list::-webkit-scrollbar-track {
+  border-radius: 3px;
+  background: rgba(12, 8, 5, 0.6);
+}
+
+.list::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: #5a4022;
+}
+
+.list::-webkit-scrollbar-thumb:hover {
+  background: #8b6d3a;
+}
+
+/* ── Wiersz ──────────────────────────────────────────────── */
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid #3d2510;
+  border-radius: 0.3rem;
+  background: linear-gradient(135deg, #1c1108 0%, #120a05 100%);
+  padding: 0.4rem 0.45rem;
+}
+
+.portrait {
+  display: flex;
+  flex-shrink: 0;
   overflow: hidden;
+  box-shadow: inset 0 0 0 1px #6b4f2a;
+  border-radius: 50%;
+  background: #0c0805;
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.portrait [data-slot="avatar"] {
+  width: 100%;
+  height: 100%;
+}
+
+.rowInfo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.05rem;
+  min-width: 0;
+}
+
+.rowName {
+  overflow: hidden;
+  color: #d4a574;
+  font-family: "Cinzel", serif;
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rowIntent {
+  overflow: hidden;
+  color: #8b7355;
+  font-family: "Lora", serif;
+  font-size: 0.63rem;
+  font-style: italic;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rowActions {
+  display: flex;
+  flex-shrink: 0;
+  gap: 0.25rem;
+}
+
+.acceptButton {
+  touch-action: manipulation;
+  border-color: #6b4f2a;
+  border-radius: 0.25rem;
+  background: rgba(200, 154, 74, 0.14);
+  padding: 0 0.5rem;
+  width: auto;
+  height: auto;
+  color: #c89a4a;
+  font-family: "Cinzel", serif;
+  font-weight: 600;
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.acceptButton:hover {
+  border-color: #c89a4a;
+  background: rgba(200, 154, 74, 0.24);
+  color: #e6b85c;
+}
+
+.declineButton {
+  touch-action: manipulation;
+  border-color: rgba(162, 56, 48, 0.6);
+  border-radius: 0.25rem;
+  background: rgba(162, 56, 48, 0.12);
+  padding: 0 0.5rem;
+  width: auto;
+  height: auto;
+  color: #c9705f;
+  font-family: "Cinzel", serif;
+  font-weight: 600;
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.declineButton:hover {
+  border-color: #a23830;
+  background: rgba(162, 56, 48, 0.22);
+  color: #e08a72;
+}
+
+/* ── Pusty stan ──────────────────────────────────────────── */
+
+.empty {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 1.5rem 0.75rem;
+}
+
+.emptyIcon {
+  width: 1.75rem;
+  height: 1.75rem;
+  color: #4a3426;
+}
+
+.emptyText {
+  margin: 0;
+  color: #6b5540;
+  font-family: "Lora", serif;
+  font-size: 0.7rem;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Telefon — akcje pod informacją, pełna szerokość */
+@media (max-width: 480px) {
+  .row {
+    flex-wrap: wrap;
+  }
+
+  .rowActions {
+    width: 100%;
+  }
+
+  .acceptButton,
+  .declineButton {
+    flex: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay {
+    animation: none;
+  }
 }
