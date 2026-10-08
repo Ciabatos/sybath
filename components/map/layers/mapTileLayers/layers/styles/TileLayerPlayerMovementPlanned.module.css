@@ -1,0 +1,36 @@
+/* Planowany ruch — przerywana ramka i koszt kafelka.
+   Wcześniej tu był pełny prostokąt `fill="blue"` z inlinowym stylem. */
+
+.overlay {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 6;
+  inset: 0;
+  border: 2px dashed rgba(6, 80, 217, 0.9);
+  border-radius: 3px;
+  background: rgba(217, 119, 6, 0.12);
+  pointer-events: none;
+}
+
+.cost {
+  margin-top: -1px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(217, 119, 6, 0.9);
+  border-radius: 2px;
+  background: rgba(12, 8, 5, 0.95);
+  padding: 0 3px;
+  color: #fbbf24;
+  font-weight: 700;
+  font-size: 9px;
+  line-height: 12px;
+  font-family: "Cinzel", serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay {
+    animation: none;
+  }
+}
+

@@ -1,34 +1,27 @@
 import { TCombinedResourcesOnMap } from "@/methods/hooks/world/composite/useResourcesLayer"
+import { Package } from "lucide-react"
+import styles from "./styles/ResourcesLayer.module.css"
 
 type TProps = {
   knownMapTilesResourcesOnMap?: TCombinedResourcesOnMap[string]
 }
 
+/**
+ * Licznik zasobów na kafelku — jeden znacznik na kafelek, nie jeden na zasób.
+ * Wcześniej renderował tekst `res_{itemId}` w kontenerze z `z-index: 999999999`.
+ */
 export default function ResourcesLayer({ knownMapTilesResourcesOnMap }: TProps) {
-  if (!knownMapTilesResourcesOnMap) return null
+  const count = knownMapTilesResourcesOnMap?.itemIds.length ?? 0
+
+  if (count === 0) return null
 
   return (
-    <div
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        zIndex: 999999999,
-        pointerEvents: "none",
-      }}
+    <span
+      className={styles.badge}
+      title={`${count} ${count === 1 ? "resource" : "resources"}`}
     >
-      <div>
-        {knownMapTilesResourcesOnMap.itemIds.map((resource) => (
-          <div
-            key={resource.itemId}
-            style={{ position: "relative", zIndex: 99999 }}
-          >
-            res_{resource.itemId}
-          </div>
-        ))}
-      </div>
-    </div>
+      <Package className={styles.icon} />
+      {count}
+    </span>
   )
 }

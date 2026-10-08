@@ -1,5 +1,5 @@
+import MapBase from "@/components/map/layers/mapLayers/MapBase"
 import ResourcesLayer from "@/components/map/layers/mapTileLayers/layers/ResourcesLayer"
-import MapTile from "@/components/map/MapTile"
 import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
 import { useResourcesLayer } from "@/methods/hooks/world/composite/useResourcesLayer"
 
@@ -7,22 +7,21 @@ type TProps = {
   mapTiles: TMapTile[]
 }
 
+/**
+ * Pętla po kafelkach żyje w MapBase — tu tylko dostarczamy warstwę zasobów,
+ * żeby oba warianty nie duplikowały mapowania i budowania klucza.
+ */
 export default function MapResourcesLayer({ mapTiles }: TProps) {
   const { combinedResourcesOnMap } = useResourcesLayer()
 
   return (
-    <>
-      {mapTiles.map((tile) => {
-        const key = `${tile.mapTiles.x},${tile.mapTiles.y}`
-
-        return (
-          <MapTile
-            key={key}
-            mapTile={tile}
-            layers={<ResourcesLayer knownMapTilesResourcesOnMap={combinedResourcesOnMap[key]} />}
-          />
-        )
-      })}
-    </>
+    <MapBase
+      mapTiles={mapTiles}
+      renderLayers={(tile) => (
+        <ResourcesLayer
+          knownMapTilesResourcesOnMap={combinedResourcesOnMap[`${tile.mapTiles.x},${tile.mapTiles.y}`]}
+        />
+      )}
+    />
   )
 }

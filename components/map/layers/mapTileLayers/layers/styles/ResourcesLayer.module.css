@@ -1,6 +1,29 @@
-.Layer {
+/* Licznik zasobów na kafelku — nad kafelkiem, pod markerem gracza. */
+
+.badge {
+  display: flex;
   position: absolute;
-  z-index: 88;
-  overflow: visible;
+  z-index: 4;
+  top: 1px;
+  right: 1px;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  border: 1px solid #4a3426;
+  border-radius: 999px;
+  background: rgba(12, 8, 5, 0.92);
+  padding: 0 4px;
+  min-width: 14px;
+  color: #c89a4a;
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 14px;
   pointer-events: none;
+}
+
+.icon {
+  width: 8px;
+  height: 8px;
 }
