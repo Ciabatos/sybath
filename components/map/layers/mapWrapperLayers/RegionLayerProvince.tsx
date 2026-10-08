@@ -68,6 +68,10 @@ export default function RegionLayerProvince() {
       {Object.entries(tilesByRegion).map(([regionIdStr, tiles]) => {
         const regionId = Number(regionIdStr)
         const imageOutline = tiles[0]?.imageOutline
+        // `imageOutline` jest w bazie pustym stringiem, a `stroke=""` to brak
+        // obrysu — warstwa regionów była wtedy niewidoczna i przełącznik
+        // wyglądał na zepsuty. Złoty kolor to tylko domyślny fallback.
+        const outline = imageOutline || "#c89a4a"
         const edges = buildRegionOutline(tiles, TILE_SIZE)
         const polygon = orderEdgesToPolygon(edges)
         let finalPolygon = polygon
@@ -94,7 +98,7 @@ export default function RegionLayerProvince() {
             <polygon
               points={points}
               fill='none'
-              stroke={imageOutline}
+              stroke={outline}
               strokeWidth={8} // 2x docelowa grubość
               strokeLinejoin='round'
               clipPath={`url(#${clipId})`}

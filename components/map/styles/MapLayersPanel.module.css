@@ -1,0 +1,324 @@
+/* Nakładka na mapę — góra, środek.
+   Stoi OBOK `TransformWrapper` (renderuje ją `MapWrapper`), więc nie skaluje się
+   i nie przesuwa razem z mapą. `z-index: 90` — modale mapy mają 99/100, więc
+   otwierane okna wciąż wygrywają. */
+
+.overlay {
+  display: flex;
+  position: absolute;
+  z-index: 90;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ── Przycisk ────────────────────────────────────────────── */
+
+.toggle {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  touch-action: manipulation;
+  cursor: pointer;
+  box-shadow:
+    inset 0 1px 4px rgba(0, 0, 0, 0.6),
+    0 3px 10px rgba(0, 0, 0, 0.8);
+  border: 2px solid #6b4f2a;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, #3d2415 0%, #1a0f08 100%);
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #c89a4a;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.toggle:hover {
+  transform: translateY(2px);
+  border-color: #c89a4a;
+  color: #e6b85c;
+}
+
+.toggle:active {
+  transform: translateY(0);
+}
+
+.toggle[data-open="true"] {
+  border-color: #c89a4a;
+  background: linear-gradient(to bottom, #5a3d20 0%, #2a1810 100%);
+  color: #e6b85c;
+}
+
+.toggle:focus-visible {
+  outline: 2px solid #c89a4a;
+  outline-offset: 2px;
+}
+
+.toggleIcon {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+/* Kropka = aktywna warstwa szczegółów */
+.toggleDot {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  box-shadow: 0 0 4px rgba(200, 154, 74, 0.9);
+  border: 1px solid #1a0f08;
+  border-radius: 50%;
+  background: #e6b85c;
+  width: 9px;
+  height: 9px;
+}
+
+/* ── Panel ───────────────────────────────────────────────── */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  order: -1;
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.9),
+    inset 0 0 30px rgba(0, 0, 0, 0.3);
+  animation: panelIn 0.18s ease-out;
+  border: 1px solid #4a3426;
+  border-radius: 0.4rem;
+  background: linear-gradient(135deg, #1a0f08 0%, #2b1810 50%, #1a0f08 100%);
+  padding: 0.6rem;
+  width: 19rem;
+  max-width: calc(100vw - 2rem);
+}
+
+@keyframes panelIn {
+  from {
+    transform: translateY(-8px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ── Nagłówek ────────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid rgba(200, 154, 74, 0.25);
+  padding-bottom: 0.4rem;
+}
+
+.headerEmblem {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.6);
+  border: 1px solid #6b4f2a;
+  border-radius: 0.25rem;
+  background: radial-gradient(circle at 35% 30%, #3d2415 0%, #150d07 100%);
+  width: 2rem;
+  height: 2rem;
+  color: #c89a4a;
+}
+
+.headerEmblemIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.headerInfo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.05rem;
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  color: #d4a574;
+  font-family: "Cinzel", serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  text-transform: uppercase;
+}
+
+.subtitle {
+  margin: 0;
+  color: #8b7355;
+  font-family: "Lora", serif;
+  font-size: 0.64rem;
+  font-style: italic;
+}
+
+.closeButton {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #4a3426;
+  border-radius: 0.25rem;
+  background: rgba(12, 8, 5, 0.6);
+  width: 1.6rem;
+  height: 1.6rem;
+  color: #a68062;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.closeButton:hover {
+  border-color: #c89a4a;
+  background: rgba(200, 154, 74, 0.15);
+  color: #e6b85c;
+}
+
+.closeButton:focus-visible {
+  outline: 2px solid #c89a4a;
+  outline-offset: 1px;
+}
+
+.closeIcon {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+/* ── Wiersze warstw ─────────────────────────────────────── */
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 0.55rem;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid #3d2510;
+  border-radius: 0.3rem;
+  background: linear-gradient(135deg, #1c1108 0%, #120a05 100%);
+  padding-right: 0.5rem;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.row:hover {
+  border-color: #5a4022;
+  background: linear-gradient(135deg, #241609 0%, #160d06 100%);
+}
+
+.row[data-checked="true"] {
+  border-color: #8b6531;
+  background: linear-gradient(135deg, #2a1a0c 0%, #1a1008 100%);
+}
+
+/*
+  Przycisk wypełnia wiersz, żeby cały rząd był celem na telefonie.
+  `Switch` ma własne `after:absolute after:-inset-*`, więc nie kradnie kliknięć
+  z lewej połowy wiersza.
+*/
+.rowButton {
+  display: flex;
+  flex: 1;
+  cursor: pointer;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  padding: 0.45rem 0.5rem;
+  text-align: left;
+}
+
+.rowButton:focus-visible {
+  outline: 2px solid #c89a4a;
+  outline-offset: -2px;
+}
+
+.rowIcon {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.6);
+  border: 1px solid #5a4022;
+  border-radius: 0.2rem;
+  background: #150d07;
+  width: 1.6rem;
+  height: 1.6rem;
+  color: #a68062;
+}
+
+.row[data-checked="true"] .rowIcon {
+  border-color: #c89a4a;
+  color: #e6b85c;
+}
+
+.rowIconGlyph {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.rowInfo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.02rem;
+  min-width: 0;
+}
+
+.rowLabel {
+  overflow: hidden;
+  color: #d4a574;
+  font-family: "Cinzel", serif;
+  font-weight: 600;
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.rowHint {
+  overflow: hidden;
+  color: #8b7355;
+  font-family: "Lora", serif;
+  font-size: 0.6rem;
+  font-style: italic;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Nadpisuje Tailwindowy `bg-input`/`bg-primary` z `ui/switch.tsx`. */
+.switch {
+  flex-shrink: 0;
+  background: #1a0f08;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    animation: none;
+  }
+
+  .row,
+  .toggle,
+  .closeButton {
+    transition: none;
+  }
+}

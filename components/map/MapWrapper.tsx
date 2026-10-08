@@ -1,6 +1,7 @@
 "use client"
 
 import MapHandling from "@/components/map/MapHandling"
+import MapLayersPanel from "@/components/map/MapLayersPanel"
 import RegionLayerProvince from "@/components/map/layers/mapWrapperLayers/RegionLayerProvince"
 import { useMapHandling } from "@/methods/hooks/world/composite/useMapHandling"
 import { useCallback, useEffect, useRef, useState } from "react"
@@ -100,10 +101,17 @@ export default function MapWrapper() {
             className={style.Tiles}
           >
             <MapHandling />
+            {/* Obrys regionów to część bazy — zawsze rysowana, nie do przełączania. */}
             <RegionLayerProvince />
           </div>
         </TransformComponent>
       </TransformWrapper>
+
+      {/*
+        Nakładka z warstwami stoi OBOK TransformWrapper, nie wewnątrz — inaczej
+        skalowałaby się i przesuwała razem z mapą.
+      */}
+      <MapLayersPanel />
     </div>
   )
 }

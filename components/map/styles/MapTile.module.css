@@ -95,48 +95,6 @@
   }
 }
 
-/* ── Marker innych graczy ────────────────────────────────── */
-
-/* Bez obracającego się obramowania — to nie ty. */
-.otherPlayerMarker {
-  position: absolute;
-  z-index: 5;
-  top: 14%;
-  right: 10%;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  box-shadow: 0 0 0 1px rgba(200, 154, 74, 0.7);
-  border-radius: 50%;
-  width: 22%;
-  height: 22%;
-  pointer-events: none;
-}
-
-/* ── Odznaka populacji ──────────────────────────────────── */
-
-.PopulationBadge {
-  display: flex;
-  position: absolute;
-  z-index: 7;
-  bottom: 1px;
-  left: 1px;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
-  border: 1px solid #4a3426;
-  border-radius: 999px;
-  background: rgba(12, 8, 5, 0.92);
-  padding: 0 4px;
-  min-width: 14px;
-  color: #e6c998;
-  font-family: "Cinzel", serif;
-  font-size: 9px;
-  font-weight: 700;
-  line-height: 14px;
-  pointer-events: none;
-}
-
 /* ── Tekst debug ─────────────────────────────────────────── */
 
 /* DEBUG — współrzędne i nazwy wypisywane na mapę. Do usunięcia. */

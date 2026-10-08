@@ -1,4 +1,7 @@
 .map {
+  /* Kotwica dla nakładki `MapLayersPanel` — bez tego pozycjonowa
+     liczyłaby się od viewport, a nie od mapy. */
+  position: relative;
   background-color: #c6ce2c;
   width: 100%;
   height: 100vh;

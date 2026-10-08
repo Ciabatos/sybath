@@ -1,0 +1,92 @@
+/* Bohaterowie na kafelku. Kafel ma stały 64px, więc wszystko w px.
+
+   Podział kafelka między warstwy (żadna nie nachodzi na inną):
+     lewy górny róg  → liczba bohaterów (ta i jej ikona grupy)
+     prawy górny róg → zasoby (licznik albo kolumna ikon)
+     dół             → portrety bohaterów, tylko gdy warstwa jest włączona
+*/
+
+/* ── Zlicznik — zawsze widoczny ──────────────────────────── */
+
+.badge {
+  display: flex;
+  position: absolute;
+  z-index: 7;
+  top: 2px;
+  left: 2px;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  border: 1px solid #4a3426;
+  border-radius: 999px;
+  background: rgba(12, 8, 5, 0.92);
+  padding: 0 4px;
+  min-width: 14px;
+  height: 14px;
+  color: #e6c998;
+  font-family: "Cinzel", serif;
+  font-weight: 700;
+  font-size: 9px;
+  line-height: 14px;
+  pointer-events: none;
+}
+
+/*
+  Reguła obowiązkowa: ikony lucide niosą width="24" height="24". Bez jawnego
+  `svg` renderują się w natywnym rozmiarze i rozlewają poza odznakę.
+*/
+.badgeIcon,
+.badge svg {
+  flex-shrink: 0;
+  color: #c89a4a;
+  width: 8px;
+  height: 8px;
+}
+
+.badgeValue {
+  display: block;
+}
+
+/* ── Warstwa szczegółowa: rząd portretów ─────────────────── */
+
+.row {
+  display: flex;
+  position: absolute;
+  /* Niżej niż marker gracza (z-index 6) — przy nakładaniu wygrywa portret. */
+  z-index: 5;
+  right: 4px;
+  bottom: 4px;
+  left: 4px;
+  justify-content: space-between;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+/* 4 x 13px = 52px mieści się w 56px dostępnej szerokości kafelka. */
+.rowMarker {
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow:
+    0 0 0 1px rgba(200, 154, 74, 0.85),
+    0 1px 3px rgba(0, 0, 0, 0.9);
+  border-radius: 50%;
+  width: 13px;
+  height: 13px;
+}
+
+/* Członek drużyny — inna ramka, bo to faktycznie inna jednostka. */
+.rowMarker[data-squad="true"] {
+  box-shadow:
+    0 0 0 1px rgba(217, 119, 6, 0.95),
+    0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+/* Poza limitem rzędu zostaje sama ramka — liczba graczy wciąż czytelna. */
+.rowMarker[data-collapsed="true"] {
+  box-shadow: 0 0 0 1px rgba(200, 154, 74, 0.85);
+  background-image: none;
+  width: 8px;
+}

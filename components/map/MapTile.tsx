@@ -1,6 +1,6 @@
 "use client"
 
-import MapTileLayerHandling from "@/components/map/layers/mapTileLayers/MapTileLayerHandling"
+import MapTileLayerUnderneathHandling from "@/components/map/layers/mapTileLayers/MapTileLayerUnderneathHandling"
 import style from "@/components/map/styles/MapTile.module.css"
 import { createImage } from "@/methods/functions/util/createImage"
 import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
@@ -28,16 +28,7 @@ const {
 export default function MapTile({ mapTile, layers }: TProps) {
   const { handleClickOnMapTile } = useMapTileActions()
 
-  const {
-    mapTiles,
-    terrainTypes,
-    landscapeTypes,
-    cities,
-    districts,
-    districtTypes,
-    playerPosition,
-    knownPlayersPositions,
-  } = mapTile
+  const { mapTiles, terrainTypes, landscapeTypes, cities, districts, districtTypes, playerPosition } = mapTile
 
   const handleClick = () => {
     handleClickOnMapTile(mapTile)
@@ -57,7 +48,7 @@ export default function MapTile({ mapTile, layers }: TProps) {
         style={gridPlacement}
       >
         <div className={style.layers}>
-          <MapTileLayerHandling {...mapTile} />
+          <MapTileLayerUnderneathHandling {...mapTile} />
         </div>
       </div>
     )
@@ -76,8 +67,6 @@ export default function MapTile({ mapTile, layers }: TProps) {
       ? createSquadImage(playerPosition.imageMap)
       : createPlayerImage(playerPosition.imageMap)
     : ""
-
-  const otherPlayers = knownPlayersPositions?.otherPlayers ?? []
 
   return (
     <div
@@ -107,21 +96,9 @@ export default function MapTile({ mapTile, layers }: TProps) {
         divem debug — inaczej lądowały w przepływie tekstu.
       */}
       <div className={style.layers}>
-        <MapTileLayerHandling {...mapTile} />
+        <MapTileLayerUnderneathHandling {...mapTile} />
         {layers}
       </div>
-
-      {otherPlayers.map((other) => {
-        const otherImage = other.inSquad === true ? createSquadImage(other.imageMap) : createPlayerImage(other.imageMap)
-
-        return (
-          <span
-            key={other.otherPlayerId}
-            className={style.otherPlayerMarker}
-            style={{ backgroundImage: otherImage }}
-          />
-        )
-      })}
 
       {playerPosition && (
         <span className={style.playerMarker}>
@@ -132,7 +109,6 @@ export default function MapTile({ mapTile, layers }: TProps) {
         </span>
       )}
 
-      {otherPlayers.length > 0 && <span className={style.PopulationBadge}>{otherPlayers.length}</span>}
       <div className={style.debugText}>
         {mapTiles.x}, {mapTiles.y}, {cities?.name}, {districts?.name}
       </div>
