@@ -19,6 +19,11 @@
   "methodTypeName": "TKnownMapTilesResourcesOnMap",
   "methodParamsTypeName": "TKnownMapTilesResourcesOnMapParams",
   "clientMethodParamsTypeName": "TKnownMapTilesResourcesOnMapClientParams",
+  "fetchParamsTypeName": "TKnownMapTilesResourcesOnMapFetchParams",
+  "hasAllParamsExpression": "params.mapId != null && params.playerId != null",
+  "swrKeyConstantName": "KNOWNMAPTILESRESOURCESONMAP_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TKnownMapTilesResourcesOnMapFetchParams) =>\n  params.mapId != null && params.playerId != null ? `/api/world/rpc/get-known-map-tiles-resources-on-map/${params.mapId}/${params.playerId}` : null",
+  "sqlParamsExpression": "[params.userId, params.mapId, params.playerId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -115,7 +120,7 @@
       ]
     }
   ],
-  "dateCreated": "2026-09-22T22:24:25.346Z",
+  "dateCreated": "2026-10-10T12:20:15.219Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnMap.ts",
     "app/api/world/rpc/get-known-map-tiles-resources-on-map/[mapId]/[playerId]/route.ts",

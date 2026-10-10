@@ -4,7 +4,7 @@
 import {
   TAllSkillsRecordById,
   TAllSkills,
-  TAllSkillsClientParams,
+  TAllSkillsFetchParams,
 } from "@/db/postgresMainDatabase/schemas/attributes/allSkills"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { allSkillsAtom } from "@/store/atoms"
@@ -12,10 +12,21 @@ import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchAllSkills(params: TAllSkillsClientParams) {
+/*
+  Wspólny klucz SWR. Eksportowany, bo `useMutateAllSkills` musi
+  budować DOKŁADNIE tę samą wartość — inaczej SWR widzi dwa różne zasoby,
+  a dopasowanie optimistic update'ów po cichu przestaje działać.
+
+  Zwraca `null`, gdy brakuje któregokolwiek parametru. SWR traktuje klucz
+  `null` jako "nie pobieraj" i nie wykonuje requestu.
+*/
+export const ALLSKILLS_SWR_KEY = (params: TAllSkillsFetchParams) =>
+  params.playerId != null ? `/api/attributes/rpc/get-all-skills/${params.playerId}` : null
+
+export function useFetchAllSkills(params: TAllSkillsFetchParams) {
   const setAllSkills = useSetAtom(allSkillsAtom)
 
-  const { data } = useSWR<TAllSkills[]>(`/api/attributes/rpc/get-all-skills/${params.playerId}`, {
+  const { data } = useSWR<TAllSkills[]>(ALLSKILLS_SWR_KEY(params), {
     refreshInterval: 3000,
   })
 

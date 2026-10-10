@@ -14,6 +14,14 @@ export type TPlayersOnTileParams = {
 
 export type TPlayersOnTileClientParams = Omit<TPlayersOnTileParams, "userId">
 
+/*
+  Parametry dozwolone w części — hook fetchujący jest wołany bezwarunkowo
+  (React zabrania zmieniać liczby hooków między renderami), a w composite'ie
+  parametr bywa jeszcze nieznany, np. `clickedMapTile` przed kliknięciem.
+  Niekompletne parametry dają klucz SWR `null`, a SWR nic wtedy nie odpytuje.
+*/
+export type TPlayersOnTileFetchParams = Partial<TPlayersOnTileClientParams>
+
 export type TPlayersOnTile = {
   otherPlayerId: string
   name: string
@@ -29,7 +37,7 @@ export type TPlayersOnTileRecordByOtherPlayerId = Record<string, TPlayersOnTile>
 
 export async function getPlayersOnTile(params: TPlayersOnTileParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.userId, params.mapId, params.mapTileX, params.mapTileY, params.playerId]
     const sql = `SELECT * FROM world.get_players_on_tile($1, $2, $3, $4, $5);`
 
     const result = await query(sql, sqlParams)

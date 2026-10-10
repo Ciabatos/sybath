@@ -11,6 +11,14 @@ export type TPlayerSkillsParams = {
 
 export type TPlayerSkillsClientParams = Omit<TPlayerSkillsParams, "userId">
 
+/*
+  Parametry dozwolone w części — hook fetchujący jest wołany bezwarunkowo
+  (React zabrania zmieniać liczby hooków między renderami), a w composite'ie
+  parametr bywa jeszcze nieznany, np. `clickedMapTile` przed kliknięciem.
+  Niekompletne parametry dają klucz SWR `null`, a SWR nic wtedy nie odpytuje.
+*/
+export type TPlayerSkillsFetchParams = Partial<TPlayerSkillsClientParams>
+
 export type TPlayerSkills = {
   skillId: number
   value: number
@@ -21,7 +29,7 @@ export type TPlayerSkillsRecordBySkillId = Record<string, TPlayerSkills>
 
 export async function getPlayerSkills(params: TPlayerSkillsParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.userId, params.playerId]
     const sql = `SELECT * FROM attributes.get_player_skills($1, $2);`
 
     const result = await query(sql, sqlParams)

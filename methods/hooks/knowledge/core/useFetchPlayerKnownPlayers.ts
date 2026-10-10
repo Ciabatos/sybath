@@ -4,7 +4,7 @@
 import {
   TPlayerKnownPlayersRecordByOtherPlayerId,
   TPlayerKnownPlayers,
-  TPlayerKnownPlayersClientParams,
+  TPlayerKnownPlayersFetchParams,
 } from "@/db/postgresMainDatabase/schemas/knowledge/playerKnownPlayers"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { playerKnownPlayersAtom } from "@/store/atoms"
@@ -12,10 +12,21 @@ import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchPlayerKnownPlayers(params: TPlayerKnownPlayersClientParams) {
+/*
+  Wspólny klucz SWR. Eksportowany, bo `useMutatePlayerKnownPlayers` musi
+  budować DOKŁADNIE tę samą wartość — inaczej SWR widzi dwa różne zasoby,
+  a dopasowanie optimistic update'ów po cichu przestaje działać.
+
+  Zwraca `null`, gdy brakuje któregokolwiek parametru. SWR traktuje klucz
+  `null` jako "nie pobieraj" i nie wykonuje requestu.
+*/
+export const PLAYERKNOWNPLAYERS_SWR_KEY = (params: TPlayerKnownPlayersFetchParams) =>
+  params.playerId != null ? `/api/knowledge/rpc/get-player-known-players/${params.playerId}` : null
+
+export function useFetchPlayerKnownPlayers(params: TPlayerKnownPlayersFetchParams) {
   const setPlayerKnownPlayers = useSetAtom(playerKnownPlayersAtom)
 
-  const { data } = useSWR<TPlayerKnownPlayers[]>(`/api/knowledge/rpc/get-player-known-players/${params.playerId}`, {
+  const { data } = useSWR<TPlayerKnownPlayers[]>(PLAYERKNOWNPLAYERS_SWR_KEY(params), {
     refreshInterval: 3000,
   })
 

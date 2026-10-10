@@ -5,19 +5,22 @@ import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
 import {
   TOtherSquadPlayersProfilesRecordByOtherPlayerId,
-  TOtherSquadPlayersProfilesParams,
+  TOtherSquadPlayersProfilesFetchParams,
   TOtherSquadPlayersProfiles,
 } from "@/db/postgresMainDatabase/schemas/squad/otherSquadPlayersProfiles"
+import { OTHERSQUADPLAYERSPROFILES_SWR_KEY } from "@/methods/hooks/squad/core/useFetchOtherSquadPlayersProfiles"
 import { otherSquadPlayersProfilesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutateOtherSquadPlayersProfiles(params: TOtherSquadPlayersProfilesParams) {
+export function useMutateOtherSquadPlayersProfiles(params: TOtherSquadPlayersProfilesFetchParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/squad/rpc/get-other-squad-players-profiles/${params.playerId}/${params.squadId}`
+  const key = OTHERSQUADPLAYERSPROFILES_SWR_KEY(params)
   const otherSquadPlayersProfiles = useAtomValue(otherSquadPlayersProfilesAtom)
 
   function mutateOtherSquadPlayersProfiles(optimisticParams?: Partial<TOtherSquadPlayersProfiles>[]) {
+    if (!key) return
+
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -25,6 +28,13 @@ export function useMutateOtherSquadPlayersProfiles(params: TOtherSquadPlayersPro
 
     //MANUAL CODE - START
 
+    /*
+      Uzupełnij wartości domyślne dla `optimisticParams`. Wcześniej generator
+      wpisywał tu `` (pusty string) dla KAŻDEGO pola, co dla pól liczbowych
+      oznaczało `mapId: ""` — bezsensowną daną, która kompilowała się tylko
+      dlatego, że `Partial<T>` maskuje typ. Uzupełniaj ręcznie albo zostaw `{}`,
+      jeśli nie potrzebujesz defaults.
+    */
     const defaultValues = {
       otherPlayerId: ``,
       name: ``,

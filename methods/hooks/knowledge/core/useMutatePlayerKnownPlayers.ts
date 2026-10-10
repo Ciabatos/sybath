@@ -5,19 +5,22 @@ import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
 import {
   TPlayerKnownPlayersRecordByOtherPlayerId,
-  TPlayerKnownPlayersParams,
+  TPlayerKnownPlayersFetchParams,
   TPlayerKnownPlayers,
 } from "@/db/postgresMainDatabase/schemas/knowledge/playerKnownPlayers"
+import { PLAYERKNOWNPLAYERS_SWR_KEY } from "@/methods/hooks/knowledge/core/useFetchPlayerKnownPlayers"
 import { playerKnownPlayersAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutatePlayerKnownPlayers(params: TPlayerKnownPlayersParams) {
+export function useMutatePlayerKnownPlayers(params: TPlayerKnownPlayersFetchParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/knowledge/rpc/get-player-known-players/${params.playerId}`
+  const key = PLAYERKNOWNPLAYERS_SWR_KEY(params)
   const playerKnownPlayers = useAtomValue(playerKnownPlayersAtom)
 
   function mutatePlayerKnownPlayers(optimisticParams?: Partial<TPlayerKnownPlayers>[]) {
+    if (!key) return
+
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -25,6 +28,13 @@ export function useMutatePlayerKnownPlayers(params: TPlayerKnownPlayersParams) {
 
     //MANUAL CODE - START
 
+    /*
+      Uzupełnij wartości domyślne dla `optimisticParams`. Wcześniej generator
+      wpisywał tu `` (pusty string) dla KAŻDEGO pola, co dla pól liczbowych
+      oznaczało `mapId: ""` — bezsensowną daną, która kompilowała się tylko
+      dlatego, że `Partial<T>` maskuje typ. Uzupełniaj ręcznie albo zostaw `{}`,
+      jeśli nie potrzebujesz defaults.
+    */
     const defaultValues = {
       otherPlayerId: ``,
       name: ``,

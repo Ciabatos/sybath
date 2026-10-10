@@ -19,6 +19,11 @@
   "methodTypeName": "TKnownPlayersPositions",
   "methodParamsTypeName": "TKnownPlayersPositionsParams",
   "clientMethodParamsTypeName": "TKnownPlayersPositionsClientParams",
+  "fetchParamsTypeName": "TKnownPlayersPositionsFetchParams",
+  "hasAllParamsExpression": "params.mapId != null && params.playerId != null",
+  "swrKeyConstantName": "KNOWNPLAYERSPOSITIONS_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TKnownPlayersPositionsFetchParams) =>\n  params.mapId != null && params.playerId != null ? `/api/world/rpc/get-known-players-positions/${params.mapId}/${params.playerId}` : null",
+  "sqlParamsExpression": "[params.userId, params.mapId, params.playerId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -130,7 +135,7 @@
       ]
     }
   ],
-  "dateCreated": "2026-09-22T22:24:25.599Z",
+  "dateCreated": "2026-10-10T12:20:15.476Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/world/knownPlayersPositions.ts",
     "app/api/world/rpc/get-known-players-positions/[mapId]/[playerId]/route.ts",

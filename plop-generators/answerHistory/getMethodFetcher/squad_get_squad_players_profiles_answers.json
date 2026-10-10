@@ -18,6 +18,11 @@
   "methodTypeName": "TSquadPlayersProfiles",
   "methodParamsTypeName": "TSquadPlayersProfilesParams",
   "clientMethodParamsTypeName": "TSquadPlayersProfilesClientParams",
+  "fetchParamsTypeName": "TSquadPlayersProfilesFetchParams",
+  "hasAllParamsExpression": "params.playerId != null",
+  "swrKeyConstantName": "SQUADPLAYERSPROFILES_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TSquadPlayersProfilesFetchParams) =>\n  params.playerId != null ? `/api/squad/rpc/get-squad-players-profiles/${params.playerId}` : null",
+  "sqlParamsExpression": "[params.userId, params.playerId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -105,7 +110,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-09-22T22:24:24.832Z",
+  "dateCreated": "2026-10-10T12:20:14.664Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/squad/squadPlayersProfiles.ts",
     "app/api/squad/rpc/get-squad-players-profiles/[playerId]/route.ts",

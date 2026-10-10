@@ -18,6 +18,11 @@
   "methodTypeName": "TPlayerAbilities",
   "methodParamsTypeName": "TPlayerAbilitiesParams",
   "clientMethodParamsTypeName": "TPlayerAbilitiesClientParams",
+  "fetchParamsTypeName": "TPlayerAbilitiesFetchParams",
+  "hasAllParamsExpression": "params.playerId != null",
+  "swrKeyConstantName": "PLAYERABILITIES_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TPlayerAbilitiesFetchParams) =>\n  params.playerId != null ? `/api/attributes/rpc/get-player-abilities/${params.playerId}` : null",
+  "sqlParamsExpression": "[params.userId, params.playerId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -84,7 +89,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-09-22T22:24:22.410Z",
+  "dateCreated": "2026-10-10T12:20:12.391Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/attributes/playerAbilities.ts",
     "app/api/attributes/rpc/get-player-abilities/[playerId]/route.ts",

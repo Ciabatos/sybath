@@ -4,7 +4,7 @@
 import {
   TPlayerMapRecordByMapId,
   TPlayerMap,
-  TPlayerMapClientParams,
+  TPlayerMapFetchParams,
 } from "@/db/postgresMainDatabase/schemas/world/playerMap"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { playerMapAtom } from "@/store/atoms"
@@ -12,10 +12,23 @@ import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchPlayerMap(params: TPlayerMapClientParams) {
+/*
+  Wspólny klucz SWR. Eksportowany, bo `useMutatePlayerMap` musi
+  budować DOKŁADNIE tę samą wartość — inaczej SWR widzi dwa różne zasoby,
+  a dopasowanie optimistic update'ów po cichu przestaje działać.
+
+  Zwraca `null`, gdy brakuje któregokolwiek parametru. SWR traktuje klucz
+  `null` jako "nie pobieraj" i nie wykonuje requestu.
+*/
+export const PLAYERMAP_SWR_KEY = (params: TPlayerMapFetchParams) =>
+  params.playerId != null ? `/api/world/rpc/get-player-map/${params.playerId}` : null
+
+export function useFetchPlayerMap(params: TPlayerMapFetchParams) {
   const setPlayerMap = useSetAtom(playerMapAtom)
 
-  const { data } = useSWR<TPlayerMap[]>(`/api/world/rpc/get-player-map/${params.playerId}`, { refreshInterval: 3000 })
+  const { data } = useSWR<TPlayerMap[]>(PLAYERMAP_SWR_KEY(params), {
+    refreshInterval: 3000,
+  })
 
   useEffect(() => {
     if (data) {

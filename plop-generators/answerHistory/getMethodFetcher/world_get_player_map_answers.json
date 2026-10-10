@@ -18,6 +18,11 @@
   "methodTypeName": "TPlayerMap",
   "methodParamsTypeName": "TPlayerMapParams",
   "clientMethodParamsTypeName": "TPlayerMapClientParams",
+  "fetchParamsTypeName": "TPlayerMapFetchParams",
+  "hasAllParamsExpression": "params.playerId != null",
+  "swrKeyConstantName": "PLAYERMAP_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TPlayerMapFetchParams) =>\n  params.playerId != null ? `/api/world/rpc/get-player-map/${params.playerId}` : null",
+  "sqlParamsExpression": "[params.userId, params.playerId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -70,7 +75,7 @@
   "generateMutation": true,
   "mutationMergeOldData": false,
   "compositeDefinitions": [],
-  "dateCreated": "2026-09-22T22:24:25.771Z",
+  "dateCreated": "2026-10-10T12:20:15.661Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/world/playerMap.ts",
     "app/api/world/rpc/get-player-map/[playerId]/route.ts",

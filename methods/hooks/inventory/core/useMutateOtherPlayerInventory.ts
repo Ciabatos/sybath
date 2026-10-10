@@ -5,19 +5,22 @@ import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
 import {
   TOtherPlayerInventoryRecordBySlotId,
-  TOtherPlayerInventoryParams,
+  TOtherPlayerInventoryFetchParams,
   TOtherPlayerInventory,
 } from "@/db/postgresMainDatabase/schemas/inventory/otherPlayerInventory"
+import { OTHERPLAYERINVENTORY_SWR_KEY } from "@/methods/hooks/inventory/core/useFetchOtherPlayerInventory"
 import { otherPlayerInventoryAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutateOtherPlayerInventory(params: TOtherPlayerInventoryParams) {
+export function useMutateOtherPlayerInventory(params: TOtherPlayerInventoryFetchParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/inventory/rpc/get-other-player-inventory/${params.playerId}/${params.otherPlayerId}`
+  const key = OTHERPLAYERINVENTORY_SWR_KEY(params)
   const otherPlayerInventory = useAtomValue(otherPlayerInventoryAtom)
 
   function mutateOtherPlayerInventory(optimisticParams?: Partial<TOtherPlayerInventory>[]) {
+    if (!key) return
+
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -25,6 +28,13 @@ export function useMutateOtherPlayerInventory(params: TOtherPlayerInventoryParam
 
     //MANUAL CODE - START
 
+    /*
+      Uzupełnij wartości domyślne dla `optimisticParams`. Wcześniej generator
+      wpisywał tu `` (pusty string) dla KAŻDEGO pola, co dla pól liczbowych
+      oznaczało `mapId: ""` — bezsensowną daną, która kompilowała się tylko
+      dlatego, że `Partial<T>` maskuje typ. Uzupełniaj ręcznie albo zostaw `{}`,
+      jeśli nie potrzebujesz defaults.
+    */
     const defaultValues = {
       slotId: ``,
       containerId: ``,

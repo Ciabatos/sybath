@@ -18,6 +18,11 @@
   "methodTypeName": "TSquadInvites",
   "methodParamsTypeName": "TSquadInvitesParams",
   "clientMethodParamsTypeName": "TSquadInvitesClientParams",
+  "fetchParamsTypeName": "TSquadInvitesFetchParams",
+  "hasAllParamsExpression": "params.playerId != null",
+  "swrKeyConstantName": "SQUADINVITES_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TSquadInvitesFetchParams) =>\n  params.playerId != null ? `/api/squad/rpc/get-squad-invites/${params.playerId}` : null",
+  "sqlParamsExpression": "[params.userId, params.playerId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -133,7 +138,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-09-22T22:24:24.741Z",
+  "dateCreated": "2026-10-10T12:20:14.575Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/squad/squadInvites.ts",
     "app/api/squad/rpc/get-squad-invites/[playerId]/route.ts",

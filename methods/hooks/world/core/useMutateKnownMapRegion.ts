@@ -5,19 +5,22 @@ import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
 import {
   TKnownMapRegionRecordByMapTileXMapTileY,
-  TKnownMapRegionParams,
+  TKnownMapRegionFetchParams,
   TKnownMapRegion,
 } from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
+import { KNOWNMAPREGION_SWR_KEY } from "@/methods/hooks/world/core/useFetchKnownMapRegion"
 import { knownMapRegionAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutateKnownMapRegion(params: TKnownMapRegionParams) {
+export function useMutateKnownMapRegion(params: TKnownMapRegionFetchParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/world/rpc/get-known-map-region/${params.mapId}/${params.playerId}/${params.regionType}`
+  const key = KNOWNMAPREGION_SWR_KEY(params)
   const knownMapRegion = useAtomValue(knownMapRegionAtom)
 
   function mutateKnownMapRegion(optimisticParams?: Partial<TKnownMapRegion>[]) {
+    if (!key) return
+
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -25,6 +28,13 @@ export function useMutateKnownMapRegion(params: TKnownMapRegionParams) {
 
     //MANUAL CODE - START
 
+    /*
+      Uzupełnij wartości domyślne dla `optimisticParams`. Wcześniej generator
+      wpisywał tu `` (pusty string) dla KAŻDEGO pola, co dla pól liczbowych
+      oznaczało `mapId: ""` — bezsensowną daną, która kompilowała się tylko
+      dlatego, że `Partial<T>` maskuje typ. Uzupełniaj ręcznie albo zostaw `{}`,
+      jeśli nie potrzebujesz defaults.
+    */
     const defaultValues = {
       regionId: ``,
       mapId: ``,

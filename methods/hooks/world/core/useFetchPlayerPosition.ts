@@ -4,7 +4,7 @@
 import {
   TPlayerPositionRecordByXY,
   TPlayerPosition,
-  TPlayerPositionClientParams,
+  TPlayerPositionFetchParams,
 } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { playerPositionAtom } from "@/store/atoms"
@@ -12,10 +12,23 @@ import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchPlayerPosition(params: TPlayerPositionClientParams) {
+/*
+  Wspólny klucz SWR. Eksportowany, bo `useMutatePlayerPosition` musi
+  budować DOKŁADNIE tę samą wartość — inaczej SWR widzi dwa różne zasoby,
+  a dopasowanie optimistic update'ów po cichu przestaje działać.
+
+  Zwraca `null`, gdy brakuje któregokolwiek parametru. SWR traktuje klucz
+  `null` jako "nie pobieraj" i nie wykonuje requestu.
+*/
+export const PLAYERPOSITION_SWR_KEY = (params: TPlayerPositionFetchParams) =>
+  params.mapId != null && params.playerId != null
+    ? `/api/world/rpc/get-player-position/${params.mapId}/${params.playerId}`
+    : null
+
+export function useFetchPlayerPosition(params: TPlayerPositionFetchParams) {
   const setPlayerPosition = useSetAtom(playerPositionAtom)
 
-  const { data } = useSWR<TPlayerPosition[]>(`/api/world/rpc/get-player-position/${params.mapId}/${params.playerId}`, {
+  const { data } = useSWR<TPlayerPosition[]>(PLAYERPOSITION_SWR_KEY(params), {
     refreshInterval: 3000,
   })
 

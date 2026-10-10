@@ -18,6 +18,11 @@
   "methodTypeName": "TOtherPlayerProfile",
   "methodParamsTypeName": "TOtherPlayerProfileParams",
   "clientMethodParamsTypeName": "TOtherPlayerProfileClientParams",
+  "fetchParamsTypeName": "TOtherPlayerProfileFetchParams",
+  "hasAllParamsExpression": "params.playerId != null && params.otherPlayerId != null",
+  "swrKeyConstantName": "OTHERPLAYERPROFILE_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TOtherPlayerProfileFetchParams) =>\n  params.playerId != null && params.otherPlayerId != null ? `/api/players/rpc/get-other-player-profile/${params.playerId}/${params.otherPlayerId}` : null",
+  "sqlParamsExpression": "[params.userId, params.playerId, params.otherPlayerId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -103,7 +108,7 @@
   "generateMutation": true,
   "mutationMergeOldData": false,
   "compositeDefinitions": [],
-  "dateCreated": "2026-09-22T22:24:24.458Z",
+  "dateCreated": "2026-10-10T12:20:14.204Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/players/otherPlayerProfile.ts",
     "app/api/players/rpc/get-other-player-profile/[playerId]/[otherPlayerId]/route.ts",

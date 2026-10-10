@@ -11,6 +11,14 @@ export type TAllAbilitiesParams = {
 
 export type TAllAbilitiesClientParams = Omit<TAllAbilitiesParams, "userId">
 
+/*
+  Parametry dozwolone w części — hook fetchujący jest wołany bezwarunkowo
+  (React zabrania zmieniać liczby hooków między renderami), a w composite'ie
+  parametr bywa jeszcze nieznany, np. `clickedMapTile` przed kliknięciem.
+  Niekompletne parametry dają klucz SWR `null`, a SWR nic wtedy nie odpytuje.
+*/
+export type TAllAbilitiesFetchParams = Partial<TAllAbilitiesClientParams>
+
 export type TAllAbilities = {
   id: number
   name: string
@@ -23,7 +31,7 @@ export type TAllAbilitiesRecordById = Record<string, TAllAbilities>
 
 export async function getAllAbilities(params: TAllAbilitiesParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.userId, params.playerId]
     const sql = `SELECT * FROM attributes.get_all_abilities($1, $2);`
 
     const result = await query(sql, sqlParams)

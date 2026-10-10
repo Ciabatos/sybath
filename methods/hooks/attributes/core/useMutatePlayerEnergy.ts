@@ -5,19 +5,22 @@ import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
 import {
   TPlayerEnergyRecordByLastRegeneratedAt,
-  TPlayerEnergyParams,
+  TPlayerEnergyFetchParams,
   TPlayerEnergy,
 } from "@/db/postgresMainDatabase/schemas/attributes/playerEnergy"
+import { PLAYERENERGY_SWR_KEY } from "@/methods/hooks/attributes/core/useFetchPlayerEnergy"
 import { playerEnergyAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutatePlayerEnergy(params: TPlayerEnergyParams) {
+export function useMutatePlayerEnergy(params: TPlayerEnergyFetchParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/attributes/rpc/get-player-energy/${params.playerId}`
+  const key = PLAYERENERGY_SWR_KEY(params)
   const playerEnergy = useAtomValue(playerEnergyAtom)
 
   function mutatePlayerEnergy(optimisticParams?: Partial<TPlayerEnergy>[]) {
+    if (!key) return
+
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -25,6 +28,13 @@ export function useMutatePlayerEnergy(params: TPlayerEnergyParams) {
 
     //MANUAL CODE - START
 
+    /*
+      Uzupełnij wartości domyślne dla `optimisticParams`. Wcześniej generator
+      wpisywał tu `` (pusty string) dla KAŻDEGO pola, co dla pól liczbowych
+      oznaczało `mapId: ""` — bezsensowną daną, która kompilowała się tylko
+      dlatego, że `Partial<T>` maskuje typ. Uzupełniaj ręcznie albo zostaw `{}`,
+      jeśli nie potrzebujesz defaults.
+    */
     const defaultValues = {
       currentEnergy: ``,
       maxEnergy: ``,

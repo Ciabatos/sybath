@@ -18,6 +18,11 @@
   "methodTypeName": "TOtherPlayerAbilities",
   "methodParamsTypeName": "TOtherPlayerAbilitiesParams",
   "clientMethodParamsTypeName": "TOtherPlayerAbilitiesClientParams",
+  "fetchParamsTypeName": "TOtherPlayerAbilitiesFetchParams",
+  "hasAllParamsExpression": "params.playerId != null && params.otherPlayerId != null",
+  "swrKeyConstantName": "OTHERPLAYERABILITIES_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TOtherPlayerAbilitiesFetchParams) =>\n  params.playerId != null && params.otherPlayerId != null ? `/api/attributes/rpc/get-other-player-abilities/${params.playerId}/${params.otherPlayerId}` : null",
+  "sqlParamsExpression": "[params.userId, params.playerId, params.otherPlayerId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -96,7 +101,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-09-22T22:24:22.139Z",
+  "dateCreated": "2026-10-10T12:20:12.102Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/attributes/otherPlayerAbilities.ts",
     "app/api/attributes/rpc/get-other-player-abilities/[playerId]/[otherPlayerId]/route.ts",

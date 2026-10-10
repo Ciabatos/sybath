@@ -11,6 +11,14 @@ export type TActivePlayerSwitchProfilesParams = {
 
 export type TActivePlayerSwitchProfilesClientParams = Omit<TActivePlayerSwitchProfilesParams, "userId">
 
+/*
+  Parametry dozwolone w części — hook fetchujący jest wołany bezwarunkowo
+  (React zabrania zmieniać liczby hooków między renderami), a w composite'ie
+  parametr bywa jeszcze nieznany, np. `clickedMapTile` przed kliknięciem.
+  Niekompletne parametry dają klucz SWR `null`, a SWR nic wtedy nie odpytuje.
+*/
+export type TActivePlayerSwitchProfilesFetchParams = Partial<TActivePlayerSwitchProfilesClientParams>
+
 export type TActivePlayerSwitchProfiles = {
   id: number
   name: string
@@ -23,7 +31,7 @@ export type TActivePlayerSwitchProfilesRecordById = Record<string, TActivePlayer
 
 export async function getActivePlayerSwitchProfiles(params: TActivePlayerSwitchProfilesParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.userId, params.playerId]
     const sql = `SELECT * FROM players.get_active_player_switch_profiles($1, $2);`
 
     const result = await query(sql, sqlParams)

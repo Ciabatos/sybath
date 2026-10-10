@@ -4,7 +4,7 @@
 import {
   TPlayerEnergyRecordByLastRegeneratedAt,
   TPlayerEnergy,
-  TPlayerEnergyClientParams,
+  TPlayerEnergyFetchParams,
 } from "@/db/postgresMainDatabase/schemas/attributes/playerEnergy"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { playerEnergyAtom } from "@/store/atoms"
@@ -12,10 +12,21 @@ import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchPlayerEnergy(params: TPlayerEnergyClientParams) {
+/*
+  Wspólny klucz SWR. Eksportowany, bo `useMutatePlayerEnergy` musi
+  budować DOKŁADNIE tę samą wartość — inaczej SWR widzi dwa różne zasoby,
+  a dopasowanie optimistic update'ów po cichu przestaje działać.
+
+  Zwraca `null`, gdy brakuje któregokolwiek parametru. SWR traktuje klucz
+  `null` jako "nie pobieraj" i nie wykonuje requestu.
+*/
+export const PLAYERENERGY_SWR_KEY = (params: TPlayerEnergyFetchParams) =>
+  params.playerId != null ? `/api/attributes/rpc/get-player-energy/${params.playerId}` : null
+
+export function useFetchPlayerEnergy(params: TPlayerEnergyFetchParams) {
   const setPlayerEnergy = useSetAtom(playerEnergyAtom)
 
-  const { data } = useSWR<TPlayerEnergy[]>(`/api/attributes/rpc/get-player-energy/${params.playerId}`, {
+  const { data } = useSWR<TPlayerEnergy[]>(PLAYERENERGY_SWR_KEY(params), {
     refreshInterval: 3000,
   })
 

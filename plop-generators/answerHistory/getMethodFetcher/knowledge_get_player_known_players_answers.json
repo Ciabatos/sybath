@@ -18,6 +18,11 @@
   "methodTypeName": "TPlayerKnownPlayers",
   "methodParamsTypeName": "TPlayerKnownPlayersParams",
   "clientMethodParamsTypeName": "TPlayerKnownPlayersClientParams",
+  "fetchParamsTypeName": "TPlayerKnownPlayersFetchParams",
+  "hasAllParamsExpression": "params.playerId != null",
+  "swrKeyConstantName": "PLAYERKNOWNPLAYERS_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TPlayerKnownPlayersFetchParams) =>\n  params.playerId != null ? `/api/knowledge/rpc/get-player-known-players/${params.playerId}` : null",
+  "sqlParamsExpression": "[params.userId, params.playerId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -126,7 +131,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-09-22T22:24:24.073Z",
+  "dateCreated": "2026-10-10T12:20:13.817Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/knowledge/playerKnownPlayers.ts",
     "app/api/knowledge/rpc/get-player-known-players/[playerId]/route.ts",

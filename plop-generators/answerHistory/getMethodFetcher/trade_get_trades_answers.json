@@ -18,6 +18,11 @@
   "methodTypeName": "TTrades",
   "methodParamsTypeName": "TTradesParams",
   "clientMethodParamsTypeName": "TTradesClientParams",
+  "fetchParamsTypeName": "TTradesFetchParams",
+  "hasAllParamsExpression": "params.playerId != null",
+  "swrKeyConstantName": "TRADES_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TTradesFetchParams) =>\n  params.playerId != null ? `/api/trade/rpc/get-trades/${params.playerId}` : null",
+  "sqlParamsExpression": "[params.userId, params.playerId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -98,7 +103,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-09-22T22:24:24.921Z",
+  "dateCreated": "2026-10-10T12:20:14.753Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/trade/trades.ts",
     "app/api/trade/rpc/get-trades/[playerId]/route.ts",

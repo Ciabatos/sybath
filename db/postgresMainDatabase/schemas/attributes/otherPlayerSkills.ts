@@ -12,6 +12,14 @@ export type TOtherPlayerSkillsParams = {
 
 export type TOtherPlayerSkillsClientParams = Omit<TOtherPlayerSkillsParams, "userId">
 
+/*
+  Parametry dozwolone w części — hook fetchujący jest wołany bezwarunkowo
+  (React zabrania zmieniać liczby hooków między renderami), a w composite'ie
+  parametr bywa jeszcze nieznany, np. `clickedMapTile` przed kliknięciem.
+  Niekompletne parametry dają klucz SWR `null`, a SWR nic wtedy nie odpytuje.
+*/
+export type TOtherPlayerSkillsFetchParams = Partial<TOtherPlayerSkillsClientParams>
+
 export type TOtherPlayerSkills = {
   skillId: number
   value: number
@@ -22,7 +30,7 @@ export type TOtherPlayerSkillsRecordBySkillId = Record<string, TOtherPlayerSkill
 
 export async function getOtherPlayerSkills(params: TOtherPlayerSkillsParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.userId, params.playerId, params.otherPlayerId]
     const sql = `SELECT * FROM attributes.get_other_player_skills($1, $2, $3);`
 
     const result = await query(sql, sqlParams)

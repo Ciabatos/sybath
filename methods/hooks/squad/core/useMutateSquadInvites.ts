@@ -5,19 +5,22 @@ import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
 import {
   TSquadInvitesRecordById,
-  TSquadInvitesParams,
+  TSquadInvitesFetchParams,
   TSquadInvites,
 } from "@/db/postgresMainDatabase/schemas/squad/squadInvites"
+import { SQUADINVITES_SWR_KEY } from "@/methods/hooks/squad/core/useFetchSquadInvites"
 import { squadInvitesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutateSquadInvites(params: TSquadInvitesParams) {
+export function useMutateSquadInvites(params: TSquadInvitesFetchParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/squad/rpc/get-squad-invites/${params.playerId}`
+  const key = SQUADINVITES_SWR_KEY(params)
   const squadInvites = useAtomValue(squadInvitesAtom)
 
   function mutateSquadInvites(optimisticParams?: Partial<TSquadInvites>[]) {
+    if (!key) return
+
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -25,6 +28,13 @@ export function useMutateSquadInvites(params: TSquadInvitesParams) {
 
     //MANUAL CODE - START
 
+    /*
+      Uzupełnij wartości domyślne dla `optimisticParams`. Wcześniej generator
+      wpisywał tu `` (pusty string) dla KAŻDEGO pola, co dla pól liczbowych
+      oznaczało `mapId: ""` — bezsensowną daną, która kompilowała się tylko
+      dlatego, że `Partial<T>` maskuje typ. Uzupełniaj ręcznie albo zostaw `{}`,
+      jeśli nie potrzebujesz defaults.
+    */
     const defaultValues = {
       id: ``,
       squadId: ``,

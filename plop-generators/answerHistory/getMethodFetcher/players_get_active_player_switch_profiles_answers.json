@@ -18,6 +18,11 @@
   "methodTypeName": "TActivePlayerSwitchProfiles",
   "methodParamsTypeName": "TActivePlayerSwitchProfilesParams",
   "clientMethodParamsTypeName": "TActivePlayerSwitchProfilesClientParams",
+  "fetchParamsTypeName": "TActivePlayerSwitchProfilesFetchParams",
+  "hasAllParamsExpression": "params.playerId != null",
+  "swrKeyConstantName": "ACTIVEPLAYERSWITCHPROFILES_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TActivePlayerSwitchProfilesFetchParams) =>\n  params.playerId != null ? `/api/players/rpc/get-active-player-switch-profiles/${params.playerId}` : null",
+  "sqlParamsExpression": "[params.userId, params.playerId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -98,7 +103,7 @@
   "generateMutation": true,
   "mutationMergeOldData": false,
   "compositeDefinitions": [],
-  "dateCreated": "2026-09-22T22:24:24.256Z",
+  "dateCreated": "2026-10-10T12:20:14.111Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles.ts",
     "app/api/players/rpc/get-active-player-switch-profiles/[playerId]/route.ts",

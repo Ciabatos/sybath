@@ -4,15 +4,18 @@
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
 import {
-  TOtherPlayerProfileParams,
+  TOtherPlayerProfileFetchParams,
   TOtherPlayerProfile,
 } from "@/db/postgresMainDatabase/schemas/players/otherPlayerProfile"
+import { OTHERPLAYERPROFILE_SWR_KEY } from "@/methods/hooks/players/core/useFetchOtherPlayerProfile"
 
-export function useMutateOtherPlayerProfile(params: TOtherPlayerProfileParams) {
+export function useMutateOtherPlayerProfile(params: TOtherPlayerProfileFetchParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/players/rpc/get-other-player-profile/${params.playerId}/${params.otherPlayerId}`
+  const key = OTHERPLAYERPROFILE_SWR_KEY(params)
 
   function mutateOtherPlayerProfile(optimisticParams?: Partial<TOtherPlayerProfile>[]) {
+    if (!key) return
+
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -20,6 +23,13 @@ export function useMutateOtherPlayerProfile(params: TOtherPlayerProfileParams) {
 
     //MANUAL CODE - START
 
+    /*
+      Uzupełnij wartości domyślne dla `optimisticParams`. Wcześniej generator
+      wpisywał tu `` (pusty string) dla KAŻDEGO pola, co dla pól liczbowych
+      oznaczało `mapId: ""` — bezsensowną daną, która kompilowała się tylko
+      dlatego, że `Partial<T>` maskuje typ. Uzupełniaj ręcznie albo zostaw `{}`,
+      jeśli nie potrzebujesz defaults.
+    */
     const defaultValues = {
       name: ``,
       secondName: ``,

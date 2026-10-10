@@ -3,17 +3,20 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import { TTradesRecordById, TTradesParams, TTrades } from "@/db/postgresMainDatabase/schemas/trade/trades"
+import { TTradesRecordById, TTradesFetchParams, TTrades } from "@/db/postgresMainDatabase/schemas/trade/trades"
+import { TRADES_SWR_KEY } from "@/methods/hooks/trade/core/useFetchTrades"
 import { tradesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutateTrades(params: TTradesParams) {
+export function useMutateTrades(params: TTradesFetchParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/trade/rpc/get-trades/${params.playerId}`
+  const key = TRADES_SWR_KEY(params)
   const trades = useAtomValue(tradesAtom)
 
   function mutateTrades(optimisticParams?: Partial<TTrades>[]) {
+    if (!key) return
+
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -21,6 +24,13 @@ export function useMutateTrades(params: TTradesParams) {
 
     //MANUAL CODE - START
 
+    /*
+      Uzupełnij wartości domyślne dla `optimisticParams`. Wcześniej generator
+      wpisywał tu `` (pusty string) dla KAŻDEGO pola, co dla pól liczbowych
+      oznaczało `mapId: ""` — bezsensowną daną, która kompilowała się tylko
+      dlatego, że `Partial<T>` maskuje typ. Uzupełniaj ręcznie albo zostaw `{}`,
+      jeśli nie potrzebujesz defaults.
+    */
     const defaultValues = {
       id: ``,
       status: ``,

@@ -5,19 +5,22 @@ import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
 import {
   TPlayerRecipeMaterialsRecordById,
-  TPlayerRecipeMaterialsParams,
+  TPlayerRecipeMaterialsFetchParams,
   TPlayerRecipeMaterials,
 } from "@/db/postgresMainDatabase/schemas/items/playerRecipeMaterials"
+import { PLAYERRECIPEMATERIALS_SWR_KEY } from "@/methods/hooks/items/core/useFetchPlayerRecipeMaterials"
 import { playerRecipeMaterialsAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutatePlayerRecipeMaterials(params: TPlayerRecipeMaterialsParams) {
+export function useMutatePlayerRecipeMaterials(params: TPlayerRecipeMaterialsFetchParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/items/rpc/get-player-recipe-materials/${params.playerId}/${params.recipeId}`
+  const key = PLAYERRECIPEMATERIALS_SWR_KEY(params)
   const playerRecipeMaterials = useAtomValue(playerRecipeMaterialsAtom)
 
   function mutatePlayerRecipeMaterials(optimisticParams?: Partial<TPlayerRecipeMaterials>[]) {
+    if (!key) return
+
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -25,6 +28,13 @@ export function useMutatePlayerRecipeMaterials(params: TPlayerRecipeMaterialsPar
 
     //MANUAL CODE - START
 
+    /*
+      Uzupełnij wartości domyślne dla `optimisticParams`. Wcześniej generator
+      wpisywał tu `` (pusty string) dla KAŻDEGO pola, co dla pól liczbowych
+      oznaczało `mapId: ""` — bezsensowną daną, która kompilowała się tylko
+      dlatego, że `Partial<T>` maskuje typ. Uzupełniaj ręcznie albo zostaw `{}`,
+      jeśli nie potrzebujesz defaults.
+    */
     const defaultValues = {
       id: ``,
       recipeId: ``,

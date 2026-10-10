@@ -19,6 +19,11 @@
   "methodTypeName": "TPlayerPosition",
   "methodParamsTypeName": "TPlayerPositionParams",
   "clientMethodParamsTypeName": "TPlayerPositionClientParams",
+  "fetchParamsTypeName": "TPlayerPositionFetchParams",
+  "hasAllParamsExpression": "params.mapId != null && params.playerId != null",
+  "swrKeyConstantName": "PLAYERPOSITION_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TPlayerPositionFetchParams) =>\n  params.mapId != null && params.playerId != null ? `/api/world/rpc/get-player-position/${params.mapId}/${params.playerId}` : null",
+  "sqlParamsExpression": "[params.userId, params.mapId, params.playerId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -111,7 +116,7 @@
   "generateMutation": true,
   "mutationMergeOldData": false,
   "compositeDefinitions": [],
-  "dateCreated": "2026-09-22T22:24:25.854Z",
+  "dateCreated": "2026-10-10T12:20:15.753Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/world/playerPosition.ts",
     "app/api/world/rpc/get-player-position/[mapId]/[playerId]/route.ts",

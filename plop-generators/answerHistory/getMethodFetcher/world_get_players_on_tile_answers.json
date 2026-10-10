@@ -18,6 +18,11 @@
   "methodTypeName": "TPlayersOnTile",
   "methodParamsTypeName": "TPlayersOnTileParams",
   "clientMethodParamsTypeName": "TPlayersOnTileClientParams",
+  "fetchParamsTypeName": "TPlayersOnTileFetchParams",
+  "hasAllParamsExpression": "params.mapId != null && params.mapTileX != null && params.mapTileY != null && params.playerId != null",
+  "swrKeyConstantName": "PLAYERSONTILE_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TPlayersOnTileFetchParams) =>\n  params.mapId != null && params.mapTileX != null && params.mapTileY != null && params.playerId != null ? `/api/world/rpc/get-players-on-tile/${params.mapId}/${params.mapTileX}/${params.mapTileY}/${params.playerId}` : null",
+  "sqlParamsExpression": "[params.userId, params.mapId, params.mapTileX, params.mapTileY, params.playerId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -155,7 +160,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-09-22T22:24:25.684Z",
+  "dateCreated": "2026-10-10T12:20:15.567Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/world/playersOnTile.ts",
     "app/api/world/rpc/get-players-on-tile/[mapId]/[mapTileX]/[mapTileY]/[playerId]/route.ts",

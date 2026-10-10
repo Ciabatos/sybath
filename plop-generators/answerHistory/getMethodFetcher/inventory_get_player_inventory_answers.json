@@ -18,6 +18,11 @@
   "methodTypeName": "TPlayerInventory",
   "methodParamsTypeName": "TPlayerInventoryParams",
   "clientMethodParamsTypeName": "TPlayerInventoryClientParams",
+  "fetchParamsTypeName": "TPlayerInventoryFetchParams",
+  "hasAllParamsExpression": "params.playerId != null",
+  "swrKeyConstantName": "PLAYERINVENTORY_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TPlayerInventoryFetchParams) =>\n  params.playerId != null ? `/api/inventory/rpc/get-player-inventory/${params.playerId}` : null",
+  "sqlParamsExpression": "[params.userId, params.playerId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -112,7 +117,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-09-22T22:24:23.602Z",
+  "dateCreated": "2026-10-10T12:20:13.333Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/inventory/playerInventory.ts",
     "app/api/inventory/rpc/get-player-inventory/[playerId]/route.ts",

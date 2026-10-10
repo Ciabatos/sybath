@@ -19,6 +19,11 @@
   "methodTypeName": "TKnownMapRegion",
   "methodParamsTypeName": "TKnownMapRegionParams",
   "clientMethodParamsTypeName": "TKnownMapRegionClientParams",
+  "fetchParamsTypeName": "TKnownMapRegionFetchParams",
+  "hasAllParamsExpression": "params.mapId != null && params.playerId != null && params.regionType != null",
+  "swrKeyConstantName": "KNOWNMAPREGION_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TKnownMapRegionFetchParams) =>\n  params.mapId != null && params.playerId != null && params.regionType != null ? `/api/world/rpc/get-known-map-region/${params.mapId}/${params.playerId}/${params.regionType}` : null",
+  "sqlParamsExpression": "[params.userId, params.mapId, params.playerId, params.regionType]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -144,7 +149,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-09-22T22:24:25.097Z",
+  "dateCreated": "2026-10-10T12:20:14.933Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/world/knownMapRegion.ts",
     "app/api/world/rpc/get-known-map-region/[mapId]/[playerId]/[regionType]/route.ts",

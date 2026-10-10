@@ -18,6 +18,11 @@
   "methodTypeName": "TDistrictInventory",
   "methodParamsTypeName": "TDistrictInventoryParams",
   "clientMethodParamsTypeName": "TDistrictInventoryClientParams",
+  "fetchParamsTypeName": "TDistrictInventoryFetchParams",
+  "hasAllParamsExpression": "params.districtId != null",
+  "swrKeyConstantName": "DISTRICTINVENTORY_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TDistrictInventoryFetchParams) =>\n  params.districtId != null ? `/api/inventory/rpc/get-district-inventory/${params.districtId}` : null",
+  "sqlParamsExpression": "[params.userId, params.districtId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -112,7 +117,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-09-22T22:24:23.120Z",
+  "dateCreated": "2026-10-10T12:20:12.963Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/inventory/districtInventory.ts",
     "app/api/inventory/rpc/get-district-inventory/[districtId]/route.ts",

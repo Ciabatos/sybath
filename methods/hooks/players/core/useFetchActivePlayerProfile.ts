@@ -4,7 +4,7 @@
 import {
   TActivePlayerProfileRecordByName,
   TActivePlayerProfile,
-  TActivePlayerProfileClientParams,
+  TActivePlayerProfileFetchParams,
 } from "@/db/postgresMainDatabase/schemas/players/activePlayerProfile"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { activePlayerProfileAtom } from "@/store/atoms"
@@ -12,10 +12,21 @@ import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchActivePlayerProfile(params: TActivePlayerProfileClientParams) {
+/*
+  Wspólny klucz SWR. Eksportowany, bo `useMutateActivePlayerProfile` musi
+  budować DOKŁADNIE tę samą wartość — inaczej SWR widzi dwa różne zasoby,
+  a dopasowanie optimistic update'ów po cichu przestaje działać.
+
+  Zwraca `null`, gdy brakuje któregokolwiek parametru. SWR traktuje klucz
+  `null` jako "nie pobieraj" i nie wykonuje requestu.
+*/
+export const ACTIVEPLAYERPROFILE_SWR_KEY = (params: TActivePlayerProfileFetchParams) =>
+  params.playerId != null ? `/api/players/rpc/get-active-player-profile/${params.playerId}` : null
+
+export function useFetchActivePlayerProfile(params: TActivePlayerProfileFetchParams) {
   const setActivePlayerProfile = useSetAtom(activePlayerProfileAtom)
 
-  const { data } = useSWR<TActivePlayerProfile[]>(`/api/players/rpc/get-active-player-profile/${params.playerId}`, {
+  const { data } = useSWR<TActivePlayerProfile[]>(ACTIVEPLAYERPROFILE_SWR_KEY(params), {
     refreshInterval: 3000,
   })
 

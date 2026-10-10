@@ -18,6 +18,11 @@
   "methodTypeName": "TPlayerRecipes",
   "methodParamsTypeName": "TPlayerRecipesParams",
   "clientMethodParamsTypeName": "TPlayerRecipesClientParams",
+  "fetchParamsTypeName": "TPlayerRecipesFetchParams",
+  "hasAllParamsExpression": "params.playerId != null",
+  "swrKeyConstantName": "PLAYERRECIPES_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TPlayerRecipesFetchParams) =>\n  params.playerId != null ? `/api/items/rpc/get-player-recipes/${params.playerId}` : null",
+  "sqlParamsExpression": "[params.userId, params.playerId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -112,7 +117,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-09-22T22:24:23.692Z",
+  "dateCreated": "2026-10-10T12:20:13.425Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/items/playerRecipes.ts",
     "app/api/items/rpc/get-player-recipes/[playerId]/route.ts",

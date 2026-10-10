@@ -12,6 +12,14 @@ export type TOtherSquadPlayersProfilesParams = {
 
 export type TOtherSquadPlayersProfilesClientParams = Omit<TOtherSquadPlayersProfilesParams, "userId">
 
+/*
+  Parametry dozwolone w części — hook fetchujący jest wołany bezwarunkowo
+  (React zabrania zmieniać liczby hooków między renderami), a w composite'ie
+  parametr bywa jeszcze nieznany, np. `clickedMapTile` przed kliknięciem.
+  Niekompletne parametry dają klucz SWR `null`, a SWR nic wtedy nie odpytuje.
+*/
+export type TOtherSquadPlayersProfilesFetchParams = Partial<TOtherSquadPlayersProfilesClientParams>
+
 export type TOtherSquadPlayersProfiles = {
   otherPlayerId: string
   name: string
@@ -25,7 +33,7 @@ export type TOtherSquadPlayersProfilesRecordByOtherPlayerId = Record<string, TOt
 
 export async function getOtherSquadPlayersProfiles(params: TOtherSquadPlayersProfilesParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.userId, params.playerId, params.squadId]
     const sql = `SELECT * FROM squad.get_other_squad_players_profiles($1, $2, $3);`
 
     const result = await query(sql, sqlParams)

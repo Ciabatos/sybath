@@ -5,19 +5,22 @@ import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
 import {
   TAllAbilitiesRecordById,
-  TAllAbilitiesParams,
+  TAllAbilitiesFetchParams,
   TAllAbilities,
 } from "@/db/postgresMainDatabase/schemas/attributes/allAbilities"
+import { ALLABILITIES_SWR_KEY } from "@/methods/hooks/attributes/core/useFetchAllAbilities"
 import { allAbilitiesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutateAllAbilities(params: TAllAbilitiesParams) {
+export function useMutateAllAbilities(params: TAllAbilitiesFetchParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/attributes/rpc/get-all-abilities/${params.playerId}`
+  const key = ALLABILITIES_SWR_KEY(params)
   const allAbilities = useAtomValue(allAbilitiesAtom)
 
   function mutateAllAbilities(optimisticParams?: Partial<TAllAbilities>[]) {
+    if (!key) return
+
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -25,6 +28,13 @@ export function useMutateAllAbilities(params: TAllAbilitiesParams) {
 
     //MANUAL CODE - START
 
+    /*
+      Uzupełnij wartości domyślne dla `optimisticParams`. Wcześniej generator
+      wpisywał tu `` (pusty string) dla KAŻDEGO pola, co dla pól liczbowych
+      oznaczało `mapId: ""` — bezsensowną daną, która kompilowała się tylko
+      dlatego, że `Partial<T>` maskuje typ. Uzupełniaj ręcznie albo zostaw `{}`,
+      jeśli nie potrzebujesz defaults.
+    */
     const defaultValues = {
       id: ``,
       name: ``,

@@ -11,6 +11,14 @@ export type TPlayerRecipesParams = {
 
 export type TPlayerRecipesClientParams = Omit<TPlayerRecipesParams, "userId">
 
+/*
+  Parametry dozwolone w części — hook fetchujący jest wołany bezwarunkowo
+  (React zabrania zmieniać liczby hooków między renderami), a w composite'ie
+  parametr bywa jeszcze nieznany, np. `clickedMapTile` przed kliknięciem.
+  Niekompletne parametry dają klucz SWR `null`, a SWR nic wtedy nie odpytuje.
+*/
+export type TPlayerRecipesFetchParams = Partial<TPlayerRecipesClientParams>
+
 export type TPlayerRecipes = {
   id: number
   itemId: number
@@ -25,7 +33,7 @@ export type TPlayerRecipesRecordByItemId = Record<string, TPlayerRecipes>
 
 export async function getPlayerRecipes(params: TPlayerRecipesParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.userId, params.playerId]
     const sql = `SELECT * FROM items.get_player_recipes($1, $2);`
 
     const result = await query(sql, sqlParams)

@@ -5,19 +5,22 @@ import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
 import {
   TDistrictInventoryRecordBySlotId,
-  TDistrictInventoryParams,
+  TDistrictInventoryFetchParams,
   TDistrictInventory,
 } from "@/db/postgresMainDatabase/schemas/inventory/districtInventory"
+import { DISTRICTINVENTORY_SWR_KEY } from "@/methods/hooks/inventory/core/useFetchDistrictInventory"
 import { districtInventoryAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutateDistrictInventory(params: TDistrictInventoryParams) {
+export function useMutateDistrictInventory(params: TDistrictInventoryFetchParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/inventory/rpc/get-district-inventory/${params.districtId}`
+  const key = DISTRICTINVENTORY_SWR_KEY(params)
   const districtInventory = useAtomValue(districtInventoryAtom)
 
   function mutateDistrictInventory(optimisticParams?: Partial<TDistrictInventory>[]) {
+    if (!key) return
+
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -25,6 +28,13 @@ export function useMutateDistrictInventory(params: TDistrictInventoryParams) {
 
     //MANUAL CODE - START
 
+    /*
+      Uzupełnij wartości domyślne dla `optimisticParams`. Wcześniej generator
+      wpisywał tu `` (pusty string) dla KAŻDEGO pola, co dla pól liczbowych
+      oznaczało `mapId: ""` — bezsensowną daną, która kompilowała się tylko
+      dlatego, że `Partial<T>` maskuje typ. Uzupełniaj ręcznie albo zostaw `{}`,
+      jeśli nie potrzebujesz defaults.
+    */
     const defaultValues = {
       slotId: ``,
       containerId: ``,

@@ -18,6 +18,11 @@
   "methodTypeName": "TBuildingInventory",
   "methodParamsTypeName": "TBuildingInventoryParams",
   "clientMethodParamsTypeName": "TBuildingInventoryClientParams",
+  "fetchParamsTypeName": "TBuildingInventoryFetchParams",
+  "hasAllParamsExpression": "params.buildingId != null",
+  "swrKeyConstantName": "BUILDINGINVENTORY_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TBuildingInventoryFetchParams) =>\n  params.buildingId != null ? `/api/inventory/rpc/get-building-inventory/${params.buildingId}` : null",
+  "sqlParamsExpression": "[params.userId, params.buildingId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -112,7 +117,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-09-22T22:24:23.023Z",
+  "dateCreated": "2026-10-10T12:20:12.872Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/inventory/buildingInventory.ts",
     "app/api/inventory/rpc/get-building-inventory/[buildingId]/route.ts",

@@ -18,6 +18,11 @@
   "methodTypeName": "TOtherPlayerGearInventory",
   "methodParamsTypeName": "TOtherPlayerGearInventoryParams",
   "clientMethodParamsTypeName": "TOtherPlayerGearInventoryClientParams",
+  "fetchParamsTypeName": "TOtherPlayerGearInventoryFetchParams",
+  "hasAllParamsExpression": "params.playerId != null && params.otherPlayerId != null",
+  "swrKeyConstantName": "OTHERPLAYERGEARINVENTORY_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TOtherPlayerGearInventoryFetchParams) =>\n  params.playerId != null && params.otherPlayerId != null ? `/api/inventory/rpc/get-other-player-gear-inventory/${params.playerId}/${params.otherPlayerId}` : null",
+  "sqlParamsExpression": "[params.userId, params.playerId, params.otherPlayerId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -124,7 +129,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-09-22T22:24:23.331Z",
+  "dateCreated": "2026-10-10T12:20:13.055Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/inventory/otherPlayerGearInventory.ts",
     "app/api/inventory/rpc/get-other-player-gear-inventory/[playerId]/[otherPlayerId]/route.ts",

@@ -11,6 +11,14 @@ export type TDistrictInventoryParams = {
 
 export type TDistrictInventoryClientParams = Omit<TDistrictInventoryParams, "userId">
 
+/*
+  Parametry dozwolone w części — hook fetchujący jest wołany bezwarunkowo
+  (React zabrania zmieniać liczby hooków między renderami), a w composite'ie
+  parametr bywa jeszcze nieznany, np. `clickedMapTile` przed kliknięciem.
+  Niekompletne parametry dają klucz SWR `null`, a SWR nic wtedy nie odpytuje.
+*/
+export type TDistrictInventoryFetchParams = Partial<TDistrictInventoryClientParams>
+
 export type TDistrictInventory = {
   slotId: number
   containerId: number
@@ -25,7 +33,7 @@ export type TDistrictInventoryRecordBySlotId = Record<string, TDistrictInventory
 
 export async function getDistrictInventory(params: TDistrictInventoryParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.userId, params.districtId]
     const sql = `SELECT * FROM inventory.get_district_inventory($1, $2);`
 
     const result = await query(sql, sqlParams)

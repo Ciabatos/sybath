@@ -11,6 +11,14 @@ export type TSquadInvitesParams = {
 
 export type TSquadInvitesClientParams = Omit<TSquadInvitesParams, "userId">
 
+/*
+  Parametry dozwolone w części — hook fetchujący jest wołany bezwarunkowo
+  (React zabrania zmieniać liczby hooków między renderami), a w composite'ie
+  parametr bywa jeszcze nieznany, np. `clickedMapTile` przed kliknięciem.
+  Niekompletne parametry dają klucz SWR `null`, a SWR nic wtedy nie odpytuje.
+*/
+export type TSquadInvitesFetchParams = Partial<TSquadInvitesClientParams>
+
 export type TSquadInvites = {
   id: number
   squadId: number
@@ -28,7 +36,7 @@ export type TSquadInvitesRecordById = Record<string, TSquadInvites>
 
 export async function getSquadInvites(params: TSquadInvitesParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.userId, params.playerId]
     const sql = `SELECT * FROM squad.get_squad_invites($1, $2);`
 
     const result = await query(sql, sqlParams)

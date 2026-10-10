@@ -18,6 +18,11 @@
   "methodTypeName": "TAllAbilities",
   "methodParamsTypeName": "TAllAbilitiesParams",
   "clientMethodParamsTypeName": "TAllAbilitiesClientParams",
+  "fetchParamsTypeName": "TAllAbilitiesFetchParams",
+  "hasAllParamsExpression": "params.playerId != null",
+  "swrKeyConstantName": "ALLABILITIES_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TAllAbilitiesFetchParams) =>\n  params.playerId != null ? `/api/attributes/rpc/get-all-abilities/${params.playerId}` : null",
+  "sqlParamsExpression": "[params.userId, params.playerId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -98,7 +103,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-09-22T22:24:21.935Z",
+  "dateCreated": "2026-10-10T12:20:11.880Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/attributes/allAbilities.ts",
     "app/api/attributes/rpc/get-all-abilities/[playerId]/route.ts",

@@ -18,6 +18,11 @@
   "methodTypeName": "TPlayerStats",
   "methodParamsTypeName": "TPlayerStatsParams",
   "clientMethodParamsTypeName": "TPlayerStatsClientParams",
+  "fetchParamsTypeName": "TPlayerStatsFetchParams",
+  "hasAllParamsExpression": "params.playerId != null",
+  "swrKeyConstantName": "PLAYERSTATS_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TPlayerStatsFetchParams) =>\n  params.playerId != null ? `/api/attributes/rpc/get-player-stats/${params.playerId}` : null",
+  "sqlParamsExpression": "[params.userId, params.playerId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -84,7 +89,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-09-22T22:24:22.795Z",
+  "dateCreated": "2026-10-10T12:20:12.673Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/attributes/playerStats.ts",
     "app/api/attributes/rpc/get-player-stats/[playerId]/route.ts",

@@ -12,6 +12,14 @@ export type TOtherPlayerGearInventoryParams = {
 
 export type TOtherPlayerGearInventoryClientParams = Omit<TOtherPlayerGearInventoryParams, "userId">
 
+/*
+  Parametry dozwolone w części — hook fetchujący jest wołany bezwarunkowo
+  (React zabrania zmieniać liczby hooków między renderami), a w composite'ie
+  parametr bywa jeszcze nieznany, np. `clickedMapTile` przed kliknięciem.
+  Niekompletne parametry dają klucz SWR `null`, a SWR nic wtedy nie odpytuje.
+*/
+export type TOtherPlayerGearInventoryFetchParams = Partial<TOtherPlayerGearInventoryClientParams>
+
 export type TOtherPlayerGearInventory = {
   slotId: number
   containerId: number
@@ -26,7 +34,7 @@ export type TOtherPlayerGearInventoryRecordBySlotId = Record<string, TOtherPlaye
 
 export async function getOtherPlayerGearInventory(params: TOtherPlayerGearInventoryParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.userId, params.playerId, params.otherPlayerId]
     const sql = `SELECT * FROM inventory.get_other_player_gear_inventory($1, $2, $3);`
 
     const result = await query(sql, sqlParams)

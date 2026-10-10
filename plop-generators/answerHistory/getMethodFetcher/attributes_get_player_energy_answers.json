@@ -18,6 +18,11 @@
   "methodTypeName": "TPlayerEnergy",
   "methodParamsTypeName": "TPlayerEnergyParams",
   "clientMethodParamsTypeName": "TPlayerEnergyClientParams",
+  "fetchParamsTypeName": "TPlayerEnergyFetchParams",
+  "hasAllParamsExpression": "params.playerId != null",
+  "swrKeyConstantName": "PLAYERENERGY_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TPlayerEnergyFetchParams) =>\n  params.playerId != null ? `/api/attributes/rpc/get-player-energy/${params.playerId}` : null",
+  "sqlParamsExpression": "[params.userId, params.playerId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -84,7 +89,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-09-22T22:24:22.600Z",
+  "dateCreated": "2026-10-10T12:20:12.487Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/attributes/playerEnergy.ts",
     "app/api/attributes/rpc/get-player-energy/[playerId]/route.ts",

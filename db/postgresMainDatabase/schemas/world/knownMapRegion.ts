@@ -13,6 +13,14 @@ export type TKnownMapRegionParams = {
 
 export type TKnownMapRegionClientParams = Omit<TKnownMapRegionParams, "userId">
 
+/*
+  Parametry dozwolone w części — hook fetchujący jest wołany bezwarunkowo
+  (React zabrania zmieniać liczby hooków między renderami), a w composite'ie
+  parametr bywa jeszcze nieznany, np. `clickedMapTile` przed kliknięciem.
+  Niekompletne parametry dają klucz SWR `null`, a SWR nic wtedy nie odpytuje.
+*/
+export type TKnownMapRegionFetchParams = Partial<TKnownMapRegionClientParams>
+
 export type TKnownMapRegion = {
   regionId: number
   mapId: number
@@ -27,7 +35,7 @@ export type TKnownMapRegionRecordByMapTileXMapTileY = Record<string, TKnownMapRe
 
 export async function getKnownMapRegion(params: TKnownMapRegionParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.userId, params.mapId, params.playerId, params.regionType]
     const sql = `SELECT * FROM world.get_known_map_region($1, $2, $3, $4);`
 
     const result = await query(sql, sqlParams)

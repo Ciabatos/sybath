@@ -18,6 +18,11 @@
   "methodTypeName": "TActivePlayer",
   "methodParamsTypeName": "TActivePlayerParams",
   "clientMethodParamsTypeName": "TActivePlayerClientParams",
+  "fetchParamsTypeName": "TActivePlayerFetchParams",
+  "hasAllParamsExpression": "true",
+  "swrKeyConstantName": "ACTIVEPLAYER_SWR_KEY",
+  "swrKeyBuilderExpression": "() => `/api/players/rpc/get-active-player`",
+  "sqlParamsExpression": "[params.userId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -57,7 +62,7 @@
   "generateMutation": true,
   "mutationMergeOldData": false,
   "compositeDefinitions": [],
-  "dateCreated": "2026-10-06T20:29:41.821Z",
+  "dateCreated": "2026-10-10T12:20:13.910Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/players/activePlayer.ts",
     "app/api/players/rpc/get-active-player/route.ts",

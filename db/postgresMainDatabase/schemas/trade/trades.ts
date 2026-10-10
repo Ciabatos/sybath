@@ -11,6 +11,14 @@ export type TTradesParams = {
 
 export type TTradesClientParams = Omit<TTradesParams, "userId">
 
+/*
+  Parametry dozwolone w części — hook fetchujący jest wołany bezwarunkowo
+  (React zabrania zmieniać liczby hooków między renderami), a w composite'ie
+  parametr bywa jeszcze nieznany, np. `clickedMapTile` przed kliknięciem.
+  Niekompletne parametry dają klucz SWR `null`, a SWR nic wtedy nie odpytuje.
+*/
+export type TTradesFetchParams = Partial<TTradesClientParams>
+
 export type TTrades = {
   id: number
   status: number
@@ -23,7 +31,7 @@ export type TTradesRecordById = Record<string, TTrades>
 
 export async function getTrades(params: TTradesParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.userId, params.playerId]
     const sql = `SELECT * FROM trade.get_trades($1, $2);`
 
     const result = await query(sql, sqlParams)

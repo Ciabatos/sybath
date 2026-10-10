@@ -3,13 +3,16 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import { TPlayerPositionParams, TPlayerPosition } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
+import { TPlayerPositionFetchParams, TPlayerPosition } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
+import { PLAYERPOSITION_SWR_KEY } from "@/methods/hooks/world/core/useFetchPlayerPosition"
 
-export function useMutatePlayerPosition(params: TPlayerPositionParams) {
+export function useMutatePlayerPosition(params: TPlayerPositionFetchParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/world/rpc/get-player-position/${params.mapId}/${params.playerId}`
+  const key = PLAYERPOSITION_SWR_KEY(params)
 
   function mutatePlayerPosition(optimisticParams?: Partial<TPlayerPosition>[]) {
+    if (!key) return
+
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -17,6 +20,13 @@ export function useMutatePlayerPosition(params: TPlayerPositionParams) {
 
     //MANUAL CODE - START
 
+    /*
+      Uzupełnij wartości domyślne dla `optimisticParams`. Wcześniej generator
+      wpisywał tu `` (pusty string) dla KAŻDEGO pola, co dla pól liczbowych
+      oznaczało `mapId: ""` — bezsensowną daną, która kompilowała się tylko
+      dlatego, że `Partial<T>` maskuje typ. Uzupełniaj ręcznie albo zostaw `{}`,
+      jeśli nie potrzebujesz defaults.
+    */
     const defaultValues = {
       x: ``,
       y: ``,

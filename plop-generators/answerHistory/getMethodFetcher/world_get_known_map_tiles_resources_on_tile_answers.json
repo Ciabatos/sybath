@@ -18,6 +18,11 @@
   "methodTypeName": "TKnownMapTilesResourcesOnTile",
   "methodParamsTypeName": "TKnownMapTilesResourcesOnTileParams",
   "clientMethodParamsTypeName": "TKnownMapTilesResourcesOnTileClientParams",
+  "fetchParamsTypeName": "TKnownMapTilesResourcesOnTileFetchParams",
+  "hasAllParamsExpression": "params.mapId != null && params.mapTileX != null && params.mapTileY != null && params.playerId != null",
+  "swrKeyConstantName": "KNOWNMAPTILESRESOURCESONTILE_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TKnownMapTilesResourcesOnTileFetchParams) =>\n  params.mapId != null && params.mapTileX != null && params.mapTileY != null && params.playerId != null ? `/api/world/rpc/get-known-map-tiles-resources-on-tile/${params.mapId}/${params.mapTileX}/${params.mapTileY}/${params.playerId}` : null",
+  "sqlParamsExpression": "[params.userId, params.mapId, params.mapTileX, params.mapTileY, params.playerId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -120,7 +125,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-09-22T22:24:25.430Z",
+  "dateCreated": "2026-10-10T12:20:15.307Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnTile.ts",
     "app/api/world/rpc/get-known-map-tiles-resources-on-tile/[mapId]/[mapTileX]/[mapTileY]/[playerId]/route.ts",

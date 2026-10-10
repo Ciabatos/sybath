@@ -12,6 +12,14 @@ export type TKnownPlayersPositionsParams = {
 
 export type TKnownPlayersPositionsClientParams = Omit<TKnownPlayersPositionsParams, "userId">
 
+/*
+  Parametry dozwolone w części — hook fetchujący jest wołany bezwarunkowo
+  (React zabrania zmieniać liczby hooków między renderami), a w composite'ie
+  parametr bywa jeszcze nieznany, np. `clickedMapTile` przed kliknięciem.
+  Niekompletne parametry dają klucz SWR `null`, a SWR nic wtedy nie odpytuje.
+*/
+export type TKnownPlayersPositionsFetchParams = Partial<TKnownPlayersPositionsClientParams>
+
 export type TCtOtherPlayers = {
   otherPlayerId: string
   imageMap: string
@@ -29,7 +37,7 @@ export type TKnownPlayersPositionsRecordByXY = Record<string, TKnownPlayersPosit
 
 export async function getKnownPlayersPositions(params: TKnownPlayersPositionsParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.userId, params.mapId, params.playerId]
     const sql = `SELECT * FROM world.get_known_players_positions($1, $2, $3);`
 
     const result = await query(sql, sqlParams)

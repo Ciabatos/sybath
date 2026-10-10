@@ -18,6 +18,11 @@
   "methodTypeName": "TTradeInventory",
   "methodParamsTypeName": "TTradeInventoryParams",
   "clientMethodParamsTypeName": "TTradeInventoryClientParams",
+  "fetchParamsTypeName": "TTradeInventoryFetchParams",
+  "hasAllParamsExpression": "params.playerId != null && params.tradeId != null",
+  "swrKeyConstantName": "TRADEINVENTORY_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TTradeInventoryFetchParams) =>\n  params.playerId != null && params.tradeId != null ? `/api/trade/rpc/get-trade-inventory/${params.playerId}/${params.tradeId}` : null",
+  "sqlParamsExpression": "[params.userId, params.playerId, params.tradeId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -131,7 +136,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-09-22T22:24:25.010Z",
+  "dateCreated": "2026-10-10T12:20:14.843Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/trade/tradeInventory.ts",
     "app/api/trade/rpc/get-trade-inventory/[playerId]/[tradeId]/route.ts",

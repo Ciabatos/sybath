@@ -4,7 +4,7 @@
 import {
   TOtherPlayerSkillsRecordBySkillId,
   TOtherPlayerSkills,
-  TOtherPlayerSkillsClientParams,
+  TOtherPlayerSkillsFetchParams,
 } from "@/db/postgresMainDatabase/schemas/attributes/otherPlayerSkills"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { otherPlayerSkillsAtom } from "@/store/atoms"
@@ -12,13 +12,25 @@ import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchOtherPlayerSkills(params: TOtherPlayerSkillsClientParams) {
+/*
+  Wspólny klucz SWR. Eksportowany, bo `useMutateOtherPlayerSkills` musi
+  budować DOKŁADNIE tę samą wartość — inaczej SWR widzi dwa różne zasoby,
+  a dopasowanie optimistic update'ów po cichu przestaje działać.
+
+  Zwraca `null`, gdy brakuje któregokolwiek parametru. SWR traktuje klucz
+  `null` jako "nie pobieraj" i nie wykonuje requestu.
+*/
+export const OTHERPLAYERSKILLS_SWR_KEY = (params: TOtherPlayerSkillsFetchParams) =>
+  params.playerId != null && params.otherPlayerId != null
+    ? `/api/attributes/rpc/get-other-player-skills/${params.playerId}/${params.otherPlayerId}`
+    : null
+
+export function useFetchOtherPlayerSkills(params: TOtherPlayerSkillsFetchParams) {
   const setOtherPlayerSkills = useSetAtom(otherPlayerSkillsAtom)
 
-  const { data } = useSWR<TOtherPlayerSkills[]>(
-    `/api/attributes/rpc/get-other-player-skills/${params.playerId}/${params.otherPlayerId}`,
-    { refreshInterval: 3000 },
-  )
+  const { data } = useSWR<TOtherPlayerSkills[]>(OTHERPLAYERSKILLS_SWR_KEY(params), {
+    refreshInterval: 3000,
+  })
 
   useEffect(() => {
     if (data) {

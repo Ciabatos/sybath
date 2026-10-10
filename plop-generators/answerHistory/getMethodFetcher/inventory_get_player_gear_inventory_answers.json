@@ -18,6 +18,11 @@
   "methodTypeName": "TPlayerGearInventory",
   "methodParamsTypeName": "TPlayerGearInventoryParams",
   "clientMethodParamsTypeName": "TPlayerGearInventoryClientParams",
+  "fetchParamsTypeName": "TPlayerGearInventoryFetchParams",
+  "hasAllParamsExpression": "params.playerId != null",
+  "swrKeyConstantName": "PLAYERGEARINVENTORY_SWR_KEY",
+  "swrKeyBuilderExpression": "(params: TPlayerGearInventoryFetchParams) =>\n  params.playerId != null ? `/api/inventory/rpc/get-player-gear-inventory/${params.playerId}` : null",
+  "sqlParamsExpression": "[params.userId, params.playerId]",
   "methodParamsColumns": [
     {
       "name": "p_user_id",
@@ -112,7 +117,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-09-22T22:24:23.513Z",
+  "dateCreated": "2026-10-10T12:20:13.240Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/inventory/playerGearInventory.ts",
     "app/api/inventory/rpc/get-player-gear-inventory/[playerId]/route.ts",
