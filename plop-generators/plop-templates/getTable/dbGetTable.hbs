@@ -14,11 +14,8 @@ export type {{methodParamsTypeName}} = {
 /*
   Parametry dozwolone w części — hook fetchujący jest wołany bezwarunkowo
   (React zabrania zmieniać liczby hooków między renderami), a w composite'ie
-  parametr bywa jeszcze nieznany. Niekompletne parametry dają klucz SWR `null`,
-  a SWR nic wtedy nie odpytuje.
-
-  Wyprowadzone z `{{methodParamsTypeName}}`, żeby lista pól nie dublowała się
-  przy każdej zmianie funkcji w Postgresie.
+  parametr bywa jeszcze nieznany, np. `clickedMapTile` przed kliknięciem.
+  Niekompletne parametry dają klucz SWR `null`, a SWR nic wtedy nie odpytuje.
 */
 export type {{fetchParamsTypeName}} = Partial<{{methodParamsTypeName}}>
 {{/if}}
