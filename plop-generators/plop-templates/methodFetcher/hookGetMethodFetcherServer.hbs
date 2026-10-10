@@ -4,6 +4,7 @@
 {{#if methodParamsColumns}}import type { {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{entityCamelName}}" {{/if}}
 import type { {{indexTypeName}},{{methodTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{entityCamelName}}"
 import { fetch{{entityPascalName}}Service } from "@/methods/services/{{schema}}/fetch{{entityPascalName}}Service"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: {{methodTypeName}}[]
