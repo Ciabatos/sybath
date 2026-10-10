@@ -12,15 +12,8 @@ type TCacheRecord = {
   etag: string
 }
 
-/*
-  `record` jest opcjonalny tylko dlatego, że gałąź "304 po świeżym odczycie"
-  zwraca `record: undefined` — klient ma wtedy zwrócić 304 bez body. Wszystkie
-  inne gałęzie zwracają pełny rekord, a konsument (route) sprawdza
-  `etagMatched` PRZED użyciem `record`, więc asercja `!` nigdy nie była
-  potrzebna.
-*/
 type TFetchResult = {
-  record?: TCacheRecord
+  record: TCacheRecord
   etag: string
   cacheHit: boolean
   etagMatched: boolean
@@ -30,8 +23,8 @@ const CACHE_TTL = 3_000
 const { getCache, setCache, getEtag } = createServerCache<TCacheRecord>(CACHE_TTL)
 
 export async function fetch{{entityPascalName}}Service(
- {{#if methodParamsColumns}}params: {{methodParamsTypeName}}{{/if}},
-  options?: { clientEtag?: string; forceFresh?: boolean },
+  {{#if methodParamsColumns}}params: {{methodParamsTypeName}},
+  {{/if}}options?: { clientEtag?: string; forceFresh?: boolean },
 ): Promise<TFetchResult> {
   const cacheKey = makeCacheKey("{{dbFunctionName}}"{{#if methodParamsColumns}}, params{{/if}})
   const cached = getCache(cacheKey)
@@ -58,22 +51,28 @@ export async function fetch{{entityPascalName}}Service(
   const raw = await {{dbFunctionName}}({{#if methodParamsColumns}}params{{/if}})
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
-  if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
-    return {
-      record: undefined,
-      etag: etag,
-      cacheHit: false,
-      etagMatched: true,
-    }
-  }
-
   const byKey = {{{indexMethodName}}}({{{indexMethodParams}}}, raw) as {{indexTypeName}}
-
 
   const record: TCacheRecord = {
     raw,
     byKey,
     etag,
+  }
+
+  // Rekord mimo to wkładamy do cache'a, bo i tak go właśnie policzyliśmy.
+  if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
+    setCache({
+      cacheKey,
+      value: record,
+      etag,
+    })
+
+    return {
+      record,
+      etag: etag,
+      cacheHit: false,
+      etagMatched: true,
+    }
   }
 
   setCache({
