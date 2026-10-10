@@ -9,7 +9,7 @@ type TResult = {
   raw: {{methodTypeName}}[]
   byKey: {{indexTypeName}}
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function {{dbFunctionName}}Server({{#if methodParamsColumns}} params: {{methodParamsTypeName}}, {{/if}}options?: { forceFresh?: boolean },): Promise<TResult> {

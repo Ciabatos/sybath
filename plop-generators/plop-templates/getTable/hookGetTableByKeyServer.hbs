@@ -4,12 +4,13 @@
 import type { {{methodTypeName}}, {{indexTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{entityCamelName}}"
 {{#if methodParamsColumns}}import type{ {{methodParamsTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{entityCamelName}}" {{/if}}
 import { {{fetcherByKeyName}}Service } from "@/methods/services/{{schema}}/{{fetcherByKeyName}}Service"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: {{methodTypeName}}[]
   byKey: {{indexTypeName}}
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function {{dbFunctionByKeyName}}Server({{#if methodParamsColumns}} params: {{methodParamsTypeName}}, {{/if}}options?: { forceFresh?: boolean },): Promise<TResult> {

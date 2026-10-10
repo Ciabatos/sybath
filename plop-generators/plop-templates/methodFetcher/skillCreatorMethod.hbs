@@ -34,7 +34,7 @@ type TResult = {
 raw: {{methodTypeName}}[]
 byKey: {{indexTypeName}}
 apiPath: string
-atomName: string
+atomName: keyof typeof AtomsBarrel
 }
 
 function {{dbFunctionName}}(params: {{methodParamsTypeName}})

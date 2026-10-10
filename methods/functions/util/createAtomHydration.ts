@@ -2,19 +2,21 @@
 import * as Atoms from "@/store/atoms" // import wszystkich atomów
 import { WritableAtom } from "jotai"
 
+export type TAtomName = keyof typeof Atoms
+
 type TServerEntity<TData = unknown> = {
   byKey: TData
-  atomName: string
+  atomName: TAtomName
 }
 
-export function createAtomHydration(...entities: TServerEntity[]): [WritableAtom<any, [any], void>, any][] {
-  const atomValues: [WritableAtom<any, [any], void>, any][] = []
+type TAtomValue = WritableAtom<any, [any], void>
+
+export function createAtomHydration(...entities: TServerEntity[]): [TAtomValue, unknown][] {
+  const atomValues: [TAtomValue, unknown][] = []
+  const registry = Atoms as Record<TAtomName, TAtomValue>
 
   for (const entity of entities) {
-    const atomKey = `${entity.atomName}`
-    // console.log("automatic hydration:", atomKey)
-    // @ts-expect-error dynamiczny dostęp do atomów
-    const atom = Atoms[atomKey] as WritableAtom<any, [any], void> | undefined
+    const atom = registry[entity.atomName]
 
     if (atom) {
       atomValues.push([atom, entity.byKey])

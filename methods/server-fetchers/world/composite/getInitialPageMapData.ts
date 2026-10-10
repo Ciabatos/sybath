@@ -1,5 +1,14 @@
-"use server"
+/*
+  Swiadomie BEZ dyrektywy "use server". Ten plik jest wywolywany wylacznie
+  z `page.tsx` (server component), nigdy jako akcja z klienta, wiec dyrektywa
+  nic tu nie daje, a wciagalaby do grafu serwera klientowy `store/atoms`, co
+  przy eksporcie z `"use client"` daje referencje-proxy zamiast prawdziwego
+  atomu. Dyrektywa jest potrzebna dla server actions, nie dla pomocniczych
+  funkcji serwerowych.
 
+  Hydratacja przekazuje same wyniki serwerow; atom podaje `createAtomHydration`
+  przez `atomName`, ktorego typ jest wyprowadzony z `keyof typeof Atoms`.
+*/
 import { createAtomHydration } from "@/methods/functions/util/createAtomHydration"
 import { createSwrFallback } from "@/methods/functions/util/createSwrFallback"
 import { getAttributesAbilitiesServer } from "@/methods/server-fetchers/attributes/core/getAttributesAbilitiesServer"
