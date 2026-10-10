@@ -13,8 +13,10 @@ import { useModalBottomLeft } from "@/methods/hooks/modals/useModalBottomLeft"
 import { useModalRightCenter } from "@/methods/hooks/modals/useModalRightCenter"
 import { usePlayerExploration } from "@/methods/hooks/players/composite/usePlayerExploration"
 import { usePlayerMovement } from "@/methods/hooks/players/composite/usePlayerMovement"
+import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
 import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
-import { TMapTileResource, useMapTileDetail } from "@/methods/hooks/world/composite/useMapTileDetail"
+import type { TMapTileResource } from "@/methods/hooks/world/composite/useMapTileDetail"
+import { useMapTileDetail } from "@/methods/hooks/world/composite/useMapTileDetail"
 import { useModalTopCenter } from "@/methods/hooks/modals/useModalTopCenter"
 import { gatherResourceAtom } from "@/store/atoms"
 import { EPanelsBottomLeft } from "@/types/enumeration/EPanelsBottomLeft"
@@ -28,6 +30,23 @@ import styles from "./styles/MapTileDetail.module.css"
 const FALLBACK_ICON = "📦"
 
 export default function MapTileDetail() {
+  const { clickedMapTile } = useMapTileActions()
+
+  if (!clickedMapTile) {
+    return null
+  }
+
+  return <MapTileDetailPanel tile={clickedMapTile} />
+}
+
+/*
+  Cała reszta panelu żyje w osobnym komponencie. `MapTileDetail` wychodzi z
+  `null`, gdy nie ma klikniętego kafelka, a dopiero wtedy montuje się ten
+  komponent — dzięki temu `useMapTileDetail` woła swoje hooki bezwarunkowo,
+  zawsze w tej samej liczbie. Wcześniej `if (!clickedMapTile) return` siedział
+  wewnątrz hooka, więc kolejność hooków zmieniała się przy każdym kliknięciu.
+*/
+function MapTileDetailPanel({ tile }: { tile: TMapTile }) {
   const { resetModalRightCenter } = useModalRightCenter()
   const { openModalBottomLeft } = useModalBottomLeft()
   const { openModalTopCenter } = useModalTopCenter()
@@ -36,7 +55,7 @@ export default function MapTileDetail() {
   const { isMoving } = usePlayerMovement()
   const { isExploring } = usePlayerExploration()
 
-  const { combinedKnownMapTilesResourcesOnTile } = useMapTileDetail()
+  const { combinedKnownMapTilesResourcesOnTile } = useMapTileDetail(tile)
 
   // Zasób do zebrania żyje w atomie, bo GatherResource to osobny modal
   // w TopCenter i nie dostanie go przez prop.
@@ -45,10 +64,6 @@ export default function MapTileDetail() {
   useEffect(() => {
     setGatherResource(null)
   }, [clickedMapTile])
-
-  if (!clickedMapTile) {
-    return null
-  }
 
   const onClose = () => {
     resetModalRightCenter()
@@ -64,7 +79,7 @@ export default function MapTileDetail() {
   }
 
   // ── DERIVED ────────────────────────────────────────────────────────────────
-  const { mapTiles, terrainTypes, landscapeTypes, cities, districts, districtTypes } = clickedMapTile
+  const { mapTiles, terrainTypes, landscapeTypes, cities, districts, districtTypes } = tile
 
   const terrainName = terrainTypes?.name
   const landscapeName = landscapeTypes?.name

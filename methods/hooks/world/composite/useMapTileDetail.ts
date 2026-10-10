@@ -1,10 +1,11 @@
+import { TMapTile } from "@/methods/hooks/world/composite/useMapHandling"
 import { useFetchItemsItems, useItemsItemsState } from "@/methods/hooks/items/core/useFetchItemsItems"
-import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
-import { useMapTileActions } from "@/methods/hooks/world/composite/useMapTileActions"
 import {
   useFetchKnownMapTilesResourcesOnTile,
   useKnownMapTilesResourcesOnTileState,
 } from "@/methods/hooks/world/core/useFetchKnownMapTilesResourcesOnTile"
+import { usePlayerId } from "@/methods/hooks/players/composite/usePlayerId"
+import { useMemo } from "react"
 
 export type TMapTileResource = {
   mapTilesResourceId: number
@@ -16,29 +17,40 @@ export type TMapTileResource = {
   image: string
 }
 
-export function useMapTileDetail() {
+/**
+ * Zasoby leżące na kafelku, połączone z przedmiotami (nazwa, ikona, opis).
+ *
+ * Kafelek przyjmuje jako argument zamiast czytać z atomu, dzięki czemu hook nie
+ * musi nic sprawdzać i wszystkie `useFetch*` wołają bezwarunkowo. Wcześniejsza
+ * wersja robiła `if (!clickedMapTile) return` PRZED fetchami, przez co liczba
+ * hooków skakała między 2 a 4 przy każdym kliknięciu — React ostrzega, że
+ * kolejność hooków nie może się zmieniać.
+ *
+ * Wołaj tylko z komponentu renderowanego dla konkretnego kafelka
+ * (`MapTileDetailPanel` w `components/map`).
+ */
+export function useMapTileDetail(tile: TMapTile) {
   const { playerId } = usePlayerId()
-  const { clickedMapTile } = useMapTileActions()
+  const { mapTiles } = tile
 
-  if (!clickedMapTile) {
-    return { knownMapTilesResourcesOnTile: null }
-  }
-
-  const mapId = clickedMapTile.mapTiles.mapId
-  const mapTileX = clickedMapTile.mapTiles.x
-  const mapTileY = clickedMapTile.mapTiles.y
-
-  useFetchKnownMapTilesResourcesOnTile({ mapId, mapTileX, mapTileY, playerId })
+  useFetchKnownMapTilesResourcesOnTile({
+    mapId: mapTiles.mapId,
+    mapTileX: mapTiles.x,
+    mapTileY: mapTiles.y,
+    playerId,
+  })
   const knownMapTilesResourcesOnTile = useKnownMapTilesResourcesOnTileState()
 
   useFetchItemsItems()
   const items = useItemsItemsState()
 
-  const combinedKnownMapTilesResourcesOnTile = Object.values(knownMapTilesResourcesOnTile).map(
-    (knownMapTilesResourcesOnTile) => ({
-      ...items[knownMapTilesResourcesOnTile.itemId],
-      ...knownMapTilesResourcesOnTile,
-    }),
+  const combinedKnownMapTilesResourcesOnTile = useMemo(
+    () =>
+      Object.values(knownMapTilesResourcesOnTile).map((resource) => ({
+        ...items[resource.itemId],
+        ...resource,
+      })),
+    [knownMapTilesResourcesOnTile, items],
   )
 
   return { combinedKnownMapTilesResourcesOnTile }
