@@ -7,16 +7,19 @@ import {
   TWorldLandscapeTypesRecordById,
   TWorldLandscapeTypes,
 } from "@/db/postgresMainDatabase/schemas/world/landscapeTypes"
+import { WORLDLANDSCAPETYPES_SWR_KEY } from "@/methods/hooks/world/core/useFetchWorldLandscapeTypes"
 import { landscapeTypesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateWorldLandscapeTypes() {
   const { mutate } = useSWRConfig()
-  const key = `/api/world/landscape-types`
+  const key = WORLDLANDSCAPETYPES_SWR_KEY()
   const landscapeTypes = useAtomValue(landscapeTypesAtom)
 
   function mutateWorldLandscapeTypes(optimisticParams?: Partial<TWorldLandscapeTypes>[]) {
+    if (!key) return
+
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -24,6 +27,12 @@ export function useMutateWorldLandscapeTypes() {
 
     //MANUAL CODE - START
 
+    /*
+      Uzupełnij wartości domyślne dla `optimisticParams`. Wcześniej generator
+      wpisywał tu `` (pusty string) dla KAŻDEGO pola, co dla pól liczbowych
+      oznaczało `id: ""` — bezsensowną daną, kompilującą się tylko dlatego, że
+      `Partial<T>` maskuje typ. Uzupełniaj ręcznie albo zostaw `{}`.
+    */
     const defaultValues = {
       id: ``,
       name: ``,

@@ -8,6 +8,14 @@ export type TBuildingsBuildingTypesParams = {
   id: number
 }
 
+/*
+  Parametry dozwolone w części — hook fetchujący jest wołany bezwarunkowo
+  (React zabrania zmieniać liczby hooków między renderami), a w composite'ie
+  parametr bywa jeszcze nieznany, np. `clickedMapTile` przed kliknięciem.
+  Niekompletne parametry dają klucz SWR `null`, a SWR nic wtedy nie odpytuje.
+*/
+export type TBuildingsBuildingTypesParamsFetchParams = Partial<TBuildingsBuildingTypesParams>
+
 export type TBuildingsBuildingTypes = {
   id: number
   name: string
@@ -34,7 +42,7 @@ export async function getBuildingsBuildingTypes() {
 
 export async function getBuildingsBuildingTypesByKey(params: TBuildingsBuildingTypesParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.id]
     const sql = `SELECT * FROM buildings.get_building_types_by_key($1);`
 
     const result = await query(sql, sqlParams)

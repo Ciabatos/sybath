@@ -1,0 +1,113 @@
+{
+  "promptAnswers": {
+    "schema": "items",
+    "table": "recipe_materials",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "id"
+    ],
+    "paramsColumns": [
+      "recipe_id"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "items",
+  "entityCamelName": "recipeMaterials",
+  "entityPascalName": "RecipeMaterials",
+  "entityKebabName": "recipe-materials",
+  "schemaEntityPascalName": "ItemsRecipeMaterials",
+  "methodTypeName": "TItemsRecipeMaterials",
+  "methodParamsTypeName": "TItemsRecipeMaterialsParams",
+  "methodParamsColumns": [
+    {
+      "name": "recipe_id",
+      "camelName": "recipeId",
+      "tsType": "number"
+    }
+  ],
+  "dbFunctionName": "getItemsRecipeMaterials",
+  "dbFunctionByKeyName": "getItemsRecipeMaterialsByKey",
+  "sqlFunctionName": "get_recipe_materials",
+  "sqlFunctionByKeyName": "get_recipe_materials_by_key",
+  "sqlParamsPlaceholders": "$1",
+  "methodColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Id"
+    },
+    {
+      "name": "recipe_id",
+      "camelName": "recipeId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "item_id",
+      "camelName": "itemId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "quantity",
+      "camelName": "quantity",
+      "tsType": "number",
+      "optional": ""
+    }
+  ],
+  "indexMethodParams": "[\"id\"]",
+  "indexParamsColumns": "recipeId",
+  "indexTypeMethodName": "Id",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TItemsRecipeMaterialsRecordById",
+  "indexColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Id"
+    }
+  ],
+  "fetchParamsTypeName": "TItemsRecipeMaterialsParamsFetchParams",
+  "hasAllParamsExpression": "params.recipeId != null",
+  "swrKeyConstantName": "ITEMSRECIPEMATERIALS_SWR_KEY",
+  "swrKeyConstantNameByKey": "ITEMSRECIPEMATERIALS_SWR_KEY_BY_KEY",
+  "swrKeyBuilderExpression": "() => `/api/items/recipe-materials`",
+  "swrKeyBuilderExpressionByKey": "(params: TItemsRecipeMaterialsParamsFetchParams) =>\n  params.recipeId != null ? `/api/items/recipe-materials/${params.recipeId}` : null",
+  "sqlParamsExpressionByKey": "[params.recipeId]",
+  "apiPath": "app/api/items/recipe-materials/route.ts",
+  "apiPathParams": "/api/items/recipe-materials",
+  "apiPathByKey": "app/api/items/recipe-materials/[recipeId]/route.ts",
+  "apiPathParamsByKey": "/api/items/recipe-materials/${params.recipeId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true,
+  "fetcherName": "fetchItemsRecipeMaterials",
+  "fetcherByKeyName": "fetchItemsRecipeMaterialsByKey",
+  "dateCreated": "2026-10-10T12:32:19.061Z",
+  "filesCreated": [
+    "db/postgresMainDatabase/schemas/items/recipeMaterials.ts",
+    "app/api/items/recipe-materials/route.ts",
+    "app/api/items/recipe-materials/[recipeId]/route.ts",
+    "methods/hooks/items/core/useFetchItemsRecipeMaterials.ts",
+    "methods/hooks/items/core/useFetchItemsRecipeMaterialsByKey.ts",
+    "methods/server-fetchers/items/core/getItemsRecipeMaterialsByKeyServer.ts",
+    "methods/services/items/fetchItemsRecipeMaterialsService.ts",
+    "methods/services/items/fetchItemsRecipeMaterialsByKeyService.ts",
+    "store/atoms/getTable/recipeMaterialsAtom.ts",
+    ".vscode/useItemsRecipeMaterials.code-snippets",
+    ".vscode/useItemsRecipeMaterialsByKey.code-snippets",
+    "methods/hooks/items/core/useMutateItemsRecipeMaterials.ts",
+    "methods/hooks/items/core/useMutateItemsRecipeMaterialsByKey.ts",
+    "methods/hooks/items/core/useFetchItemsRecipeMaterials.md",
+    "methods/hooks/items/core/useFetchItemsRecipeMaterialsByKey.md"
+  ],
+  "sqlMethodCreated": [
+    "FUNCTION items.get_recipe_materials_by_key(p_recipe_id integer)",
+    "FUNCTION items.get_recipe_materials()"
+  ],
+  "generatorName": "getTable"
+}

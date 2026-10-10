@@ -17,56 +17,27 @@ description: |
 
 ### Data Flow
 
-```
-# function GET(request: NextRequest, { params }: { params: TApiParams })
-# path: `app/api/world/landscape-types/[id]/route.ts`
-# TypeScript Types:
-type TApiParams = Record<string, string>
+function GET(request: NextRequest, { params }: { params: TApiParams }) path: app/api/world/landscape-types/[id]/route.ts
+TypeScript Types: type TApiParams = Record<string, string>
 
-const typeParamsSchema = z.object({
-  id: z.coerce.number(),
-}) satisfies z.ZodType<TWorldLandscapeTypesParams>
+const typeParamsSchema = z.object({ id: z.coerce.number(), }) satisfies z.ZodType<TWorldLandscapeTypesParams>
 
-# function fetchWorldLandscapeTypesByKeyService(params: TWorldLandscapeTypesParams,options?: { clientEtag?: string; forceFresh?: boolean }): Promise<TFetchResult>
-# path: `methods/services/world/fetchWorldLandscapeTypesByKeyService.ts`
-# TypeScript Types:
+function fetchWorldLandscapeTypesByKeyService(params: TWorldLandscapeTypesParams,options?: { clientEtag?: string;
+forceFresh?: boolean }): Promise<TFetchResult> path: methods/services/world/fetchWorldLandscapeTypesByKeyService.ts
+TypeScript Types: type TCacheRecord = { raw: TWorldLandscapeTypes[] byKey: TWorldLandscapeTypesRecordById etag: string }
 
-type TCacheRecord = {
-  raw: TWorldLandscapeTypes[]
-  byKey: TWorldLandscapeTypesRecordById
-  etag: string
-}
+type TFetchResult = { record?: TCacheRecord etag: string cacheHit: boolean etagMatched: boolean }
 
-type TFetchResult = {
-  record?: TCacheRecord
-  etag: string
-  cacheHit: boolean
-  etagMatched: boolean
-}
+function function getWorldLandscapeTypesByKey(params: TWorldLandscapeTypesParams) path:
+db/postgresMainDatabase/schemas/world/landscapeTypes.ts TypeScript Types: export type TWorldLandscapeTypesParams = { id:
+number }
 
-# function function getWorldLandscapeTypesByKey(params: TWorldLandscapeTypesParams)
-# path: `db/postgresMainDatabase/schemas/world/landscapeTypes.ts`
-# TypeScript Types:
-
-export type TWorldLandscapeTypesParams = {
-  id: number
-}
-
-export type TWorldLandscapeTypes = {
-  id: number
-  name: string
-  moveCost: number
-  imageUrl?: string
-}
+export type TWorldLandscapeTypes = { id: number name: string moveCost: number imageUrl?: string }
 
 export type TWorldLandscapeTypesRecordById = Record<string, TWorldLandscapeTypes>
 
 Hook for mutate data using SWR
-# function path :`methods/hooks/world/core/useMutateWorldLandscapeTypesByKey.ts`
-# function useMutateWorldLandscapeTypes( params: TWorldLandscapeTypesParams)
 
-#### PostgreSQL Database
-# "schema": "world"
-# "method": "get_landscape_types_by_key"
-You have more information in mcp `game-db`
-```
+function path :methods/hooks/world/core/useMutateWorldLandscapeTypesByKey.ts function useMutateWorldLandscapeTypes(
+params: TWorldLandscapeTypesParams) PostgreSQL Database "schema": "world" "method": "get_landscape_types_by_key" You
+have more information in mcp game-db

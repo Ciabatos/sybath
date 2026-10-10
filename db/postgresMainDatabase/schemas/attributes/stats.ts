@@ -8,6 +8,14 @@ export type TAttributesStatsParams = {
   id: number
 }
 
+/*
+  Parametry dozwolone w części — hook fetchujący jest wołany bezwarunkowo
+  (React zabrania zmieniać liczby hooków między renderami), a w composite'ie
+  parametr bywa jeszcze nieznany, np. `clickedMapTile` przed kliknięciem.
+  Niekompletne parametry dają klucz SWR `null`, a SWR nic wtedy nie odpytuje.
+*/
+export type TAttributesStatsParamsFetchParams = Partial<TAttributesStatsParams>
+
 export type TAttributesStats = {
   id: number
   name: string
@@ -35,7 +43,7 @@ export async function getAttributesStats() {
 
 export async function getAttributesStatsByKey(params: TAttributesStatsParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.id]
     const sql = `SELECT * FROM attributes.get_stats_by_key($1);`
 
     const result = await query(sql, sqlParams)

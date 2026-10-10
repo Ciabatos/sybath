@@ -17,51 +17,21 @@ description: |
 
 ### Data Flow
 
-```
-# function GET(request: NextRequest)
-# path: `app/api/world/landscape-types/route.ts`
+function GET(request: NextRequest) path: app/api/world/landscape-types/route.ts function
+fetchWorldLandscapeTypesService(options?: { clientEtag?: string; forceFresh?: boolean }): Promise<TFetchResult> path:
+methods/services/world/fetchWorldLandscapeTypesService.ts TypeScript Types: type TCacheRecord = { raw:
+TWorldLandscapeTypes[] byKey: TWorldLandscapeTypesRecordById etag: string }
 
+type TFetchResult = { record?: TCacheRecord etag: string cacheHit: boolean etagMatched: boolean }
 
-# function fetchWorldLandscapeTypesService(options?: { clientEtag?: string; forceFresh?: boolean }): Promise<TFetchResult>
-# path: `methods/services/world/fetchWorldLandscapeTypesService.ts`
-# TypeScript Types:
+function getWorldLandscapeTypes() path: db/postgresMainDatabase/schemas/world/landscapeTypes.ts TypeScript Types: export
+type TWorldLandscapeTypesParams = { id: number }
 
-type TCacheRecord = {
-  raw: TWorldLandscapeTypes[]
-  byKey: TWorldLandscapeTypesRecordById
-  etag: string
-}
-
-type TFetchResult = {
-  record?: TCacheRecord
-  etag: string
-  cacheHit: boolean
-  etagMatched: boolean
-}
-
-# function getWorldLandscapeTypes()
-# path: `db/postgresMainDatabase/schemas/world/landscapeTypes.ts`
-# TypeScript Types:
-
-export type TWorldLandscapeTypesParams = {
-  id: number
-}
-
-export type TWorldLandscapeTypes = {
-  id: number
-  name: string
-  moveCost: number
-  imageUrl?: string
-}
+export type TWorldLandscapeTypes = { id: number name: string moveCost: number imageUrl?: string }
 
 export type TWorldLandscapeTypesRecordById = Record<string, TWorldLandscapeTypes>
 
 Hook for mutate data using SWR
-# function path :`methods/hooks/world/core/useMutateWorldLandscapeTypes.ts`
-# function useMutateWorldLandscapeTypes()
 
-#### PostgreSQL Database
-# "schema": "world"
-# "method": "get_landscape_types"
-You have more information in mcp `game-db`
-```
+function path :methods/hooks/world/core/useMutateWorldLandscapeTypes.ts function useMutateWorldLandscapeTypes()
+PostgreSQL Database "schema": "world" "method": "get_landscape_types" You have more information in mcp game-db

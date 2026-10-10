@@ -5,19 +5,22 @@ import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
 import {
   TWorldTerrainTypesRecordById,
-  TWorldTerrainTypesParams,
+  TWorldTerrainTypesParamsFetchParams,
   TWorldTerrainTypes,
 } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
+import { WORLDTERRAINTYPES_SWR_KEY_BY_KEY } from "@/methods/hooks/world/core/useFetchWorldTerrainTypesByKey"
 import { terrainTypesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutateWorldTerrainTypes(params: TWorldTerrainTypesParams) {
+export function useMutateWorldTerrainTypes(params: TWorldTerrainTypesParamsFetchParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/world/terrain-types/${params.id}`
+  const key = WORLDTERRAINTYPES_SWR_KEY_BY_KEY(params)
   const terrainTypes = useAtomValue(terrainTypesAtom)
 
   function mutateWorldTerrainTypes(optimisticParams?: Partial<TWorldTerrainTypes>[]) {
+    if (!key) return
+
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -25,6 +28,12 @@ export function useMutateWorldTerrainTypes(params: TWorldTerrainTypesParams) {
 
     //MANUAL CODE - START
 
+    /*
+      Uzupełnij wartości domyślne dla `optimisticParams`. Wcześniej generator
+      wpisywał tu `` (pusty string) dla KAŻDEGO pola, co dla pól liczbowych
+      oznaczało `id: ""` — bezsensowną daną, kompilującą się tylko dlatego, że
+      `Partial<T>` maskuje typ. Uzupełniaj ręcznie albo zostaw `{}`.
+    */
     const defaultValues = {
       id: ``,
       name: ``,

@@ -8,11 +8,20 @@ export type TItemsItemsParams = {
   id: number
 }
 
+/*
+  Parametry dozwolone w części — hook fetchujący jest wołany bezwarunkowo
+  (React zabrania zmieniać liczby hooków między renderami), a w composite'ie
+  parametr bywa jeszcze nieznany, np. `clickedMapTile` przed kliknięciem.
+  Niekompletne parametry dają klucz SWR `null`, a SWR nic wtedy nie odpytuje.
+*/
+export type TItemsItemsParamsFetchParams = Partial<TItemsItemsParams>
+
 export type TItemsItems = {
   id: number
   name: string
   description: string
   image: string
+  itemTypeId: number
 }
 
 export type TItemsItemsRecordById = Record<string, TItemsItems>
@@ -35,7 +44,7 @@ export async function getItemsItems() {
 
 export async function getItemsItemsByKey(params: TItemsItemsParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.id]
     const sql = `SELECT * FROM items.get_items_by_key($1);`
 
     const result = await query(sql, sqlParams)

@@ -17,51 +17,21 @@ description: |
 
 ### Data Flow
 
-```
-# function GET(request: NextRequest)
-# path: `app/api/attributes/skills/route.ts`
+function GET(request: NextRequest) path: app/api/attributes/skills/route.ts function
+fetchAttributesSkillsService(options?: { clientEtag?: string; forceFresh?: boolean }): Promise<TFetchResult> path:
+methods/services/attributes/fetchAttributesSkillsService.ts TypeScript Types: type TCacheRecord = { raw:
+TAttributesSkills[] byKey: TAttributesSkillsRecordById etag: string }
 
+type TFetchResult = { record?: TCacheRecord etag: string cacheHit: boolean etagMatched: boolean }
 
-# function fetchAttributesSkillsService(options?: { clientEtag?: string; forceFresh?: boolean }): Promise<TFetchResult>
-# path: `methods/services/attributes/fetchAttributesSkillsService.ts`
-# TypeScript Types:
+function getAttributesSkills() path: db/postgresMainDatabase/schemas/attributes/skills.ts TypeScript Types: export type
+TAttributesSkillsParams = { id: number }
 
-type TCacheRecord = {
-  raw: TAttributesSkills[]
-  byKey: TAttributesSkillsRecordById
-  etag: string
-}
-
-type TFetchResult = {
-  record?: TCacheRecord
-  etag: string
-  cacheHit: boolean
-  etagMatched: boolean
-}
-
-# function getAttributesSkills()
-# path: `db/postgresMainDatabase/schemas/attributes/skills.ts`
-# TypeScript Types:
-
-export type TAttributesSkillsParams = {
-  id: number
-}
-
-export type TAttributesSkills = {
-  id: number
-  name: string
-  description: string
-  image: string
-}
+export type TAttributesSkills = { id: number name: string description: string image: string }
 
 export type TAttributesSkillsRecordById = Record<string, TAttributesSkills>
 
 Hook for mutate data using SWR
-# function path :`methods/hooks/attributes/core/useMutateAttributesSkills.ts`
-# function useMutateAttributesSkills()
 
-#### PostgreSQL Database
-# "schema": "attributes"
-# "method": "get_skills"
-You have more information in mcp `game-db`
-```
+function path :methods/hooks/attributes/core/useMutateAttributesSkills.ts function useMutateAttributesSkills()
+PostgreSQL Database "schema": "attributes" "method": "get_skills" You have more information in mcp game-db

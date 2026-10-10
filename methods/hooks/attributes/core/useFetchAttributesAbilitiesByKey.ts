@@ -4,7 +4,7 @@
 import {
   TAttributesAbilitiesRecordById,
   TAttributesAbilities,
-  TAttributesAbilitiesParams,
+  TAttributesAbilitiesParamsFetchParams,
 } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { abilitiesAtom } from "@/store/atoms"
@@ -12,10 +12,23 @@ import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchAttributesAbilitiesByKey(params: TAttributesAbilitiesParams) {
+/*
+  Wspólny klucz SWR. Eksportowany, bo `useMutateAttributesAbilities` musi
+  budować DOKŁADNIE tę samą wartość — inaczej SWR widzi dwa różne zasoby,
+  a dopasowanie optimistic update'ów po cichu przestaje działać.
+
+  Zwraca `null`, gdy brakuje któregokolwiek parametru. SWR traktuje klucz
+  `null` jako "nie pobieraj" i nie wykonuje requestu.
+*/
+export const ATTRIBUTESABILITIES_SWR_KEY_BY_KEY = (params: TAttributesAbilitiesParamsFetchParams) =>
+  params.id != null ? `/api/attributes/abilities/${params.id}` : null
+
+export function useFetchAttributesAbilitiesByKey(params: TAttributesAbilitiesParamsFetchParams) {
   const setAttributesAbilities = useSetAtom(abilitiesAtom)
 
-  const { data } = useSWR<TAttributesAbilities[]>(`/api/attributes/abilities/${params.id}`, { refreshInterval: 3000 })
+  const { data } = useSWR<TAttributesAbilities[]>(ATTRIBUTESABILITIES_SWR_KEY_BY_KEY(params), {
+    refreshInterval: 3000,
+  })
 
   useEffect(() => {
     if (data) {

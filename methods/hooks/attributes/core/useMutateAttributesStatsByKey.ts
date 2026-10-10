@@ -5,19 +5,22 @@ import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
 import {
   TAttributesStatsRecordById,
-  TAttributesStatsParams,
+  TAttributesStatsParamsFetchParams,
   TAttributesStats,
 } from "@/db/postgresMainDatabase/schemas/attributes/stats"
+import { ATTRIBUTESSTATS_SWR_KEY_BY_KEY } from "@/methods/hooks/attributes/core/useFetchAttributesStatsByKey"
 import { statsAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutateAttributesStats(params: TAttributesStatsParams) {
+export function useMutateAttributesStats(params: TAttributesStatsParamsFetchParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/attributes/stats/${params.id}`
+  const key = ATTRIBUTESSTATS_SWR_KEY_BY_KEY(params)
   const stats = useAtomValue(statsAtom)
 
   function mutateAttributesStats(optimisticParams?: Partial<TAttributesStats>[]) {
+    if (!key) return
+
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -25,6 +28,12 @@ export function useMutateAttributesStats(params: TAttributesStatsParams) {
 
     //MANUAL CODE - START
 
+    /*
+      Uzupełnij wartości domyślne dla `optimisticParams`. Wcześniej generator
+      wpisywał tu `` (pusty string) dla KAŻDEGO pola, co dla pól liczbowych
+      oznaczało `id: ""` — bezsensowną daną, kompilującą się tylko dlatego, że
+      `Partial<T>` maskuje typ. Uzupełniaj ręcznie albo zostaw `{}`.
+    */
     const defaultValues = {
       id: ``,
       name: ``,

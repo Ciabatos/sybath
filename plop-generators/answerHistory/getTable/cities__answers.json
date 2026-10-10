@@ -1,0 +1,128 @@
+{
+  "promptAnswers": {
+    "schema": "cities",
+    "table": "city_tiles",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "x",
+      "y"
+    ],
+    "paramsColumns": [
+      "city_id"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "cities",
+  "entityCamelName": "cityTiles",
+  "entityPascalName": "CityTiles",
+  "entityKebabName": "city-tiles",
+  "schemaEntityPascalName": "CitiesCityTiles",
+  "methodTypeName": "TCitiesCityTiles",
+  "methodParamsTypeName": "TCitiesCityTilesParams",
+  "methodParamsColumns": [
+    {
+      "name": "city_id",
+      "camelName": "cityId",
+      "tsType": "number"
+    }
+  ],
+  "dbFunctionName": "getCitiesCityTiles",
+  "dbFunctionByKeyName": "getCitiesCityTilesByKey",
+  "sqlFunctionName": "get_city_tiles",
+  "sqlFunctionByKeyName": "get_city_tiles_by_key",
+  "sqlParamsPlaceholders": "$1",
+  "methodColumns": [
+    {
+      "name": "city_id",
+      "camelName": "cityId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "x",
+      "camelName": "x",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "X"
+    },
+    {
+      "name": "y",
+      "camelName": "y",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Y"
+    },
+    {
+      "name": "terrain_type_id",
+      "camelName": "terrainTypeId",
+      "tsType": "number",
+      "optional": ""
+    },
+    {
+      "name": "landscape_type_id",
+      "camelName": "landscapeTypeId",
+      "tsType": "number",
+      "optional": "?"
+    }
+  ],
+  "indexMethodParams": "[\"x\", \"y\"]",
+  "indexParamsColumns": "cityId",
+  "indexTypeMethodName": "XY",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TCitiesCityTilesRecordByXY",
+  "indexColumns": [
+    {
+      "name": "x",
+      "camelName": "x",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "X"
+    },
+    {
+      "name": "y",
+      "camelName": "y",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Y"
+    }
+  ],
+  "fetchParamsTypeName": "TCitiesCityTilesParamsFetchParams",
+  "hasAllParamsExpression": "params.cityId != null",
+  "swrKeyConstantName": "CITIESCITYTILES_SWR_KEY",
+  "swrKeyConstantNameByKey": "CITIESCITYTILES_SWR_KEY_BY_KEY",
+  "swrKeyBuilderExpression": "() => `/api/cities/city-tiles`",
+  "swrKeyBuilderExpressionByKey": "(params: TCitiesCityTilesParamsFetchParams) =>\n  params.cityId != null ? `/api/cities/city-tiles/${params.cityId}` : null",
+  "sqlParamsExpressionByKey": "[params.cityId]",
+  "apiPath": "app/api/cities/city-tiles/route.ts",
+  "apiPathParams": "/api/cities/city-tiles",
+  "apiPathByKey": "app/api/cities/city-tiles/[cityId]/route.ts",
+  "apiPathParamsByKey": "/api/cities/city-tiles/${params.cityId}",
+  "generateMutation": true,
+  "mutationMergeOldData": true,
+  "fetcherName": "fetchCitiesCityTiles",
+  "fetcherByKeyName": "fetchCitiesCityTilesByKey",
+  "dateCreated": "2026-10-10T12:32:17.914Z",
+  "filesCreated": [
+    "db/postgresMainDatabase/schemas/cities/cityTiles.ts",
+    "app/api/cities/city-tiles/route.ts",
+    "app/api/cities/city-tiles/[cityId]/route.ts",
+    "methods/hooks/cities/core/useFetchCitiesCityTiles.ts",
+    "methods/hooks/cities/core/useFetchCitiesCityTilesByKey.ts",
+    "methods/server-fetchers/cities/core/getCitiesCityTilesByKeyServer.ts",
+    "methods/services/cities/fetchCitiesCityTilesService.ts",
+    "methods/services/cities/fetchCitiesCityTilesByKeyService.ts",
+    "store/atoms/getTable/cityTilesAtom.ts",
+    ".vscode/useCitiesCityTiles.code-snippets",
+    ".vscode/useCitiesCityTilesByKey.code-snippets",
+    "methods/hooks/cities/core/useMutateCitiesCityTiles.ts",
+    "methods/hooks/cities/core/useMutateCitiesCityTilesByKey.ts",
+    "methods/hooks/cities/core/useFetchCitiesCityTiles.md",
+    "methods/hooks/cities/core/useFetchCitiesCityTilesByKey.md"
+  ],
+  "sqlMethodCreated": [
+    "FUNCTION cities.get_city_tiles_by_key(p_city_id integer)",
+    "FUNCTION cities.get_city_tiles()"
+  ],
+  "generatorName": "getTable"
+}

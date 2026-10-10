@@ -8,6 +8,14 @@ export type TDistrictsDistrictTypesParams = {
   id: number
 }
 
+/*
+  Parametry dozwolone w części — hook fetchujący jest wołany bezwarunkowo
+  (React zabrania zmieniać liczby hooków między renderami), a w composite'ie
+  parametr bywa jeszcze nieznany, np. `clickedMapTile` przed kliknięciem.
+  Niekompletne parametry dają klucz SWR `null`, a SWR nic wtedy nie odpytuje.
+*/
+export type TDistrictsDistrictTypesParamsFetchParams = Partial<TDistrictsDistrictTypesParams>
+
 export type TDistrictsDistrictTypes = {
   id: number
   name: string
@@ -35,7 +43,7 @@ export async function getDistrictsDistrictTypes() {
 
 export async function getDistrictsDistrictTypesByKey(params: TDistrictsDistrictTypesParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.id]
     const sql = `SELECT * FROM districts.get_district_types_by_key($1);`
 
     const result = await query(sql, sqlParams)

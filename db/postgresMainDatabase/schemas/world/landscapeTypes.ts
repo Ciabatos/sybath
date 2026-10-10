@@ -8,6 +8,14 @@ export type TWorldLandscapeTypesParams = {
   id: number
 }
 
+/*
+  Parametry dozwolone w części — hook fetchujący jest wołany bezwarunkowo
+  (React zabrania zmieniać liczby hooków między renderami), a w composite'ie
+  parametr bywa jeszcze nieznany, np. `clickedMapTile` przed kliknięciem.
+  Niekompletne parametry dają klucz SWR `null`, a SWR nic wtedy nie odpytuje.
+*/
+export type TWorldLandscapeTypesParamsFetchParams = Partial<TWorldLandscapeTypesParams>
+
 export type TWorldLandscapeTypes = {
   id: number
   name: string
@@ -35,7 +43,7 @@ export async function getWorldLandscapeTypes() {
 
 export async function getWorldLandscapeTypesByKey(params: TWorldLandscapeTypesParams) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = [params.id]
     const sql = `SELECT * FROM world.get_landscape_types_by_key($1);`
 
     const result = await query(sql, sqlParams)

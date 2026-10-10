@@ -4,7 +4,7 @@
 import {
   TCitiesCitiesRecordByMapTileXMapTileY,
   TCitiesCities,
-  TCitiesCitiesParams,
+  TCitiesCitiesParamsFetchParams,
 } from "@/db/postgresMainDatabase/schemas/cities/cities"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { citiesAtom } from "@/store/atoms"
@@ -12,10 +12,23 @@ import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchCitiesCitiesByKey(params: TCitiesCitiesParams) {
+/*
+  Wspólny klucz SWR. Eksportowany, bo `useMutateCitiesCities` musi
+  budować DOKŁADNIE tę samą wartość — inaczej SWR widzi dwa różne zasoby,
+  a dopasowanie optimistic update'ów po cichu przestaje działać.
+
+  Zwraca `null`, gdy brakuje któregokolwiek parametru. SWR traktuje klucz
+  `null` jako "nie pobieraj" i nie wykonuje requestu.
+*/
+export const CITIESCITIES_SWR_KEY_BY_KEY = (params: TCitiesCitiesParamsFetchParams) =>
+  params.mapId != null ? `/api/cities/cities/${params.mapId}` : null
+
+export function useFetchCitiesCitiesByKey(params: TCitiesCitiesParamsFetchParams) {
   const setCitiesCities = useSetAtom(citiesAtom)
 
-  const { data } = useSWR<TCitiesCities[]>(`/api/cities/cities/${params.mapId}`, { refreshInterval: 3000 })
+  const { data } = useSWR<TCitiesCities[]>(CITIESCITIES_SWR_KEY_BY_KEY(params), {
+    refreshInterval: 3000,
+  })
 
   useEffect(() => {
     if (data) {

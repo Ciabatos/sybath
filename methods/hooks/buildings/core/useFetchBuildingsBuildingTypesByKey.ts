@@ -4,7 +4,7 @@
 import {
   TBuildingsBuildingTypesRecordById,
   TBuildingsBuildingTypes,
-  TBuildingsBuildingTypesParams,
+  TBuildingsBuildingTypesParamsFetchParams,
 } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { buildingTypesAtom } from "@/store/atoms"
@@ -12,10 +12,21 @@ import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchBuildingsBuildingTypesByKey(params: TBuildingsBuildingTypesParams) {
+/*
+  Wspólny klucz SWR. Eksportowany, bo `useMutateBuildingsBuildingTypes` musi
+  budować DOKŁADNIE tę samą wartość — inaczej SWR widzi dwa różne zasoby,
+  a dopasowanie optimistic update'ów po cichu przestaje działać.
+
+  Zwraca `null`, gdy brakuje któregokolwiek parametru. SWR traktuje klucz
+  `null` jako "nie pobieraj" i nie wykonuje requestu.
+*/
+export const BUILDINGSBUILDINGTYPES_SWR_KEY_BY_KEY = (params: TBuildingsBuildingTypesParamsFetchParams) =>
+  params.id != null ? `/api/buildings/building-types/${params.id}` : null
+
+export function useFetchBuildingsBuildingTypesByKey(params: TBuildingsBuildingTypesParamsFetchParams) {
   const setBuildingsBuildingTypes = useSetAtom(buildingTypesAtom)
 
-  const { data } = useSWR<TBuildingsBuildingTypes[]>(`/api/buildings/building-types/${params.id}`, {
+  const { data } = useSWR<TBuildingsBuildingTypes[]>(BUILDINGSBUILDINGTYPES_SWR_KEY_BY_KEY(params), {
     refreshInterval: 3000,
   })
 

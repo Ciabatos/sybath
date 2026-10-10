@@ -5,19 +5,22 @@ import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
 import {
   TBuildingsBuildingTypesRecordById,
-  TBuildingsBuildingTypesParams,
+  TBuildingsBuildingTypesParamsFetchParams,
   TBuildingsBuildingTypes,
 } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
+import { BUILDINGSBUILDINGTYPES_SWR_KEY_BY_KEY } from "@/methods/hooks/buildings/core/useFetchBuildingsBuildingTypesByKey"
 import { buildingTypesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
-export function useMutateBuildingsBuildingTypes(params: TBuildingsBuildingTypesParams) {
+export function useMutateBuildingsBuildingTypes(params: TBuildingsBuildingTypesParamsFetchParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/buildings/building-types/${params.id}`
+  const key = BUILDINGSBUILDINGTYPES_SWR_KEY_BY_KEY(params)
   const buildingTypes = useAtomValue(buildingTypesAtom)
 
   function mutateBuildingsBuildingTypes(optimisticParams?: Partial<TBuildingsBuildingTypes>[]) {
+    if (!key) return
+
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -25,6 +28,12 @@ export function useMutateBuildingsBuildingTypes(params: TBuildingsBuildingTypesP
 
     //MANUAL CODE - START
 
+    /*
+      Uzupełnij wartości domyślne dla `optimisticParams`. Wcześniej generator
+      wpisywał tu `` (pusty string) dla KAŻDEGO pola, co dla pól liczbowych
+      oznaczało `id: ""` — bezsensowną daną, kompilującą się tylko dlatego, że
+      `Partial<T>` maskuje typ. Uzupełniaj ręcznie albo zostaw `{}`.
+    */
     const defaultValues = {
       id: ``,
       name: ``,

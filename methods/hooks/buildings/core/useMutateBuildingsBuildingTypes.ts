@@ -7,16 +7,19 @@ import {
   TBuildingsBuildingTypesRecordById,
   TBuildingsBuildingTypes,
 } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
+import { BUILDINGSBUILDINGTYPES_SWR_KEY } from "@/methods/hooks/buildings/core/useFetchBuildingsBuildingTypes"
 import { buildingTypesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateBuildingsBuildingTypes() {
   const { mutate } = useSWRConfig()
-  const key = `/api/buildings/building-types`
+  const key = BUILDINGSBUILDINGTYPES_SWR_KEY()
   const buildingTypes = useAtomValue(buildingTypesAtom)
 
   function mutateBuildingsBuildingTypes(optimisticParams?: Partial<TBuildingsBuildingTypes>[]) {
+    if (!key) return
+
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -24,6 +27,12 @@ export function useMutateBuildingsBuildingTypes() {
 
     //MANUAL CODE - START
 
+    /*
+      Uzupełnij wartości domyślne dla `optimisticParams`. Wcześniej generator
+      wpisywał tu `` (pusty string) dla KAŻDEGO pola, co dla pól liczbowych
+      oznaczało `id: ""` — bezsensowną daną, kompilującą się tylko dlatego, że
+      `Partial<T>` maskuje typ. Uzupełniaj ręcznie albo zostaw `{}`.
+    */
     const defaultValues = {
       id: ``,
       name: ``,

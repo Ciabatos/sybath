@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetTableByKey.hbs
 
-import { TBuildingsBuildingTypesParams } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
 import { auth } from "@/lib/auth"
+import { TBuildingsBuildingTypesParams } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
 import { fetchBuildingsBuildingTypesByKeyService } from "@/methods/services/buildings/fetchBuildingsBuildingTypesByKeyService"
 import { headers } from "next/headers"
 import { NextRequest, NextResponse } from "next/server"
@@ -23,7 +23,10 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
     }
 
     const paramsFromPromise = await params
-    const parsedParams = typeParamsSchema.parse(paramsFromPromise)
+    const parsedParams = typeParamsSchema.parse({
+      ...paramsFromPromise,
+      userId: sessionUserId,
+    })
 
     const clientEtag = request.headers.get("if-none-match") ?? undefined
     const forceFresh = request.headers.get("x-force-fresh") ?? undefined

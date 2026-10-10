@@ -17,51 +17,21 @@ description: |
 
 ### Data Flow
 
-```
-# function GET(request: NextRequest)
-# path: `app/api/world/terrain-types/route.ts`
+function GET(request: NextRequest) path: app/api/world/terrain-types/route.ts function
+fetchWorldTerrainTypesService(options?: { clientEtag?: string; forceFresh?: boolean }): Promise<TFetchResult> path:
+methods/services/world/fetchWorldTerrainTypesService.ts TypeScript Types: type TCacheRecord = { raw:
+TWorldTerrainTypes[] byKey: TWorldTerrainTypesRecordById etag: string }
 
+type TFetchResult = { record?: TCacheRecord etag: string cacheHit: boolean etagMatched: boolean }
 
-# function fetchWorldTerrainTypesService(options?: { clientEtag?: string; forceFresh?: boolean }): Promise<TFetchResult>
-# path: `methods/services/world/fetchWorldTerrainTypesService.ts`
-# TypeScript Types:
+function getWorldTerrainTypes() path: db/postgresMainDatabase/schemas/world/terrainTypes.ts TypeScript Types: export
+type TWorldTerrainTypesParams = { id: number }
 
-type TCacheRecord = {
-  raw: TWorldTerrainTypes[]
-  byKey: TWorldTerrainTypesRecordById
-  etag: string
-}
-
-type TFetchResult = {
-  record?: TCacheRecord
-  etag: string
-  cacheHit: boolean
-  etagMatched: boolean
-}
-
-# function getWorldTerrainTypes()
-# path: `db/postgresMainDatabase/schemas/world/terrainTypes.ts`
-# TypeScript Types:
-
-export type TWorldTerrainTypesParams = {
-  id: number
-}
-
-export type TWorldTerrainTypes = {
-  id: number
-  name: string
-  moveCost: number
-  imageUrl?: string
-}
+export type TWorldTerrainTypes = { id: number name: string moveCost: number imageUrl?: string }
 
 export type TWorldTerrainTypesRecordById = Record<string, TWorldTerrainTypes>
 
 Hook for mutate data using SWR
-# function path :`methods/hooks/world/core/useMutateWorldTerrainTypes.ts`
-# function useMutateWorldTerrainTypes()
 
-#### PostgreSQL Database
-# "schema": "world"
-# "method": "get_terrain_types"
-You have more information in mcp `game-db`
-```
+function path :methods/hooks/world/core/useMutateWorldTerrainTypes.ts function useMutateWorldTerrainTypes() PostgreSQL
+Database "schema": "world" "method": "get_terrain_types" You have more information in mcp game-db

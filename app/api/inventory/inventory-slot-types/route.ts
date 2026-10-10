@@ -2,8 +2,8 @@
 
 import { auth } from "@/lib/auth"
 import { fetchInventoryInventorySlotTypesService } from "@/methods/services/inventory/fetchInventoryInventorySlotTypesService"
-import { headers } from "next/headers"
 import { NextRequest, NextResponse } from "next/server"
+import { headers } from "next/headers"
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
   try {

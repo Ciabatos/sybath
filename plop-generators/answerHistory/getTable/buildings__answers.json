@@ -1,0 +1,107 @@
+{
+  "promptAnswers": {
+    "schema": "buildings",
+    "table": "building_types",
+    "usePrevious": false,
+    "selectedColumnsIndex": [
+      "id"
+    ],
+    "paramsColumns": [
+      "id"
+    ],
+    "generateMutation": true,
+    "mutationMergeOldData": true
+  },
+  "schema": "buildings",
+  "entityCamelName": "buildingTypes",
+  "entityPascalName": "BuildingTypes",
+  "entityKebabName": "building-types",
+  "schemaEntityPascalName": "BuildingsBuildingTypes",
+  "methodTypeName": "TBuildingsBuildingTypes",
+  "methodParamsTypeName": "TBuildingsBuildingTypesParams",
+  "methodParamsColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number"
+    }
+  ],
+  "dbFunctionName": "getBuildingsBuildingTypes",
+  "dbFunctionByKeyName": "getBuildingsBuildingTypesByKey",
+  "sqlFunctionName": "get_building_types",
+  "sqlFunctionByKeyName": "get_building_types_by_key",
+  "sqlParamsPlaceholders": "$1",
+  "methodColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Id"
+    },
+    {
+      "name": "name",
+      "camelName": "name",
+      "tsType": "string",
+      "optional": ""
+    },
+    {
+      "name": "image_url",
+      "camelName": "imageUrl",
+      "tsType": "string",
+      "optional": "?"
+    }
+  ],
+  "indexMethodParams": "[\"id\"]",
+  "indexParamsColumns": "id",
+  "indexTypeMethodName": "Id",
+  "indexMethodName": "arrayToObjectKey",
+  "indexTypeName": "TBuildingsBuildingTypesRecordById",
+  "indexColumns": [
+    {
+      "name": "id",
+      "camelName": "id",
+      "tsType": "number",
+      "optional": "",
+      "pascalName": "Id"
+    }
+  ],
+  "fetchParamsTypeName": "TBuildingsBuildingTypesParamsFetchParams",
+  "hasAllParamsExpression": "params.id != null",
+  "swrKeyConstantName": "BUILDINGSBUILDINGTYPES_SWR_KEY",
+  "swrKeyConstantNameByKey": "BUILDINGSBUILDINGTYPES_SWR_KEY_BY_KEY",
+  "swrKeyBuilderExpression": "() => `/api/buildings/building-types`",
+  "swrKeyBuilderExpressionByKey": "(params: TBuildingsBuildingTypesParamsFetchParams) =>\n  params.id != null ? `/api/buildings/building-types/${params.id}` : null",
+  "sqlParamsExpressionByKey": "[params.id]",
+  "apiPath": "app/api/buildings/building-types/route.ts",
+  "apiPathParams": "/api/buildings/building-types",
+  "apiPathByKey": "app/api/buildings/building-types/[id]/route.ts",
+  "apiPathParamsByKey": "/api/buildings/building-types/${params.id}",
+  "generateMutation": true,
+  "mutationMergeOldData": true,
+  "fetcherName": "fetchBuildingsBuildingTypes",
+  "fetcherByKeyName": "fetchBuildingsBuildingTypesByKey",
+  "dateCreated": "2026-10-10T12:32:17.475Z",
+  "filesCreated": [
+    "db/postgresMainDatabase/schemas/buildings/buildingTypes.ts",
+    "app/api/buildings/building-types/route.ts",
+    "app/api/buildings/building-types/[id]/route.ts",
+    "methods/hooks/buildings/core/useFetchBuildingsBuildingTypes.ts",
+    "methods/hooks/buildings/core/useFetchBuildingsBuildingTypesByKey.ts",
+    "methods/server-fetchers/buildings/core/getBuildingsBuildingTypesByKeyServer.ts",
+    "methods/services/buildings/fetchBuildingsBuildingTypesService.ts",
+    "methods/services/buildings/fetchBuildingsBuildingTypesByKeyService.ts",
+    "store/atoms/getTable/buildingTypesAtom.ts",
+    ".vscode/useBuildingsBuildingTypes.code-snippets",
+    ".vscode/useBuildingsBuildingTypesByKey.code-snippets",
+    "methods/hooks/buildings/core/useMutateBuildingsBuildingTypes.ts",
+    "methods/hooks/buildings/core/useMutateBuildingsBuildingTypesByKey.ts",
+    "methods/hooks/buildings/core/useFetchBuildingsBuildingTypes.md",
+    "methods/hooks/buildings/core/useFetchBuildingsBuildingTypesByKey.md"
+  ],
+  "sqlMethodCreated": [
+    "FUNCTION buildings.get_building_types_by_key(p_id integer)",
+    "FUNCTION buildings.get_building_types()"
+  ],
+  "generatorName": "getTable"
+}

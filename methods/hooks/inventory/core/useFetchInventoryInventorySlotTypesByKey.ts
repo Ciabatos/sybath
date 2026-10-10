@@ -4,7 +4,7 @@
 import {
   TInventoryInventorySlotTypesRecordById,
   TInventoryInventorySlotTypes,
-  TInventoryInventorySlotTypesParams,
+  TInventoryInventorySlotTypesParamsFetchParams,
 } from "@/db/postgresMainDatabase/schemas/inventory/inventorySlotTypes"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { inventorySlotTypesAtom } from "@/store/atoms"
@@ -12,10 +12,21 @@ import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetchInventoryInventorySlotTypesByKey(params: TInventoryInventorySlotTypesParams) {
+/*
+  Wspólny klucz SWR. Eksportowany, bo `useMutateInventoryInventorySlotTypes` musi
+  budować DOKŁADNIE tę samą wartość — inaczej SWR widzi dwa różne zasoby,
+  a dopasowanie optimistic update'ów po cichu przestaje działać.
+
+  Zwraca `null`, gdy brakuje któregokolwiek parametru. SWR traktuje klucz
+  `null` jako "nie pobieraj" i nie wykonuje requestu.
+*/
+export const INVENTORYINVENTORYSLOTTYPES_SWR_KEY_BY_KEY = (params: TInventoryInventorySlotTypesParamsFetchParams) =>
+  params.id != null ? `/api/inventory/inventory-slot-types/${params.id}` : null
+
+export function useFetchInventoryInventorySlotTypesByKey(params: TInventoryInventorySlotTypesParamsFetchParams) {
   const setInventoryInventorySlotTypes = useSetAtom(inventorySlotTypesAtom)
 
-  const { data } = useSWR<TInventoryInventorySlotTypes[]>(`/api/inventory/inventory-slot-types/${params.id}`, {
+  const { data } = useSWR<TInventoryInventorySlotTypes[]>(INVENTORYINVENTORYSLOTTYPES_SWR_KEY_BY_KEY(params), {
     refreshInterval: 3000,
   })
 

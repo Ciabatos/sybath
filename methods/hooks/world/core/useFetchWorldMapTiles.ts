@@ -1,17 +1,33 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTable.hbs
 
 "use client"
-import { TWorldMapTilesRecordByXY, TWorldMapTiles } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
+import {
+  TWorldMapTilesRecordByXY,
+  TWorldMapTiles,
+  TWorldMapTilesParamsFetchParams,
+} from "@/db/postgresMainDatabase/schemas/world/mapTiles"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 import { mapTilesAtom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
+/*
+  Wspólny klucz SWR. Eksportowany, bo `useMutateWorldMapTiles` musi
+  budować DOKŁADNIE tę samą wartość — inaczej SWR widzi dwa różne zasoby,
+  a dopasowanie optimistic update'ów po cichu przestaje działać.
+
+  Zwraca `null`, gdy brakuje któregokolwiek parametru. SWR traktuje klucz
+  `null` jako "nie pobieraj" i nie wykonuje requestu.
+*/
+export const WORLDMAPTILES_SWR_KEY = () => `/api/world/map-tiles`
+
 export function useFetchWorldMapTiles() {
   const setWorldMapTiles = useSetAtom(mapTilesAtom)
 
-  const { data } = useSWR<TWorldMapTiles[]>(`/api/world/map-tiles`, { refreshInterval: 3000 })
+  const { data } = useSWR<TWorldMapTiles[]>(WORLDMAPTILES_SWR_KEY(), {
+    refreshInterval: 3000,
+  })
 
   useEffect(() => {
     if (data) {

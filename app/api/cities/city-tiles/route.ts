@@ -2,8 +2,8 @@
 
 import { auth } from "@/lib/auth"
 import { fetchCitiesCityTilesService } from "@/methods/services/cities/fetchCitiesCityTilesService"
-import { headers } from "next/headers"
 import { NextRequest, NextResponse } from "next/server"
+import { headers } from "next/headers"
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
   try {

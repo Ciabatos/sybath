@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - apiGetTableByKey.hbs
 
-import { TCitiesCitiesParams } from "@/db/postgresMainDatabase/schemas/cities/cities"
 import { auth } from "@/lib/auth"
+import { TCitiesCitiesParams } from "@/db/postgresMainDatabase/schemas/cities/cities"
 import { fetchCitiesCitiesByKeyService } from "@/methods/services/cities/fetchCitiesCitiesByKeyService"
 import { headers } from "next/headers"
 import { NextRequest, NextResponse } from "next/server"
@@ -23,7 +23,10 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
     }
 
     const paramsFromPromise = await params
-    const parsedParams = typeParamsSchema.parse(paramsFromPromise)
+    const parsedParams = typeParamsSchema.parse({
+      ...paramsFromPromise,
+      userId: sessionUserId,
+    })
 
     const clientEtag = request.headers.get("if-none-match") ?? undefined
     const forceFresh = request.headers.get("x-force-fresh") ?? undefined

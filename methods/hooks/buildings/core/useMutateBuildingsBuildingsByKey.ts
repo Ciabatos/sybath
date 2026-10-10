@@ -3,13 +3,19 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import { TBuildingsBuildingsParams, TBuildingsBuildings } from "@/db/postgresMainDatabase/schemas/buildings/buildings"
+import {
+  TBuildingsBuildingsParamsFetchParams,
+  TBuildingsBuildings,
+} from "@/db/postgresMainDatabase/schemas/buildings/buildings"
+import { BUILDINGSBUILDINGS_SWR_KEY_BY_KEY } from "@/methods/hooks/buildings/core/useFetchBuildingsBuildingsByKey"
 
-export function useMutateBuildingsBuildings(params: TBuildingsBuildingsParams) {
+export function useMutateBuildingsBuildings(params: TBuildingsBuildingsParamsFetchParams) {
   const { mutate } = useSWRConfig()
-  const key = `/api/buildings/buildings/${params.cityId}`
+  const key = BUILDINGSBUILDINGS_SWR_KEY_BY_KEY(params)
 
   function mutateBuildingsBuildings(optimisticParams?: Partial<TBuildingsBuildings>[]) {
+    if (!key) return
+
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -17,6 +23,12 @@ export function useMutateBuildingsBuildings(params: TBuildingsBuildingsParams) {
 
     //MANUAL CODE - START
 
+    /*
+      Uzupełnij wartości domyślne dla `optimisticParams`. Wcześniej generator
+      wpisywał tu `` (pusty string) dla KAŻDEGO pola, co dla pól liczbowych
+      oznaczało `id: ""` — bezsensowną daną, kompilującą się tylko dlatego, że
+      `Partial<T>` maskuje typ. Uzupełniaj ręcznie albo zostaw `{}`.
+    */
     const defaultValues = {
       id: ``,
       cityId: ``,

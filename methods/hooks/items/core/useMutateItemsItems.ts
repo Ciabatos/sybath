@@ -4,16 +4,19 @@
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
 import { TItemsItemsRecordById, TItemsItems } from "@/db/postgresMainDatabase/schemas/items/items"
+import { ITEMSITEMS_SWR_KEY } from "@/methods/hooks/items/core/useFetchItemsItems"
 import { itemsAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateItemsItems() {
   const { mutate } = useSWRConfig()
-  const key = `/api/items/items`
+  const key = ITEMSITEMS_SWR_KEY()
   const items = useAtomValue(itemsAtom)
 
   function mutateItemsItems(optimisticParams?: Partial<TItemsItems>[]) {
+    if (!key) return
+
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -21,11 +24,18 @@ export function useMutateItemsItems() {
 
     //MANUAL CODE - START
 
+    /*
+      Uzupełnij wartości domyślne dla `optimisticParams`. Wcześniej generator
+      wpisywał tu `` (pusty string) dla KAŻDEGO pola, co dla pól liczbowych
+      oznaczało `id: ""` — bezsensowną daną, kompilującą się tylko dlatego, że
+      `Partial<T>` maskuje typ. Uzupełniaj ręcznie albo zostaw `{}`.
+    */
     const defaultValues = {
       id: ``,
       name: ``,
       description: ``,
       image: ``,
+      itemTypeId: ``,
     }
 
     //MANUAL CODE - END

@@ -7,16 +7,19 @@ import {
   TDistrictsDistrictTypesRecordById,
   TDistrictsDistrictTypes,
 } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
+import { DISTRICTSDISTRICTTYPES_SWR_KEY } from "@/methods/hooks/districts/core/useFetchDistrictsDistrictTypes"
 import { districtTypesAtom } from "@/store/atoms"
 import { useAtomValue } from "jotai"
 import { arrayToObjectKey } from "@/methods/functions/util/converters"
 
 export function useMutateDistrictsDistrictTypes() {
   const { mutate } = useSWRConfig()
-  const key = `/api/districts/district-types`
+  const key = DISTRICTSDISTRICTTYPES_SWR_KEY()
   const districtTypes = useAtomValue(districtTypesAtom)
 
   function mutateDistrictsDistrictTypes(optimisticParams?: Partial<TDistrictsDistrictTypes>[]) {
+    if (!key) return
+
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -24,6 +27,12 @@ export function useMutateDistrictsDistrictTypes() {
 
     //MANUAL CODE - START
 
+    /*
+      Uzupełnij wartości domyślne dla `optimisticParams`. Wcześniej generator
+      wpisywał tu `` (pusty string) dla KAŻDEGO pola, co dla pól liczbowych
+      oznaczało `id: ""` — bezsensowną daną, kompilującą się tylko dlatego, że
+      `Partial<T>` maskuje typ. Uzupełniaj ręcznie albo zostaw `{}`.
+    */
     const defaultValues = {
       id: ``,
       name: ``,
