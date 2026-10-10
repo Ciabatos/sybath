@@ -26,7 +26,7 @@ satisfies z.ZodType<TPlayerPositionParams>
 
 function getPlayerPositionServer( params: TPlayerPositionParams, options?: { forceFresh?: boolean },): Promise<TResult>
 path: methods/server-fetchers/world/core/getPlayerPositionServer.ts TypeScript Types: type TResult = { raw:
-TPlayerPosition[] byKey: TPlayerPositionRecordByXY apiPath: string atomName: string }
+TPlayerPosition[] byKey: TPlayerPositionRecordByXY apiPath: string atomName: keyof typeof AtomsBarrel }
 
 function getPlayerPosition(params: TPlayerPositionParams) path: db/postgresMainDatabase/schemas/world/playerPosition.ts
 TypeScript Types: export type TPlayerPositionParams = { userId: string mapId: number playerId: number }

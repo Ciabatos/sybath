@@ -26,8 +26,8 @@ z.coerce.string(), }) satisfies z.ZodType<TOtherPlayerAbilitiesParams>
 
 function getOtherPlayerAbilitiesServer( params: TOtherPlayerAbilitiesParams, options?: { forceFresh?: boolean },):
 Promise<TResult> path: methods/server-fetchers/attributes/core/getOtherPlayerAbilitiesServer.ts TypeScript Types: type
-TResult = { raw: TOtherPlayerAbilities[] byKey: TOtherPlayerAbilitiesRecordByAbilityId apiPath: string atomName: string
-}
+TResult = { raw: TOtherPlayerAbilities[] byKey: TOtherPlayerAbilitiesRecordByAbilityId apiPath: string atomName: keyof
+typeof AtomsBarrel }
 
 function getOtherPlayerAbilities(params: TOtherPlayerAbilitiesParams) path:
 db/postgresMainDatabase/schemas/attributes/otherPlayerAbilities.ts TypeScript Types: export type

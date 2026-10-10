@@ -4,12 +4,13 @@
 import type { TTradesParams } from "@/db/postgresMainDatabase/schemas/trade/trades"
 import type { TTradesRecordById, TTrades } from "@/db/postgresMainDatabase/schemas/trade/trades"
 import { fetchTradesService } from "@/methods/services/trade/fetchTradesService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TTrades[]
   byKey: TTradesRecordById
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getTradesServer(params: TTradesParams, options?: { forceFresh?: boolean }): Promise<TResult> {

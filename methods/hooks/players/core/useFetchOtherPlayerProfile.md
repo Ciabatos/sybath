@@ -26,7 +26,8 @@ z.coerce.string(), }) satisfies z.ZodType<TOtherPlayerProfileParams>
 
 function getOtherPlayerProfileServer( params: TOtherPlayerProfileParams, options?: { forceFresh?: boolean },):
 Promise<TResult> path: methods/server-fetchers/players/core/getOtherPlayerProfileServer.ts TypeScript Types: type
-TResult = { raw: TOtherPlayerProfile[] byKey: TOtherPlayerProfileRecordByName apiPath: string atomName: string }
+TResult = { raw: TOtherPlayerProfile[] byKey: TOtherPlayerProfileRecordByName apiPath: string atomName: keyof typeof
+AtomsBarrel }
 
 function getOtherPlayerProfile(params: TOtherPlayerProfileParams) path:
 db/postgresMainDatabase/schemas/players/otherPlayerProfile.ts TypeScript Types: export type TOtherPlayerProfileParams =

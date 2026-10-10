@@ -7,12 +7,13 @@ import type {
   TPlayerKnownPlayers,
 } from "@/db/postgresMainDatabase/schemas/knowledge/playerKnownPlayers"
 import { fetchPlayerKnownPlayersService } from "@/methods/services/knowledge/fetchPlayerKnownPlayersService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TPlayerKnownPlayers[]
   byKey: TPlayerKnownPlayersRecordByOtherPlayerId
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getPlayerKnownPlayersServer(

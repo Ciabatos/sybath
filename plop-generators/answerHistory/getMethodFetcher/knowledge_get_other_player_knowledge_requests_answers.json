@@ -124,7 +124,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-10-10T13:18:11.380Z",
+  "dateCreated": "2026-10-10T14:13:37.643Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests.ts",
     "app/api/knowledge/rpc/get-other-player-knowledge-requests/[playerId]/route.ts",

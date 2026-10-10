@@ -25,7 +25,7 @@ z.ZodType<TPlayerRecipesParams>
 
 function getPlayerRecipesServer( params: TPlayerRecipesParams, options?: { forceFresh?: boolean },): Promise<TResult>
 path: methods/server-fetchers/items/core/getPlayerRecipesServer.ts TypeScript Types: type TResult = { raw:
-TPlayerRecipes[] byKey: TPlayerRecipesRecordByItemId apiPath: string atomName: string }
+TPlayerRecipes[] byKey: TPlayerRecipesRecordByItemId apiPath: string atomName: keyof typeof AtomsBarrel }
 
 function getPlayerRecipes(params: TPlayerRecipesParams) path: db/postgresMainDatabase/schemas/items/playerRecipes.ts
 TypeScript Types: export type TPlayerRecipesParams = { userId: string playerId: number }

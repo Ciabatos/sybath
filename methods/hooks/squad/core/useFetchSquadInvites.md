@@ -25,7 +25,7 @@ z.ZodType<TSquadInvitesParams>
 
 function getSquadInvitesServer( params: TSquadInvitesParams, options?: { forceFresh?: boolean },): Promise<TResult>
 path: methods/server-fetchers/squad/core/getSquadInvitesServer.ts TypeScript Types: type TResult = { raw:
-TSquadInvites[] byKey: TSquadInvitesRecordById apiPath: string atomName: string }
+TSquadInvites[] byKey: TSquadInvitesRecordById apiPath: string atomName: keyof typeof AtomsBarrel }
 
 function getSquadInvites(params: TSquadInvitesParams) path: db/postgresMainDatabase/schemas/squad/squadInvites.ts
 TypeScript Types: export type TSquadInvitesParams = { userId: string playerId: number }

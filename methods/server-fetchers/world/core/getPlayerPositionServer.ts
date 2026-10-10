@@ -4,12 +4,13 @@
 import type { TPlayerPositionParams } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 import type { TPlayerPositionRecordByXY, TPlayerPosition } from "@/db/postgresMainDatabase/schemas/world/playerPosition"
 import { fetchPlayerPositionService } from "@/methods/services/world/fetchPlayerPositionService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TPlayerPosition[]
   byKey: TPlayerPositionRecordByXY
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getPlayerPositionServer(

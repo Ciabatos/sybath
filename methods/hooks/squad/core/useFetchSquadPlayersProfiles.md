@@ -27,7 +27,7 @@ z.ZodType<TSquadPlayersProfilesParams>
 function getSquadPlayersProfilesServer( params: TSquadPlayersProfilesParams, options?: { forceFresh?: boolean },):
 Promise<TResult> path: methods/server-fetchers/squad/core/getSquadPlayersProfilesServer.ts TypeScript Types: type
 TResult = { raw: TSquadPlayersProfiles[] byKey: TSquadPlayersProfilesRecordByOtherPlayerId apiPath: string atomName:
-string }
+keyof typeof AtomsBarrel }
 
 function getSquadPlayersProfiles(params: TSquadPlayersProfilesParams) path:
 db/postgresMainDatabase/schemas/squad/squadPlayersProfiles.ts TypeScript Types: export type TSquadPlayersProfilesParams

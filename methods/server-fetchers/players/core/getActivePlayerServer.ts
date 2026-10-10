@@ -4,12 +4,13 @@
 import type { TActivePlayerParams } from "@/db/postgresMainDatabase/schemas/players/activePlayer"
 import type { TActivePlayerRecordById, TActivePlayer } from "@/db/postgresMainDatabase/schemas/players/activePlayer"
 import { fetchActivePlayerService } from "@/methods/services/players/fetchActivePlayerService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TActivePlayer[]
   byKey: TActivePlayerRecordById
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getActivePlayerServer(

@@ -26,7 +26,8 @@ z.ZodType<TDistrictInventoryParams>
 
 function getDistrictInventoryServer( params: TDistrictInventoryParams, options?: { forceFresh?: boolean },):
 Promise<TResult> path: methods/server-fetchers/inventory/core/getDistrictInventoryServer.ts TypeScript Types: type
-TResult = { raw: TDistrictInventory[] byKey: TDistrictInventoryRecordBySlotId apiPath: string atomName: string }
+TResult = { raw: TDistrictInventory[] byKey: TDistrictInventoryRecordBySlotId apiPath: string atomName: keyof typeof
+AtomsBarrel }
 
 function getDistrictInventory(params: TDistrictInventoryParams) path:
 db/postgresMainDatabase/schemas/inventory/districtInventory.ts TypeScript Types: export type TDistrictInventoryParams =

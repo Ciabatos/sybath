@@ -149,7 +149,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-10-10T13:18:12.527Z",
+  "dateCreated": "2026-10-10T14:13:38.742Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/world/knownMapRegion.ts",
     "app/api/world/rpc/get-known-map-region/[mapId]/[playerId]/[regionType]/route.ts",

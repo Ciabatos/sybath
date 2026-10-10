@@ -26,7 +26,7 @@ satisfies z.ZodType<TKnownMapTilesParams>
 
 function getKnownMapTilesServer( params: TKnownMapTilesParams, options?: { forceFresh?: boolean },): Promise<TResult>
 path: methods/server-fetchers/world/core/getKnownMapTilesServer.ts TypeScript Types: type TResult = { raw:
-TKnownMapTiles[] byKey: TKnownMapTilesRecordByXY apiPath: string atomName: string }
+TKnownMapTiles[] byKey: TKnownMapTilesRecordByXY apiPath: string atomName: keyof typeof AtomsBarrel }
 
 function getKnownMapTiles(params: TKnownMapTilesParams) path: db/postgresMainDatabase/schemas/world/knownMapTiles.ts
 TypeScript Types: export type TKnownMapTilesParams = { userId: string mapId: number playerId: number }

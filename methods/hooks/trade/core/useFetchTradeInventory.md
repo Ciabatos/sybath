@@ -26,7 +26,7 @@ const typeParamsSchema = z.object({ userId: z.coerce.string(), playerId: z.coerc
 
 function getTradeInventoryServer( params: TTradeInventoryParams, options?: { forceFresh?: boolean },): Promise<TResult>
 path: methods/server-fetchers/trade/core/getTradeInventoryServer.ts TypeScript Types: type TResult = { raw:
-TTradeInventory[] byKey: TTradeInventoryRecordBySlotId apiPath: string atomName: string }
+TTradeInventory[] byKey: TTradeInventoryRecordBySlotId apiPath: string atomName: keyof typeof AtomsBarrel }
 
 function getTradeInventory(params: TTradeInventoryParams) path: db/postgresMainDatabase/schemas/trade/tradeInventory.ts
 TypeScript Types: export type TTradeInventoryParams = { userId: string playerId: number tradeId: number }

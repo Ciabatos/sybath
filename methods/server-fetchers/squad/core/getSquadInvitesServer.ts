@@ -4,12 +4,13 @@
 import type { TSquadInvitesParams } from "@/db/postgresMainDatabase/schemas/squad/squadInvites"
 import type { TSquadInvitesRecordById, TSquadInvites } from "@/db/postgresMainDatabase/schemas/squad/squadInvites"
 import { fetchSquadInvitesService } from "@/methods/services/squad/fetchSquadInvitesService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TSquadInvites[]
   byKey: TSquadInvitesRecordById
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getSquadInvitesServer(

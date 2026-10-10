@@ -7,12 +7,13 @@ import type {
   TPlayerEnergy,
 } from "@/db/postgresMainDatabase/schemas/attributes/playerEnergy"
 import { fetchPlayerEnergyService } from "@/methods/services/attributes/fetchPlayerEnergyService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TPlayerEnergy[]
   byKey: TPlayerEnergyRecordByLastRegeneratedAt
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getPlayerEnergyServer(

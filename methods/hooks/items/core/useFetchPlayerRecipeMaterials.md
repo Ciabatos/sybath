@@ -26,7 +26,8 @@ const typeParamsSchema = z.object({ userId: z.coerce.string(), playerId: z.coerc
 
 function getPlayerRecipeMaterialsServer( params: TPlayerRecipeMaterialsParams, options?: { forceFresh?: boolean },):
 Promise<TResult> path: methods/server-fetchers/items/core/getPlayerRecipeMaterialsServer.ts TypeScript Types: type
-TResult = { raw: TPlayerRecipeMaterials[] byKey: TPlayerRecipeMaterialsRecordById apiPath: string atomName: string }
+TResult = { raw: TPlayerRecipeMaterials[] byKey: TPlayerRecipeMaterialsRecordById apiPath: string atomName: keyof typeof
+AtomsBarrel }
 
 function getPlayerRecipeMaterials(params: TPlayerRecipeMaterialsParams) path:
 db/postgresMainDatabase/schemas/items/playerRecipeMaterials.ts TypeScript Types: export type

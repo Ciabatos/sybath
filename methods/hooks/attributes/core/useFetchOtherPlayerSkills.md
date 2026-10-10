@@ -26,7 +26,8 @@ z.coerce.string(), }) satisfies z.ZodType<TOtherPlayerSkillsParams>
 
 function getOtherPlayerSkillsServer( params: TOtherPlayerSkillsParams, options?: { forceFresh?: boolean },):
 Promise<TResult> path: methods/server-fetchers/attributes/core/getOtherPlayerSkillsServer.ts TypeScript Types: type
-TResult = { raw: TOtherPlayerSkills[] byKey: TOtherPlayerSkillsRecordBySkillId apiPath: string atomName: string }
+TResult = { raw: TOtherPlayerSkills[] byKey: TOtherPlayerSkillsRecordBySkillId apiPath: string atomName: keyof typeof
+AtomsBarrel }
 
 function getOtherPlayerSkills(params: TOtherPlayerSkillsParams) path:
 db/postgresMainDatabase/schemas/attributes/otherPlayerSkills.ts TypeScript Types: export type TOtherPlayerSkillsParams =

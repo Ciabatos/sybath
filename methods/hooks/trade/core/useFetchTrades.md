@@ -25,7 +25,7 @@ z.ZodType<TTradesParams>
 
 function getTradesServer( params: TTradesParams, options?: { forceFresh?: boolean },): Promise<TResult> path:
 methods/server-fetchers/trade/core/getTradesServer.ts TypeScript Types: type TResult = { raw: TTrades[] byKey:
-TTradesRecordById apiPath: string atomName: string }
+TTradesRecordById apiPath: string atomName: keyof typeof AtomsBarrel }
 
 function getTrades(params: TTradesParams) path: db/postgresMainDatabase/schemas/trade/trades.ts TypeScript Types: export
 type TTradesParams = { userId: string playerId: number }

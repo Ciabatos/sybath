@@ -7,12 +7,13 @@ import type {
   TPlayerAbilities,
 } from "@/db/postgresMainDatabase/schemas/attributes/playerAbilities"
 import { fetchPlayerAbilitiesService } from "@/methods/services/attributes/fetchPlayerAbilitiesService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TPlayerAbilities[]
   byKey: TPlayerAbilitiesRecordByAbilityId
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getPlayerAbilitiesServer(

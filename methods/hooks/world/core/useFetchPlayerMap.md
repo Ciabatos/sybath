@@ -25,7 +25,7 @@ z.ZodType<TPlayerMapParams>
 
 function getPlayerMapServer( params: TPlayerMapParams, options?: { forceFresh?: boolean },): Promise<TResult> path:
 methods/server-fetchers/world/core/getPlayerMapServer.ts TypeScript Types: type TResult = { raw: TPlayerMap[] byKey:
-TPlayerMapRecordByMapId apiPath: string atomName: string }
+TPlayerMapRecordByMapId apiPath: string atomName: keyof typeof AtomsBarrel }
 
 function getPlayerMap(params: TPlayerMapParams) path: db/postgresMainDatabase/schemas/world/playerMap.ts TypeScript
 Types: export type TPlayerMapParams = { userId: string playerId: number }

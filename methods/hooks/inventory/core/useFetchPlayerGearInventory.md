@@ -26,7 +26,8 @@ z.ZodType<TPlayerGearInventoryParams>
 
 function getPlayerGearInventoryServer( params: TPlayerGearInventoryParams, options?: { forceFresh?: boolean },):
 Promise<TResult> path: methods/server-fetchers/inventory/core/getPlayerGearInventoryServer.ts TypeScript Types: type
-TResult = { raw: TPlayerGearInventory[] byKey: TPlayerGearInventoryRecordBySlotId apiPath: string atomName: string }
+TResult = { raw: TPlayerGearInventory[] byKey: TPlayerGearInventoryRecordBySlotId apiPath: string atomName: keyof typeof
+AtomsBarrel }
 
 function getPlayerGearInventory(params: TPlayerGearInventoryParams) path:
 db/postgresMainDatabase/schemas/inventory/playerGearInventory.ts TypeScript Types: export type

@@ -25,7 +25,7 @@ z.ZodType<TPlayerStatsParams>
 
 function getPlayerStatsServer( params: TPlayerStatsParams, options?: { forceFresh?: boolean },): Promise<TResult> path:
 methods/server-fetchers/attributes/core/getPlayerStatsServer.ts TypeScript Types: type TResult = { raw: TPlayerStats[]
-byKey: TPlayerStatsRecordByStatId apiPath: string atomName: string }
+byKey: TPlayerStatsRecordByStatId apiPath: string atomName: keyof typeof AtomsBarrel }
 
 function getPlayerStats(params: TPlayerStatsParams) path: db/postgresMainDatabase/schemas/attributes/playerStats.ts
 TypeScript Types: export type TPlayerStatsParams = { userId: string playerId: number }

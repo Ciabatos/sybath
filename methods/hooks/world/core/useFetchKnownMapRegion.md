@@ -26,7 +26,7 @@ regionType: z.coerce.number(), }) satisfies z.ZodType<TKnownMapRegionParams>
 
 function getKnownMapRegionServer( params: TKnownMapRegionParams, options?: { forceFresh?: boolean },): Promise<TResult>
 path: methods/server-fetchers/world/core/getKnownMapRegionServer.ts TypeScript Types: type TResult = { raw:
-TKnownMapRegion[] byKey: TKnownMapRegionRecordByMapTileXMapTileY apiPath: string atomName: string }
+TKnownMapRegion[] byKey: TKnownMapRegionRecordByMapTileXMapTileY apiPath: string atomName: keyof typeof AtomsBarrel }
 
 function getKnownMapRegion(params: TKnownMapRegionParams) path: db/postgresMainDatabase/schemas/world/knownMapRegion.ts
 TypeScript Types: export type TKnownMapRegionParams = { userId: string mapId: number playerId: number regionType: number

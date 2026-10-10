@@ -27,7 +27,7 @@ z.ZodType<TOtherPlayerKnowledgeRequestsParams>
 function getOtherPlayerKnowledgeRequestsServer( params: TOtherPlayerKnowledgeRequestsParams, options?: { forceFresh?:
 boolean },): Promise<TResult> path: methods/server-fetchers/knowledge/core/getOtherPlayerKnowledgeRequestsServer.ts
 TypeScript Types: type TResult = { raw: TOtherPlayerKnowledgeRequests[] byKey:
-TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId apiPath: string atomName: string }
+TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId apiPath: string atomName: keyof typeof AtomsBarrel }
 
 function getOtherPlayerKnowledgeRequests(params: TOtherPlayerKnowledgeRequestsParams) path:
 db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests.ts TypeScript Types: export type

@@ -25,7 +25,7 @@ z.ZodType<TPlayerCityParams>
 
 function getPlayerCityServer( params: TPlayerCityParams, options?: { forceFresh?: boolean },): Promise<TResult> path:
 methods/server-fetchers/cities/core/getPlayerCityServer.ts TypeScript Types: type TResult = { raw: TPlayerCity[] byKey:
-TPlayerCityRecordByCityId apiPath: string atomName: string }
+TPlayerCityRecordByCityId apiPath: string atomName: keyof typeof AtomsBarrel }
 
 function getPlayerCity(params: TPlayerCityParams) path: db/postgresMainDatabase/schemas/cities/playerCity.ts TypeScript
 Types: export type TPlayerCityParams = { userId: string playerId: number }

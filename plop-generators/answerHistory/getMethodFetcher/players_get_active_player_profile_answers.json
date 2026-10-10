@@ -103,7 +103,7 @@
   "generateMutation": true,
   "mutationMergeOldData": false,
   "compositeDefinitions": [],
-  "dateCreated": "2026-10-10T13:18:11.667Z",
+  "dateCreated": "2026-10-10T14:13:37.933Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/players/activePlayerProfile.ts",
     "app/api/players/rpc/get-active-player-profile/[playerId]/route.ts",

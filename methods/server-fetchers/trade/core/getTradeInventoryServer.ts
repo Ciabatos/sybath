@@ -7,12 +7,13 @@ import type {
   TTradeInventory,
 } from "@/db/postgresMainDatabase/schemas/trade/tradeInventory"
 import { fetchTradeInventoryService } from "@/methods/services/trade/fetchTradeInventoryService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TTradeInventory[]
   byKey: TTradeInventoryRecordBySlotId
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getTradeInventoryServer(

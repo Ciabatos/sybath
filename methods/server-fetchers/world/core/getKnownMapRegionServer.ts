@@ -7,12 +7,13 @@ import type {
   TKnownMapRegion,
 } from "@/db/postgresMainDatabase/schemas/world/knownMapRegion"
 import { fetchKnownMapRegionService } from "@/methods/services/world/fetchKnownMapRegionService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TKnownMapRegion[]
   byKey: TKnownMapRegionRecordByMapTileXMapTileY
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getKnownMapRegionServer(

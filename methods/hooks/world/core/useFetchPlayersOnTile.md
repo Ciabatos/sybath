@@ -26,7 +26,7 @@ mapTileY: z.coerce.number(), playerId: z.coerce.number(), }) satisfies z.ZodType
 
 function getPlayersOnTileServer( params: TPlayersOnTileParams, options?: { forceFresh?: boolean },): Promise<TResult>
 path: methods/server-fetchers/world/core/getPlayersOnTileServer.ts TypeScript Types: type TResult = { raw:
-TPlayersOnTile[] byKey: TPlayersOnTileRecordByOtherPlayerId apiPath: string atomName: string }
+TPlayersOnTile[] byKey: TPlayersOnTileRecordByOtherPlayerId apiPath: string atomName: keyof typeof AtomsBarrel }
 
 function getPlayersOnTile(params: TPlayersOnTileParams) path: db/postgresMainDatabase/schemas/world/playersOnTile.ts
 TypeScript Types: export type TPlayersOnTileParams = { userId: string mapId: number mapTileX: number mapTileY: number

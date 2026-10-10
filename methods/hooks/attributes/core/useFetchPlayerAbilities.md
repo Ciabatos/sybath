@@ -26,7 +26,8 @@ z.ZodType<TPlayerAbilitiesParams>
 
 function getPlayerAbilitiesServer( params: TPlayerAbilitiesParams, options?: { forceFresh?: boolean },):
 Promise<TResult> path: methods/server-fetchers/attributes/core/getPlayerAbilitiesServer.ts TypeScript Types: type
-TResult = { raw: TPlayerAbilities[] byKey: TPlayerAbilitiesRecordByAbilityId apiPath: string atomName: string }
+TResult = { raw: TPlayerAbilities[] byKey: TPlayerAbilitiesRecordByAbilityId apiPath: string atomName: keyof typeof
+AtomsBarrel }
 
 function getPlayerAbilities(params: TPlayerAbilitiesParams) path:
 db/postgresMainDatabase/schemas/attributes/playerAbilities.ts TypeScript Types: export type TPlayerAbilitiesParams = {

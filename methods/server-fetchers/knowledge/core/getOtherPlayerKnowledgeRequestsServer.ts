@@ -7,12 +7,13 @@ import type {
   TOtherPlayerKnowledgeRequests,
 } from "@/db/postgresMainDatabase/schemas/knowledge/otherPlayerKnowledgeRequests"
 import { fetchOtherPlayerKnowledgeRequestsService } from "@/methods/services/knowledge/fetchOtherPlayerKnowledgeRequestsService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TOtherPlayerKnowledgeRequests[]
   byKey: TOtherPlayerKnowledgeRequestsRecordByOtherPlayerKnowledgeRequestId
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getOtherPlayerKnowledgeRequestsServer(

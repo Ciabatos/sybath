@@ -4,12 +4,13 @@
 import type { TPlayerMapParams } from "@/db/postgresMainDatabase/schemas/world/playerMap"
 import type { TPlayerMapRecordByMapId, TPlayerMap } from "@/db/postgresMainDatabase/schemas/world/playerMap"
 import { fetchPlayerMapService } from "@/methods/services/world/fetchPlayerMapService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TPlayerMap[]
   byKey: TPlayerMapRecordByMapId
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getPlayerMapServer(

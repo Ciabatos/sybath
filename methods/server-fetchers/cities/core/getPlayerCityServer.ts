@@ -4,12 +4,13 @@
 import type { TPlayerCityParams } from "@/db/postgresMainDatabase/schemas/cities/playerCity"
 import type { TPlayerCityRecordByCityId, TPlayerCity } from "@/db/postgresMainDatabase/schemas/cities/playerCity"
 import { fetchPlayerCityService } from "@/methods/services/cities/fetchPlayerCityService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TPlayerCity[]
   byKey: TPlayerCityRecordByCityId
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getPlayerCityServer(

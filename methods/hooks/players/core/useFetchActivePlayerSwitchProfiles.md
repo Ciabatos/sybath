@@ -27,7 +27,7 @@ z.ZodType<TActivePlayerSwitchProfilesParams>
 function getActivePlayerSwitchProfilesServer( params: TActivePlayerSwitchProfilesParams, options?: { forceFresh?:
 boolean },): Promise<TResult> path: methods/server-fetchers/players/core/getActivePlayerSwitchProfilesServer.ts
 TypeScript Types: type TResult = { raw: TActivePlayerSwitchProfiles[] byKey: TActivePlayerSwitchProfilesRecordById
-apiPath: string atomName: string }
+apiPath: string atomName: keyof typeof AtomsBarrel }
 
 function getActivePlayerSwitchProfiles(params: TActivePlayerSwitchProfilesParams) path:
 db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles.ts TypeScript Types: export type

@@ -7,12 +7,13 @@ import type {
   TOtherPlayerInventory,
 } from "@/db/postgresMainDatabase/schemas/inventory/otherPlayerInventory"
 import { fetchOtherPlayerInventoryService } from "@/methods/services/inventory/fetchOtherPlayerInventoryService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TOtherPlayerInventory[]
   byKey: TOtherPlayerInventoryRecordBySlotId
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getOtherPlayerInventoryServer(

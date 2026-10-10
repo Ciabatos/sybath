@@ -25,7 +25,7 @@ z.ZodType<TPlayerEnergyParams>
 
 function getPlayerEnergyServer( params: TPlayerEnergyParams, options?: { forceFresh?: boolean },): Promise<TResult>
 path: methods/server-fetchers/attributes/core/getPlayerEnergyServer.ts TypeScript Types: type TResult = { raw:
-TPlayerEnergy[] byKey: TPlayerEnergyRecordByLastRegeneratedAt apiPath: string atomName: string }
+TPlayerEnergy[] byKey: TPlayerEnergyRecordByLastRegeneratedAt apiPath: string atomName: keyof typeof AtomsBarrel }
 
 function getPlayerEnergy(params: TPlayerEnergyParams) path: db/postgresMainDatabase/schemas/attributes/playerEnergy.ts
 TypeScript Types: export type TPlayerEnergyParams = { userId: string playerId: number }

@@ -4,12 +4,13 @@
 import type { TSquadParams } from "@/db/postgresMainDatabase/schemas/squad/squad"
 import type { TSquadRecordBySquadId, TSquad } from "@/db/postgresMainDatabase/schemas/squad/squad"
 import { fetchSquadService } from "@/methods/services/squad/fetchSquadService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TSquad[]
   byKey: TSquadRecordBySquadId
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getSquadServer(params: TSquadParams, options?: { forceFresh?: boolean }): Promise<TResult> {

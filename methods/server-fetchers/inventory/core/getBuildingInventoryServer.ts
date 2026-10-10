@@ -7,12 +7,13 @@ import type {
   TBuildingInventory,
 } from "@/db/postgresMainDatabase/schemas/inventory/buildingInventory"
 import { fetchBuildingInventoryService } from "@/methods/services/inventory/fetchBuildingInventoryService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TBuildingInventory[]
   byKey: TBuildingInventoryRecordBySlotId
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getBuildingInventoryServer(

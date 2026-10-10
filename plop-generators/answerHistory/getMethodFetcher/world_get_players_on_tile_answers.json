@@ -160,7 +160,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-10-10T13:18:13.164Z",
+  "dateCreated": "2026-10-10T14:13:39.403Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/world/playersOnTile.ts",
     "app/api/world/rpc/get-players-on-tile/[mapId]/[mapTileX]/[mapTileY]/[playerId]/route.ts",

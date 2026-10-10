@@ -75,7 +75,7 @@
   "generateMutation": true,
   "mutationMergeOldData": false,
   "compositeDefinitions": [],
-  "dateCreated": "2026-10-10T13:18:10.409Z",
+  "dateCreated": "2026-10-10T14:13:36.830Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/cities/playerCity.ts",
     "app/api/cities/rpc/get-player-city/[playerId]/route.ts",

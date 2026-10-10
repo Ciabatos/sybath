@@ -25,7 +25,7 @@ z.ZodType<TAllAbilitiesParams>
 
 function getAllAbilitiesServer( params: TAllAbilitiesParams, options?: { forceFresh?: boolean },): Promise<TResult>
 path: methods/server-fetchers/attributes/core/getAllAbilitiesServer.ts TypeScript Types: type TResult = { raw:
-TAllAbilities[] byKey: TAllAbilitiesRecordById apiPath: string atomName: string }
+TAllAbilities[] byKey: TAllAbilitiesRecordById apiPath: string atomName: keyof typeof AtomsBarrel }
 
 function getAllAbilities(params: TAllAbilitiesParams) path: db/postgresMainDatabase/schemas/attributes/allAbilities.ts
 TypeScript Types: export type TAllAbilitiesParams = { userId: string playerId: number }

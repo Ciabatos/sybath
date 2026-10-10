@@ -27,7 +27,7 @@ z.coerce.string(), }) satisfies z.ZodType<TOtherPlayerGearInventoryParams>
 function getOtherPlayerGearInventoryServer( params: TOtherPlayerGearInventoryParams, options?: { forceFresh?: boolean
 },): Promise<TResult> path: methods/server-fetchers/inventory/core/getOtherPlayerGearInventoryServer.ts TypeScript
 Types: type TResult = { raw: TOtherPlayerGearInventory[] byKey: TOtherPlayerGearInventoryRecordBySlotId apiPath: string
-atomName: string }
+atomName: keyof typeof AtomsBarrel }
 
 function getOtherPlayerGearInventory(params: TOtherPlayerGearInventoryParams) path:
 db/postgresMainDatabase/schemas/inventory/otherPlayerGearInventory.ts TypeScript Types: export type

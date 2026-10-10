@@ -7,12 +7,13 @@ import type {
   TPlayersOnTile,
 } from "@/db/postgresMainDatabase/schemas/world/playersOnTile"
 import { fetchPlayersOnTileService } from "@/methods/services/world/fetchPlayersOnTileService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TPlayersOnTile[]
   byKey: TPlayersOnTileRecordByOtherPlayerId
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getPlayersOnTileServer(

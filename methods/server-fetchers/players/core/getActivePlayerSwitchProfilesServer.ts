@@ -7,12 +7,13 @@ import type {
   TActivePlayerSwitchProfiles,
 } from "@/db/postgresMainDatabase/schemas/players/activePlayerSwitchProfiles"
 import { fetchActivePlayerSwitchProfilesService } from "@/methods/services/players/fetchActivePlayerSwitchProfilesService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TActivePlayerSwitchProfiles[]
   byKey: TActivePlayerSwitchProfilesRecordById
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getActivePlayerSwitchProfilesServer(

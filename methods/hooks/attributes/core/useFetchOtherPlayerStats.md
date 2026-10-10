@@ -26,7 +26,8 @@ z.coerce.string(), }) satisfies z.ZodType<TOtherPlayerStatsParams>
 
 function getOtherPlayerStatsServer( params: TOtherPlayerStatsParams, options?: { forceFresh?: boolean },):
 Promise<TResult> path: methods/server-fetchers/attributes/core/getOtherPlayerStatsServer.ts TypeScript Types: type
-TResult = { raw: TOtherPlayerStats[] byKey: TOtherPlayerStatsRecordByStatId apiPath: string atomName: string }
+TResult = { raw: TOtherPlayerStats[] byKey: TOtherPlayerStatsRecordByStatId apiPath: string atomName: keyof typeof
+AtomsBarrel }
 
 function getOtherPlayerStats(params: TOtherPlayerStatsParams) path:
 db/postgresMainDatabase/schemas/attributes/otherPlayerStats.ts TypeScript Types: export type TOtherPlayerStatsParams = {

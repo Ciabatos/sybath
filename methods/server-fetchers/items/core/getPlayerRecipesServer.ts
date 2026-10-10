@@ -7,12 +7,13 @@ import type {
   TPlayerRecipes,
 } from "@/db/postgresMainDatabase/schemas/items/playerRecipes"
 import { fetchPlayerRecipesService } from "@/methods/services/items/fetchPlayerRecipesService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TPlayerRecipes[]
   byKey: TPlayerRecipesRecordByItemId
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getPlayerRecipesServer(

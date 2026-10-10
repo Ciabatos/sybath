@@ -7,12 +7,13 @@ import type {
   TKnownMapTilesResourcesOnTile,
 } from "@/db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnTile"
 import { fetchKnownMapTilesResourcesOnTileService } from "@/methods/services/world/fetchKnownMapTilesResourcesOnTileService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TKnownMapTilesResourcesOnTile[]
   byKey: TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getKnownMapTilesResourcesOnTileServer(

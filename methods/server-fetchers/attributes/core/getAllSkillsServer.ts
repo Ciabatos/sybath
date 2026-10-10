@@ -4,12 +4,13 @@
 import type { TAllSkillsParams } from "@/db/postgresMainDatabase/schemas/attributes/allSkills"
 import type { TAllSkillsRecordById, TAllSkills } from "@/db/postgresMainDatabase/schemas/attributes/allSkills"
 import { fetchAllSkillsService } from "@/methods/services/attributes/fetchAllSkillsService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TAllSkills[]
   byKey: TAllSkillsRecordById
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getAllSkillsServer(

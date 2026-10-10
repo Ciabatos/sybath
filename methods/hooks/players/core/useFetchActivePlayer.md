@@ -24,7 +24,7 @@ const typeParamsSchema = z.object({ userId: z.coerce.string(), }) satisfies z.Zo
 
 function getActivePlayerServer( params: TActivePlayerParams, options?: { forceFresh?: boolean },): Promise<TResult>
 path: methods/server-fetchers/players/core/getActivePlayerServer.ts TypeScript Types: type TResult = { raw:
-TActivePlayer[] byKey: TActivePlayerRecordById apiPath: string atomName: string }
+TActivePlayer[] byKey: TActivePlayerRecordById apiPath: string atomName: keyof typeof AtomsBarrel }
 
 function getActivePlayer(params: TActivePlayerParams) path: db/postgresMainDatabase/schemas/players/activePlayer.ts
 TypeScript Types: export type TActivePlayerParams = { userId: string }

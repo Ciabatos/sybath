@@ -26,8 +26,8 @@ z.ZodType<TPlayerKnownPlayersParams>
 
 function getPlayerKnownPlayersServer( params: TPlayerKnownPlayersParams, options?: { forceFresh?: boolean },):
 Promise<TResult> path: methods/server-fetchers/knowledge/core/getPlayerKnownPlayersServer.ts TypeScript Types: type
-TResult = { raw: TPlayerKnownPlayers[] byKey: TPlayerKnownPlayersRecordByOtherPlayerId apiPath: string atomName: string
-}
+TResult = { raw: TPlayerKnownPlayers[] byKey: TPlayerKnownPlayersRecordByOtherPlayerId apiPath: string atomName: keyof
+typeof AtomsBarrel }
 
 function getPlayerKnownPlayers(params: TPlayerKnownPlayersParams) path:
 db/postgresMainDatabase/schemas/knowledge/playerKnownPlayers.ts TypeScript Types: export type TPlayerKnownPlayersParams

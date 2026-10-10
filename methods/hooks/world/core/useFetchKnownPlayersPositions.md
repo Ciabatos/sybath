@@ -26,7 +26,8 @@ satisfies z.ZodType<TKnownPlayersPositionsParams>
 
 function getKnownPlayersPositionsServer( params: TKnownPlayersPositionsParams, options?: { forceFresh?: boolean },):
 Promise<TResult> path: methods/server-fetchers/world/core/getKnownPlayersPositionsServer.ts TypeScript Types: type
-TResult = { raw: TKnownPlayersPositions[] byKey: TKnownPlayersPositionsRecordByXY apiPath: string atomName: string }
+TResult = { raw: TKnownPlayersPositions[] byKey: TKnownPlayersPositionsRecordByXY apiPath: string atomName: keyof typeof
+AtomsBarrel }
 
 function getKnownPlayersPositions(params: TKnownPlayersPositionsParams) path:
 db/postgresMainDatabase/schemas/world/knownPlayersPositions.ts TypeScript Types: export type

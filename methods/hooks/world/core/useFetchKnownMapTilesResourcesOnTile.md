@@ -27,7 +27,7 @@ mapTileY: z.coerce.number(), playerId: z.coerce.number(), }) satisfies z.ZodType
 function getKnownMapTilesResourcesOnTileServer( params: TKnownMapTilesResourcesOnTileParams, options?: { forceFresh?:
 boolean },): Promise<TResult> path: methods/server-fetchers/world/core/getKnownMapTilesResourcesOnTileServer.ts
 TypeScript Types: type TResult = { raw: TKnownMapTilesResourcesOnTile[] byKey:
-TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId apiPath: string atomName: string }
+TKnownMapTilesResourcesOnTileRecordByMapTilesResourceId apiPath: string atomName: keyof typeof AtomsBarrel }
 
 function getKnownMapTilesResourcesOnTile(params: TKnownMapTilesResourcesOnTileParams) path:
 db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnTile.ts TypeScript Types: export type

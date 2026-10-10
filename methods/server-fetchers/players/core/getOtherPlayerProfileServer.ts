@@ -7,12 +7,13 @@ import type {
   TOtherPlayerProfile,
 } from "@/db/postgresMainDatabase/schemas/players/otherPlayerProfile"
 import { fetchOtherPlayerProfileService } from "@/methods/services/players/fetchOtherPlayerProfileService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TOtherPlayerProfile[]
   byKey: TOtherPlayerProfileRecordByName
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getOtherPlayerProfileServer(

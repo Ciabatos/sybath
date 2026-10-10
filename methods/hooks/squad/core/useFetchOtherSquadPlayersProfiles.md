@@ -27,7 +27,7 @@ const typeParamsSchema = z.object({ userId: z.coerce.string(), playerId: z.coerc
 function getOtherSquadPlayersProfilesServer( params: TOtherSquadPlayersProfilesParams, options?: { forceFresh?: boolean
 },): Promise<TResult> path: methods/server-fetchers/squad/core/getOtherSquadPlayersProfilesServer.ts TypeScript Types:
 type TResult = { raw: TOtherSquadPlayersProfiles[] byKey: TOtherSquadPlayersProfilesRecordByOtherPlayerId apiPath:
-string atomName: string }
+string atomName: keyof typeof AtomsBarrel }
 
 function getOtherSquadPlayersProfiles(params: TOtherSquadPlayersProfilesParams) path:
 db/postgresMainDatabase/schemas/squad/otherSquadPlayersProfiles.ts TypeScript Types: export type

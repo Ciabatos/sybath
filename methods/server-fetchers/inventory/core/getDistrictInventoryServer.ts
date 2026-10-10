@@ -7,12 +7,13 @@ import type {
   TDistrictInventory,
 } from "@/db/postgresMainDatabase/schemas/inventory/districtInventory"
 import { fetchDistrictInventoryService } from "@/methods/services/inventory/fetchDistrictInventoryService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TDistrictInventory[]
   byKey: TDistrictInventoryRecordBySlotId
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getDistrictInventoryServer(
