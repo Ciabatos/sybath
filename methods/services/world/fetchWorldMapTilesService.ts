@@ -13,7 +13,7 @@ type TCacheRecord = {
 }
 
 type TFetchResult = {
-  record?: TCacheRecord
+  record: TCacheRecord
   etag: string
   cacheHit: boolean
   etagMatched: boolean
@@ -51,21 +51,28 @@ export async function fetchWorldMapTilesService(options?: {
   const raw = await getWorldMapTiles()
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
-  if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
-    return {
-      record: undefined,
-      etag: etag,
-      cacheHit: false,
-      etagMatched: true,
-    }
-  }
-
   const byKey = arrayToObjectKey(["x", "y"], raw) as TWorldMapTilesRecordByXY
 
   const record: TCacheRecord = {
     raw,
     byKey,
     etag,
+  }
+
+  // Rekord mimo to wkładamy do cache'a, bo i tak go właśnie policzyliśmy.
+  if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
+    setCache({
+      cacheKey,
+      value: record,
+      etag,
+    })
+
+    return {
+      record,
+      etag: etag,
+      cacheHit: false,
+      etagMatched: true,
+    }
   }
 
   setCache({

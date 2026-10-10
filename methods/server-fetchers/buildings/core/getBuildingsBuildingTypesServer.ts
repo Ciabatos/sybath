@@ -18,8 +18,8 @@ export async function getBuildingsBuildingTypesServer(options?: { forceFresh?: b
   const { record } = await fetchBuildingsBuildingTypesService({ forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/buildings/building-types`,
     atomName: `buildingTypesAtom`,
   }

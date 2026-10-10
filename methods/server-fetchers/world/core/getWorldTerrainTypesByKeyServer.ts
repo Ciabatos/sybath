@@ -22,8 +22,8 @@ export async function getWorldTerrainTypesByKeyServer(
   const { record } = await fetchWorldTerrainTypesByKeyService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/world/terrain-types/${params.id}`,
     atomName: `terrainTypesAtom`,
   }

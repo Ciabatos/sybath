@@ -15,8 +15,8 @@ export async function getWorldMapTilesServer(options?: { forceFresh?: boolean })
   const { record } = await fetchWorldMapTilesService({ forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/world/map-tiles`,
     atomName: `mapTilesAtom`,
   }

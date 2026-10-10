@@ -18,8 +18,8 @@ export async function getItemsRecipeMaterialsServer(options?: { forceFresh?: boo
   const { record } = await fetchItemsRecipeMaterialsService({ forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/items/recipe-materials`,
     atomName: `recipeMaterialsAtom`,
   }

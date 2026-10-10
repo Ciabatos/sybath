@@ -15,8 +15,8 @@ export async function getItemsItemsServer(options?: { forceFresh?: boolean }): P
   const { record } = await fetchItemsItemsService({ forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/items/items`,
     atomName: `itemsAtom`,
   }

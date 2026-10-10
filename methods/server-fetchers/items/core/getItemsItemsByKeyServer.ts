@@ -19,8 +19,8 @@ export async function getItemsItemsByKeyServer(
   const { record } = await fetchItemsItemsByKeyService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/items/items/${params.id}`,
     atomName: `itemsAtom`,
   }

@@ -16,7 +16,7 @@ type TCacheRecord = {
 }
 
 type TFetchResult = {
-  record?: TCacheRecord
+  record: TCacheRecord
   etag: string
   cacheHit: boolean
   etagMatched: boolean
@@ -54,21 +54,28 @@ export async function fetchBuildingsBuildingTypesService(options?: {
   const raw = await getBuildingsBuildingTypes()
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
-  if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
-    return {
-      record: undefined,
-      etag: etag,
-      cacheHit: false,
-      etagMatched: true,
-    }
-  }
-
   const byKey = arrayToObjectKey(["id"], raw) as TBuildingsBuildingTypesRecordById
 
   const record: TCacheRecord = {
     raw,
     byKey,
     etag,
+  }
+
+  // Rekord mimo to wkładamy do cache'a, bo i tak go właśnie policzyliśmy.
+  if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
+    setCache({
+      cacheKey,
+      value: record,
+      etag,
+    })
+
+    return {
+      record,
+      etag: etag,
+      cacheHit: false,
+      etagMatched: true,
+    }
   }
 
   setCache({

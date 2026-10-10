@@ -18,8 +18,8 @@ export async function getWorldLandscapeTypesServer(options?: { forceFresh?: bool
   const { record } = await fetchWorldLandscapeTypesService({ forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/world/landscape-types`,
     atomName: `landscapeTypesAtom`,
   }

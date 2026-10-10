@@ -19,8 +19,8 @@ export async function getCitiesCityTilesByKeyServer(
   const { record } = await fetchCitiesCityTilesByKeyService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/cities/city-tiles/${params.cityId}`,
     atomName: `cityTilesAtom`,
   }

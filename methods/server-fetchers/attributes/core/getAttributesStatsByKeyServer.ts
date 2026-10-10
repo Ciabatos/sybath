@@ -19,8 +19,8 @@ export async function getAttributesStatsByKeyServer(
   const { record } = await fetchAttributesStatsByKeyService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/attributes/stats/${params.id}`,
     atomName: `statsAtom`,
   }

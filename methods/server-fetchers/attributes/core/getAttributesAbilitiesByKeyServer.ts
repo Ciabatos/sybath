@@ -22,8 +22,8 @@ export async function getAttributesAbilitiesByKeyServer(
   const { record } = await fetchAttributesAbilitiesByKeyService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/attributes/abilities/${params.id}`,
     atomName: `abilitiesAtom`,
   }

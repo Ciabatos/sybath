@@ -22,8 +22,8 @@ export async function getDistrictsDistrictTypesByKeyServer(
   const { record } = await fetchDistrictsDistrictTypesByKeyService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/districts/district-types/${params.id}`,
     atomName: `districtTypesAtom`,
   }

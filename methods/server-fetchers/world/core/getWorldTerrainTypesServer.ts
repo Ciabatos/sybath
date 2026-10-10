@@ -18,8 +18,8 @@ export async function getWorldTerrainTypesServer(options?: { forceFresh?: boolea
   const { record } = await fetchWorldTerrainTypesService({ forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/world/terrain-types`,
     atomName: `terrainTypesAtom`,
   }

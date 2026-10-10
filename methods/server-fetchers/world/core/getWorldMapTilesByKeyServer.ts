@@ -19,8 +19,8 @@ export async function getWorldMapTilesByKeyServer(
   const { record } = await fetchWorldMapTilesByKeyService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/world/map-tiles/${params.mapId}`,
     atomName: `mapTilesAtom`,
   }

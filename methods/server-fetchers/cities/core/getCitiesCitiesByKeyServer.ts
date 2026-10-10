@@ -22,8 +22,8 @@ export async function getCitiesCitiesByKeyServer(
   const { record } = await fetchCitiesCitiesByKeyService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/cities/cities/${params.mapId}`,
     atomName: `citiesAtom`,
   }

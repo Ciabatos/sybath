@@ -18,8 +18,8 @@ export async function getDistrictsDistrictTypesServer(options?: { forceFresh?: b
   const { record } = await fetchDistrictsDistrictTypesService({ forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/districts/district-types`,
     atomName: `districtTypesAtom`,
   }

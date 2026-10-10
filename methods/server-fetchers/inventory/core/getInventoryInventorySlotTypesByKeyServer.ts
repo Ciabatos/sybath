@@ -22,8 +22,8 @@ export async function getInventoryInventorySlotTypesByKeyServer(
   const { record } = await fetchInventoryInventorySlotTypesByKeyService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/inventory/inventory-slot-types/${params.id}`,
     atomName: `inventorySlotTypesAtom`,
   }

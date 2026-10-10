@@ -2,8 +2,8 @@
 
 import { auth } from "@/lib/auth"
 import { fetchBuildingsBuildingTypesService } from "@/methods/services/buildings/fetchBuildingsBuildingTypesService"
-import { headers } from "next/headers"
 import { NextRequest, NextResponse } from "next/server"
+import { headers } from "next/headers"
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
@@ -25,7 +25,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })
     }
 
-    return NextResponse.json(record!.raw, { headers: { ETag: etag } })
+    return NextResponse.json(record.raw, { headers: { ETag: etag } })
   } catch (error) {
     console.error(error)
     return NextResponse.json({ message: "Internal Server Error" }, { status: 500 })

@@ -22,8 +22,8 @@ export async function getWorldLandscapeTypesByKeyServer(
   const { record } = await fetchWorldLandscapeTypesByKeyService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/world/landscape-types/${params.id}`,
     atomName: `landscapeTypesAtom`,
   }

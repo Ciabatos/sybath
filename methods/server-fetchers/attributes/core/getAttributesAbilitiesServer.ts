@@ -18,8 +18,8 @@ export async function getAttributesAbilitiesServer(options?: { forceFresh?: bool
   const { record } = await fetchAttributesAbilitiesService({ forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/attributes/abilities`,
     atomName: `abilitiesAtom`,
   }

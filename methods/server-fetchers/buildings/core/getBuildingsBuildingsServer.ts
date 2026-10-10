@@ -18,8 +18,8 @@ export async function getBuildingsBuildingsServer(options?: { forceFresh?: boole
   const { record } = await fetchBuildingsBuildingsService({ forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/buildings/buildings`,
     atomName: `buildingsAtom`,
   }

@@ -73,7 +73,7 @@
   "generateMutation": false,
   "fetcherName": "fetchInventoryInventorySlotTypes",
   "fetcherByKeyName": "fetchInventoryInventorySlotTypesByKey",
-  "dateCreated": "2026-10-10T12:32:18.646Z",
+  "dateCreated": "2026-10-10T13:22:04.783Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/inventory/inventorySlotTypes.ts",
     "app/api/inventory/inventory-slot-types/route.ts",

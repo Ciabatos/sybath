@@ -18,8 +18,8 @@ export async function getAttributesSkillsServer(options?: { forceFresh?: boolean
   const { record } = await fetchAttributesSkillsService({ forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/attributes/skills`,
     atomName: `skillsAtom`,
   }

@@ -22,8 +22,8 @@ export async function getItemsRecipeMaterialsByKeyServer(
   const { record } = await fetchItemsRecipeMaterialsByKeyService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/items/recipe-materials/${params.recipeId}`,
     atomName: `recipeMaterialsAtom`,
   }
