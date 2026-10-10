@@ -15,9 +15,14 @@ type TResult = {
 export async function {{dbFunctionByKeyName}}Server({{#if methodParamsColumns}} params: {{methodParamsTypeName}}, {{/if}}options?: { forceFresh?: boolean },): Promise<TResult> {
   const { record } = await {{fetcherByKeyName}}Service({{#if methodParamsColumns}}params, {{/if}}{ forceFresh: options?.forceFresh })
 
+  /*
+    `record` jest tu zawsze ustawione: `forceFresh: true` omija gałąź cache, a
+    pozostałe gałęzie zwracają pełny rekord. Bez asercji `!` tsconfig przy
+    `strict` zgłosi brak pola zamiast przepuścić `undefined.raw` dalej.
+  */
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `{{apiPathParamsByKey}}`,
     atomName: `{{entityCamelName}}Atom`,
   }

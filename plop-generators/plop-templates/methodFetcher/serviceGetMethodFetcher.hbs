@@ -12,6 +12,13 @@ type TCacheRecord = {
   etag: string
 }
 
+/*
+  `record` jest opcjonalny tylko dlatego, że gałąź "304 po świeżym odczycie"
+  zwraca `record: undefined` — klient ma wtedy zwrócić 304 bez body. Wszystkie
+  inne gałęzie zwracają pełny rekord, a konsument (route) sprawdza
+  `etagMatched` PRZED użyciem `record`, więc asercja `!` nigdy nie była
+  potrzebna.
+*/
 type TFetchResult = {
   record?: TCacheRecord
   etag: string

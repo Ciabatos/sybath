@@ -25,7 +25,12 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })
     }
 
-    return NextResponse.json(record!.raw, { headers: { ETag: etag } })
+    /*
+      `record` jest na tym etapie zawsze ustawione — serwis zwraca je z każdą
+      gałęzią, która nie jest 304. Bez asercji `!` tsconfig przy `strict`
+      zgłosi brak pola, zamiast przepuścić `undefined.raw` do serializacji.
+    */
+    return NextResponse.json(record.raw, { headers: { ETag: etag } })
   } catch (error) {
     console.error(error)
     return NextResponse.json({ message: "Internal Server Error" }, { status: 500 })

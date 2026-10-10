@@ -45,11 +45,14 @@ export async function GET(request: NextRequest{{#if methodParamsColumns}}, { par
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })
     }
 
-    
-
-
-
-    return NextResponse.json(record!.raw, { headers: { ETag: etag } })
+    /*
+      `record` jest na tym etapie zawsze ustawione — serwis zwraca je z każdą
+      gałęzią, która nie jest 304. Wcześniej stało tu `record!.raw`, czyli
+      asercja niepotrzebna: gdyby kiedyś `record` naprawdę było `undefined`,
+      tsconfig pokazałby to przy `strict`, zamiast przepuścić `undefined.raw`
+      do `NextResponse.json` i wyciąć błąd w środku serializacji.
+    */
+    return NextResponse.json(record.raw, { headers: { ETag: etag } })
   } catch (error) {
     console.error(error)
     return NextResponse.json({ message: "Internal Server Error" }, { status: 500 })
