@@ -87,7 +87,7 @@
   "mutationMergeOldData": true,
   "fetcherName": "fetchWorldTerrainTypes",
   "fetcherByKeyName": "fetchWorldTerrainTypesByKey",
-  "dateCreated": "2026-10-10T13:22:06.238Z",
+  "dateCreated": "2026-10-10T14:14:36.103Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/world/terrainTypes.ts",
     "app/api/world/terrain-types/route.ts",

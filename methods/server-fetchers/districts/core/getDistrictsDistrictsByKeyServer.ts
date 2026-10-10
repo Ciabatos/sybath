@@ -7,12 +7,13 @@ import type {
 } from "@/db/postgresMainDatabase/schemas/districts/districts"
 import type { TDistrictsDistrictsParams } from "@/db/postgresMainDatabase/schemas/districts/districts"
 import { fetchDistrictsDistrictsByKeyService } from "@/methods/services/districts/fetchDistrictsDistrictsByKeyService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TDistrictsDistricts[]
   byKey: TDistrictsDistrictsRecordByMapTileXMapTileY
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getDistrictsDistrictsByKeyServer(

@@ -6,12 +6,13 @@ import type {
   TWorldTerrainTypesRecordById,
 } from "@/db/postgresMainDatabase/schemas/world/terrainTypes"
 import { fetchWorldTerrainTypesService } from "@/methods/services/world/fetchWorldTerrainTypesService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TWorldTerrainTypes[]
   byKey: TWorldTerrainTypesRecordById
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getWorldTerrainTypesServer(options?: { forceFresh?: boolean }): Promise<TResult> {

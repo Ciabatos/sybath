@@ -4,12 +4,13 @@
 import type { TCitiesCityTiles, TCitiesCityTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
 import type { TCitiesCityTilesParams } from "@/db/postgresMainDatabase/schemas/cities/cityTiles"
 import { fetchCitiesCityTilesByKeyService } from "@/methods/services/cities/fetchCitiesCityTilesByKeyService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TCitiesCityTiles[]
   byKey: TCitiesCityTilesRecordByXY
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getCitiesCityTilesByKeyServer(

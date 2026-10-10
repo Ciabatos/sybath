@@ -4,12 +4,13 @@
 import type { TWorldMapTiles, TWorldMapTilesRecordByXY } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
 import type { TWorldMapTilesParams } from "@/db/postgresMainDatabase/schemas/world/mapTiles"
 import { fetchWorldMapTilesByKeyService } from "@/methods/services/world/fetchWorldMapTilesByKeyService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TWorldMapTiles[]
   byKey: TWorldMapTilesRecordByXY
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getWorldMapTilesByKeyServer(

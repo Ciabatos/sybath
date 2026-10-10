@@ -6,12 +6,13 @@ import type {
   TInventoryInventorySlotTypesRecordById,
 } from "@/db/postgresMainDatabase/schemas/inventory/inventorySlotTypes"
 import { fetchInventoryInventorySlotTypesService } from "@/methods/services/inventory/fetchInventoryInventorySlotTypesService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TInventoryInventorySlotTypes[]
   byKey: TInventoryInventorySlotTypesRecordById
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getInventoryInventorySlotTypesServer(options?: { forceFresh?: boolean }): Promise<TResult> {

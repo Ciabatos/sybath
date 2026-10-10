@@ -6,12 +6,13 @@ import type {
   TDistrictsDistrictTypesRecordById,
 } from "@/db/postgresMainDatabase/schemas/districts/districtTypes"
 import { fetchDistrictsDistrictTypesService } from "@/methods/services/districts/fetchDistrictsDistrictTypesService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TDistrictsDistrictTypes[]
   byKey: TDistrictsDistrictTypesRecordById
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getDistrictsDistrictTypesServer(options?: { forceFresh?: boolean }): Promise<TResult> {

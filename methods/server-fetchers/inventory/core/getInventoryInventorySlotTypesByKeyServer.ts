@@ -7,12 +7,13 @@ import type {
 } from "@/db/postgresMainDatabase/schemas/inventory/inventorySlotTypes"
 import type { TInventoryInventorySlotTypesParams } from "@/db/postgresMainDatabase/schemas/inventory/inventorySlotTypes"
 import { fetchInventoryInventorySlotTypesByKeyService } from "@/methods/services/inventory/fetchInventoryInventorySlotTypesByKeyService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TInventoryInventorySlotTypes[]
   byKey: TInventoryInventorySlotTypesRecordById
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getInventoryInventorySlotTypesByKeyServer(

@@ -7,12 +7,13 @@ import type {
 } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
 import type { TAttributesAbilitiesParams } from "@/db/postgresMainDatabase/schemas/attributes/abilities"
 import { fetchAttributesAbilitiesByKeyService } from "@/methods/services/attributes/fetchAttributesAbilitiesByKeyService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TAttributesAbilities[]
   byKey: TAttributesAbilitiesRecordById
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getAttributesAbilitiesByKeyServer(

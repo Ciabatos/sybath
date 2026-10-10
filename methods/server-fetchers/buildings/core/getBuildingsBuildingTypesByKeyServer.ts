@@ -7,12 +7,13 @@ import type {
 } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
 import type { TBuildingsBuildingTypesParams } from "@/db/postgresMainDatabase/schemas/buildings/buildingTypes"
 import { fetchBuildingsBuildingTypesByKeyService } from "@/methods/services/buildings/fetchBuildingsBuildingTypesByKeyService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TBuildingsBuildingTypes[]
   byKey: TBuildingsBuildingTypesRecordById
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getBuildingsBuildingTypesByKeyServer(

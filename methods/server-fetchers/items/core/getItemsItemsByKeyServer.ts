@@ -4,12 +4,13 @@
 import type { TItemsItems, TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/items"
 import type { TItemsItemsParams } from "@/db/postgresMainDatabase/schemas/items/items"
 import { fetchItemsItemsByKeyService } from "@/methods/services/items/fetchItemsItemsByKeyService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TItemsItems[]
   byKey: TItemsItemsRecordById
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getItemsItemsByKeyServer(

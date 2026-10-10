@@ -6,12 +6,13 @@ import type {
   TCitiesCitiesRecordByMapTileXMapTileY,
 } from "@/db/postgresMainDatabase/schemas/cities/cities"
 import { fetchCitiesCitiesService } from "@/methods/services/cities/fetchCitiesCitiesService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TCitiesCities[]
   byKey: TCitiesCitiesRecordByMapTileXMapTileY
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getCitiesCitiesServer(options?: { forceFresh?: boolean }): Promise<TResult> {

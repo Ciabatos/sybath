@@ -6,12 +6,13 @@ import type {
   TAttributesSkillsRecordById,
 } from "@/db/postgresMainDatabase/schemas/attributes/skills"
 import { fetchAttributesSkillsService } from "@/methods/services/attributes/fetchAttributesSkillsService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TAttributesSkills[]
   byKey: TAttributesSkillsRecordById
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getAttributesSkillsServer(options?: { forceFresh?: boolean }): Promise<TResult> {

@@ -3,12 +3,13 @@
 
 import type { TItemsItems, TItemsItemsRecordById } from "@/db/postgresMainDatabase/schemas/items/items"
 import { fetchItemsItemsService } from "@/methods/services/items/fetchItemsItemsService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TItemsItems[]
   byKey: TItemsItemsRecordById
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getItemsItemsServer(options?: { forceFresh?: boolean }): Promise<TResult> {

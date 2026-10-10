@@ -6,12 +6,13 @@ import type {
   TItemsRecipeMaterialsRecordById,
 } from "@/db/postgresMainDatabase/schemas/items/recipeMaterials"
 import { fetchItemsRecipeMaterialsService } from "@/methods/services/items/fetchItemsRecipeMaterialsService"
+import type * as AtomsBarrel from "@/store/atoms"
 
 type TResult = {
   raw: TItemsRecipeMaterials[]
   byKey: TItemsRecipeMaterialsRecordById
   apiPath: string
-  atomName: string
+  atomName: keyof typeof AtomsBarrel
 }
 
 export async function getItemsRecipeMaterialsServer(options?: { forceFresh?: boolean }): Promise<TResult> {

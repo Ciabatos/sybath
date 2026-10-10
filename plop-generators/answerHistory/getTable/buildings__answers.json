@@ -81,7 +81,7 @@
   "mutationMergeOldData": true,
   "fetcherName": "fetchBuildingsBuildingTypes",
   "fetcherByKeyName": "fetchBuildingsBuildingTypesByKey",
-  "dateCreated": "2026-10-10T13:22:02.896Z",
+  "dateCreated": "2026-10-10T14:14:33.043Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/buildings/buildingTypes.ts",
     "app/api/buildings/building-types/route.ts",
