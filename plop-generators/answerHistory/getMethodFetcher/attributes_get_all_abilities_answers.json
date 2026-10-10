@@ -103,7 +103,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-10-10T12:20:11.880Z",
+  "dateCreated": "2026-10-10T13:18:09.371Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/attributes/allAbilities.ts",
     "app/api/attributes/rpc/get-all-abilities/[playerId]/route.ts",

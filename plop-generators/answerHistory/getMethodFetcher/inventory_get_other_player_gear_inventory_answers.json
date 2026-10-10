@@ -129,7 +129,7 @@
   "generateMutation": true,
   "mutationMergeOldData": true,
   "compositeDefinitions": [],
-  "dateCreated": "2026-10-10T12:20:13.055Z",
+  "dateCreated": "2026-10-10T13:18:10.702Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/inventory/otherPlayerGearInventory.ts",
     "app/api/inventory/rpc/get-other-player-gear-inventory/[playerId]/[otherPlayerId]/route.ts",

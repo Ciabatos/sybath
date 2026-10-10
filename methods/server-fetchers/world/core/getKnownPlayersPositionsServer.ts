@@ -22,8 +22,8 @@ export async function getKnownPlayersPositionsServer(
   const { record } = await fetchKnownPlayersPositionsService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/world/rpc/get-known-players-positions/${params.mapId}/${params.playerId}`,
     atomName: `knownPlayersPositionsAtom`,
   }

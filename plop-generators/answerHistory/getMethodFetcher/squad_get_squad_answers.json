@@ -89,7 +89,7 @@
   "generateMutation": true,
   "mutationMergeOldData": false,
   "compositeDefinitions": [],
-  "dateCreated": "2026-10-10T12:20:14.484Z",
+  "dateCreated": "2026-10-10T13:18:12.066Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/squad/squad.ts",
     "app/api/squad/rpc/get-squad/[playerId]/route.ts",

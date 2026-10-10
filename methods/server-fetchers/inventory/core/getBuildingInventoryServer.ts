@@ -22,8 +22,8 @@ export async function getBuildingInventoryServer(
   const { record } = await fetchBuildingInventoryService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/inventory/rpc/get-building-inventory/${params.buildingId}`,
     atomName: `buildingInventoryAtom`,
   }

@@ -19,8 +19,8 @@ export async function getPlayerCityServer(
   const { record } = await fetchPlayerCityService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/cities/rpc/get-player-city/${params.playerId}`,
     atomName: `playerCityAtom`,
   }

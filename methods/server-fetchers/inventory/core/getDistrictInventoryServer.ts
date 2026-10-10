@@ -22,8 +22,8 @@ export async function getDistrictInventoryServer(
   const { record } = await fetchDistrictInventoryService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/inventory/rpc/get-district-inventory/${params.districtId}`,
     atomName: `districtInventoryAtom`,
   }

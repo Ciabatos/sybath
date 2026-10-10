@@ -16,8 +16,8 @@ export async function getSquadServer(params: TSquadParams, options?: { forceFres
   const { record } = await fetchSquadService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/squad/rpc/get-squad/${params.playerId}`,
     atomName: `squadAtom`,
   }

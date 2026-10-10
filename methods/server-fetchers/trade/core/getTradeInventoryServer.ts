@@ -22,8 +22,8 @@ export async function getTradeInventoryServer(
   const { record } = await fetchTradeInventoryService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/trade/rpc/get-trade-inventory/${params.playerId}/${params.tradeId}`,
     atomName: `tradeInventoryAtom`,
   }

@@ -22,8 +22,8 @@ export async function getOtherPlayerKnowledgeRequestsServer(
   const { record } = await fetchOtherPlayerKnowledgeRequestsService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/knowledge/rpc/get-other-player-knowledge-requests/${params.playerId}`,
     atomName: `otherPlayerKnowledgeRequestsAtom`,
   }

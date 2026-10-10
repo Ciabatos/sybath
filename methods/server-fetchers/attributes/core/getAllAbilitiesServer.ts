@@ -19,8 +19,8 @@ export async function getAllAbilitiesServer(
   const { record } = await fetchAllAbilitiesService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/attributes/rpc/get-all-abilities/${params.playerId}`,
     atomName: `allAbilitiesAtom`,
   }

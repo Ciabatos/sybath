@@ -19,8 +19,8 @@ export async function getSquadInvitesServer(
   const { record } = await fetchSquadInvitesService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/squad/rpc/get-squad-invites/${params.playerId}`,
     atomName: `squadInvitesAtom`,
   }

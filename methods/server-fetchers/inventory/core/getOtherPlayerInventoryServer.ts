@@ -22,8 +22,8 @@ export async function getOtherPlayerInventoryServer(
   const { record } = await fetchOtherPlayerInventoryService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/inventory/rpc/get-other-player-inventory/${params.playerId}/${params.otherPlayerId}`,
     atomName: `otherPlayerInventoryAtom`,
   }

@@ -41,7 +41,7 @@ export async function GET(request: NextRequest, { params }: { params: TApiParams
       return new NextResponse(null, { status: 304, headers: { ETag: etag } })
     }
 
-    return NextResponse.json(record!.raw, { headers: { ETag: etag } })
+    return NextResponse.json(record.raw, { headers: { ETag: etag } })
   } catch (error) {
     console.error(error)
     return NextResponse.json({ message: "Internal Server Error" }, { status: 500 })

@@ -17,7 +17,7 @@ type TCacheRecord = {
 }
 
 type TFetchResult = {
-  record?: TCacheRecord
+  record: TCacheRecord
   etag: string
   cacheHit: boolean
   etagMatched: boolean
@@ -55,15 +55,6 @@ export async function fetchOtherPlayerKnowledgeRequestsService(
   const raw = await getOtherPlayerKnowledgeRequests(params)
   const etag = crypto.createHash("sha1").update(JSON.stringify(raw)).digest("hex")
 
-  if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
-    return {
-      record: undefined,
-      etag: etag,
-      cacheHit: false,
-      etagMatched: true,
-    }
-  }
-
   const byKey = arrayToObjectKey(
     ["otherPlayerKnowledgeRequestId"],
     raw,
@@ -73,6 +64,22 @@ export async function fetchOtherPlayerKnowledgeRequestsService(
     raw,
     byKey,
     etag,
+  }
+
+  // Rekord mimo to wkładamy do cache'a, bo i tak go właśnie policzyliśmy.
+  if (!cached && etag === options?.clientEtag && cachedEtag === options?.clientEtag) {
+    setCache({
+      cacheKey,
+      value: record,
+      etag,
+    })
+
+    return {
+      record,
+      etag: etag,
+      cacheHit: false,
+      etagMatched: true,
+    }
   }
 
   setCache({

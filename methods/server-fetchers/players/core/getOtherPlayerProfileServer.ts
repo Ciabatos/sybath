@@ -22,8 +22,8 @@ export async function getOtherPlayerProfileServer(
   const { record } = await fetchOtherPlayerProfileService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/players/rpc/get-other-player-profile/${params.playerId}/${params.otherPlayerId}`,
     atomName: `otherPlayerProfileAtom`,
   }

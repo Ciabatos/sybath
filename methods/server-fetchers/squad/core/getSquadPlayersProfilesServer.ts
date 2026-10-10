@@ -22,8 +22,8 @@ export async function getSquadPlayersProfilesServer(
   const { record } = await fetchSquadPlayersProfilesService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/squad/rpc/get-squad-players-profiles/${params.playerId}`,
     atomName: `squadPlayersProfilesAtom`,
   }

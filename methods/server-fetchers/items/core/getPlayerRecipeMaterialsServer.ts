@@ -22,8 +22,8 @@ export async function getPlayerRecipeMaterialsServer(
   const { record } = await fetchPlayerRecipeMaterialsService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/items/rpc/get-player-recipe-materials/${params.playerId}/${params.recipeId}`,
     atomName: `playerRecipeMaterialsAtom`,
   }

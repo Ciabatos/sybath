@@ -19,8 +19,8 @@ export async function getPlayerMapServer(
   const { record } = await fetchPlayerMapService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/world/rpc/get-player-map/${params.playerId}`,
     atomName: `playerMapAtom`,
   }

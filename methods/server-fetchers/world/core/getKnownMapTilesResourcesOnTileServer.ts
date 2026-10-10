@@ -22,8 +22,8 @@ export async function getKnownMapTilesResourcesOnTileServer(
   const { record } = await fetchKnownMapTilesResourcesOnTileService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/world/rpc/get-known-map-tiles-resources-on-tile/${params.mapId}/${params.mapTileX}/${params.mapTileY}/${params.playerId}`,
     atomName: `knownMapTilesResourcesOnTileAtom`,
   }

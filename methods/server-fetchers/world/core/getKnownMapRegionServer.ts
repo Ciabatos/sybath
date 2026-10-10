@@ -22,8 +22,8 @@ export async function getKnownMapRegionServer(
   const { record } = await fetchKnownMapRegionService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/world/rpc/get-known-map-region/${params.mapId}/${params.playerId}/${params.regionType}`,
     atomName: `knownMapRegionAtom`,
   }

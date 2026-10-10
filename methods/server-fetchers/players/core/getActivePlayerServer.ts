@@ -19,8 +19,8 @@ export async function getActivePlayerServer(
   const { record } = await fetchActivePlayerService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/players/rpc/get-active-player`,
     atomName: `activePlayerAtom`,
   }

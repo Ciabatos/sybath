@@ -22,8 +22,8 @@ export async function getOtherPlayerSkillsServer(
   const { record } = await fetchOtherPlayerSkillsService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/attributes/rpc/get-other-player-skills/${params.playerId}/${params.otherPlayerId}`,
     atomName: `otherPlayerSkillsAtom`,
   }

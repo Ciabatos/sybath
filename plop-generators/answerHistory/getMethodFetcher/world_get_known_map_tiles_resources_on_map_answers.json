@@ -120,7 +120,7 @@
       ]
     }
   ],
-  "dateCreated": "2026-10-10T12:20:15.219Z",
+  "dateCreated": "2026-10-10T13:18:12.810Z",
   "filesCreated": [
     "db/postgresMainDatabase/schemas/world/knownMapTilesResourcesOnMap.ts",
     "app/api/world/rpc/get-known-map-tiles-resources-on-map/[mapId]/[playerId]/route.ts",

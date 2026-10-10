@@ -16,8 +16,8 @@ export async function getTradesServer(params: TTradesParams, options?: { forceFr
   const { record } = await fetchTradesService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/trade/rpc/get-trades/${params.playerId}`,
     atomName: `tradesAtom`,
   }

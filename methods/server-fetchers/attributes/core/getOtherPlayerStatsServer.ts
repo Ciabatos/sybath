@@ -22,8 +22,8 @@ export async function getOtherPlayerStatsServer(
   const { record } = await fetchOtherPlayerStatsService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/attributes/rpc/get-other-player-stats/${params.playerId}/${params.otherPlayerId}`,
     atomName: `otherPlayerStatsAtom`,
   }

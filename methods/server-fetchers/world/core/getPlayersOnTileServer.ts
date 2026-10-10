@@ -22,8 +22,8 @@ export async function getPlayersOnTileServer(
   const { record } = await fetchPlayersOnTileService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/world/rpc/get-players-on-tile/${params.mapId}/${params.mapTileX}/${params.mapTileY}/${params.playerId}`,
     atomName: `playersOnTileAtom`,
   }

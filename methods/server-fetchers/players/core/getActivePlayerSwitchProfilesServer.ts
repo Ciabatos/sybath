@@ -22,8 +22,8 @@ export async function getActivePlayerSwitchProfilesServer(
   const { record } = await fetchActivePlayerSwitchProfilesService(params, { forceFresh: options?.forceFresh })
 
   return {
-    raw: record!.raw,
-    byKey: record!.byKey,
+    raw: record.raw,
+    byKey: record.byKey,
     apiPath: `/api/players/rpc/get-active-player-switch-profiles/${params.playerId}`,
     atomName: `activePlayerSwitchProfilesAtom`,
   }
