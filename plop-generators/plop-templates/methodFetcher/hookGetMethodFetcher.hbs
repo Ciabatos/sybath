@@ -4,7 +4,7 @@
 import {
   {{indexTypeName}},
   {{methodTypeName}},
-  {{#if methodParamsColumns}}{{clientMethodParamsTypeName}}, {{fetchParamsTypeName}}{{/if}}
+  {{#if methodParamsColumns}}{{fetchParamsTypeName}}{{/if}}
 } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{entityCamelName}}"
 import { {{indexMethodName}} } from "@/methods/functions/util/converters"
 import { {{entityCamelName}}Atom } from "@/store/atoms"

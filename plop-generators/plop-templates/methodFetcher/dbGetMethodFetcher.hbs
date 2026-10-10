@@ -14,16 +14,12 @@ export type {{methodParamsTypeName}} = {
 export type {{clientMethodParamsTypeName}} = Omit<{{methodParamsTypeName}}, "userId">
 
 /*
-  Parametry dopuszczające `null`, żeby hook fetchujący dał się wywołać
-  bezwarunkowo — composite'y wołują `useFetch*`, zanim jakiś kafelek czy gracz
-  jest znany. `null` w polu sprawia, że klucz SWR to `null` i SWR nic nie
-  odpytuje, dopóki parametry nie będą kompletne.
+  Parametry dozwolone w części — hook fetchujący jest wołany bezwarunkowo
+  (React zabrania zmieniać liczby hooków między renderami), a w composite'ie
+  parametr bywa jeszcze nieznany, np. `clickedMapTile` przed kliknięciem.
+  Niekompletne parametry dają klucz SWR `null`, a SWR nic wtedy nie odpytuje.
 */
-export type {{fetchParamsTypeName}} = {
-{{#each clientMethodParamsColumns}}
-  {{camelName}}: {{tsType}} | null
-{{/each}}
-}
+export type {{fetchParamsTypeName}} = Partial<{{clientMethodParamsTypeName}}>
 {{/if}}
 
 {{#each compositeDefinitions}}

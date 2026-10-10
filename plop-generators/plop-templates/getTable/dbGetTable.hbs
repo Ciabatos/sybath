@@ -12,16 +12,15 @@ export type {{methodParamsTypeName}} = {
 }
 
 /*
-  Parametry dopuszczające `null`, żeby hook fetchujący dał się wywołać
-  bezwarunkowo — composite'y wołują `useFetch*`, zanim jakiś kafelek czy gracz
-  jest znany. `null` w polu sprawia, że klucz SWR to `null` i SWR nic nie
-  odpytuje, dopóki parametry nie będą kompletne.
+  Parametry dozwolone w części — hook fetchujący jest wołany bezwarunkowo
+  (React zabrania zmieniać liczby hooków między renderami), a w composite'ie
+  parametr bywa jeszcze nieznany. Niekompletne parametry dają klucz SWR `null`,
+  a SWR nic wtedy nie odpytuje.
+
+  Wyprowadzone z `{{methodParamsTypeName}}`, żeby lista pól nie dublowała się
+  przy każdej zmianie funkcji w Postgresie.
 */
-export type {{fetchParamsTypeName}} = {
-{{#each methodParamsColumns}}
-  {{camelName}}: {{tsType}} | null
-{{/each}}
-}
+export type {{fetchParamsTypeName}} = Partial<{{methodParamsTypeName}}>
 {{/if}}
 
 export type {{methodTypeName}} = {
