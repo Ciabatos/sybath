@@ -4,16 +4,19 @@
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
 import { {{#if mutationMergeOldData}}{{indexTypeName}}, {{/if}}{{methodTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{entityCamelName}}"
+import { {{swrKeyConstantName}} } from "@/methods/hooks/{{schema}}/core/useFetch{{schemaEntityPascalName}}"
 {{#if mutationMergeOldData}}import { {{entityCamelName}}Atom } from "@/store/atoms"{{/if}}
 {{#if mutationMergeOldData}}import { useAtomValue } from "jotai"{{/if}}
 {{#if mutationMergeOldData}}import { arrayToObjectKey } from "@/methods/functions/util/converters"{{/if}}
 
 export function useMutate{{schemaEntityPascalName}}() {
   const { mutate } = useSWRConfig()
-  const key = `{{apiPathParams}}`
+  const key = {{swrKeyConstantName}}()
   {{#if mutationMergeOldData}}const {{entityCamelName}} = useAtomValue({{entityCamelName}}Atom){{/if}}
 
   function mutate{{schemaEntityPascalName}}(optimisticParams?: Partial<{{methodTypeName}}>[]) {
+    if (!key) return
+
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -21,6 +24,12 @@ export function useMutate{{schemaEntityPascalName}}() {
     
     //MANUAL CODE - START
 
+    /*
+      Uzupełnij wartości domyślne dla `optimisticParams`. Wcześniej generator
+      wpisywał tu `` (pusty string) dla KAŻDEGO pola, co dla pól liczbowych
+      oznaczało `id: ""` — bezsensowną daną, kompilującą się tylko dlatego, że
+      `Partial<T>` maskuje typ. Uzupełniaj ręcznie albo zostaw `{}`.
+    */
     const defaultValues = {
     {{#each methodColumns}}
       {{camelName}}: ``,

@@ -9,7 +9,20 @@ export type {{methodParamsTypeName}} = {
 {{#each methodParamsColumns}}
   {{camelName}}: {{tsType}}
 {{/each}}
-}{{/if}}
+}
+
+/*
+  Parametry dopuszczające `null`, żeby hook fetchujący dał się wywołać
+  bezwarunkowo — composite'y wołują `useFetch*`, zanim jakiś kafelek czy gracz
+  jest znany. `null` w polu sprawia, że klucz SWR to `null` i SWR nic nie
+  odpytuje, dopóki parametry nie będą kompletne.
+*/
+export type {{fetchParamsTypeName}} = {
+{{#each methodParamsColumns}}
+  {{camelName}}: {{tsType}} | null
+{{/each}}
+}
+{{/if}}
 
 export type {{methodTypeName}} = {
 {{#each methodColumns}}
@@ -37,7 +50,7 @@ export async function {{dbFunctionName}}() {
 
 export async function {{dbFunctionByKeyName}}(params: {{methodParamsTypeName}}) {
   try {
-    const sqlParams = Object.values(params)
+    const sqlParams = {{sqlParamsExpressionByKey}}
     const sql = `SELECT * FROM {{schema}}.{{sqlFunctionByKeyName}}({{sqlParamsPlaceholders}});`
     
     const result = await query(sql, sqlParams)

@@ -3,17 +3,20 @@
 
 import { useSWRConfig } from "swr"
 import { fetchFresh } from "@/providers/swr-fetchers"
-import { {{#if mutationMergeOldData}}{{indexTypeName}}, {{/if}}{{#if methodParamsColumns}} {{methodParamsTypeName}}, {{methodTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{entityCamelName}}"
+import { {{#if mutationMergeOldData}}{{indexTypeName}}, {{/if}}{{#if methodParamsColumns}} {{methodParamsTypeName}}, {{fetchParamsTypeName}}, {{methodTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{entityCamelName}}"
+import { {{swrKeyConstantName}} } from "@/methods/hooks/{{schema}}/core/useFetch{{entityPascalName}}"
 {{#if mutationMergeOldData}}import { {{entityCamelName}}Atom } from "@/store/atoms"{{/if}}
 {{#if mutationMergeOldData}}import { useAtomValue } from "jotai"{{/if}}
 {{#if mutationMergeOldData}}import { arrayToObjectKey } from "@/methods/functions/util/converters"{{/if}} 
 
-export function useMutate{{entityPascalName}}({{#if methodParamsColumns}} params: {{methodParamsTypeName}}{{/if}}) {
+export function useMutate{{entityPascalName}}({{#if methodParamsColumns}} params: {{fetchParamsTypeName}}{{/if}}) {
   const { mutate } = useSWRConfig()
-  const key = `{{apiPathParams}}`
+  const key = {{#if methodParamsColumns}}{{swrKeyConstantName}}(params){{else}}{{swrKeyConstantName}}(){{/if}}
   {{#if mutationMergeOldData}}const {{entityCamelName}} = useAtomValue({{entityCamelName}}Atom){{/if}}
 
   function mutate{{entityPascalName}}(optimisticParams?: Partial<{{methodTypeName}}>[]) {
+    if (!key) return
+
     if (!optimisticParams) {
       mutate(key, () => fetchFresh(key))
       return
@@ -21,6 +24,13 @@ export function useMutate{{entityPascalName}}({{#if methodParamsColumns}} params
 
     //MANUAL CODE - START
 
+    /*
+      Uzupełnij wartości domyślne dla `optimisticParams`. Wcześniej generator
+      wpisywał tu `` (pusty string) dla KAŻDEGO pola, co dla pól liczbowych
+      oznaczało `mapId: ""` — bezsensowną daną, która kompilowała się tylko
+      dlatego, że `Partial<T>` maskuje typ. Uzupełniaj ręcznie albo zostaw `{}`,
+      jeśli nie potrzebujesz defaults.
+    */
     const defaultValues = {
     {{#each methodColumns}}
       {{camelName}}: ``,

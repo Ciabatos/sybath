@@ -1,17 +1,33 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetMethodFetcher.hbs
 
 "use client"
-import { {{indexTypeName}}, {{methodTypeName}} {{#if methodParamsColumns}}, {{clientMethodParamsTypeName}}{{/if}}  } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{entityCamelName}}"
+import {
+  {{indexTypeName}},
+  {{methodTypeName}},
+  {{#if methodParamsColumns}}{{clientMethodParamsTypeName}}, {{fetchParamsTypeName}}{{/if}}
+} from "@/db/postgresMainDatabase/schemas/{{schema}}/{{entityCamelName}}"
 import { {{indexMethodName}} } from "@/methods/functions/util/converters"
 import { {{entityCamelName}}Atom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
-export function useFetch{{entityPascalName}}({{#if methodParamsColumns}} params: {{clientMethodParamsTypeName}}{{/if}}) {
+/*
+  Wspólny klucz SWR. Eksportowany, bo `useMutate{{entityPascalName}}` musi
+  budować DOKŁADNIE tę samą wartość — inaczej SWR widzi dwa różne zasoby,
+  a dopasowanie optimistic update'ów po cichu przestaje działać.
+
+  Zwraca `null`, gdy brakuje któregokolwiek parametru. SWR traktuje klucz
+  `null` jako "nie pobieraj" i nie wykonuje requestu.
+*/
+export const {{swrKeyConstantName}} = {{{swrKeyBuilderExpression}}}
+
+export function useFetch{{entityPascalName}}({{#if methodParamsColumns}} params: {{fetchParamsTypeName}}{{/if}}) {
   const set{{entityPascalName}} = useSetAtom({{entityCamelName}}Atom)
 
-  const { data } = useSWR<{{methodTypeName}}[]>(`{{apiPathParams}}`, { refreshInterval: 3000 })
+  const { data } = useSWR<{{methodTypeName}}[]>({{#if methodParamsColumns}}{{swrKeyConstantName}}(params){{else}}{{swrKeyConstantName}}(){{/if}}, {
+    refreshInterval: 3000,
+  })
 
   useEffect(() => {
     if (data) {

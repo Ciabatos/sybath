@@ -1,17 +1,29 @@
 // GENERATED CODE - DO NOT EDIT MANUALLY - hookGetTable.hbs
 
 "use client"
-import { {{indexTypeName}}, {{methodTypeName}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{entityCamelName}}"
+import { {{indexTypeName}}, {{methodTypeName}}{{#if methodParamsColumns}}, {{fetchParamsTypeName}}{{/if}} } from "@/db/postgresMainDatabase/schemas/{{schema}}/{{entityCamelName}}"
 import { {{indexMethodName}} } from "@/methods/functions/util/converters"
 import { {{entityCamelName}}Atom } from "@/store/atoms"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useEffect } from "react"
 import useSWR from "swr"
 
+/*
+  Wspólny klucz SWR. Eksportowany, bo `useMutate{{schemaEntityPascalName}}` musi
+  budować DOKŁADNIE tę samą wartość — inaczej SWR widzi dwa różne zasoby,
+  a dopasowanie optimistic update'ów po cichu przestaje działać.
+
+  Zwraca `null`, gdy brakuje któregokolwiek parametru. SWR traktuje klucz
+  `null` jako "nie pobieraj" i nie wykonuje requestu.
+*/
+export const {{swrKeyConstantName}} = {{{swrKeyBuilderExpression}}}
+
 export function useFetch{{schemaEntityPascalName}}() {
   const set{{schemaEntityPascalName}} = useSetAtom({{entityCamelName}}Atom)
-  
-  const { data } = useSWR<{{methodTypeName}}[]>(`{{apiPathParams}}`, { refreshInterval: 3000 })
+
+  const { data } = useSWR<{{methodTypeName}}[]>({{swrKeyConstantName}}(), {
+    refreshInterval: 3000,
+  })
 
   useEffect(() => {
     if (data) {

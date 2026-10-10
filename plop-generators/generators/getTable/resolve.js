@@ -78,6 +78,9 @@ export async function resolveGetTable({
   const { argsArray } = await fetchMethodArgs(schema, sqlFunctionByKeyName)
   const sqlParamsPlaceholders = argsArray.map((_, i) => `$${i + 1}`).join(", ")
 
+  // Jawne wiązanie argumentów po nazwie — chroni przed cichym pomieszaniem.
+  const sqlParamsExpressionByKey = `[${argsArray.map((n) => `params.${snakeToCamel(n)}`).join(", ")}]`
+
   // --- API ---
   const apiParamPathSquareBrackets = methodParamsColumns.length
     ? "/" + methodParamsColumns.map((f) => `[${f.camelName}]`).join("/")
@@ -90,6 +93,28 @@ export async function resolveGetTable({
   const apiPathByKey = `app/api/${schema}/${entityKebabName}${apiParamPathSquareBrackets}/route.ts`
   const apiPathParams = `/api/${schema}/${entityKebabName}`
   const apiPathParamsByKey = `/api/${schema}/${entityKebabName}${apiParamPath}`
+
+  // --- Hooki: klucz SWR wspólny dla fetch i mutate ---
+  /*
+    Hook fetchujący musi być wołany bezwarunkowo (React zabrania zmieniać liczby
+    hooków między renderami), więc parametry dopuszczają `null`, a klucz SWR to
+    `string | null` — SWR nic nie odpytuje dla klucza `null`.
+
+    Fetch i mutate MUSZĄ użyć tego samego klucza, inaczej SWR traktuje je jako
+    dwa różne zasoby i dopasowanie optimistic update'ów po cichu przestaje
+    działać. Dlatego klucz jest eksportowany z hooka fetchującego.
+  */
+  const fetchParamsTypeName = methodParamsTypeName + "FetchParams"
+  const hasAllParamsExpression = methodParamsColumns.length
+    ? methodParamsColumns.map((f) => `params.${f.camelName} != null`).join(" && ")
+    : "true"
+
+  const swrKeyConstantName = `${snakeToCamel(schemaEntityPascalName).toUpperCase()}_SWR_KEY`
+  const swrKeyConstantNameByKey = `${swrKeyConstantName}_BY_KEY`
+
+  // Wariant bez argumentów — klucz jest stały, więc budowniczy to czysta funkcja.
+  const swrKeyBuilderExpression = `() => \`${apiPathParams}\``
+  const swrKeyBuilderExpressionByKey = `(params: ${fetchParamsTypeName}) =>\n  ${hasAllParamsExpression} ? \`${apiPathParamsByKey}\` : null`
 
   const promptAnswers = {
     schema,
@@ -143,6 +168,13 @@ export async function resolveGetTable({
     indexMethodName,
     indexTypeName,
     indexColumns,
+    fetchParamsTypeName,
+    hasAllParamsExpression,
+    swrKeyConstantName,
+    swrKeyConstantNameByKey,
+    swrKeyBuilderExpression,
+    swrKeyBuilderExpressionByKey,
+    sqlParamsExpressionByKey,
     apiPath,
     apiPathParams,
     apiPathByKey,
